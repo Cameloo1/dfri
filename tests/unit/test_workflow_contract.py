@@ -58,8 +58,17 @@ def test_ci_uses_the_current_pinned_uv_contract() -> None:
     workflow = (root / ".github" / "workflows" / "ci.yml").read_text()
 
     assert "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1" in workflow
+    assert "fetch-depth: 0" in workflow
     assert "astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b" in workflow
     assert 'version: "0.11.32"' in workflow
+    assert "Scan complete Git history for secrets" in workflow
+    assert 'GITLEAKS_VERSION: "8.30.1"' in workflow
+    assert "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb" in workflow
+    assert '--log-opts="HEAD --remotes=origin --tags --full-history"' in workflow
+    assert "--redact=100" in workflow
+    assert "Block local paths and excluded documents" in workflow
+    assert "dfri.ops.privacy markdown" in workflow
+    assert "dfri.ops.privacy excluded-tracked" in workflow
     assert "make verify" in workflow
     assert "make publish" in workflow
     assert "Verify published changelog history is append-only" in workflow
