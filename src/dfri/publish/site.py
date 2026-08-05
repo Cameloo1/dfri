@@ -834,7 +834,8 @@ def _render(
 
 
 def _copy(source: Path, destination: Path) -> None:
-    _atomic_write(destination, source.read_bytes())
+    content = source.read_text(encoding="utf-8").replace("\r\n", "\n")
+    _atomic_write(destination, content.encode())
 
 
 def _atomic_write(path: Path, content: bytes) -> None:

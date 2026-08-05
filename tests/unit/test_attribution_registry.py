@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import hashlib
+import json
 from dataclasses import replace
+from pathlib import Path
 
 import pytest
 
@@ -34,6 +37,21 @@ def test_public_attribution_bundle_is_complete_and_source_hashed() -> None:
     assert {item.quarter for item in bundle.flows} == {"2026-Q1"}
     assert all(len(item.tier1_excerpt.split()) <= 15 for item in bundle.companies)
     assert all(item.source_url.startswith("https://") for item in bundle.assumptions)
+
+    digest = hashlib.sha256()
+    root = Path(__file__).parents[2] / "src" / "dfri" / "attribution"
+    for filename in (
+        "assumption_registry_v1.json",
+        "matrix_a_v1.json",
+        "matrix_b_v1.json",
+        "company_inputs_v1.json",
+        "flow_inputs_v1.json",
+    ):
+        payload = json.loads((root / filename).read_text(encoding="utf-8"))
+        digest.update(filename.encode())
+        digest.update(b"\0")
+        digest.update(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode())
+    assert bundle.source_hash == digest.hexdigest()
 
 
 def test_matrix_bounds_and_assumption_coverage_are_explicit() -> None:

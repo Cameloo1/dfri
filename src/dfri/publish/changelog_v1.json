@@ -25,6 +25,18 @@
         {"label": "Company feed", "href": "/v1/feeds/dfri_companies.json"},
         {"label": "Assumptions feed", "href": "/v1/feeds/assumptions.json"}
       ]
+    },
+    {
+      "entry_id": "registry-digest-cross-platform",
+      "published_on": "2026-08-05",
+      "kind": "publication",
+      "version": "1.0.0",
+      "title": "Registry digest made cross-platform",
+      "summary": "Canonicalized attribution registry hashing and text assets so Windows and Linux cold clones publish byte-identical provenance metadata and site assets.",
+      "links": [
+        {"label": "Data schema", "href": "/v1/feeds/schema.json"},
+        {"label": "Methodology", "href": "/methodology/"}
+      ]
     }
   ]
 }

@@ -112,6 +112,8 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert 'href="mailto:ops@camelon.app"' in home
     assert "revenue-weighted company index" in home
     assert first.total_bytes < 500_000
+    assert b"\r\n" not in (output / "assets" / "site.css").read_bytes()
+    assert b"\r\n" not in (output / "assets" / "site.js").read_bytes()
 
     filtered = publish_scoreboard(
         store,

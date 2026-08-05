@@ -123,12 +123,12 @@ def load_attribution_bundle() -> AttributionBundle:
     digest = hashlib.sha256()
     for filename in _RESOURCE_FILES:
         raw = resources.files("dfri.attribution").joinpath(filename).read_bytes()
-        digest.update(filename.encode())
-        digest.update(b"\0")
-        digest.update(raw)
         value = json.loads(raw)
         if not isinstance(value, dict):
             raise AttributionRegistryError(f"{filename} must contain a JSON object")
+        digest.update(filename.encode())
+        digest.update(b"\0")
+        digest.update(json.dumps(value, sort_keys=True, separators=(",", ":")).encode())
         payloads[filename] = value
 
     assumptions_payload = payloads["assumption_registry_v1.json"]
