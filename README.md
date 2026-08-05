@@ -348,6 +348,12 @@ grade exactly. First live publication metadata is a third append-only ledger: th
 `published_at`, input `data_vintage`, and methodology version for a prediction survive every later
 site rebuild.
 
+Prediction points and interval bounds are canonicalized to nine decimal places in their declared
+million-dollar unit before the first append. That boundary is one-thousandth of a dollar and
+removes irrelevant cross-runner BLAS noise while the ledger still rejects any economically
+meaningful content change under an existing prediction ID. Pre-boundary rows remain immutable;
+retries compare their canonical form without rewriting them.
+
 The idempotent local job commands are:
 
 ```sh

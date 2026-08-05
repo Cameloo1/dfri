@@ -85,6 +85,29 @@ def test_prediction_id_is_stable_and_append_is_idempotent(tmp_path: Path) -> Non
     assert predictions.read_all()[0].made_at == datetime(2026, 6, 12, 21, 15, tzinfo=UTC)
 
 
+def test_prediction_retry_canonicalizes_cross_runner_numeric_noise(tmp_path: Path) -> None:
+    predictions, _grades, store = ledgers(tmp_path)
+    source = forecast(point=10_000.1234567894)
+    canonical = prediction_record(source)
+    legacy = replace(
+        canonical,
+        point=canonical.point + 2.0e-11,
+        low80=canonical.low80 + 2.0e-11,
+        high80=canonical.high80 + 2.0e-11,
+        low95=canonical.low95 + 2.0e-11,
+        high95=canonical.high95 + 2.0e-11,
+    )
+    store.append("predictions", [legacy.row()])
+
+    retry = predictions.append(
+        forecast(point=10_000.1234567894, made_at=datetime(2026, 6, 12, 22, 15, tzinfo=UTC))
+    )
+
+    assert canonical.point == round(source.point, 9)
+    assert retry.appended is False
+    assert predictions.read_all()[0] == legacy
+
+
 def test_attempted_prediction_edit_is_rejected(tmp_path: Path) -> None:
     predictions, _grades, _store = ledgers(tmp_path)
     predictions.append(forecast())

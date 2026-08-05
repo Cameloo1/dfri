@@ -20,6 +20,7 @@ from dfri.nowcast.targets import FirstPrintTarget
 
 PREDICTION_STATUS: Final = "PENDING_FIRST_PRINT"
 PREDICTION_ID_PREFIX: Final = "prd_"
+PREDICTION_DECIMAL_PLACES: Final = 9
 LOCK_POLL_SECONDS: Final = 0.05
 
 
@@ -168,7 +169,7 @@ class PredictionLedger:
             current = existing.get(record.prediction_id)
             if current is not None:
                 retry_record = replace(record, made_at=current.made_at)
-                if current != retry_record:
+                if _canonical_prediction_numbers(current) != retry_record:
                     raise ImmutablePredictionError(
                         f"Prediction {record.prediction_id} already exists with different content"
                     )
@@ -282,7 +283,7 @@ def prediction_record(forecast: ForecastLike) -> PredictionRecord:
             json.dumps(identity, sort_keys=True, separators=(",", ":")).encode()
         ).hexdigest()
     )
-    record = PredictionRecord(
+    raw_record = PredictionRecord(
         prediction_id=prediction_id,
         made_at=forecast.made_at,
         model_version=forecast.model_version,
@@ -295,8 +296,23 @@ def prediction_record(forecast: ForecastLike) -> PredictionRecord:
         low95=forecast.low95,
         high95=forecast.high95,
     )
+    _validate_prediction(raw_record)
+    record = _canonical_prediction_numbers(raw_record)
     _validate_prediction(record)
     return record
+
+
+def _canonical_prediction_numbers(record: PredictionRecord) -> PredictionRecord:
+    """Remove irrelevant cross-runner BLAS noise at a sub-cent output boundary."""
+
+    return replace(
+        record,
+        point=round(record.point, PREDICTION_DECIMAL_PLACES),
+        low80=round(record.low80, PREDICTION_DECIMAL_PLACES),
+        high80=round(record.high80, PREDICTION_DECIMAL_PLACES),
+        low95=round(record.low95, PREDICTION_DECIMAL_PLACES),
+        high95=round(record.high95, PREDICTION_DECIMAL_PLACES),
+    )
 
 
 def grade_record(prediction: PredictionRecord, target: FirstPrintTarget) -> GradeRecord:
