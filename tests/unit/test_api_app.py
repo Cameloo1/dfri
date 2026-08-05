@@ -144,6 +144,8 @@ def test_openapi_is_committed_shape_and_contains_no_mutations(tmp_path: Path) ->
     assert set(payload["paths"]) == exact
     assert all(set(contract) == {"get"} for contract in payload["paths"].values())
     assert check_openapi(output) == output
+    output.write_bytes(output.read_bytes().replace(b"\n", b"\r\n"))
+    assert check_openapi(output) == output
     output.write_text("{}\n", encoding="utf-8")
     with pytest.raises(OpenApiDriftError, match="stale"):
         check_openapi(output)

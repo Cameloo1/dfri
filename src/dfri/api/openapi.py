@@ -28,7 +28,7 @@ def write_openapi(path: Path) -> Path:
 
 def check_openapi(path: Path) -> Path:
     try:
-        committed = path.read_bytes()
+        committed = path.read_text(encoding="utf-8").replace("\r\n", "\n").encode()
     except OSError as exc:
         raise OpenApiDriftError(f"Committed OpenAPI contract is unavailable: {path}") from exc
     if committed != render_openapi():
