@@ -2,7 +2,9 @@
 
 DFRI is a provenance-first system for estimating what share of consumer-facing company revenue is financed by net new consumer debt. It publishes modeled results as bands, separates observed inputs from assumptions, and keeps weekly nowcast predictions immutable so they can be graded against later first-print releases.
 
-The controlling build contract is [DFRI_BUILD_SPEC.md](DFRI_BUILD_SPEC.md). Current execution status lives in [PLAN.md](PLAN.md). Intended behavior is not treated as shipped behavior; milestone reports record the acceptance evidence that exists.
+Current execution status lives in [PLAN.md](PLAN.md). Intended behavior is not treated as shipped
+behavior; milestone reports record the acceptance evidence that exists. The controlling build
+specification and agent operating prompt are deliberately excluded from the public publication lane.
 
 ## Current state
 
@@ -15,6 +17,39 @@ Immutable prediction/grading ledgers, idempotent local jobs, and the determinist
 builder also pass. The [public scoreboard](https://cameloo1.github.io/dfri/) and active external
 clock are now deployed; two genuine scheduled weekly cycles and automatic first-print grading
 remain. No live milestone is claimed yet.
+
+## Outputs, sources, and evidence tiers
+
+DFRI publishes immutable weekly predictions of Federal Reserve G.19 consumer-credit flows and,
+after attribution ships, quarterly estimates of debt-funded revenue for covered companies. Modeled
+company results are always `[low, mid, high]` bands. The homepage aggregate is revenue-weighted:
+total estimated debt-funded consumer revenue across covered companies divided by their total
+estimated U.S. consumer revenue. It is never equal-weighted or market-cap-weighted.
+
+- **Tier 1 — Observed:** a disclosure directly connects financing with a company's sales.
+- **Tier 2 — Category-mapped:** consumer-credit flow is modeled into spending categories and then
+  companies using evidence-linked Matrix A and Matrix B weights.
+- **Tier 3 — Fungible:** debt that cannot be assigned more directly is allocated using an explicit,
+  widest-band fungibility assumption.
+
+Primary inputs are Federal Reserve Board dated G.19 and H.8 releases, SEC EDGAR filings, Census
+MARTS releases, BEA product-level consumer spending, and the New York Fed Household Debt and
+Credit workbook. DFRI uses no market data, price feeds, TradingView data, or paid vendor inputs.
+
+## Licensing and mapping-source policy
+
+Code, tests, methodology source, site templates, and the nowcast engine are licensed under the
+[Apache License 2.0](LICENSE). Published DFRI feeds are licensed under
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/): free for non-commercial use with
+attribution. Commercial licensing is reserved; contact `ops@camelon.app`. Third-party source
+artifacts retain their own notices, including the separately attributed CC BY-SA 4.0 membership
+snapshot.
+
+The optional private mappings split is not used. When Matrix A, Matrix B, and the Assumption
+Registry are implemented, their complete versioned sources will be public alongside their rendered
+read-only methodology output. A private dependency would break unauthenticated cold-clone
+verification or make published numbers depend on hidden inputs. This is the addendum's explicit
+escape-hatch path and is recorded in `DEVIATIONS.md`.
 
 ## Prerequisites
 

@@ -100,10 +100,15 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert (output / "scoreboard" / "predictions" / first_id / "index.html").exists()
     assert (output / "scoreboard" / "predictions" / second_id / "index.html").exists()
     scoreboard = (output / "scoreboard" / "index.html").read_text(encoding="utf-8")
+    home = (output / "index.html").read_text(encoding="utf-8")
     assert "Every prediction. No silent edits." in scoreboard
     assert first_id in scoreboard and second_id in scoreboard
     assert "Not released" in scoreboard
     assert "10,500" in scoreboard
+    assert "Research and educational content. Not investment advice." in home
+    assert 'href="https://creativecommons.org/licenses/by-nc/4.0/"' in home
+    assert 'href="mailto:ops@camelon.app"' in home
+    assert "revenue-weighted company index" in home
     assert first.total_bytes < 500_000
 
     filtered = publish_scoreboard(
@@ -135,9 +140,19 @@ def test_feed_contract_has_publication_fields_license_and_typed_parquet(tmp_path
 
     payload = json.loads((output / "v1" / "feeds" / "scoreboard.json").read_text())
     assert payload["meta"]["license"].startswith("CC BY-NC 4.0")
+    assert payload["meta"]["license_url"] == "https://creativecommons.org/licenses/by-nc/4.0/"
+    assert payload["meta"]["commercial_license_contact"] == "ops@camelon.app"
     assert payload["meta"]["publication_mode"] == "live"
     assert all(
-        {"methodology_version", "data_vintage", "published_at", "license"} <= set(row)
+        {
+            "methodology_version",
+            "data_vintage",
+            "published_at",
+            "license",
+            "license_url",
+            "commercial_license_contact",
+        }
+        <= set(row)
         for row in payload["data"]
     )
     parquet = pq.read_table(output / "v1" / "feeds" / "nowcast_predictions.parquet")

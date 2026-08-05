@@ -12,7 +12,9 @@ This is the controlling execution map for `DFRI_BUILD_SPEC.md` v1.0. Sections 1 
 - `G3 — Publication honesty`: modeled quantities always publish ordered bands, tier badges, and provenance.
 - `G4 — Determinism`: frozen inputs plus `AS_OF` and fixed versions/seeds produce byte-identical outputs.
 - `G5 — Calendar clock`: M2 weekly prediction and G.19 grading workflows take priority over all non-blocking work.
-- `G6 — Attribution hold`: no M3 implementation starts until M2 has completed two consecutive live weekly cycles.
+- `G6 — Attribution sequencing`: M3 may begin once the public M2 clock is verified self-running;
+  M2 remains open until two consecutive scheduled weekly cycles and at least one automatic
+  first-print grade pass. Owner deviation D-006 changes only the M3 start gate.
 - `G7 — Milestone proof`: each milestone closes only after `make bootstrap && make verify` succeeds from a fresh clone and `MILESTONE_REPORTS/M{n}.md` is written.
 - `G8 — Capability proof`: any commit claiming a capability includes the test that demonstrates it.
 
@@ -21,8 +23,10 @@ This is the controlling execution map for `DFRI_BUILD_SPEC.md` v1.0. Sections 1 
 1. M0 foundation and contracts.
 2. M1 production ingest, depending on M0 schemas, clients, and Vintage Guard.
 3. M2 nowcast and public scoreboard, depending on M1 Board G.19/H.8 current and dated-release history plus publication primitives.
-4. M2 live-cycle observation window: two consecutive scheduled weekly cycles, including automatic grading when a G.19 release matures a prediction.
-5. M3 P0 attribution, hard-gated on step 4.
+4. Run the M2 live-cycle observation window in the background: two consecutive scheduled weekly
+   cycles, including automatic grading when a G.19 release matures a prediction.
+5. M3 P0 attribution may begin after step 3's clock is verified self-running; it does not waive or
+   complete step 4.
 6. M4 publication hardening, depending on stable M2/M3 output contracts.
 7. M5 scale, depending on M3 per-company evidence and M4 publication gates.
 
@@ -215,7 +219,9 @@ Dependencies: M2.4.
 
 - `PENDING` Observe and preserve evidence for two consecutive scheduled weekly cycles; do not backfill these receipts.
 - `PENDING` Verify matured predictions are automatically graded on the relevant G.19 first print.
-- `PENDING` Keep M3 tasks blocked until this gate passes.
+- `PASS` Release the M3 start gate after the active public workflow, accepted state recovery, Pages
+  deployment, and both registered cron lanes were verified. Continue M2.6 in the background; no
+  manual or backfilled run counts toward its remaining evidence.
 
 Dependencies: public M2.5 deployment and calendar time.
 
@@ -226,21 +232,27 @@ Dependencies: public M2.5 deployment and calendar time.
 
 Dependencies: M2.1–M2.6.
 
-## M3 — Attribution P0 (hard-blocked by M2.6)
+## M3 — Attribution P0 (eligible after the verified live-clock gate)
 
 ### M3.1 Assumption Registry and matrices
 
 - `PENDING` Populate every non-observed Matrix A/B/model parameter with an assumption ID, source, tier, evidence, prior/band, sensitivity note, version, and active state.
 - `PENDING` Build Matrix A v1 with row-sum and evidence checks.
 - `PENDING` Build Matrix B v1 for ten P0 companies with non-negative weights, denominator evidence, and membership snapshot refs.
+- `PENDING` Keep the complete versioned Matrix A, Matrix B, and Assumption Registry sources public
+  under the addendum escape hatch so an unauthenticated cold clone can reproduce every rendered
+  assumption and company result.
 
-Dependencies: M2.6 PASS and M1 category/company data.
+Dependencies: verified public M2 clock and M1 category/company data. M2.6 continues independently.
 
 ### M3.2 Company facts and Monte Carlo
 
 - `PENDING` Produce evidence-linked US consumer revenue denominator bands for ten P0 companies.
 - `PENDING` Implement >=10,000-draw deterministic Monte Carlo using registered priors and publish 10th/50th/90th percentiles.
 - `PENDING` Pass property tests for band ordering, finite flows, monotone percentiles, and tier shares summing to one.
+- `PENDING` Compute the homepage aggregate as total estimated debt-funded consumer revenue across
+  covered companies divided by their total estimated U.S. consumer revenue. Prohibit equal,
+  market-cap, price, or other market-data weighting in code and tests.
 
 Dependencies: M3.1.
 
@@ -326,4 +338,5 @@ Dependencies: M5.1–M5.2.
 
 1. Preserve the first two genuine scheduled weekly prediction cycles and their deployment receipts.
 2. Verify the relevant G.19 release automatically grades the matured predictions.
-3. Keep M3 hard-blocked until M2.6 passes; use the activation-evidence pull request to close M0's final PR-CI item.
+3. Begin M3.1 from the verified self-running clock while M2.6 continues in the background; do not
+   count manual, backfilled, or simulated runs toward M2.

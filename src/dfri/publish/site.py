@@ -33,6 +33,7 @@ METHODOLOGY_VERSION: Final = "1.0.0"
 LICENSE: Final = (
     "CC BY-NC 4.0 — free for non-commercial use with attribution; commercial licensing reserved"
 )
+LICENSE_URL: Final = "https://creativecommons.org/licenses/by-nc/4.0/"
 TARGET_LABELS: Final = {
     "DELTA_DTCTLR.M": "Revolving credit flow",
     "DELTA_DTCTLN.M": "Nonrevolving credit flow",
@@ -121,6 +122,9 @@ def _build_scoreboard(
         raise SitePublishError("Data vintage cannot follow publication")
     root = project_root or Path(__file__).resolve().parents[3]
     brand = _load_object(root / "site" / "branding.yaml", "branding")
+    commercial_contact = brand.get("contact")
+    if not isinstance(commercial_contact, str) or not commercial_contact.strip():
+        raise SitePublishError("Branding contact must be a non-empty string")
     backtest = _load_object(root / "reports" / "m2_backtest.json", "backtest")
     all_predictions = PredictionLedger(ledger_store).read_all()
     predictions = tuple(
@@ -167,6 +171,8 @@ def _build_scoreboard(
         "published_at": published_at.astimezone(UTC).isoformat(),
         "publication_mode": publication_mode,
         "license": LICENSE,
+        "license_url": LICENSE_URL,
+        "commercial_license_contact": commercial_contact,
     }
     prediction_rows = [
         _prediction_feed_row(
@@ -178,6 +184,7 @@ def _build_scoreboard(
                     if publication_mode == "live" or item.prediction_id in publication_by_id
                     else "preview"
                 ),
+                commercial_contact,
             ),
         )
         for item in predictions
@@ -193,6 +200,7 @@ def _build_scoreboard(
                     if publication_mode == "live" or item.prediction_id in publication_by_id
                     else "preview"
                 ),
+                commercial_contact,
             ),
         )
         for item in predictions
@@ -238,6 +246,8 @@ def _build_scoreboard(
         "methodology_version": METHODOLOGY_VERSION,
         "data_vintage": build_meta["data_vintage"],
         "published_at": build_meta["published_at"],
+        "feed_license_url": LICENSE_URL,
+        "commercial_license_contact": commercial_contact,
     }
     _render(
         environment,
@@ -319,13 +329,17 @@ def _build_scoreboard(
     )
 
 
-def _publication_fields(record: PublicationRecord, mode: str) -> dict[str, object]:
+def _publication_fields(
+    record: PublicationRecord, mode: str, commercial_contact: str
+) -> dict[str, object]:
     return {
         "methodology_version": record.methodology_version,
         "data_vintage": record.data_vintage.astimezone(UTC).isoformat(),
         "published_at": record.published_at.astimezone(UTC).isoformat(),
         "publication_mode": mode,
         "license": LICENSE,
+        "license_url": LICENSE_URL,
+        "commercial_license_contact": commercial_contact,
     }
 
 
@@ -415,6 +429,8 @@ def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
         "schema_version": "v1",
         "methodology_version": common["methodology_version"],
         "license": LICENSE,
+        "license_url": LICENSE_URL,
+        "commercial_license_contact": common["commercial_license_contact"],
         "feeds": {
             "nowcast_predictions": {
                 "formats": ["csv", "json", "parquet"],
@@ -448,6 +464,8 @@ def _prediction_columns() -> list[str]:
         "published_at",
         "publication_mode",
         "license",
+        "license_url",
+        "commercial_license_contact",
     ]
 
 
