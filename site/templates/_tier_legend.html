@@ -1,0 +1,22 @@
+{% macro tier_legend(root, expandable=false) -%}
+{% if expandable %}
+<details class="tier-explainer">
+  <summary>What do these tiers mean?</summary>
+  <div class="tier-explainer-body">
+{% else %}
+<div class="tier-explainer tier-explainer-visible">
+  <div class="tier-explainer-title">What the tiers mean</div>
+{% endif %}
+    <dl class="tier-definitions">
+      <div><dt><span class="tier-badge tier-1">T1 — Observed</span></dt><dd>A company disclosure directly links financing to sales.</dd></div>
+      <div><dt><span class="tier-badge tier-2">T2 — Category-mapped</span></dt><dd>Credit is mapped to spending categories, then to companies using registered weights.</dd></div>
+      <div><dt><span class="tier-badge tier-3">T3 — Fungible</span></dt><dd>Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.</dd></div>
+    </dl>
+    <p class="tier-explainer-note">Tier percentages show how the estimate was constructed—not confidence scores. <a href="{{ root }}methodology/index.html">Full methodology</a></p>
+{% if expandable %}
+  </div>
+</details>
+{% else %}
+</div>
+{% endif %}
+{%- endmacro %}
