@@ -127,10 +127,16 @@ class QuarterlyRefreshLedger:
         self._store = store
 
     def append(self, record: QuarterlyRefreshRecord) -> QuarterlyRefreshAppend:
-        existing = {item.refresh_id: item for item in self.read_all()}
-        current = existing.get(record.refresh_id)
-        if current is not None:
-            if current != record:
+        records = self.read_all()
+        for semantic_match in records:
+            if refresh_identity(semantic_match) != refresh_identity(record):
+                continue
+            _assert_compatible_refresh_metadata(semantic_match, record)
+            return QuarterlyRefreshAppend(semantic_match.refresh_id, False, None)
+        existing = {item.refresh_id: item for item in records}
+        id_match = existing.get(record.refresh_id)
+        if id_match is not None:
+            if id_match != record:
                 raise QuarterlyRefreshError(
                     f"Quarterly refresh {record.refresh_id} already exists with different content"
                 )
@@ -337,7 +343,14 @@ def build_refresh_record(
         ],
         "result": result.payload(),
     }
-    identity = {key: value for key, value in payload.items() if key not in {"effective_at"}}
+    # Derived sensitivity correlations can differ by machine epsilon across BLAS
+    # implementations. Refresh identity belongs to the pinned inputs and method,
+    # not to a platform-specific serialization of derived floating-point output.
+    identity = {
+        "methodology_version": base.methodology_version,
+        "source_hash": source_hash,
+        "target_quarter": flows.quarter,
+    }
     refresh_id = REFRESH_ID_PREFIX + hashlib.sha256(_canonical(identity)).hexdigest()[:24]
     payload["refresh_id"] = refresh_id
     payload_json = json.dumps(payload, sort_keys=True, separators=(",", ":"), default=_json_default)
@@ -375,7 +388,39 @@ def run_live_refresh(
         for company in base.companies
     )
     record = build_refresh_record(base, flows, inputs)
-    return record, ledger.append(record)
+    append = ledger.append(record)
+    if not append.appended:
+        matches = [item for item in ledger.read_all() if item.refresh_id == append.refresh_id]
+        if len(matches) != 1:
+            raise QuarterlyRefreshError(
+                f"Existing quarterly refresh identity is ambiguous: {append.refresh_id}"
+            )
+        record = matches[0]
+    return record, append
+
+
+def refresh_identity(record: QuarterlyRefreshRecord) -> tuple[str, str, str]:
+    """Return the source-semantic identity used across legacy and current IDs."""
+
+    return (record.methodology_version, record.target_quarter, record.source_hash)
+
+
+def _assert_compatible_refresh_metadata(
+    current: QuarterlyRefreshRecord, candidate: QuarterlyRefreshRecord
+) -> None:
+    current_vintage = current.data_vintage.astimezone(UTC)
+    candidate_vintage = candidate.data_vintage.astimezone(UTC)
+    current_effective = current.effective_at.astimezone(UTC)
+    candidate_effective = candidate.effective_at.astimezone(UTC)
+    if (
+        current_vintage != candidate_vintage
+        or current_effective != candidate_effective
+        or current.company_count != candidate.company_count
+        or current.updated_company_count != candidate.updated_company_count
+    ):
+        raise QuarterlyRefreshError(
+            "Quarterly refresh source identity already exists with conflicting metadata"
+        )
 
 
 def write_refresh_report(path: Path, record: QuarterlyRefreshRecord) -> Path:

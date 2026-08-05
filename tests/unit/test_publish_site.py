@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import html as html_lib
 import json
+from dataclasses import replace
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 
@@ -13,6 +14,7 @@ import dfri.publish.site as site_module
 from dfri.lake.store import AppendOnlyParquetStore
 from dfri.nowcast.bridge import BridgeForecast
 from dfri.nowcast.targets import FirstPrintTarget
+from dfri.ops.quarterly_refresh import QuarterlyRefreshLedger, load_refresh_report
 from dfri.publish.ledger import GradeLedger, PredictionLedger
 from dfri.publish.site import SitePublishError, publish_scoreboard
 
@@ -213,6 +215,17 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
 ) -> None:
     store = AppendOnlyParquetStore(tmp_path / "ledger")
     seed(store)
+    demo = load_refresh_report(
+        Path(__file__).parents[2] / "reports" / "M5_QUARTERLY_REFRESH_DEMO.json"
+    )
+    runtime_payload = demo.payload()
+    runtime_payload["refresh_id"] = "qrf_runtime_authoritative"
+    runtime = replace(
+        demo,
+        refresh_id="qrf_runtime_authoritative",
+        payload_json=json.dumps(runtime_payload, sort_keys=True, separators=(",", ":")),
+    )
+    QuarterlyRefreshLedger(store).append(runtime)
     output = tmp_path / "published"
     publish_scoreboard(
         store,
@@ -256,6 +269,7 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     refreshes = json.loads((output / "v1" / "feeds" / "quarterly_refreshes.json").read_text())
     history = json.loads((output / "v1" / "feeds" / "dfri_company_history.json").read_text())
     assert len(refreshes["data"]) == 1
+    assert refreshes["data"][0]["refresh_id"] == "qrf_runtime_authoritative"
     assert len(history["data"]) == 50
 
     for row in companies["data"]:
