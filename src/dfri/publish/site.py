@@ -25,6 +25,7 @@ from dfri.ops.quarterly_refresh import (
     QuarterlyRefreshLedger,
     QuarterlyRefreshRecord,
     load_refresh_report,
+    refresh_identity,
 )
 from dfri.publish.changelog import load_changelog
 from dfri.publish.ledger import (
@@ -147,15 +148,13 @@ def _build_scoreboard(
         "coverage registry",
     )
     refresh_records = {
-        record.refresh_id: record for record in QuarterlyRefreshLedger(ledger_store).read_all()
+        refresh_identity(record): record
+        for record in QuarterlyRefreshLedger(ledger_store).read_all()
     }
     demo_refresh = load_refresh_report(root / "reports" / "M5_QUARTERLY_REFRESH_DEMO.json")
-    existing_demo = refresh_records.get(demo_refresh.refresh_id)
-    if existing_demo is not None and existing_demo != demo_refresh:
-        raise SitePublishError(
-            "Runtime quarterly refresh conflicts with the committed demonstration"
-        )
-    refresh_records[demo_refresh.refresh_id] = demo_refresh
+    # The committed report keeps cold-clone publication complete. A runtime row
+    # for the same source snapshot is authoritative and must not appear twice.
+    refresh_records.setdefault(refresh_identity(demo_refresh), demo_refresh)
     ordered_refreshes = tuple(
         sorted(refresh_records.values(), key=lambda item: (item.effective_at, item.refresh_id))
     )

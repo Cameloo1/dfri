@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from dataclasses import replace
 from datetime import UTC, date, datetime
@@ -191,6 +192,16 @@ def test_build_refresh_record_reweights_all_fifty_and_is_deterministic() -> None
     payload = first.payload()
     assert len(payload["result"]["companies"]) == 50
     assert payload["result"]["aggregate"]["weighting"] == "revenue-weighted"
+    identity = {
+        "methodology_version": first.methodology_version,
+        "source_hash": first.source_hash,
+        "target_quarter": first.target_quarter,
+    }
+    encoded_identity = json.dumps(
+        identity, sort_keys=True, separators=(",", ":"), ensure_ascii=True
+    ).encode()
+    expected = "qrf_" + hashlib.sha256(encoded_identity).hexdigest()[:24]
+    assert first.refresh_id == expected
 
 
 def test_build_refresh_record_rejects_incomplete_or_different_coverage() -> None:
@@ -226,8 +237,27 @@ def test_refresh_ledger_is_append_only_idempotent_and_conflict_checked(tmp_path:
     assert ledger.append(record).appended is True
     assert ledger.append(record).appended is False
     assert ledger.read_all() == (record,)
+    semantically_identical = replace(
+        record,
+        refresh_id="qrf_cross_platform",
+        payload_json=json.dumps(
+            {
+                **payload,
+                "refresh_id": "qrf_cross_platform",
+                "result": {"companies": [], "platform_epsilon": 1e-16},
+            },
+            sort_keys=True,
+        ),
+    )
+    deduplicated = ledger.append(semantically_identical)
+    assert deduplicated.appended is False
+    assert deduplicated.refresh_id == record.refresh_id
+    assert ledger.read_all() == (record,)
     with pytest.raises(QuarterlyRefreshError, match="different content"):
         ledger.append(replace(record, source_hash="b" * 64))
+
+    with pytest.raises(QuarterlyRefreshError, match="conflicting metadata"):
+        ledger.append(replace(record, refresh_id="qrf_bad_metadata", company_count=49))
 
 
 def test_committed_live_refresh_report_is_complete_and_loadable() -> None:
