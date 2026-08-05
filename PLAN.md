@@ -258,7 +258,7 @@ Dependencies: M3.1.
 
 ### M3.3 P0 pages and independent recompute
 
-- `IN_PROGRESS` Publish ten company pages with "estimated" DFR% bands, tier breakdowns, <=15-word Tier 1 quotes, accession links, assumption IDs, and top-five sensitivity sections. The deterministic local build and tests pass; public Pages deployment evidence is pending.
+- `PASS` Publish ten company pages with "estimated" DFR% bands, tier breakdowns, <=15-word Tier 1 quotes, accession links, assumption IDs, and top-five sensitivity sections. All ten public Pages URLs return HTTP 200.
 - `PASS` Implement `tools/recompute_check.py` without attribution-engine code reuse; AMZN, GM, and WMT match within 0.17 percentage points on the mid.
 - `PASS` Pass live provenance link checking for all 17 unique attribution evidence URLs; receipt is retained under ignored `.local/evidence/`.
 
@@ -266,8 +266,8 @@ Dependencies: M3.2.
 
 ### M3.4 Cold verification and report
 
-- `IN_PROGRESS` Pass fresh-clone verification and public-page checks. The primary 338-test suite passes at 85.19% total coverage; disposable cold-clone and public Pages evidence remain.
-- `PENDING` Write `MILESTONE_REPORTS/M3.md` with all P0 evidence and the M4 task map.
+- `PASS` Pass fresh-clone verification and public-page checks. Two disposable Windows clones pass the locked bootstrap, 338-test verify at 85.19% coverage, deterministic replay, and independent recompute; PR CI, main CI, and all live URLs pass.
+- `PASS` Write `MILESTONE_REPORTS/M3.md` with all P0 evidence and the M4 task map.
 
 Dependencies: all M3 ACs.
 
@@ -338,5 +338,5 @@ Dependencies: M5.1–M5.2.
 
 1. Preserve the first two genuine scheduled weekly prediction cycles and their deployment receipts.
 2. Verify the relevant G.19 release automatically grades the matured predictions.
-3. Publish the locally green M3 attribution capability through the filtered public lane, capture
-   cold-clone/CI/Pages evidence, and close M3 before beginning M4.
+3. Begin M4.1 from the stable live M2/M3 feed contracts while the scheduled M2 evidence clock
+   continues independently.

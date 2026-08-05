@@ -16,9 +16,9 @@ baseline, ragged-edge bridge, state-space candidate, and reproducible backtest g
 Immutable prediction/grading ledgers, idempotent local jobs, and the deterministic feed/static-site
 builder also pass. The [public scoreboard](https://cameloo1.github.io/dfri/) and active external
 clock are now deployed; two genuine scheduled weekly cycles and automatic first-print grading
-remain. M3 attribution is locally complete for the ten P0 companies and is awaiting the public
-Pages deployment/cold-clone evidence gate before its milestone report is closed. No M2 completion
-is claimed early.
+remain. M3 attribution is complete and live for the ten P0 companies; its public/cold-clone
+evidence is in the [M3 milestone report](MILESTONE_REPORTS/M3.md). No M2 completion is claimed
+early.
 
 ## Outputs, sources, and evidence tiers
 
