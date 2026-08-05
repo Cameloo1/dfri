@@ -275,31 +275,31 @@ Dependencies: all M3 ACs.
 
 ### M4.1 Versioned feeds and API
 
-- `PENDING` Publish all §8.1 CSV/JSON/Parquet feeds plus `/v1/feeds/schema.json`, CC BY-NC 4.0 headers/notices, ETags, and cache headers.
-- `PENDING` Implement only the prescribed read-only FastAPI GET endpoints; commit OpenAPI schema.
-- `PENDING` Add 60 requests/minute/IP limiting, open GET CORS, contract tests, and p95 <300 ms evidence on the published dataset.
+- `PASS` Publish all §8.1 CSV/JSON/Parquet feeds plus `/v1/feeds/schema.json` with CC BY-NC 4.0 row/header metadata. Every stable live Pages feed returns HTTP 200 with an ETag and `max-age=600` cache control.
+- `PASS` Implement exactly the nine prescribed read-only FastAPI GET endpoints and commit the generated `docs/openapi-v1.json`; tests reject any mutation route or schema drift, including Windows CRLF checkouts.
+- `PASS` Enforce 60 requests/minute/IP, open GET CORS, conditional ETags, and cache headers. The filtered cold-clone publication benchmark made 100 requests with p95 1.856 ms against published Parquet, below the 300 ms bar. Durable public API process hosting remains the M4 release blocker.
 
 Dependencies: stable M2/M3 schemas.
 
 ### M4.2 Static site quality
 
-- `PENDING` Build Home, Scoreboard, Company, Methodology, and Changelog pages from versioned outputs and `branding.yaml`.
-- `PENDING` Enforce tier badges/provenance for every figure, bands without lone mids, exact copy rules, <=500 KB pages, <1 s 4G target, WCAG AA, zero critical axe violations, and full no-JS operation.
-- `PENDING` Generate versioned methodology and the read-only Assumption Registry.
+- `PASS` Build and deploy Home, Scoreboard, ten Company, Methodology, and append-only Changelog pages from versioned outputs and `branding.yaml`; maintenance deployment run [30977028395](https://github.com/Cameloo1/dfri/actions/runs/30977028395) accepted the Pages artifact and state before its expected non-cycle four-hour receipt failure.
+- `PASS` Enforce evidence/tier/band copy contracts, <=500 KB pages, estimated <1 s 4G loads, WCAG AA contrast, and server-rendered SVGs. Axe 4.12.1 reports zero violations on all 14 pages, and all 14 retain complete main content with JavaScript disabled. The 390×844 rendered pass has no horizontal overflow.
+- `PASS` Generate and serve methodology v1.0.0 plus the complete read-only Assumption Registry; all ten live company pages and both attribution feeds return HTTP 200.
 
 Dependencies: M4.1 and M3 outputs.
 
 ### M4.3 Publication operation
 
-- `PENDING` Wire deterministic replay into publish CI and make publication append-only with a public changelog.
-- `PENDING` Configure uptime/freshness checks whose alert log the owner can read.
-- `PENDING` Verify recovery paths for failed ingest, failed publish, retry, and rollback-to-last-good without mutating prior outputs.
+- `PASS` Wire cross-platform deterministic replay into `make publish` and CI. Primary and filtered Windows cold clones produce byte-identical 260,567-byte output with manifest `0c3a75163385275028533fe7a51fc44f62b227197159714cc874f704c3a74fe5`; PR run [30976832058](https://github.com/Cameloo1/dfri/actions/runs/30976832058) and main run [30976933576](https://github.com/Cameloo1/dfri/actions/runs/30976933576) pass. Published changelog history is prefix-protected in CI.
+- `IN_PROGRESS` Active workflow `327542973` runs hourly at minute 17 and retains owner-readable receipts for 90 days. First run [30977114871](https://github.com/Cameloo1/dfri/actions/runs/30977114871) is green for all nine site/feed URLs and nowcast freshness, but correctly reports the unconfigured public API as `BLOCKED_NOT_CONFIGURED`.
+- `PASS` Verify failed-ingest append boundaries plus injected failed-build, failed-promotion, retry, and rollback-to-last-good paths. Prior managed output remains byte-identical, incomplete staging is removed, and unmanaged destinations are never overwritten.
 
 Dependencies: M4.1–M4.2.
 
 ### M4.4 Cold verification and report
 
-- `PENDING` Pass `make bootstrap && make verify && make publish` from a fresh clone and all public SLO checks.
+- `IN_PROGRESS` The filtered public clone passes `make.cmd bootstrap`, 364-test `make.cmd verify` at 85.17% coverage, deterministic replay, and `make.cmd publish`; PR/main CI and every static public SLO pass. The nine FastAPI routes are not durably public because GitHub Pages cannot execute FastAPI and no owner-approved host exists.
 - `PENDING` Write `MILESTONE_REPORTS/M4.md`.
 
 Dependencies: all M4 ACs.
@@ -338,5 +338,5 @@ Dependencies: M5.1–M5.2.
 
 1. Preserve the first two genuine scheduled weekly prediction cycles and their deployment receipts.
 2. Verify the relevant G.19 release automatically grades the matured predictions.
-3. Begin M4.1 from the stable live M2/M3 feed contracts while the scheduled M2 evidence clock
-   continues independently.
+3. Select owner-approved existing infrastructure for the read-only FastAPI process without adding an unapproved vendor; set `DFRI_API_BASE_URL`, deploy the merged app, and require a green API-aware uptime receipt.
+4. Close M4 only after the live API contract/SLO check passes, then write `MILESTONE_REPORTS/M4.md` before beginning M5.
