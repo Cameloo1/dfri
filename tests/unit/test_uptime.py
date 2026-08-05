@@ -21,7 +21,7 @@ def client_for(*, vintage: str = "2026-07-31T20:15:00+00:00") -> httpx.Client:
     return httpx.Client(transport=httpx.MockTransport(handler))
 
 
-def test_uptime_receipt_is_partial_until_api_is_configured() -> None:
+def test_uptime_receipt_is_green_when_api_is_owner_deferred() -> None:
     with client_for() as client:
         receipt = run_checks(
             "https://cameloo1.github.io/dfri/",
@@ -29,10 +29,15 @@ def test_uptime_receipt_is_partial_until_api_is_configured() -> None:
             client=client,
         )
 
-    assert receipt["status"] == "PARTIAL"
+    assert receipt["status"] == "GREEN"
     assert receipt["site"]["status"] == "GREEN"
     assert receipt["nowcast_freshness"]["status"] == "GREEN"
-    assert receipt["api"]["status"] == "BLOCKED_NOT_CONFIGURED"
+    assert receipt["api"] == {
+        "status": "DEFERRED",
+        "required": False,
+        "reason": "owner_deferred_until_programmatic_demand_or_unwieldy_m5_feeds",
+        "checks": [],
+    }
 
 
 def test_uptime_receipt_is_green_with_required_live_api() -> None:
@@ -48,6 +53,30 @@ def test_uptime_receipt_is_green_with_required_live_api() -> None:
     assert receipt["status"] == "GREEN"
     assert receipt["api"]["status"] == "GREEN"
     assert len(receipt["api"]["checks"]) == 7
+
+
+def test_configured_api_is_required_even_without_explicit_flag() -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path.endswith("/v1/feeds/scoreboard.json"):
+            return httpx.Response(
+                200,
+                json={"meta": {"data_vintage": "2026-07-31T20:15:00+00:00"}, "data": []},
+            )
+        if request.url.path.startswith("/v1/"):
+            return httpx.Response(503)
+        return httpx.Response(200)
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        receipt = run_checks(
+            "https://cameloo1.github.io/dfri/",
+            api_base="https://api.example/",
+            utc_clock=lambda: datetime(2026, 8, 5, tzinfo=UTC),
+            client=client,
+        )
+
+    assert receipt["status"] == "RED"
+    assert receipt["api"]["status"] == "RED"
+    assert receipt["api"]["required"] is True
 
 
 def test_uptime_receipt_fails_closed_on_stale_publication() -> None:
@@ -83,15 +112,20 @@ def test_uptime_fails_closed_on_http_and_feed_contract_errors() -> None:
     assert any("error" in item for item in receipt["site"]["checks"])
 
 
-def test_uptime_cli_writes_partial_receipt_and_rejects_bad_required_api(
+def test_uptime_cli_writes_deferred_receipt_and_rejects_bad_required_api(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     output = tmp_path / "uptime.json"
     expected = {
-        "status": "PARTIAL",
+        "status": "GREEN",
         "site": {"status": "GREEN", "checks": []},
         "nowcast_freshness": {"status": "GREEN"},
-        "api": {"status": "BLOCKED_NOT_CONFIGURED", "required": False, "checks": []},
+        "api": {
+            "status": "DEFERRED",
+            "required": False,
+            "reason": "owner_deferred_until_programmatic_demand_or_unwieldy_m5_feeds",
+            "checks": [],
+        },
     }
     monkeypatch.setattr(uptime_module, "run_checks", lambda *args, **kwargs: expected)
 

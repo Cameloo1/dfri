@@ -52,7 +52,7 @@ if /I "%TARGET%"=="typecheck" (
 if /I "%TARGET%"=="test" (
   if not exist "%DFRI_PYTEST_ROOT%" mkdir "%DFRI_PYTEST_ROOT%"
   if errorlevel 1 exit /b 1
-  uv run pytest --basetemp="%DFRI_PYTEST_ROOT%\base" -o cache_dir="%DFRI_PYTEST_ROOT%\cache"
+  uv run python -m pytest --basetemp="%DFRI_PYTEST_ROOT%\base" -o cache_dir="%DFRI_PYTEST_ROOT%\cache"
   exit /b !ERRORLEVEL!
 )
 
@@ -64,7 +64,7 @@ if /I "%TARGET%"=="replay" (
 if /I "%TARGET%"=="determinism" (
   if not exist "%DFRI_PYTEST_ROOT%" mkdir "%DFRI_PYTEST_ROOT%"
   if errorlevel 1 exit /b 1
-  uv run pytest --basetemp="%DFRI_PYTEST_ROOT%\base" -o cache_dir="%DFRI_PYTEST_ROOT%\cache" --no-cov tests\integration\test_deterministic_replay.py
+  uv run python -m pytest --basetemp="%DFRI_PYTEST_ROOT%\base" -o cache_dir="%DFRI_PYTEST_ROOT%\cache" --no-cov tests\integration\test_deterministic_replay.py
   exit /b !ERRORLEVEL!
 )
 
@@ -79,9 +79,9 @@ if /I "%TARGET%"=="verify" (
   if errorlevel 1 exit /b 1
   if not exist "%DFRI_PYTEST_ROOT%" mkdir "%DFRI_PYTEST_ROOT%"
   if errorlevel 1 exit /b 1
-  uv run pytest --basetemp="%DFRI_PYTEST_ROOT%\base" -o cache_dir="%DFRI_PYTEST_ROOT%\cache"
+  uv run python -m pytest --basetemp="%DFRI_PYTEST_ROOT%\base" -o cache_dir="%DFRI_PYTEST_ROOT%\cache"
   if errorlevel 1 exit /b 1
-  uv run pytest --basetemp="%DFRI_PYTEST_ROOT%\base-determinism" -o cache_dir="%DFRI_PYTEST_ROOT%\cache-determinism" --no-cov tests\integration\test_deterministic_replay.py
+  uv run python -m pytest --basetemp="%DFRI_PYTEST_ROOT%\base-determinism" -o cache_dir="%DFRI_PYTEST_ROOT%\cache-determinism" --no-cov tests\integration\test_deterministic_replay.py
   exit /b !ERRORLEVEL!
 )
 

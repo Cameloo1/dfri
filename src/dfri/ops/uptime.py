@@ -33,6 +33,7 @@ API_PATHS: Final = (
     "v1/releases/calendar",
     "v1/health",
 )
+API_DEFERRED_REASON: Final = "owner_deferred_until_programmatic_demand_or_unwieldy_m5_feeds"
 
 
 class UptimeCheckError(RuntimeError):
@@ -64,22 +65,26 @@ def run_checks(
             session.close()
     site_green = all(item["status"] == "GREEN" for item in site_results)
     api_green = bool(api_results) and all(item["status"] == "GREEN" for item in api_results)
+    api_required = require_api or api_base is not None
     if api_base is None:
-        api_status = "BLOCKED_NOT_CONFIGURED"
+        api_status = "DEFERRED"
     else:
         api_status = "GREEN" if api_green else "RED"
     required_green = (
-        site_green and freshness["status"] == "GREEN" and (api_green if require_api else True)
+        site_green and freshness["status"] == "GREEN" and (api_green if api_required else True)
     )
-    status = "GREEN" if required_green and api_green else "PARTIAL"
-    if not required_green:
-        status = "RED"
+    status = "GREEN" if required_green else "RED"
     return {
         "status": status,
         "checked_at": current.isoformat(),
         "site": {"status": "GREEN" if site_green else "RED", "checks": site_results},
         "nowcast_freshness": freshness,
-        "api": {"status": api_status, "required": require_api, "checks": api_results},
+        "api": {
+            "status": api_status,
+            "required": api_required,
+            "reason": API_DEFERRED_REASON if api_base is None else None,
+            "checks": api_results,
+        },
     }
 
 

@@ -37,9 +37,9 @@ uv run python -m dfri.api.app --publication-root published/public --host 127.0.0
 ```
 
 The process has only the nine committed `GET` routes. A missing or invalid publication returns a
-503 `BLOCKED` response. There are no mutation or authentication routes in v1. Public deployment is
-not complete until a durable host is configured and its base URL is stored in the repository
-variable `DFRI_API_BASE_URL`.
+503 `BLOCKED` response. There are no mutation or authentication routes in v1. Owner deviation
+D-010 defers public operation and every API-specific M4 criterion; the implementation remains a
+tested dormant capability, not a live service. The versioned Pages feeds are the v1 access surface.
 
 ## Pause, retry, skip, and abort
 
@@ -73,5 +73,6 @@ byte-identical retry.
 
 `.github/workflows/m4-uptime.yml` runs hourly and can be dispatched manually. It checks every stable
 site/feed URL, nowcast publication age, and—once configured—every public API surface. Each attempt
-uploads an owner-readable JSON receipt. Until `DFRI_API_BASE_URL` exists, the receipt truthfully
-reports `BLOCKED_NOT_CONFIGURED`; site and freshness regressions still fail the run.
+uploads an owner-readable JSON receipt. Until an approved revisit trigger occurs, the receipt
+reports the API as `DEFERRED` and can be green when the required Pages and freshness checks pass.
+Once `DFRI_API_BASE_URL` exists, API checks become required automatically and any failure is red.

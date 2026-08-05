@@ -122,3 +122,5 @@ def test_repository_contract_wires_privacy_guards() -> None:
     assert 'if /I "%TARGET%"=="publish-scoreboard"' in windows_make
     assert 'if /I "%TARGET%"=="publish"' in windows_make
     assert windows_make.count("dfri.ops.privacy excluded-staged") >= 3
+    assert "uv run pytest" not in windows_make
+    assert windows_make.count("uv run python -m pytest") == 4
