@@ -2,14 +2,15 @@
 {% block content %}
 <div class="eyebrow">Append-only record</div>
 <h1>Every prediction. No silent edits.</h1>
-<p class="lede">Rows are ordered newest first without JavaScript. Column controls optionally re-sort this same immutable table in the browser. Actuals are release-coherent first prints, never later revisions.</p>
+<p class="lede">Each row forecasts the monthly change in U.S. consumer borrowing: revolving credit is mainly credit cards, while nonrevolving credit is mainly auto and student loans. All figures are seasonally adjusted monthly flows in millions of U.S. dollars. The 80% and 95% bands show uncertainty; a point estimate without its band would overstate what the model knows.</p>
+<p class="meta">Predictions are recorded before the Federal Reserve publishes the official G.19 figure. Rows are newest first without JavaScript; browser controls add optional sorting. Actuals are release-coherent first prints, never later revisions.</p>
 <p><a href="{{ root }}v1/feeds/scoreboard.json">JSON</a> · <a href="{{ root }}v1/feeds/scoreboard.csv">CSV</a> · <a href="{{ root }}v1/feeds/nowcast_predictions.parquet">Parquet predictions</a></p>
 <div class="table-wrap">
 <table data-sortable>
-  <caption>{{ rows|length }} prediction(s); {{ excluded_count }} pre-public engineering row(s) excluded from this build.</caption>
+  <caption>{{ rows|length }} prediction(s); {{ excluded_count }} pre-public engineering row(s) excluded. Forecasts, intervals, first prints, and errors are seasonally adjusted monthly flows in millions of U.S. dollars ($M).</caption>
   <thead><tr>
-    {% for label in ["Made at", "Target", "Period", "Point", "80% band", "95% band", "First print", "Abs. error", "Status"] %}
-    <th scope="col"><button class="sort-button" data-column="{{ loop.index0 }}" data-direction="desc">{{ label }}</button></th>
+    {% for label in ["Made at", "Target", "Period", "Point estimate ($M)", "80% band ($M)", "95% band ($M)", "First print ($M)", "Abs. error ($M)", "Status"] %}
+    <th scope="col" data-sort-column="{{ loop.index0 }}"><span>{{ label }}</span></th>
     {% endfor %}
   </tr></thead>
   <tbody>

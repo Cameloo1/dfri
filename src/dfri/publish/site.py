@@ -41,6 +41,11 @@ TARGET_LABELS: Final = {
     "DELTA_DTCTLR.M": "Revolving credit flow",
     "DELTA_DTCTLN.M": "Nonrevolving credit flow",
 }
+NOWCAST_SOURCE_URLS: Final = {
+    "h8_archive": "https://www.federalreserve.gov/releases/h8/",
+    "marts_archive": "https://www.census.gov/retail/marts/historic_releases.html",
+    "g19_archive": "https://www.federalreserve.gov/releases/g19/",
+}
 
 
 class SitePublishError(RuntimeError):
@@ -280,6 +285,7 @@ def _build_scoreboard(
         "published_at": build_meta["published_at"],
         "feed_license_url": LICENSE_URL,
         "commercial_license_contact": commercial_contact,
+        "nowcast_sources": NOWCAST_SOURCE_URLS,
     }
     company_displays = [_company_display(item) for item in attribution.companies]
     aggregate_display = _aggregate_display(attribution)
@@ -319,6 +325,7 @@ def _build_scoreboard(
             "root": "../",
             "title": "Methodology",
             "description": "Point-in-time DFRI nowcast and attribution methodology.",
+            "summary": summary,
             "assumptions": [_assumption_display(item) for item in attribution_bundle.assumptions],
             "matrix_a": attribution_bundle.matrix_a,
             "matrix_b": attribution_bundle.matrix_b,
