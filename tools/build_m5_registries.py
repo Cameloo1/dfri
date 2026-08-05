@@ -219,7 +219,7 @@ def write_or_check(root: Path, *, check: bool) -> None:
         expected = _pretty(built[filename])
         path = root / filename
         if check:
-            if not path.is_file() or path.read_bytes() != expected:
+            if not path.is_file() or _read(path) != built[filename]:
                 drift.append(filename)
         else:
             path.write_bytes(expected)

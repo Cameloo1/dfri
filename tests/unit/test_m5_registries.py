@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -35,3 +36,29 @@ def test_generated_m5_registries_are_current_and_partition_consumer_members() ->
     ):
         rows = [item for item in matrix_b["items"] if item["spend_category"] == category]
         assert abs(sum(item["weight_mid"] for item in rows) - 1) < 1e-12
+
+
+def test_registry_drift_check_is_independent_of_checkout_line_endings(tmp_path: Path) -> None:
+    root = Path(__file__).parents[2]
+    attribution = root / "src" / "dfri" / "attribution"
+    copied = tmp_path / "attribution"
+    shutil.copytree(attribution, copied)
+    output = copied / "assumption_registry_v1_1.json"
+    content = output.read_text(encoding="utf-8")
+    with output.open("w", encoding="utf-8", newline="") as handle:
+        handle.write(content.replace("\n", "\r\n"))
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(root / "tools" / "build_m5_registries.py"),
+            "--check",
+            "--root",
+            str(copied),
+        ],
+        cwd=root,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stdout + completed.stderr
