@@ -26,6 +26,7 @@ def write(output: Path, deployed_at: datetime) -> object:
         commit_sha=SHA,
         prediction_appended=2,
         grade_appended=0,
+        attribution_refresh_appended=0,
     )
 
 
@@ -37,6 +38,7 @@ def test_deployment_receipt_records_a_passing_release_sla(tmp_path: Path) -> Non
     assert receipt.sla_status == "PASS"
     assert payload["latency_seconds"] == 14_340
     assert payload["prediction_appended"] == 2
+    assert payload["attribution_refresh_appended"] == 0
     assert payload["source_release_at"] == RELEASED.isoformat()
 
 
@@ -46,6 +48,30 @@ def test_deployment_receipt_persists_a_failed_sla_for_evidence(tmp_path: Path) -
 
     assert receipt.sla_status == "FAIL"
     assert json.loads(output.read_text())["latency_seconds"] == 14_401
+
+
+def test_quarterly_refresh_receipt_preserves_age_without_claiming_the_m2_sla(
+    tmp_path: Path,
+) -> None:
+    output = tmp_path / "refresh.json"
+    receipt = write_deployment_receipt(
+        output,
+        mode="refresh",
+        source_release_at=RELEASED,
+        published_at=RELEASED + timedelta(days=30),
+        deployed_at=RELEASED + timedelta(days=30, minutes=2),
+        page_url="https://example.com/dfri/",
+        workflow_url="https://github.com/camelon/dfri/actions/runs/1",
+        commit_sha=SHA,
+        prediction_appended=0,
+        grade_appended=0,
+        attribution_refresh_appended=1,
+    )
+
+    payload = json.loads(output.read_text())
+    assert receipt.sla_status == "NOT_APPLICABLE"
+    assert payload["sla_applicable"] is False
+    assert payload["attribution_refresh_appended"] == 1
 
 
 @pytest.mark.parametrize(
@@ -75,6 +101,7 @@ def test_deployment_receipt_rejects_invalid_evidence(
             commit_sha=commit_sha,
             prediction_appended=0,
             grade_appended=1,
+            attribution_refresh_appended=0,
         )
 
 
@@ -90,6 +117,7 @@ def test_deployment_receipt_rejects_invalid_operational_boundaries(tmp_path: Pat
         "commit_sha": SHA,
         "prediction_appended": 1,
         "grade_appended": 0,
+        "attribution_refresh_appended": 0,
     }
     with pytest.raises(DeploymentReceiptError, match="mode"):
         write_deployment_receipt(**{**valid, "mode": "replace"})
@@ -122,6 +150,8 @@ def test_deployment_receipt_cli_reports_pass_and_persists_fail(
         "--prediction-appended",
         "1",
         "--grade-appended",
+        "0",
+        "--attribution-refresh-appended",
         "0",
     ]
     monkeypatch.setattr(

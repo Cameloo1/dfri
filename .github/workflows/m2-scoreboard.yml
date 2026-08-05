@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: "17 21 * * 1-5" # Grade after the weekday G.19 release window.
     - cron: "17 23 * * 1-5" # Check H.8 after regular and holiday-shifted releases.
+    - cron: "43 14 * * 1" # Check for a newly complete quarterly attribution input set.
   workflow_dispatch:
     inputs:
       job:
@@ -11,7 +12,7 @@ on:
         required: true
         default: all
         type: choice
-        options: [predict, grade, all]
+        options: [predict, grade, refresh, all]
       force_publish:
         description: Publish even when no ledger row was appended
         required: true
@@ -44,6 +45,7 @@ jobs:
       published_at: ${{ steps.clock.outputs.published_at }}
       prediction_appended: ${{ steps.clock.outputs.prediction_appended }}
       grade_appended: ${{ steps.clock.outputs.grade_appended }}
+      attribution_refresh_appended: ${{ steps.clock.outputs.attribution_refresh_appended }}
     steps:
       - name: Check out the default-branch clock definition
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -114,12 +116,15 @@ jobs:
           if [[ "$GITHUB_EVENT_NAME" == schedule ]]; then
             if [[ "$SCHEDULE_EXPRESSION" == "17 23 * * 1-5" ]]; then
               mode=predict
+            elif [[ "$SCHEDULE_EXPRESSION" == "43 14 * * 1" ]]; then
+              mode=refresh
             else
               mode=grade
             fi
           fi
           prediction_appended=0
           grade_appended=0
+          attribution_refresh_appended=0
           release_times=()
           if [[ "$mode" == predict || "$mode" == all ]]; then
             prediction_json="$(uv run python -m dfri.scoreboard predict --as-of "$run_at")"
@@ -137,9 +142,19 @@ jobs:
               release_times+=("$(jq -r '.latest_graded_at' <<<"$grade_json")")
             fi
           fi
+          if [[ "$mode" == refresh ]]; then
+            refresh_json="$(uv run python -m dfri.ops.quarterly_refresh \
+              --as-of "$run_at" \
+              --output ".local/evidence/quarterly_refresh/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.json")"
+            echo "$refresh_json"
+            attribution_refresh_appended="$(jq -r '.appended' <<<"$refresh_json")"
+            if (( attribution_refresh_appended > 0 )); then
+              release_times+=("$(jq -r '.effective_at' <<<"$refresh_json")")
+            fi
+          fi
           vintage_json="$(uv run python -m dfri.scoreboard data-vintage --as-of "$run_at")"
           data_vintage="$(jq -r '.data_vintage' <<<"$vintage_json")"
-          changed=$(( prediction_appended + grade_appended ))
+          changed=$(( prediction_appended + grade_appended + attribution_refresh_appended ))
           publish=false
           if (( changed > 0 )) || [[ "$FORCE_PUBLISH" == true ]]; then
             publish=true
@@ -156,6 +171,7 @@ jobs:
             echo "published_at=$run_at"
             echo "prediction_appended=$prediction_appended"
             echo "grade_appended=$grade_appended"
+            echo "attribution_refresh_appended=$attribution_refresh_appended"
             echo "data_vintage=$data_vintage"
           } >> "$GITHUB_OUTPUT"
 
@@ -239,7 +255,7 @@ jobs:
       - name: Check out the receipt writer
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Write and enforce the four-hour deployment receipt
+      - name: Write the deployment receipt and enforce the applicable four-hour SLA
         shell: bash
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
@@ -256,7 +272,8 @@ jobs:
             --workflow-url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             --commit-sha "$GITHUB_SHA" \
             --prediction-appended "${{ needs.build.outputs.prediction_appended }}" \
-            --grade-appended "${{ needs.build.outputs.grade_appended }}"
+            --grade-appended "${{ needs.build.outputs.grade_appended }}" \
+            --attribution-refresh-appended "${{ needs.build.outputs.attribution_refresh_appended }}"
 
       - name: Preserve the deployment receipt even when the SLA fails
         if: always()

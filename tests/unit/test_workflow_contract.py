@@ -20,6 +20,7 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
 
     assert 'cron: "17 21 * * 1-5"' in workflow
     assert 'cron: "17 23 * * 1-5"' in workflow
+    assert 'cron: "43 14 * * 1"' in workflow
     assert "cancel-in-progress: false" in workflow
     assert "github.event.repository.default_branch" in workflow
     assert "dfri.ops.state_bundle unpack" in workflow
@@ -44,10 +45,15 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     assert "actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1" in workflow
     deploy = workflow.index("Deploy the accepted Pages artifact")
     accepted_state = workflow.index("Preserve deployment-accepted runtime state")
-    receipt = workflow.index("Write and enforce the four-hour deployment receipt")
+    receipt = workflow.index(
+        "Write the deployment receipt and enforce the applicable four-hour SLA"
+    )
     assert deploy < accepted_state < receipt
     assert "pages: write" in workflow and "id-token: write" in workflow
     assert "dfri.ops.deployment_receipt" in workflow
+    assert "dfri.ops.quarterly_refresh" in workflow
+    assert "attribution_refresh_appended" in workflow
+    assert "options: [predict, grade, refresh, all]" in workflow
     assert "retention-days: 90" in workflow
     assert "FRED" not in workflow and "ALFRED" not in workflow
     assert_all_actions_are_commit_pinned(workflow)
@@ -72,7 +78,10 @@ def test_ci_uses_the_current_pinned_uv_contract() -> None:
     assert "make verify" in workflow
     assert "make publish" in workflow
     assert "Verify published changelog history is append-only" in workflow
-    assert "m4-publication-verification" in workflow
+    assert "Start the M5 end-to-end pipeline timer" in workflow
+    assert "elapsed < 1800" in workflow
+    assert "m5-ci-performance.json" in workflow
+    assert "publication-verification" in workflow
     assert "retention-days: 90" in workflow
     assert_all_actions_are_commit_pinned(workflow)
 

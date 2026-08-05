@@ -16,7 +16,7 @@ def test_attribution_is_deterministic_complete_and_finite() -> None:
     assert first == second
     assert first.draws == 20_000
     assert first.source_hash == bundle.source_hash
-    assert len(first.companies) == 10
+    assert len(first.companies) == 50
     assert first.aggregate.weighting == "revenue-weighted"
     for estimate in (*first.companies, first.aggregate):
         assert math.isfinite(estimate.estimated_dfr_pct_mid)
@@ -42,7 +42,10 @@ def test_each_company_exposes_traceability_and_ranked_sensitivity() -> None:
 
     for company in result.companies:
         assert company.revenue_source_url.startswith("https://www.sec.gov/")
-        assert company.tier1_source_url.startswith("https://www.sec.gov/")
+        if company.tier1_source_url:
+            assert company.tier1_source_url.startswith("https://www.sec.gov/")
+        else:
+            assert company.tier1_share == 0
         assert company.assumption_ids
         assert len(company.sensitivity_top5) <= 5
         correlations = [item.absolute_correlation for item in company.sensitivity_top5]
@@ -54,7 +57,9 @@ def test_each_company_exposes_traceability_and_ranked_sensitivity() -> None:
 
 def test_aggregate_is_not_an_equal_weighted_company_average() -> None:
     result = run_attribution(load_attribution_bundle())
-    equal_weighted = sum(item.estimated_dfr_pct_mid for item in result.companies) / 10
+    equal_weighted = sum(item.estimated_dfr_pct_mid for item in result.companies) / len(
+        result.companies
+    )
 
     assert not math.isclose(result.aggregate.estimated_dfr_pct_mid, equal_weighted, abs_tol=1e-3)
 

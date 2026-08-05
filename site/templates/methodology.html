@@ -4,6 +4,7 @@
 <h1>Point in time, first print, bands always.</h1>
 <p class="lede">The nowcast estimates monthly G.19 credit flows. Attribution then applies registered product-to-category weights (Matrix A) and category-to-company weights (Matrix B), divided by estimated U.S. consumer revenue. Every modeled input has a public assumption ID and band.</p>
 <p>Primary nowcast sources: <a href="{{ nowcast_sources.h8_archive }}">Federal Reserve Board H.8 release archive</a>, <a href="{{ nowcast_sources.marts_archive }}">Census MARTS historic releases</a>, and the <a href="{{ nowcast_sources.g19_archive }}">Federal Reserve Board G.19 release archive</a> used for first-print grading.</p>
+<p>Methodology 1.1.0 expands the coverage boundary to {{ company_count }} companies without changing the attribution formula. <a href="sensitivity/index.html">Compare 1.0.0 with 1.1.0</a> or inspect the <a href="coverage/index.html">dated coverage and exclusion ledger</a>.</p>
 <section class="grid">
   <article class="card metric"><div class="kicker">Model</div><h2>Ragged-edge ridge bridge</h2><p>Partial <a href="{{ nowcast_sources.h8_archive }}">H.8</a> months expose observed coverage explicitly. Missing <a href="{{ nowcast_sources.marts_archive }}">retail data</a> remains missing and is represented by a trained availability indicator.</p></article>
   <article class="card metric"><div class="kicker">Grade</div><h2>First-print G.19</h2><p>The dated release page supplies the target-month preliminary level and revised prior-month level used for the release-coherent flow.</p></article>

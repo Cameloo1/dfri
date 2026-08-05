@@ -24,8 +24,10 @@ def seeded_state(root: Path) -> dict[Path, bytes]:
         Path("lake/curated/predictions/batch-b.parquet"): b"prediction-ledger",
         Path("lake/curated/grades/batch-c.parquet"): b"grade-ledger",
         Path("lake/curated/publication_records/batch-d.parquet"): b"publication-ledger",
+        Path("lake/curated/attribution_refreshes/batch-e.parquet"): b"refresh-ledger",
         Path("state/board-backfill.json"): b'{"schema_version":1}\n',
         Path("evidence/scoreboard_jobs/predict-abc.json"): b'{"kind":"predict"}\n',
+        Path("evidence/quarterly_refresh/q1.json"): b'{"kind":"quarterly-refresh"}\n',
     }
     for relative, content in payloads.items():
         path = root / relative

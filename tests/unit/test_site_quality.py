@@ -17,7 +17,7 @@ def test_built_site_passes_static_quality_weight_contrast_and_no_js_gates(
     receipt = check_site(root)
 
     assert receipt.status == "PASS"
-    assert receipt.company_page_count == 10
+    assert receipt.company_page_count == 50
     assert receipt.max_page_bytes < 500_000
     assert receipt.max_estimated_4g_ms < 1_000
     assert receipt.minimum_contrast_ratio >= 4.5
@@ -43,3 +43,10 @@ def test_quality_gate_rejects_missing_required_page(tmp_path: Path) -> None:
 
     with pytest.raises(SiteQualityError, match="Missing required"):
         check_site(root)
+
+
+def test_browser_accessibility_gate_includes_m5_methodology_pages() -> None:
+    script = (Path(__file__).parents[2] / "tools" / "axe-check.mjs").read_text(encoding="utf-8")
+
+    assert '"/methodology/coverage/"' in script
+    assert '"/methodology/sensitivity/"' in script

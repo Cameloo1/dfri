@@ -1,0 +1,3143 @@
+{
+  "company_count": 50,
+  "company_inputs": [
+    {
+      "annual_accession": "0001559720-26-000004",
+      "annual_filed_at": "2026-02-12",
+      "annual_value_millions": 12241.0,
+      "current_ytd_millions": 2678.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 2272.0,
+      "quarterly_accession": "0001559720-26-000014",
+      "quarterly_filed_at": "2026-05-07",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1559720/000155972026000014/abnb-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 12647.0,
+      "selected_facts_hash": "d52e6a609db9d42caff610eff7780818fe77aaa36552035286402c5601b1ccdf",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "ABNB"
+    },
+    {
+      "annual_accession": "0001018724-26-000004",
+      "annual_filed_at": "2026-02-06",
+      "annual_value_millions": 716924.0,
+      "current_ytd_millions": 181519.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 155667.0,
+      "quarterly_accession": "0001018724-26-000014",
+      "quarterly_filed_at": "2026-04-30",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 742776.0,
+      "selected_facts_hash": "2f947652f0e4e6b70f590e2e3be15696a09830475667576afc5feaa1584f2113",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "AMZN"
+    },
+    {
+      "annual_accession": "0001104659-25-102611",
+      "annual_filed_at": "2025-10-27",
+      "annual_value_millions": 18938.717,
+      "current_ytd_millions": 8902.727,
+      "period": "2026-02-14",
+      "prior_ytd_millions": 8231.652,
+      "quarterly_accession": "0001104659-26-032757",
+      "quarterly_filed_at": "2026-03-20",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/866787/000110465926032757/azo-20260214x10q.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 19609.792,
+      "selected_facts_hash": "e99be155229c3dc429e2b6686db3fb2769e6f2ae93bb4eef2152a2e0ce1aabb2",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "AZO"
+    },
+    {
+      "annual_accession": "0000764478-26-000009",
+      "annual_filed_at": "2026-03-18",
+      "annual_value_millions": 41691.0,
+      "current_ytd_millions": null,
+      "period": "2026-01-31",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/764478/000076447826000009/bby-20260131.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 41691.0,
+      "selected_facts_hash": "b4e0e1f3d9449fde3f33d1a712d222fb2f336d702ff8cf01a68a3165e66df182",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "BBY"
+    },
+    {
+      "annual_accession": "0001075531-26-000009",
+      "annual_filed_at": "2026-02-18",
+      "annual_value_millions": 26917.0,
+      "current_ytd_millions": 5532.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 4762.0,
+      "quarterly_accession": "0001075531-26-000025",
+      "quarterly_filed_at": "2026-04-28",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1075531/000107553126000025/bkng-20260331.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 27687.0,
+      "selected_facts_hash": "d8932434c1a26825495ad3cef7c84d5ded67040b01e9387dbadf477e0124bb6a",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "BKNG"
+    },
+    {
+      "annual_accession": "0000726958-26-000046",
+      "annual_filed_at": "2026-06-22",
+      "annual_value_millions": 15940.899,
+      "current_ytd_millions": 12989.322,
+      "period": "2026-01-31",
+      "prior_ytd_millions": 11948.141,
+      "quarterly_accession": "0000726958-26-000010",
+      "quarterly_filed_at": "2026-03-09",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/726958/000072695826000010/casy-20260131.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 16982.08,
+      "selected_facts_hash": "4bcae3db19b550aac3b79a48cb0e7a3736c55a6c23b5449b4d69d98fc96ad3af",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "CASY"
+    },
+    {
+      "annual_accession": "0000815097-26-000007",
+      "annual_filed_at": "2026-01-27",
+      "annual_value_millions": 26622.0,
+      "current_ytd_millions": 6165.0,
+      "period": "2026-02-28",
+      "prior_ytd_millions": 5810.0,
+      "quarterly_accession": "0000815097-26-000037",
+      "quarterly_filed_at": "2026-03-27",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/815097/000081509726000037/ccl-20260228.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 26977.0,
+      "selected_facts_hash": "8e948d3837f9625d8b425d38b4a2dc1a5220fa93b1d5608f6296e7211860319d",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "CCL"
+    },
+    {
+      "annual_accession": "0001058090-26-000009",
+      "annual_filed_at": "2026-02-04",
+      "annual_value_millions": 11925.601,
+      "current_ytd_millions": 3088.242,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 2875.253,
+      "quarterly_accession": "0001058090-26-000028",
+      "quarterly_filed_at": "2026-04-30",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000028/cmg-20260331.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 12138.59,
+      "selected_facts_hash": "36de352d306f7b2f065b4c4aa6125f678acd6c216d3b9ae698dfdd13db507cfa",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "CMG"
+    },
+    {
+      "annual_accession": "0000909832-25-000101",
+      "annual_filed_at": "2025-10-08",
+      "annual_value_millions": 275235.0,
+      "current_ytd_millions": 136904.0,
+      "period": "2026-02-15",
+      "prior_ytd_millions": 125874.0,
+      "quarterly_accession": "0000909832-26-000029",
+      "quarterly_filed_at": "2026-03-11",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 286265.0,
+      "selected_facts_hash": "63083ac2f8fcb4a8dd81172408b23a5bb4da191466d6a1ceda1cb1bfa9e4593e",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "COST"
+    },
+    {
+      "annual_accession": "0001690820-26-000009",
+      "annual_filed_at": "2026-02-18",
+      "annual_value_millions": 20322.0,
+      "current_ytd_millions": 6432.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 4232.0,
+      "quarterly_accession": "0001690820-26-000035",
+      "quarterly_filed_at": "2026-04-29",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1690820/000169082026000035/cvna-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 22522.0,
+      "selected_facts_hash": "9e09ad9f83e851eaedbd3463fc4a84f845db12bcd73cba11e9f8b1b1dd368f91",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "CVNA"
+    },
+    {
+      "annual_accession": "0001792789-26-000013",
+      "annual_filed_at": "2026-02-18",
+      "annual_value_millions": 13717.0,
+      "current_ytd_millions": 4036.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 3032.0,
+      "quarterly_accession": "0001792789-26-000037",
+      "quarterly_filed_at": "2026-05-06",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1792789/000179278926000037/dash-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 14721.0,
+      "selected_facts_hash": "75c7b61f16c68fe90ffe749beae30d8f243c245ea2455234fe7a35df11a703a2",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "DASH"
+    },
+    {
+      "annual_accession": "0001628280-26-037664",
+      "annual_filed_at": "2026-05-22",
+      "annual_value_millions": 5472.296,
+      "current_ytd_millions": null,
+      "period": "2026-03-31",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/910521/000162828026037664/deck-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 5472.296,
+      "selected_facts_hash": "6e42900e7ae8b30502722b99a047c8f9f175f7af4bd6a848d6a24a55f73db537",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "DECK"
+    },
+    {
+      "annual_accession": "0001104659-26-032325",
+      "annual_filed_at": "2026-03-20",
+      "annual_value_millions": 42724.369,
+      "current_ytd_millions": null,
+      "period": "2026-01-30",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 42724.369,
+      "selected_facts_hash": "17b7287479eefa35be0015c6e3862a82ce1ed322b04bc12443a423c3b1e7476c",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "DG"
+    },
+    {
+      "annual_accession": "0000935703-26-000025",
+      "annual_filed_at": "2026-03-16",
+      "annual_value_millions": 19395.7,
+      "current_ytd_millions": null,
+      "period": "2026-01-31",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/935703/000093570326000025/dltr-20260131.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 19395.7,
+      "selected_facts_hash": "cdd8b31b909f9559435a35a5c8f0817ea3ef2f6030a1a8a0820e78fbe6a34a82",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "DLTR"
+    },
+    {
+      "annual_accession": "0001193125-26-062321",
+      "annual_filed_at": "2026-02-23",
+      "annual_value_millions": 4939.994,
+      "current_ytd_millions": 1150.594,
+      "period": "2026-03-22",
+      "prior_ytd_millions": 1112.056,
+      "quarterly_accession": "0001286681-26-000025",
+      "quarterly_filed_at": "2026-04-27",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1286681/000128668126000025/dpz-20260322.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 4978.532,
+      "selected_facts_hash": "3a15367dc5fa7ebda7a5c20d789956cda9d3b1c3891643b544dab2865e76134a",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "DPZ"
+    },
+    {
+      "annual_accession": "0000940944-26-000025",
+      "annual_filed_at": "2026-07-24",
+      "annual_value_millions": 12076.7,
+      "current_ytd_millions": 9492.1,
+      "period": "2026-02-22",
+      "prior_ytd_millions": 8805.0,
+      "quarterly_accession": "0000940944-26-000009",
+      "quarterly_filed_at": "2026-03-27",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/940944/000094094426000009/dri-20260222.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 12763.8,
+      "selected_facts_hash": "59e0ee88251db92d551d51e7e7ad87213481072931dfe6bcc16cf0fe270d582f",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "DRI"
+    },
+    {
+      "annual_accession": "0001065088-26-000027",
+      "annual_filed_at": "2026-02-19",
+      "annual_value_millions": 11100.0,
+      "current_ytd_millions": 3089.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 2585.0,
+      "quarterly_accession": "0001065088-26-000093",
+      "quarterly_filed_at": "2026-04-29",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000093/ebay-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 11604.0,
+      "selected_facts_hash": "c0a32dbf7cdebada4d281544309f2c7f948938657764aaf4975bb4d440b4d456",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "EBAY"
+    },
+    {
+      "annual_accession": "0001001250-25-000099",
+      "annual_filed_at": "2025-08-20",
+      "annual_value_millions": 14326.0,
+      "current_ytd_millions": 11422.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 10915.0,
+      "quarterly_accession": "0001001250-26-000019",
+      "quarterly_filed_at": "2026-05-01",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000019/el-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 14833.0,
+      "selected_facts_hash": "131030eb2c01597c54161969edbc362bc06e5faddefc4e778e0789992cc7094e",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "EL"
+    },
+    {
+      "annual_accession": "0001324424-26-000008",
+      "annual_filed_at": "2026-02-13",
+      "annual_value_millions": 14733.0,
+      "current_ytd_millions": 3426.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 2988.0,
+      "quarterly_accession": "0001324424-26-000035",
+      "quarterly_filed_at": "2026-05-08",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000035/expe-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 15171.0,
+      "selected_facts_hash": "c26c4cfef634b0c9d03ae508104b4400989a4c3509bf9e797c7b04dd24ff0659",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "EXPE"
+    },
+    {
+      "annual_accession": "0000037996-26-000015",
+      "annual_filed_at": "2026-02-11",
+      "annual_value_millions": 187267.0,
+      "current_ytd_millions": 43253.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 40659.0,
+      "quarterly_accession": "0000037996-26-000086",
+      "quarterly_filed_at": "2026-04-30",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/37996/000003799626000086/f-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 189861.0,
+      "selected_facts_hash": "960b4a0088a9f1e211ec8dfb95bb4ef71eb4a4ea44ba7ba47aac8fe4ee970b94",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "F"
+    },
+    {
+      "annual_accession": "0001467858-26-000013",
+      "annual_filed_at": "2026-01-27",
+      "annual_value_millions": 185019.0,
+      "current_ytd_millions": 43624.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 44020.0,
+      "quarterly_accession": "0001467858-26-000035",
+      "quarterly_filed_at": "2026-04-28",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000035/gm-20260331.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 184623.0,
+      "selected_facts_hash": "5fd12d5bfe0575066d11fb77ac7fa023ce58a7cdf76d1da9b9998fd3461f5204",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "GM"
+    },
+    {
+      "annual_accession": "0001193125-26-056028",
+      "annual_filed_at": "2026-02-18",
+      "annual_value_millions": 7245.519,
+      "current_ytd_millions": 1753.489,
+      "period": "2026-03-28",
+      "prior_ytd_millions": 1535.099,
+      "quarterly_accession": "0001193125-26-188908",
+      "quarterly_filed_at": "2026-04-29",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1121788/000119312526188908/grmn-20260328.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 7463.909,
+      "selected_facts_hash": "8282841f31103ff813d300142fa07e95469c9c28bd5923e4cdc130a49358d2ba",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "GRMN"
+    },
+    {
+      "annual_accession": "0000046080-26-000011",
+      "annual_filed_at": "2026-02-25",
+      "annual_value_millions": 4701.3,
+      "current_ytd_millions": 1000.2,
+      "period": "2026-03-29",
+      "prior_ytd_millions": 887.1,
+      "quarterly_accession": "0000046080-26-000026",
+      "quarterly_filed_at": "2026-05-13",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000026/has-20260329.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 4814.4,
+      "selected_facts_hash": "9c2baf01e3696e0ceb27eee5738fe4b0245e9a9441bfad9254f3faf4a2b1104b",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "HAS"
+    },
+    {
+      "annual_accession": "0001628280-26-019436",
+      "annual_filed_at": "2026-03-18",
+      "annual_value_millions": 164683.0,
+      "current_ytd_millions": null,
+      "period": "2026-02-01",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/354950/000162828026019436/hd-20260201.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 164683.0,
+      "selected_facts_hash": "76db6066a7806064537152096e1f877cb046fb85622a6e8a3fa2390f2d0085d1",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "HD"
+    },
+    {
+      "annual_accession": "0001585689-26-000007",
+      "annual_filed_at": "2026-02-11",
+      "annual_value_millions": 12039.0,
+      "current_ytd_millions": 2937.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 2695.0,
+      "quarterly_accession": "0001585689-26-000032",
+      "quarterly_filed_at": "2026-04-28",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1585689/000158568926000032/hlt-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 12281.0,
+      "selected_facts_hash": "209e63a6c01c5c67e551b7eefe3c42df37add9c1389a24752497dcc8647558dd",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "HLT"
+    },
+    {
+      "annual_accession": "0001104659-26-037723",
+      "annual_filed_at": "2026-03-31",
+      "annual_value_millions": 147642.0,
+      "current_ytd_millions": null,
+      "period": "2026-01-31",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/56873/000110465926037723/kr-20260131x10k.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 147642.0,
+      "selected_facts_hash": "bb45d72edeab0e58a043ca2a3acf6d38de8907b0b277c6306a3ad5a993efc240",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "KR"
+    },
+    {
+      "annual_accession": "0000060667-26-000029",
+      "annual_filed_at": "2026-03-23",
+      "annual_value_millions": 86286.0,
+      "current_ytd_millions": null,
+      "period": "2026-01-30",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/60667/000006066726000029/low-20260130.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 86286.0,
+      "selected_facts_hash": "ec8fb3550397fe9003e378d6236124534426c1839e30849f9a800e2f056ab6a7",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "LOW"
+    },
+    {
+      "annual_accession": "0001397187-26-000020",
+      "annual_filed_at": "2026-03-17",
+      "annual_value_millions": 11102.6,
+      "current_ytd_millions": null,
+      "period": "2026-02-01",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 11102.6,
+      "selected_facts_hash": "c35a460c2eeeb9f6cc576e6dcba13b9d8cef9ea604162ed3734208f39e27c903",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "LULU"
+    },
+    {
+      "annual_accession": "0001048286-26-000007",
+      "annual_filed_at": "2026-02-10",
+      "annual_value_millions": 26186.0,
+      "current_ytd_millions": 6654.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 6263.0,
+      "quarterly_accession": "0001048286-26-000014",
+      "quarterly_filed_at": "2026-05-06",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1048286/000104828626000014/mar-20260331.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 26577.0,
+      "selected_facts_hash": "cbef44e10ebf66e430d49cf17eda44509656da9a3798a8b0f788640c3749be42",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "MAR"
+    },
+    {
+      "annual_accession": "0000063908-26-000035",
+      "annual_filed_at": "2026-02-24",
+      "annual_value_millions": 26885.0,
+      "current_ytd_millions": 6517.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 5956.0,
+      "quarterly_accession": "0000063908-26-000051",
+      "quarterly_filed_at": "2026-05-07",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 27446.0,
+      "selected_facts_hash": "2fff8691b54ef6eebac38b6d3067d57113f2b558468978988dbc4f4574f4aa04",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "MCD"
+    },
+    {
+      "annual_accession": "0000789570-26-000018",
+      "annual_filed_at": "2026-02-11",
+      "annual_value_millions": 17537.683,
+      "current_ytd_millions": 4454.718,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 4277.082,
+      "quarterly_accession": "0000789570-26-000035",
+      "quarterly_filed_at": "2026-04-29",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/789570/000078957026000035/mgm-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 17715.319,
+      "selected_facts_hash": "ab15580b17cc9fb4a1ae4fe5adf8c29a05f6020fbbe4d8204cbd8241e971ff12",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "MGM"
+    },
+    {
+      "annual_accession": "0001104659-26-022067",
+      "annual_filed_at": "2026-03-02",
+      "annual_value_millions": 9827.592,
+      "current_ytd_millions": 2331.221,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 2127.553,
+      "quarterly_accession": "0001104659-26-054833",
+      "quarterly_filed_at": "2026-05-04",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1513761/000110465926054833/nclh-20260331x10q.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerIncludingAssessedTax",
+      "revenue_total_millions": 10031.26,
+      "selected_facts_hash": "b95279a2a5d843ac7beb214b5f5431fd87905395550408337c7564cf482bcff9",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "NCLH"
+    },
+    {
+      "annual_accession": "0000320187-26-000088",
+      "annual_filed_at": "2026-07-15",
+      "annual_value_millions": 46309.0,
+      "current_ytd_millions": 35426.0,
+      "period": "2026-02-28",
+      "prior_ytd_millions": 35212.0,
+      "quarterly_accession": "0000320187-26-000037",
+      "quarterly_filed_at": "2026-04-01",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/320187/000032018726000037/nke-20260228.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 46523.0,
+      "selected_facts_hash": "c15d02dd8daff1497ce885c9302975790682c7a0ba4922631c2bf0a9224fe2bd",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "NKE"
+    },
+    {
+      "annual_accession": "0000898173-26-000009",
+      "annual_filed_at": "2026-02-27",
+      "annual_value_millions": 17781.992,
+      "current_ytd_millions": 4560.539,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 4136.924,
+      "quarterly_accession": "0000898173-26-000027",
+      "quarterly_filed_at": "2026-05-08",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/898173/000089817326000027/orly-20260331x10q.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 18205.607,
+      "selected_facts_hash": "cbf3ae8fe85a8511dd313f48a0fc7a4382ef82c294d9cb36bdc7b912a032154d",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "ORLY"
+    },
+    {
+      "annual_accession": "0000077476-26-000007",
+      "annual_filed_at": "2026-02-03",
+      "annual_value_millions": 93925.0,
+      "current_ytd_millions": 19443.0,
+      "period": "2026-03-21",
+      "prior_ytd_millions": 17919.0,
+      "quarterly_accession": "0000077476-26-000017",
+      "quarterly_filed_at": "2026-04-16",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/77476/000007747626000017/pep-20260321.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 95449.0,
+      "selected_facts_hash": "b7c66e389064eca50e7408d40965f7d325f94e2975c992782c8efb6983b4e18b",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "PEP"
+    },
+    {
+      "annual_accession": "0000080424-26-000103",
+      "annual_filed_at": "2026-08-04",
+      "annual_value_millions": 84284.0,
+      "current_ytd_millions": 65828.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 63395.0,
+      "quarterly_accession": "0000080424-26-000060",
+      "quarterly_filed_at": "2026-04-24",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/80424/000008042426000060/pg-20260331.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 86717.0,
+      "selected_facts_hash": "4addac73473b11e6f2caf405a7f9106ac6cf23fece166c7aae8ed4cae7370e3a",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "PG"
+    },
+    {
+      "annual_accession": "0000884887-26-000007",
+      "annual_filed_at": "2026-02-11",
+      "annual_value_millions": 17935.0,
+      "current_ytd_millions": 4452.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 3999.0,
+      "quarterly_accession": "0000884887-26-000026",
+      "quarterly_filed_at": "2026-04-30",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/884887/000088488726000026/rcl-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 18388.0,
+      "selected_facts_hash": "cfc8f7caf04979d89bb568d1bd21900ab67ff5706c1cadab938b6e1305677b8f",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "RCL"
+    },
+    {
+      "annual_accession": "0001628280-26-037074",
+      "annual_filed_at": "2026-05-21",
+      "annual_value_millions": 8114.5,
+      "current_ytd_millions": null,
+      "period": "2026-03-28",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1037038/000162828026037074/rl-20260328.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 8114.5,
+      "selected_facts_hash": "e7c0c46a2edafda067fd30b7fd213af73c88102bbfb25a9e5de460664ee8281e",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "RL"
+    },
+    {
+      "annual_accession": "0000745732-26-000006",
+      "annual_filed_at": "2026-03-31",
+      "annual_value_millions": 22750.559,
+      "current_ytd_millions": null,
+      "period": "2026-01-31",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/745732/000074573226000006/rost-20260131.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 22750.559,
+      "selected_facts_hash": "fafd8ed94af50c7d825a7098b9ac5584d9ee3a945199d36094b37a8a15c7ab0e",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "ROST"
+    },
+    {
+      "annual_accession": "0000829224-25-000114",
+      "annual_filed_at": "2025-11-14",
+      "annual_value_millions": 37184.4,
+      "current_ytd_millions": 19446.6,
+      "period": "2026-03-29",
+      "prior_ytd_millions": 18159.4,
+      "quarterly_accession": "0000829224-26-000080",
+      "quarterly_filed_at": "2026-04-28",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/829224/000082922426000080/sbux-20260329.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 38471.6,
+      "selected_facts_hash": "dde37e73ab192b9867b9be0fbf6518524dd13cbd39ba161a0cc870400b337a1a",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "SBUX"
+    },
+    {
+      "annual_accession": "0000027419-26-000016",
+      "annual_filed_at": "2026-03-11",
+      "annual_value_millions": 104780.0,
+      "current_ytd_millions": null,
+      "period": "2026-01-31",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/27419/000002741926000016/tgt-20260131.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 104780.0,
+      "selected_facts_hash": "73220c3c3ce73de74f2a3d0f852fef27dde0dfd6217701132a0f6212ed0dce9c",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "TGT"
+    },
+    {
+      "annual_accession": "0000109198-26-000008",
+      "annual_filed_at": "2026-03-31",
+      "annual_value_millions": 60372.0,
+      "current_ytd_millions": null,
+      "period": "2026-01-31",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/109198/000010919826000008/tjx-20260131.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerIncludingAssessedTax",
+      "revenue_total_millions": 60372.0,
+      "selected_facts_hash": "715c676476493aa0d8954f205bf0fcadb758b161c0a08c4985d7986bdda71d77",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "TJX"
+    },
+    {
+      "annual_accession": "0001116132-25-000019",
+      "annual_filed_at": "2025-08-14",
+      "annual_value_millions": 7010.7,
+      "current_ytd_millions": 6127.6,
+      "period": "2026-03-28",
+      "prior_ytd_millions": 5287.5,
+      "quarterly_accession": "0001116132-26-000011",
+      "quarterly_filed_at": "2026-05-07",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1116132/000111613226000011/tpr-20260328.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 7850.8,
+      "selected_facts_hash": "fe2abd06e6ac0010db7865048a5ed81b3d06499af544e2f39a1dc61687a372b7",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "TPR"
+    },
+    {
+      "annual_accession": "0000916365-26-000014",
+      "annual_filed_at": "2026-02-19",
+      "annual_value_millions": 15524.046,
+      "current_ytd_millions": 3592.046,
+      "period": "2026-03-28",
+      "prior_ytd_millions": 3466.952,
+      "quarterly_accession": "0000916365-26-000024",
+      "quarterly_filed_at": "2026-05-07",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/916365/000091636526000024/tsco-20260328.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 15649.14,
+      "selected_facts_hash": "3537494cd3ff4efb3b0db34d7d9d364e1d27a5e689ff9533e88e0a4b7f12ec64",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "TSCO"
+    },
+    {
+      "annual_accession": "0001628280-26-003952",
+      "annual_filed_at": "2026-01-29",
+      "annual_value_millions": 94827.0,
+      "current_ytd_millions": 22387.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 19335.0,
+      "quarterly_accession": "0001628280-26-026673",
+      "quarterly_filed_at": "2026-04-23",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/tsla-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 97879.0,
+      "selected_facts_hash": "f93cee3793d7654a9926e1c6862602ec7442283c32edd9244c9a29cffdada3eb",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "TSLA"
+    },
+    {
+      "annual_accession": "0001104659-26-035243",
+      "annual_filed_at": "2026-03-26",
+      "annual_value_millions": 12392.82,
+      "current_ytd_millions": null,
+      "period": "2026-01-31",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1403568/000110465926035243/ulta-20260131x10k.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 12392.82,
+      "selected_facts_hash": "536b4c952a68b7268df701e7473b59f8df18314f97f0b94c6690eed94dda3bc6",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "ULTA"
+    },
+    {
+      "annual_accession": "0000104169-26-000055",
+      "annual_filed_at": "2026-03-13",
+      "annual_value_millions": 713163.0,
+      "current_ytd_millions": null,
+      "period": "2026-01-31",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 713163.0,
+      "selected_facts_hash": "864c713dacf2c2ea37f3cb73f693de2b362650b135f14551c01e13be8ca81026",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "WMT"
+    },
+    {
+      "annual_accession": "0000719955-26-000059",
+      "annual_filed_at": "2026-03-26",
+      "annual_value_millions": 7806.816,
+      "current_ytd_millions": null,
+      "period": "2026-02-01",
+      "prior_ytd_millions": null,
+      "quarterly_accession": null,
+      "quarterly_filed_at": null,
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000059/wsm-20260201.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue_total_millions": 7806.816,
+      "selected_facts_hash": "0f3e39ae1fea09a3d7b97e62a84851ae8b05f6060a22b7ef8399273375c2d6cb",
+      "status": "BASELINE_NO_NEW_10Q",
+      "ticker": "WSM"
+    },
+    {
+      "annual_accession": "0001174922-26-000013",
+      "annual_filed_at": "2026-03-02",
+      "annual_value_millions": 7137.924,
+      "current_ytd_millions": 1856.762,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 1700.397,
+      "quarterly_accession": "0001174922-26-000035",
+      "quarterly_filed_at": "2026-05-07",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1174922/000117492226000035/wynn-20260331.htm",
+      "revenue_tag": "RevenueFromContractWithCustomerIncludingAssessedTax",
+      "revenue_total_millions": 7294.289,
+      "selected_facts_hash": "59489193cdf8adb086aba8bf79c4131becb636952ec2375ef2fa0db1d20d3552",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "WYNN"
+    },
+    {
+      "annual_accession": "0001041061-26-000084",
+      "annual_filed_at": "2026-02-20",
+      "annual_value_millions": 8214.0,
+      "current_ytd_millions": 2059.0,
+      "period": "2026-03-31",
+      "prior_ytd_millions": 1787.0,
+      "quarterly_accession": "0001041061-26-000119",
+      "quarterly_filed_at": "2026-05-06",
+      "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000119/yum-20260331.htm",
+      "revenue_tag": "Revenues",
+      "revenue_total_millions": 8486.0,
+      "selected_facts_hash": "737b43f07201089e740e15d49eda9d93f648b507d745e417d9251b52b2dbe3b2",
+      "status": "UPDATED_TTM_FROM_10Q",
+      "ticker": "YUM"
+    }
+  ],
+  "data_vintage": "2026-05-07T19:00:00+00:00",
+  "effective_at": "2026-05-22T23:59:59.999999+00:00",
+  "flow_inputs": [
+    {
+      "debt_product": "revolving_credit",
+      "evidence_refs": [
+        "https://www.federalreserve.gov/releases/g19/20260306/",
+        "https://www.federalreserve.gov/releases/g19/20260407/",
+        "https://www.federalreserve.gov/releases/g19/20260507/",
+        "sha256:78bc0d830a59e30b460f575b9bc415a0b2171e21ef14784d9779c7a87df9380f",
+        "sha256:b5f4bf70aa15a5ddf0a2fc56edda02b8f40c43eaaa865eebee574b8b2f789ccd",
+        "sha256:f6d3e8b9a2410dea8cfd3848b59bb998655bf561a9dd210fa8fee18fb35a6f24"
+      ],
+      "prior": {
+        "high": 15400.0,
+        "low": 15400.0,
+        "mid": 15400.0
+      },
+      "quarter": "2026-Q1",
+      "unit": "Millions of U.S. Dollars"
+    },
+    {
+      "debt_product": "nonrevolving_credit",
+      "evidence_refs": [
+        "https://www.federalreserve.gov/releases/g19/20260306/",
+        "https://www.federalreserve.gov/releases/g19/20260407/",
+        "https://www.federalreserve.gov/releases/g19/20260507/",
+        "sha256:78bc0d830a59e30b460f575b9bc415a0b2171e21ef14784d9779c7a87df9380f",
+        "sha256:b5f4bf70aa15a5ddf0a2fc56edda02b8f40c43eaaa865eebee574b8b2f789ccd",
+        "sha256:f6d3e8b9a2410dea8cfd3848b59bb998655bf561a9dd210fa8fee18fb35a6f24"
+      ],
+      "prior": {
+        "high": 27000.0,
+        "low": 27000.0,
+        "mid": 27000.0
+      },
+      "quarter": "2026-Q1",
+      "unit": "Millions of U.S. Dollars"
+    }
+  ],
+  "methodology_version": "1.1.0",
+  "refresh_id": "qrf_9052d944fb00960d7d74c785",
+  "result": {
+    "aggregate": {
+      "estimated_debt_funded_revenue_mid_millions": 19235.086895098226,
+      "estimated_dfr_pct_high": 3.4765200196635173,
+      "estimated_dfr_pct_low": 2.978273163567551,
+      "estimated_dfr_pct_mid": 3.222378187095661,
+      "estimated_us_consumer_revenue_mid_millions": 596797.2433714371,
+      "quarter": "2026-Q1",
+      "tier1_share": 0.3509903305350053,
+      "tier2_share": 0.4278439215297319,
+      "tier3_share": 0.22116574793526284,
+      "weighting": "revenue-weighted"
+    },
+    "companies": [
+      {
+        "assumption_ids": [
+          "A-DEN-ABNB-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Airbnb",
+        "estimated_debt_funded_revenue_mid_millions": 23.961848478796526,
+        "estimated_dfr_pct_high": 2.1176905198060254,
+        "estimated_dfr_pct_low": 1.1654091230811694,
+        "estimated_dfr_pct_mid": 1.5193880207818533,
+        "estimated_us_consumer_revenue_mid_millions": 1580.5593366084076,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1559720/000155972026000014/abnb-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8934877724335843,
+            "assumption_id": "A-DEN-ABNB-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.2917654955977352,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.20303869280406595,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.10984881206709049,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "ABNB",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-AMZN-001",
+          "A-T1-AMZN-PAYMENTS-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Amazon",
+        "estimated_debt_funded_revenue_mid_millions": 1822.7405498729413,
+        "estimated_dfr_pct_high": 2.1509067972645193,
+        "estimated_dfr_pct_low": 1.6314834848168405,
+        "estimated_dfr_pct_mid": 1.8782723966225934,
+        "estimated_us_consumer_revenue_mid_millions": 97031.6720369401,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.5446298619457884,
+            "assumption_id": "A-DEN-AMZN-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.5261772731124367,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.4945255388514747,
+            "assumption_id": "A-T1-AMZN-PAYMENTS-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.37075623548049613,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.20979522827975647,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "AMZN",
+        "tier1_excerpt": "We also offer co-branded credit card programs.",
+        "tier1_share": 0.19396853342053644,
+        "tier1_source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "tier2_share": 0.42674994770469266,
+        "tier3_share": 0.3792815188747709
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-AZO-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "AutoZone",
+        "estimated_debt_funded_revenue_mid_millions": 59.446428669116344,
+        "estimated_dfr_pct_high": 1.7704950679126392,
+        "estimated_dfr_pct_low": 1.3110463031881483,
+        "estimated_dfr_pct_mid": 1.522878462313211,
+        "estimated_us_consumer_revenue_mid_millions": 3910.79476947462,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/866787/000110465926032757/azo-20260214x10q.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.6365683120061749,
+            "assumption_id": "A-DEN-AZO-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.5922276049894581,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.4175497419635315,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.22939208857159743,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "AZO",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-BBY-001",
+          "A-T1-BBY-CARD-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Best Buy",
+        "estimated_debt_funded_revenue_mid_millions": 225.3601408988548,
+        "estimated_dfr_pct_high": 2.932318457388862,
+        "estimated_dfr_pct_low": 2.0834115227758905,
+        "estimated_dfr_pct_mid": 2.475952951547158,
+        "estimated_us_consumer_revenue_mid_millions": 9117.955526615122,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/764478/000076447826000009/bby-20260131.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8677962756795667,
+            "assumption_id": "A-T1-BBY-CARD-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.3335792228378005,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.2570540048744463,
+            "assumption_id": "A-DEN-BBY-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.23266408934979263,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.13008135374672972,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "BBY",
+        "tier1_excerpt": "We facilitate credit applications in our stores and online.",
+        "tier1_share": 0.3809379327536431,
+        "tier1_source_url": "https://www.sec.gov/Archives/edgar/data/764478/000076447826000009/bby-20260131.htm",
+        "tier2_share": 0.32775979074918254,
+        "tier3_share": 0.2913022764971744
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-BKNG-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Booking Holdings",
+        "estimated_debt_funded_revenue_mid_millions": 31.474580473829782,
+        "estimated_dfr_pct_high": 2.2297037423142436,
+        "estimated_dfr_pct_low": 1.0036021972406377,
+        "estimated_dfr_pct_mid": 1.4255417440737514,
+        "estimated_us_consumer_revenue_mid_millions": 2205.2802871187287,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1075531/000107553126000025/bkng-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.898106794423743,
+            "assumption_id": "A-DEN-BKNG-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.22423755219052557,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.1437997306957968,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.08701849705750485,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "BKNG",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-CASY-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Casey's",
+        "estimated_debt_funded_revenue_mid_millions": 58.55919116183692,
+        "estimated_dfr_pct_high": 1.727530921382501,
+        "estimated_dfr_pct_low": 1.3441110332253463,
+        "estimated_dfr_pct_mid": 1.5286336922077384,
+        "estimated_us_consumer_revenue_mid_millions": 3840.3007747432225,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/726958/000072695826000010/casy-20260131.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.7216006765187091,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.5038510291836501,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.37224683879049764,
+            "assumption_id": "A-DEN-CASY-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.2789354115991426,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "CASY",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-CCL-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Carnival Corporation",
+        "estimated_debt_funded_revenue_mid_millions": 56.223662920754805,
+        "estimated_dfr_pct_high": 2.072085268894043,
+        "estimated_dfr_pct_low": 1.2046139520340768,
+        "estimated_dfr_pct_mid": 1.5388092948435155,
+        "estimated_us_consumer_revenue_mid_millions": 3665.962824016318,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/815097/000081509726000037/ccl-20260228.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8830998672899913,
+            "assumption_id": "A-DEN-CCL-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.33324582505611366,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.22093022263901035,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.12231914271229435,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "CCL",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-CMG-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Chipotle Mexican Grill",
+        "estimated_debt_funded_revenue_mid_millions": 43.23733233784564,
+        "estimated_dfr_pct_high": 1.724994314825108,
+        "estimated_dfr_pct_low": 1.3484231359027121,
+        "estimated_dfr_pct_mid": 1.5287848788611873,
+        "estimated_us_consumer_revenue_mid_millions": 2832.8272207842156,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000028/cmg-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.7371619735992998,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.5187399586746747,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.3103315351133893,
+            "assumption_id": "A-DEN-CMG-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.28908655456477983,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "CMG",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-COST-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Costco",
+        "estimated_debt_funded_revenue_mid_millions": 759.3274275990477,
+        "estimated_dfr_pct_high": 1.7924157607381026,
+        "estimated_dfr_pct_low": 1.300272661953152,
+        "estimated_dfr_pct_mid": 1.5262123480834726,
+        "estimated_us_consumer_revenue_mid_millions": 49902.95003018879,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.690871144537278,
+            "assumption_id": "A-DEN-COST-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.5632434124589498,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.38166355536223345,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.2136690058429983,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "COST",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-CVNA-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Carvana",
+        "estimated_debt_funded_revenue_mid_millions": 76.80902605368135,
+        "estimated_dfr_pct_high": 1.7471482793172057,
+        "estimated_dfr_pct_low": 1.3402958351981316,
+        "estimated_dfr_pct_mid": 1.5335422242618066,
+        "estimated_us_consumer_revenue_mid_millions": 5022.381498592781,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1690820/000169082026000035/cvna-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.6840609884855559,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.48030536994924866,
+            "assumption_id": "A-DEN-CVNA-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.47789785328802864,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.26734096881156083,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "CVNA",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-DASH-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "DoorDash",
+        "estimated_debt_funded_revenue_mid_millions": 41.837080508706805,
+        "estimated_dfr_pct_high": 1.8571822330166243,
+        "estimated_dfr_pct_low": 1.3140930452482187,
+        "estimated_dfr_pct_mid": 1.5486288779232469,
+        "estimated_us_consumer_revenue_mid_millions": 2710.354667177462,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1792789/000179278926000037/dash-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.7405059870005004,
+            "assumption_id": "A-DEN-DASH-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.5233169063396022,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.3512520647726025,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.19102755119045495,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "DASH",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724656,
+        "tier3_share": 0.47055423342753444
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-DECK-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Deckers Brands",
+        "estimated_debt_funded_revenue_mid_millions": 9.953449385251693,
+        "estimated_dfr_pct_high": 2.091238009632918,
+        "estimated_dfr_pct_low": 1.1568305296034835,
+        "estimated_dfr_pct_mid": 1.513493303399779,
+        "estimated_us_consumer_revenue_mid_millions": 657.91781622008,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/910521/000162828026037664/deck-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8926895377823156,
+            "assumption_id": "A-DEN-DECK-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.31036230519840835,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.20543654673501552,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.1038597081700215,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "DECK",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-DG-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Dollar General",
+        "estimated_debt_funded_revenue_mid_millions": 155.4209950271543,
+        "estimated_dfr_pct_high": 1.7168091345010474,
+        "estimated_dfr_pct_low": 1.3538389156073227,
+        "estimated_dfr_pct_mid": 1.5290469744243778,
+        "estimated_us_consumer_revenue_mid_millions": 10183.727541374235,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.7589546080957547,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.5313615577042368,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.29564976416230526,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.22074041620374754,
+            "assumption_id": "A-DEN-DG-001",
+            "direction": "decreases"
+          }
+        ],
+        "ticker": "DG",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-DLTR-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Dollar Tree",
+        "estimated_debt_funded_revenue_mid_millions": 70.55689911628183,
+        "estimated_dfr_pct_high": 1.7189415016580696,
+        "estimated_dfr_pct_low": 1.3519168907447718,
+        "estimated_dfr_pct_mid": 1.528442343970657,
+        "estimated_us_consumer_revenue_mid_millions": 4623.407474324638,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/935703/000093570326000025/dltr-20260131.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.7589067692085113,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.5315952072939009,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.29539519898877314,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.23425387332209555,
+            "assumption_id": "A-DEN-DLTR-001",
+            "direction": "decreases"
+          }
+        ],
+        "ticker": "DLTR",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-DPZ-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Domino's",
+        "estimated_debt_funded_revenue_mid_millions": 13.77168110160074,
+        "estimated_dfr_pct_high": 1.8218261717770865,
+        "estimated_dfr_pct_low": 1.3001078033938556,
+        "estimated_dfr_pct_mid": 1.5403951518275583,
+        "estimated_us_consumer_revenue_mid_millions": 898.7903145313595,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1286681/000128668126000025/dpz-20260322.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.7266348668426729,
+            "assumption_id": "A-DEN-DPZ-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.5238200967386099,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.37763504945492266,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.21725632451948812,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "DPZ",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724656,
+        "tier3_share": 0.47055423342753444
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-DRI-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Darden Restaurants",
+        "estimated_debt_funded_revenue_mid_millions": 46.43163942702037,
+        "estimated_dfr_pct_high": 1.71640362573805,
+        "estimated_dfr_pct_low": 1.353224621556145,
+        "estimated_dfr_pct_mid": 1.5298533367579257,
+        "estimated_us_consumer_revenue_mid_millions": 3042.2570425211816,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/940944/000094094426000009/dri-20260222.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.7590642625998777,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.5302012586792729,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.2979953886546259,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.2128898325970879,
+            "assumption_id": "A-DEN-DRI-001",
+            "direction": "decreases"
+          }
+        ],
+        "ticker": "DRI",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724656,
+        "tier3_share": 0.47055423342753444
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-EBAY-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "eBay",
+        "estimated_debt_funded_revenue_mid_millions": 22.86513966416361,
+        "estimated_dfr_pct_high": 2.01898253312264,
+        "estimated_dfr_pct_low": 1.186913970776036,
+        "estimated_dfr_pct_mid": 1.5158962937695941,
+        "estimated_us_consumer_revenue_mid_millions": 1509.9214549923117,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000093/ebay-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8786330846344844,
+            "assumption_id": "A-DEN-EBAY-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.33764890925001134,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.23200602260090905,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.13695025280374257,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "EBAY",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724656,
+        "tier3_share": 0.47055423342753444
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-EL-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Est\u00e9e Lauder",
+        "estimated_debt_funded_revenue_mid_millions": 21.35872814085547,
+        "estimated_dfr_pct_high": 2.133068444398944,
+        "estimated_dfr_pct_low": 1.0922427501941656,
+        "estimated_dfr_pct_mid": 1.4760164946661345,
+        "estimated_us_consumer_revenue_mid_millions": 1444.0959235023893,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1001250/000100125026000019/el-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8999282837077286,
+            "assumption_id": "A-DEN-EL-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.26293146376022236,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.17678349468086585,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.10185650979309716,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "EL",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724656,
+        "tier3_share": 0.47055423342753444
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-EXPE-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Expedia Group",
+        "estimated_debt_funded_revenue_mid_millions": 28.74398697467581,
+        "estimated_dfr_pct_high": 2.0343813449001633,
+        "estimated_dfr_pct_low": 1.1895431245974313,
+        "estimated_dfr_pct_mid": 1.5178868677063413,
+        "estimated_us_consumer_revenue_mid_millions": 1895.0552380093663,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000035/expe-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8811323837915507,
+            "assumption_id": "A-DEN-EXPE-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.33366423008849,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.22882741219833008,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.12276165808999798,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "EXPE",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-F-001",
+          "A-T1-F-CAPTIVE-001",
+          "A-T2-NONREV-AUTO-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Ford Motor Company",
+        "estimated_debt_funded_revenue_mid_millions": 4590.440051643805,
+        "estimated_dfr_pct_high": 20.67674496387485,
+        "estimated_dfr_pct_low": 14.992579471508297,
+        "estimated_dfr_pct_mid": 17.62479524616446,
+        "estimated_us_consumer_revenue_mid_millions": 26063.495658175198,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/37996/000003799626000086/f-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.6765056721879552,
+            "assumption_id": "A-T1-F-CAPTIVE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.606157351863995,
+            "assumption_id": "A-DEN-F-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.39116806566579304,
+            "assumption_id": "A-T2-NONREV-AUTO-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.04718781025079368,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.04373545583870774,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "F",
+        "tier1_excerpt": "The predominant share of Ford Credit's business consists of financing our vehicles.",
+        "tier1_share": 0.606499233944217,
+        "tier1_source_url": "https://www.sec.gov/Archives/edgar/data/37996/000003799626000015/f-20251231.htm",
+        "tier2_share": 0.3528464149754281,
+        "tier3_share": 0.04065435108035487
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-GM-001",
+          "A-T1-GM-CAPTIVE-001",
+          "A-T2-NONREV-AUTO-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "General Motors",
+        "estimated_debt_funded_revenue_mid_millions": 4732.727986658778,
+        "estimated_dfr_pct_high": 21.551908611663094,
+        "estimated_dfr_pct_low": 16.06751117974283,
+        "estimated_dfr_pct_mid": 18.624261488389404,
+        "estimated_us_consumer_revenue_mid_millions": 25415.283877547878,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000035/gm-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.6610197157152543,
+            "assumption_id": "A-DEN-GM-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.6117975233267844,
+            "assumption_id": "A-T1-GM-CAPTIVE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.41619366624031334,
+            "assumption_id": "A-T2-NONREV-AUTO-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.042090599802373785,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.04067514033237148,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "GM",
+        "tier1_excerpt": "GM Financial's penetration of our retail sales in the U.S. was 33%.",
+        "tier1_share": 0.6295442278057632,
+        "tier1_source_url": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
+        "tier2_share": 0.3321823040804586,
+        "tier3_share": 0.03827346811377813
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-GRMN-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Garmin",
+        "estimated_debt_funded_revenue_mid_millions": 13.575954317701592,
+        "estimated_dfr_pct_high": 2.083349381049423,
+        "estimated_dfr_pct_low": 1.1551846932284153,
+        "estimated_dfr_pct_mid": 1.5055395504860059,
+        "estimated_us_consumer_revenue_mid_millions": 901.8863697603709,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1121788/000119312526188908/grmn-20260328.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.892376306724325,
+            "assumption_id": "A-DEN-GRMN-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.285580580197782,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.2137048168934875,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.11825138506805807,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "GRMN",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-HAS-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Hasbro",
+        "estimated_debt_funded_revenue_mid_millions": 9.48655018376268,
+        "estimated_dfr_pct_high": 2.070508782059092,
+        "estimated_dfr_pct_low": 1.1749408645099142,
+        "estimated_dfr_pct_mid": 1.5187120944587573,
+        "estimated_us_consumer_revenue_mid_millions": 626.9101912663778,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/46080/000004608026000026/has-20260329.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8883318346234045,
+            "assumption_id": "A-DEN-HAS-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.3190786329846633,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.21562187998375393,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.12995234200233474,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "HAS",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724653,
+        "tier3_share": 0.47055423342753466
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-HD-001",
+          "A-T1-HD-CARD-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Home Depot",
+        "estimated_debt_funded_revenue_mid_millions": 649.998986234279,
+        "estimated_dfr_pct_high": 2.165851823439747,
+        "estimated_dfr_pct_low": 1.6876436484617312,
+        "estimated_dfr_pct_mid": 1.9201149290488648,
+        "estimated_us_consumer_revenue_mid_millions": 33851.92811106087,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/354950/000162828026019436/hd-20260201.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.5768413616045942,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.5539915223359386,
+            "assumption_id": "A-T1-HD-CARD-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.38830499211616437,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.3774271510096562,
+            "assumption_id": "A-DEN-HD-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.22151529126691974,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "HD",
+        "tier1_excerpt": "third-party service providers who directly extend credit to customers",
+        "tier1_share": 0.2094819930583375,
+        "tier1_source_url": "https://www.sec.gov/Archives/edgar/data/354950/000162828026019436/hd-20260201.htm",
+        "tier2_share": 0.41853641217456605,
+        "tier3_share": 0.37198159476709647
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-HLT-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Hilton Worldwide",
+        "estimated_debt_funded_revenue_mid_millions": 23.268400495984395,
+        "estimated_dfr_pct_high": 2.1306862960646016,
+        "estimated_dfr_pct_low": 1.162155308493907,
+        "estimated_dfr_pct_mid": 1.5214821513984005,
+        "estimated_us_consumer_revenue_mid_millions": 1534.0974683362492,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1585689/000158568926000032/hlt-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8949763037439478,
+            "assumption_id": "A-DEN-HLT-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.27306999828606465,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.19413872448444802,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.11233462077879246,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "HLT",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-KR-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Kroger",
+        "estimated_debt_funded_revenue_mid_millions": 531.4914954491846,
+        "estimated_dfr_pct_high": 1.7199579393583255,
+        "estimated_dfr_pct_low": 1.3504559284433157,
+        "estimated_dfr_pct_mid": 1.5299572289496344,
+        "estimated_us_consumer_revenue_mid_millions": 34814.96584912159,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/56873/000110465926037723/kr-20260131x10k.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.7488828711992707,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.5257167079430339,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.29433354604820694,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.27268871390553195,
+            "assumption_id": "A-DEN-KR-001",
+            "direction": "decreases"
+          }
+        ],
+        "ticker": "KR",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-LOW-001",
+          "A-T1-LOW-CARD-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Lowe's",
+        "estimated_debt_funded_revenue_mid_millions": 401.5568685842655,
+        "estimated_dfr_pct_high": 2.375913863005311,
+        "estimated_dfr_pct_low": 1.8245893802176207,
+        "estimated_dfr_pct_mid": 2.083402939196384,
+        "estimated_us_consumer_revenue_mid_millions": 19303.13966268787,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/60667/000006066726000029/low-20260130.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.699374209258931,
+            "assumption_id": "A-T1-LOW-CARD-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.5028012004982623,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.34079312061045663,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.31553524137882927,
+            "assumption_id": "A-DEN-LOW-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.19648711628857965,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "LOW",
+        "tier1_excerpt": "branded and private label proprietary credit cards which generate sales",
+        "tier1_share": 0.2636455473800948,
+        "tier1_source_url": "https://www.sec.gov/Archives/edgar/data/60667/000006066726000029/low-20260130.htm",
+        "tier2_share": 0.3898597476363939,
+        "tier3_share": 0.34649470498351126
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-LULU-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Lululemon Athletica",
+        "estimated_debt_funded_revenue_mid_millions": 26.08429947273067,
+        "estimated_dfr_pct_high": 1.8960919528120472,
+        "estimated_dfr_pct_low": 1.2619420293455281,
+        "estimated_dfr_pct_mid": 1.5335350127829412,
+        "estimated_us_consumer_revenue_mid_millions": 1706.7994773138996,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8129543962812922,
+            "assumption_id": "A-DEN-LULU-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.4389551521695587,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.3095613542869175,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.17152608394626956,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "LULU",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-MAR-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Marriott International",
+        "estimated_debt_funded_revenue_mid_millions": 48.34037203613899,
+        "estimated_dfr_pct_high": 2.11495068268135,
+        "estimated_dfr_pct_low": 1.1584445595829338,
+        "estimated_dfr_pct_mid": 1.5173560798080845,
+        "estimated_us_consumer_revenue_mid_millions": 3192.3348177720954,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1048286/000104828626000014/mar-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8954643338650776,
+            "assumption_id": "A-DEN-MAR-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.2840320497008962,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.19420530502054906,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.11302905975531903,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "MAR",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-MCD-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "McDonald's",
+        "estimated_debt_funded_revenue_mid_millions": 52.00101947984939,
+        "estimated_dfr_pct_high": 1.971595825481809,
+        "estimated_dfr_pct_low": 1.2066719392372076,
+        "estimated_dfr_pct_mid": 1.5182517058105582,
+        "estimated_us_consumer_revenue_mid_millions": 3434.751938844861,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8667179843065098,
+            "assumption_id": "A-DEN-MCD-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.3533523646566253,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.2458217969495275,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.1455085668937691,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "MCD",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-MGM-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "MGM Resorts",
+        "estimated_debt_funded_revenue_mid_millions": 48.333057408619645,
+        "estimated_dfr_pct_high": 1.8132219988469067,
+        "estimated_dfr_pct_low": 1.2912028722379651,
+        "estimated_dfr_pct_mid": 1.5252613882795532,
+        "estimated_us_consumer_revenue_mid_millions": 3174.512967187482,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/789570/000078957026000035/mgm-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.726399080560443,
+            "assumption_id": "A-DEN-MGM-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.5287968923084412,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.3704643287030419,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.20921090541632037,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "MGM",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-NCLH-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Norwegian Cruise Line Holdings",
+        "estimated_debt_funded_revenue_mid_millions": 22.04683618350153,
+        "estimated_dfr_pct_high": 1.9887861691747888,
+        "estimated_dfr_pct_low": 1.2193712664061893,
+        "estimated_dfr_pct_mid": 1.526902678816513,
+        "estimated_us_consumer_revenue_mid_millions": 1446.2781968325357,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1513761/000110465926054833/nclh-20260331x10q.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8640432754692436,
+            "assumption_id": "A-DEN-NCLH-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.36842741017136654,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.25203982103392003,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.13683838448852384,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "NCLH",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724653,
+        "tier3_share": 0.47055423342753466
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-NKE-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Nike",
+        "estimated_debt_funded_revenue_mid_millions": 88.14557418662201,
+        "estimated_dfr_pct_high": 2.0391070141100682,
+        "estimated_dfr_pct_low": 1.187593658009786,
+        "estimated_dfr_pct_mid": 1.5190948844651357,
+        "estimated_us_consumer_revenue_mid_millions": 5810.242768591446,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/320187/000032018726000037/nke-20260228.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8811689453882914,
+            "assumption_id": "A-DEN-NKE-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.32957554528764726,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.2326333637973505,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.1293458187921438,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "NKE",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724656,
+        "tier3_share": 0.47055423342753444
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-ORLY-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "O'Reilly Automotive",
+        "estimated_debt_funded_revenue_mid_millions": 49.67071991848272,
+        "estimated_dfr_pct_high": 1.8155678381888674,
+        "estimated_dfr_pct_low": 1.2881382606924503,
+        "estimated_dfr_pct_mid": 1.5223322581010192,
+        "estimated_us_consumer_revenue_mid_millions": 3267.7970444065313,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/898173/000089817326000027/orly-20260331x10q.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.7308442371800843,
+            "assumption_id": "A-DEN-ORLY-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.5341584334871531,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.3733004808007766,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.2085777499193516,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "ORLY",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-PEP-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "PepsiCo",
+        "estimated_debt_funded_revenue_mid_millions": 198.92843543682855,
+        "estimated_dfr_pct_high": 1.9444255001472281,
+        "estimated_dfr_pct_low": 1.2313712592334352,
+        "estimated_dfr_pct_mid": 1.524966716783355,
+        "estimated_us_consumer_revenue_mid_millions": 13076.221960557663,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/77476/000007747626000017/pep-20260321.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8500980347068199,
+            "assumption_id": "A-DEN-PEP-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.3872796521919554,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.2774550701714779,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.15442381188278512,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "PEP",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-PG-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Procter & Gamble",
+        "estimated_debt_funded_revenue_mid_millions": 138.0118349176044,
+        "estimated_dfr_pct_high": 2.0722500559671824,
+        "estimated_dfr_pct_low": 1.14541192926705,
+        "estimated_dfr_pct_mid": 1.4934729379395555,
+        "estimated_us_consumer_revenue_mid_millions": 9222.479418118563,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/80424/000008042426000060/pg-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8924139713610334,
+            "assumption_id": "A-DEN-PG-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.29477302481031553,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.21431852358150363,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.11201286216985679,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "PG",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-RCL-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Royal Caribbean Group",
+        "estimated_debt_funded_revenue_mid_millions": 40.41339012523913,
+        "estimated_dfr_pct_high": 1.9860877003995079,
+        "estimated_dfr_pct_low": 1.2186734024869503,
+        "estimated_dfr_pct_mid": 1.5281741090831147,
+        "estimated_us_consumer_revenue_mid_millions": 2654.6905500654148,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/884887/000088488726000026/rcl-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8643337557936188,
+            "assumption_id": "A-DEN-RCL-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.36326953364544723,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.25388512999568047,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.14019691434205808,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "RCL",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-RL-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Ralph Lauren",
+        "estimated_debt_funded_revenue_mid_millions": 14.451815783499464,
+        "estimated_dfr_pct_high": 2.10096410150632,
+        "estimated_dfr_pct_low": 1.167885149321319,
+        "estimated_dfr_pct_mid": 1.521443839537178,
+        "estimated_us_consumer_revenue_mid_millions": 952.6356825885771,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1037038/000162828026037074/rl-20260328.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8926540808545471,
+            "assumption_id": "A-DEN-RL-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.27578092739923005,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.20026399744504522,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.11372483810383384,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "RL",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-ROST-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Ross Stores",
+        "estimated_debt_funded_revenue_mid_millions": 84.05421228169985,
+        "estimated_dfr_pct_high": 1.7128221023207988,
+        "estimated_dfr_pct_low": 1.3528247792154797,
+        "estimated_dfr_pct_mid": 1.5278181631969656,
+        "estimated_us_consumer_revenue_mid_millions": 5513.240552985724,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/745732/000074573226000006/rost-20260131.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.7676889453280054,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.5396052004630626,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.29974452555232906,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.1611391711588856,
+            "assumption_id": "A-DEN-ROST-001",
+            "direction": "decreases"
+          }
+        ],
+        "ticker": "ROST",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-SBUX-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Starbucks",
+        "estimated_debt_funded_revenue_mid_millions": 102.04719774138213,
+        "estimated_dfr_pct_high": 1.8372640402949927,
+        "estimated_dfr_pct_low": 1.2898006851441244,
+        "estimated_dfr_pct_mid": 1.531987766399642,
+        "estimated_us_consumer_revenue_mid_millions": 6679.39778439115,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/829224/000082922426000080/sbux-20260329.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.7493316622358223,
+            "assumption_id": "A-DEN-SBUX-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.5118735927229446,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.351743899259546,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.1951684598849912,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "SBUX",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-TGT-001",
+          "A-T1-TGT-CARD-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Target",
+        "estimated_debt_funded_revenue_mid_millions": 493.11963560098695,
+        "estimated_dfr_pct_high": 2.109209730392663,
+        "estimated_dfr_pct_low": 1.6916634360863245,
+        "estimated_dfr_pct_mid": 1.8983126466364793,
+        "estimated_us_consumer_revenue_mid_millions": 25991.64451214727,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/27419/000002741926000016/tgt-20260131.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.6632441743493086,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.527515779853113,
+            "assumption_id": "A-T1-TGT-CARD-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.4593814288024526,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.25920389864941323,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.051840643141269446,
+            "assumption_id": "A-DEN-TGT-001",
+            "direction": "decreases"
+          }
+        ],
+        "ticker": "TGT",
+        "tier1_excerpt": "total Target Circle Card Penetration was 16.9 percent",
+        "tier1_share": 0.1967266893120391,
+        "tier1_source_url": "https://www.sec.gov/Archives/edgar/data/27419/000002741925000126/tgt-20251101.htm",
+        "tier2_share": 0.4252896537443897,
+        "tier3_share": 0.3779836569435712
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-TJX-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "TJX Companies",
+        "estimated_debt_funded_revenue_mid_millions": 178.44030659343866,
+        "estimated_dfr_pct_high": 1.798944888634333,
+        "estimated_dfr_pct_low": 1.3287482301405578,
+        "estimated_dfr_pct_mid": 1.5427009443624577,
+        "estimated_us_consumer_revenue_mid_millions": 11611.2179360158,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/109198/000010919826000008/tjx-20260131.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.6458257362013788,
+            "assumption_id": "A-DEN-TJX-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.5921011509570135,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.41212103574629194,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.22541808804427851,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "TJX",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-TPR-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Tapestry",
+        "estimated_debt_funded_revenue_mid_millions": 14.279662586045324,
+        "estimated_dfr_pct_high": 2.080286395759269,
+        "estimated_dfr_pct_low": 1.1631138212216796,
+        "estimated_dfr_pct_mid": 1.5116579612504792,
+        "estimated_us_consumer_revenue_mid_millions": 945.3016060950349,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1116132/000111613226000011/tpr-20260328.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8905133008271711,
+            "assumption_id": "A-DEN-TPR-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.29843049762035767,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.20707575969498213,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.12541776347456998,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "TPR",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-TSCO-001",
+          "A-T1-TSCO-CARD-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Tractor Supply",
+        "estimated_debt_funded_revenue_mid_millions": 84.34706064762781,
+        "estimated_dfr_pct_high": 2.870657668178788,
+        "estimated_dfr_pct_low": 1.948458848271533,
+        "estimated_dfr_pct_mid": 2.3523617326096637,
+        "estimated_us_consumer_revenue_mid_millions": 3590.203521502789,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/916365/000091636526000024/tsco-20260328.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.9060544343978517,
+            "assumption_id": "A-T1-TSCO-CARD-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.3043140662559278,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.21415413689511734,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.16762204986097562,
+            "assumption_id": "A-DEN-TSCO-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.11790105295605166,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "TSCO",
+        "tier1_excerpt": "Sales generated through the Company's private label credit cards",
+        "tier1_share": 0.3504018341587351,
+        "tier1_source_url": "https://www.sec.gov/Archives/edgar/data/916365/000091636526000014/tsco-20251227.htm",
+        "tier2_share": 0.3439269988778961,
+        "tier3_share": 0.30567116696336877
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-TSLA-001",
+          "A-T2-NONREV-AUTO-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Tesla",
+        "estimated_debt_funded_revenue_mid_millions": 792.0997199253807,
+        "estimated_dfr_pct_high": 9.662529449274532,
+        "estimated_dfr_pct_low": 5.153743452572552,
+        "estimated_dfr_pct_mid": 6.886600329856515,
+        "estimated_us_consumer_revenue_mid_millions": 11558.168506463555,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/tsla-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8254005453543475,
+            "assumption_id": "A-DEN-TSLA-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.5127947787908528,
+            "assumption_id": "A-T2-NONREV-AUTO-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.04884284108104229,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.04804878454658197,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.03618916503685526,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "TSLA",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.8966854588678654,
+        "tier3_share": 0.10331454113213456
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-ULTA-001",
+          "A-T1-ULTA-CARD-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Ulta Beauty",
+        "estimated_debt_funded_revenue_mid_millions": 74.31664563458261,
+        "estimated_dfr_pct_high": 3.1709784867104824,
+        "estimated_dfr_pct_low": 2.066058262645622,
+        "estimated_dfr_pct_mid": 2.5438218102808783,
+        "estimated_us_consumer_revenue_mid_millions": 2926.6594829940177,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1403568/000110465926035243/ulta-20260131x10k.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.9375147586939238,
+            "assumption_id": "A-T1-ULTA-CARD-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.26304946190464873,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.17636749781829367,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.10615861964738892,
+            "assumption_id": "A-DEN-ULTA-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.09132836837754642,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "ULTA",
+        "tier1_excerpt": "Other revenue includes private label and co-branded credit card programs.",
+        "tier1_share": 0.39762565431438524,
+        "tier1_source_url": "https://www.sec.gov/Archives/edgar/data/1403568/000110465926035243/ulta-20260131x10k.htm",
+        "tier2_share": 0.31892454721510766,
+        "tier3_share": 0.2834497984705071
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-WMT-001",
+          "A-T1-WMT-FINANCE-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Walmart",
+        "estimated_debt_funded_revenue_mid_millions": 2083.538345621512,
+        "estimated_dfr_pct_high": 1.8161372576724786,
+        "estimated_dfr_pct_low": 1.4418606497400386,
+        "estimated_dfr_pct_mid": 1.6244999667919178,
+        "estimated_us_consumer_revenue_mid_millions": 128349.69704946465,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.736469788787876,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.516496418852086,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.29232308621747993,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.26972450120463654,
+            "assumption_id": "A-DEN-WMT-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.19547140162491258,
+            "assumption_id": "A-T1-WMT-FINANCE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "WMT",
+        "tier1_excerpt": "co-branded credit cards, limited access to cryptocurrency and equity investment products, installment lending",
+        "tier1_share": 0.06502381627123899,
+        "tier1_source_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm",
+        "tier2_share": 0.4950191823212722,
+        "tier3_share": 0.43995700140748883
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-WSM-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Williams-Sonoma",
+        "estimated_debt_funded_revenue_mid_millions": 25.44105924889984,
+        "estimated_dfr_pct_high": 1.7673107702664266,
+        "estimated_dfr_pct_low": 1.3384012224915045,
+        "estimated_dfr_pct_mid": 1.5416071871033608,
+        "estimated_us_consumer_revenue_mid_millions": 1657.2963340467654,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/719955/000071995526000059/wsm-20260201.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.6505517231831516,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.5452415838277082,
+            "assumption_id": "A-DEN-WSM-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.45251585304689407,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.2596370538324431,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "WSM",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-WYNN-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Wynn Resorts",
+        "estimated_debt_funded_revenue_mid_millions": 10.503386754568771,
+        "estimated_dfr_pct_high": 2.0660683218597984,
+        "estimated_dfr_pct_low": 1.1429865061754325,
+        "estimated_dfr_pct_mid": 1.4932255040199833,
+        "estimated_us_consumer_revenue_mid_millions": 702.3129123532228,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1174922/000117492226000035/wynn-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8923873544646163,
+            "assumption_id": "A-DEN-WYNN-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.3040890318401464,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.20701631710442464,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.10874353357380069,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "WYNN",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724653,
+        "tier3_share": 0.47055423342753466
+      },
+      {
+        "assumption_ids": [
+          "A-DEN-YUM-001",
+          "A-T2-REV-GENERAL-001",
+          "A-T3-NONREV-FUNGIBLE-001",
+          "A-T3-REV-FUNGIBLE-001"
+        ],
+        "company_name": "Yum! Brands",
+        "estimated_debt_funded_revenue_mid_millions": 13.50563846454177,
+        "estimated_dfr_pct_high": 2.0757647508109214,
+        "estimated_dfr_pct_low": 1.1487952982456562,
+        "estimated_dfr_pct_mid": 1.498705052353733,
+        "estimated_us_consumer_revenue_mid_millions": 902.5754516701816,
+        "quarter": "2026-Q1",
+        "revenue_source_url": "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000119/yum-20260331.htm",
+        "sensitivity_top5": [
+          {
+            "absolute_correlation": 0.8914804965485981,
+            "assumption_id": "A-DEN-YUM-001",
+            "direction": "decreases"
+          },
+          {
+            "absolute_correlation": 0.2808268026230071,
+            "assumption_id": "A-T2-REV-GENERAL-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.20805072830968985,
+            "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+            "direction": "increases"
+          },
+          {
+            "absolute_correlation": 0.10871224240238478,
+            "assumption_id": "A-T3-REV-FUNGIBLE-001",
+            "direction": "increases"
+          }
+        ],
+        "ticker": "YUM",
+        "tier1_excerpt": "",
+        "tier1_share": 0.0,
+        "tier1_source_url": "",
+        "tier2_share": 0.5294457665724654,
+        "tier3_share": 0.47055423342753455
+      }
+    ],
+    "data_vintage": "2026-05-07T19:00:00+00:00",
+    "draws": 20000,
+    "first_published_at": "2026-05-22T23:59:59.999999+00:00",
+    "methodology_version": "1.1.0",
+    "quarter": "2026-Q1",
+    "seed": 20260804,
+    "source_hash": "77e05082429325e1906786a7d02846f7307c5bfcb7f9cd3f354a2670b7a323ef"
+  },
+  "schema_version": "v1",
+  "source_hash": "77e05082429325e1906786a7d02846f7307c5bfcb7f9cd3f354a2670b7a323ef",
+  "status": "PASS",
+  "target_quarter": "2026-Q1",
+  "updated_company_count": 35
+}

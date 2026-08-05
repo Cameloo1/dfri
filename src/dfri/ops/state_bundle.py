@@ -24,9 +24,11 @@ ALLOWED_PATTERNS: Final = (
     "lake/curated/predictions/batch-*.parquet",
     "lake/curated/grades/batch-*.parquet",
     "lake/curated/publication_records/batch-*.parquet",
+    "lake/curated/attribution_refreshes/batch-*.parquet",
     "state/board-backfill.json",
     "state/board-targets-v1.json",
     "evidence/scoreboard_jobs/*.json",
+    "evidence/quarterly_refresh/*.json",
 )
 
 

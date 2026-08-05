@@ -107,21 +107,34 @@ class AttributionBundle:
         return {item.assumption_id: item for item in self.assumptions}
 
 
-_RESOURCE_FILES: Final = (
-    "assumption_registry_v1.json",
-    "matrix_a_v1.json",
-    "matrix_b_v1.json",
-    "company_inputs_v1.json",
-    "flow_inputs_v1.json",
-)
+_RESOURCE_FILES: Final = {
+    "1.0.0": (
+        "assumption_registry_v1.json",
+        "matrix_a_v1.json",
+        "matrix_b_v1.json",
+        "company_inputs_v1.json",
+        "flow_inputs_v1.json",
+    ),
+    "1.1.0": (
+        "assumption_registry_v1_1.json",
+        "matrix_a_v1_1.json",
+        "matrix_b_v1_1.json",
+        "company_inputs_v1_1.json",
+        "flow_inputs_v1_1.json",
+    ),
+}
 
 
-def load_attribution_bundle() -> AttributionBundle:
-    """Load all public M3 inputs and prove their cross-file contracts."""
+def load_attribution_bundle(methodology_version: str = "1.1.0") -> AttributionBundle:
+    """Load one immutable public methodology bundle and prove its contracts."""
+
+    filenames = _RESOURCE_FILES.get(methodology_version)
+    if filenames is None:
+        raise AttributionRegistryError(f"Unsupported methodology version: {methodology_version}")
 
     payloads: dict[str, dict[str, Any]] = {}
     digest = hashlib.sha256()
-    for filename in _RESOURCE_FILES:
+    for filename in filenames:
         raw = resources.files("dfri.attribution").joinpath(filename).read_bytes()
         value = json.loads(raw)
         if not isinstance(value, dict):
@@ -131,11 +144,9 @@ def load_attribution_bundle() -> AttributionBundle:
         digest.update(json.dumps(value, sort_keys=True, separators=(",", ":")).encode())
         payloads[filename] = value
 
-    assumptions_payload = payloads["assumption_registry_v1.json"]
-    matrix_a_payload = payloads["matrix_a_v1.json"]
-    matrix_b_payload = payloads["matrix_b_v1.json"]
-    companies_payload = payloads["company_inputs_v1.json"]
-    flows_payload = payloads["flow_inputs_v1.json"]
+    assumptions_payload, matrix_a_payload, matrix_b_payload, companies_payload, flows_payload = (
+        payloads[filename] for filename in filenames
+    )
     versions = {_required_str(payload, "methodology_version") for payload in payloads.values()}
     if len(versions) != 1:
         raise AttributionRegistryError("Attribution registry methodology versions differ")
@@ -156,12 +167,14 @@ def load_attribution_bundle() -> AttributionBundle:
         flows=flows,
         source_hash=digest.hexdigest(),
     )
+    if bundle.methodology_version != methodology_version:
+        raise AttributionRegistryError("Loaded methodology version differs from request")
     validate_attribution_bundle(bundle)
     return bundle
 
 
 def validate_attribution_bundle(bundle: AttributionBundle) -> None:
-    """Enforce evidence coverage, matrix bounds, and the exact P0 issuer contract."""
+    """Enforce evidence coverage, matrix bounds, and immutable universe contracts."""
 
     if not bundle.methodology_version:
         raise AttributionRegistryError("Methodology version is required")
@@ -226,8 +239,14 @@ def validate_attribution_bundle(bundle: AttributionBundle) -> None:
                 )
 
     tickers = {item.ticker for item in bundle.companies}
-    if len(tickers) != 10 or len(tickers) != len(bundle.companies):
-        raise AttributionRegistryError("M3 requires exactly ten unique P0 companies")
+    expected_count = {"1.0.0": 10, "1.1.0": 50}.get(bundle.methodology_version)
+    if expected_count is None:
+        raise AttributionRegistryError("Attribution methodology version is not registered")
+    if len(tickers) != expected_count or len(tickers) != len(bundle.companies):
+        raise AttributionRegistryError(
+            f"Methodology {bundle.methodology_version} requires exactly {expected_count} "
+            "unique companies"
+        )
     category_names = {item.spend_category for item in bundle.matrix_a}
     b_identity = [(item.spend_category, item.ticker) for item in bundle.matrix_b]
     if len(b_identity) != len(set(b_identity)):
@@ -267,12 +286,9 @@ def validate_attribution_bundle(bundle: AttributionBundle) -> None:
                 f"Matrix B {category} high weights exceed one: {total_high}"
             )
 
-    issuer_payload = json.loads(
-        resources.files("dfri.ingest").joinpath("issuer_registry.json").read_text("utf-8")
-    )
-    issuer_by_ticker = {item["ticker"]: item for item in issuer_payload["p0"]}
+    issuer_by_ticker = _issuer_contracts(bundle.methodology_version)
     if tickers != set(issuer_by_ticker):
-        raise AttributionRegistryError("Company inputs differ from the verified P0 issuer registry")
+        raise AttributionRegistryError("Company inputs differ from the verified coverage registry")
     for company_item in bundle.companies:
         issuer = issuer_by_ticker[company_item.ticker]
         expected_revenue = float(issuer["revenue_fact"]["value"]) / 1_000_000
@@ -291,6 +307,10 @@ def validate_attribution_bundle(bundle: AttributionBundle) -> None:
             raise AttributionRegistryError(
                 f"Company denominator assumption is missing: {company_item.ticker}"
             )
+        if bool(company_item.tier1_source_url) != bool(company_item.tier1_excerpt):
+            raise AttributionRegistryError(
+                f"Tier 1 source and excerpt must be present together: {company_item.ticker}"
+            )
         if _word_count(company_item.tier1_excerpt) > 15:
             raise AttributionRegistryError(
                 f"Tier 1 excerpt exceeds 15 words: {company_item.ticker}"
@@ -301,8 +321,6 @@ def validate_attribution_bundle(bundle: AttributionBundle) -> None:
                 company_item.period,
                 company_item.revenue_namespace,
                 company_item.revenue_source_url,
-                company_item.tier1_source_url,
-                company_item.tier1_excerpt,
                 company_item.membership_snapshot_ref,
             )
         ):
@@ -311,8 +329,80 @@ def validate_attribution_bundle(bundle: AttributionBundle) -> None:
     covered = {item.ticker for item in bundle.matrix_b}
     if covered != tickers:
         raise AttributionRegistryError(
-            f"Matrix B coverage differs from P0: {sorted(tickers - covered)}"
+            f"Matrix B coverage differs from the company universe: {sorted(tickers - covered)}"
         )
+
+
+def _issuer_contracts(methodology_version: str) -> dict[str, dict[str, Any]]:
+    issuer_payload = json.loads(
+        resources.files("dfri.ingest").joinpath("issuer_registry.json").read_text("utf-8")
+    )
+    p0 = {item["ticker"]: item for item in issuer_payload["p0"]}
+    if methodology_version == "1.0.0":
+        return p0
+
+    coverage = json.loads(
+        resources.files("dfri.attribution")
+        .joinpath("coverage_registry_v1_1.json")
+        .read_text("utf-8")
+    )
+    history = json.loads(
+        resources.files("dfri.attribution").joinpath("coverage_history_v1.json").read_text("utf-8")
+    )
+    membership = json.loads(
+        resources.files("dfri.ingest").joinpath("membership_snapshot.json").read_text("utf-8")
+    )
+    expansion = _items(coverage, key="expansion")
+    excluded = _items(coverage, key="excluded")
+    if len(expansion) != 40 or [item.get("rank") for item in expansion] != list(range(1, 41)):
+        raise AttributionRegistryError("M5 expansion must contain ranked evidence for 40 issuers")
+    expansion_by_ticker = {str(item.get("ticker")): item for item in expansion}
+    excluded_by_ticker = {str(item.get("ticker")): item for item in excluded}
+    if len(expansion_by_ticker) != 40 or len(excluded_by_ticker) != len(excluded):
+        raise AttributionRegistryError("M5 included and excluded tickers must be unique")
+    if (set(p0) | set(expansion_by_ticker)) & set(excluded_by_ticker):
+        raise AttributionRegistryError("M5 included and excluded coverage overlaps")
+    membership_rows = membership.get("entries")
+    if not isinstance(membership_rows, list):
+        raise AttributionRegistryError("Pinned membership entries are missing")
+    consumer_members = {
+        str(item["symbol"]): item
+        for item in membership_rows
+        if isinstance(item, dict)
+        and item.get("gics_sector") in {"Consumer Discretionary", "Consumer Staples"}
+    }
+    if set(consumer_members) != set(p0) | set(expansion_by_ticker) | set(excluded_by_ticker):
+        raise AttributionRegistryError(
+            "M5 coverage does not partition the pinned consumer universe"
+        )
+    for ticker, item in expansion_by_ticker.items():
+        membership_item = consumer_members[ticker]
+        if item.get("cik") != membership_item.get("cik"):
+            raise AttributionRegistryError(f"M5 membership CIK differs for {ticker}")
+        latest = item.get("latest_10k")
+        revenue = item.get("revenue_fact")
+        if not isinstance(latest, dict) or not isinstance(revenue, dict):
+            raise AttributionRegistryError(f"M5 filing contract is incomplete for {ticker}")
+        p0[ticker] = {
+            "ticker": ticker,
+            "cik": item["cik"],
+            "revenue_fact": {
+                **revenue,
+                "period": latest["period"],
+            },
+        }
+    snapshots = history.get("snapshots")
+    if not isinstance(snapshots, list) or [
+        item.get("methodology_version") for item in snapshots
+    ] != [
+        "1.0.0",
+        "1.1.0",
+    ]:
+        raise AttributionRegistryError("Coverage history must preserve v1.0 before v1.1")
+    latest_snapshot = snapshots[-1]
+    if set(latest_snapshot.get("included_tickers", [])) != set(p0):
+        raise AttributionRegistryError("Coverage history differs from methodology 1.1")
+    return p0
 
 
 def _validate_assumption_refs(
@@ -372,8 +462,8 @@ def _company(item: dict[str, Any]) -> CompanyInput:
         revenue_tag=_required_str(item, "revenue_tag"),
         revenue_source_url=_required_str(item, "revenue_source_url"),
         consumer_share_assumption_id=_required_str(item, "consumer_share_assumption_id"),
-        tier1_source_url=_required_str(item, "tier1_source_url"),
-        tier1_excerpt=_required_str(item, "tier1_excerpt"),
+        tier1_source_url=_optional_str(item, "tier1_source_url"),
+        tier1_excerpt=_optional_str(item, "tier1_excerpt"),
         membership_snapshot_ref=_required_str(item, "membership_snapshot_ref"),
     )
 
@@ -396,11 +486,18 @@ def _prior(item: dict[str, Any]) -> Prior:
     )
 
 
-def _items(payload: dict[str, Any]) -> list[dict[str, Any]]:
-    items = payload.get("items")
+def _items(payload: dict[str, Any], key: str = "items") -> list[dict[str, Any]]:
+    items = payload.get(key)
     if not isinstance(items, list) or not all(isinstance(item, dict) for item in items):
         raise AttributionRegistryError("Registry items must be a list of objects")
     return items
+
+
+def _optional_str(item: dict[str, Any], key: str) -> str:
+    value = item.get(key)
+    if not isinstance(value, str):
+        raise AttributionRegistryError(f"Required string field is invalid: {key}")
+    return value
 
 
 def _required_str(item: dict[str, Any], key: str) -> str:

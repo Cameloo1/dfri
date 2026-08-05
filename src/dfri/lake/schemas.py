@@ -258,6 +258,19 @@ TABLE_SCHEMAS: Final[Mapping[str, pa.Schema]] = {
             _field("published_at", UTC_TIMESTAMP),
         ]
     ),
+    "attribution_refreshes": pa.schema(
+        [
+            _field("refresh_id", pa.string()),
+            _field("target_quarter", pa.string()),
+            _field("effective_at", UTC_TIMESTAMP),
+            _field("data_vintage", UTC_TIMESTAMP),
+            _field("methodology_version", pa.string()),
+            _field("source_hash", pa.string()),
+            _field("company_count", pa.int16()),
+            _field("updated_company_count", pa.int16()),
+            _field("payload_json", pa.string()),
+        ]
+    ),
 }
 
 

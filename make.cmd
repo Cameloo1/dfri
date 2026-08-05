@@ -37,6 +37,11 @@ if /I "%TARGET%"=="privacy-staged" (
   exit /b !ERRORLEVEL!
 )
 
+if /I "%TARGET%"=="registries-check" (
+  uv run python tools\build_m5_registries.py --check
+  exit /b !ERRORLEVEL!
+)
+
 if /I "%TARGET%"=="lint" (
   uv run ruff check src tests
   if errorlevel 1 exit /b 1
@@ -70,6 +75,8 @@ if /I "%TARGET%"=="determinism" (
 
 if /I "%TARGET%"=="verify" (
   uv run python -m dfri.ops.privacy markdown
+  if errorlevel 1 exit /b 1
+  uv run python tools\build_m5_registries.py --check
   if errorlevel 1 exit /b 1
   uv run ruff check src tests
   if errorlevel 1 exit /b 1
@@ -170,6 +177,11 @@ if /I "%TARGET%"=="attribution" (
   exit /b !ERRORLEVEL!
 )
 
+if /I "%TARGET%"=="quarterly-refresh" (
+  uv run python -m dfri.ops.quarterly_refresh %ATTRIBUTION_REFRESH_ARGS%
+  exit /b !ERRORLEVEL!
+)
+
 if /I "%TARGET%"=="recompute-check" (
   uv run python -m dfri.attribution.pipeline --output "%ATTRIBUTION_OUTPUT%"
   if errorlevel 1 exit /b 1
@@ -206,6 +218,8 @@ if /I "%TARGET%"=="publish-scoreboard" (
 
 if /I "%TARGET%"=="publish" (
   uv run python -m dfri.ops.privacy excluded-staged
+  if errorlevel 1 exit /b 1
+  uv run python tools\build_m5_registries.py --check
   if errorlevel 1 exit /b 1
   uv run python -m dfri.api.openapi --check --output docs\openapi-v1.json
   if errorlevel 1 exit /b 1

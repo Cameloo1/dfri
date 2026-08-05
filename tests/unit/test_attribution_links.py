@@ -17,12 +17,18 @@ def test_attribution_link_inventory_is_https_complete_and_unique() -> None:
     assert len(links) >= 15
     assert all(item.startswith("https://") for item in links)
     assert {item.revenue_source_url for item in bundle.companies} <= set(links)
-    assert {item.tier1_source_url for item in bundle.companies} <= set(links)
+    assert {item.tier1_source_url for item in bundle.companies if item.tier1_source_url} <= set(
+        links
+    )
 
 
 def test_link_checker_records_green_http_sources(tmp_path: Path) -> None:
     client = httpx.Client(transport=httpx.MockTransport(lambda request: httpx.Response(200)))
-    receipts = check_links(("https://example.test/b", "https://example.test/a"), client)
+    receipts = check_links(
+        ("https://example.test/b", "https://example.test/a"),
+        client,
+        min_interval_seconds=0,
+    )
     output = tmp_path / "receipt.json"
 
     assert [item.url for item in receipts] == ["https://example.test/a", "https://example.test/b"]
@@ -32,7 +38,7 @@ def test_link_checker_records_green_http_sources(tmp_path: Path) -> None:
 
 def test_link_checker_fails_closed_on_http_error(tmp_path: Path) -> None:
     client = httpx.Client(transport=httpx.MockTransport(lambda request: httpx.Response(404)))
-    receipts = check_links(("https://example.test/missing",), client)
+    receipts = check_links(("https://example.test/missing",), client, min_interval_seconds=0)
     output = tmp_path / "receipt.json"
 
     assert receipts[0].status == "FAIL"

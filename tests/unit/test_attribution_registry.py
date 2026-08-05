@@ -18,11 +18,12 @@ from dfri.attribution.registry import (
 def test_public_attribution_bundle_is_complete_and_source_hashed() -> None:
     bundle = load_attribution_bundle()
 
-    assert bundle.methodology_version == "1.0.0"
+    assert bundle.methodology_version == "1.1.0"
     assert bundle.data_vintage == "2026-05-07T19:00:00+00:00"
-    assert bundle.first_published_at == "2026-08-05T04:17:33.789348+00:00"
+    assert bundle.first_published_at == "2026-08-05T06:58:05.689617+00:00"
     assert len(bundle.source_hash) == 64
-    assert {item.ticker for item in bundle.companies} == {
+    assert len(bundle.companies) == 50
+    assert {
         "AMZN",
         "BBY",
         "F",
@@ -33,7 +34,7 @@ def test_public_attribution_bundle_is_complete_and_source_hashed() -> None:
         "TSCO",
         "ULTA",
         "WMT",
-    }
+    } <= {item.ticker for item in bundle.companies}
     assert {item.quarter for item in bundle.flows} == {"2026-Q1"}
     assert all(len(item.tier1_excerpt.split()) <= 15 for item in bundle.companies)
     assert all(item.source_url.startswith("https://") for item in bundle.assumptions)
@@ -41,11 +42,11 @@ def test_public_attribution_bundle_is_complete_and_source_hashed() -> None:
     digest = hashlib.sha256()
     root = Path(__file__).parents[2] / "src" / "dfri" / "attribution"
     for filename in (
-        "assumption_registry_v1.json",
-        "matrix_a_v1.json",
-        "matrix_b_v1.json",
-        "company_inputs_v1.json",
-        "flow_inputs_v1.json",
+        "assumption_registry_v1_1.json",
+        "matrix_a_v1_1.json",
+        "matrix_b_v1_1.json",
+        "company_inputs_v1_1.json",
+        "flow_inputs_v1_1.json",
     ):
         payload = json.loads((root / filename).read_text(encoding="utf-8"))
         digest.update(filename.encode())
@@ -75,6 +76,19 @@ def test_registry_rejects_invalid_prior_order() -> None:
         Prior(0.5, 0.4, 0.6).validate("bad")
 
 
+def test_historical_v1_bundle_remains_reproducible() -> None:
+    bundle = load_attribution_bundle("1.0.0")
+
+    assert bundle.methodology_version == "1.0.0"
+    assert len(bundle.companies) == 10
+    assert bundle.first_published_at == "2026-08-05T04:17:33.789348+00:00"
+
+
+def test_registry_rejects_unknown_methodology_version() -> None:
+    with pytest.raises(AttributionRegistryError, match="Unsupported"):
+        load_attribution_bundle("9.9.9")
+
+
 def test_registry_rejects_matrix_a_overallocation() -> None:
     bundle = load_attribution_bundle()
     first = bundle.matrix_a[0]
@@ -100,17 +114,30 @@ def test_registry_rejects_unregistered_uncertainty() -> None:
         validate_attribution_bundle(replace(bundle, matrix_b=rows))
 
 
-def test_registry_rejects_missing_p0_company() -> None:
+def test_registry_rejects_missing_p1_company() -> None:
     bundle = load_attribution_bundle()
-    with pytest.raises(AttributionRegistryError, match="exactly ten"):
+    with pytest.raises(AttributionRegistryError, match="exactly 50"):
         validate_attribution_bundle(replace(bundle, companies=bundle.companies[:-1]))
 
 
 def test_registry_rejects_incomplete_company_evidence() -> None:
     bundle = load_attribution_bundle()
-    company = replace(bundle.companies[0], tier1_excerpt="word " * 16)
+    index = next(index for index, item in enumerate(bundle.companies) if item.tier1_source_url)
+    company = replace(bundle.companies[index], tier1_excerpt="word " * 16)
+    companies = list(bundle.companies)
+    companies[index] = company
     with pytest.raises(AttributionRegistryError, match="exceeds 15 words"):
-        validate_attribution_bundle(replace(bundle, companies=(company, *bundle.companies[1:])))
+        validate_attribution_bundle(replace(bundle, companies=tuple(companies)))
+
+
+def test_registry_allows_explicitly_absent_tier1_line_but_not_half_a_line() -> None:
+    bundle = load_attribution_bundle()
+    company = next(item for item in bundle.companies if not item.tier1_source_url)
+    assert company.tier1_excerpt == ""
+    broken = replace(company, tier1_excerpt="unsupported claim")
+    companies = tuple(broken if item == company else item for item in bundle.companies)
+    with pytest.raises(AttributionRegistryError, match="present together"):
+        validate_attribution_bundle(replace(bundle, companies=companies))
 
 
 def test_registry_rejects_revenue_that_does_not_match_pinned_xbrl_fact() -> None:

@@ -37,6 +37,8 @@ def check_site(root: Path) -> SiteQualityReceipt:
         root / "index.html",
         root / "scoreboard" / "index.html",
         root / "methodology" / "index.html",
+        root / "methodology" / "sensitivity" / "index.html",
+        root / "methodology" / "coverage" / "index.html",
         root / "changelog" / "index.html",
         root / "v1" / "feeds" / "schema.json",
     )
@@ -45,8 +47,14 @@ def check_site(root: Path) -> SiteQualityReceipt:
         raise SiteQualityError(f"Missing required publication page: {missing[0]}")
     html_files = sorted(root.rglob("*.html"))
     company_files = sorted((root / "companies").glob("*/index.html"))
-    if len(company_files) != 10:
-        raise SiteQualityError(f"Expected ten company pages, found {len(company_files)}")
+    company_feed = json.loads(
+        (root / "v1" / "feeds" / "dfri_companies.json").read_text(encoding="utf-8")
+    )
+    expected_company_count = company_feed.get("meta", {}).get("row_count")
+    if expected_company_count != 50 or len(company_files) != expected_company_count:
+        raise SiteQualityError(
+            f"Expected 50 company pages from the feed contract, found {len(company_files)}"
+        )
     assets = sum(path.stat().st_size for path in (root / "assets").glob("*") if path.is_file())
     page_sizes: dict[str, int] = {}
     estimated: dict[str, float] = {}
@@ -72,6 +80,12 @@ def check_site(root: Path) -> SiteQualityReceipt:
     methodology = (root / "methodology" / "index.html").read_text(encoding="utf-8")
     if "Assumption Registry" not in methodology or "Tier 1 — Observed" not in methodology:
         raise SiteQualityError("Methodology lacks the versioned assumption/tier contract")
+    comparison = (root / "methodology" / "sensitivity" / "index.html").read_text(encoding="utf-8")
+    if "Methodology 1.0.0" not in comparison or "Methodology 1.1.0" not in comparison:
+        raise SiteQualityError("Methodology sensitivity page lacks both immutable versions")
+    exclusions = (root / "methodology" / "coverage" / "index.html").read_text(encoding="utf-8")
+    if "31 excluded" not in exclusions or "one-line reason" not in exclusions:
+        raise SiteQualityError("Coverage page lacks the dated exclusion contract")
     javascript = (root / "assets" / "site.js").read_text(encoding="utf-8")
     forbidden = ("document.write", "google-analytics", "gtag(", "localStorage", "cookie")
     if any(item in javascript for item in forbidden):
@@ -125,6 +139,8 @@ def _check_company(relative: str, content: str) -> None:
         "Tier 3",
         "Assumption IDs",
         "Assumption sensitivity top 5",
+        "Estimated DFR% band over time",
+        "history-chart",
         "https://www.sec.gov/Archives/",
         "<svg",
     )
