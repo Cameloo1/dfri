@@ -299,8 +299,8 @@ Dependencies: M4.1–M4.2.
 
 ### M4.4 Cold verification and report
 
-- `IN_PROGRESS` Repeat the filtered fresh-clone `bootstrap`, `verify`, and `publish` gate after D-010 and retain the Pages-only uptime receipt. API-specific checks remain deferred and must not be reported as pass.
-- `PENDING` Write `MILESTONE_REPORTS/M4.md`.
+- `PASS` The filtered fresh clone at `8785cbf` passed locked bootstrap, 372-test verification at 85.21% coverage, deterministic replay, and deterministic publish; the Pages-only live receipt is green and API-specific checks remain explicitly deferred.
+- `PASS` Write `MILESTONE_REPORTS/M4.md` with all evidence, D-010 rows, the M5 task map, and the ready-to-execute dormant serverless appendix.
 
 Dependencies: all M4 ACs.
 
@@ -338,5 +338,5 @@ Dependencies: M5.1–M5.2.
 
 1. Preserve the first two genuine scheduled weekly prediction cycles and their deployment receipts.
 2. Verify the relevant G.19 release automatically grades the matured predictions.
-3. Complete the D-010 Pages-only M4 cold-clone gate and write `MILESTONE_REPORTS/M4.md`, including the dormant serverless deployment appendix.
-4. Begin the evidence-first 50-company M5 expansion only after the revised M4 checklist and report are complete.
+3. Preserve M4's Pages-only uptime receipts and keep the D-010 serverless appendix dormant until a trigger occurs.
+4. Begin the evidence-first 50-company M5 expansion under methodology v1.1.0.
