@@ -1,0 +1,11 @@
+{
+  "name": "dfri-quality-gates",
+  "private": true,
+  "scripts": {
+    "site-accessibility": "node tools/axe-check.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
+    "playwright-core": "1.62.1"
+  }
+}

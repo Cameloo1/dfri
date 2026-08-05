@@ -22,6 +22,8 @@ if "%ATTRIBUTION_OUTPUT%"=="" set "ATTRIBUTION_OUTPUT=reports\dfri_companies.jso
 
 if /I "%TARGET%"=="bootstrap" (
   uv sync --locked --all-groups
+  if errorlevel 1 exit /b 1
+  npm.cmd ci --ignore-scripts
   exit /b !ERRORLEVEL!
 )
 
@@ -168,8 +170,36 @@ if /I "%TARGET%"=="provenance-check" (
   exit /b !ERRORLEVEL!
 )
 
+if /I "%TARGET%"=="api-openapi" (
+  uv run python -m dfri.api.openapi --output docs\openapi-v1.json
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="api" (
+  uv run python -m dfri.api.app
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="site-quality" (
+  uv run python -m dfri.publish.quality
+  exit /b !ERRORLEVEL!
+)
+
 if /I "%TARGET%"=="publish-scoreboard" (
   uv run python -m dfri.publish.site %PUBLISH_ARGS%
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="publish" (
+  uv run python -m dfri.api.openapi --check --output docs\openapi-v1.json
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.publish.changelog
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.seed.publication --output published\public --evidence .local\evidence\m4-publication.json
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.api.benchmark --publication-root published\public --output .local\evidence\m4-api-latency.json
+  if errorlevel 1 exit /b 1
+  npm.cmd run site-accessibility -- published\public .local\evidence\m4-axe.json
   exit /b !ERRORLEVEL!
 )
 

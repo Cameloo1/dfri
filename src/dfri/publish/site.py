@@ -21,6 +21,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoes
 from dfri.attribution.engine import AttributionResult, CompanyEstimate, run_attribution
 from dfri.attribution.registry import Assumption, AttributionBundle, load_attribution_bundle
 from dfri.lake.store import AppendOnlyParquetStore, write_deterministic_parquet
+from dfri.publish.changelog import load_changelog
 from dfri.publish.ledger import (
     GradeLedger,
     GradeRecord,
@@ -130,6 +131,7 @@ def _build_scoreboard(
     backtest = _load_object(root / "reports" / "m2_backtest.json", "backtest")
     attribution_bundle = load_attribution_bundle()
     attribution = run_attribution(attribution_bundle)
+    changelog = load_changelog()
     all_predictions = PredictionLedger(ledger_store).read_all()
     predictions = tuple(
         item
@@ -225,13 +227,11 @@ def _build_scoreboard(
     _write_csv(feeds / "scoreboard.csv", scoreboard_rows, _scoreboard_columns())
     company_rows = _company_feed_rows(
         attribution,
-        published_at=published_at,
         publication_mode=publication_mode,
         commercial_contact=commercial_contact,
     )
     assumption_rows = _assumption_feed_rows(
         attribution_bundle,
-        published_at=published_at,
         publication_mode=publication_mode,
         commercial_contact=commercial_contact,
     )
@@ -333,7 +333,7 @@ def _build_scoreboard(
             "root": "../",
             "title": "Changelog",
             "description": "Append-only DFRI publication and methodology changes.",
-            "attribution": aggregate_display,
+            "entries": [item.display() for item in reversed(changelog)],
         },
     )
     for company, display in zip(attribution.companies, company_displays, strict=True):
@@ -491,14 +491,13 @@ def _summary(rows: list[dict[str, object]], backtest: dict[str, object]) -> dict
 def _company_feed_rows(
     result: AttributionResult,
     *,
-    published_at: datetime,
     publication_mode: str,
     commercial_contact: str,
 ) -> list[dict[str, object]]:
     common: dict[str, object] = {
         "methodology_version": result.methodology_version,
         "data_vintage": result.data_vintage,
-        "published_at": published_at.astimezone(UTC).isoformat(),
+        "published_at": result.first_published_at,
         "publication_mode": publication_mode,
         "license": LICENSE,
         "license_url": LICENSE_URL,
@@ -547,14 +546,13 @@ def _company_feed_rows(
 def _assumption_feed_rows(
     bundle: AttributionBundle,
     *,
-    published_at: datetime,
     publication_mode: str,
     commercial_contact: str,
 ) -> list[dict[str, object]]:
     common: dict[str, object] = {
         "methodology_version": bundle.methodology_version,
         "data_vintage": bundle.data_vintage,
-        "published_at": published_at.astimezone(UTC).isoformat(),
+        "published_at": bundle.first_published_at,
         "publication_mode": publication_mode,
         "license": LICENSE,
         "license_url": LICENSE_URL,

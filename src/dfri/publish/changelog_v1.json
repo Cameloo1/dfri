@@ -1,0 +1,30 @@
+{
+  "schema_version": "v1",
+  "entries": [
+    {
+      "entry_id": "public-scoreboard-clock-started",
+      "published_on": "2026-08-04",
+      "kind": "publication",
+      "version": "bridge-ridge-v2-alpha10",
+      "title": "Public scoreboard clock started",
+      "summary": "Published the immutable Federal Reserve credit-flow scoreboard and registered the scheduled prediction and first-print grading lanes.",
+      "links": [
+        {"label": "Scoreboard", "href": "/scoreboard/"},
+        {"label": "Prediction feed", "href": "/v1/feeds/nowcast_predictions.json"}
+      ]
+    },
+    {
+      "entry_id": "methodology-1-0-0",
+      "published_on": "2026-08-05",
+      "kind": "methodology",
+      "version": "1.0.0",
+      "title": "P0 attribution introduced",
+      "summary": "Published the first ten-company revenue-weighted DFRI estimate with 20,000-draw bands, tier shares, a public Assumption Registry, and company sensitivity rankings.",
+      "links": [
+        {"label": "Methodology", "href": "/methodology/"},
+        {"label": "Company feed", "href": "/v1/feeds/dfri_companies.json"},
+        {"label": "Assumptions feed", "href": "/v1/feeds/assumptions.json"}
+      ]
+    }
+  ]
+}

@@ -21,3 +21,4 @@ __pycache__/
 /dist/
 /site/build/
 *.egg-info/
+/node_modules/

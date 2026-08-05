@@ -6,6 +6,7 @@ import hashlib
 import json
 import math
 from dataclasses import dataclass
+from datetime import datetime
 from importlib import resources
 from typing import Any, Final
 
@@ -93,6 +94,7 @@ class FlowInput:
 class AttributionBundle:
     methodology_version: str
     data_vintage: str
+    first_published_at: str
     assumptions: tuple[Assumption, ...]
     matrix_a: tuple[MatrixAEntry, ...]
     matrix_b: tuple[MatrixBEntry, ...]
@@ -146,6 +148,7 @@ def load_attribution_bundle() -> AttributionBundle:
     bundle = AttributionBundle(
         methodology_version=versions.pop(),
         data_vintage=_required_str(flows_payload, "data_vintage"),
+        first_published_at=_required_str(companies_payload, "first_published_at"),
         assumptions=assumptions,
         matrix_a=matrix_a,
         matrix_b=matrix_b,
@@ -162,6 +165,12 @@ def validate_attribution_bundle(bundle: AttributionBundle) -> None:
 
     if not bundle.methodology_version:
         raise AttributionRegistryError("Methodology version is required")
+    try:
+        first_published = datetime.fromisoformat(bundle.first_published_at)
+    except ValueError as exc:
+        raise AttributionRegistryError("First publication timestamp is invalid") from exc
+    if first_published.tzinfo is None or first_published.utcoffset() is None:
+        raise AttributionRegistryError("First publication timestamp must include a timezone")
     assumptions = bundle.assumptions_by_id
     if len(assumptions) != len(bundle.assumptions):
         raise AttributionRegistryError("Assumption IDs must be unique")

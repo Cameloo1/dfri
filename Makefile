@@ -1,4 +1,4 @@
-.PHONY: bootstrap lint typecheck test replay determinism verify live-smoke board-backfill board-snapshot board-targets census-archive context-history nyfed-history health spot-audit membership-verify filing-facts auto-abs card-trust backtest scoreboard-predict scoreboard-grade attribution recompute-check provenance-check publish-scoreboard
+.PHONY: bootstrap lint typecheck test replay determinism verify live-smoke board-backfill board-snapshot board-targets census-archive context-history nyfed-history health spot-audit membership-verify filing-facts auto-abs card-trust backtest scoreboard-predict scoreboard-grade attribution recompute-check provenance-check api-openapi api site-quality publish-scoreboard publish
 
 AS_OF ?= 2024-01-31
 BOARD_START ?= 2015-01-01
@@ -25,6 +25,7 @@ ATTRIBUTION_OUTPUT ?= reports/dfri_companies.json
 
 bootstrap:
 	uv sync --locked --all-groups
+	npm ci --ignore-scripts
 
 lint:
 	uv run ruff check src tests
@@ -101,5 +102,21 @@ recompute-check: attribution
 provenance-check:
 	uv run python -m dfri.publish.link_check
 
+api-openapi:
+	uv run python -m dfri.api.openapi --output docs/openapi-v1.json
+
+api:
+	uv run python -m dfri.api.app
+
+site-quality:
+	uv run python -m dfri.publish.quality
+
 publish-scoreboard:
 	uv run python -m dfri.publish.site $(PUBLISH_ARGS)
+
+publish:
+	uv run python -m dfri.api.openapi --check --output docs/openapi-v1.json
+	uv run python -m dfri.publish.changelog
+	uv run python -m dfri.seed.publication --output published/public --evidence .local/evidence/m4-publication.json
+	uv run python -m dfri.api.benchmark --publication-root published/public --output .local/evidence/m4-api-latency.json
+	npm run site-accessibility -- published/public .local/evidence/m4-axe.json

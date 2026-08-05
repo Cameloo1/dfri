@@ -17,8 +17,10 @@ Immutable prediction/grading ledgers, idempotent local jobs, and the determinist
 builder also pass. The [public scoreboard](https://cameloo1.github.io/dfri/) and active external
 clock are now deployed; two genuine scheduled weekly cycles and automatic first-print grading
 remain. M3 attribution is complete and live for the ten P0 companies; its public/cold-clone
-evidence is in the [M3 milestone report](MILESTONE_REPORTS/M3.md). No M2 completion is claimed
-early.
+evidence is in the [M3 milestone report](MILESTONE_REPORTS/M3.md). M4's versioned feed, static
+site, deterministic publish, read-only FastAPI, latency, axe, no-JavaScript, recovery, and hourly
+monitoring contracts pass locally. A durable public API host is not configured, so M4 is not
+claimed complete. No M2 completion is claimed early.
 
 ## Outputs, sources, and evidence tiers
 
@@ -56,6 +58,7 @@ escape-hatch path and is recorded in `DEVIATIONS.md`.
 
 - Python 3.12, managed by `uv`
 - `uv` 0.11 or newer
+- Node.js 24 and a local Chrome channel for the axe/no-JavaScript publication gate
 - GNU Make for the canonical CI/fresh-clone commands; Windows users may run the equivalent `make.cmd`
 - Network access for opt-in live source verification
 
@@ -77,6 +80,7 @@ make replay AS_OF=2024-01-31
 make attribution
 make recompute-check
 make provenance-check
+make publish
 ```
 
 Windows equivalents:
@@ -89,9 +93,16 @@ make.cmd replay
 make.cmd attribution
 make.cmd recompute-check
 make.cmd provenance-check
+make.cmd publish
 ```
 
 `make replay` writes a deterministic seed publication under `published/replay`. Runtime lake and publication artifacts are ignored by Git unless a reviewed, stable fixture or public report is intentionally promoted.
+
+`make publish` validates the committed OpenAPI and append-only changelog contracts, rebuilds the
+complete public site twice from a frozen copy of the first four genuine public predictions,
+requires byte-identical output, measures the local API budget, and runs axe plus a true
+JavaScript-disabled render across every page. Its receipts remain under `.local/evidence/`; the
+frozen replay does not count as a scheduled live cycle.
 
 Live verification is opt-in and uses the supplied environment only:
 
@@ -447,6 +458,25 @@ candidate until Pages succeeds. The one permitted empty-state bootstrap has comp
 be enabled again. See
 [`ops/M2_SCOREBOARD.md`](ops/M2_SCOREBOARD.md) for activation, pause, retry, and recovery rules.
 
+## Read-only API and publication monitoring
+
+M4 defines exactly nine unauthenticated GET endpoints under `/v1`, generated from the immutable
+Parquet/JSON publication directory. The committed contract is `docs/openapi-v1.json`; ETags,
+cache headers, open GET CORS, and a fixed 60-requests/minute/IP boundary are enforced in the app.
+The cold publication benchmark requires p95 below 300 ms.
+
+Run it locally with:
+
+```sh
+uv run python -m dfri.api.app --publication-root published/public
+```
+
+The hourly `.github/workflows/m4-uptime.yml` job retains a JSON log for every attempt. It currently
+checks the live Pages site, stable feeds, and nowcast freshness. The API portion remains explicitly
+`BLOCKED_NOT_CONFIGURED` until a durable public FastAPI base URL is added as the repository variable
+`DFRI_API_BASE_URL`; no static or vendor substitute is claimed as the API. See
+[`ops/M4_PUBLICATION.md`](ops/M4_PUBLICATION.md) for the complete recovery contract.
+
 ## New York Fed HHDC history
 
 The NY Fed history command discovers the current official Household Debt and Credit workbook,
@@ -482,8 +512,9 @@ The Windows equivalent is `make.cmd health`. Its secret-free JSON report uses ex
 next expected event, and registered/observed entity counts. A historical `--as-of` timestamp
 excludes future ingests. The current canonical lake is green across ten lanes: five macro sources,
 17 SEC XBRL issuers, the required HTML filing fallback, five active Auto ABS trusts, one terminal
-Auto ABS history, and three card 10-D trusts. This is the complete M1 `/v1/health` precursor; the
-public FastAPI endpoint remains an M4 publication-hardening task.
+Auto ABS history, and three card 10-D trusts. This is the complete M1 `/v1/health` precursor. The
+M4 FastAPI endpoint is implemented and verified over published data, but its durable public host
+remains an open release gate.
 
 ## Live spot audit
 

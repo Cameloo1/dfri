@@ -17,6 +17,7 @@ def test_public_attribution_bundle_is_complete_and_source_hashed() -> None:
 
     assert bundle.methodology_version == "1.0.0"
     assert bundle.data_vintage == "2026-05-07T19:00:00+00:00"
+    assert bundle.first_published_at == "2026-08-05T04:17:33.789348+00:00"
     assert len(bundle.source_hash) == 64
     assert {item.ticker for item in bundle.companies} == {
         "AMZN",

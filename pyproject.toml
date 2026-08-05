@@ -44,6 +44,13 @@ dfri-scoreboard = "dfri.scoreboard:main"
 dfri-publish-scoreboard = "dfri.publish.site:main"
 dfri-attribution = "dfri.attribution.pipeline:main"
 dfri-check-provenance = "dfri.publish.link_check:main"
+dfri-api = "dfri.api.app:main"
+dfri-openapi = "dfri.api.openapi:main"
+dfri-site-quality = "dfri.publish.quality:main"
+dfri-changelog = "dfri.publish.changelog:main"
+dfri-publish = "dfri.seed.publication:main"
+dfri-api-benchmark = "dfri.api.benchmark:main"
+dfri-uptime = "dfri.ops.uptime:main"
 
 [dependency-groups]
 dev = [
