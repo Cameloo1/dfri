@@ -37,7 +37,7 @@ Independent source-ingest work may proceed in parallel only where it cannot weak
 - `PASS` Add `.gitignore`, `.env.example` containing variable names only, and secret-safe logging/redaction tests. Never read or print `.env` values.
 - `PASS` Add a portable `Makefile` with `bootstrap`, `lint`, `typecheck`, `test`, `replay`, `verify`, and later `publish` targets; document Windows prerequisites and commands.
 - `PASS` Add `README.md`, `QUESTIONS.md`, and `DEVIATIONS.md` with explicit operating rules and environment variable names.
-- `IN_PROGRESS` Add GitHub Actions PR CI for lint, type, tests, and deterministic replay. Local verification and public push runs `30967935599` and `30968775292` pass; a pull-request event remains to be observed. Q-001 is resolved.
+- `PASS` Add GitHub Actions PR CI for lint, type checks, tests, and deterministic replay. Local verification, public push runs `30967935599` and `30968775292`, and pull-request run `30969726354` pass. Q-001 is resolved.
 
 Dependencies: spec read-through. Evidence: scaffold tree, tool configs, fresh-environment command transcript, CI workflow.
 
@@ -103,7 +103,7 @@ Dependencies: M0.2. Evidence: leak-canary and boundary tests.
 ### M0.8 Cold verification and report
 
 - `PASS` Run `make bootstrap && make verify` from a fresh clone with credentials supplied only via environment variables. The documented Windows equivalents passed at commit `83efb52`; the clone itself required no credentials because live smoke is a separate opt-in gate.
-- `PASS` Write `MILESTONE_REPORTS/M0.md` with every M0 AC marked pass/fail, evidence links, open deviations, and the M1 task map. M0 remains pending only for external PR-CI evidence under Q-001.
+- `PASS` Write `MILESTONE_REPORTS/M0.md` with every M0 AC marked pass/fail, evidence links, open deviations, and the M1 task map. M0 is complete after pull-request run `30969726354` passed.
 
 Dependencies: M0.1–M0.7 all passing or explicitly deviated. M0 completion gate.
 

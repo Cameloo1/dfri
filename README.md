@@ -6,8 +6,7 @@ The controlling build contract is [DFRI_BUILD_SPEC.md](DFRI_BUILD_SPEC.md). Curr
 
 ## Current state
 
-M0 passes the local and fresh-clone gates, and the public repository's push-triggered CI passes;
-a pull-request-triggered CI run remains the final M0 evidence item. M1 Board, public
+M0 passes the local, fresh-clone, push-CI, and pull-request-CI gates. M1 Board, public
 macro/category, issuer-fact, Auto ABS, and card-trust histories pass their ingest, live-audit,
 health, and fresh-clone gates. The
 [M1 milestone report](MILESTONE_REPORTS/M1.md) records the evidence. M2 first-print target,
