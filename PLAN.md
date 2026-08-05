@@ -276,8 +276,8 @@ Dependencies: all M3 ACs.
 ### M4.1 Versioned feeds and API
 
 - `PASS` Publish all §8.1 CSV/JSON/Parquet feeds plus `/v1/feeds/schema.json` with CC BY-NC 4.0 row/header metadata. Every stable live Pages feed returns HTTP 200 with an ETag and `max-age=600` cache control.
-- `PASS` Implement exactly the nine prescribed read-only FastAPI GET endpoints and commit the generated `docs/openapi-v1.json`; tests reject any mutation route or schema drift, including Windows CRLF checkouts.
-- `PASS` Enforce 60 requests/minute/IP, open GET CORS, conditional ETags, and cache headers. The filtered cold-clone publication benchmark made 100 requests with p95 1.856 ms against published Parquet, below the 300 ms bar. Durable public API process hosting remains the M4 release blocker.
+- `DEFERRED` D-010 defers the nine public FastAPI endpoints and the public API contract. The tested read-only implementation and generated `docs/openapi-v1.json` remain committed as dormant capability, but no endpoint is claimed live.
+- `DEFERRED` D-010 also defers public rate-limit, CORS, ETag/cache, and p95 latency acceptance. The local benchmark remains implementation evidence only; it is not a public-service pass.
 
 Dependencies: stable M2/M3 schemas.
 
@@ -292,14 +292,14 @@ Dependencies: M4.1 and M3 outputs.
 ### M4.3 Publication operation
 
 - `PASS` Wire cross-platform deterministic replay into `make publish` and CI. Primary and filtered Windows cold clones produce byte-identical 260,567-byte output with manifest `0c3a75163385275028533fe7a51fc44f62b227197159714cc874f704c3a74fe5`; PR run [30976832058](https://github.com/Cameloo1/dfri/actions/runs/30976832058) and main run [30976933576](https://github.com/Cameloo1/dfri/actions/runs/30976933576) pass. Published changelog history is prefix-protected in CI.
-- `IN_PROGRESS` Active workflow `327542973` runs hourly at minute 17 and retains owner-readable receipts for 90 days. First run [30977114871](https://github.com/Cameloo1/dfri/actions/runs/30977114871) is green for all nine site/feed URLs and nowcast freshness, but correctly reports the unconfigured public API as `BLOCKED_NOT_CONFIGURED`.
+- `PASS` Active workflow `327542973` runs hourly at minute 17 and retains owner-readable receipts for 90 days. Run [30977114871](https://github.com/Cameloo1/dfri/actions/runs/30977114871) is green for all nine required site/feed URLs and nowcast freshness. D-010 makes the absent API an explicit `DEFERRED` non-requirement; configuring `DFRI_API_BASE_URL` later automatically makes API checks required.
 - `PASS` Verify failed-ingest append boundaries plus injected failed-build, failed-promotion, retry, and rollback-to-last-good paths. Prior managed output remains byte-identical, incomplete staging is removed, and unmanaged destinations are never overwritten.
 
 Dependencies: M4.1–M4.2.
 
 ### M4.4 Cold verification and report
 
-- `IN_PROGRESS` The filtered public clone passes `make.cmd bootstrap`, 364-test `make.cmd verify` at 85.17% coverage, deterministic replay, and `make.cmd publish`; PR/main CI and every static public SLO pass. The nine FastAPI routes are not durably public because GitHub Pages cannot execute FastAPI and no owner-approved host exists.
+- `IN_PROGRESS` Repeat the filtered fresh-clone `bootstrap`, `verify`, and `publish` gate after D-010 and retain the Pages-only uptime receipt. API-specific checks remain deferred and must not be reported as pass.
 - `PENDING` Write `MILESTONE_REPORTS/M4.md`.
 
 Dependencies: all M4 ACs.
@@ -338,5 +338,5 @@ Dependencies: M5.1–M5.2.
 
 1. Preserve the first two genuine scheduled weekly prediction cycles and their deployment receipts.
 2. Verify the relevant G.19 release automatically grades the matured predictions.
-3. Select owner-approved existing infrastructure for the read-only FastAPI process without adding an unapproved vendor; set `DFRI_API_BASE_URL`, deploy the merged app, and require a green API-aware uptime receipt.
-4. Close M4 only after the live API contract/SLO check passes, then write `MILESTONE_REPORTS/M4.md` before beginning M5.
+3. Complete the D-010 Pages-only M4 cold-clone gate and write `MILESTONE_REPORTS/M4.md`, including the dormant serverless deployment appendix.
+4. Begin the evidence-first 50-company M5 expansion only after the revised M4 checklist and report are complete.

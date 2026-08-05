@@ -485,10 +485,11 @@ Run it locally with:
 uv run python -m dfri.api.app --publication-root published/public
 ```
 
-The hourly `.github/workflows/m4-uptime.yml` job retains a JSON log for every attempt. It currently
-checks the live Pages site, stable feeds, and nowcast freshness. The API portion remains explicitly
-`BLOCKED_NOT_CONFIGURED` until a durable public FastAPI base URL is added as the repository variable
-`DFRI_API_BASE_URL`; no static or vendor substitute is claimed as the API. See
+The hourly `.github/workflows/m4-uptime.yml` job retains a JSON log for every attempt. It checks the
+live Pages site, stable feeds, and nowcast freshness. Under owner deviation D-010, the public API is
+explicitly `DEFERRED` and is not required for a green v1 uptime receipt; no static or vendor
+substitute is claimed as the API. If either approved revisit trigger occurs, setting the repository
+variable `DFRI_API_BASE_URL` automatically makes every configured API check required. See
 [`ops/M4_PUBLICATION.md`](ops/M4_PUBLICATION.md) for the complete recovery contract.
 
 ## New York Fed HHDC history
@@ -527,8 +528,8 @@ next expected event, and registered/observed entity counts. A historical `--as-o
 excludes future ingests. The current canonical lake is green across ten lanes: five macro sources,
 17 SEC XBRL issuers, the required HTML filing fallback, five active Auto ABS trusts, one terminal
 Auto ABS history, and three card 10-D trusts. This is the complete M1 `/v1/health` precursor. The
-M4 FastAPI endpoint is implemented and verified over published data, but its durable public host
-remains an open release gate.
+FastAPI implementation and OpenAPI contract are retained and locally verified, but public API
+operation is intentionally deferred under D-010. Versioned Pages feeds are the v1 access surface.
 
 ## Live spot audit
 
