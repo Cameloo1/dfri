@@ -8,7 +8,7 @@
   <article class="card primary">
     <div class="kicker">revenue-weighted company index · {{ aggregate.quarter }}</div>
     <div class="number" title="Estimated from registered Matrix A and Matrix B priors; open Methodology for every input">Estimated {{ aggregate.mid }}</div>
-    <div class="meta">Estimated DFR% · 10-company coverage · {{ aggregate.weighting }} <span class="tier-badge tier-mixed">Tier 1–3</span></div>
+    <div class="meta">Estimated DFR% · {{ company_count }}-company coverage · {{ aggregate.weighting }} <span class="tier-badge tier-mixed">Tier 1–3</span></div>
     <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="Estimated DFR percent band from {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}">
       <title>Estimated DFR% band: {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}</title>
       <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
@@ -44,8 +44,8 @@
 </section>
 
 <section id="companies" class="section-block">
-  <div class="eyebrow">P0 coverage</div>
-  <h2>Ten evidence-linked company estimates</h2>
+  <div class="eyebrow">P1 coverage</div>
+  <h2>{{ company_count }} evidence-linked company estimates</h2>
   <div class="company-links">
     {% for company in companies %}
     <a class="company-link" href="companies/{{ company.ticker|lower }}/index.html"><strong>{{ company.ticker }}</strong><span>{{ company.company_name }}</span><span>Estimated {{ company.low }}–{{ company.high }} DFR%</span></a>

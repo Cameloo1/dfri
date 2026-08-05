@@ -136,7 +136,7 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert "the nominal 80% band contained 71.3%" in methodology
     site_js = (output / "assets" / "site.js").read_text(encoding="utf-8")
     assert 'document.createElement("button")' in site_js
-    assert first.total_bytes < 500_000
+    assert first.total_bytes < 1_000_000
     assert b"\r\n" not in (output / "assets" / "site.css").read_bytes()
     assert b"\r\n" not in (output / "assets" / "site.js").read_bytes()
 
@@ -203,12 +203,12 @@ def test_feed_contract_has_publication_fields_license_and_typed_parquet(tmp_path
     assert all(row["data_vintage"] == DATA_VINTAGE.isoformat() for row in rebuilt["data"])
     company_rows = json.loads((output / "v1" / "feeds" / "dfri_companies.json").read_text())["data"]
     assumption_rows = json.loads((output / "v1" / "feeds" / "assumptions.json").read_text())["data"]
-    assert {row["published_at"] for row in company_rows} == {"2026-08-05T04:17:33.789348+00:00"}
-    assert {row["published_at"] for row in assumption_rows} == {"2026-08-05T04:17:33.789348+00:00"}
+    assert {row["published_at"] for row in company_rows} == {"2026-08-05T06:58:05.689617+00:00"}
+    assert {row["published_at"] for row in assumption_rows} == {"2026-08-05T06:58:05.689617+00:00"}
     assert store.read_table("publication_records").height == 2
 
 
-def test_attribution_feeds_and_ten_company_pages_publish_with_full_evidence(
+def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     tmp_path: Path,
 ) -> None:
     store = AppendOnlyParquetStore(tmp_path / "ledger")
@@ -226,7 +226,7 @@ def test_attribution_feeds_and_ten_company_pages_publish_with_full_evidence(
     companies = json.loads((output / "v1" / "feeds" / "dfri_companies.json").read_text())
     assumptions = json.loads((output / "v1" / "feeds" / "assumptions.json").read_text())
     schema = json.loads((output / "v1" / "feeds" / "schema.json").read_text())
-    assert len(companies["data"]) == 10
+    assert len(companies["data"]) == 50
     assert assumptions["data"]
     assert companies["meta"]["weighting"] == "revenue-weighted"
     assert set(schema["feeds"]) == {
@@ -234,9 +234,12 @@ def test_attribution_feeds_and_ten_company_pages_publish_with_full_evidence(
         "scoreboard",
         "dfri_companies",
         "assumptions",
+        "coverage_exclusions",
+        "quarterly_refreshes",
+        "dfri_company_history",
     }
     parquet = pq.read_table(output / "v1" / "feeds" / "dfri_companies.parquet")
-    assert parquet.num_rows == 10
+    assert parquet.num_rows == 50
     assert parquet.schema.field("estimated_dfr_pct_mid").type == pa.float64()
     methodology = (output / "methodology" / "index.html").read_text(encoding="utf-8")
     assert "Assumption Registry" in methodology
@@ -246,14 +249,26 @@ def test_attribution_feeds_and_ten_company_pages_publish_with_full_evidence(
     assert "Estimated DFR%" in home
     assert "range-chart" in home
     assert (output / "changelog" / "index.html").exists()
+    assert (output / "methodology" / "sensitivity" / "index.html").exists()
+    assert (output / "methodology" / "coverage" / "index.html").exists()
+    exclusions = json.loads((output / "v1" / "feeds" / "coverage_exclusions.json").read_text())
+    assert len(exclusions["data"]) == 31
+    refreshes = json.loads((output / "v1" / "feeds" / "quarterly_refreshes.json").read_text())
+    history = json.loads((output / "v1" / "feeds" / "dfri_company_history.json").read_text())
+    assert len(refreshes["data"]) == 1
+    assert len(history["data"]) == 50
 
     for row in companies["data"]:
         page = output / "companies" / row["ticker"].lower() / "index.html"
         html = page.read_text(encoding="utf-8")
         assert "Estimated DFR% band" in html
         assert "Assumption sensitivity top 5" in html
-        assert row["tier1_excerpt"] in html_lib.unescape(html)
-        assert row["tier1_source_url"] in html
+        assert "Estimated DFR% band over time" in html
+        if row["tier1_source_url"]:
+            assert row["tier1_excerpt"] in html_lib.unescape(html)
+            assert row["tier1_source_url"] in html
+        else:
+            assert "No company-specific observed financing line" in html
         assert "Tier 1" in html and "Tier 2" in html and "Tier 3" in html
         assert page.stat().st_size < 500_000
 

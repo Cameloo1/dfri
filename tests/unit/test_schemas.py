@@ -39,6 +39,7 @@ def test_all_spec_tables_are_registered() -> None:
         "auto_abs_aggregates",
         "card_trust_aggregates",
         "dfri_output",
+        "attribution_refreshes",
     }
     assert expected == {name for name in expected if schema_for(name)}
 

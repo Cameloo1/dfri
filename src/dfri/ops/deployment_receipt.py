@@ -37,10 +37,11 @@ def write_deployment_receipt(
     commit_sha: str,
     prediction_appended: int,
     grade_appended: int,
+    attribution_refresh_appended: int,
 ) -> DeploymentReceipt:
     """Validate, atomically persist, and return one release-to-publication receipt."""
 
-    if mode not in {"predict", "grade", "all"}:
+    if mode not in {"predict", "grade", "refresh", "all"}:
         raise DeploymentReceiptError("Deployment mode is invalid")
     for value, label in (
         (source_release_at, "source release"),
@@ -57,24 +58,33 @@ def write_deployment_receipt(
         character not in "0123456789abcdef" for character in commit_sha
     ):
         raise DeploymentReceiptError("Deployment commit must be a lowercase SHA-1")
-    if prediction_appended < 0 or grade_appended < 0:
+    if min(prediction_appended, grade_appended, attribution_refresh_appended) < 0:
         raise DeploymentReceiptError("Deployment append counts cannot be negative")
     latency = round((deployed_at - source_release_at).total_seconds())
-    status = "PASS" if latency <= round(SLA.total_seconds()) else "FAIL"
+    sla_applicable = mode != "refresh"
+    status = (
+        "PASS"
+        if sla_applicable and latency <= round(SLA.total_seconds())
+        else "FAIL"
+        if sla_applicable
+        else "NOT_APPLICABLE"
+    )
     payload = {
-        "schema_version": 1,
+        "schema_version": 2,
         "mode": mode,
         "source_release_at": source_release_at.astimezone(UTC).isoformat(),
         "published_at": published_at.astimezone(UTC).isoformat(),
         "deployed_at": deployed_at.astimezone(UTC).isoformat(),
         "latency_seconds": latency,
         "sla_seconds": round(SLA.total_seconds()),
+        "sla_applicable": sla_applicable,
         "sla_status": status,
         "page_url": page_url,
         "workflow_url": workflow_url,
         "commit_sha": commit_sha,
         "prediction_appended": prediction_appended,
         "grade_appended": grade_appended,
+        "attribution_refresh_appended": attribution_refresh_appended,
     }
     output.parent.mkdir(parents=True, exist_ok=True)
     descriptor, temporary_name = tempfile.mkstemp(
@@ -109,7 +119,7 @@ def _timestamp(value: str) -> datetime:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--mode", choices=("predict", "grade", "all"), required=True)
+    parser.add_argument("--mode", choices=("predict", "grade", "refresh", "all"), required=True)
     parser.add_argument("--source-release-at", type=_timestamp, required=True)
     parser.add_argument("--published-at", type=_timestamp, required=True)
     parser.add_argument("--deployed-at", type=_timestamp)
@@ -118,6 +128,7 @@ def main() -> None:
     parser.add_argument("--commit-sha", required=True)
     parser.add_argument("--prediction-appended", type=int, required=True)
     parser.add_argument("--grade-appended", type=int, required=True)
+    parser.add_argument("--attribution-refresh-appended", type=int, required=True)
     args = parser.parse_args()
     receipt = write_deployment_receipt(
         args.output,
@@ -130,6 +141,7 @@ def main() -> None:
         commit_sha=args.commit_sha,
         prediction_appended=args.prediction_appended,
         grade_appended=args.grade_appended,
+        attribution_refresh_appended=args.attribution_refresh_appended,
     )
     print(
         json.dumps(
@@ -141,7 +153,7 @@ def main() -> None:
             sort_keys=True,
         )
     )
-    if receipt.sla_status != "PASS":
+    if receipt.sla_status == "FAIL":
         raise SystemExit(1)
 
 

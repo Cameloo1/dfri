@@ -17,15 +17,17 @@ Immutable prediction/grading ledgers, idempotent local jobs, and the determinist
 builder also pass. The [public scoreboard](https://cameloo1.github.io/dfri/) and active external
 clock are now deployed; two genuine scheduled weekly cycles and automatic first-print grading
 remain. M3 attribution is complete and live for the ten P0 companies; its public/cold-clone
-evidence is in the [M3 milestone report](MILESTONE_REPORTS/M3.md). M4's versioned feed, static
-site, deterministic publish, read-only FastAPI, latency, axe, no-JavaScript, recovery, and hourly
-monitoring contracts pass locally. A durable public API host is not configured, so M4 is not
-claimed complete. No M2 completion is claimed early.
+evidence is in the [M3 milestone report](MILESTONE_REPORTS/M3.md). M4's complete feed set, static
+site, deterministic publish, axe, no-JavaScript, recovery, and hourly Pages monitoring contracts
+pass; its [milestone report](MILESTONE_REPORTS/M4.md) marks the public FastAPI criteria deferred
+under D-010 rather than passed. M5 methodology 1.1.0 expands the evidence-first attribution
+universe to 50 companies and adds an append-only quarterly refresh path. No M2 completion is
+claimed early.
 
 ## Outputs, sources, and evidence tiers
 
-DFRI publishes immutable weekly predictions of Federal Reserve G.19 consumer-credit flows and,
-after attribution ships, quarterly estimates of debt-funded revenue for covered companies. Modeled
+DFRI publishes immutable weekly predictions of Federal Reserve G.19 consumer-credit flows and
+quarterly estimates of debt-funded revenue for covered companies. Modeled
 company results are always `[low, mid, high]` bands. The homepage aggregate is revenue-weighted:
 total estimated debt-funded consumer revenue across covered companies divided by their total
 estimated U.S. consumer revenue. It is never equal-weighted or market-cap-weighted.
@@ -92,6 +94,7 @@ make bootstrap
 make verify
 make replay AS_OF=2024-01-31
 make attribution
+make quarterly-refresh ATTRIBUTION_REFRESH_ARGS="--as-of 2026-08-05T07:15:00+00:00"
 make recompute-check
 make provenance-check
 make publish
@@ -105,6 +108,8 @@ make.cmd verify
 set AS_OF=2024-01-31
 make.cmd replay
 make.cmd attribution
+set ATTRIBUTION_REFRESH_ARGS=--as-of 2026-08-05T07:15:00+00:00
+make.cmd quarterly-refresh
 make.cmd recompute-check
 make.cmd provenance-check
 make.cmd publish
@@ -132,14 +137,22 @@ checksums, counts, terms findings, and timestamps but no credential-bearing URL.
 
 The receipt excludes credential values. A source is not marked verified merely because its endpoint returned HTTP 200: its authoritative title, units, frequency, endpoint contract, and applicable automated-access/storage/derivative-redistribution terms must match the registry.
 
-## P0 company attribution
+## P1 company attribution
 
-The M3 engine publishes quarterly estimates for GM, F, AMZN, WMT, TGT, LOW, HD, BBY, ULTA,
-and TSCO. The first version uses the complete 2026-Q1 set of Board G.19 first prints; it does not
-substitute a revised or incomplete Q2 observation. For each company, annual SEC XBRL revenue is
-converted to a quarterly denominator and multiplied by a registered U.S.-consumer-share prior.
-The numerator follows the prescribed formula: credit flow × Matrix A product/category weight ×
-Matrix B category/company weight.
+Methodology 1.1.0 publishes quarterly estimates for exactly 50 evidence-ranked consumer-facing
+S&P 500 companies. The original GM, F, AMZN, WMT, TGT, LOW, HD, BBY, ULTA, and TSCO results remain
+available under immutable methodology 1.0.0. The P1 selection starts from the verified current
+Consumer Discretionary and Consumer Staples membership rows, admits 40 additions through a
+deterministic filing-and-denominator evidence gate, and publishes all 31 evaluated exclusions with
+dated one-line reasons. It uses no security price or market-cap input.
+
+The current attribution uses the complete 2026-Q1 set of Board G.19 first prints; it does not
+substitute a revised or incomplete Q2 observation. Each company denominator starts from a pinned
+annual SEC XBRL revenue fact and a registered U.S.-consumer-share prior. The quarterly refresh uses
+only comparable current/prior 10-Q year-to-date facts filed by the as-of boundary and computes TTM
+as annual plus current YTD minus prior YTD. An unusable comparison remains visibly on its annual
+baseline; no value is interpolated. The numerator follows the prescribed formula: credit flow ×
+Matrix A product/category weight × Matrix B category/company weight.
 
 `make attribution` performs 20,000 deterministic triangular-prior draws and writes the stable
 machine report to `reports/dfri_companies.json`. `make recompute-check` independently re-evaluates
@@ -148,17 +161,31 @@ engine code and requires each midpoint to match within ±0.5 percentage points.
 `make provenance-check` is the explicit live gate for every external evidence link and writes its
 ignored timestamped receipt to `.local/evidence/`.
 
-The static publisher emits all required v1 attribution feeds and ten no-JavaScript company pages:
+The static publisher emits 50 no-JavaScript company pages, the required attribution feeds, and the
+P1 coverage and quarterly-history feeds:
 
 - `v1/feeds/dfri_companies.{csv,json,parquet}`
 - `v1/feeds/assumptions.{csv,json}`
+- `v1/feeds/coverage_exclusions.{csv,json}`
+- `v1/feeds/quarterly_refreshes.json`
+- `v1/feeds/dfri_company_history.json`
 - `v1/feeds/schema.json`
 
 Each company page shows the word “estimated” with its DFR% band, Tier 1/2/3 shares, a specific SEC
-filing link and short observed-evidence excerpt, every relevant assumption ID, and the five inputs
-with the largest Monte Carlo correlation to the result. The homepage aggregate divides the total
+filing link and a short observed-evidence excerpt when a direct Tier 1 disclosure exists, every
+relevant assumption ID, and the five inputs with the largest Monte Carlo correlation to the
+result. New P1 companies without a direct observed financing-to-sales disclosure publish Tier 1
+as zero rather than inventing one. The homepage aggregate divides the total
 estimated debt-funded revenue by the total estimated U.S. consumer revenue across the covered
 companies; no price, market-cap, TradingView, or vendor data enters the computation.
+
+`make quarterly-refresh` is the resumable live path. It selects the latest complete calendar
+quarter from the append-only Board first-print lake, fetches point-in-time SEC submissions and
+companyfacts with explicit pacing, reweights Matrix B from refreshed denominators, recomputes all
+50 companies, and appends one content-addressed record. Identical retries are no-ops; conflicting
+content fails closed. The same job is registered in the existing non-cancelling scoreboard
+workflow every Monday at 14:43 UTC, so source state, Pages promotion, accepted-state recovery, and
+deployment receipts remain in one lineage.
 
 ## Membership snapshot
 

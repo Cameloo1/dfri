@@ -34,6 +34,8 @@ async function routes() {
     "/",
     "/scoreboard/",
     "/methodology/",
+    "/methodology/coverage/",
+    "/methodology/sensitivity/",
     "/changelog/",
     ...companies
       .filter((entry) => entry.isDirectory())

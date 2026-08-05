@@ -308,22 +308,22 @@ Dependencies: all M4 ACs.
 
 ### M5.1 Fifty-company coverage
 
-- `PENDING` Expand membership/evidence mapping to 50 consumer-facing S&P 500 companies using the same per-company gates as M3.
-- `PENDING` Publish a dated exclusion list with one-line reasons and preserve historical membership.
+- `PASS` Expand membership/evidence mapping to 50 consumer-facing S&P 500 companies using the same per-company gates as M3. Methodology 1.1.0 pins 40 live-verified additions alongside the immutable original ten.
+- `PASS` Publish a dated exclusion list with one-line reasons and preserve historical membership. The registry partitions all 81 verified Consumer Discretionary/Staples candidates into 50 included and 31 explicitly excluded rows and retains the 1.0.0 coverage record.
 
 Dependencies: M3 and M4 contracts.
 
 ### M5.2 Quarterly refresh and performance
 
-- `PENDING` Implement the new-10-Q quarterly refresh path through recompute and append-only publish.
-- `PENDING` Demonstrate one live quarterly refresh with evidence and recovery logs.
+- `PASS` Implement the new-10-Q quarterly refresh path through recompute and append-only publish. The job selects a complete first-print Board quarter, applies point-in-time same-tag SEC TTM facts, reweights Matrix B, recomputes all 50 companies, and appends one content-addressed record.
+- `PASS` Demonstrate one live quarterly refresh with evidence and recovery logs. Refresh `qrf_9052d944fb00960d7d74c785` updated 35 of 50 denominators for 2026-Q1; an exact live retry appended zero, and an allowlisted state-bundle pack/unpack restored the same record and hash.
 - `PENDING` Optimize only after measurement until the full pipeline is <30 minutes on the CI runner.
 
 Dependencies: M5.1.
 
 ### M5.3 Methodology comparison and report
 
-- `PENDING` Publish a sensitivity-analysis page comparing methodology versions without rewriting history.
+- `PASS` Publish a sensitivity-analysis page comparing methodology versions without rewriting history. The comparison renders complete 1.0.0 and 1.1.0 bands for the original ten plus midpoint deltas; the dated coverage ledger remains separate.
 - `PENDING` Pass fresh-clone verification and write `MILESTONE_REPORTS/M5.md`.
 
 Dependencies: M5.1–M5.2.
@@ -339,4 +339,4 @@ Dependencies: M5.1–M5.2.
 1. Preserve the first two genuine scheduled weekly prediction cycles and their deployment receipts.
 2. Verify the relevant G.19 release automatically grades the matured predictions.
 3. Preserve M4's Pages-only uptime receipts and keep the D-010 serverless appendix dormant until a trigger occurs.
-4. Begin the evidence-first 50-company M5 expansion under methodology v1.1.0.
+4. Obtain PR-CI timing evidence for the completed evidence-first 50-company M5 implementation, deploy the live refresh, then close M5 from a filtered fresh clone.

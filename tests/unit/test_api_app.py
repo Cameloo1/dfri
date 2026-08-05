@@ -64,7 +64,7 @@ def test_exact_read_only_api_contract_and_payloads(tmp_path: Path) -> None:
         "/v1/nowcast/latest": 2,
         "/v1/nowcast/history": 2,
         "/v1/scoreboard": 2,
-        "/v1/companies": 10,
+        "/v1/companies": 50,
         "/v1/assumptions": None,
         "/v1/methodology/versions": 1,
         "/v1/releases/calendar": None,

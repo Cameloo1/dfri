@@ -9,7 +9,7 @@ import io
 import json
 import shutil
 import uuid
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, replace
 from datetime import UTC, datetime
 from pathlib import Path
@@ -21,6 +21,11 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoes
 from dfri.attribution.engine import AttributionResult, CompanyEstimate, run_attribution
 from dfri.attribution.registry import Assumption, AttributionBundle, load_attribution_bundle
 from dfri.lake.store import AppendOnlyParquetStore, write_deterministic_parquet
+from dfri.ops.quarterly_refresh import (
+    QuarterlyRefreshLedger,
+    QuarterlyRefreshRecord,
+    load_refresh_report,
+)
 from dfri.publish.changelog import load_changelog
 from dfri.publish.ledger import (
     GradeLedger,
@@ -32,7 +37,7 @@ from dfri.publish.ledger import (
     publication_record,
 )
 
-METHODOLOGY_VERSION: Final = "1.0.0"
+METHODOLOGY_VERSION: Final = "1.1.0"
 LICENSE: Final = (
     "CC BY-NC 4.0 — free for non-commercial use with attribution; commercial licensing reserved"
 )
@@ -136,6 +141,24 @@ def _build_scoreboard(
     backtest = _load_object(root / "reports" / "m2_backtest.json", "backtest")
     attribution_bundle = load_attribution_bundle()
     attribution = run_attribution(attribution_bundle)
+    prior_attribution = run_attribution(load_attribution_bundle("1.0.0"))
+    coverage = _load_object(
+        root / "src" / "dfri" / "attribution" / "coverage_registry_v1_1.json",
+        "coverage registry",
+    )
+    refresh_records = {
+        record.refresh_id: record for record in QuarterlyRefreshLedger(ledger_store).read_all()
+    }
+    demo_refresh = load_refresh_report(root / "reports" / "M5_QUARTERLY_REFRESH_DEMO.json")
+    existing_demo = refresh_records.get(demo_refresh.refresh_id)
+    if existing_demo is not None and existing_demo != demo_refresh:
+        raise SitePublishError(
+            "Runtime quarterly refresh conflicts with the committed demonstration"
+        )
+    refresh_records[demo_refresh.refresh_id] = demo_refresh
+    ordered_refreshes = tuple(
+        sorted(refresh_records.values(), key=lambda item: (item.effective_at, item.refresh_id))
+    )
     changelog = load_changelog()
     all_predictions = PredictionLedger(ledger_store).read_all()
     predictions = tuple(
@@ -256,6 +279,48 @@ def _build_scoreboard(
     }
     _write_json(feeds / "assumptions.json", {"meta": assumption_meta, "data": assumption_rows})
     _write_csv(feeds / "assumptions.csv", assumption_rows, _assumption_columns())
+    exclusion_rows = _exclusion_feed_rows(
+        coverage,
+        common=attribution_meta,
+    )
+    exclusion_meta: dict[str, object] = {
+        **attribution_meta,
+        "row_count": len(exclusion_rows),
+    }
+    _write_json(
+        feeds / "coverage_exclusions.json",
+        {
+            "meta": exclusion_meta,
+            "data": exclusion_rows,
+        },
+    )
+    _write_csv(feeds / "coverage_exclusions.csv", exclusion_rows, _exclusion_columns())
+    refresh_rows, company_history_rows = _refresh_feed_rows(
+        ordered_refreshes,
+        commercial_contact=commercial_contact,
+    )
+    refresh_meta: dict[str, object] = {
+        **attribution_meta,
+        "row_count": len(refresh_rows),
+    }
+    company_history_meta: dict[str, object] = {
+        **attribution_meta,
+        "row_count": len(company_history_rows),
+    }
+    _write_json(
+        feeds / "quarterly_refreshes.json",
+        {
+            "meta": refresh_meta,
+            "data": refresh_rows,
+        },
+    )
+    _write_json(
+        feeds / "dfri_company_history.json",
+        {
+            "meta": company_history_meta,
+            "data": company_history_rows,
+        },
+    )
     _write_json(feeds / "schema.json", _feed_schema(build_meta))
 
     assets = output_root / "assets"
@@ -288,7 +353,9 @@ def _build_scoreboard(
         "nowcast_sources": NOWCAST_SOURCE_URLS,
     }
     company_displays = [_company_display(item) for item in attribution.companies]
+    company_histories = _company_histories(attribution, company_history_rows)
     aggregate_display = _aggregate_display(attribution)
+    comparison_rows = _methodology_comparison(prior_attribution, attribution)
     _render(
         environment,
         "home.html",
@@ -302,6 +369,7 @@ def _build_scoreboard(
             "summary": summary,
             "aggregate": aggregate_display,
             "companies": company_displays,
+            "company_count": len(company_displays),
         },
     )
     _render(
@@ -329,6 +397,38 @@ def _build_scoreboard(
             "assumptions": [_assumption_display(item) for item in attribution_bundle.assumptions],
             "matrix_a": attribution_bundle.matrix_a,
             "matrix_b": attribution_bundle.matrix_b,
+            "company_count": len(company_displays),
+        },
+    )
+    _render(
+        environment,
+        "methodology_comparison.html",
+        output_root / "methodology" / "sensitivity" / "index.html",
+        {
+            **base_context,
+            "root": "../../",
+            "title": "Methodology sensitivity",
+            "description": "Immutable comparison of DFRI methodology versions 1.0.0 and 1.1.0.",
+            "prior": _aggregate_display(prior_attribution),
+            "current": aggregate_display,
+            "rows": comparison_rows,
+        },
+    )
+    exclusions = cast(list[dict[str, object]], coverage["excluded"])
+    _render(
+        environment,
+        "coverage_exclusions.html",
+        output_root / "methodology" / "coverage" / "index.html",
+        {
+            **base_context,
+            "root": "../../",
+            "title": "Coverage and exclusions",
+            "description": "Dated DFRI P1 coverage boundary and exclusion reasons.",
+            "verified_at": coverage["verified_at"],
+            "membership_snapshot_ref": coverage["membership_snapshot_ref"],
+            "policy": cast(dict[str, object], coverage["selection_policy"]),
+            "included": company_displays,
+            "exclusions": exclusions,
         },
     )
     _render(
@@ -354,6 +454,7 @@ def _build_scoreboard(
                 "title": f"{company.company_name} ({company.ticker})",
                 "description": (f"Estimated debt-funded revenue share for {company.company_name}."),
                 "company": display,
+                "history": company_histories[company.ticker],
             },
         )
     for row in display_rows:
@@ -550,6 +651,87 @@ def _company_feed_rows(
     ]
 
 
+def _exclusion_feed_rows(
+    coverage: dict[str, object], *, common: Mapping[str, object]
+) -> list[dict[str, object]]:
+    raw = coverage.get("excluded")
+    if not isinstance(raw, list) or not all(isinstance(item, dict) for item in raw):
+        raise SitePublishError("Coverage exclusions must be object rows")
+    return [
+        {
+            "ticker": cast(dict[str, object], item)["ticker"],
+            "company_name": cast(dict[str, object], item)["company_name"],
+            "cik": cast(dict[str, object], item)["cik"],
+            "gics_sub_industry": cast(dict[str, object], item)["gics_sub_industry"],
+            "reason": cast(dict[str, object], item)["reason"],
+            "membership_snapshot_ref": coverage["membership_snapshot_ref"],
+            "verified_at": coverage["verified_at"],
+            "methodology_version": common["methodology_version"],
+            "data_vintage": common["data_vintage"],
+            "published_at": common["published_at"],
+            "publication_mode": common["publication_mode"],
+            "license": common["license"],
+            "license_url": common["license_url"],
+            "commercial_license_contact": common["commercial_license_contact"],
+        }
+        for item in raw
+    ]
+
+
+def _refresh_feed_rows(
+    records: Sequence[QuarterlyRefreshRecord], *, commercial_contact: str
+) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
+    summaries: list[dict[str, object]] = []
+    companies: list[dict[str, object]] = []
+    for record in records:
+        payload = record.payload()
+        result = cast(dict[str, object], payload["result"])
+        aggregate = cast(dict[str, object], result["aggregate"])
+        inputs = {
+            cast(str, item["ticker"]): item
+            for item in cast(list[dict[str, object]], payload["company_inputs"])
+        }
+        common: dict[str, object] = {
+            "refresh_id": record.refresh_id,
+            "target_quarter": record.target_quarter,
+            "effective_at": record.effective_at.astimezone(UTC).isoformat(),
+            "data_vintage": record.data_vintage.astimezone(UTC).isoformat(),
+            "methodology_version": record.methodology_version,
+            "source_hash": record.source_hash,
+            "license": LICENSE,
+            "license_url": LICENSE_URL,
+            "commercial_license_contact": commercial_contact,
+        }
+        summaries.append(
+            {
+                **common,
+                "company_count": record.company_count,
+                "updated_company_count": record.updated_company_count,
+                "estimated_dfr_pct_low": aggregate["estimated_dfr_pct_low"],
+                "estimated_dfr_pct_mid": aggregate["estimated_dfr_pct_mid"],
+                "estimated_dfr_pct_high": aggregate["estimated_dfr_pct_high"],
+                "weighting": aggregate["weighting"],
+            }
+        )
+        for item in cast(list[dict[str, object]], result["companies"]):
+            ticker = cast(str, item["ticker"])
+            companies.append(
+                {
+                    **common,
+                    "ticker": ticker,
+                    "company_name": item["company_name"],
+                    "input_status": inputs[ticker]["status"],
+                    "estimated_dfr_pct_low": item["estimated_dfr_pct_low"],
+                    "estimated_dfr_pct_mid": item["estimated_dfr_pct_mid"],
+                    "estimated_dfr_pct_high": item["estimated_dfr_pct_high"],
+                    "tier1_share": item["tier1_share"],
+                    "tier2_share": item["tier2_share"],
+                    "tier3_share": item["tier3_share"],
+                }
+            )
+    return summaries, companies
+
+
 def _assumption_feed_rows(
     bundle: AttributionBundle,
     *,
@@ -615,6 +797,54 @@ def _company_display(item: CompanyEstimate) -> dict[str, object]:
     }
 
 
+def _company_histories(
+    current: AttributionResult, refresh_rows: list[dict[str, object]]
+) -> dict[str, list[dict[str, object]]]:
+    grouped: dict[str, list[dict[str, object]]] = {item.ticker: [] for item in current.companies}
+    for row in refresh_rows:
+        ticker = cast(str, row["ticker"])
+        grouped[ticker].append(
+            {
+                "label": f"{row['target_quarter']} refresh",
+                "effective_at": str(row["effective_at"])[:10],
+                "low_value": float(cast(float, row["estimated_dfr_pct_low"])),
+                "mid_value": float(cast(float, row["estimated_dfr_pct_mid"])),
+                "high_value": float(cast(float, row["estimated_dfr_pct_high"])),
+                "status": row["input_status"],
+            }
+        )
+    for item in current.companies:
+        grouped[item.ticker].append(
+            {
+                "label": f"{item.quarter} methodology snapshot",
+                "effective_at": current.first_published_at[:10],
+                "low_value": item.estimated_dfr_pct_low,
+                "mid_value": item.estimated_dfr_pct_mid,
+                "high_value": item.estimated_dfr_pct_high,
+                "status": "VERSIONED_BASELINE",
+            }
+        )
+    for rows in grouped.values():
+        maximum = max(float(cast(float, item["high_value"])) for item in rows) * 1.1
+        for index, history_item in enumerate(rows):
+            history_item["y"] = 38 + index * 54
+            history_item["low_x"] = (
+                90 + float(cast(float, history_item["low_value"])) / maximum * 430
+            )
+            history_item["mid_x"] = (
+                90 + float(cast(float, history_item["mid_value"])) / maximum * 430
+            )
+            history_item["high_x"] = (
+                90 + float(cast(float, history_item["high_value"])) / maximum * 430
+            )
+            history_item["low"] = f"{float(cast(float, history_item['low_value'])):.2f}%"
+            history_item["mid"] = f"{float(cast(float, history_item['mid_value'])):.2f}%"
+            history_item["high"] = f"{float(cast(float, history_item['high_value'])):.2f}%"
+        for history_item in rows:
+            history_item["height"] = 34 + len(rows) * 54
+    return grouped
+
+
 def _aggregate_display(result: AttributionResult) -> dict[str, object]:
     aggregate = result.aggregate
     return {
@@ -628,7 +858,33 @@ def _aggregate_display(result: AttributionResult) -> dict[str, object]:
         "tier2": f"{aggregate.tier2_share * 100:.1f}%",
         "tier3": f"{aggregate.tier3_share * 100:.1f}%",
         "weighting": aggregate.weighting,
+        "company_count": len(result.companies),
     }
+
+
+def _methodology_comparison(
+    prior: AttributionResult, current: AttributionResult
+) -> list[dict[str, object]]:
+    current_by_ticker = {item.ticker: item for item in current.companies}
+    rows: list[dict[str, object]] = []
+    for item in prior.companies:
+        current_item = current_by_ticker[item.ticker]
+        rows.append(
+            {
+                "ticker": item.ticker,
+                "company_name": item.company_name,
+                "prior_low": f"{item.estimated_dfr_pct_low:.2f}%",
+                "prior_mid": f"{item.estimated_dfr_pct_mid:.2f}%",
+                "prior_high": f"{item.estimated_dfr_pct_high:.2f}%",
+                "current_low": f"{current_item.estimated_dfr_pct_low:.2f}%",
+                "current_mid": f"{current_item.estimated_dfr_pct_mid:.2f}%",
+                "current_high": f"{current_item.estimated_dfr_pct_high:.2f}%",
+                "delta_mid": (
+                    f"{current_item.estimated_dfr_pct_mid - item.estimated_dfr_pct_mid:+.2f} pp"
+                ),
+            }
+        )
+    return rows
 
 
 def _assumption_display(item: Assumption) -> dict[str, object]:
@@ -667,6 +923,18 @@ def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
             "assumptions": {
                 "formats": ["csv", "json"],
                 "columns": _column_docs(_assumption_columns()),
+            },
+            "coverage_exclusions": {
+                "formats": ["csv", "json"],
+                "columns": _column_docs(_exclusion_columns()),
+            },
+            "quarterly_refreshes": {
+                "formats": ["json"],
+                "columns": _column_docs(_refresh_columns()),
+            },
+            "dfri_company_history": {
+                "formats": ["json"],
+                "columns": _column_docs(_company_history_columns()),
             },
         },
     }
@@ -745,6 +1013,8 @@ def _assumption_columns() -> list[str]:
         "value_mid",
         "value_high",
         "tier",
+        "company_count",
+        "updated_company_count",
         "source_url",
         "evidence_snippet",
         "sensitivity_note",
@@ -754,6 +1024,68 @@ def _assumption_columns() -> list[str]:
         "data_vintage",
         "published_at",
         "publication_mode",
+        "license",
+        "license_url",
+        "commercial_license_contact",
+    ]
+
+
+def _exclusion_columns() -> list[str]:
+    return [
+        "ticker",
+        "company_name",
+        "cik",
+        "gics_sub_industry",
+        "reason",
+        "membership_snapshot_ref",
+        "verified_at",
+        "methodology_version",
+        "data_vintage",
+        "published_at",
+        "publication_mode",
+        "license",
+        "license_url",
+        "commercial_license_contact",
+    ]
+
+
+def _refresh_columns() -> list[str]:
+    return [
+        "refresh_id",
+        "target_quarter",
+        "effective_at",
+        "data_vintage",
+        "methodology_version",
+        "source_hash",
+        "company_count",
+        "updated_company_count",
+        "estimated_dfr_pct_low",
+        "estimated_dfr_pct_mid",
+        "estimated_dfr_pct_high",
+        "weighting",
+        "license",
+        "license_url",
+        "commercial_license_contact",
+    ]
+
+
+def _company_history_columns() -> list[str]:
+    return [
+        "refresh_id",
+        "target_quarter",
+        "effective_at",
+        "data_vintage",
+        "methodology_version",
+        "source_hash",
+        "ticker",
+        "company_name",
+        "input_status",
+        "estimated_dfr_pct_low",
+        "estimated_dfr_pct_mid",
+        "estimated_dfr_pct_high",
+        "tier1_share",
+        "tier2_share",
+        "tier3_share",
         "license",
         "license_url",
         "commercial_license_contact",

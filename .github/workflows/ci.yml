@@ -39,6 +39,11 @@ jobs:
         with:
           version: "0.11.32"
           enable-cache: true
+      - name: Start the M5 end-to-end pipeline timer
+        shell: bash
+        run: |
+          mkdir -p .local/evidence
+          date -u +%s > .local/evidence/m5-ci-start-epoch
       - run: make bootstrap
       - name: Block local paths and excluded documents
         run: |
@@ -62,10 +67,39 @@ jobs:
             uv run python -m dfri.publish.changelog
           fi
       - run: make publish
+      - name: Enforce the M5 end-to-end CI budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          finished_epoch="$(date -u +%s)"
+          started_epoch="$(cat .local/evidence/m5-ci-start-epoch)"
+          elapsed_seconds="$(( finished_epoch - started_epoch ))"
+          python - "$elapsed_seconds" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          elapsed = int(sys.argv[1])
+          payload = {
+              "schema_version": "v1",
+              "status": "PASS" if elapsed < 1800 else "FAIL",
+              "scope": "locked bootstrap plus make verify plus make publish",
+              "elapsed_seconds": elapsed,
+              "budget_seconds": 1800,
+              "runner": "ubuntu-latest",
+          }
+          Path(".local/evidence/m5-ci-performance.json").write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          raise SystemExit(0 if payload["status"] == "PASS" else 1)
+          PY
       - name: Preserve publication verification evidence
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: m4-publication-verification-${{ github.run_id }}
-          path: .local/evidence/m4-*.json
+          name: publication-verification-${{ github.run_id }}
+          path: |
+            .local/evidence/m4-*.json
+            .local/evidence/m5-ci-performance.json
           if-no-files-found: error
           retention-days: 90

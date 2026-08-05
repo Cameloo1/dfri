@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import time
 from collections.abc import Iterable, Sequence
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
@@ -30,7 +31,8 @@ def attribution_links(bundle: AttributionBundle) -> tuple[str, ...]:
     links.update(item.source_url for item in bundle.assumptions)
     for company_item in bundle.companies:
         links.add(company_item.revenue_source_url)
-        links.add(company_item.tier1_source_url)
+        if company_item.tier1_source_url:
+            links.add(company_item.tier1_source_url)
         if company_item.membership_snapshot_ref.startswith("https://"):
             links.add(company_item.membership_snapshot_ref)
     for flow_item in bundle.flows:
@@ -40,9 +42,16 @@ def attribution_links(bundle: AttributionBundle) -> tuple[str, ...]:
     return tuple(sorted(links))
 
 
-def check_links(urls: Iterable[str], client: httpx.Client) -> tuple[LinkReceipt, ...]:
+def check_links(
+    urls: Iterable[str],
+    client: httpx.Client,
+    *,
+    min_interval_seconds: float = 0.12,
+) -> tuple[LinkReceipt, ...]:
     receipts: list[LinkReceipt] = []
     for url in sorted(set(urls)):
+        if receipts and min_interval_seconds > 0:
+            time.sleep(min_interval_seconds)
         try:
             response = client.get(url, headers={"User-Agent": USER_AGENT})
             response.raise_for_status()

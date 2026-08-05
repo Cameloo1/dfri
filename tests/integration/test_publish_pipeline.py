@@ -34,7 +34,9 @@ def test_frozen_public_snapshot_builds_complete_byte_identical_publication(
     assert first.prediction_count == 4
     assert first.graded_count == 0
     assert (output / "v1" / "feeds" / "schema.json").is_file()
-    assert len(list((output / "companies").glob("*/index.html"))) == 10
+    assert len(list((output / "companies").glob("*/index.html"))) == 50
+    assert (output / "methodology" / "sensitivity" / "index.html").is_file()
+    assert (output / "methodology" / "coverage" / "index.html").is_file()
     receipt = json.loads(evidence.read_text(encoding="utf-8"))
     assert receipt["status"] == "PASS"
     assert receipt["replay_byte_identical"] is True

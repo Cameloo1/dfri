@@ -49,6 +49,32 @@
         {"label": "Scoreboard", "href": "/scoreboard/"},
         {"label": "Methodology", "href": "/methodology/"}
       ]
+    },
+    {
+      "entry_id": "v1-1-methodology",
+      "published_on": "2026-08-05",
+      "kind": "methodology",
+      "version": "1.1.0",
+      "title": "P1 coverage expanded to 50 companies",
+      "summary": "Expanded the evidence-first consumer-company universe from 10 to 50, published the dated 31-company exclusion ledger, and retained methodology 1.0.0 results for direct comparison.",
+      "links": [
+        {"label": "Coverage ledger", "href": "/methodology/coverage/"},
+        {"label": "Version comparison", "href": "/methodology/sensitivity/"},
+        {"label": "Company feed", "href": "/v1/feeds/dfri_companies.json"}
+      ]
+    },
+    {
+      "entry_id": "v1-1-quarterly-refresh-2026-q1",
+      "published_on": "2026-08-05",
+      "kind": "publication",
+      "version": "1.1.0",
+      "title": "Quarterly attribution refresh demonstrated",
+      "summary": "Recomputed the 2026-Q1 50-company attribution from six Board first-print monthly flows and point-in-time SEC filing facts; 35 denominators advanced through comparable 10-Q facts and 15 remained explicitly on their annual baseline.",
+      "links": [
+        {"label": "Quarterly refresh feed", "href": "/v1/feeds/quarterly_refreshes.json"},
+        {"label": "Company history feed", "href": "/v1/feeds/dfri_company_history.json"},
+        {"label": "Methodology", "href": "/methodology/"}
+      ]
     }
   ]
 }

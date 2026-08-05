@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="eyebrow">{{ company.quarter }} · P0 company attribution</div>
+<div class="eyebrow">{{ company.quarter }} · P1 company attribution</div>
 <h1>{{ company.company_name }} <span class="ticker">{{ company.ticker }}</span></h1>
 <p class="lede">Estimated debt-funded revenue share. The band, tiers, source links, assumption IDs, and sensitivity ranking below are published together.</p>
 
@@ -29,9 +29,19 @@
 </section>
 
 <section class="section-block">
+  <div class="eyebrow">Versioned history</div><h2>Estimated DFR% band over time</h2>
+  <svg class="history-chart" viewBox="0 0 600 {{ history[0].height }}" role="img" aria-label="Versioned estimated DFR percent bands for {{ company.company_name }}">
+    <title>Versioned estimated DFR% bands for {{ company.company_name }}</title>
+    {% for item in history %}<text x="8" y="{{ item.y + 4 }}">{{ item.effective_at }}</text><line x1="{{ item.low_x }}" y1="{{ item.y }}" x2="{{ item.high_x }}" y2="{{ item.y }}" class="range-band"/><circle cx="{{ item.mid_x }}" cy="{{ item.y }}" r="7" class="range-mid"/><text x="90" y="{{ item.y + 23 }}">{{ item.label }} · Estimated {{ item.low }}–{{ item.high }} · {{ item.status }}</text>{% endfor %}
+  </svg>
+  <p class="meta">Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.</p>
+</section>
+
+<section class="section-block">
   <div class="eyebrow">Evidence</div><h2>Observed link and denominator</h2>
   <div class="table-wrap"><table class="compact-table"><thead><tr><th>Input</th><th>Evidence</th><th>Tier</th></tr></thead><tbody>
-    <tr><td>Financing-to-sales link</td><td>“{{ company.tier1_excerpt }}” <a href="{{ company.tier1_source_url }}">Specific SEC filing</a></td><td><span class="tier-badge tier-1">Tier 1</span></td></tr>
+    {% if company.tier1_source_url %}<tr><td>Financing-to-sales link</td><td>“{{ company.tier1_excerpt }}” <a href="{{ company.tier1_source_url }}">Specific SEC filing</a></td><td><span class="tier-badge tier-1">Tier 1</span></td></tr>
+    {% else %}<tr><td>Financing-to-sales link</td><td>No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs.</td><td><span class="tier-badge tier-1">Tier 1 0.0%</span></td></tr>{% endif %}
     <tr><td>Revenue denominator</td><td><a href="{{ company.revenue_source_url }}">Pinned SEC XBRL filing</a>; U.S. consumer share is registered as an assumption.</td><td><span class="tier-badge tier-2">Tier 2</span></td></tr>
   </tbody></table></div>
 </section>
