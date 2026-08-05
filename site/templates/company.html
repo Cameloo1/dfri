@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_tier_legend.html" import tier_legend %}
 {% block content %}
 <div class="eyebrow">{{ company.quarter }} · P1 company attribution</div>
 <h1>{{ company.company_name }} <span class="ticker">{{ company.ticker }}</span></h1>
@@ -25,6 +26,7 @@
       <span class="tier-segment tier-1" style="width: {{ company.tier1_width }}%"></span><span class="tier-segment tier-2" style="width: {{ company.tier2_width }}%"></span><span class="tier-segment tier-3" style="width: {{ company.tier3_width }}%"></span>
     </div>
     <div class="tier-line"><span class="tier-badge tier-1">Tier 1 {{ company.tier1 }}</span><span class="tier-badge tier-2">Tier 2 {{ company.tier2 }}</span><span class="tier-badge tier-3">Tier 3 {{ company.tier3 }}</span></div>
+    {{ tier_legend(root, expandable=true) }}
   </article>
 </section>
 

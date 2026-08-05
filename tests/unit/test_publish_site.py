@@ -20,6 +20,18 @@ from dfri.publish.site import SitePublishError, publish_scoreboard
 
 PUBLISHED_AT = datetime(2026, 8, 5, 5, 0, tzinfo=UTC)
 DATA_VINTAGE = datetime(2026, 7, 31, 20, 15, tzinfo=UTC)
+TIER_LEGEND_COPY = (
+    "T1 — Observed",
+    "A company disclosure directly links financing to sales.",
+    "T2 — Category-mapped",
+    "Credit is mapped to spending categories, then to companies using registered weights.",
+    "T3 — Fungible",
+    (
+        "Credit that cannot be assigned directly is allocated broadly by estimated consumer "
+        "revenue, with the widest uncertainty."
+    ),
+    "Tier percentages show how the estimate was constructed—not confidence scores.",
+)
 
 
 def seed(store: AppendOnlyParquetStore) -> tuple[str, str]:
@@ -122,6 +134,8 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert "revenue-weighted company index" in home
     assert "each month's change in U.S. consumer borrowing" in home
     assert "Seasonally adjusted monthly flow · millions of U.S. dollars" in home
+    assert "tier-explainer-visible" in home
+    assert all(item in home for item in TIER_LEGEND_COPY)
     prediction = (output / "scoreboard" / "predictions" / first_id / "index.html").read_text(
         encoding="utf-8"
     )
@@ -284,6 +298,9 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
         else:
             assert "No company-specific observed financing line" in html
         assert "Tier 1" in html and "Tier 2" in html and "Tier 3" in html
+        assert '<details class="tier-explainer">' in html
+        assert "<summary>What do these tiers mean?</summary>" in html
+        assert all(item in html for item in TIER_LEGEND_COPY)
         assert page.stat().st_size < 500_000
 
 

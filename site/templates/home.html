@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_tier_legend.html" import tier_legend %}
 {% block content %}
 <div class="eyebrow">Publicly falsifiable consumer-credit research</div>
 <h1>Debt-funded revenue, with the assumptions exposed.</h1>
@@ -19,6 +20,7 @@
       <text x="492" y="68" text-anchor="middle">{{ aggregate.high }}</text>
     </svg>
     <div class="tier-line"><span class="tier-badge tier-1">Tier 1 {{ aggregate.tier1 }}</span><span class="tier-badge tier-2">Tier 2 {{ aggregate.tier2 }}</span><span class="tier-badge tier-3">Tier 3 {{ aggregate.tier3 }}</span></div>
+    {{ tier_legend(root) }}
     <p class="meta">Midpoint represents an estimated ${{ aggregate.debt_revenue }} million of debt-funded consumer revenue over an estimated ${{ aggregate.consumer_revenue }} million denominator. Bands are always shown.</p>
   </article>
   {% if latest %}

@@ -76,6 +76,16 @@ tbody tr:last-child td { border-bottom: 0; }
 .tier-2 { background: repeating-linear-gradient(135deg, #d9edf2 0, #d9edf2 4px, #fff 4px, #fff 8px); color: #174e65; }
 .tier-3 { background: #fff1cb; color: #684712; }
 .tier-mixed { background: #e5edf5; color: #274f75; }
+.tier-explainer { border-top: 1px solid var(--line); margin-top: 1rem; padding-top: 0.9rem; }
+.tier-explainer-title, .tier-explainer summary { color: var(--ink); font-size: 0.82rem; font-weight: 800; }
+.tier-explainer summary { cursor: pointer; width: fit-content; }
+.tier-explainer summary:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+.tier-explainer-body { margin-top: 0.85rem; }
+.tier-definitions { display: grid; gap: 0.65rem; margin: 0.75rem 0 0; }
+.tier-definitions > div { align-items: start; display: grid; gap: 0.65rem; grid-template-columns: minmax(8.5rem, auto) 1fr; }
+.tier-definitions dt, .tier-definitions dd { margin: 0; }
+.tier-definitions dd { color: var(--muted); font-size: 0.82rem; line-height: 1.4; }
+.tier-explainer-note { color: var(--muted); font-size: 0.78rem; line-height: 1.45; margin: 0.8rem 0 0; }
 .range-chart { display: block; height: auto; margin-top: 0.5rem; max-width: 38rem; width: 100%; }
 .range-chart text { fill: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
 .history-chart { display: block; height: auto; margin-top: 0.75rem; max-width: 48rem; width: 100%; }
@@ -98,6 +108,7 @@ tbody tr:last-child td { border-bottom: 0; }
   main { padding-top: 2rem; }
   .card.primary, .card.metric { grid-column: 1 / -1; }
   .definition-list { grid-template-columns: 1fr; }
+  .tier-definitions > div { grid-template-columns: 1fr; gap: 0.35rem; }
   .assumption-list { columns: 1; }
 }
 
