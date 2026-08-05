@@ -54,6 +54,20 @@ are public alongside their rendered read-only methodology output. A private depe
 verification or make published numbers depend on hidden inputs. This is the addendum's explicit
 escape-hatch path and is recorded in `DEVIATIONS.md`.
 
+## Privacy and public-repository posture
+
+This repository intentionally publishes all code, tests, methodology, Matrix A and Matrix B
+mappings, assumptions, aggregate company estimates, and immutable nowcast predictions needed to
+audit a DFRI result. It never intentionally publishes credentials, local environment files,
+drafts, control documents, personal information, or private workstation identifiers. CI blocks
+secret patterns, committed control documents, and absolute user or workstation paths in Markdown;
+the publication commands also reject either excluded control document if it is staged.
+
+All published DFRI data is aggregate. DFRI does not redistribute personal, borrower, account,
+vehicle, loan-level, or other row-level consumer data. Source pipelines that process granular SEC
+disclosures retain those artifacts only behind an ignored local boundary and publish aggregate
+statistics.
+
 ## Prerequisites
 
 - Python 3.12, managed by `uv`

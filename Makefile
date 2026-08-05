@@ -1,4 +1,4 @@
-.PHONY: bootstrap lint typecheck test replay determinism verify live-smoke board-backfill board-snapshot board-targets census-archive context-history nyfed-history health spot-audit membership-verify filing-facts auto-abs card-trust backtest scoreboard-predict scoreboard-grade attribution recompute-check provenance-check api-openapi api site-quality publish-scoreboard publish
+.PHONY: bootstrap privacy-check privacy-staged lint typecheck test replay determinism verify live-smoke board-backfill board-snapshot board-targets census-archive context-history nyfed-history health spot-audit membership-verify filing-facts auto-abs card-trust backtest scoreboard-predict scoreboard-grade attribution recompute-check provenance-check api-openapi api site-quality publish-scoreboard publish
 
 AS_OF ?= 2024-01-31
 BOARD_START ?= 2015-01-01
@@ -27,6 +27,12 @@ bootstrap:
 	uv sync --locked --all-groups
 	npm ci --ignore-scripts
 
+privacy-check:
+	uv run python -m dfri.ops.privacy markdown
+
+privacy-staged:
+	uv run python -m dfri.ops.privacy excluded-staged
+
 lint:
 	uv run ruff check src tests
 	uv run ruff format --check src tests
@@ -43,7 +49,7 @@ replay:
 determinism:
 	uv run pytest --no-cov tests/integration/test_deterministic_replay.py
 
-verify: lint typecheck test determinism
+verify: privacy-check lint typecheck test determinism
 
 live-smoke:
 	uv run python -m dfri.ingest.verify --output .local/evidence/source-verification.json
@@ -111,10 +117,10 @@ api:
 site-quality:
 	uv run python -m dfri.publish.quality
 
-publish-scoreboard:
+publish-scoreboard: privacy-staged
 	uv run python -m dfri.publish.site $(PUBLISH_ARGS)
 
-publish:
+publish: privacy-staged
 	uv run python -m dfri.api.openapi --check --output docs/openapi-v1.json
 	uv run python -m dfri.publish.changelog
 	uv run python -m dfri.seed.publication --output published/public --evidence .local/evidence/m4-publication.json

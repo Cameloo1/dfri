@@ -1,6 +1,16 @@
 .env
 .env.*
 !.env.example
+
+# Public-lane exclusions: control documents, drafts, and private working material.
+DFRI_BUILD_SPEC.md
+DFRI_AGENT_KICKOFF_PROMPT.md
+/.private/
+/drafts/
+/private/
+/gitleaks-report.*
+/reports/dfri_companies.json
+
 .coverage
 .hypothesis/
 .mypy_cache/
