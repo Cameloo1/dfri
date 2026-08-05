@@ -15,6 +15,7 @@ def test_public_changelog_is_ordered_permalinked_and_complete() -> None:
         "public-scoreboard-clock-started",
         "methodology-1-0-0",
         "registry-digest-cross-platform",
+        "site-nowcast-units-provenance-and-orientation",
     ]
     assert all(item.permalink == f"/changelog/#{item.entry_id}" for item in entries)
     assert {item.kind for item in entries} == {"publication", "methodology"}

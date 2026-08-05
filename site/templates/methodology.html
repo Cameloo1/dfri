@@ -3,13 +3,19 @@
 <div class="eyebrow">Methodology {{ methodology_version }}</div>
 <h1>Point in time, first print, bands always.</h1>
 <p class="lede">The nowcast estimates monthly G.19 credit flows. Attribution then applies registered product-to-category weights (Matrix A) and category-to-company weights (Matrix B), divided by estimated U.S. consumer revenue. Every modeled input has a public assumption ID and band.</p>
+<p>Primary nowcast sources: <a href="{{ nowcast_sources.h8_archive }}">Federal Reserve Board H.8 release archive</a>, <a href="{{ nowcast_sources.marts_archive }}">Census MARTS historic releases</a>, and the <a href="{{ nowcast_sources.g19_archive }}">Federal Reserve Board G.19 release archive</a> used for first-print grading.</p>
 <section class="grid">
-  <article class="card metric"><div class="kicker">Model</div><h2>Ragged-edge ridge bridge</h2><p>Partial H.8 months expose observed coverage explicitly. Missing retail remains missing and is represented by a trained availability indicator.</p></article>
+  <article class="card metric"><div class="kicker">Model</div><h2>Ragged-edge ridge bridge</h2><p>Partial <a href="{{ nowcast_sources.h8_archive }}">H.8</a> months expose observed coverage explicitly. Missing <a href="{{ nowcast_sources.marts_archive }}">retail data</a> remains missing and is represented by a trained availability indicator.</p></article>
   <article class="card metric"><div class="kicker">Grade</div><h2>First-print G.19</h2><p>The dated release page supplies the target-month preliminary level and revised prior-month level used for the release-coherent flow.</p></article>
   <article class="card metric"><div class="kicker">Immutability</div><h2>Append-only ledgers</h2><p>Predictions and grades are separate. Model upgrades create new versions; old rows are neither restated nor deleted.</p></article>
   <article class="card metric"><div class="kicker">Tier 1 — Observed</div><h2>Direct financing link</h2><p>A disclosure directly links financing to the company's sales. The company page links the filing and a quote of no more than 15 words.</p></article>
   <article class="card metric"><div class="kicker">Tier 2 — Category-mapped</div><h2>Two registered matrices</h2><p>Credit flow is allocated to spend categories and then to companies by estimated category revenue share.</p></article>
   <article class="card metric"><div class="kicker">Tier 3 — Fungible</div><h2>Explicit broad allocation</h2><p>Unassignable flows are allocated in proportion to covered consumer revenue, with the widest bands.</p></article>
+</section>
+
+<section class="section-block">
+  <h2>Coverage is measured, not assumed</h2>
+  <p>In the point-in-time backtest, the nominal 80% band contained {{ summary.coverage80_display }} of first prints and the nominal 95% band contained {{ summary.coverage95_display }}. Both currently under-cover their nominal rates, especially the 80% interval, so these bands are empirical uncertainty ranges, not guarantees.</p>
 </section>
 
 <section class="section-block" id="assumptions">

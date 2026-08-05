@@ -37,6 +37,18 @@
         {"label": "Data schema", "href": "/v1/feeds/schema.json"},
         {"label": "Methodology", "href": "/methodology/"}
       ]
+    },
+    {
+      "entry_id": "site-nowcast-units-provenance-and-orientation",
+      "published_on": "2026-08-05",
+      "kind": "publication",
+      "version": "1.0.0",
+      "title": "Nowcast units and provenance made explicit",
+      "summary": "Clarified seasonally adjusted monthly-flow units, added plain-language forecast orientation and primary-source links, and made scoreboard sorting a JavaScript-only enhancement.",
+      "links": [
+        {"label": "Scoreboard", "href": "/scoreboard/"},
+        {"label": "Methodology", "href": "/methodology/"}
+      ]
     }
   ]
 }

@@ -104,6 +104,13 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     scoreboard = (output / "scoreboard" / "index.html").read_text(encoding="utf-8")
     home = (output / "index.html").read_text(encoding="utf-8")
     assert "Every prediction. No silent edits." in scoreboard
+    assert "monthly change in U.S. consumer borrowing" in scoreboard
+    assert "seasonally adjusted monthly flows in millions of U.S. dollars" in scoreboard
+    assert "Point estimate ($M)" in scoreboard
+    assert "80% band ($M)" in scoreboard
+    assert "First print ($M)" in scoreboard
+    assert 'data-sort-column="0"' in scoreboard
+    assert '<button class="sort-button"' not in scoreboard
     assert first_id in scoreboard and second_id in scoreboard
     assert "Not released" in scoreboard
     assert "10,500" in scoreboard
@@ -111,6 +118,24 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert 'href="https://creativecommons.org/licenses/by-nc/4.0/"' in home
     assert 'href="mailto:ops@camelon.app"' in home
     assert "revenue-weighted company index" in home
+    assert "each month's change in U.S. consumer borrowing" in home
+    assert "Seasonally adjusted monthly flow · millions of U.S. dollars" in home
+    prediction = (output / "scoreboard" / "predictions" / first_id / "index.html").read_text(
+        encoding="utf-8"
+    )
+    assert "Seasonally adjusted monthly flow, millions of U.S. dollars" in prediction
+    assert "<dt>Model version</dt>" in prediction
+    assert "<dt>Input sources</dt>" in prediction
+    assert "https://www.federalreserve.gov/releases/h8/" in prediction
+    assert "https://www.census.gov/retail/marts/historic_releases.html" in prediction
+    assert "https://www.federalreserve.gov/releases/g19/" in prediction
+    methodology = (output / "methodology" / "index.html").read_text(encoding="utf-8")
+    assert "https://www.federalreserve.gov/releases/h8/" in methodology
+    assert "https://www.census.gov/retail/marts/historic_releases.html" in methodology
+    assert "https://www.federalreserve.gov/releases/g19/" in methodology
+    assert "the nominal 80% band contained 71.3%" in methodology
+    site_js = (output / "assets" / "site.js").read_text(encoding="utf-8")
+    assert 'document.createElement("button")' in site_js
     assert first.total_bytes < 500_000
     assert b"\r\n" not in (output / "assets" / "site.css").read_bytes()
     assert b"\r\n" not in (output / "assets" / "site.js").read_bytes()
