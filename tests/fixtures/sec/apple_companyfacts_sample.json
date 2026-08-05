@@ -1,0 +1,5 @@
+{
+  "cik": 320193,
+  "entityName": "Apple Inc.",
+  "facts": {"us-gaap": {"RevenueFromContractWithCustomerExcludingAssessedTax": {"label": "Revenue", "units": {"USD": []}}}}
+}

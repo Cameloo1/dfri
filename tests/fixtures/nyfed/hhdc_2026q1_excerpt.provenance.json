@@ -1,0 +1,10 @@
+{
+  "source_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1",
+  "source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe",
+  "retrieved_at": "2026-08-04",
+  "source_sha256": "ff913fcabc4e50a154ab45d27663a97069acfe10625bd5d86f6d21f5cbcfade9",
+  "fixture_sha256": "956266d870f4ec3c6acfa662c8472e190f1a72c1bf9472bdba729ad9057a10f4",
+  "extraction": "Clearly labeled test-fixture derivative retaining exact 2015Q1-present values and workbook contracts from Pages 3, 6, 8, 13, and 14 only; the full third-party workbook is not committed.",
+  "attribution": "New York Fed Consumer Credit Panel / Equifax",
+  "terms_url": "https://www.newyorkfed.org/privacy/termsofuse.html"
+}

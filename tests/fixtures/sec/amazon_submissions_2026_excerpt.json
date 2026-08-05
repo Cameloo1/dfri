@@ -1,0 +1,13 @@
+{
+  "cik": "0001018724",
+  "name": "AMAZON COM INC",
+  "filings": {
+    "recent": {
+      "accessionNumber": ["0001018724-26-000004"],
+      "filingDate": ["2026-02-06"],
+      "reportDate": ["2025-12-31"],
+      "form": ["10-K"],
+      "primaryDocument": ["amzn-20251231.htm"]
+    }
+  }
+}

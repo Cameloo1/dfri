@@ -1,0 +1,9 @@
+{
+  "source_url": "https://www.federalreserve.gov/releases/h8/20221110/",
+  "retrieved_at": "2026-08-04",
+  "sha256": "795b8053875328b8df7c62c11a2bee5e93b6c5bc97dc6483c1dea5a6c33a1f17",
+  "source_artifact_sha256": "91e483b87f1475d54e7219b3e77165bab4c36fe43410e1f4d399b3037b4678dd",
+  "extraction": "Exact minimal declared date, Table 2 week headers, and lines 20, 21, and 22 for all commercial banks, seasonally adjusted.",
+  "manifest_url": "https://www.federalreserve.gov/releases/h8/releaseDates.json",
+  "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+}

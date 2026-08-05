@@ -1,0 +1,110 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dfri"
+version = "0.1.0"
+description = "Debt-Funded Revenue Index data, nowcast, attribution, and publication system"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "duckdb>=1.4,<2",
+  "fastapi>=0.116,<1",
+  "httpx>=0.28,<1",
+  "jinja2>=3.1,<4",
+  "matplotlib>=3.10,<4",
+  "numpy>=2.2,<3",
+  "openpyxl>=3.1,<4",
+  "pypdf>=5,<7",
+  "polars>=1.32,<2",
+  "pyarrow>=20,<22",
+  "scipy>=1.15,<2",
+  "statsmodels>=0.14,<1",
+  "uvicorn>=0.35,<1",
+]
+
+[project.scripts]
+dfri-replay = "dfri.replay:main"
+dfri-verify-sources = "dfri.ingest.verify:main"
+dfri-board-backfill = "dfri.ingest.board_backfill:main"
+dfri-board-snapshot = "dfri.ingest.board_snapshot:main"
+dfri-board-targets = "dfri.ingest.board_targets:main"
+dfri-census-archive = "dfri.ingest.census_archive:main"
+dfri-context-history = "dfri.ingest.context_history:main"
+dfri-nyfed-history = "dfri.ingest.nyfed:main"
+dfri-health = "dfri.api.health:main"
+dfri-spot-audit = "dfri.ingest.spot_audit:main"
+dfri-membership-verify = "dfri.ingest.membership:main"
+dfri-filing-facts = "dfri.ingest.filing_facts:main"
+dfri-auto-abs = "dfri.ingest.auto_abs:main"
+dfri-card-trust = "dfri.ingest.card_trust:main"
+dfri-backtest = "dfri.backtest:main"
+dfri-scoreboard = "dfri.scoreboard:main"
+dfri-publish-scoreboard = "dfri.publish.site:main"
+
+[dependency-groups]
+dev = [
+  "hypothesis>=6.135,<7",
+  "mypy>=1.16,<2",
+  "pytest>=8.4,<9",
+  "pytest-cov>=6.2,<7",
+  "respx>=0.22,<1",
+  "ruff>=0.12,<1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dfri"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "A", "C4", "DTZ", "PTH", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["dfri"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src"]
+warn_unreachable = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = [
+  "openpyxl",
+  "openpyxl.*",
+  "pyarrow",
+  "pyarrow.*",
+  "pypdf",
+  "pypdf.*",
+  "statsmodels",
+  "statsmodels.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "--strict-config --strict-markers --cov=src/dfri --cov-report=term-missing --cov-fail-under=85"
+testpaths = ["tests"]
+markers = [
+  "live: calls an authoritative public source and requires explicit credentials/network",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["dfri"]
+data_file = ".local/.coverage"
+
+[tool.coverage.report]
+exclude_also = [
+  "if TYPE_CHECKING:",
+  "if __name__ == .__main__.:",
+  "raise NotImplementedError",
+]

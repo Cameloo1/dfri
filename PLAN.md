@@ -1,0 +1,329 @@
+# DFRI Execution Plan
+
+Status values: `PENDING`, `IN_PROGRESS`, `BLOCKED`, `PASS`, `DEVIATED`.
+
+This is the controlling execution map for `DFRI_BUILD_SPEC.md` v1.0. Sections 1 and 2 of the spec override every task below. A milestone may be marked complete only after its acceptance criteria pass from a fresh clone through the documented `make` targets and its milestone report records reproducible evidence.
+
+## Global gates and invariants
+
+- `G0 — Provenance`: never synthesize an unavailable value. Persist a `BLOCKED` record with URL, error, and timestamp.
+- `G1 — Source legality`: use only free/public inputs whose terms permit the intended derived outputs. Stop and escalate only for a legal/ToS conflict or an unavoidable paid credential.
+- `G2 — Point in time`: all model reads pass through the Vintage Guard and filter `release_date <= as_of`.
+- `G3 — Publication honesty`: modeled quantities always publish ordered bands, tier badges, and provenance.
+- `G4 — Determinism`: frozen inputs plus `AS_OF` and fixed versions/seeds produce byte-identical outputs.
+- `G5 — Calendar clock`: M2 weekly prediction and G.19 grading workflows take priority over all non-blocking work.
+- `G6 — Attribution hold`: no M3 implementation starts until M2 has completed two consecutive live weekly cycles.
+- `G7 — Milestone proof`: each milestone closes only after `make bootstrap && make verify` succeeds from a fresh clone and `MILESTONE_REPORTS/M{n}.md` is written.
+- `G8 — Capability proof`: any commit claiming a capability includes the test that demonstrates it.
+
+## Ordered dependency graph
+
+1. M0 foundation and contracts.
+2. M1 production ingest, depending on M0 schemas, clients, and Vintage Guard.
+3. M2 nowcast and public scoreboard, depending on M1 Board G.19/H.8 current and dated-release history plus publication primitives.
+4. M2 live-cycle observation window: two consecutive scheduled weekly cycles, including automatic grading when a G.19 release matures a prediction.
+5. M3 P0 attribution, hard-gated on step 4.
+6. M4 publication hardening, depending on stable M2/M3 output contracts.
+7. M5 scale, depending on M3 per-company evidence and M4 publication gates.
+
+Independent source-ingest work may proceed in parallel only where it cannot weaken the M2 calendar-clock priority. A hard-blocked track is recorded in `DEVIATIONS.md` after 24 hours and another eligible track is selected.
+
+## M0 — Foundation (repo, CI, contracts)
+
+### M0.1 Repository and toolchain scaffold
+
+- `PASS` Initialize Git and create the prescribed repository layout: `src/dfri/{ingest,lake,nowcast,attribution,publish,api}`, `tests/{unit,property,integration,fixtures}`, `lake`, `published`, `site`, `docs/ADRs`, `ops`, and `MILESTONE_REPORTS`.
+- `PASS` Define Python 3.12 project metadata and lock dependencies with `uv`; configure ruff, strict mypy for `src/`, pytest, hypothesis, and coverage thresholds.
+- `PASS` Add `.gitignore`, `.env.example` containing variable names only, and secret-safe logging/redaction tests. Never read or print `.env` values.
+- `PASS` Add a portable `Makefile` with `bootstrap`, `lint`, `typecheck`, `test`, `replay`, `verify`, and later `publish` targets; document Windows prerequisites and commands.
+- `PASS` Add `README.md`, `QUESTIONS.md`, and `DEVIATIONS.md` with explicit operating rules and environment variable names.
+- `IN_PROGRESS` Add GitHub Actions PR CI for lint, type, tests, and deterministic replay. The workflow and local-equivalent commands pass; external execution awaits the repository destination in Q-001.
+
+Dependencies: spec read-through. Evidence: scaffold tree, tool configs, fresh-environment command transcript, CI workflow.
+
+### M0.2 Curated schemas and append-only lake primitives
+
+- `PASS` Implement strict schemas for every table in §5, including provenance, vintage, methodology, and publication fields.
+- `PASS` Implement raw/validated/curated/published path contracts, content checksums, stable sorting, atomic writes, and append-only collision rules.
+- `PASS` Add schema/property tests for required columns, types, append-only behavior, and deterministic Parquet bytes.
+
+Dependencies: M0.1. Evidence: unit/property tests and replay artifact hashes.
+
+### M0.3 Live-verified series registry
+
+- `PASS` Implement registry definitions and verification receipts for Board G.19 series `DTCTL.M`, `DTCTLR.M`, `DTCTLN.M`, `DTCTL_N.M`, `DTCTLR_N.M`, and `DTCTLN_N.M`; Board H.8 series `B1247NCBA`, `B1029NCBA`, and `B3248NCBA`; and direct BEA/Census replacements for the context series formerly named `PCE`, `PCEDG`, `PCEND`, `PCES`, `RSAFS`, and `PI` in the spec.
+- `PASS` Verify each series title, units/unit multiplier, frequency, source attributes, terms URL, and redistribution/license note against the live authoritative source before setting `verified_at`.
+- `PASS` Confirm Board dated G.19 and H.8 release archives extend through at least 2015; the prescribed 2018 backtest window remains viable without revised-data substitution.
+- `PASS` Verify the Board series registry through code against the release-page SDMX packages, not the retiring DDP package-builder UI.
+- `PASS` Verify and pin the SEC companyfacts, submissions, Archives, and EFTS contracts; verify the current Reg AB II asset-class scope and card-trust 10-D requirement against current SEC primary sources.
+- `PASS` Verify and pin Census MRTS/MARTS datasets/endpoints and selected NAICS contracts.
+- `PASS` Verify and pin BEA NIPA API contracts for Table 2.4.5U.
+- `PASS` Record corrected best-known identifiers and source contracts in `DEVIATIONS.md` with authoritative evidence.
+- `PASS` Add hard-fail tests for metadata mismatches and receipt tests that prove unverified sources cannot publish.
+
+Dependencies: M0.2 and live network/API access. Evidence: redacted verification receipts containing metadata and timestamps, never credentials.
+
+### M0.4 Release calendar
+
+- `PASS` Implement `releases_calendar` schema and deterministic seeding.
+- `PASS` Verify authoritative G.19, H.8, NY Fed, Census, and BEA schedules, then seed 12 months of expected dates with source links.
+- `PASS` Represent unknown/unannounced dates explicitly as `BLOCKED`, never inferred dates presented as official.
+- `PASS` Test time zones, Friday-holiday boundaries, status distinctions, deterministic Parquet, and stable replay.
+
+Dependencies: M0.2 and live source verification. Evidence: curated calendar rows and tests.
+
+### M0.5 Source clients
+
+- `PASS` Build shared HTTP behavior: descriptive User-Agent (`ops@camelon.app` for EDGAR), <=10 req/s EDGAR limiter, bounded exponential backoff, checksums, idempotency keys, structured errors, and credential redaction.
+- `PASS` Implement the Federal Reserve Board SDMX client for current G.19/H.8 data and dated-release archive discovery/parsing for first-print vintages.
+- `PASS` Implement EDGAR submissions/companyfacts/Archives/EFTS clients with accession provenance.
+- `PASS` Implement Census client with dataset/variable verification.
+- `PASS` Implement BEA client with parameter/table verification.
+- `PASS` Archive legally redistributable real response fixtures with source URL, retrieval timestamp, checksum, and minimal necessary content.
+- `PASS` Pass offline fixture tests and opt-in live smoke tests for every client.
+
+Dependencies: M0.2–M0.3. Evidence: fixture and live-smoke test results with secrets redacted.
+
+### M0.6 Deterministic seed replay
+
+- `PASS` Commit a small frozen, real-source seed snapshot and pin the expected published tree hash.
+- `PASS` Implement `make replay AS_OF=<date>` using fixed seeds, stable order, normalized timestamps, and atomic append-only publication.
+- `PASS` Run replay twice in isolated disposable directories and assert byte-identical published trees.
+
+Dependencies: M0.2 and enough of M0.5 to define input contracts. Evidence: deterministic tree-hash test.
+
+### M0.7 Vintage Guard
+
+- `PASS` Implement the single model-facing `guard.read(series, as_of)` path and reject observations released after `as_of`.
+- `PASS` Add a poisoned-future canary test, first demonstrating failure without the guard and then passing through the guard.
+- `PASS` Add an import/AST boundary test that fails when `nowcast` or `attribution` directly reads lake tables.
+
+Dependencies: M0.2. Evidence: leak-canary and boundary tests.
+
+### M0.8 Cold verification and report
+
+- `PASS` Run `make bootstrap && make verify` from a fresh clone with credentials supplied only via environment variables. The documented Windows equivalents passed at commit `83efb52`; the clone itself required no credentials because live smoke is a separate opt-in gate.
+- `PASS` Write `MILESTONE_REPORTS/M0.md` with every M0 AC marked pass/fail, evidence links, open deviations, and the M1 task map. M0 remains pending only for external PR-CI evidence under Q-001.
+
+Dependencies: M0.1–M0.7 all passing or explicitly deviated. M0 completion gate.
+
+## M1 — Ingest complete
+
+### M1.1 Board histories
+
+- `PASS` Backfill all Board dated G.19 and H.8 releases from 2015 through the current manifests with page-declared release timestamps and first-print identification. The live local validation covers 139 G.19 pages and 605 H.8 pages (8,094 raw rows); generated lake/log artifacts remain ignored.
+- `PASS` Ingest current Board SDMX historical snapshots as explicitly revised context, distinct from dated first-print rows. Live validation covers 822 G.19 rows and 1,809 H.8 rows from 2015 onward; a second live run appended nothing.
+- `PASS` Validate manifest coverage, per-page/series row counts, uniqueness, units, release/vintage dates, checksums, idempotent reruns, and fail-closed source exceptions through a durable validator and real fixtures.
+
+Dependencies: M0 source clients, schemas, and guard.
+
+### M1.2 Public macro/category histories
+
+- `PASS` Ingest NY Fed HHDC quarterly balances, originations, and delinquency transitions. The live Q1 2026 retrieval contains 945 rows across 21 verified series from 2015Q1; both a disposable proof and the primary ignored lake appended once and returned `already_present=true` on the second run.
+- `PASS` Ingest Census MARTS monthly category histories. The live 2015-01 through 2026-06 retrieval contains 828 rows across six verified seasonally adjusted monthly-sales series; a second run appended nothing.
+- `PASS` Ingest BEA monthly context histories. The live 2015-01 through 2026-06 retrieval contains 1,932 rows across 14 verified NIPA/Underlying Detail series; BEA response-envelope volatility is excluded from the canonical row checksum, and a second run appended nothing.
+- `PASS` Add real archived BEA/Census parser fixtures and source-specific metadata, alignment, freshness, credential-redaction, checksum, value, and idempotency gates.
+- `PASS` Add the corresponding real fixture and quality gates for NY Fed HHDC. The attributed minimal workbook retains exact 2015Q1–2026Q1 values from five required sheets, renders cleanly, has zero formula errors, and is covered by discovery, metadata, period, value, attribution, checksum, conflict, and idempotency tests.
+
+Dependencies: M0 contracts/clients; NY Fed client extension.
+
+### M1.3 P0 and lender filing facts
+
+- `PASS` Verify a current consumer-facing S&P 500 membership snapshot against two maintained public sources and preserve the dated evidence. The attributed Wikimedia revision contains 503 share-class rows/500 issuers and reconciles exactly to the SEC's public 2026-03-31 SPY N-PORT filing after six explicit dated post-period transitions; the live default path rechecks the pinned snapshot and fails closed on drift.
+- `PASS` Select/confirm ten P0 companies from evidence quality; log substitutions. The prescribed GM, F, AMZN, WMT, TGT, LOW, HD, and BBY remain; ULTA and TSCO fill the two open slots because their live 10-Ks provide direct PLCC ownership/underwriting/program/lender evidence. No prescribed candidate was substituted.
+- `PASS` Ingest XBRL company facts for P0 candidates and lender evidence sources; implement HTML segment-footnote fallback with accession and snippet hash. The live primary lake contains 9,376 latest-10-K facts across ten P0 and seven lender/captive issuers; Amazon's 22-row segment table is stored with accession, source checksum, normalized snippet, and pinned snippet hash. An unchanged second run appended zero batches.
+- `PASS` Add an actual 10-K footnote fixture and parser tests. The minimal Amazon 2025 Form 10-K Note 10 fixture retains exact periods, segment labels, units, and values with SEC source/fixture checksums and public-domain provenance.
+
+Dependencies: M0 EDGAR client and membership verification.
+
+### M1.4 Auto ABS-EE
+
+- `PASS` Verify candidate trust identities/CIKs and filing availability before selection. The pinned registry uses Ford Credit Auto Owner Trust 2023-A, AMCAR 2023-1, GMCAR 2022-3, Drive 2024-1, Honda 2023-4, and Toyota 2022-A; every exact SEC submissions name and every month-end filing in its selected window was reverified live.
+- `PASS` Parse EX-102 asset XML for at least six trusts spanning prime/subprime with at least 12 months each. All six trusts have 12 contiguous monthly aggregates (72 trust-months, 2,232,709 reported asset snapshots); the exact GMCAR prospectus defines the prime anchor and the exact AMCAR prospectus defines the subprime anchor.
+- `PASS` Keep loan-level rows raw/private to the lake; publish only curated aggregates. The 72 immutable SEC source documents remain under the ignored `_private` lake boundary as deterministic gzip files with atomic receipt directories; the curated schema has no asset number, borrower score, geography, vehicle, or other loan-level field, and `published/` contains no XML.
+- `PASS` Add actual EX-102 fixtures and aggregation/schema tests. The minimal AMCAR 2023-1 fixture retains the exact first Schedule AL asset from the 2026-06-30 filing with original/fixture checksums; parser tests cover namespace, period, identity, duplicate, numeric, boolean, privacy, coverage-denominator, append-only, and idempotency contracts.
+
+Dependencies: M0 EDGAR client and schemas.
+
+### M1.5 Card 10-D
+
+- `PASS` Verify candidate card trust identities/CIKs and distribution-report contracts. The live registry pins American Express Credit Account Master Trust, Citibank Credit Card Issuance Trust, and BA Credit Card Trust, including the distinct trust/archive CIKs required by multi-filer EDGAR accessions and every historical EX-99 filename variant in the selected window.
+- `PASS` Parse at least three trusts for receivables, principal payment rate, yield, and charge-offs. The live lake contains 36 unique monthly 10-D aggregates (12 per trust). All 36 report receivables, a source-defined principal payment rate, portfolio yield, and charge-off rate; Amex and BA also report dollar charge-offs for 24 months, while Citi's 12 months are explicitly `NOT_REPORTED` for the dollar amount and retain its reported Credit Loss Component rate.
+- `PASS` Add actual 10-D fixtures and evidence-linked parser tests. The source-shaped June 2026 Amex fixture pins full-source and fixture checksums. Every aggregate stores the accession, trust/archive CIKs, primary and exhibit documents, exact source labels/rows, scaling rule, source checksum, archive-index checksum, and evidence hash; focused tests cover all three trust formats, amount absence, BA thousand-dollar scaling, identity drift, parser drift, continuity, schema, idempotency, and recovery gates.
+
+Dependencies: verified SEC rule/filing contracts and M0 EDGAR client.
+
+### M1.6 Freshness and spot audit
+
+- `PASS` Implement the `/v1/health` precursor calculation from release-calendar SLAs with explicit `GREEN`, `STALE`, `BLOCKED`, and `OPTIONAL-DEGRADED` states. The live precursor is `GREEN` across ten explicit lanes: all 50 registered Board, BEA, Census, and NY Fed macro series; 17 SEC XBRL issuers; the required Amazon HTML fallback; five active Auto ABS trusts; Toyota 2022-A's separately labeled terminal history; and three card 10-D trusts. Toyota's latest distribution report shows an optional purchase and zero ending note balances, so its archived history is refreshed by verification time instead of being falsely judged as a stale active trust.
+- `PASS` Implement a deterministic, seeded spot-audit tool that compares 20 stored rows to live authoritative sources and records redacted receipts. The live gate passed 20/20 rows with at least one row from each of Board G.19, Board H.8, BEA, Census, and NY Fed; a first run correctly returned `BLOCKED` when Census changed, and the same seed passed after that response was appended as a new immutable snapshot.
+- `PASS` Prove every parser has a real fixture and that zero fabricated values exist. Real, checksummed fixtures cover Board current/history/manifests, BEA, Census, NY Fed, EDGAR submissions/companyfacts/10-K HTML, S&P membership evidence, Auto ABS-EE, and card 10-D. Parser tests pin source labels, units, periods, source and fixture hashes, and fail on drift. The 20-row live spot audit passes; revised-only snapshots, absent optional fields, terminal histories, and Citi's unreported charge-off dollar amount all remain explicitly labeled rather than synthesized.
+
+Dependencies: M1.1–M1.5.
+
+### M1.7 Cold verification and report
+
+- `PASS` Pass fresh-clone `make bootstrap && make verify` plus full ingest verification. The first disposable Windows clone exposed checksum drift from Git CRLF conversion of archived fixtures; `.gitattributes` now preserves fixture bytes. A second clean clone at commit `f2ea8be` passed bootstrap, Ruff, formatting, strict mypy over 32 source files, 207 tests at 85.41% coverage, and three deterministic replay tests. The primary ignored lake separately passed all ten health lanes and a fresh 20/20 live-source spot audit.
+- `PASS` Write `MILESTONE_REPORTS/M1.md` with all M1 AC evidence and the M2 task map.
+
+Dependencies: all M1 ACs.
+
+## M2 — Nowcast and public scoreboard
+
+### M2.1 First-print target dataset and baselines
+
+- `PASS` Derive monthly revolving (`DTCTLR.M`) and nonrevolving (`DTCTLN.M`) flows from point-in-time Board first-print levels through the Vintage Guard. The Board-only replacement reads the preliminary target-month and revised prior-month levels from the same immutable dated G.19 release, not from consecutive preliminary prints. The canonical v1 live backfill contains 139 months per target from 2014-11 through 2026-05; a full 139-page recheck returned `already_present=139` despite volatile wrapper markup. Both derived series are pinned in `board_target_registry.json`, and model reads reject future releases, gaps, duplicate releases, malformed provenance, or direct lake access.
+- `PASS` Implement random-walk, seasonal-naive, and AR(2) baselines with expanding-window evaluation. Each target has 303 deterministic baseline forecasts over January 2018 through May 2026, with strictly prior training data and evidence-sensitive input hashes. Tests cover exact random-walk/seasonal behavior, an exact AR(2) process, expanding-window boundaries, rank failure, continuity, finite values, and release-time monotonicity.
+
+Dependencies: M1 Fed histories and Vintage Guard.
+
+### M2.2 Bridge and state-space models
+
+- `PASS` Recover point-in-time retail sales from the official dated Census MARTS release PDFs. The live append-only lane contains 137 continuous release-coherent `DELTA_RETAIL_SALES.M` rows from January 2015 through May 2026; each flow subtracts the preliminary prior-month adjusted total from the advance target-month total in the same Table 1. The current Census API's revised-only history remains excluded from historical model reads.
+- `PASS` Implement the deterministic ragged-edge ridge bridge using point-in-time H.8 weekly changes, release-available first-print retail flow, explicit H.8 coverage/pacing, and month seasonality. The production `bridge-ridge-v2-alpha10` regularization prevents missing-retail/partial-H.8 leverage explosions while preserving explicit missingness. The 101-month backtest has revolving MAE/RMSE/sign accuracy 4,633/7,948/87.1% versus best-naive MAE 7,487; nonrevolving is 5,302/9,666/71.3% versus best-naive MAE 4,906.
+- `PASS` Implement the statsmodels mixed-frequency Kalman candidate. Its latent monthly G.19 flow is observed through up to five separate within-month H.8 Wednesday-change channels plus first-print retail when available; future weekly slots and unreleased retail remain missing Kalman observations. Parameters are estimated only from the prior expanding window, forecasts carry state-derived bands and evidence hashes, and malformed weekly alignment is rejected.
+- `PASS` Apply the headline eligibility gate without promoting the more complex model. On the 101-month primary revolving target, state-space MAE is 5,073 versus bridge v2 MAE 4,633, so §6.2 keeps the bridge as headline. State-space nonrevolving MAE is 5,228 versus bridge v2 5,302, but it under-covers its intervals and remains behind AR(2) MAE 4,906.
+
+Dependencies: M2.1.
+
+### M2.3 Backtest credibility report
+
+- `PASS` Backtest January 2018 through May 2026 over 101 strictly expanding-window forecasts per target, using dated Board G.19/H.8 releases, dated Census MARTS releases, and release-coherent first-print grades selected through the Vintage Guard.
+- `PASS` Report MAE, RMSE, 80/95% interval coverage, and three-way acceleration sign accuracy for all three baselines, the bridge, and state-space candidate in canonical JSON plus stable Markdown.
+- `PASS` Evaluate the §6.3 primary-target bars in code. `bridge-ridge-v2-alpha10` beats the best naive AR(2) MAE by 38.1%, has 71.3%/93.1% empirical 80/95 coverage, and reaches 87.1% acceleration-sign accuracy; all prescribed primary bars pass, so no unmet-bar deviation is required.
+- `PASS` Add the deterministic `make backtest` / `make.cmd backtest` path, canonical report hash, exact first/last vintage URLs and checksums, comparable-period enforcement, duplicate/incomplete rejection, and repeat-write byte identity tests. Stable artifacts are `reports/M2_BACKTEST.md` and `reports/m2_backtest.json`.
+
+Dependencies: M2.1–M2.2.
+
+### M2.4 Immutable prediction and grading loop
+
+- `PASS` Implement append-only prediction writes with stable SHA-256 IDs keyed by model/input-hash/target identity. The first accepted execution timestamp is preserved across later retries; model/input hashes and bands are immutable. A cross-process atomic write gate, duplicate-ledger detection, and attempted-edit rejection tests enforce the contract.
+- `PASS` Implement first-print grading as a separate append-only ledger. Grades bind a prediction to the exact Board G.19 vintage URL, first-print value, release timestamp, and absolute error; duplicate evidence is idempotent, changed evidence is rejected, immature predictions remain open, and full stored re-grade integrity is checked against raw first-print targets.
+- `PASS` Implement idempotent `scoreboard-predict` and `scoreboard-grade` commands. Input identity is keyed to the latest stored Thursday/Friday H.8 release and covers every unreleased month through its latest Wednesday observation; `made_at` is the actual first job execution time. Grading runs only after the stored first-print release boundary. Both commands write content-addressed attempt receipts. The corrected local August 4 run appended four July 31-input-origin v2 predictions and a later-timestamp retry appended zero while preserving the first timestamp; current targets remain immature. External scheduling remains M2.6.
+
+Dependencies: M2.3 and M0/M1 publication primitives.
+
+### M2.5 Scoreboard publication
+
+- `PASS` Implement stable prediction/scoreboard JSON, CSV, and typed Parquet feeds with schema documentation plus methodology, data-vintage, publication-time, mode, and CC BY-NC fields. Publication is built in a disposable directory, atomically promoted, refuses unmanaged destinations, removes stale managed paths, and is byte-identical for pinned inputs.
+- `PASS` Build the no-JS static Home, Scoreboard, Methodology, and immutable prediction-permalink pages with nested 80/95% bands, first-print actuals/errors/provenance, accessible text equivalents, optional sorting enhancement, and local-only assets. The filtered four-row v2 preview explicitly excludes eight pre-public smoke rows, has four permalinks, totals 57,168 bytes, and reproduced manifest hash `3793b59199975166b89ada7be0355489b99c0ae32ef87fd7839f823d44414be7` on two documented builds.
+- `PENDING` Activate scheduled GitHub Actions and public hosting; verify H.8 and G.19 completion within four hours. The default-branch workflow, non-cancelling concurrency gate, current Board release windows, holiday-shifted H.8 checks, allowlisted SHA-256 state transfer, candidate-to-deployment-accepted state gate, explicit first-run bootstrap gate, append-only first-publication ledger, no-change deployment skip, Pages permissions/environment, SLA receipt, and recovery runbook pass locally. Q-001 still blocks remote activation, public URL evidence, and genuine scheduled cycles.
+
+Dependencies: M2.4.
+
+### M2.6 Two-live-cycle gate
+
+- `PENDING` Observe and preserve evidence for two consecutive scheduled weekly cycles; do not backfill these receipts.
+- `PENDING` Verify matured predictions are automatically graded on the relevant G.19 first print.
+- `PENDING` Keep M3 tasks blocked until this gate passes.
+
+Dependencies: public M2.5 deployment and calendar time.
+
+### M2.7 Cold verification and report
+
+- `PENDING` Pass scheduler/public URL checks. A disposable no-local clone of capability commit `7fe2884` completed the documented locked `make.cmd bootstrap` and `make.cmd verify` path on Python 3.12.13: lint/format and strict typing passed, 309 tests passed at 85.05% coverage, and all three determinism tests passed. The clone contained neither `.env` nor local lake state and was removed after its exact HEAD was verified.
+- `PENDING` Write `MILESTONE_REPORTS/M2.md`, including metric bars or logged deviations and two-cycle evidence.
+
+Dependencies: M2.1–M2.6.
+
+## M3 — Attribution P0 (hard-blocked by M2.6)
+
+### M3.1 Assumption Registry and matrices
+
+- `PENDING` Populate every non-observed Matrix A/B/model parameter with an assumption ID, source, tier, evidence, prior/band, sensitivity note, version, and active state.
+- `PENDING` Build Matrix A v1 with row-sum and evidence checks.
+- `PENDING` Build Matrix B v1 for ten P0 companies with non-negative weights, denominator evidence, and membership snapshot refs.
+
+Dependencies: M2.6 PASS and M1 category/company data.
+
+### M3.2 Company facts and Monte Carlo
+
+- `PENDING` Produce evidence-linked US consumer revenue denominator bands for ten P0 companies.
+- `PENDING` Implement >=10,000-draw deterministic Monte Carlo using registered priors and publish 10th/50th/90th percentiles.
+- `PENDING` Pass property tests for band ordering, finite flows, monotone percentiles, and tier shares summing to one.
+
+Dependencies: M3.1.
+
+### M3.3 P0 pages and independent recompute
+
+- `PENDING` Publish ten company pages with "estimated" DFR% bands, tier breakdowns, <=15-word Tier 1 quotes, accession links, assumption IDs, and top-five sensitivity sections.
+- `PENDING` Implement `tools/recompute_check.py` without attribution-engine code reuse beyond the lake reader; match three companies within +/-0.5 percentage points on the mid.
+- `PENDING` Pass provenance link checking.
+
+Dependencies: M3.2.
+
+### M3.4 Cold verification and report
+
+- `PENDING` Pass fresh-clone verification and public-page checks.
+- `PENDING` Write `MILESTONE_REPORTS/M3.md` with all P0 evidence and the M4 task map.
+
+Dependencies: all M3 ACs.
+
+## M4 — Publication hardening
+
+### M4.1 Versioned feeds and API
+
+- `PENDING` Publish all §8.1 CSV/JSON/Parquet feeds plus `/v1/feeds/schema.json`, CC BY-NC 4.0 headers/notices, ETags, and cache headers.
+- `PENDING` Implement only the prescribed read-only FastAPI GET endpoints; commit OpenAPI schema.
+- `PENDING` Add 60 requests/minute/IP limiting, open GET CORS, contract tests, and p95 <300 ms evidence on the published dataset.
+
+Dependencies: stable M2/M3 schemas.
+
+### M4.2 Static site quality
+
+- `PENDING` Build Home, Scoreboard, Company, Methodology, and Changelog pages from versioned outputs and `branding.yaml`.
+- `PENDING` Enforce tier badges/provenance for every figure, bands without lone mids, exact copy rules, <=500 KB pages, <1 s 4G target, WCAG AA, zero critical axe violations, and full no-JS operation.
+- `PENDING` Generate versioned methodology and the read-only Assumption Registry.
+
+Dependencies: M4.1 and M3 outputs.
+
+### M4.3 Publication operation
+
+- `PENDING` Wire deterministic replay into publish CI and make publication append-only with a public changelog.
+- `PENDING` Configure uptime/freshness checks whose alert log the owner can read.
+- `PENDING` Verify recovery paths for failed ingest, failed publish, retry, and rollback-to-last-good without mutating prior outputs.
+
+Dependencies: M4.1–M4.2.
+
+### M4.4 Cold verification and report
+
+- `PENDING` Pass `make bootstrap && make verify && make publish` from a fresh clone and all public SLO checks.
+- `PENDING` Write `MILESTONE_REPORTS/M4.md`.
+
+Dependencies: all M4 ACs.
+
+## M5 — Scale
+
+### M5.1 Fifty-company coverage
+
+- `PENDING` Expand membership/evidence mapping to 50 consumer-facing S&P 500 companies using the same per-company gates as M3.
+- `PENDING` Publish a dated exclusion list with one-line reasons and preserve historical membership.
+
+Dependencies: M3 and M4 contracts.
+
+### M5.2 Quarterly refresh and performance
+
+- `PENDING` Implement the new-10-Q quarterly refresh path through recompute and append-only publish.
+- `PENDING` Demonstrate one live quarterly refresh with evidence and recovery logs.
+- `PENDING` Optimize only after measurement until the full pipeline is <30 minutes on the CI runner.
+
+Dependencies: M5.1.
+
+### M5.3 Methodology comparison and report
+
+- `PENDING` Publish a sensitivity-analysis page comparing methodology versions without rewriting history.
+- `PENDING` Pass fresh-clone verification and write `MILESTONE_REPORTS/M5.md`.
+
+Dependencies: M5.1–M5.2.
+
+## Day-14 review packet
+
+- `PENDING` Include every milestone report completed by the review date.
+- `PENDING` Write a one-page summary of what exists and is live, what is blocked with evidence, and the five open questions whose answers would most change the build.
+- `PENDING` Ensure `QUESTIONS.md` and `DEVIATIONS.md` are current and distinguish current verified behavior from intent.
+
+## Immediate next actions
+
+1. Continue SEC P0 facts, lender evidence, and trust parsers now that macro histories are durable.
+2. Extend health inputs to filing/trust pipelines as they land and prove every parser has a real fixture.
+3. Keep external PR-CI evidence explicitly pending under Q-001 while continuing eligible local tracks.

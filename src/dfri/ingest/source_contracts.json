@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-08-04",
+  "sources": {
+    "federal_reserve_board": {
+      "status": "permitted",
+      "automated_access": true,
+      "storage": true,
+      "derivative_redistribution": true,
+      "terms_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "automation_url": "https://www.federalreserve.gov/DataDownload/help/default.htm",
+      "conditions": [
+        "Cite the Board as the source.",
+        "Do not reuse Board seals or logos.",
+        "Exclude any item specifically marked as non-Board or separately copyrighted."
+      ],
+      "finding": "Board website information is public domain unless otherwise indicated, and DDP documentation expressly supports direct automated retrieval."
+    },
+    "bea": {
+      "status": "permitted",
+      "automated_access": true,
+      "storage": true,
+      "derivative_redistribution": true,
+      "terms_url": "https://apps.bea.gov/API/_pdf/bea_api_tos.pdf",
+      "public_domain_url": "https://www.bea.gov/help/faq/147",
+      "conditions": [
+        "Display the BEA API non-endorsement notice where the API is identified.",
+        "Cite the U.S. Bureau of Economic Analysis.",
+        "Do not modify BEA content and continue to represent the modification as BEA content."
+      ],
+      "finding": "The API permits services that retrieve, display, and analyze BEA data; published BEA information is public domain unless stated otherwise."
+    },
+    "census": {
+      "status": "permitted",
+      "automated_access": true,
+      "storage": true,
+      "derivative_redistribution": true,
+      "terms_url": "https://www.census.gov/data/developers/about/terms-of-service.html",
+      "citation_url": "https://www.census.gov/about/policies/citation.html",
+      "conditions": [
+        "Display the Census Data API non-endorsement notice where the API is identified.",
+        "Cite Census only as the source of original data; label DFRI estimates as DFRI's responsibility.",
+        "Do not modify API content and continue to represent the modification as Census content."
+      ],
+      "finding": "The API permits services that retrieve, display, and analyze published Census data, and the public-use statement explicitly anticipates independently produced estimates."
+    },
+    "new_york_fed": {
+      "status": "permitted_with_conditions",
+      "automated_access": true,
+      "storage": true,
+      "derivative_redistribution": true,
+      "terms_url": "https://www.newyorkfed.org/privacy/termsofuse.html",
+      "conditions": [
+        "Use the exact attribution: New York Fed Consumer Credit Panel / Equifax.",
+        "Clearly label modifications and do not attribute DFRI derivatives to the New York Fed.",
+        "Do not impose more restrictive terms on redistributed New York Fed Content.",
+        "Do not republish raw New York Fed workbooks in DFRI feeds; publish separately labeled DFRI-derived aggregates only."
+      ],
+      "finding": "The terms expressly permit automated access, downloading, storage, copying, distribution, modification, and derivative works, subject to attribution and distribution conditions."
+    },
+    "sec_edgar": {
+      "status": "permitted",
+      "automated_access": true,
+      "storage": true,
+      "derivative_redistribution": true,
+      "terms_url": "https://www.sec.gov/about/privacy-information",
+      "automation_url": "https://www.sec.gov/about/developer-resources",
+      "conditions": [
+        "Use a descriptive User-Agent with contact information.",
+        "Limit aggregate traffic to no more than 10 requests per second.",
+        "Cite the SEC and do not imply affiliation or reuse SEC seals/logos."
+      ],
+      "finding": "SEC developer resources permit classified automated EDGAR access under fair-access limits; sec.gov information may be copied or further distributed with citation."
+    },
+    "wikimedia": {
+      "status": "permitted_with_conditions",
+      "automated_access": true,
+      "storage": true,
+      "derivative_redistribution": true,
+      "terms_url": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+      "automation_url": "https://www.mediawiki.org/wiki/Wikimedia_APIs/Access_policy",
+      "conditions": [
+        "Use a meaningful User-Agent and follow API pacing, caching, maxlag, and retry guidance.",
+        "Attribute the Wikipedia source page and preserve its revision identifier.",
+        "Keep the membership snapshot itself under CC BY-SA 4.0 and do not impose more restrictive terms on that snapshot."
+      ],
+      "finding": "Wikimedia permits automated API access under its access policy and permits commercial reuse and redistribution of Wikipedia text under CC BY-SA 4.0 with attribution and share-alike conditions."
+    }
+  }
+}

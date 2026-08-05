@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assetData xmlns="http://www.sec.gov/edgar/document/absee/autoloan/assetdata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <assets>
+    <assetTypeNumber>CIK number-Sequential asset number</assetTypeNumber>
+    <assetNumber>0001963240 - 000023</assetNumber>
+    <reportingPeriodBeginningDate>06-01-2026</reportingPeriodBeginningDate>
+    <reportingPeriodEndingDate>06-30-2026</reportingPeriodEndingDate>
+    <originatorName>GM FINANCIAL</originatorName>
+    <originationDate>08/2018</originationDate>
+    <originalLoanAmount>17148.76000000</originalLoanAmount>
+    <originalLoanTerm>86</originalLoanTerm>
+    <loanMaturityDate>05/2027</loanMaturityDate>
+    <originalInterestRatePercentage>0.14000000</originalInterestRatePercentage>
+    <interestCalculationTypeCode>1</interestCalculationTypeCode>
+    <originalInterestRateTypeCode>1</originalInterestRateTypeCode>
+    <originalInterestOnlyTermNumber>0</originalInterestOnlyTermNumber>
+    <originalFirstPaymentDate>10/2018</originalFirstPaymentDate>
+    <underwritingIndicator>true</underwritingIndicator>
+    <gracePeriodNumber>2</gracePeriodNumber>
+    <paymentTypeCode>2</paymentTypeCode>
+    <subvented>0</subvented>
+    <vehicleManufacturerName>DODGE</vehicleManufacturerName>
+    <vehicleModelName>GRAND CARAVAN</vehicleModelName>
+    <vehicleNewUsedCode>1</vehicleNewUsedCode>
+    <vehicleModelYear>2017</vehicleModelYear>
+    <vehicleTypeCode>2</vehicleTypeCode>
+    <vehicleValueAmount>19000.00000000</vehicleValueAmount>
+    <vehicleValueSourceCode>98</vehicleValueSourceCode>
+    <obligorCreditScoreType>Credit Bureau Score</obligorCreditScoreType>
+    <obligorCreditScore>534</obligorCreditScore>
+    <obligorIncomeVerificationLevelCode>3</obligorIncomeVerificationLevelCode>
+    <obligorEmploymentVerificationCode>3</obligorEmploymentVerificationCode>
+    <coObligorIndicator>false</coObligorIndicator>
+    <paymentToIncomePercentage>0.11730000</paymentToIncomePercentage>
+    <obligorGeographicLocation>TX</obligorGeographicLocation>
+    <assetAddedIndicator>false</assetAddedIndicator>
+    <remainingTermToMaturityNumber>11</remainingTermToMaturityNumber>
+    <reportingPeriodModificationIndicator>false</reportingPeriodModificationIndicator>
+    <servicingAdvanceMethodCode>1</servicingAdvanceMethodCode>
+    <reportingPeriodBeginningLoanBalanceAmount>4057.23000000</reportingPeriodBeginningLoanBalanceAmount>
+    <nextReportingPeriodPaymentAmountDue>339.30000000</nextReportingPeriodPaymentAmountDue>
+    <reportingPeriodInterestRatePercentage>0.00000000</reportingPeriodInterestRatePercentage>
+    <nextInterestRatePercentage>0.00000000</nextInterestRatePercentage>
+    <servicingFeePercentage>0.02250000</servicingFeePercentage>
+    <servicingFlatFeeAmount>0.00000000</servicingFlatFeeAmount>
+    <otherServicerFeeRetainedByServicer>0.00000000</otherServicerFeeRetainedByServicer>
+    <otherAssessedUncollectedServicerFeeAmount>0.00000000</otherAssessedUncollectedServicerFeeAmount>
+    <scheduledInterestAmount>0.00000000</scheduledInterestAmount>
+    <scheduledPrincipalAmount>0.00000000</scheduledPrincipalAmount>
+    <otherPrincipalAdjustmentAmount>0.00000000</otherPrincipalAdjustmentAmount>
+    <reportingPeriodActualEndBalanceAmount>3717.93000000</reportingPeriodActualEndBalanceAmount>
+    <reportingPeriodScheduledPaymentAmount>0.00000000</reportingPeriodScheduledPaymentAmount>
+    <totalActualAmountPaid>339.30000000</totalActualAmountPaid>
+    <actualInterestCollectedAmount>0.00000000</actualInterestCollectedAmount>
+    <actualPrincipalCollectedAmount>339.30000000</actualPrincipalCollectedAmount>
+    <actualOtherCollectedAmount>0.00000000</actualOtherCollectedAmount>
+    <servicerAdvancedAmount>0.00000000</servicerAdvancedAmount>
+    <interestPaidThroughDate>06-13-2026</interestPaidThroughDate>
+    <currentDelinquencyStatus>0</currentDelinquencyStatus>
+    <primaryLoanServicerName>GM FINANCIAL</primaryLoanServicerName>
+    <assetSubjectDemandIndicator>false</assetSubjectDemandIndicator>
+    <chargedoffPrincipalAmount>0.00000000</chargedoffPrincipalAmount>
+    <recoveredAmount>0.00000000</recoveredAmount>
+    <paymentExtendedNumber>0</paymentExtendedNumber>
+    <repossessedIndicator>false</repossessedIndicator>
+    <repossessedProceedsAmount>0.00000000</repossessedProceedsAmount>
+  </assets>
+</assetData>

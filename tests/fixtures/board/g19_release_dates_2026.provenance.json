@@ -1,0 +1,9 @@
+{
+  "source_url": "https://www.federalreserve.gov/releases/g19/releaseDates.json",
+  "retrieved_at": "2026-08-04",
+  "sha256": "0d659fefa4411684e02d0ed4419d2b97fa26c45afbd0936e54e1a5c65acd9742",
+  "source_artifact_sha256": "65f3542ce30c7cd4d00c138ac888110e6ea4de90f48a96029a6954be4ea20392",
+  "extraction": "Exact 2026 year entry from the Board JSON manifest used by the official G.19 Release Dates page.",
+  "release_dates_page": "https://www.federalreserve.gov/releases/g19/default.htm",
+  "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+}

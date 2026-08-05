@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message:MessageGroup xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/message" xmlns:common="http://www.federalreserve.gov/structure/compact/common">
+  <message:DataSet>
+    <common:Series CREDTYP="REV" CURRENCY="USD" DATAREP="MILLDOLL" FREQ="129" HOLDER="ALL" SA="SA" SERIES_NAME="DTCTLR.M" UNIT="Currency" UNIT_MULT="1000000">
+      <common:Annotations>
+        <common:Annotation><common:AnnotationType>Short Description</common:AnnotationType><common:AnnotationText>Revolving consumer credit owned and securitized, seasonally adjusted level</common:AnnotationText></common:Annotation>
+      </common:Annotations>
+      <common:Obs OBS_STATUS="A" OBS_VALUE="1349505.63" TIME_PERIOD="2026-04-30" />
+      <common:Obs OBS_STATUS="A" OBS_VALUE="1344207.79" TIME_PERIOD="2026-05-31" />
+    </common:Series>
+  </message:DataSet>
+</message:MessageGroup>

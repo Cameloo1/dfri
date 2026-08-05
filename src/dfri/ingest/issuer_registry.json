@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-08-04",
+  "membership_snapshot": {
+    "revision_id": 1367510220,
+    "as_of": "2026-08-04T16:21:24.531780+00:00",
+    "path": "membership_snapshot.json"
+  },
+  "p0": [
+    {
+      "ticker": "GM",
+      "cik": "0001467858",
+      "membership_security": "General Motors",
+      "submissions_name": "General Motors Co",
+      "companyfacts_name": "GENERAL MOTORS COMPANY",
+      "latest_10k": {"filed_at": "2026-01-27", "period": "2025-12-31", "accession": "0001467858-26-000013", "primary_document": "gm-20251231.htm"},
+      "revenue_fact": {"namespace": "us-gaap", "tag": "Revenues", "unit": "USD", "period": "2025-12-31", "value": "185019000000"},
+      "selection_evidence": "GM Financial is a named captive-finance segment and subsidiary with extensive financing and receivables disclosure in the latest 10-K."
+    },
+    {
+      "ticker": "F",
+      "cik": "0000037996",
+      "membership_security": "Ford Motor Company",
+      "submissions_name": "FORD MOTOR CO",
+      "companyfacts_name": "Ford Motor Co",
+      "latest_10k": {"filed_at": "2026-02-11", "period": "2025-12-31", "accession": "0000037996-26-000015", "primary_document": "f-20251231.htm"},
+      "revenue_fact": {"namespace": "us-gaap", "tag": "RevenueFromContractWithCustomerExcludingAssessedTax", "unit": "USD", "period": "2025-12-31", "value": "187267000000"},
+      "selection_evidence": "Ford Credit is a named reportable segment and captive lender with extensive financing and receivables disclosure in the latest 10-K."
+    },
+    {
+      "ticker": "AMZN",
+      "cik": "0001018724",
+      "membership_security": "Amazon",
+      "submissions_name": "AMAZON COM INC",
+      "companyfacts_name": "AMAZON COM INC",
+      "latest_10k": {"filed_at": "2026-02-06", "period": "2025-12-31", "accession": "0001018724-26-000004", "primary_document": "amzn-20251231.htm"},
+      "revenue_fact": {"namespace": "us-gaap", "tag": "RevenueFromContractWithCustomerExcludingAssessedTax", "unit": "USD", "period": "2025-12-31", "value": "716924000000"},
+      "selection_evidence": "The latest 10-K contains card-program and Affirm references plus a directly usable North America segment revenue footnote."
+    },
+    {
+      "ticker": "WMT",
+      "cik": "0000104169",
+      "membership_security": "Walmart",
+      "submissions_name": "Walmart Inc.",
+      "companyfacts_name": "WALMART INC.",
+      "latest_10k": {"filed_at": "2026-03-13", "period": "2026-01-31", "accession": "0000104169-26-000055", "primary_document": "wmt-20260131.htm"},
+      "revenue_fact": {"namespace": "us-gaap", "tag": "Revenues", "unit": "USD", "period": "2026-01-31", "value": "713163000000"},
+      "selection_evidence": "The latest 10-K contains private-label-card, consumer-credit, and financial-services disclosures."
+    },
+    {
+      "ticker": "TGT",
+      "cik": "0000027419",
+      "membership_security": "Target Corporation",
+      "submissions_name": "TARGET CORP",
+      "companyfacts_name": "TARGET CORPORATION",
+      "latest_10k": {"filed_at": "2026-03-11", "period": "2026-01-31", "accession": "0000027419-26-000016", "primary_document": "tgt-20260131.htm"},
+      "revenue_fact": {"namespace": "us-gaap", "tag": "RevenueFromContractWithCustomerExcludingAssessedTax", "unit": "USD", "period": "2026-01-31", "value": "104780000000"},
+      "selection_evidence": "The latest 10-K contains extensive Target credit-card program and receivables disclosures."
+    },
+    {
+      "ticker": "LOW",
+      "cik": "0000060667",
+      "membership_security": "Lowe's",
+      "submissions_name": "LOWES COMPANIES INC",
+      "companyfacts_name": "LOWE’S COMPANIES, INC.",
+      "latest_10k": {"filed_at": "2026-03-23", "period": "2026-01-30", "accession": "0000060667-26-000029", "primary_document": "low-20260130.htm"},
+      "revenue_fact": {"namespace": "us-gaap", "tag": "RevenueFromContractWithCustomerExcludingAssessedTax", "unit": "USD", "period": "2026-01-30", "value": "86286000000"},
+      "selection_evidence": "The latest 10-K names private-label credit, Synchrony, and buy-now-pay-later evidence."
+    },
+    {
+      "ticker": "HD",
+      "cik": "0000354950",
+      "membership_security": "Home Depot (The)",
+      "submissions_name": "HOME DEPOT, INC.",
+      "companyfacts_name": "HOME DEPOT, INC.",
+      "latest_10k": {"filed_at": "2026-03-18", "period": "2026-02-01", "accession": "0001628280-26-019436", "primary_document": "hd-20260201.htm"},
+      "revenue_fact": {"namespace": "us-gaap", "tag": "RevenueFromContractWithCustomerExcludingAssessedTax", "unit": "USD", "period": "2026-02-01", "value": "164683000000"},
+      "selection_evidence": "The latest 10-K contains private-label and consumer-credit program disclosures."
+    },
+    {
+      "ticker": "BBY",
+      "cik": "0000764478",
+      "membership_security": "Best Buy",
+      "submissions_name": "BEST BUY CO INC",
+      "companyfacts_name": "BEST BUY CO., INC.",
+      "latest_10k": {"filed_at": "2026-03-18", "period": "2026-01-31", "accession": "0000764478-26-000009", "primary_document": "bby-20260131.htm"},
+      "revenue_fact": {"namespace": "us-gaap", "tag": "Revenues", "unit": "USD", "period": "2026-01-31", "value": "41691000000"},
+      "selection_evidence": "The latest 10-K contains private-label card, consumer-financing, financing-program, and Citi references."
+    },
+    {
+      "ticker": "ULTA",
+      "cik": "0001403568",
+      "membership_security": "Ulta Beauty",
+      "submissions_name": "Ulta Beauty, Inc.",
+      "companyfacts_name": "ULTA BEAUTY, INC.",
+      "latest_10k": {"filed_at": "2026-03-26", "period": "2026-01-31", "accession": "0001104659-26-035243", "primary_document": "ulta-20260131x10k.htm"},
+      "revenue_fact": {"namespace": "us-gaap", "tag": "Revenues", "unit": "USD", "period": "2026-01-31", "value": "12392820000"},
+      "selection_evidence": "Selected for the open PLCC slot because the latest 10-K identifies co-branded/private-label cards, third-party account ownership and underwriting, and program revenue."
+    },
+    {
+      "ticker": "TSCO",
+      "cik": "0000916365",
+      "membership_security": "Tractor Supply",
+      "submissions_name": "TRACTOR SUPPLY CO /DE/",
+      "companyfacts_name": "TRACTOR SUPPLY CO /DE/",
+      "latest_10k": {"filed_at": "2026-02-19", "period": "2025-12-27", "accession": "0000916365-26-000014", "primary_document": "tsco-20251227.htm"},
+      "revenue_fact": {"namespace": "us-gaap", "tag": "Revenues", "unit": "USD", "period": "2025-12-27", "value": "15524046000"},
+      "selection_evidence": "Selected for the open PLCC slot because the latest 10-K states that Citi extends and directly controls the consumer and business credit program."
+    }
+  ],
+  "lender_evidence": [
+    {
+      "ticker": "SYF",
+      "cik": "0001601712",
+      "submissions_name": "Synchrony Financial",
+      "companyfacts_name": "Synchrony Financial",
+      "latest_10k": {"filed_at": "2026-02-06", "period": "2025-12-31", "accession": "0001601712-26-000006", "primary_document": "syf-20251231.htm"},
+      "evidence_scope": "Private-label and co-brand card portfolios and partner programs."
+    },
+    {
+      "ticker": "BFH",
+      "cik": "0001101215",
+      "submissions_name": "BREAD FINANCIAL HOLDINGS, INC.",
+      "companyfacts_name": "BREAD FINANCIAL HOLDINGS, INC.",
+      "latest_10k": {"filed_at": "2026-02-13", "period": "2025-12-31", "accession": "0001101215-26-000016", "primary_document": "bfh-20251231.htm"},
+      "evidence_scope": "Private-label and co-brand card portfolios and partner programs."
+    },
+    {
+      "ticker": "COF",
+      "cik": "0000927628",
+      "submissions_name": "CAPITAL ONE FINANCIAL CORP",
+      "companyfacts_name": "CAPITAL ONE FINANCIAL CORP",
+      "latest_10k": {"filed_at": "2026-02-19", "period": "2025-12-31", "accession": "0000927628-26-000024", "primary_document": "cof-20251231.htm"},
+      "evidence_scope": "Card balances, purchase volume, and the acquired Discover portfolio."
+    },
+    {
+      "ticker": "DFS_HIST",
+      "cik": "0001393612",
+      "submissions_name": "Discover Financial Services",
+      "companyfacts_name": "DISCOVER FINANCIAL SERVICES",
+      "latest_10k": {"filed_at": "2025-02-20", "period": "2024-12-31", "accession": "0001393612-25-000009", "primary_document": "dfs-20241231.htm"},
+      "evidence_scope": "Historical standalone Discover card balances and purchase volume before the Capital One acquisition."
+    },
+    {
+      "ticker": "AFRM",
+      "cik": "0001820953",
+      "submissions_name": "Affirm Holdings, Inc.",
+      "companyfacts_name": "Affirm Holdings, Inc.",
+      "latest_10k": {"filed_at": "2025-08-28", "period": "2025-06-30", "accession": "0001820953-25-000080", "primary_document": "afrm-20250630.htm"},
+      "evidence_scope": "BNPL gross merchandise volume, originations, and merchant relationships."
+    },
+    {
+      "ticker": "FMCC",
+      "cik": "0000038009",
+      "submissions_name": "FORD MOTOR CREDIT CO LLC",
+      "companyfacts_name": "Ford Motor Credit Company LLC",
+      "latest_10k": {"filed_at": "2026-02-11", "period": "2025-12-31", "accession": "0000038009-26-000010", "primary_document": "fmcc-20251231.htm"},
+      "evidence_scope": "Ford captive-finance retail installment and lease receivables."
+    },
+    {
+      "ticker": "GMF",
+      "cik": "0000804269",
+      "submissions_name": "General Motors Financial Company, Inc.",
+      "companyfacts_name": "General Motors Financial Company, Inc.",
+      "latest_10k": {"filed_at": "2026-01-27", "period": "2025-12-31", "accession": "0000804269-26-000008", "primary_document": "acf-20251231.htm"},
+      "evidence_scope": "GM captive-finance retail installment and lease receivables."
+    }
+  ],
+  "html_fallbacks": [
+    {
+      "ticker": "AMZN",
+      "cik": "0001018724",
+      "evidence_type": "segment_footnote",
+      "period": "2025-12-31",
+      "filed_at": "2026-02-06",
+      "accession": "0001018724-26-000004",
+      "primary_document": "amzn-20251231.htm",
+      "source_checksum": "beb1bfc28558135e76882db0cf36ba72a1ab44e2144fe37534f4da1e120ddb57",
+      "expected_snippet_hash": "4cfb0d0c33f44df76f553100a755c3841d81e0350f47cbd61b7fec7ddfe424e5",
+      "context_anchor": "Note 10 — SEGMENT INFORMATION",
+      "required_table_terms": ["2023", "North America", "International", "AWS", "Consolidated", "716,924"],
+      "units": "USD millions"
+    }
+  ]
+}

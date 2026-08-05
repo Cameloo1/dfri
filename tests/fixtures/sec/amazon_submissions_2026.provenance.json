@@ -1,0 +1,9 @@
+{
+  "source_url": "https://data.sec.gov/submissions/CIK0001018724.json",
+  "retrieved_at": "2026-08-04",
+  "source_sha256": "aff5c929f3158ba19c96903a1f02197bfd2905ce7daa020f87ee1ca69d7183c9",
+  "fixture_sha256": "f4acf86e45823499f1db2f6276652bfa352c37b4b81cdd65330ed67f05b7737c",
+  "extraction": "Minimal exact issuer identity and latest Form 10-K arrays from Amazon's SEC submissions response.",
+  "license": "U.S. SEC public-domain filing content",
+  "terms_url": "https://www.sec.gov/about/privacy-information"
+}

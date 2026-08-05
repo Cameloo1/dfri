@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edgarSubmission xmlns="http://www.sec.gov/edgar/nport">
+  <headerData>
+    <submissionType>NPORT-P</submissionType>
+  </headerData>
+  <formData>
+    <genInfo>
+      <regName>State Street(R) SPDR(R) S&amp;P 500(R) ETF Trust</regName>
+      <regCik>0000884394</regCik>
+      <repPdDate>2026-03-31</repPdDate>
+    </genInfo>
+    <invstOrSecs>
+      <invstOrSec>
+        <name>Aflac Inc</name>
+        <lei>549300N0B7DOGLXWPP39</lei>
+        <title>Aflac Inc</title>
+        <cusip>001055102</cusip>
+      </invstOrSec>
+    </invstOrSecs>
+  </formData>
+</edgarSubmission>

@@ -1,0 +1,14 @@
+{
+  "source": "SEC EDGAR",
+  "form": "ABS-EE",
+  "exhibit_type": "EX-102",
+  "trust": "AmeriCredit Automobile Receivables Trust 2023-1",
+  "cik": "0001963240",
+  "accession": "0001963240-26-000026",
+  "reporting_period": "2026-06-30",
+  "source_url": "https://www.sec.gov/Archives/edgar/data/1963240/000196324026000026/exh1024460062026.xml",
+  "source_checksum_sha256": "0ef8755a6d8c76c79be9ad61b9edba47b16212a5797cea4d783d0cdf32567205",
+  "fixture_checksum_sha256": "8d2e85ebc68aa6da4559c75cd620a44e2caa17b900367a9af4ccd926a4b98b68",
+  "extraction": "First assets element retained under the original SEC Schedule AL namespace; values are unchanged and whitespace is normalized.",
+  "license": "United States federal government work; public domain. Source citation retained."
+}

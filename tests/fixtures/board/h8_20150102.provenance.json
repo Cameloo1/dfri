@@ -1,0 +1,9 @@
+{
+  "source_url": "https://www.federalreserve.gov/releases/h8/20150102/",
+  "retrieved_at": "2026-08-04",
+  "sha256": "866213796256fbb214378ea60eb506b6324ad6bde3daa45dab21489b75a514f2",
+  "source_artifact_sha256": "e895f1d533e0ceef3f626c6a490e92caae8ddb0ebc7d7aec9e4e68f117a002fa",
+  "extraction": "Exact minimal Page 2 HTML headers and weekly values for lines 15, 16, and 17 for all commercial banks, seasonally adjusted.",
+  "release_time_evidence": "https://www.federalreserve.gov/releases/h8/2015.htm",
+  "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+}

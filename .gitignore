@@ -1,0 +1,23 @@
+.env
+.env.*
+!.env.example
+.coverage
+.hypothesis/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.uv-cache/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Append-only runtime data and local evidence are never committed by default.
+/lake/
+/published/
+/.local/
+
+# Generated build products.
+/build/
+/dist/
+/site/build/
+*.egg-info/

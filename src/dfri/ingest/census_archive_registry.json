@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "series_id": "DELTA_RETAIL_SALES.M",
+  "source": "United States Census Bureau Advance Monthly Retail Trade Survey",
+  "lake_source": "CENSUS_MARTS_ARCHIVE",
+  "expected_title": "Retail and food services sales, seasonally adjusted, advance month-over-month flow",
+  "expected_table_title": "Estimated Monthly Sales for Retail and Food Services, by Kind of Business",
+  "derivation": "Advance target-month seasonally adjusted Retail & food services total minus the preliminary prior-month seasonally adjusted total within the same immutable dated MARTS Table 1 release PDF.",
+  "archive_index_url": "https://www.census.gov/retail/marts/historic_releases.html",
+  "source_url_pattern": "https://www2.census.gov/retail/releases/historical/marts/advYYMM.pdf",
+  "units": "Millions of U.S. Dollars",
+  "frequency": "Monthly",
+  "release_time": "08:30",
+  "time_zone": "America/New_York",
+  "license_note": "Cite the U.S. Census Bureau and identify MARTS; independently produced DFRI estimates remain DFRI's responsibility.",
+  "terms_url": "https://www.census.gov/data/developers/about/terms-of-service.html",
+  "verified_at": "2026-08-04T18:55:00Z"
+}

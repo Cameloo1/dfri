@@ -1,0 +1,10 @@
+{
+  "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json",
+  "accession": "0001018724-26-000004",
+  "retrieved_at": "2026-08-04",
+  "source_sha256": "e6aadb0da7384597dbd78f74d1379ffb7fd0829a4d2e797b6d7e442b5e1da0d7",
+  "fixture_sha256": "d97cd77d80d28011a7875a15aa17e57963b405b4280875f19aa38c1c45140be5",
+  "extraction": "Minimal exact companyfacts metadata and all three fiscal-year revenue observations filed in Amazon's 2025 Form 10-K.",
+  "license": "U.S. SEC public-domain filing content",
+  "terms_url": "https://www.sec.gov/about/privacy-information"
+}

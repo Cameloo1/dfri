@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-08-04T18:30:00Z",
+  "source": "FEDERAL_RESERVE_BOARD",
+  "derived_source": "DFRI_DERIVED_BOARD_FIRST_PRINT_V1",
+  "release": "G19",
+  "derivation": "target-period seasonally adjusted level minus previous-period seasonally adjusted level within the same immutable dated G.19 release",
+  "checksum_basis": "canonical release date, target and level series IDs, target and previous periods, target and previous levels, and derived flow; volatile page-wrapper markup is excluded",
+  "source_url_pattern": "https://www.federalreserve.gov/releases/g19/YYYYMMDD/",
+  "unit": "Millions of U.S. Dollars",
+  "frequency": "Monthly",
+  "targets": [
+    {
+      "target_series_id": "DELTA_DTCTLR.M",
+      "level_series_id": "DTCTLR.M",
+      "expected_title": "First-print monthly change in revolving consumer credit owned and securitized, seasonally adjusted",
+      "source_row_label": "Revolving"
+    },
+    {
+      "target_series_id": "DELTA_DTCTLN.M",
+      "level_series_id": "DTCTLN.M",
+      "expected_title": "First-print monthly change in nonrevolving consumer credit owned and securitized, seasonally adjusted",
+      "source_row_label": "Nonrevolving"
+    }
+  ]
+}

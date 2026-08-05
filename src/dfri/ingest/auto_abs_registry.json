@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-08-04",
+  "form": "ABS-EE",
+  "exhibit_type": "EX-102",
+  "asset_class": "Auto loans",
+  "trusts": [
+    {
+      "trust_id": "ford_2023_a",
+      "cik": "0001967111",
+      "expected_name": "Ford Credit Auto Owner Trust 2023-A",
+      "sponsor": "Ford Motor Credit Company LLC",
+      "credit_segment": "not_labeled",
+      "freshness_mode": "active",
+      "terminal_evidence_url": null,
+      "classification_evidence_url": "https://www.sec.gov/Archives/edgar/data/1129987/000110465923039173/tm239508d7_ex1-1.htm",
+      "history_start": "2025-07-31",
+      "history_end": "2026-06-30",
+      "minimum_months": 12
+    },
+    {
+      "trust_id": "amcar_2023_1",
+      "cik": "0001963240",
+      "expected_name": "AmeriCredit Automobile Receivables Trust 2023-1",
+      "sponsor": "AmeriCredit Financial Services, Inc. d/b/a GM Financial",
+      "credit_segment": "subprime",
+      "freshness_mode": "active",
+      "terminal_evidence_url": null,
+      "classification_evidence_url": "https://www.sec.gov/Archives/edgar/data/1963240/000119312523058219/d442835d424h.htm",
+      "history_start": "2025-07-31",
+      "history_end": "2026-06-30",
+      "minimum_months": 12
+    },
+    {
+      "trust_id": "gmcar_2022_3",
+      "cik": "0001932377",
+      "expected_name": "GM Financial Consumer Automobile Receivables Trust 2022-3",
+      "sponsor": "AmeriCredit Financial Services, Inc. d/b/a GM Financial",
+      "credit_segment": "prime",
+      "freshness_mode": "active",
+      "terminal_evidence_url": null,
+      "classification_evidence_url": "https://www.sec.gov/Archives/edgar/data/1932377/000119312522190580/d375146d424b5.htm",
+      "history_start": "2025-07-31",
+      "history_end": "2026-06-30",
+      "minimum_months": 12
+    },
+    {
+      "trust_id": "drive_2024_1",
+      "cik": "0002009921",
+      "expected_name": "Drive Auto Receivables Trust 2024-1",
+      "sponsor": "Santander Consumer USA Inc.",
+      "credit_segment": "not_labeled",
+      "freshness_mode": "active",
+      "terminal_evidence_url": null,
+      "classification_evidence_url": "https://www.sec.gov/Archives/edgar/data/1383094/000119312524008587/d647175dex104.htm",
+      "history_start": "2025-07-31",
+      "history_end": "2026-06-30",
+      "minimum_months": 12
+    },
+    {
+      "trust_id": "honda_2023_4",
+      "cik": "0001996308",
+      "expected_name": "Honda Auto Receivables 2023-4 Owner Trust",
+      "sponsor": "American Honda Finance Corporation",
+      "credit_segment": "not_labeled",
+      "freshness_mode": "active",
+      "terminal_evidence_url": null,
+      "classification_evidence_url": "https://www.sec.gov/Archives/edgar/data/1996308/000110465923111372/tm2327732d1_424h.htm",
+      "history_start": "2025-07-31",
+      "history_end": "2026-06-30",
+      "minimum_months": 12
+    },
+    {
+      "trust_id": "toyota_2022_a",
+      "cik": "0001897392",
+      "expected_name": "Toyota Auto Receivables 2022-A Owner Trust",
+      "sponsor": "Toyota Motor Credit Corporation",
+      "credit_segment": "not_labeled",
+      "freshness_mode": "terminal_history",
+      "terminal_evidence_url": "https://www.sec.gov/Archives/edgar/data/1897392/000119312526184544/d110436dex991.htm",
+      "classification_evidence_url": "https://www.sec.gov/Archives/edgar/data/1897392/000092963822000100/a424h.htm",
+      "history_start": "2025-04-30",
+      "history_end": "2026-03-31",
+      "minimum_months": 12
+    }
+  ]
+}

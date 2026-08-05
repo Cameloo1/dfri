@@ -1,0 +1,14 @@
+[
+  {
+    "yearValue": "2026",
+    "Months": [
+      {"MonthName": "July", "MonthValue": "202607", "Dates": ["20260708"]},
+      {"MonthName": "June", "MonthValue": "202606", "Dates": ["20260605"]},
+      {"MonthName": "May", "MonthValue": "202605", "Dates": ["20260507"]},
+      {"MonthName": "April", "MonthValue": "202604", "Dates": ["20260407"]},
+      {"MonthName": "March", "MonthValue": "202603", "Dates": ["20260306"]},
+      {"MonthName": "February", "MonthValue": "202602", "Dates": ["20260206"]},
+      {"MonthName": "January", "MonthValue": "202601", "Dates": ["20260108"]}
+    ]
+  }
+]

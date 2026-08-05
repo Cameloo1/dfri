@@ -1,0 +1,18 @@
+{
+  "snapshot_id": "board-g19-dtctlr-2026-08-04",
+  "source": "Federal Reserve Board G.19",
+  "source_url": "https://www.federalreserve.gov/releases/g19/data/FRB_g19_xml.zip",
+  "source_checksum": "62ad79838a506bd614eb136c36ca4ce37b29405b395c7e2029e6a0f423d42a0a",
+  "license_url": "https://www.federalreserve.gov/disclaimer.htm",
+  "retrieved_at": "2026-08-04",
+  "series": {
+    "series_id": "DTCTLR.M",
+    "title": "Revolving consumer credit owned and securitized, seasonally adjusted level",
+    "units": "Millions of U.S. Dollars",
+    "frequency": "Monthly"
+  },
+  "observations": [
+    {"period": "2026-04-30", "value": "1349505.63", "status": "A"},
+    {"period": "2026-05-31", "value": "1344207.79", "status": "A"}
+  ]
+}

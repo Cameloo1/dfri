@@ -1,0 +1,9 @@
+{
+  "source_url": "https://www.federalreserve.gov/releases/g19/20150108/",
+  "retrieved_at": "2026-08-04",
+  "sha256": "ecee42c1acc09f4305f71a7c67365a16ce16d8833f6c8246c61073ac4a11a3d4",
+  "source_artifact_sha256": "720b897651bbb03aca816c73e1caee22af661319280307975f26bee03bf77688",
+  "extraction": "Exact minimal HTML rows and headers for the preliminary November 2014 seasonally adjusted and not-seasonally-adjusted total, revolving, and nonrevolving levels.",
+  "release_time_evidence": "https://www.federalreserve.gov/releases/g19/20150108/g19.pdf",
+  "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+}

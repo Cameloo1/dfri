@@ -1,0 +1,7 @@
+{
+  "source_url": "https://apps.bea.gov/api/data/?method=GetData&DataSetName=NIUnderlyingDetail&TableName=U20405&Frequency=M&Year=2026&ResultFormat=JSON",
+  "retrieved_at": "2026-08-04",
+  "sha256": "e0b72ed8e717ddd6e4e3db1ef336952d728d7ab7a7a893f9737b8d6c775ad689",
+  "extraction": "Exact minimal rows for the five direct BEA replacements plus nine verified 2.4.5U product-detail lines; T20600 personal income was retrieved separately and merged into this parser fixture.",
+  "license_url": "https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+}

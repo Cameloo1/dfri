@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="eyebrow">Append-only record</div>
+<h1>Every prediction. No silent edits.</h1>
+<p class="lede">Rows are ordered newest first without JavaScript. Column controls optionally re-sort this same immutable table in the browser. Actuals are release-coherent first prints, never later revisions.</p>
+<p><a href="{{ root }}v1/feeds/scoreboard.json">JSON</a> · <a href="{{ root }}v1/feeds/scoreboard.csv">CSV</a> · <a href="{{ root }}v1/feeds/nowcast_predictions.parquet">Parquet predictions</a></p>
+<div class="table-wrap">
+<table data-sortable>
+  <caption>{{ rows|length }} prediction(s); {{ excluded_count }} pre-public engineering row(s) excluded from this build.</caption>
+  <thead><tr>
+    {% for label in ["Made at", "Target", "Period", "Point", "80% band", "95% band", "First print", "Abs. error", "Status"] %}
+    <th scope="col"><button class="sort-button" data-column="{{ loop.index0 }}" data-direction="desc">{{ label }}</button></th>
+    {% endfor %}
+  </tr></thead>
+  <tbody>
+  {% for row in rows %}
+    <tr>
+      <td data-sort="{{ row.made_at }}"><a href="predictions/{{ row.prediction_id }}/index.html">{{ row.made_at_display }}</a></td>
+      <td>{{ row.target_label }}</td>
+      <td data-sort="{{ row.target_period }}">{{ row.target_period }}</td>
+      <td data-sort="{{ row.point }}">{{ row.point_display }}</td>
+      <td>{{ row.low80_display }} to {{ row.high80_display }}</td>
+      <td>{{ row.low95_display }} to {{ row.high95_display }}</td>
+      <td>{{ row.actual_display }}</td>
+      <td data-sort="{{ row.abs_error_sort }}">{{ row.abs_error_display }}</td>
+      <td><span class="status {{ row.grade_status_class }}">{{ row.grade_status }}</span></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

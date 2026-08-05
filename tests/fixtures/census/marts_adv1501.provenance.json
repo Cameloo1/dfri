@@ -1,0 +1,8 @@
+{
+  "source_url": "https://www2.census.gov/retail/releases/historical/marts/adv1501.pdf",
+  "retrieved_at": "2026-08-04T18:58:00Z",
+  "source_bytes": 63481,
+  "source_sha256": "61f1c0a4cb769d37c671a364ed314cbaff11163120843d078311a6006a5e9332",
+  "scope": "Complete official January 2015 Advance Monthly Retail Trade Survey release PDF retained to test the legacy release-header and exact Table 1 first-print parser.",
+  "license_url": "https://www.census.gov/data/developers/about/terms-of-service.html"
+}

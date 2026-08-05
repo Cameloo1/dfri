@@ -1,0 +1,9 @@
+{
+  "source_url": "https://www.federalreserve.gov/releases/g19/20200306/",
+  "retrieved_at": "2026-08-04",
+  "sha256": "fcd975f9dfa8c33829340ab706737aadb39e9d26805ed9471f089b9078486233",
+  "source_artifact_sha256": "cd165e341e491af73c3215819f647ca04f526af06c4818d1ae1ecbb5b22faa77",
+  "extraction": "Exact minimal January 2020 target context, preliminary headers, and adjusted/not-adjusted level rows from the March release.",
+  "release_time_evidence": "https://www.federalreserve.gov/newsevents/2020-march.htm",
+  "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+}

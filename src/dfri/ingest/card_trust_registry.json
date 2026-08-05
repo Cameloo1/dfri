@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "form": "10-D",
+  "minimum_trusts": 3,
+  "trusts": [
+    {
+      "trust_id": "amex_credit_account_master",
+      "trust_cik": "0001003509",
+      "archive_cik": "0001283434",
+      "expected_name": "AMERICAN EXPRESS CREDIT ACCOUNT MASTER TRUST",
+      "sponsor": "American Express",
+      "history_start": "2025-07-31",
+      "history_end": "2026-06-30",
+      "minimum_months": 12,
+      "identity_evidence_url": "https://www.sec.gov/Archives/edgar/data/1283434/000110465926083820/0001104659-26-083820-index.htm",
+      "exhibit_pattern": "(?i)ex99[-_.]?0?1d?\\.htm$",
+      "payment_rate_basis": "reported monthly payment rate",
+      "yield_basis": "reported trust portfolio yield",
+      "chargeoff_basis": "reported defaulted amount and annualized default rate",
+      "metrics": {
+        "ending_principal_receivables": {
+          "label": "Ending Principal Receivables Balance",
+          "table_anchors": ["Trust Totals", "Monthly Payment Rate", "Trust Portfolio Yield"],
+          "unit": "usd",
+          "scale": "1"
+        },
+        "principal_payment_rate_pct": {
+          "label": "Monthly Payment Rate",
+          "table_anchors": ["Trust Totals", "Trust Portfolio Yield"],
+          "unit": "percent",
+          "scale": "1"
+        },
+        "portfolio_yield_pct": {
+          "label": "Trust Portfolio Yield",
+          "table_anchors": ["Trust Totals", "Monthly Payment Rate"],
+          "unit": "percent",
+          "scale": "1"
+        },
+        "chargeoff_amount": {
+          "label": "Defaulted Amount",
+          "table_anchors": ["Trust Totals", "Monthly Payment Rate", "Trust Portfolio Yield"],
+          "unit": "usd",
+          "scale": "1"
+        },
+        "chargeoff_rate_pct": {
+          "label": "Annualized Default Rate",
+          "table_anchors": ["Trust Totals", "Monthly Payment Rate", "Trust Portfolio Yield"],
+          "unit": "percent",
+          "scale": "1"
+        }
+      }
+    },
+    {
+      "trust_id": "citibank_credit_card_issuance",
+      "trust_cik": "0001108348",
+      "archive_cik": "0000921864",
+      "expected_name": "CITIBANK CREDIT CARD ISSUANCE TRUST",
+      "sponsor": "Citibank",
+      "history_start": "2025-07-28",
+      "history_end": "2026-06-25",
+      "minimum_months": 12,
+      "identity_evidence_url": "https://www.sec.gov/Archives/edgar/data/921864/000119312526304533/0001193125-26-304533-index.htm",
+      "exhibit_pattern": "(?i)ex99\\.htm$",
+      "payment_rate_basis": "reported principal payment rate",
+      "yield_basis": "reported portfolio yield for the collateral certificate",
+      "chargeoff_basis": "reported annualized credit loss component; dollar amount not reported at pool level",
+      "metrics": {
+        "ending_principal_receivables": {
+          "label": "Principal Receivables End of Due Period",
+          "table_anchors": ["Credit Loss Component", "Principal Payment Rate"],
+          "unit": "usd",
+          "scale": "1"
+        },
+        "principal_payment_rate_pct": {
+          "label": "4. Principal Payment Rate",
+          "table_anchors": ["Credit Loss Component", "Principal Receivables End of Due Period"],
+          "unit": "percent",
+          "scale": "1"
+        },
+        "portfolio_yield_pct": {
+          "label": "1. Portfolio Yield for the Collateral Certificate",
+          "table_anchors": ["Credit Loss Component", "Principal Payment Rate"],
+          "unit": "percent",
+          "scale": "1"
+        },
+        "chargeoff_amount": null,
+        "chargeoff_rate_pct": {
+          "label": "Credit Loss Component",
+          "table_anchors": ["Principal Payment Rate", "Principal Receivables End of Due Period"],
+          "unit": "percent",
+          "scale": "1"
+        }
+      }
+    },
+    {
+      "trust_id": "ba_credit_card",
+      "trust_cik": "0001128250",
+      "archive_cik": "0001128250",
+      "expected_name": "BA Credit Card Trust",
+      "sponsor": "Bank of America",
+      "history_start": "2025-07-31",
+      "history_end": "2026-06-30",
+      "minimum_months": 12,
+      "identity_evidence_url": "https://www.sec.gov/Archives/edgar/data/1128250/000114036126028491/0001140361-26-028491-index.htm",
+      "exhibit_pattern": "(?i)exh?99[-_.]?1\\.htm$",
+      "payment_rate_basis": "reported principal collections as a percentage of prior-month principal receivables",
+      "yield_basis": "reported portfolio yield for the monthly period",
+      "chargeoff_basis": "reported total principal charge-offs and annualized percentage; source dollars are thousands",
+      "metrics": {
+        "ending_principal_receivables": {
+          "label": "The aggregate amount of Principal Receivables in the Trust as of the end of the day on the last day of the related Monthly Period",
+          "table_anchors": [
+            "BA Master Credit Card Trust II",
+            "The aggregate amount of Receivables in the Trust as of the beginning of the related Monthly Period"
+          ],
+          "unit": "usd",
+          "scale": "1"
+        },
+        "principal_payment_rate_pct": {
+          "label": "Collections of Principal Receivables as a percentage of prior month Principal Receivables",
+          "table_anchors": ["Collections of Trust Receivables and Payment Rates"],
+          "unit": "percent",
+          "scale": "1"
+        },
+        "portfolio_yield_pct": {
+          "label": "The Portfolio Yield for the related Monthly Period",
+          "table_anchors": ["Investor Default Amount", "Portfolio Yield"],
+          "unit": "percent",
+          "scale": "1"
+        },
+        "chargeoff_amount": {
+          "label": "Total Charge-Offs",
+          "table_anchors": ["Principal Charge-Off Experience"],
+          "period_in_table": true,
+          "unit": "usd",
+          "scale": "1000"
+        },
+        "chargeoff_rate_pct": {
+          "label": "Total Charge-Offs as a percentage of Average Principal Receivables Outstanding",
+          "table_anchors": ["Principal Charge-Off Experience"],
+          "period_in_table": true,
+          "unit": "percent",
+          "scale": "1"
+        }
+      }
+    }
+  ]
+}

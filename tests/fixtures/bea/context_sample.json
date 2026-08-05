@@ -1,0 +1,22 @@
+{
+  "BEAAPI": {
+    "Results": {
+      "Data": [
+        {"TableName":"U20405","SeriesCode":"DPCERC","LineNumber":"1","LineDescription":"Personal consumption expenditures","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"22,184,132"},
+        {"TableName":"U20405","SeriesCode":"DDURRC","LineNumber":"3","LineDescription":"Durable goods","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"2,423,888"},
+        {"TableName":"U20405","SeriesCode":"DNDGRC","LineNumber":"72","LineDescription":"Nondurable goods","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"4,506,036"},
+        {"TableName":"U20405","SeriesCode":"DSERRC","LineNumber":"150","LineDescription":"Services","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"15,254,209"},
+        {"TableName":"T20600","SeriesCode":"A065RC","LineNumber":"1","LineDescription":"Personal income","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"26,994,002"},
+        {"TableName":"U20405","SeriesCode":"DMOTRC","LineNumber":"4","LineDescription":"Motor vehicles and parts","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"783,958"},
+        {"TableName":"U20405","SeriesCode":"DFDHRC","LineNumber":"23","LineDescription":"Furnishings and durable household equipment","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"538,531"},
+        {"TableName":"U20405","SeriesCode":"DREQRC","LineNumber":"38","LineDescription":"Recreational goods and vehicles","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"779,243"},
+        {"TableName":"U20405","SeriesCode":"DFXARC","LineNumber":"73","LineDescription":"Food and beverages purchased for off-premises consumption","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"1,573,915"},
+        {"TableName":"U20405","SeriesCode":"DCLORC","LineNumber":"104","LineDescription":"Clothing and footwear","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"605,881"},
+        {"TableName":"U20405","SeriesCode":"DGOERC","LineNumber":"113","LineDescription":"Gasoline and other energy goods","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"507,829"},
+        {"TableName":"U20405","SeriesCode":"DHLCRC","LineNumber":"172","LineDescription":"Health care","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"3,741,022"},
+        {"TableName":"U20405","SeriesCode":"DFSARC","LineNumber":"234","LineDescription":"Food services and accommodations","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"1,560,663"},
+        {"TableName":"U20405","SeriesCode":"DIFSRC","LineNumber":"252","LineDescription":"Financial services and insurance","CL_UNIT":"Level","UNIT_MULT":"6","TimePeriod":"2026M06","DataValue":"1,851,199"}
+      ]
+    }
+  }
+}

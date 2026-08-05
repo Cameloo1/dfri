@@ -1,0 +1,162 @@
+{
+  "as_of": "2026-08-04T23:59:00+00:00",
+  "backtest_version": "m2-point-in-time-backtest-v1",
+  "primary_headline": {
+    "all_bars_pass": true,
+    "bars": {
+      "acceleration_sign_accuracy_at_least_55pct": true,
+      "coverage80_within_5pp": true,
+      "coverage95_within_5pp": true,
+      "mae_at_least_10pct_better_than_best_naive": true
+    },
+    "best_naive_model_version": "ar2-ols-v1",
+    "mae_improvement_vs_best_naive": 0.3811962418568726,
+    "model_version": "bridge-ridge-v2-alpha10",
+    "state_space_eligible_under_section_6_2": false,
+    "target_series": "DELTA_DTCTLR.M"
+  },
+  "report_hash": "8c0611137452d7fcdf1aa4509d7a2ef877726ec9448a914e0fc9f0974a56c8c6",
+  "secondary_target_note": "DELTA_DTCTLN.M is reported as a secondary diagnostic and is not used for the primary M2 acceptance-bar decision.",
+  "sources": {
+    "census_marts_archive": "https://www.census.gov/retail/marts/historic_releases.html",
+    "g19_archive": "https://www.federalreserve.gov/releases/g19/",
+    "h8_archive": "https://www.federalreserve.gov/releases/h8/"
+  },
+  "targets": [
+    {
+      "first_vintage_checksum": "912111a51c64f694156ff91a28eafcd81782deccd9364d492cda1ace5e959874",
+      "first_vintage_url": "https://www.federalreserve.gov/releases/g19/20150306/",
+      "last_vintage_checksum": "3c1d55e927f0ccbc935e64ac4a33b8ae4cecb6f7585d08f885bdf1ee29679544",
+      "last_vintage_url": "https://www.federalreserve.gov/releases/g19/20260708/",
+      "metrics": [
+        {
+          "acceleration_sign_accuracy": 0.7326732673267327,
+          "coverage80": null,
+          "coverage95": null,
+          "mae": 7486.7972106898405,
+          "model_version": "ar2-ols-v1",
+          "observations": 101,
+          "period_end": "2026-05-31",
+          "period_start": "2018-01-31",
+          "rmse": 11645.149011243428
+        },
+        {
+          "acceleration_sign_accuracy": 0.8712871287128713,
+          "coverage80": 0.7128712871287128,
+          "coverage95": 0.9306930693069307,
+          "mae": 4632.858250430357,
+          "model_version": "bridge-ridge-v2-alpha10",
+          "observations": 101,
+          "period_end": "2026-05-31",
+          "period_start": "2018-01-31",
+          "rmse": 7948.380436304028
+        },
+        {
+          "acceleration_sign_accuracy": 0.8613861386138614,
+          "coverage80": 0.6336633663366337,
+          "coverage95": 0.8514851485148515,
+          "mae": 5073.118422995915,
+          "model_version": "mixed-frequency-kalman-v1-sm0.14.6",
+          "observations": 101,
+          "period_end": "2026-05-31",
+          "period_start": "2018-01-31",
+          "rmse": 7718.13095685615
+        },
+        {
+          "acceleration_sign_accuracy": 0.0,
+          "coverage80": null,
+          "coverage95": null,
+          "mae": 9186.138613861385,
+          "model_version": "naive-random-walk-v1",
+          "observations": 101,
+          "period_end": "2026-05-31",
+          "period_start": "2018-01-31",
+          "rmse": 11721.597228371158
+        },
+        {
+          "acceleration_sign_accuracy": 0.7128712871287128,
+          "coverage80": null,
+          "coverage95": null,
+          "mae": 8836.633663366336,
+          "model_version": "naive-seasonal-v1",
+          "observations": 101,
+          "period_end": "2026-05-31",
+          "period_start": "2018-01-31",
+          "rmse": 13908.865325879942
+        }
+      ],
+      "target_observations": 137,
+      "target_period_end": "2026-05-31",
+      "target_period_start": "2015-01-31",
+      "target_series": "DELTA_DTCTLR.M"
+    },
+    {
+      "first_vintage_checksum": "912111a51c64f694156ff91a28eafcd81782deccd9364d492cda1ace5e959874",
+      "first_vintage_url": "https://www.federalreserve.gov/releases/g19/20150306/",
+      "last_vintage_checksum": "3c1d55e927f0ccbc935e64ac4a33b8ae4cecb6f7585d08f885bdf1ee29679544",
+      "last_vintage_url": "https://www.federalreserve.gov/releases/g19/20260708/",
+      "metrics": [
+        {
+          "acceleration_sign_accuracy": 0.6831683168316832,
+          "coverage80": null,
+          "coverage95": null,
+          "mae": 4905.738824051675,
+          "model_version": "ar2-ols-v1",
+          "observations": 101,
+          "period_end": "2026-05-31",
+          "period_start": "2018-01-31",
+          "rmse": 7278.093664501514
+        },
+        {
+          "acceleration_sign_accuracy": 0.7128712871287128,
+          "coverage80": 0.7821782178217822,
+          "coverage95": 0.9306930693069307,
+          "mae": 5301.60666590203,
+          "model_version": "bridge-ridge-v2-alpha10",
+          "observations": 101,
+          "period_end": "2026-05-31",
+          "period_start": "2018-01-31",
+          "rmse": 9665.799308565724
+        },
+        {
+          "acceleration_sign_accuracy": 0.7326732673267327,
+          "coverage80": 0.6732673267326733,
+          "coverage95": 0.8316831683168316,
+          "mae": 5228.419597276505,
+          "model_version": "mixed-frequency-kalman-v1-sm0.14.6",
+          "observations": 101,
+          "period_end": "2026-05-31",
+          "period_start": "2018-01-31",
+          "rmse": 10042.79445875639
+        },
+        {
+          "acceleration_sign_accuracy": 0.009900990099009901,
+          "coverage80": null,
+          "coverage95": null,
+          "mae": 5858.415841584158,
+          "model_version": "naive-random-walk-v1",
+          "observations": 101,
+          "period_end": "2026-05-31",
+          "period_start": "2018-01-31",
+          "rmse": 8461.76607739276
+        },
+        {
+          "acceleration_sign_accuracy": 0.7227722772277227,
+          "coverage80": null,
+          "coverage95": null,
+          "mae": 6223.762376237623,
+          "model_version": "naive-seasonal-v1",
+          "observations": 101,
+          "period_end": "2026-05-31",
+          "period_start": "2018-01-31",
+          "rmse": 9685.684036118706
+        }
+      ],
+      "target_observations": 137,
+      "target_period_end": "2026-05-31",
+      "target_period_start": "2015-01-31",
+      "target_series": "DELTA_DTCTLN.M"
+    }
+  ],
+  "window_start": "2018-01-01"
+}

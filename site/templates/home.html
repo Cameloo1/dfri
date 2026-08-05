@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="eyebrow">Publicly falsifiable consumer-credit research</div>
+<h1>Predictions that cannot be revised away.</h1>
+<p class="lede">{{ brand.product_name }} records timestamped estimates of upcoming Federal Reserve consumer-credit flows, then grades each one against the first published G.19 value. Points are never shown without uncertainty bands.</p>
+
+<section class="grid" aria-label="Scoreboard summary">
+  {% if latest %}
+  <article class="card primary">
+    <div class="kicker">Latest prediction · {{ latest.target_label }} · {{ latest.target_period }}</div>
+    <div class="number">{{ latest.point_display }}</div>
+    <div class="meta">Millions of U.S. dollars · <span class="status {{ latest.grade_status_class }}">{{ latest.grade_status }}</span></div>
+    <div class="band" aria-label="95 percent interval from {{ latest.low95_display }} to {{ latest.high95_display }}; 80 percent interval from {{ latest.low80_display }} to {{ latest.high80_display }}; point {{ latest.point_display }}">
+      <div class="band-track"><span class="band-80"></span><span class="band-point"></span></div>
+      <div class="band-labels"><span>{{ latest.low95_display }}</span><span>95% band</span><span>{{ latest.high95_display }}</span></div>
+    </div>
+    <p><a href="scoreboard/predictions/{{ latest.prediction_id }}/index.html">Open immutable prediction →</a></p>
+  </article>
+  {% else %}
+  <article class="card primary"><h2>No predictions yet</h2><p>The feed is valid but the public clock has not started.</p></article>
+  {% endif %}
+  <article class="card metric"><div class="kicker">Recorded predictions</div><div class="number">{{ summary.prediction_count }}</div><div class="meta">{{ summary.graded_count }} graded · {{ summary.pending_count }} awaiting first print</div></article>
+  <article class="card metric"><div class="kicker">Primary backtest MAE</div><div class="number">{{ summary.mae_display }}</div><div class="meta">{{ summary.improvement_display }} better than {{ summary.best_naive }}</div></article>
+  <article class="card metric"><div class="kicker">Backtest coverage</div><div class="number">{{ summary.coverage80_display }}</div><div class="meta">80% band · 95% band {{ summary.coverage95_display }}</div></article>
+</section>
+
+<p class="lede">The debt-funded revenue attribution index is intentionally not shown yet. It remains blocked until this scoreboard completes two genuine scheduled public cycles.</p>
+{% endblock %}

@@ -1,0 +1,8 @@
+{
+  "source_url": "https://www2.census.gov/retail/releases/historical/marts/adv2605.pdf",
+  "retrieved_at": "2026-08-04T18:58:00Z",
+  "source_bytes": 439812,
+  "source_sha256": "44dc232db43c1d2d6f7244e832b6293c7817a0855b45d1d0ca17a3536cda9382",
+  "scope": "Complete official May 2026 Advance Monthly Retail Trade Survey release PDF retained to test the current release-header and exact Table 1 first-print parser.",
+  "license_url": "https://www.census.gov/data/developers/about/terms-of-service.html"
+}

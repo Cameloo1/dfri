@@ -1,0 +1,7 @@
+{
+  "source_url": "https://api.census.gov/data/timeseries/eits/marts?get=cell_value%2Cdata_type_code%2Ctime_slot_id%2Ctime_slot_name%2Ctime_slot_date%2Ccategory_code%2Cseasonally_adj%2Cprogram_code&time=2026-06",
+  "retrieved_at": "2026-08-04",
+  "sha256": "e173e10a16033d54f7adb095b3765024a874e9594872784d7a3b5937fdb63e95",
+  "extraction": "Exact minimal June 2026 MARTS rows for the total and five live-verified category contracts; credential query parameter removed.",
+  "license_url": "https://www.census.gov/data/developers/about/terms-of-service.html"
+}

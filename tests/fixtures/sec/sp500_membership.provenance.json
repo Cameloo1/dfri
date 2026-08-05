@@ -1,0 +1,24 @@
+{
+  "source_urls": [
+    "https://en.wikipedia.org/w/api.php?action=parse&page=List%20of%20S%26P%20500%20companies&prop=text%7Crevid&format=json&formatversion=2",
+    "https://www.sec.gov/Archives/edgar/data/884394/000141036826055357/primary_doc.xml"
+  ],
+  "retrieved_at": "2026-08-04",
+  "source_sha256": {
+    "wikimedia_response": "acbb4d5417b9728641b4c9c3c6700ab951cb8d16a4f9b1b4d946c2fb3e7ed64e",
+    "sec_nport_document": "15293bbf92268cdc02e39cb8116eae2ad64dfc7afb16a751e48b9bf232f4fb00"
+  },
+  "fixture_sha256": {
+    "sp500_wikimedia_excerpt.json": "6cb7a4611d76d711e5340f61e65d4a79faba0fc60d0ffe875862ae704ae24758",
+    "sp500_nport_excerpt.xml": "94a2eb607eceded98c4936b4db5d8be557734941b7a9a66b612cc8ecca1805ba"
+  },
+  "extraction": "Minimal source-shaped excerpts retaining exact revision, table-cell, filing-identity, and one holding-identity value from the live sources.",
+  "licenses": {
+    "sp500_wikimedia_excerpt.json": "CC BY-SA 4.0; source: Wikipedia contributors, List of S&P 500 companies, revision 1367510220",
+    "sp500_nport_excerpt.xml": "U.S. SEC public-domain filing content"
+  },
+  "terms_urls": [
+    "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+    "https://www.sec.gov/about/privacy-information"
+  ]
+}

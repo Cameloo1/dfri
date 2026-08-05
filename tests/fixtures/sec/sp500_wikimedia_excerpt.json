@@ -1,0 +1,8 @@
+{
+  "parse": {
+    "title": "List of S&P 500 companies",
+    "pageid": 2676045,
+    "revid": 1367510220,
+    "text": "<table class=\"wikitable sortable\" id=\"constituents\"><tbody><tr><th>Symbol</th><th>Security</th><th>GICS Sector</th><th>GICS Sub-Industry</th><th>Headquarters Location</th><th>Date added</th><th>CIK</th><th>Founded</th></tr><tr><td>AMZN</td><td>Amazon</td><td>Consumer Discretionary</td><td>Broadline Retail</td><td>Seattle, Washington</td><td>2005-11-18</td><td>0001018724</td><td>1994</td></tr><tr><td>GM</td><td>General Motors</td><td>Consumer Discretionary</td><td>Automobile Manufacturers</td><td>Detroit, Michigan</td><td>2013-06-06</td><td>0001467858</td><td>1908</td></tr></tbody></table>"
+  }
+}

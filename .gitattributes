@@ -1,0 +1,2 @@
+# Archived source fixtures are checksum-pinned evidence. Preserve their exact bytes.
+tests/fixtures/** -text

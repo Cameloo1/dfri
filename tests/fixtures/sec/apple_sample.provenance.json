@@ -1,0 +1,13 @@
+{
+  "source_urls": [
+    "https://data.sec.gov/submissions/CIK0000320193.json",
+    "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
+  ],
+  "retrieved_at": "2026-08-04",
+  "sha256": {
+    "apple_submissions_sample.json": "2a741966c3d1a0fbea57fb360c30128660c8e5e8d6d80ef55cca1bc73958100a",
+    "apple_companyfacts_sample.json": "123409ad7421061bc4834ea880ff028956af7c90538c7ed2befedd7423c787c4"
+  },
+  "extraction": "Minimal exact identity and response-shape fields from Apple submissions and companyfacts responses.",
+  "license_url": "https://www.sec.gov/about/privacy-information"
+}

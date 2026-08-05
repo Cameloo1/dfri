@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-08-04",
+  "window_start": "2026-08-01",
+  "window_end": "2027-07-31",
+  "sources": {
+    "G.19": {
+      "url": "https://www.federalreserve.gov/releases/g19/",
+      "finding": "The Board states releases occur around the fifth business day but does not publish exact dates for the full horizon; exact dates remain BLOCKED until announced."
+    },
+    "H.8": {
+      "url": "https://www.federalreserve.gov/releases/h8/",
+      "holiday_url": "https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/",
+      "finding": "The Board states H.8 is released Friday at 4:15 p.m. ET, or Thursday when Friday is a federal holiday; rule-derived dates are labeled EXPECTED_RULE."
+    },
+    "NY Fed HHDC": {
+      "url": "https://www.newyorkfed.org/microeconomics/calendar.html",
+      "finding": "The calendar announces August 4 and November 3, 2026 without a release time; those date-only events and later unannounced quarters remain BLOCKED rather than assigned inferred timestamps."
+    },
+    "Census MARTS": {
+      "url": "https://www.census.gov/retail/release_schedule.html",
+      "finding": "Exact 8:30 a.m. ET dates are announced through December 2026; later months remain BLOCKED."
+    },
+    "BEA Personal Income and Outlays": {
+      "url": "https://www.bea.gov/news/schedule",
+      "finding": "Exact 8:30 a.m. ET dates are announced through December 2026; later months remain BLOCKED."
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "source_url": "https://www.federalreserve.gov/releases/g19/20260708/",
+  "retrieved_at": "2026-08-04T18:30:00Z",
+  "source_bytes": 133372,
+  "source_sha256": "33a69cc4669561a3bb73cd9cbc76864e3c45f1b54a55c2cac931003d82124d11",
+  "fixture_sha256": "ce942da29a4a96c687b267f2a0719cd617984a6d9e413d55d426d23a8f9642c6",
+  "scope": "Source-shaped minimal excerpt retaining the exact release date, month headers, and seasonally adjusted total/revolving/nonrevolving level rows for April and May 2026.",
+  "license_note": "Federal Reserve Board website information is public domain unless otherwise indicated; cite the Board."
+}

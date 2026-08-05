@@ -1,0 +1,18 @@
+{
+  "source": "SEC EDGAR",
+  "form": "10-D",
+  "exhibit_type": "EX-99.01",
+  "trust": "AMERICAN EXPRESS CREDIT ACCOUNT MASTER TRUST",
+  "trust_cik": "0001003509",
+  "archive_cik": "0001283434",
+  "accession": "0001104659-26-083820",
+  "reporting_period": "2026-06-30",
+  "filed_at": "2026-07-15",
+  "retrieved_at": "2026-08-04",
+  "source_url": "https://www.sec.gov/Archives/edgar/data/1283434/000110465926083820/tm2620300d1_ex99-01.htm",
+  "source_checksum_sha256": "fc4690a3a749e923de031838ad75056210a3a88f6f46d3a426d56611f17b4ce8",
+  "fixture_checksum_sha256": "bdfb0befc1468ada8076256839b48c736b0c7c1447335f1f3cdf7a33930dc5fe",
+  "extraction": "Source-shaped HTML retaining the exact trust-total labels, units, and values required by the parser; presentation-only markup and unrelated series tables are omitted.",
+  "license": "U.S. SEC public-domain filing content",
+  "terms_url": "https://www.sec.gov/about/privacy-information"
+}

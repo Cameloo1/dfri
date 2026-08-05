@@ -1,0 +1,5046 @@
+{
+  "as_of": "2026-08-04T16:21:24.531780+00:00",
+  "attribution": "Source: Wikipedia contributors, List of S&P 500 companies, revision 1367510220.",
+  "entries": [
+    {
+      "cik": "0000066740",
+      "date_added": "1957-03-04",
+      "founded": "1902",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Conglomerates",
+      "headquarters": "Saint Paul, Minnesota",
+      "security": "3M",
+      "symbol": "MMM"
+    },
+    {
+      "cik": "0000091142",
+      "date_added": "2017-07-26",
+      "founded": "1916",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Building Products",
+      "headquarters": "Milwaukee, Wisconsin",
+      "security": "A. O. Smith",
+      "symbol": "AOS"
+    },
+    {
+      "cik": "0000001800",
+      "date_added": "1957-03-04",
+      "founded": "1888",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "North Chicago, Illinois",
+      "security": "Abbott Laboratories",
+      "symbol": "ABT"
+    },
+    {
+      "cik": "0001551152",
+      "date_added": "2012-12-31",
+      "founded": "2013 (1888)",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Biotechnology",
+      "headquarters": "North Chicago, Illinois",
+      "security": "AbbVie",
+      "symbol": "ABBV"
+    },
+    {
+      "cik": "0001467373",
+      "date_added": "2011-07-06",
+      "founded": "1989",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "IT Consulting & Other Services",
+      "headquarters": "Dublin, Ireland",
+      "security": "Accenture",
+      "symbol": "ACN"
+    },
+    {
+      "cik": "0000796343",
+      "date_added": "1997-05-05",
+      "founded": "1982",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "San Jose, California",
+      "security": "Adobe Inc.",
+      "symbol": "ADBE"
+    },
+    {
+      "cik": "0000002488",
+      "date_added": "2017-03-20",
+      "founded": "1969",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Santa Clara, California",
+      "security": "Advanced Micro Devices",
+      "symbol": "AMD"
+    },
+    {
+      "cik": "0000874761",
+      "date_added": "1998-10-02",
+      "founded": "1981",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Independent Power Producers & Energy Traders",
+      "headquarters": "Arlington, Virginia",
+      "security": "AES Corporation",
+      "symbol": "AES"
+    },
+    {
+      "cik": "0000004977",
+      "date_added": "1999-05-28",
+      "founded": "1955",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Life & Health Insurance",
+      "headquarters": "Columbus, Georgia",
+      "security": "Aflac",
+      "symbol": "AFL"
+    },
+    {
+      "cik": "0001090872",
+      "date_added": "2000-06-05",
+      "founded": "1999",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Life Sciences Tools & Services",
+      "headquarters": "Santa Clara, California",
+      "security": "Agilent Technologies",
+      "symbol": "A"
+    },
+    {
+      "cik": "0000002969",
+      "date_added": "1985-04-30",
+      "founded": "1940",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Industrial Gases",
+      "headquarters": "Upper Macungie Township, Pennsylvania",
+      "security": "Air Products",
+      "symbol": "APD"
+    },
+    {
+      "cik": "0001559720",
+      "date_added": "2023-09-18",
+      "founded": "2008",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Hotels, Resorts & Cruise Lines",
+      "headquarters": "San Francisco, California",
+      "security": "Airbnb",
+      "symbol": "ABNB"
+    },
+    {
+      "cik": "0001086222",
+      "date_added": "2007-07-12",
+      "founded": "1998",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Internet Services & Infrastructure",
+      "headquarters": "Cambridge, Massachusetts",
+      "security": "Akamai Technologies",
+      "symbol": "AKAM"
+    },
+    {
+      "cik": "0000915913",
+      "date_added": "2016-07-01",
+      "founded": "1994",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Specialty Chemicals",
+      "headquarters": "Charlotte, North Carolina",
+      "security": "Albemarle Corporation",
+      "symbol": "ALB"
+    },
+    {
+      "cik": "0001035443",
+      "date_added": "2017-03-20",
+      "founded": "1994",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Office REITs",
+      "headquarters": "Pasadena, California",
+      "security": "Alexandria Real Estate Equities",
+      "symbol": "ARE"
+    },
+    {
+      "cik": "0001097149",
+      "date_added": "2017-06-19",
+      "founded": "1997",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Supplies",
+      "headquarters": "Tempe, Arizona",
+      "security": "Align Technology",
+      "symbol": "ALGN"
+    },
+    {
+      "cik": "0001579241",
+      "date_added": "2013-12-02",
+      "founded": "1908",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Building Products",
+      "headquarters": "Dublin, Ireland",
+      "security": "Allegion",
+      "symbol": "ALLE"
+    },
+    {
+      "cik": "0000352541",
+      "date_added": "2016-07-01",
+      "founded": "1917",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Madison, Wisconsin",
+      "security": "Alliant Energy",
+      "symbol": "LNT"
+    },
+    {
+      "cik": "0000899051",
+      "date_added": "1995-07-13",
+      "founded": "1931",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Property & Casualty Insurance",
+      "headquarters": "Northbrook, Illinois",
+      "security": "Allstate",
+      "symbol": "ALL"
+    },
+    {
+      "cik": "0001652044",
+      "date_added": "2006-04-03",
+      "founded": "1998",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Interactive Media & Services",
+      "headquarters": "Mountain View, California",
+      "security": "Alphabet Inc. (Class A)",
+      "symbol": "GOOGL"
+    },
+    {
+      "cik": "0001652044",
+      "date_added": "2014-04-03",
+      "founded": "1998",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Interactive Media & Services",
+      "headquarters": "Mountain View, California",
+      "security": "Alphabet Inc. (Class C)",
+      "symbol": "GOOG"
+    },
+    {
+      "cik": "0000764180",
+      "date_added": "1957-03-04",
+      "founded": "1985",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Tobacco",
+      "headquarters": "Richmond, Virginia",
+      "security": "Altria",
+      "symbol": "MO"
+    },
+    {
+      "cik": "0001018724",
+      "date_added": "2005-11-18",
+      "founded": "1994",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Broadline Retail",
+      "headquarters": "Seattle, Washington",
+      "security": "Amazon",
+      "symbol": "AMZN"
+    },
+    {
+      "cik": "0001748790",
+      "date_added": "2019-06-07",
+      "founded": "2019 (1860)",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Paper & Plastic Packaging Products & Materials",
+      "headquarters": "Warmley, Bristol, United Kingdom",
+      "security": "Amcor",
+      "symbol": "AMCR"
+    },
+    {
+      "cik": "0001002910",
+      "date_added": "1991-09-19",
+      "founded": "1902",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "St. Louis, Missouri",
+      "security": "Ameren",
+      "symbol": "AEE"
+    },
+    {
+      "cik": "0000004904",
+      "date_added": "1957-03-04",
+      "founded": "1906",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Columbus, Ohio",
+      "security": "American Electric Power",
+      "symbol": "AEP"
+    },
+    {
+      "cik": "0000004962",
+      "date_added": "1976-06-30",
+      "founded": "1850",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Consumer Finance",
+      "headquarters": "New York City, New York",
+      "security": "American Express",
+      "symbol": "AXP"
+    },
+    {
+      "cik": "0000005272",
+      "date_added": "1980-03-31",
+      "founded": "1919",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Multi-line Insurance",
+      "headquarters": "New York City, New York",
+      "security": "American International Group",
+      "symbol": "AIG"
+    },
+    {
+      "cik": "0001053507",
+      "date_added": "2007-11-19",
+      "founded": "1995",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Telecom Tower REITs",
+      "headquarters": "Boston, Massachusetts",
+      "security": "American Tower",
+      "symbol": "AMT"
+    },
+    {
+      "cik": "0001410636",
+      "date_added": "2016-03-04",
+      "founded": "1886",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Water Utilities",
+      "headquarters": "Camden, New Jersey",
+      "security": "American Water Works",
+      "symbol": "AWK"
+    },
+    {
+      "cik": "0000820027",
+      "date_added": "2005-10-03",
+      "founded": "1894",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "Minneapolis, Minnesota",
+      "security": "Ameriprise Financial",
+      "symbol": "AMP"
+    },
+    {
+      "cik": "0001037868",
+      "date_added": "2013-09-23",
+      "founded": "1930",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Electrical Components & Equipment",
+      "headquarters": "Berwyn, Pennsylvania",
+      "security": "Ametek",
+      "symbol": "AME"
+    },
+    {
+      "cik": "0000318154",
+      "date_added": "1992-01-02",
+      "founded": "1980",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Biotechnology",
+      "headquarters": "Thousand Oaks, California",
+      "security": "Amgen",
+      "symbol": "AMGN"
+    },
+    {
+      "cik": "0000820313",
+      "date_added": "2008-09-30",
+      "founded": "1932",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Electronic Components",
+      "headquarters": "Wallingford, Connecticut",
+      "security": "Amphenol",
+      "symbol": "APH"
+    },
+    {
+      "cik": "0000006281",
+      "date_added": "1999-10-12",
+      "founded": "1965",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Wilmington, Massachusetts",
+      "security": "Analog Devices",
+      "symbol": "ADI"
+    },
+    {
+      "cik": "0000315293",
+      "date_added": "1996-04-23",
+      "founded": "1982 (1919)",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Insurance Brokers",
+      "headquarters": "London, United Kingdom",
+      "security": "Aon plc",
+      "symbol": "AON"
+    },
+    {
+      "cik": "0001841666",
+      "date_added": "1997-07-28",
+      "founded": "1954",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Exploration & Production",
+      "headquarters": "Houston, Texas",
+      "security": "APA Corporation",
+      "symbol": "APA"
+    },
+    {
+      "cik": "0001858681",
+      "date_added": "2024-12-23",
+      "founded": "1990",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "New York City, New York",
+      "security": "Apollo Global Management",
+      "symbol": "APO"
+    },
+    {
+      "cik": "0000320193",
+      "date_added": "1982-11-30",
+      "founded": "1977",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Technology Hardware, Storage & Peripherals",
+      "headquarters": "Cupertino, California",
+      "security": "Apple Inc.",
+      "symbol": "AAPL"
+    },
+    {
+      "cik": "0000006951",
+      "date_added": "1995-03-16",
+      "founded": "1967",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductor Materials & Equipment",
+      "headquarters": "Santa Clara, California",
+      "security": "Applied Materials",
+      "symbol": "AMAT"
+    },
+    {
+      "cik": "0001751008",
+      "date_added": "2025-09-22",
+      "founded": "2012",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "Palo Alto, California",
+      "security": "AppLovin",
+      "symbol": "APP"
+    },
+    {
+      "cik": "0001521332",
+      "date_added": "2012-12-24",
+      "founded": "1994",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Automotive Parts & Equipment",
+      "headquarters": "Schaffhausen, Switzerland",
+      "security": "Aptiv",
+      "symbol": "APTV"
+    },
+    {
+      "cik": "0000947484",
+      "date_added": "2022-11-01",
+      "founded": "1995",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Property & Casualty Insurance",
+      "headquarters": "Hamilton, Bermuda",
+      "security": "Arch Capital Group",
+      "symbol": "ACGL"
+    },
+    {
+      "cik": "0000007084",
+      "date_added": "1957-03-04",
+      "founded": "1902",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Agricultural Products & Services",
+      "headquarters": "Chicago, Illinois",
+      "security": "Archer Daniels Midland",
+      "symbol": "ADM"
+    },
+    {
+      "cik": "0001176948",
+      "date_added": "2025-12-11",
+      "founded": "1977",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "Los Angeles, California",
+      "security": "Ares Management",
+      "symbol": "ARES"
+    },
+    {
+      "cik": "0001596532",
+      "date_added": "2018-08-28",
+      "founded": "2004",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Communications Equipment",
+      "headquarters": "Santa Clara, California",
+      "security": "Arista Networks",
+      "symbol": "ANET"
+    },
+    {
+      "cik": "0000354190",
+      "date_added": "2016-05-31",
+      "founded": "1927",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Insurance Brokers",
+      "headquarters": "Rolling Meadows, Illinois",
+      "security": "Arthur J. Gallagher & Co.",
+      "symbol": "AJG"
+    },
+    {
+      "cik": "0001267238",
+      "date_added": "2007-04-10",
+      "founded": "1892",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Multi-line Insurance",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Assurant",
+      "symbol": "AIZ"
+    },
+    {
+      "cik": "0000732717",
+      "date_added": "1983-11-30",
+      "founded": "1983 (1885)",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Integrated Telecommunication Services",
+      "headquarters": "Dallas, Texas",
+      "security": "AT&T",
+      "symbol": "T"
+    },
+    {
+      "cik": "0000731802",
+      "date_added": "2019-02-15",
+      "founded": "1906",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Gas Utilities",
+      "headquarters": "Dallas, Texas",
+      "security": "Atmos Energy",
+      "symbol": "ATO"
+    },
+    {
+      "cik": "0000769397",
+      "date_added": "1989-12-01",
+      "founded": "1982",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "San Francisco, California",
+      "security": "Autodesk",
+      "symbol": "ADSK"
+    },
+    {
+      "cik": "0000008670",
+      "date_added": "1981-03-31",
+      "founded": "1949",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Human Resource & Employment Services",
+      "headquarters": "Roseland, New Jersey",
+      "security": "Automatic Data Processing",
+      "symbol": "ADP"
+    },
+    {
+      "cik": "0000866787",
+      "date_added": "1997-01-02",
+      "founded": "1979",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Automotive Retail",
+      "headquarters": "Memphis, Tennessee",
+      "security": "AutoZone",
+      "symbol": "AZO"
+    },
+    {
+      "cik": "0000915912",
+      "date_added": "2007-01-10",
+      "founded": "1978",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Multi-Family Residential REITs",
+      "headquarters": "Arlington, Virginia",
+      "security": "AvalonBay Communities",
+      "symbol": "AVB"
+    },
+    {
+      "cik": "0000008818",
+      "date_added": "1987-12-31",
+      "founded": "1935",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Paper & Plastic Packaging Products & Materials",
+      "headquarters": "Mentor, Ohio",
+      "security": "Avery Dennison",
+      "symbol": "AVY"
+    },
+    {
+      "cik": "0001069183",
+      "date_added": "2023-05-04",
+      "founded": "1993",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Scottsdale, Arizona",
+      "security": "Axon Enterprise",
+      "symbol": "AXON"
+    },
+    {
+      "cik": "0001701605",
+      "date_added": "2017-07-07",
+      "founded": "2017",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Equipment & Services",
+      "headquarters": "Houston, Texas",
+      "security": "Baker Hughes",
+      "symbol": "BKR"
+    },
+    {
+      "cik": "0000009389",
+      "date_added": "1984-10-31",
+      "founded": "1880",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Metal, Glass & Plastic Containers",
+      "headquarters": "Broomfield, Colorado",
+      "security": "Ball Corporation",
+      "symbol": "BALL"
+    },
+    {
+      "cik": "0000070858",
+      "date_added": "1976-06-30",
+      "founded": "1998 (1923 / 1874)",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Diversified Banks",
+      "headquarters": "Charlotte, North Carolina",
+      "security": "Bank of America",
+      "symbol": "BAC"
+    },
+    {
+      "cik": "0000010456",
+      "date_added": "1972-09-30",
+      "founded": "1931",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Deerfield, Illinois",
+      "security": "Baxter International",
+      "symbol": "BAX"
+    },
+    {
+      "cik": "0000010795",
+      "date_added": "1972-09-30",
+      "founded": "1897",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Franklin Lakes, New Jersey",
+      "security": "Becton Dickinson",
+      "symbol": "BDX"
+    },
+    {
+      "cik": "0001067983",
+      "date_added": "2010-02-16",
+      "founded": "1839",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Multi-Sector Holdings",
+      "headquarters": "Omaha, Nebraska",
+      "security": "Berkshire Hathaway",
+      "symbol": "BRK.B"
+    },
+    {
+      "cik": "0000764478",
+      "date_added": "1999-06-29",
+      "founded": "1966",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Computer & Electronics Retail",
+      "headquarters": "Richfield, Minnesota",
+      "security": "Best Buy",
+      "symbol": "BBY"
+    },
+    {
+      "cik": "0000842023",
+      "date_added": "2021-08-30",
+      "founded": "1976",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Life Sciences Tools & Services",
+      "headquarters": "Minneapolis, Minnesota",
+      "security": "Bio-Techne",
+      "symbol": "TECH"
+    },
+    {
+      "cik": "0000875045",
+      "date_added": "2003-11-13",
+      "founded": "1978",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Biotechnology",
+      "headquarters": "Cambridge, Massachusetts",
+      "security": "Biogen",
+      "symbol": "BIIB"
+    },
+    {
+      "cik": "0002012383",
+      "date_added": "2011-04-04",
+      "founded": "1988",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "New York City, New York",
+      "security": "BlackRock",
+      "symbol": "BLK"
+    },
+    {
+      "cik": "0001393818",
+      "date_added": "2023-09-18",
+      "founded": "1985",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "New York City, New York",
+      "security": "Blackstone Inc.",
+      "symbol": "BX"
+    },
+    {
+      "cik": "0001512673",
+      "date_added": "2025-07-23",
+      "founded": "2009",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Transaction & Payment Processing Services",
+      "headquarters": "none",
+      "security": "Block, Inc.",
+      "symbol": "XYZ"
+    },
+    {
+      "cik": "0001390777",
+      "date_added": "1995-03-31",
+      "founded": "1784",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "New York City, New York",
+      "security": "BNY Mellon",
+      "symbol": "BNY"
+    },
+    {
+      "cik": "0000012927",
+      "date_added": "1957-03-04",
+      "founded": "1916",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Arlington, Virginia",
+      "security": "Boeing",
+      "symbol": "BA"
+    },
+    {
+      "cik": "0001075531",
+      "date_added": "2009-11-06",
+      "founded": "1996",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Hotels, Resorts & Cruise Lines",
+      "headquarters": "Norwalk, Connecticut",
+      "security": "Booking Holdings",
+      "symbol": "BKNG"
+    },
+    {
+      "cik": "0000885725",
+      "date_added": "1995-02-24",
+      "founded": "1979",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Marlborough, Massachusetts",
+      "security": "Boston Scientific",
+      "symbol": "BSX"
+    },
+    {
+      "cik": "0000014272",
+      "date_added": "1957-03-04",
+      "founded": "1989 (1887)",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Pharmaceuticals",
+      "headquarters": "New York City, New York",
+      "security": "Bristol Myers Squibb",
+      "symbol": "BMY"
+    },
+    {
+      "cik": "0001730168",
+      "date_added": "2014-05-08",
+      "founded": "1961",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Palo Alto, California",
+      "security": "Broadcom",
+      "symbol": "AVGO"
+    },
+    {
+      "cik": "0001383312",
+      "date_added": "2018-06-18",
+      "founded": "1962",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Data Processing & Outsourced Services",
+      "headquarters": "Lake Success, New York",
+      "security": "Broadridge Financial Solutions",
+      "symbol": "BR"
+    },
+    {
+      "cik": "0000079282",
+      "date_added": "2021-09-20",
+      "founded": "1939",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Insurance Brokers",
+      "headquarters": "Daytona Beach, Florida",
+      "security": "Brown & Brown",
+      "symbol": "BRO"
+    },
+    {
+      "cik": "0000014693",
+      "date_added": "1982-10-31",
+      "founded": "1870",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Distillers & Vintners",
+      "headquarters": "Louisville, Kentucky",
+      "security": "Brown\u2013Forman",
+      "symbol": "BF.B"
+    },
+    {
+      "cik": "0001316835",
+      "date_added": "2023-12-18",
+      "founded": "1998",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Building Products",
+      "headquarters": "Irving, Texas",
+      "security": "Builders FirstSource",
+      "symbol": "BLDR"
+    },
+    {
+      "cik": "0001996862",
+      "date_added": "2023-03-15",
+      "founded": "1818",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Agricultural Products & Services",
+      "headquarters": "Chesterfield, Missouri",
+      "security": "Bunge Global",
+      "symbol": "BG"
+    },
+    {
+      "cik": "0001037540",
+      "date_added": "2006-04-03",
+      "founded": "1970",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Office REITs",
+      "headquarters": "Boston, Massachusetts",
+      "security": "BXP, Inc.",
+      "symbol": "BXP"
+    },
+    {
+      "cik": "0001043277",
+      "date_added": "2007-03-02",
+      "founded": "1905",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Air Freight & Logistics",
+      "headquarters": "Eden Prairie, Minnesota",
+      "security": "C.H. Robinson",
+      "symbol": "CHRW"
+    },
+    {
+      "cik": "0000813672",
+      "date_added": "2017-09-18",
+      "founded": "1988",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "San Jose, California",
+      "security": "Cadence Design Systems",
+      "symbol": "CDNS"
+    },
+    {
+      "cik": "0000906345",
+      "date_added": "2022-04-04",
+      "founded": "1981",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Multi-Family Residential REITs",
+      "headquarters": "Houston, Texas",
+      "security": "Camden Property Trust",
+      "symbol": "CPT"
+    },
+    {
+      "cik": "0000927628",
+      "date_added": "1998-07-01",
+      "founded": "1994",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Consumer Finance",
+      "headquarters": "Tysons Corner, Virginia",
+      "security": "Capital One",
+      "symbol": "COF"
+    },
+    {
+      "cik": "0000721371",
+      "date_added": "1997-05-27",
+      "founded": "1971",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Distributors",
+      "headquarters": "Dublin, Ohio",
+      "security": "Cardinal Health",
+      "symbol": "CAH"
+    },
+    {
+      "cik": "0000815097",
+      "date_added": "1998-12-22",
+      "founded": "1972",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Hotels, Resorts & Cruise Lines",
+      "headquarters": "Miami, Florida",
+      "security": "Carnival Corporation",
+      "symbol": "CCL"
+    },
+    {
+      "cik": "0001783180",
+      "date_added": "2020-04-03",
+      "founded": "2020 (1915, United Technologies spinoff)",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Building Products",
+      "headquarters": "Palm Beach Gardens, Florida",
+      "security": "Carrier Global",
+      "symbol": "CARR"
+    },
+    {
+      "cik": "0001690820",
+      "date_added": "2025-12-22",
+      "founded": "2012",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Automotive Retail",
+      "headquarters": "Tempe, Arizona",
+      "security": "Carvana",
+      "symbol": "CVNA"
+    },
+    {
+      "cik": "0000726958",
+      "date_added": "2026-04-09",
+      "founded": "1967",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Food Retail",
+      "headquarters": "Ankeny, Iowa",
+      "security": "Casey's",
+      "symbol": "CASY"
+    },
+    {
+      "cik": "0000018230",
+      "date_added": "1957-03-04",
+      "founded": "1925",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Construction Machinery & Heavy Transportation Equipment",
+      "headquarters": "Irving, Texas",
+      "security": "Caterpillar Inc.",
+      "symbol": "CAT"
+    },
+    {
+      "cik": "0001374310",
+      "date_added": "2017-03-01",
+      "founded": "1973",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Financial Exchanges & Data",
+      "headquarters": "Chicago, Illinois",
+      "security": "Cboe Global Markets",
+      "symbol": "CBOE"
+    },
+    {
+      "cik": "0001138118",
+      "date_added": "2006-11-10",
+      "founded": "1906",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Real Estate Services",
+      "headquarters": "Dallas, Texas",
+      "security": "CBRE Group",
+      "symbol": "CBRE"
+    },
+    {
+      "cik": "0001402057",
+      "date_added": "2019-09-23",
+      "founded": "1984",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Technology Distributors",
+      "headquarters": "Vernon Hills, Illinois",
+      "security": "CDW Corporation",
+      "symbol": "CDW"
+    },
+    {
+      "cik": "0001140859",
+      "date_added": "2001-08-30",
+      "founded": "1985",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Distributors",
+      "headquarters": "Conshohocken, Pennsylvania",
+      "security": "Cencora",
+      "symbol": "COR"
+    },
+    {
+      "cik": "0001071739",
+      "date_added": "2016-03-30",
+      "founded": "1984",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Managed Health Care",
+      "headquarters": "St. Louis, Missouri",
+      "security": "Centene Corporation",
+      "symbol": "CNC"
+    },
+    {
+      "cik": "0001130310",
+      "date_added": "1985-07-31",
+      "founded": "1882",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "Houston, Texas",
+      "security": "CenterPoint Energy",
+      "symbol": "CNP"
+    },
+    {
+      "cik": "0001324404",
+      "date_added": "2008-08-27",
+      "founded": "1946",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Fertilizers & Agricultural Chemicals",
+      "headquarters": "Deerfield, Illinois",
+      "security": "CF Industries",
+      "symbol": "CF"
+    },
+    {
+      "cik": "0001100682",
+      "date_added": "2021-05-14",
+      "founded": "1947",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Life Sciences Tools & Services",
+      "headquarters": "Wilmington, Massachusetts",
+      "security": "Charles River Laboratories",
+      "symbol": "CRL"
+    },
+    {
+      "cik": "0000316709",
+      "date_added": "1997-06-02",
+      "founded": "1971",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Investment Banking & Brokerage",
+      "headquarters": "Westlake, Texas",
+      "security": "Charles Schwab Corporation",
+      "symbol": "SCHW"
+    },
+    {
+      "cik": "0001091667",
+      "date_added": "2016-09-08",
+      "founded": "1993",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Cable & Satellite",
+      "headquarters": "Stamford, Connecticut",
+      "security": "Charter Communications",
+      "symbol": "CHTR"
+    },
+    {
+      "cik": "0000093410",
+      "date_added": "1957-03-04",
+      "founded": "1879",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Integrated Oil & Gas",
+      "headquarters": "Houston, Texas",
+      "security": "Chevron Corporation",
+      "symbol": "CVX"
+    },
+    {
+      "cik": "0001058090",
+      "date_added": "2011-04-28",
+      "founded": "1993",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Restaurants",
+      "headquarters": "Newport Beach, California",
+      "security": "Chipotle Mexican Grill",
+      "symbol": "CMG"
+    },
+    {
+      "cik": "0000896159",
+      "date_added": "2010-07-15",
+      "founded": "1985",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Property & Casualty Insurance",
+      "headquarters": "Zurich, Switzerland",
+      "security": "Chubb Limited",
+      "symbol": "CB"
+    },
+    {
+      "cik": "0000313927",
+      "date_added": "2015-12-29",
+      "founded": "1847",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Household Products",
+      "headquarters": "Ewing, New Jersey",
+      "security": "Church & Dwight",
+      "symbol": "CHD"
+    },
+    {
+      "cik": "0000936395",
+      "date_added": "2026-02-09",
+      "founded": "1992",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Communications Equipment",
+      "headquarters": "Hanover, Maryland",
+      "security": "Ciena",
+      "symbol": "CIEN"
+    },
+    {
+      "cik": "0001739940",
+      "date_added": "1976-06-30",
+      "founded": "1982",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Services",
+      "headquarters": "Bloomfield, Connecticut",
+      "security": "Cigna",
+      "symbol": "CI"
+    },
+    {
+      "cik": "0000020286",
+      "date_added": "1997-12-18",
+      "founded": "1950",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Property & Casualty Insurance",
+      "headquarters": "Fairfield, Ohio",
+      "security": "Cincinnati Financial",
+      "symbol": "CINF"
+    },
+    {
+      "cik": "0000723254",
+      "date_added": "2001-03-01",
+      "founded": "1929",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Diversified Support Services",
+      "headquarters": "Mason, Ohio",
+      "security": "Cintas",
+      "symbol": "CTAS"
+    },
+    {
+      "cik": "0000858877",
+      "date_added": "1993-12-01",
+      "founded": "1984",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Communications Equipment",
+      "headquarters": "San Jose, California",
+      "security": "Cisco",
+      "symbol": "CSCO"
+    },
+    {
+      "cik": "0000831001",
+      "date_added": "1988-05-31",
+      "founded": "1998",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Diversified Banks",
+      "headquarters": "New York City, New York",
+      "security": "Citigroup",
+      "symbol": "C"
+    },
+    {
+      "cik": "0000759944",
+      "date_added": "2016-01-29",
+      "founded": "1828",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Regional Banks",
+      "headquarters": "Providence, Rhode Island",
+      "security": "Citizens Financial Group",
+      "symbol": "CFG"
+    },
+    {
+      "cik": "0000021076",
+      "date_added": "1969-03-31",
+      "founded": "1913",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Household Products",
+      "headquarters": "Oakland, California",
+      "security": "Clorox",
+      "symbol": "CLX"
+    },
+    {
+      "cik": "0001156375",
+      "date_added": "2006-08-11",
+      "founded": "1848",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Financial Exchanges & Data",
+      "headquarters": "Chicago, Illinois",
+      "security": "CME Group",
+      "symbol": "CME"
+    },
+    {
+      "cik": "0000811156",
+      "date_added": "1957-03-04",
+      "founded": "1886",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "Jackson, Michigan",
+      "security": "CMS Energy",
+      "symbol": "CMS"
+    },
+    {
+      "cik": "0000021344",
+      "date_added": "1957-03-04",
+      "founded": "1886",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Soft Drinks & Non-alcoholic Beverages",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Coca-Cola Company (The)",
+      "symbol": "KO"
+    },
+    {
+      "cik": "0001058290",
+      "date_added": "2006-11-17",
+      "founded": "1994",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "IT Consulting & Other Services",
+      "headquarters": "Teaneck, New Jersey",
+      "security": "Cognizant",
+      "symbol": "CTSH"
+    },
+    {
+      "cik": "0000820318",
+      "date_added": "2026-03-23",
+      "founded": "1971",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Electronic Components",
+      "headquarters": "Saxonburg, Pennsylvania",
+      "security": "Coherent Corp.",
+      "symbol": "COHR"
+    },
+    {
+      "cik": "0001679788",
+      "date_added": "2025-05-19",
+      "founded": "2012",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Financial Exchanges & Data",
+      "headquarters": "New York City, New York",
+      "security": "Coinbase",
+      "symbol": "COIN"
+    },
+    {
+      "cik": "0000021665",
+      "date_added": "1957-03-04",
+      "founded": "1806",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Household Products",
+      "headquarters": "New York City, New York",
+      "security": "Colgate-Palmolive",
+      "symbol": "CL"
+    },
+    {
+      "cik": "0001166691",
+      "date_added": "2002-11-19",
+      "founded": "1963",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Cable & Satellite",
+      "headquarters": "Philadelphia, Pennsylvania",
+      "security": "Comcast",
+      "symbol": "CMCSA"
+    },
+    {
+      "cik": "0001035983",
+      "date_added": "2025-12-22",
+      "founded": "1997",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Construction & Engineering",
+      "headquarters": "Houston, Texas",
+      "security": "Comfort Systems USA",
+      "symbol": "FIX"
+    },
+    {
+      "cik": "0001163165",
+      "date_added": "1957-03-04",
+      "founded": "2002",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Exploration & Production",
+      "headquarters": "Houston, Texas",
+      "security": "ConocoPhillips",
+      "symbol": "COP"
+    },
+    {
+      "cik": "0001047862",
+      "date_added": "1957-03-04",
+      "founded": "1823",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "New York City, New York",
+      "security": "Consolidated Edison",
+      "symbol": "ED"
+    },
+    {
+      "cik": "0000016918",
+      "date_added": "2005-07-01",
+      "founded": "1945",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Distillers & Vintners",
+      "headquarters": "Rochester, New York",
+      "security": "Constellation Brands",
+      "symbol": "STZ"
+    },
+    {
+      "cik": "0001868275",
+      "date_added": "2022-02-02",
+      "founded": "1999",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Baltimore, Maryland",
+      "security": "Constellation Energy",
+      "symbol": "CEG"
+    },
+    {
+      "cik": "0000711404",
+      "date_added": "2016-09-23",
+      "founded": "1958",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Supplies",
+      "headquarters": "San Ramon, California",
+      "security": "Cooper Companies (The)",
+      "symbol": "COO"
+    },
+    {
+      "cik": "0000900075",
+      "date_added": "2018-07-02",
+      "founded": "1982",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Diversified Support Services",
+      "headquarters": "Dallas, Texas",
+      "security": "Copart",
+      "symbol": "CPRT"
+    },
+    {
+      "cik": "0000024741",
+      "date_added": "1995-02-27",
+      "founded": "1851",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Electronic Components",
+      "headquarters": "Corning, New York",
+      "security": "Corning Inc.",
+      "symbol": "GLW"
+    },
+    {
+      "cik": "0001175454",
+      "date_added": "2018-06-20",
+      "founded": "2000",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Transaction & Payment Processing Services",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Corpay",
+      "symbol": "CPAY"
+    },
+    {
+      "cik": "0001755672",
+      "date_added": "2019-06-03",
+      "founded": "2019",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Fertilizers & Agricultural Chemicals",
+      "headquarters": "Indianapolis, Indiana",
+      "security": "Corteva",
+      "symbol": "CTVA"
+    },
+    {
+      "cik": "0001057352",
+      "date_added": "2022-09-19",
+      "founded": "1987",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Real Estate Services",
+      "headquarters": "Washington, D.C.",
+      "security": "CoStar Group",
+      "symbol": "CSGP"
+    },
+    {
+      "cik": "0000909832",
+      "date_added": "1993-10-01",
+      "founded": "1976",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Consumer Staples Merchandise Retail",
+      "headquarters": "Issaquah, Washington",
+      "security": "Costco",
+      "symbol": "COST"
+    },
+    {
+      "cik": "0000849395",
+      "date_added": "2025-12-22",
+      "founded": "1970",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Construction Materials",
+      "headquarters": "Dublin, Ireland",
+      "security": "CRH plc",
+      "symbol": "CRH"
+    },
+    {
+      "cik": "0001535527",
+      "date_added": "2024-06-24",
+      "founded": "2011",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Systems Software",
+      "headquarters": "Austin, Texas",
+      "security": "CrowdStrike",
+      "symbol": "CRWD"
+    },
+    {
+      "cik": "0001051470",
+      "date_added": "2012-03-14",
+      "founded": "1994",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Telecom Tower REITs",
+      "headquarters": "Houston, Texas",
+      "security": "Crown Castle",
+      "symbol": "CCI"
+    },
+    {
+      "cik": "0000277948",
+      "date_added": "1957-03-04",
+      "founded": "1980",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Rail Transportation",
+      "headquarters": "Jacksonville, Florida",
+      "security": "CSX Corporation",
+      "symbol": "CSX"
+    },
+    {
+      "cik": "0000026172",
+      "date_added": "1965-03-31",
+      "founded": "1919",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Construction Machinery & Heavy Transportation Equipment",
+      "headquarters": "Columbus, Indiana",
+      "security": "Cummins",
+      "symbol": "CMI"
+    },
+    {
+      "cik": "0000064803",
+      "date_added": "1957-03-04",
+      "founded": "1996",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Services",
+      "headquarters": "Woonsocket, Rhode Island",
+      "security": "CVS Health",
+      "symbol": "CVS"
+    },
+    {
+      "cik": "0000313616",
+      "date_added": "1998-11-18",
+      "founded": "1969",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Life Sciences Tools & Services",
+      "headquarters": "Washington, D.C.",
+      "security": "Danaher Corporation",
+      "symbol": "DHR"
+    },
+    {
+      "cik": "0000940944",
+      "date_added": "1995-05-31",
+      "founded": "1938",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Restaurants",
+      "headquarters": "Orlando, Florida",
+      "security": "Darden Restaurants",
+      "symbol": "DRI"
+    },
+    {
+      "cik": "0001561550",
+      "date_added": "2025-07-09",
+      "founded": "2010",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "New York City, New York",
+      "security": "Datadog",
+      "symbol": "DDOG"
+    },
+    {
+      "cik": "0000927066",
+      "date_added": "2008-07-31",
+      "founded": "1979",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Services",
+      "headquarters": "Denver, Colorado",
+      "security": "DaVita",
+      "symbol": "DVA"
+    },
+    {
+      "cik": "0000910521",
+      "date_added": "2024-03-18",
+      "founded": "1973",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Footwear",
+      "headquarters": "Goleta, California",
+      "security": "Deckers Brands",
+      "symbol": "DECK"
+    },
+    {
+      "cik": "0000315189",
+      "date_added": "1957-03-04",
+      "founded": "1837",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Agricultural & Farm Machinery",
+      "headquarters": "Moline, Illinois",
+      "security": "Deere & Company",
+      "symbol": "DE"
+    },
+    {
+      "cik": "0001571996",
+      "date_added": "2024-09-23",
+      "founded": "2016",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Technology Hardware, Storage & Peripherals",
+      "headquarters": "Round Rock, Texas",
+      "security": "Dell Technologies",
+      "symbol": "DELL"
+    },
+    {
+      "cik": "0000027904",
+      "date_added": "2013-09-11",
+      "founded": "1929",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Passenger Airlines",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Delta Air Lines",
+      "symbol": "DAL"
+    },
+    {
+      "cik": "0001090012",
+      "date_added": "2000-08-30",
+      "founded": "1971",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Exploration & Production",
+      "headquarters": "Oklahoma City, Oklahoma",
+      "security": "Devon Energy",
+      "symbol": "DVN"
+    },
+    {
+      "cik": "0001093557",
+      "date_added": "2020-05-12",
+      "founded": "1999",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "San Diego, California",
+      "security": "Dexcom",
+      "symbol": "DXCM"
+    },
+    {
+      "cik": "0001539838",
+      "date_added": "2018-12-03",
+      "founded": "2007",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Exploration & Production",
+      "headquarters": "Midland, Texas",
+      "security": "Diamondback Energy",
+      "symbol": "FANG"
+    },
+    {
+      "cik": "0001297996",
+      "date_added": "2016-05-18",
+      "founded": "2004",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Data Center REITs",
+      "headquarters": "Austin, Texas",
+      "security": "Digital Realty",
+      "symbol": "DLR"
+    },
+    {
+      "cik": "0000029534",
+      "date_added": "2012-12-03",
+      "founded": "1939",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Consumer Staples Merchandise Retail",
+      "headquarters": "Goodlettsville, Tennessee",
+      "security": "Dollar General",
+      "symbol": "DG"
+    },
+    {
+      "cik": "0000935703",
+      "date_added": "2011-12-19",
+      "founded": "1986",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Consumer Staples Merchandise Retail",
+      "headquarters": "Chesapeake, Virginia",
+      "security": "Dollar Tree",
+      "symbol": "DLTR"
+    },
+    {
+      "cik": "0000715957",
+      "date_added": "2016-11-30",
+      "founded": "1983",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "Richmond, Virginia",
+      "security": "Dominion Energy",
+      "symbol": "D"
+    },
+    {
+      "cik": "0001286681",
+      "date_added": "2020-05-12",
+      "founded": "1960",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Restaurants",
+      "headquarters": "Ann Arbor, Michigan",
+      "security": "Domino's",
+      "symbol": "DPZ"
+    },
+    {
+      "cik": "0001792789",
+      "date_added": "2025-03-24",
+      "founded": "2012",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Specialized Consumer Services",
+      "headquarters": "San Francisco, California",
+      "security": "DoorDash",
+      "symbol": "DASH"
+    },
+    {
+      "cik": "0000029905",
+      "date_added": "1985-10-31",
+      "founded": "1955",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Downers Grove, Illinois",
+      "security": "Dover Corporation",
+      "symbol": "DOV"
+    },
+    {
+      "cik": "0001751788",
+      "date_added": "2019-04-01",
+      "founded": "2019 (1897)",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Commodity Chemicals",
+      "headquarters": "Midland, Michigan",
+      "security": "Dow Inc.",
+      "symbol": "DOW"
+    },
+    {
+      "cik": "0000882184",
+      "date_added": "2005-06-22",
+      "founded": "1978",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Homebuilding",
+      "headquarters": "Arlington, Texas",
+      "security": "D. R. Horton",
+      "symbol": "DHI"
+    },
+    {
+      "cik": "0000936340",
+      "date_added": "1957-03-04",
+      "founded": "1995",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "Detroit, Michigan",
+      "security": "DTE Energy",
+      "symbol": "DTE"
+    },
+    {
+      "cik": "0001326160",
+      "date_added": "1976-06-30",
+      "founded": "1904",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Charlotte, North Carolina",
+      "security": "Duke Energy",
+      "symbol": "DUK"
+    },
+    {
+      "cik": "0001666700",
+      "date_added": "2019-06-03",
+      "founded": "2017 (1802)",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Specialty Chemicals",
+      "headquarters": "Wilmington, Delaware",
+      "security": "DuPont",
+      "symbol": "DD"
+    },
+    {
+      "cik": "0001551182",
+      "date_added": "1957-03-04",
+      "founded": "1911",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Electrical Components & Equipment",
+      "headquarters": "Dublin, Ireland",
+      "security": "Eaton Corporation",
+      "symbol": "ETN"
+    },
+    {
+      "cik": "0001065088",
+      "date_added": "2002-07-22",
+      "founded": "1995",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Broadline Retail",
+      "headquarters": "San Jose, California",
+      "security": "eBay Inc.",
+      "symbol": "EBAY"
+    },
+    {
+      "cik": "0001415404",
+      "date_added": "2026-03-23",
+      "founded": "2008",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Wireless Telecommunication Services",
+      "headquarters": "Englewood, Colorado",
+      "security": "EchoStar",
+      "symbol": "ECHO"
+    },
+    {
+      "cik": "0000031462",
+      "date_added": "1989-01-31",
+      "founded": "1923",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Specialty Chemicals",
+      "headquarters": "Saint Paul, Minnesota",
+      "security": "Ecolab",
+      "symbol": "ECL"
+    },
+    {
+      "cik": "0000827052",
+      "date_added": "1957-03-04",
+      "founded": "1886",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Rosemead, California",
+      "security": "Edison International",
+      "symbol": "EIX"
+    },
+    {
+      "cik": "0001099800",
+      "date_added": "2011-04-01",
+      "founded": "1958",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Irvine, California",
+      "security": "Edwards Lifesciences",
+      "symbol": "EW"
+    },
+    {
+      "cik": "0000712515",
+      "date_added": "2002-07-22",
+      "founded": "1982",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Interactive Home Entertainment",
+      "headquarters": "Redwood City, California",
+      "security": "Electronic Arts",
+      "symbol": "EA"
+    },
+    {
+      "cik": "0001156039",
+      "date_added": "2002-07-25",
+      "founded": "2014 (1946)",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Managed Health Care",
+      "headquarters": "Indianapolis, Indiana",
+      "security": "Elevance Health",
+      "symbol": "ELV"
+    },
+    {
+      "cik": "0000105634",
+      "date_added": "2025-09-22",
+      "founded": "1994",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Construction & Engineering",
+      "headquarters": "Norwalk, Connecticut",
+      "security": "Emcor",
+      "symbol": "EME"
+    },
+    {
+      "cik": "0000032604",
+      "date_added": "1965-03-31",
+      "founded": "1890",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Electrical Components & Equipment",
+      "headquarters": "Ferguson, Missouri",
+      "security": "Emerson Electric",
+      "symbol": "EMR"
+    },
+    {
+      "cik": "0000065984",
+      "date_added": "1957-03-04",
+      "founded": "1913",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "New Orleans, Louisiana",
+      "security": "Entergy",
+      "symbol": "ETR"
+    },
+    {
+      "cik": "0000821189",
+      "date_added": "2000-11-02",
+      "founded": "1999",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Exploration & Production",
+      "headquarters": "Houston, Texas",
+      "security": "EOG Resources",
+      "symbol": "EOG"
+    },
+    {
+      "cik": "0000033213",
+      "date_added": "2022-10-03",
+      "founded": "1888",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Exploration & Production",
+      "headquarters": "Pittsburgh, Pennsylvania",
+      "security": "EQT Corporation",
+      "symbol": "EQT"
+    },
+    {
+      "cik": "0000033185",
+      "date_added": "1997-06-19",
+      "founded": "1899",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Research & Consulting Services",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Equifax",
+      "symbol": "EFX"
+    },
+    {
+      "cik": "0001101239",
+      "date_added": "2015-03-20",
+      "founded": "1998",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Data Center REITs",
+      "headquarters": "Redwood City, California",
+      "security": "Equinix",
+      "symbol": "EQIX"
+    },
+    {
+      "cik": "0000906107",
+      "date_added": "2001-12-03",
+      "founded": "1969",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Multi-Family Residential REITs",
+      "headquarters": "Chicago, Illinois",
+      "security": "Equity Residential",
+      "symbol": "EQR"
+    },
+    {
+      "cik": "0000922621",
+      "date_added": "2024-09-23",
+      "founded": "1925",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Insurance Brokers",
+      "headquarters": "Erie, Pennsylvania",
+      "security": "Erie Indemnity",
+      "symbol": "ERIE"
+    },
+    {
+      "cik": "0000920522",
+      "date_added": "2014-04-02",
+      "founded": "1971",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Multi-Family Residential REITs",
+      "headquarters": "San Mateo, California",
+      "security": "Essex Property Trust",
+      "symbol": "ESS"
+    },
+    {
+      "cik": "0001001250",
+      "date_added": "2006-01-05",
+      "founded": "1946",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Personal Care Products",
+      "headquarters": "New York City, New York",
+      "security": "Est\u00e9e Lauder Companies (The)",
+      "symbol": "EL"
+    },
+    {
+      "cik": "0001095073",
+      "date_added": "2017-06-19",
+      "founded": "1973",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Reinsurance",
+      "headquarters": "Hamilton, Bermuda",
+      "security": "Everest Group",
+      "symbol": "EG"
+    },
+    {
+      "cik": "0001711269",
+      "date_added": "2018-06-05",
+      "founded": "1909",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Kansas City, Missouri",
+      "security": "Evergy",
+      "symbol": "EVRG"
+    },
+    {
+      "cik": "0000072741",
+      "date_added": "2009-07-24",
+      "founded": "1966",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Hartford, Connecticut",
+      "security": "Eversource Energy",
+      "symbol": "ES"
+    },
+    {
+      "cik": "0001109357",
+      "date_added": "1957-03-04",
+      "founded": "2000",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Chicago, Illinois",
+      "security": "Exelon",
+      "symbol": "EXC"
+    },
+    {
+      "cik": "0000895126",
+      "date_added": "2025-03-24",
+      "founded": "1989",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Exploration & Production",
+      "headquarters": "Oklahoma City, Oklahoma",
+      "security": "Expand Energy",
+      "symbol": "EXE"
+    },
+    {
+      "cik": "0001324424",
+      "date_added": "2007-10-02",
+      "founded": "1996",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Hotels, Resorts & Cruise Lines",
+      "headquarters": "Seattle, Washington",
+      "security": "Expedia Group",
+      "symbol": "EXPE"
+    },
+    {
+      "cik": "0000746515",
+      "date_added": "2007-10-10",
+      "founded": "1979",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Air Freight & Logistics",
+      "headquarters": "Seattle, Washington",
+      "security": "Expeditors International",
+      "symbol": "EXPD"
+    },
+    {
+      "cik": "0001289490",
+      "date_added": "2016-01-19",
+      "founded": "1977",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Self-Storage REITs",
+      "headquarters": "Salt Lake City, Utah",
+      "security": "Extra Space Storage",
+      "symbol": "EXR"
+    },
+    {
+      "cik": "0000034088",
+      "date_added": "1957-03-04",
+      "founded": "1999",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Integrated Oil & Gas",
+      "headquarters": "Irving, Texas",
+      "security": "ExxonMobil",
+      "symbol": "XOM"
+    },
+    {
+      "cik": "0001048695",
+      "date_added": "2010-12-20",
+      "founded": "1996",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Communications Equipment",
+      "headquarters": "Seattle, Washington",
+      "security": "F5, Inc.",
+      "symbol": "FFIV"
+    },
+    {
+      "cik": "0001013237",
+      "date_added": "2021-12-20",
+      "founded": "1978",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Financial Exchanges & Data",
+      "headquarters": "Norwalk, Connecticut",
+      "security": "FactSet",
+      "symbol": "FDS"
+    },
+    {
+      "cik": "0000814547",
+      "date_added": "2023-03-20",
+      "founded": "1956",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "Bozeman, Montana",
+      "security": "Fair Isaac",
+      "symbol": "FICO"
+    },
+    {
+      "cik": "0000815556",
+      "date_added": "2008-09-15",
+      "founded": "1967",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Trading Companies & Distributors",
+      "headquarters": "Winona, Minnesota",
+      "security": "Fastenal",
+      "symbol": "FAST"
+    },
+    {
+      "cik": "0000034903",
+      "date_added": "2016-02-01",
+      "founded": "1962",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Retail REITs",
+      "headquarters": "Rockville, Maryland",
+      "security": "Federal Realty Investment Trust",
+      "symbol": "FRT"
+    },
+    {
+      "cik": "0001048911",
+      "date_added": "1980-12-31",
+      "founded": "1971",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Air Freight & Logistics",
+      "headquarters": "Memphis, Tennessee",
+      "security": "FedEx",
+      "symbol": "FDX"
+    },
+    {
+      "cik": "0002082247",
+      "date_added": "2026-06-01",
+      "founded": "1982",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Cargo Ground Transportation",
+      "headquarters": "Memphis, Tennessee",
+      "security": "FedEx Freight",
+      "symbol": "FDXF"
+    },
+    {
+      "cik": "0001136893",
+      "date_added": "2006-11-10",
+      "founded": "1968",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Transaction & Payment Processing Services",
+      "headquarters": "Jacksonville, Florida",
+      "security": "Fidelity National Information Services",
+      "symbol": "FIS"
+    },
+    {
+      "cik": "0000035527",
+      "date_added": "1996-03-29",
+      "founded": "1858",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Regional Banks",
+      "headquarters": "Cincinnati, Ohio",
+      "security": "Fifth Third Bancorp",
+      "symbol": "FITB"
+    },
+    {
+      "cik": "0001274494",
+      "date_added": "2022-12-19",
+      "founded": "1999",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Tempe, Arizona",
+      "security": "First Solar",
+      "symbol": "FSLR"
+    },
+    {
+      "cik": "0001031296",
+      "date_added": "1997-11-28",
+      "founded": "1997",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Akron, Ohio",
+      "security": "FirstEnergy",
+      "symbol": "FE"
+    },
+    {
+      "cik": "0000798354",
+      "date_added": "2001-04-02",
+      "founded": "1984",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Transaction & Payment Processing Services",
+      "headquarters": "Brookfield, Wisconsin",
+      "security": "Fiserv",
+      "symbol": "FISV"
+    },
+    {
+      "cik": "0000866374",
+      "date_added": "2026-06-22",
+      "founded": "1969",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Electronic Manufacturing Services",
+      "headquarters": "Austin, Texas",
+      "security": "Flex Ltd.",
+      "symbol": "FLEX"
+    },
+    {
+      "cik": "0000037996",
+      "date_added": "1957-03-04",
+      "founded": "1903",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Automobile Manufacturers",
+      "headquarters": "Dearborn, Michigan",
+      "security": "Ford Motor Company",
+      "symbol": "F"
+    },
+    {
+      "cik": "0001262039",
+      "date_added": "2018-10-11",
+      "founded": "2000",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Systems Software",
+      "headquarters": "Sunnyvale, California",
+      "security": "Fortinet",
+      "symbol": "FTNT"
+    },
+    {
+      "cik": "0001659166",
+      "date_added": "2016-07-01",
+      "founded": "2016",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Everett, Washington",
+      "security": "Fortive",
+      "symbol": "FTV"
+    },
+    {
+      "cik": "0001754301",
+      "date_added": "2019-03-19",
+      "founded": "2019",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Broadcasting",
+      "headquarters": "New York City, New York",
+      "security": "Fox Corporation (Class A)",
+      "symbol": "FOXA"
+    },
+    {
+      "cik": "0001754301",
+      "date_added": "2019-03-19",
+      "founded": "2019",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Broadcasting",
+      "headquarters": "New York City, New York",
+      "security": "Fox Corporation (Class B)",
+      "symbol": "FOX"
+    },
+    {
+      "cik": "0000038777",
+      "date_added": "1998-04-30",
+      "founded": "1947",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "San Mateo, California",
+      "security": "Franklin Resources",
+      "symbol": "BEN"
+    },
+    {
+      "cik": "0000831259",
+      "date_added": "2011-07-01",
+      "founded": "1912",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Copper",
+      "headquarters": "Phoenix, Arizona",
+      "security": "Freeport-McMoRan",
+      "symbol": "FCX"
+    },
+    {
+      "cik": "0001121788",
+      "date_added": "2012-12-12",
+      "founded": "1989",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Consumer Electronics",
+      "headquarters": "Schaffhausen, Switzerland",
+      "security": "Garmin",
+      "symbol": "GRMN"
+    },
+    {
+      "cik": "0000749251",
+      "date_added": "2017-04-05",
+      "founded": "1979",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "IT Consulting & Other Services",
+      "headquarters": "Stamford, Connecticut",
+      "security": "Gartner",
+      "symbol": "IT"
+    },
+    {
+      "cik": "0000040545",
+      "date_added": "1957-03-04",
+      "founded": "1892",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Evendale, Ohio",
+      "security": "GE Aerospace",
+      "symbol": "GE"
+    },
+    {
+      "cik": "0001932393",
+      "date_added": "2023-01-04",
+      "founded": "1994",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Chicago, Illinois",
+      "security": "GE HealthCare",
+      "symbol": "GEHC"
+    },
+    {
+      "cik": "0001996810",
+      "date_added": "2024-04-02",
+      "founded": "2024",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Heavy Electrical Equipment",
+      "headquarters": "Cambridge, Massachusetts",
+      "security": "GE Vernova",
+      "symbol": "GEV"
+    },
+    {
+      "cik": "0000849399",
+      "date_added": "2003-03-25",
+      "founded": "1982",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Systems Software",
+      "headquarters": "Tempe, Arizona",
+      "security": "Gen Digital",
+      "symbol": "GEN"
+    },
+    {
+      "cik": "0001474735",
+      "date_added": "2021-03-22",
+      "founded": "1959",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Heavy Electrical Equipment",
+      "headquarters": "Waukesha, Wisconsin",
+      "security": "Generac",
+      "symbol": "GNRC"
+    },
+    {
+      "cik": "0000040533",
+      "date_added": "1957-03-04",
+      "founded": "1899",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Reston, Virginia",
+      "security": "General Dynamics",
+      "symbol": "GD"
+    },
+    {
+      "cik": "0000040704",
+      "date_added": "1957-03-04",
+      "founded": "1856",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Packaged Foods & Meats",
+      "headquarters": "Golden Valley, Minnesota",
+      "security": "General Mills",
+      "symbol": "GIS"
+    },
+    {
+      "cik": "0001467858",
+      "date_added": "2013-06-06",
+      "founded": "1908",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Automobile Manufacturers",
+      "headquarters": "Detroit, Michigan",
+      "security": "General Motors",
+      "symbol": "GM"
+    },
+    {
+      "cik": "0000040987",
+      "date_added": "1973-12-31",
+      "founded": "1925",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Distributors",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Genuine Parts Company",
+      "symbol": "GPC"
+    },
+    {
+      "cik": "0000882095",
+      "date_added": "2004-07-01",
+      "founded": "1987",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Biotechnology",
+      "headquarters": "Foster City, California",
+      "security": "Gilead Sciences",
+      "symbol": "GILD"
+    },
+    {
+      "cik": "0001123360",
+      "date_added": "2016-04-25",
+      "founded": "2000",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Transaction & Payment Processing Services",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Global Payments",
+      "symbol": "GPN"
+    },
+    {
+      "cik": "0000320335",
+      "date_added": "1989-04-30",
+      "founded": "1900",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Life & Health Insurance",
+      "headquarters": "McKinney, Texas",
+      "security": "Globe Life",
+      "symbol": "GL"
+    },
+    {
+      "cik": "0001609711",
+      "date_added": "2024-06-24",
+      "founded": "1997",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Internet Services & Infrastructure",
+      "headquarters": "Tempe, Arizona",
+      "security": "GoDaddy",
+      "symbol": "GDDY"
+    },
+    {
+      "cik": "0000886982",
+      "date_added": "2002-07-22",
+      "founded": "1869",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Investment Banking & Brokerage",
+      "headquarters": "New York City, New York",
+      "security": "Goldman Sachs",
+      "symbol": "GS"
+    },
+    {
+      "cik": "0000045012",
+      "date_added": "1957-03-04",
+      "founded": "1919",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Equipment & Services",
+      "headquarters": "Houston, Texas",
+      "security": "Halliburton",
+      "symbol": "HAL"
+    },
+    {
+      "cik": "0000874766",
+      "date_added": "1957-03-04",
+      "founded": "1810",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Property & Casualty Insurance",
+      "headquarters": "Hartford, Connecticut",
+      "security": "Hartford (The)",
+      "symbol": "HIG"
+    },
+    {
+      "cik": "0000046080",
+      "date_added": "1984-09-30",
+      "founded": "1923",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Leisure Products",
+      "headquarters": "Pawtucket, Rhode Island",
+      "security": "Hasbro",
+      "symbol": "HAS"
+    },
+    {
+      "cik": "0000860730",
+      "date_added": "2015-01-27",
+      "founded": "1968",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Facilities",
+      "headquarters": "Nashville, Tennessee",
+      "security": "HCA Healthcare",
+      "symbol": "HCA"
+    },
+    {
+      "cik": "0000765880",
+      "date_added": "2008-03-31",
+      "founded": "1985",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Health Care REITs",
+      "headquarters": "Denver, Colorado",
+      "security": "Healthpeak Properties",
+      "symbol": "DOC"
+    },
+    {
+      "cik": "0001000228",
+      "date_added": "2015-03-17",
+      "founded": "1932",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Distributors",
+      "headquarters": "Melville, New York",
+      "security": "Henry Schein",
+      "symbol": "HSIC"
+    },
+    {
+      "cik": "0000047111",
+      "date_added": "1957-03-04",
+      "founded": "1894",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Packaged Foods & Meats",
+      "headquarters": "Hershey, Pennsylvania",
+      "security": "Hershey Company (The)",
+      "symbol": "HSY"
+    },
+    {
+      "cik": "0001645590",
+      "date_added": "2015-11-02",
+      "founded": "2015",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Technology Hardware, Storage & Peripherals",
+      "headquarters": "Houston, Texas",
+      "security": "Hewlett Packard Enterprise",
+      "symbol": "HPE"
+    },
+    {
+      "cik": "0001585689",
+      "date_added": "2017-06-19",
+      "founded": "1919",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Hotels, Resorts & Cruise Lines",
+      "headquarters": "Tysons Corner, Virginia",
+      "security": "Hilton Worldwide",
+      "symbol": "HLT"
+    },
+    {
+      "cik": "0000354950",
+      "date_added": "1988-03-31",
+      "founded": "1978",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Home Improvement Retail",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Home Depot (The)",
+      "symbol": "HD"
+    },
+    {
+      "cik": "0002089271",
+      "date_added": "2026-06-29",
+      "founded": "1914",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Phoenix, Arizona",
+      "security": "Honeywell Aerospace",
+      "symbol": "HONA"
+    },
+    {
+      "cik": "0000773840",
+      "date_added": "1957-03-04",
+      "founded": "1906",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Conglomerates",
+      "headquarters": "Charlotte, North Carolina",
+      "security": "Honeywell Technologies",
+      "symbol": "HON"
+    },
+    {
+      "cik": "0000048465",
+      "date_added": "2009-03-04",
+      "founded": "1891",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Packaged Foods & Meats",
+      "headquarters": "Austin, Minnesota",
+      "security": "Hormel Foods",
+      "symbol": "HRL"
+    },
+    {
+      "cik": "0001070750",
+      "date_added": "2007-03-20",
+      "founded": "1993",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Hotel & Resort REITs",
+      "headquarters": "Bethesda, Maryland",
+      "security": "Host Hotels & Resorts",
+      "symbol": "HST"
+    },
+    {
+      "cik": "0000004281",
+      "date_added": "2016-10-21",
+      "founded": "1888",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Pittsburgh, Pennsylvania",
+      "security": "Howmet Aerospace",
+      "symbol": "HWM"
+    },
+    {
+      "cik": "0000047217",
+      "date_added": "1974-12-31",
+      "founded": "1939 (2015)",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Technology Hardware, Storage & Peripherals",
+      "headquarters": "Palo Alto, California",
+      "security": "HP Inc.",
+      "symbol": "HPQ"
+    },
+    {
+      "cik": "0000048898",
+      "date_added": "2023-10-18",
+      "founded": "1888",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Shelton, Connecticut",
+      "security": "Hubbell Incorporated",
+      "symbol": "HUBB"
+    },
+    {
+      "cik": "0000049071",
+      "date_added": "2012-12-10",
+      "founded": "1961",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Managed Health Care",
+      "headquarters": "Louisville, Kentucky",
+      "security": "Humana",
+      "symbol": "HUM"
+    },
+    {
+      "cik": "0000049196",
+      "date_added": "1997-08-28",
+      "founded": "1866",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Regional Banks",
+      "headquarters": "Columbus, Ohio; Detroit, Michigan",
+      "security": "Huntington Bancshares",
+      "symbol": "HBAN"
+    },
+    {
+      "cik": "0001501585",
+      "date_added": "2018-01-03",
+      "founded": "2011",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Newport News, Virginia",
+      "security": "Huntington Ingalls Industries",
+      "symbol": "HII"
+    },
+    {
+      "cik": "0000051143",
+      "date_added": "1957-03-04",
+      "founded": "1911",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "IT Consulting & Other Services",
+      "headquarters": "Armonk, New York",
+      "security": "IBM",
+      "symbol": "IBM"
+    },
+    {
+      "cik": "0000832101",
+      "date_added": "2019-08-09",
+      "founded": "1988",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Northbrook, Illinois",
+      "security": "IDEX Corporation",
+      "symbol": "IEX"
+    },
+    {
+      "cik": "0000874716",
+      "date_added": "2017-01-05",
+      "founded": "1983",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Westbrook, Maine",
+      "security": "Idexx Laboratories",
+      "symbol": "IDXX"
+    },
+    {
+      "cik": "0000049826",
+      "date_added": "1986-02-28",
+      "founded": "1912",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Glenview, Illinois",
+      "security": "Illinois Tool Works",
+      "symbol": "ITW"
+    },
+    {
+      "cik": "0000879169",
+      "date_added": "2017-02-28",
+      "founded": "1991",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Biotechnology",
+      "headquarters": "Wilmington, Delaware",
+      "security": "Incyte",
+      "symbol": "INCY"
+    },
+    {
+      "cik": "0001699150",
+      "date_added": "2020-03-03",
+      "founded": "1859",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Davidson, North Carolina",
+      "security": "Ingersoll Rand",
+      "symbol": "IR"
+    },
+    {
+      "cik": "0001145197",
+      "date_added": "2023-03-15",
+      "founded": "2000",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Acton, Massachusetts",
+      "security": "Insulet Corporation",
+      "symbol": "PODD"
+    },
+    {
+      "cik": "0000050863",
+      "date_added": "1976-12-31",
+      "founded": "1968",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Santa Clara, California",
+      "security": "Intel",
+      "symbol": "INTC"
+    },
+    {
+      "cik": "0001381197",
+      "date_added": "2025-08-28",
+      "founded": "1977",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Investment Banking & Brokerage",
+      "headquarters": "Greenwich, Connecticut",
+      "security": "Interactive Brokers",
+      "symbol": "IBKR"
+    },
+    {
+      "cik": "0001571949",
+      "date_added": "2007-09-26",
+      "founded": "2000",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Financial Exchanges & Data",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Intercontinental Exchange",
+      "symbol": "ICE"
+    },
+    {
+      "cik": "0000051253",
+      "date_added": "1976-03-31",
+      "founded": "1958 (1889)",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Specialty Chemicals",
+      "headquarters": "New York City, New York",
+      "security": "International Flavors & Fragrances",
+      "symbol": "IFF"
+    },
+    {
+      "cik": "0000051434",
+      "date_added": "1957-03-04",
+      "founded": "1898",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Paper & Plastic Packaging Products & Materials",
+      "headquarters": "Memphis, Tennessee",
+      "security": "International Paper",
+      "symbol": "IP"
+    },
+    {
+      "cik": "0000896878",
+      "date_added": "2000-12-05",
+      "founded": "1983",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "Mountain View, California",
+      "security": "Intuit",
+      "symbol": "INTU"
+    },
+    {
+      "cik": "0001035267",
+      "date_added": "2008-06-02",
+      "founded": "1995",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Sunnyvale, California",
+      "security": "Intuitive Surgical",
+      "symbol": "ISRG"
+    },
+    {
+      "cik": "0000914208",
+      "date_added": "2008-08-21",
+      "founded": "1935",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Invesco",
+      "symbol": "IVZ"
+    },
+    {
+      "cik": "0001687229",
+      "date_added": "2022-09-19",
+      "founded": "2012",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Single-Family Residential REITs",
+      "headquarters": "Dallas, Texas",
+      "security": "Invitation Homes",
+      "symbol": "INVH"
+    },
+    {
+      "cik": "0001478242",
+      "date_added": "2017-08-29",
+      "founded": "1982",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Life Sciences Tools & Services",
+      "headquarters": "Durham, North Carolina",
+      "security": "IQVIA",
+      "symbol": "IQV"
+    },
+    {
+      "cik": "0001020569",
+      "date_added": "2009-01-06",
+      "founded": "1951",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Other Specialized REITs",
+      "headquarters": "Portsmouth, New Hampshire",
+      "security": "Iron Mountain",
+      "symbol": "IRM"
+    },
+    {
+      "cik": "0000728535",
+      "date_added": "2015-07-01",
+      "founded": "1961",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Cargo Ground Transportation",
+      "headquarters": "Lowell, Arkansas",
+      "security": "J.B. Hunt",
+      "symbol": "JBHT"
+    },
+    {
+      "cik": "0000898293",
+      "date_added": "2023-12-18",
+      "founded": "1966",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Electronic Manufacturing Services",
+      "headquarters": "St. Petersburg, Florida",
+      "security": "Jabil",
+      "symbol": "JBL"
+    },
+    {
+      "cik": "0000779152",
+      "date_added": "2018-11-13",
+      "founded": "1976",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Transaction & Payment Processing Services",
+      "headquarters": "Monett, Missouri",
+      "security": "Jack Henry & Associates",
+      "symbol": "JKHY"
+    },
+    {
+      "cik": "0000052988",
+      "date_added": "2007-10-26",
+      "founded": "1947",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Construction & Engineering",
+      "headquarters": "Dallas, Texas",
+      "security": "Jacobs Solutions",
+      "symbol": "J"
+    },
+    {
+      "cik": "0000200406",
+      "date_added": "1973-06-30",
+      "founded": "1886",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Pharmaceuticals",
+      "headquarters": "New Brunswick, New Jersey",
+      "security": "Johnson & Johnson",
+      "symbol": "JNJ"
+    },
+    {
+      "cik": "0000833444",
+      "date_added": "2010-08-27",
+      "founded": "1885",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Building Products",
+      "headquarters": "Cork, Ireland",
+      "security": "Johnson Controls",
+      "symbol": "JCI"
+    },
+    {
+      "cik": "0000019617",
+      "date_added": "1975-06-30",
+      "founded": "2000 (1799 / 1871)",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Diversified Banks",
+      "headquarters": "New York City, New York",
+      "security": "JPMorgan Chase",
+      "symbol": "JPM"
+    },
+    {
+      "cik": "0001944048",
+      "date_added": "2023-08-25",
+      "founded": "2022 (Johnson & Johnson spinoff)",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Personal Care Products",
+      "headquarters": "Skillman, New Jersey",
+      "security": "Kenvue",
+      "symbol": "KVUE"
+    },
+    {
+      "cik": "0001418135",
+      "date_added": "2022-06-21",
+      "founded": "1981",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Soft Drinks & Non-alcoholic Beverages",
+      "headquarters": "Burlington, Massachusetts",
+      "security": "Keurig Dr Pepper",
+      "symbol": "KDP"
+    },
+    {
+      "cik": "0000091576",
+      "date_added": "1994-03-01",
+      "founded": "1825",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Regional Banks",
+      "headquarters": "Cleveland, Ohio",
+      "security": "KeyCorp",
+      "symbol": "KEY"
+    },
+    {
+      "cik": "0001601046",
+      "date_added": "2018-11-06",
+      "founded": "2014 (1939)",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Electronic Equipment & Instruments",
+      "headquarters": "Santa Rosa, California",
+      "security": "Keysight Technologies",
+      "symbol": "KEYS"
+    },
+    {
+      "cik": "0000055785",
+      "date_added": "1957-03-04",
+      "founded": "1872",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Household Products",
+      "headquarters": "Irving, Texas",
+      "security": "Kimberly-Clark",
+      "symbol": "KMB"
+    },
+    {
+      "cik": "0000879101",
+      "date_added": "2006-04-04",
+      "founded": "1958",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Retail REITs",
+      "headquarters": "Jericho, New York",
+      "security": "Kimco Realty",
+      "symbol": "KIM"
+    },
+    {
+      "cik": "0001506307",
+      "date_added": "2012-05-25",
+      "founded": "1997",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Storage & Transportation",
+      "headquarters": "Houston, Texas",
+      "security": "Kinder Morgan",
+      "symbol": "KMI"
+    },
+    {
+      "cik": "0001404912",
+      "date_added": "2024-06-24",
+      "founded": "1976",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "New York City, New York",
+      "security": "KKR & Co.",
+      "symbol": "KKR"
+    },
+    {
+      "cik": "0000319201",
+      "date_added": "1997-09-30",
+      "founded": "1975/1977 (1997)",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductor Materials & Equipment",
+      "headquarters": "Milpitas, California",
+      "security": "KLA Corporation",
+      "symbol": "KLAC"
+    },
+    {
+      "cik": "0001637459",
+      "date_added": "2015-07-06",
+      "founded": "2015 (1869)",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Packaged Foods & Meats",
+      "headquarters": "Chicago, Illinois; Pittsburgh, Pennsylvania",
+      "security": "Kraft Heinz",
+      "symbol": "KHC"
+    },
+    {
+      "cik": "0000056873",
+      "date_added": "1957-03-04",
+      "founded": "1883",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Food Retail",
+      "headquarters": "Cincinnati, Ohio",
+      "security": "Kroger",
+      "symbol": "KR"
+    },
+    {
+      "cik": "0000202058",
+      "date_added": "2008-09-22",
+      "founded": "2019 (L3 1997, Harris 1895)",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Melbourne, Florida",
+      "security": "L3Harris",
+      "symbol": "LHX"
+    },
+    {
+      "cik": "0000920148",
+      "date_added": "2004-11-01",
+      "founded": "1978",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Services",
+      "headquarters": "Burlington, North Carolina",
+      "security": "Labcorp",
+      "symbol": "LH"
+    },
+    {
+      "cik": "0000707549",
+      "date_added": "2012-06-29",
+      "founded": "1980",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductor Materials & Equipment",
+      "headquarters": "Fremont, California",
+      "security": "Lam Research",
+      "symbol": "LRCX"
+    },
+    {
+      "cik": "0001300514",
+      "date_added": "2019-10-03",
+      "founded": "1988",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Casinos & Gaming",
+      "headquarters": "Las Vegas, Nevada",
+      "security": "Las Vegas Sands",
+      "symbol": "LVS"
+    },
+    {
+      "cik": "0001336920",
+      "date_added": "2019-08-09",
+      "founded": "1969",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Diversified Support Services",
+      "headquarters": "Reston, Virginia",
+      "security": "Leidos",
+      "symbol": "LDOS"
+    },
+    {
+      "cik": "0000920760",
+      "date_added": "2005-10-04",
+      "founded": "1954",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Homebuilding",
+      "headquarters": "Miami, Florida",
+      "security": "Lennar",
+      "symbol": "LEN"
+    },
+    {
+      "cik": "0001069202",
+      "date_added": "2024-12-23",
+      "founded": "1895",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Building Products",
+      "headquarters": "Richardson, Texas",
+      "security": "Lennox International",
+      "symbol": "LII"
+    },
+    {
+      "cik": "0000059478",
+      "date_added": "1970-12-31",
+      "founded": "1876",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Pharmaceuticals",
+      "headquarters": "Indianapolis, Indiana",
+      "security": "Lilly (Eli)",
+      "symbol": "LLY"
+    },
+    {
+      "cik": "0001707925",
+      "date_added": "1992-07-01",
+      "founded": "1879",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Industrial Gases",
+      "headquarters": "Guildford, United Kingdom",
+      "security": "Linde plc",
+      "symbol": "LIN"
+    },
+    {
+      "cik": "0001335258",
+      "date_added": "2019-12-23",
+      "founded": "2010",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Movies & Entertainment",
+      "headquarters": "Beverly Hills, California",
+      "security": "Live Nation Entertainment",
+      "symbol": "LYV"
+    },
+    {
+      "cik": "0000936468",
+      "date_added": "1957-03-04",
+      "founded": "1995",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Bethesda, Maryland",
+      "security": "Lockheed Martin",
+      "symbol": "LMT"
+    },
+    {
+      "cik": "0000060086",
+      "date_added": "1995-05-31",
+      "founded": "1959",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Multi-line Insurance",
+      "headquarters": "New York City, New York",
+      "security": "Loews Corporation",
+      "symbol": "L"
+    },
+    {
+      "cik": "0000060667",
+      "date_added": "1984-02-29",
+      "founded": "1904/1946/1959",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Home Improvement Retail",
+      "headquarters": "Mooresville, North Carolina",
+      "security": "Lowe's",
+      "symbol": "LOW"
+    },
+    {
+      "cik": "0001397187",
+      "date_added": "2023-10-18",
+      "founded": "1998",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Apparel, Accessories & Luxury Goods",
+      "headquarters": "Vancouver, Canada",
+      "security": "Lululemon Athletica",
+      "symbol": "LULU"
+    },
+    {
+      "cik": "0001633978",
+      "date_added": "2026-03-23",
+      "founded": "2015",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Communications Equipment",
+      "headquarters": "San Jose, California",
+      "security": "Lumentum",
+      "symbol": "LITE"
+    },
+    {
+      "cik": "0001489393",
+      "date_added": "2012-09-05",
+      "founded": "2007",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Specialty Chemicals",
+      "headquarters": "Rotterdam, Netherlands",
+      "security": "LyondellBasell",
+      "symbol": "LYB"
+    },
+    {
+      "cik": "0000036270",
+      "date_added": "2004-02-23",
+      "founded": "1856",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Regional Banks",
+      "headquarters": "Buffalo, New York",
+      "security": "M&T Bank",
+      "symbol": "MTB"
+    },
+    {
+      "cik": "0001510295",
+      "date_added": "2011-07-01",
+      "founded": "2009 (1887)",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Refining & Marketing",
+      "headquarters": "Findlay, Ohio",
+      "security": "Marathon Petroleum",
+      "symbol": "MPC"
+    },
+    {
+      "cik": "0001048286",
+      "date_added": "1998-05-29",
+      "founded": "1927",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Hotels, Resorts & Cruise Lines",
+      "headquarters": "Bethesda, Maryland",
+      "security": "Marriott International",
+      "symbol": "MAR"
+    },
+    {
+      "cik": "0000062709",
+      "date_added": "1987-08-31",
+      "founded": "1905",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Insurance Brokers",
+      "headquarters": "New York City, New York",
+      "security": "Marsh McLennan",
+      "symbol": "MRSH"
+    },
+    {
+      "cik": "0000916076",
+      "date_added": "2014-07-02",
+      "founded": "1993",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Construction Materials",
+      "headquarters": "Raleigh, North Carolina",
+      "security": "Martin Marietta Materials",
+      "symbol": "MLM"
+    },
+    {
+      "cik": "0001835632",
+      "date_added": "2026-06-22",
+      "founded": "1995",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Santa Clara, California",
+      "security": "Marvell Technology",
+      "symbol": "MRVL"
+    },
+    {
+      "cik": "0000062996",
+      "date_added": "1981-06-30",
+      "founded": "1929",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Building Products",
+      "headquarters": "Livonia, Michigan",
+      "security": "Masco",
+      "symbol": "MAS"
+    },
+    {
+      "cik": "0001141391",
+      "date_added": "2008-07-18",
+      "founded": "1966",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Transaction & Payment Processing Services",
+      "headquarters": "Harrison, New York",
+      "security": "Mastercard",
+      "symbol": "MA"
+    },
+    {
+      "cik": "0000063754",
+      "date_added": "2003-03-20",
+      "founded": "1889",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Packaged Foods & Meats",
+      "headquarters": "Hunt Valley, Maryland",
+      "security": "McCormick & Company",
+      "symbol": "MKC"
+    },
+    {
+      "cik": "0000063908",
+      "date_added": "1970-06-30",
+      "founded": "1940",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Restaurants",
+      "headquarters": "Chicago, Illinois",
+      "security": "McDonald's",
+      "symbol": "MCD"
+    },
+    {
+      "cik": "0000927653",
+      "date_added": "1999-01-13",
+      "founded": "1833",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Distributors",
+      "headquarters": "Irving, Texas",
+      "security": "McKesson Corporation",
+      "symbol": "MCK"
+    },
+    {
+      "cik": "0001613103",
+      "date_added": "1986-10-31",
+      "founded": "1949",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Galway, Ireland",
+      "security": "Medtronic",
+      "symbol": "MDT"
+    },
+    {
+      "cik": "0000310158",
+      "date_added": "1957-03-04",
+      "founded": "1891",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Pharmaceuticals",
+      "headquarters": "Kenilworth, New Jersey",
+      "security": "Merck & Co.",
+      "symbol": "MRK"
+    },
+    {
+      "cik": "0001326801",
+      "date_added": "2013-12-23",
+      "founded": "2004",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Interactive Media & Services",
+      "headquarters": "Menlo Park, California",
+      "security": "Meta Platforms",
+      "symbol": "META"
+    },
+    {
+      "cik": "0001099219",
+      "date_added": "2000-12-11",
+      "founded": "1868",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Life & Health Insurance",
+      "headquarters": "New York City, New York",
+      "security": "MetLife",
+      "symbol": "MET"
+    },
+    {
+      "cik": "0001037646",
+      "date_added": "2016-09-06",
+      "founded": "1945",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Life Sciences Tools & Services",
+      "headquarters": "Columbus, Ohio",
+      "security": "Mettler Toledo",
+      "symbol": "MTD"
+    },
+    {
+      "cik": "0000789570",
+      "date_added": "2017-07-26",
+      "founded": "1986",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Casinos & Gaming",
+      "headquarters": "Paradise, Nevada",
+      "security": "MGM Resorts",
+      "symbol": "MGM"
+    },
+    {
+      "cik": "0000827054",
+      "date_added": "2007-09-07",
+      "founded": "1989",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Chandler, Arizona",
+      "security": "Microchip Technology",
+      "symbol": "MCHP"
+    },
+    {
+      "cik": "0000723125",
+      "date_added": "1994-09-27",
+      "founded": "1978",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Boise, Idaho",
+      "security": "Micron Technology",
+      "symbol": "MU"
+    },
+    {
+      "cik": "0000789019",
+      "date_added": "1994-06-01",
+      "founded": "1975",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Systems Software",
+      "headquarters": "Redmond, Washington",
+      "security": "Microsoft",
+      "symbol": "MSFT"
+    },
+    {
+      "cik": "0000912595",
+      "date_added": "2016-12-02",
+      "founded": "1977",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Multi-Family Residential REITs",
+      "headquarters": "Memphis, Tennessee",
+      "security": "Mid-America Apartment Communities",
+      "symbol": "MAA"
+    },
+    {
+      "cik": "0001682852",
+      "date_added": "2021-07-21",
+      "founded": "2010",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Biotechnology",
+      "headquarters": "Cambridge, Massachusetts",
+      "security": "Moderna",
+      "symbol": "MRNA"
+    },
+    {
+      "cik": "0000024545",
+      "date_added": "1976-06-30",
+      "founded": "2005 (Molson 1786, Coors 1873)",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Brewers",
+      "headquarters": "Chicago, Illinois",
+      "security": "Molson Coors Beverage Company",
+      "symbol": "TAP"
+    },
+    {
+      "cik": "0001103982",
+      "date_added": "2012-10-02",
+      "founded": "2012",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Packaged Foods & Meats",
+      "headquarters": "Chicago, Illinois",
+      "security": "Mondelez International",
+      "symbol": "MDLZ"
+    },
+    {
+      "cik": "0001280452",
+      "date_added": "2021-02-12",
+      "founded": "1997",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Kirkland, Washington",
+      "security": "Monolithic Power Systems",
+      "symbol": "MPWR"
+    },
+    {
+      "cik": "0000865752",
+      "date_added": "2012-06-28",
+      "founded": "2012 (1935)",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Soft Drinks & Non-alcoholic Beverages",
+      "headquarters": "Corona, California",
+      "security": "Monster Beverage",
+      "symbol": "MNST"
+    },
+    {
+      "cik": "0001059556",
+      "date_added": "1998-07-01",
+      "founded": "1909",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Financial Exchanges & Data",
+      "headquarters": "New York City, New York",
+      "security": "Moody's Corporation",
+      "symbol": "MCO"
+    },
+    {
+      "cik": "0000895421",
+      "date_added": "1993-07-29",
+      "founded": "1935",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Investment Banking & Brokerage",
+      "headquarters": "New York City, New York",
+      "security": "Morgan Stanley",
+      "symbol": "MS"
+    },
+    {
+      "cik": "0001285785",
+      "date_added": "2011-09-26",
+      "founded": "2004 (1865 / 1909)",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Fertilizers & Agricultural Chemicals",
+      "headquarters": "Tampa, Florida",
+      "security": "Mosaic Company (The)",
+      "symbol": "MOS"
+    },
+    {
+      "cik": "0000068505",
+      "date_added": "1957-03-04",
+      "founded": "1928 (2011)",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Communications Equipment",
+      "headquarters": "Chicago, Illinois",
+      "security": "Motorola Solutions",
+      "symbol": "MSI"
+    },
+    {
+      "cik": "0001408198",
+      "date_added": "2018-04-04",
+      "founded": "1969",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Financial Exchanges & Data",
+      "headquarters": "New York City, New York",
+      "security": "MSCI Inc.",
+      "symbol": "MSCI"
+    },
+    {
+      "cik": "0001120193",
+      "date_added": "2008-10-22",
+      "founded": "1971",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Financial Exchanges & Data",
+      "headquarters": "New York City, New York",
+      "security": "Nasdaq, Inc.",
+      "symbol": "NDAQ"
+    },
+    {
+      "cik": "0001002047",
+      "date_added": "1999-06-25",
+      "founded": "1992",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Technology Hardware, Storage & Peripherals",
+      "headquarters": "San Jose, California",
+      "security": "NetApp",
+      "symbol": "NTAP"
+    },
+    {
+      "cik": "0001065280",
+      "date_added": "2010-12-20",
+      "founded": "1997",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Movies & Entertainment",
+      "headquarters": "Los Gatos, California",
+      "security": "Netflix",
+      "symbol": "NFLX"
+    },
+    {
+      "cik": "0001164727",
+      "date_added": "1969-06-30",
+      "founded": "1921",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Gold",
+      "headquarters": "Denver, Colorado",
+      "security": "Newmont",
+      "symbol": "NEM"
+    },
+    {
+      "cik": "0001564708",
+      "date_added": "2013-08-01",
+      "founded": "2013 (News Corporation 1980)",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Publishing",
+      "headquarters": "New York City, New York",
+      "security": "News Corp (Class A)",
+      "symbol": "NWSA"
+    },
+    {
+      "cik": "0001564708",
+      "date_added": "2015-09-18",
+      "founded": "2013 (News Corporation 1980)",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Publishing",
+      "headquarters": "New York City, New York",
+      "security": "News Corp (Class B)",
+      "symbol": "NWS"
+    },
+    {
+      "cik": "0000753308",
+      "date_added": "1976-06-30",
+      "founded": "1984 (1925)",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "Juno Beach, Florida",
+      "security": "NextEra Energy",
+      "symbol": "NEE"
+    },
+    {
+      "cik": "0000320187",
+      "date_added": "1988-11-30",
+      "founded": "1964",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Apparel, Accessories & Luxury Goods",
+      "headquarters": "Washington County, Oregon",
+      "security": "Nike, Inc.",
+      "symbol": "NKE"
+    },
+    {
+      "cik": "0001111711",
+      "date_added": "2000-11-02",
+      "founded": "1912",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "Merrillville, Indiana",
+      "security": "NiSource",
+      "symbol": "NI"
+    },
+    {
+      "cik": "0000072331",
+      "date_added": "2022-02-15",
+      "founded": "1935",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Westlake, Ohio",
+      "security": "Nordson Corporation",
+      "symbol": "NDSN"
+    },
+    {
+      "cik": "0000702165",
+      "date_added": "1957-03-04",
+      "founded": "1881/1894 (1980)",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Rail Transportation",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Norfolk Southern",
+      "symbol": "NSC"
+    },
+    {
+      "cik": "0000073124",
+      "date_added": "1998-01-30",
+      "founded": "1889",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "Chicago, Illinois",
+      "security": "Northern Trust",
+      "symbol": "NTRS"
+    },
+    {
+      "cik": "0001133421",
+      "date_added": "1957-03-04",
+      "founded": "1994 (Northrop 1939, Grumman 1930)",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "West Falls Church, Virginia[2]",
+      "security": "Northrop Grumman",
+      "symbol": "NOC"
+    },
+    {
+      "cik": "0001513761",
+      "date_added": "2017-10-13",
+      "founded": "2011 (1966)",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Hotels, Resorts & Cruise Lines",
+      "headquarters": "Miami-Dade County, Florida[3]",
+      "security": "Norwegian Cruise Line Holdings",
+      "symbol": "NCLH"
+    },
+    {
+      "cik": "0001013871",
+      "date_added": "2010-01-29",
+      "founded": "1992",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Independent Power Producers & Energy Traders",
+      "headquarters": "Houston, Texas",
+      "security": "NRG Energy",
+      "symbol": "NRG"
+    },
+    {
+      "cik": "0000073309",
+      "date_added": "1985-04-30",
+      "founded": "1940",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Steel",
+      "headquarters": "Charlotte, North Carolina",
+      "security": "Nucor",
+      "symbol": "NUE"
+    },
+    {
+      "cik": "0001045810",
+      "date_added": "2001-11-30",
+      "founded": "1993",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Santa Clara, California",
+      "security": "Nvidia",
+      "symbol": "NVDA"
+    },
+    {
+      "cik": "0000906163",
+      "date_added": "2019-09-26",
+      "founded": "1980",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Homebuilding",
+      "headquarters": "Reston, Virginia",
+      "security": "NVR, Inc.",
+      "symbol": "NVR"
+    },
+    {
+      "cik": "0001413447",
+      "date_added": "2021-03-22",
+      "founded": "1953",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Eindhoven, Netherlands",
+      "security": "NXP Semiconductors",
+      "symbol": "NXPI"
+    },
+    {
+      "cik": "0000898173",
+      "date_added": "2009-03-27",
+      "founded": "1957",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Automotive Retail",
+      "headquarters": "Springfield, Missouri",
+      "security": "O\u2019Reilly Automotive",
+      "symbol": "ORLY"
+    },
+    {
+      "cik": "0000797468",
+      "date_added": "1957-03-04",
+      "founded": "1920",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Exploration & Production",
+      "headquarters": "Houston, Texas",
+      "security": "Occidental Petroleum",
+      "symbol": "OXY"
+    },
+    {
+      "cik": "0000878927",
+      "date_added": "2019-12-09",
+      "founded": "1934",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Cargo Ground Transportation",
+      "headquarters": "Thomasville, North Carolina",
+      "security": "Old Dominion",
+      "symbol": "ODFL"
+    },
+    {
+      "cik": "0000029989",
+      "date_added": "1997-12-31",
+      "founded": "1986",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Advertising",
+      "headquarters": "New York City, New York",
+      "security": "Omnicom Group",
+      "symbol": "OMC"
+    },
+    {
+      "cik": "0001097864",
+      "date_added": "2022-06-21",
+      "founded": "1999",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Phoenix, Arizona",
+      "security": "ON Semiconductor",
+      "symbol": "ON"
+    },
+    {
+      "cik": "0001039684",
+      "date_added": "2010-03-15",
+      "founded": "1906",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Storage & Transportation",
+      "headquarters": "Tulsa, Oklahoma",
+      "security": "Oneok",
+      "symbol": "OKE"
+    },
+    {
+      "cik": "0001341439",
+      "date_added": "1989-08-31",
+      "founded": "1977",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "Austin, Texas",
+      "security": "Oracle Corporation",
+      "symbol": "ORCL"
+    },
+    {
+      "cik": "0001781335",
+      "date_added": "2020-04-03",
+      "founded": "2020 (1853, United Technologies spinoff)",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Farmington, Connecticut",
+      "security": "Otis Worldwide",
+      "symbol": "OTIS"
+    },
+    {
+      "cik": "0000075362",
+      "date_added": "1980-12-31",
+      "founded": "1905",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Construction Machinery & Heavy Transportation Equipment",
+      "headquarters": "Bellevue, Washington",
+      "security": "Paccar",
+      "symbol": "PCAR"
+    },
+    {
+      "cik": "0000075677",
+      "date_added": "2017-07-26",
+      "founded": "1959",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Paper & Plastic Packaging Products & Materials",
+      "headquarters": "Lake Forest, Illinois",
+      "security": "Packaging Corporation of America",
+      "symbol": "PKG"
+    },
+    {
+      "cik": "0001321655",
+      "date_added": "2024-09-23",
+      "founded": "2003",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "Aventura, Florida",
+      "security": "Palantir Technologies",
+      "symbol": "PLTR"
+    },
+    {
+      "cik": "0001327567",
+      "date_added": "2023-06-20",
+      "founded": "2005",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Systems Software",
+      "headquarters": "Santa Clara, California",
+      "security": "Palo Alto Networks",
+      "symbol": "PANW"
+    },
+    {
+      "cik": "0002041610",
+      "date_added": "1994-09-30",
+      "founded": "2025 (Paramount Pictures 1912)",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Movies & Entertainment",
+      "headquarters": "Los Angeles, California",
+      "security": "Paramount Skydance Corporation",
+      "symbol": "PSKY"
+    },
+    {
+      "cik": "0000076334",
+      "date_added": "1985-11-30",
+      "founded": "1917",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Cleveland, Ohio",
+      "security": "Parker Hannifin",
+      "symbol": "PH"
+    },
+    {
+      "cik": "0000723531",
+      "date_added": "1998-10-01",
+      "founded": "1971",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Human Resource & Employment Services",
+      "headquarters": "Penfield, New York",
+      "security": "Paychex",
+      "symbol": "PAYX"
+    },
+    {
+      "cik": "0001633917",
+      "date_added": "2015-07-20",
+      "founded": "1998",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Transaction & Payment Processing Services",
+      "headquarters": "San Jose, California",
+      "security": "PayPal",
+      "symbol": "PYPL"
+    },
+    {
+      "cik": "0000077360",
+      "date_added": "2012-10-01",
+      "founded": "1966",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Worsley, United Kingdom",
+      "security": "Pentair",
+      "symbol": "PNR"
+    },
+    {
+      "cik": "0000077476",
+      "date_added": "1957-03-04",
+      "founded": "1898",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Soft Drinks & Non-alcoholic Beverages",
+      "headquarters": "Purchase, New York",
+      "security": "PepsiCo",
+      "symbol": "PEP"
+    },
+    {
+      "cik": "0000078003",
+      "date_added": "1957-03-04",
+      "founded": "1849",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Pharmaceuticals",
+      "headquarters": "New York City, New York",
+      "security": "Pfizer",
+      "symbol": "PFE"
+    },
+    {
+      "cik": "0001004980",
+      "date_added": "2022-10-03",
+      "founded": "1905",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "Oakland, California",
+      "security": "PG&E Corporation",
+      "symbol": "PCG"
+    },
+    {
+      "cik": "0001413329",
+      "date_added": "2008-03-31",
+      "founded": "2008 (1847)",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Tobacco",
+      "headquarters": "New York City, New York",
+      "security": "Philip Morris International",
+      "symbol": "PM"
+    },
+    {
+      "cik": "0001534701",
+      "date_added": "2012-05-01",
+      "founded": "2012 (1917)",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Refining & Marketing",
+      "headquarters": "Houston, Texas",
+      "security": "Phillips 66",
+      "symbol": "PSX"
+    },
+    {
+      "cik": "0000764622",
+      "date_added": "1999-10-04",
+      "founded": "1985",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "Phoenix, Arizona",
+      "security": "Pinnacle West Capital",
+      "symbol": "PNW"
+    },
+    {
+      "cik": "0000713676",
+      "date_added": "1988-04-30",
+      "founded": "1845",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Diversified Banks",
+      "headquarters": "Pittsburgh, Pennsylvania",
+      "security": "PNC Financial Services",
+      "symbol": "PNC"
+    },
+    {
+      "cik": "0000079879",
+      "date_added": "1957-03-04",
+      "founded": "1883",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Specialty Chemicals",
+      "headquarters": "Pittsburgh, Pennsylvania",
+      "security": "PPG Industries",
+      "symbol": "PPG"
+    },
+    {
+      "cik": "0000922224",
+      "date_added": "2001-10-01",
+      "founded": "1920",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Allentown, Pennsylvania",
+      "security": "PPL Corporation",
+      "symbol": "PPL"
+    },
+    {
+      "cik": "0001126328",
+      "date_added": "2002-07-22",
+      "founded": "1879",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Life & Health Insurance",
+      "headquarters": "Des Moines, Iowa",
+      "security": "Principal Financial Group",
+      "symbol": "PFG"
+    },
+    {
+      "cik": "0000080424",
+      "date_added": "1957-03-04",
+      "founded": "1837",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Personal Care Products",
+      "headquarters": "Cincinnati, Ohio",
+      "security": "Procter & Gamble",
+      "symbol": "PG"
+    },
+    {
+      "cik": "0000080661",
+      "date_added": "1997-08-04",
+      "founded": "1937",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Property & Casualty Insurance",
+      "headquarters": "Mayfield Village, Ohio",
+      "security": "Progressive Corporation",
+      "symbol": "PGR"
+    },
+    {
+      "cik": "0001045609",
+      "date_added": "2003-07-17",
+      "founded": "1983",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Industrial REITs",
+      "headquarters": "San Francisco, California",
+      "security": "Prologis",
+      "symbol": "PLD"
+    },
+    {
+      "cik": "0001137774",
+      "date_added": "2002-07-22",
+      "founded": "1875",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Life & Health Insurance",
+      "headquarters": "Newark, New Jersey",
+      "security": "Prudential Financial",
+      "symbol": "PRU"
+    },
+    {
+      "cik": "0000788784",
+      "date_added": "1957-03-04",
+      "founded": "1903",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Newark, New Jersey",
+      "security": "Public Service Enterprise Group",
+      "symbol": "PEG"
+    },
+    {
+      "cik": "0000857005",
+      "date_added": "2021-04-20",
+      "founded": "1985",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "Boston, Massachusetts",
+      "security": "PTC Inc.",
+      "symbol": "PTC"
+    },
+    {
+      "cik": "0001393311",
+      "date_added": "2005-08-19",
+      "founded": "1972",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Self-Storage REITs",
+      "headquarters": "Glendale, California",
+      "security": "Public Storage",
+      "symbol": "PSA"
+    },
+    {
+      "cik": "0000822416",
+      "date_added": "1984-04-30",
+      "founded": "1956",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Homebuilding",
+      "headquarters": "Atlanta, Georgia",
+      "security": "PulteGroup",
+      "symbol": "PHM"
+    },
+    {
+      "cik": "0001050915",
+      "date_added": "2009-07-01",
+      "founded": "1997",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Construction & Engineering",
+      "headquarters": "Houston, Texas",
+      "security": "Quanta Services",
+      "symbol": "PWR"
+    },
+    {
+      "cik": "0000804328",
+      "date_added": "1999-07-22",
+      "founded": "1985",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "San Diego, California",
+      "security": "Qualcomm",
+      "symbol": "QCOM"
+    },
+    {
+      "cik": "0001022079",
+      "date_added": "2002-12-12",
+      "founded": "1967",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Services",
+      "headquarters": "Secaucus, New Jersey",
+      "security": "Quest Diagnostics",
+      "symbol": "DGX"
+    },
+    {
+      "cik": "0002058873",
+      "date_added": "2025-11-03",
+      "founded": "2025",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductor Materials & Equipment",
+      "headquarters": "Wilmington, Delaware",
+      "security": "Qnity Electronics",
+      "symbol": "Q"
+    },
+    {
+      "cik": "0001037038",
+      "date_added": "2007-02-02",
+      "founded": "1967",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Apparel, Accessories & Luxury Goods",
+      "headquarters": "New York City, New York",
+      "security": "Ralph Lauren Corporation",
+      "symbol": "RL"
+    },
+    {
+      "cik": "0000720005",
+      "date_added": "2017-03-20",
+      "founded": "1962",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Investment Banking & Brokerage",
+      "headquarters": "St. Petersburg, Florida",
+      "security": "Raymond James Financial",
+      "symbol": "RJF"
+    },
+    {
+      "cik": "0000101829",
+      "date_added": "1957-03-04",
+      "founded": "1922",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Waltham, Massachusetts",
+      "security": "RTX Corporation",
+      "symbol": "RTX"
+    },
+    {
+      "cik": "0000726728",
+      "date_added": "2015-04-07",
+      "founded": "1969",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Retail REITs",
+      "headquarters": "San Diego, California",
+      "security": "Realty Income",
+      "symbol": "O"
+    },
+    {
+      "cik": "0000910606",
+      "date_added": "2017-03-02",
+      "founded": "1963",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Retail REITs",
+      "headquarters": "Jacksonville, Florida",
+      "security": "Regency Centers",
+      "symbol": "REG"
+    },
+    {
+      "cik": "0000872589",
+      "date_added": "2013-05-01",
+      "founded": "1988",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Biotechnology",
+      "headquarters": "Tarrytown, New York",
+      "security": "Regeneron Pharmaceuticals",
+      "symbol": "REGN"
+    },
+    {
+      "cik": "0001281761",
+      "date_added": "1998-08-28",
+      "founded": "1971",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Regional Banks",
+      "headquarters": "Birmingham, Alabama",
+      "security": "Regions Financial Corporation",
+      "symbol": "RF"
+    },
+    {
+      "cik": "0001060391",
+      "date_added": "2008-12-05",
+      "founded": "1998 (1981)",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Environmental & Facilities Services",
+      "headquarters": "Phoenix, Arizona",
+      "security": "Republic Services",
+      "symbol": "RSG"
+    },
+    {
+      "cik": "0000943819",
+      "date_added": "2017-07-26",
+      "founded": "1989",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "San Diego, California",
+      "security": "ResMed",
+      "symbol": "RMD"
+    },
+    {
+      "cik": "0000031791",
+      "date_added": "1985-05-31",
+      "founded": "1937",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Waltham, Massachusetts",
+      "security": "Revvity",
+      "symbol": "RVTY"
+    },
+    {
+      "cik": "0001783879",
+      "date_added": "2025-09-22",
+      "founded": "2013",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Investment Banking & Brokerage",
+      "headquarters": "Menlo Park, California",
+      "security": "Robinhood Markets",
+      "symbol": "HOOD"
+    },
+    {
+      "cik": "0001024478",
+      "date_added": "2000-03-12",
+      "founded": "1903",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Electrical Components & Equipment",
+      "headquarters": "Milwaukee, Wisconsin",
+      "security": "Rockwell Automation",
+      "symbol": "ROK"
+    },
+    {
+      "cik": "0000084839",
+      "date_added": "2018-10-01",
+      "founded": "1948",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Environmental & Facilities Services",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Rollins, Inc.",
+      "symbol": "ROL"
+    },
+    {
+      "cik": "0000882835",
+      "date_added": "2009-12-23",
+      "founded": "1981",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Electronic Equipment & Instruments",
+      "headquarters": "Sarasota, Florida",
+      "security": "Roper Technologies",
+      "symbol": "ROP"
+    },
+    {
+      "cik": "0000745732",
+      "date_added": "2009-12-21",
+      "founded": "1982",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Apparel Retail",
+      "headquarters": "Dublin, California",
+      "security": "Ross Stores",
+      "symbol": "ROST"
+    },
+    {
+      "cik": "0000884887",
+      "date_added": "2014-12-05",
+      "founded": "1997",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Hotels, Resorts & Cruise Lines",
+      "headquarters": "Miami, Florida",
+      "security": "Royal Caribbean Group",
+      "symbol": "RCL"
+    },
+    {
+      "cik": "0000064040",
+      "date_added": "1957-03-04",
+      "founded": "1917",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Financial Exchanges & Data",
+      "headquarters": "New York City, New York",
+      "security": "S&P Global",
+      "symbol": "SPGI"
+    },
+    {
+      "cik": "0001108524",
+      "date_added": "2008-09-15",
+      "founded": "1999",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "San Francisco, California",
+      "security": "Salesforce",
+      "symbol": "CRM"
+    },
+    {
+      "cik": "0002023554",
+      "date_added": "2025-11-28",
+      "founded": "1988",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Technology Hardware, Storage & Peripherals",
+      "headquarters": "Milpitas, California",
+      "security": "Sandisk",
+      "symbol": "SNDK"
+    },
+    {
+      "cik": "0001034054",
+      "date_added": "2017-09-01",
+      "founded": "1989",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Telecom Tower REITs",
+      "headquarters": "Boca Raton, Florida",
+      "security": "SBA Communications",
+      "symbol": "SBAC"
+    },
+    {
+      "cik": "0000087347",
+      "date_added": "1957-03-04",
+      "founded": "1926",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Equipment & Services",
+      "headquarters": "Houston, Texas",
+      "security": "Schlumberger",
+      "symbol": "SLB"
+    },
+    {
+      "cik": "0001137789",
+      "date_added": "2012-07-02",
+      "founded": "1979",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Technology Hardware, Storage & Peripherals",
+      "headquarters": "Dublin, Ireland",
+      "security": "Seagate Technology",
+      "symbol": "STX"
+    },
+    {
+      "cik": "0001032208",
+      "date_added": "2017-03-17",
+      "founded": "1998",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "San Diego, California",
+      "security": "Sempra",
+      "symbol": "SRE"
+    },
+    {
+      "cik": "0001373715",
+      "date_added": "2019-11-21",
+      "founded": "2003",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Systems Software",
+      "headquarters": "Santa Clara, California",
+      "security": "ServiceNow",
+      "symbol": "NOW"
+    },
+    {
+      "cik": "0000089800",
+      "date_added": "1964-06-30",
+      "founded": "1866",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Specialty Chemicals",
+      "headquarters": "Cleveland, Ohio",
+      "security": "Sherwin-Williams",
+      "symbol": "SHW"
+    },
+    {
+      "cik": "0001063761",
+      "date_added": "2002-06-26",
+      "founded": "2003",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Retail REITs",
+      "headquarters": "Indianapolis, Indiana",
+      "security": "Simon Property Group",
+      "symbol": "SPG"
+    },
+    {
+      "cik": "0000004127",
+      "date_added": "2015-03-12",
+      "founded": "2002",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Irvine, California",
+      "security": "Skyworks Solutions",
+      "symbol": "SWKS"
+    },
+    {
+      "cik": "0000091419",
+      "date_added": "2008-11-06",
+      "founded": "1897",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Packaged Foods & Meats",
+      "headquarters": "Orrville, Ohio",
+      "security": "J.M. Smucker Company (The)",
+      "symbol": "SJM"
+    },
+    {
+      "cik": "0002005951",
+      "date_added": "2024-07-08",
+      "founded": "1934",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Paper & Plastic Packaging Products & Materials",
+      "headquarters": "Dublin, Ireland",
+      "security": "Smurfit Westrock",
+      "symbol": "SW"
+    },
+    {
+      "cik": "0000091440",
+      "date_added": "1982-09-30",
+      "founded": "1920",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Kenosha, Wisconsin",
+      "security": "Snap-on",
+      "symbol": "SNA"
+    },
+    {
+      "cik": "0001964738",
+      "date_added": "2024-04-01",
+      "founded": "2023",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Technology",
+      "headquarters": "Saint Paul, Minnesota",
+      "security": "Solventum",
+      "symbol": "SOLV"
+    },
+    {
+      "cik": "0000092122",
+      "date_added": "1957-03-04",
+      "founded": "1945",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Atlanta, Georgia",
+      "security": "Southern Company",
+      "symbol": "SO"
+    },
+    {
+      "cik": "0000092380",
+      "date_added": "1994-07-01",
+      "founded": "1967",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Passenger Airlines",
+      "headquarters": "Dallas, Texas",
+      "security": "Southwest Airlines",
+      "symbol": "LUV"
+    },
+    {
+      "cik": "0000093556",
+      "date_added": "1982-09-30",
+      "founded": "1843",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "New Britain, Connecticut",
+      "security": "Stanley Black & Decker",
+      "symbol": "SWK"
+    },
+    {
+      "cik": "0000829224",
+      "date_added": "2000-06-07",
+      "founded": "1971",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Restaurants",
+      "headquarters": "Seattle, Washington",
+      "security": "Starbucks",
+      "symbol": "SBUX"
+    },
+    {
+      "cik": "0000093751",
+      "date_added": "2003-03-14",
+      "founded": "1792",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "Boston, Massachusetts",
+      "security": "State Street Corporation",
+      "symbol": "STT"
+    },
+    {
+      "cik": "0001022671",
+      "date_added": "2022-12-22",
+      "founded": "1993",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Steel",
+      "headquarters": "Fort Wayne, Indiana",
+      "security": "Steel Dynamics",
+      "symbol": "STLD"
+    },
+    {
+      "cik": "0001757898",
+      "date_added": "2019-12-23",
+      "founded": "1985",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Dublin, Ireland",
+      "security": "Steris",
+      "symbol": "STE"
+    },
+    {
+      "cik": "0000310764",
+      "date_added": "2000-12-12",
+      "founded": "1941",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Kalamazoo, Michigan",
+      "security": "Stryker Corporation",
+      "symbol": "SYK"
+    },
+    {
+      "cik": "0001375365",
+      "date_added": "2024-03-18",
+      "founded": "1993",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Technology Hardware, Storage & Peripherals",
+      "headquarters": "San Jose, California",
+      "security": "Supermicro",
+      "symbol": "SMCI"
+    },
+    {
+      "cik": "0001601712",
+      "date_added": "2015-11-18",
+      "founded": "2003",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Consumer Finance",
+      "headquarters": "Stamford, Connecticut",
+      "security": "Synchrony Financial",
+      "symbol": "SYF"
+    },
+    {
+      "cik": "0000883241",
+      "date_added": "2017-03-16",
+      "founded": "1986",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "Sunnyvale, California",
+      "security": "Synopsys",
+      "symbol": "SNPS"
+    },
+    {
+      "cik": "0000096021",
+      "date_added": "1986-12-31",
+      "founded": "1969",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Food Distributors",
+      "headquarters": "Houston, Texas",
+      "security": "Sysco",
+      "symbol": "SYY"
+    },
+    {
+      "cik": "0001283699",
+      "date_added": "2019-07-15",
+      "founded": "1994",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Wireless Telecommunication Services",
+      "headquarters": "Bellevue, Washington",
+      "security": "T-Mobile US",
+      "symbol": "TMUS"
+    },
+    {
+      "cik": "0001113169",
+      "date_added": "2019-07-29",
+      "founded": "1937",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Asset Management & Custody Banks",
+      "headquarters": "Baltimore, Maryland",
+      "security": "T. Rowe Price",
+      "symbol": "TROW"
+    },
+    {
+      "cik": "0000946581",
+      "date_added": "2018-03-19",
+      "founded": "1993",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Interactive Home Entertainment",
+      "headquarters": "New York City, New York",
+      "security": "Take-Two Interactive",
+      "symbol": "TTWO"
+    },
+    {
+      "cik": "0001116132",
+      "date_added": "2004-09-01",
+      "founded": "2017",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Apparel, Accessories & Luxury Goods",
+      "headquarters": "New York City, New York",
+      "security": "Tapestry, Inc.",
+      "symbol": "TPR"
+    },
+    {
+      "cik": "0001389170",
+      "date_added": "2022-10-12",
+      "founded": "2005",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Storage & Transportation",
+      "headquarters": "Houston, Texas",
+      "security": "Targa Resources",
+      "symbol": "TRGP"
+    },
+    {
+      "cik": "0000027419",
+      "date_added": "1976-12-31",
+      "founded": "1902",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Consumer Staples Merchandise Retail",
+      "headquarters": "Minneapolis, Minnesota",
+      "security": "Target Corporation",
+      "symbol": "TGT"
+    },
+    {
+      "cik": "0001385157",
+      "date_added": "2011-10-17",
+      "founded": "2007",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Electronic Manufacturing Services",
+      "headquarters": "Galway, Ireland",
+      "security": "TE Connectivity",
+      "symbol": "TEL"
+    },
+    {
+      "cik": "0001094285",
+      "date_added": "2020-06-22",
+      "founded": "1960",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Electronic Equipment & Instruments",
+      "headquarters": "Thousand Oaks, California",
+      "security": "Teledyne Technologies",
+      "symbol": "TDY"
+    },
+    {
+      "cik": "0000097210",
+      "date_added": "2020-09-21",
+      "founded": "1960",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductor Materials & Equipment",
+      "headquarters": "North Reading, Massachusetts",
+      "security": "Teradyne",
+      "symbol": "TER"
+    },
+    {
+      "cik": "0001318605",
+      "date_added": "2020-12-21",
+      "founded": "2003",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Automobile Manufacturers",
+      "headquarters": "Austin, Texas",
+      "security": "Tesla, Inc.",
+      "symbol": "TSLA"
+    },
+    {
+      "cik": "0000097476",
+      "date_added": "2001-03-12",
+      "founded": "1930",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Semiconductors",
+      "headquarters": "Dallas, Texas",
+      "security": "Texas Instruments",
+      "symbol": "TXN"
+    },
+    {
+      "cik": "0001811074",
+      "date_added": "2024-11-26",
+      "founded": "1888",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Exploration & Production",
+      "headquarters": "Dallas, Texas",
+      "security": "Texas Pacific Land Corporation",
+      "symbol": "TPL"
+    },
+    {
+      "cik": "0000217346",
+      "date_added": "1978-12-31",
+      "founded": "1923",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Providence, Rhode Island",
+      "security": "Textron",
+      "symbol": "TXT"
+    },
+    {
+      "cik": "0000097745",
+      "date_added": "2004-08-03",
+      "founded": "2006 (1902)",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Life Sciences Tools & Services",
+      "headquarters": "Waltham, Massachusetts",
+      "security": "Thermo Fisher Scientific",
+      "symbol": "TMO"
+    },
+    {
+      "cik": "0000109198",
+      "date_added": "1985-09-30",
+      "founded": "1987",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Apparel Retail",
+      "headquarters": "Framingham, Massachusetts",
+      "security": "TJX Companies",
+      "symbol": "TJX"
+    },
+    {
+      "cik": "0001973266",
+      "date_added": "2025-03-24",
+      "founded": "2023",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Movies & Entertainment",
+      "headquarters": "New York City, New York",
+      "security": "TKO Group Holdings",
+      "symbol": "TKO"
+    },
+    {
+      "cik": "0001671933",
+      "date_added": "2025-07-18",
+      "founded": "2009",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Advertising",
+      "headquarters": "Ventura, California",
+      "security": "Trade Desk (The)",
+      "symbol": "TTD"
+    },
+    {
+      "cik": "0000916365",
+      "date_added": "2014-01-24",
+      "founded": "1938",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Other Specialty Retail",
+      "headquarters": "Brentwood, Tennessee",
+      "security": "Tractor Supply",
+      "symbol": "TSCO"
+    },
+    {
+      "cik": "0001466258",
+      "date_added": "2010-11-17",
+      "founded": "1871",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Building Products",
+      "headquarters": "Dublin, Ireland",
+      "security": "Trane Technologies",
+      "symbol": "TT"
+    },
+    {
+      "cik": "0001260221",
+      "date_added": "2016-06-03",
+      "founded": "1993",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Aerospace & Defense",
+      "headquarters": "Cleveland, Ohio",
+      "security": "TransDigm Group",
+      "symbol": "TDG"
+    },
+    {
+      "cik": "0000086312",
+      "date_added": "2002-08-21",
+      "founded": "1853",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Property & Casualty Insurance",
+      "headquarters": "New York City, New York",
+      "security": "Travelers Companies (The)",
+      "symbol": "TRV"
+    },
+    {
+      "cik": "0000864749",
+      "date_added": "2021-01-21",
+      "founded": "1978",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "Westminster, Colorado",
+      "security": "Trimble Inc.",
+      "symbol": "TRMB"
+    },
+    {
+      "cik": "0000092230",
+      "date_added": "1997-12-04",
+      "founded": "1872",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Diversified Banks",
+      "headquarters": "Charlotte, North Carolina",
+      "security": "Truist Financial",
+      "symbol": "TFC"
+    },
+    {
+      "cik": "0000860731",
+      "date_added": "2020-06-22",
+      "founded": "1966",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "Plano, Texas",
+      "security": "Tyler Technologies",
+      "symbol": "TYL"
+    },
+    {
+      "cik": "0000100493",
+      "date_added": "2005-08-10",
+      "founded": "1935",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Packaged Foods & Meats",
+      "headquarters": "Springdale, Arkansas",
+      "security": "Tyson Foods",
+      "symbol": "TSN"
+    },
+    {
+      "cik": "0000036104",
+      "date_added": "1999-11-01",
+      "founded": "1968",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Diversified Banks",
+      "headquarters": "Minneapolis, Minnesota",
+      "security": "U.S. Bancorp",
+      "symbol": "USB"
+    },
+    {
+      "cik": "0001543151",
+      "date_added": "2023-12-18",
+      "founded": "2009",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Passenger Ground Transportation",
+      "headquarters": "San Francisco, California",
+      "security": "Uber",
+      "symbol": "UBER"
+    },
+    {
+      "cik": "0000074208",
+      "date_added": "2016-03-07",
+      "founded": "1972",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Multi-Family Residential REITs",
+      "headquarters": "Highlands Ranch, Colorado",
+      "security": "UDR, Inc.",
+      "symbol": "UDR"
+    },
+    {
+      "cik": "0001403568",
+      "date_added": "2016-04-18",
+      "founded": "1990",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Other Specialty Retail",
+      "headquarters": "Bolingbrook, Illinois",
+      "security": "Ulta Beauty",
+      "symbol": "ULTA"
+    },
+    {
+      "cik": "0000100885",
+      "date_added": "1957-03-04",
+      "founded": "1862",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Rail Transportation",
+      "headquarters": "Omaha, Nebraska",
+      "security": "Union Pacific Corporation",
+      "symbol": "UNP"
+    },
+    {
+      "cik": "0000100517",
+      "date_added": "2015-09-03",
+      "founded": "1967",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Passenger Airlines",
+      "headquarters": "Chicago, Illinois",
+      "security": "United Airlines Holdings",
+      "symbol": "UAL"
+    },
+    {
+      "cik": "0001090727",
+      "date_added": "2002-07-22",
+      "founded": "1907",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Air Freight & Logistics",
+      "headquarters": "Sandy Springs, Georgia",
+      "security": "United Parcel Service",
+      "symbol": "UPS"
+    },
+    {
+      "cik": "0001067701",
+      "date_added": "2014-09-20",
+      "founded": "1997",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Trading Companies & Distributors",
+      "headquarters": "Stamford, Connecticut",
+      "security": "United Rentals",
+      "symbol": "URI"
+    },
+    {
+      "cik": "0000731766",
+      "date_added": "1994-07-01",
+      "founded": "1977",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Managed Health Care",
+      "headquarters": "Eden Prairie, Minnesota",
+      "security": "UnitedHealth Group",
+      "symbol": "UNH"
+    },
+    {
+      "cik": "0000352915",
+      "date_added": "2014-09-20",
+      "founded": "1979",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Facilities",
+      "headquarters": "King of Prussia, Pennsylvania",
+      "security": "Universal Health Services",
+      "symbol": "UHS"
+    },
+    {
+      "cik": "0001035002",
+      "date_added": "2002-12-20",
+      "founded": "1980",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Refining & Marketing",
+      "headquarters": "San Antonio, Texas",
+      "security": "Valero Energy",
+      "symbol": "VLO"
+    },
+    {
+      "cik": "0001393052",
+      "date_added": "2026-05-07",
+      "founded": "2007",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Technology",
+      "headquarters": "Pleasanton, California",
+      "security": "Veeva Systems",
+      "symbol": "VEEV"
+    },
+    {
+      "cik": "0000740260",
+      "date_added": "2009-03-04",
+      "founded": "1998",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Health Care REITs",
+      "headquarters": "Chicago, Illinois",
+      "security": "Ventas",
+      "symbol": "VTR"
+    },
+    {
+      "cik": "0001967680",
+      "date_added": "2023-10-02",
+      "founded": "2023",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Environmental & Facilities Services",
+      "headquarters": "Waltham, Massachusetts",
+      "security": "Veralto",
+      "symbol": "VLTO"
+    },
+    {
+      "cik": "0001014473",
+      "date_added": "2006-02-01",
+      "founded": "1995",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Internet Services & Infrastructure",
+      "headquarters": "Reston, Virginia",
+      "security": "Verisign",
+      "symbol": "VRSN"
+    },
+    {
+      "cik": "0001442145",
+      "date_added": "2015-10-08",
+      "founded": "1971",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Research & Consulting Services",
+      "headquarters": "Jersey City, New Jersey",
+      "security": "Verisk Analytics",
+      "symbol": "VRSK"
+    },
+    {
+      "cik": "0000732712",
+      "date_added": "1983-11-30",
+      "founded": "1983 (1877)",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Integrated Telecommunication Services",
+      "headquarters": "New York City, New York",
+      "security": "Verizon",
+      "symbol": "VZ"
+    },
+    {
+      "cik": "0000875320",
+      "date_added": "2013-09-23",
+      "founded": "1989",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Biotechnology",
+      "headquarters": "Boston, Massachusetts",
+      "security": "Vertex Pharmaceuticals",
+      "symbol": "VRTX"
+    },
+    {
+      "cik": "0001674101",
+      "date_added": "2026-03-23",
+      "founded": "2016",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Electrical Components & Equipment",
+      "headquarters": "Westerville, Ohio",
+      "security": "Vertiv",
+      "symbol": "VRT"
+    },
+    {
+      "cik": "0001792044",
+      "date_added": "2004-04-23",
+      "founded": "1961",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Pharmaceuticals",
+      "headquarters": "Pittsburgh, Pennsylvania",
+      "security": "Viatris",
+      "symbol": "VTRS"
+    },
+    {
+      "cik": "0001705696",
+      "date_added": "2022-06-08",
+      "founded": "2017",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Hotel & Resort REITs",
+      "headquarters": "New York City, New York",
+      "security": "Vici Properties",
+      "symbol": "VICI"
+    },
+    {
+      "cik": "0001403161",
+      "date_added": "2009-12-21",
+      "founded": "1958",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Transaction & Payment Processing Services",
+      "headquarters": "San Francisco, California",
+      "security": "Visa Inc.",
+      "symbol": "V"
+    },
+    {
+      "cik": "0001692819",
+      "date_added": "2024-05-08",
+      "founded": "2016",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Irving, Texas",
+      "security": "Vistra Corp.",
+      "symbol": "VST"
+    },
+    {
+      "cik": "0001396009",
+      "date_added": "1999-06-30",
+      "founded": "1909",
+      "gics_sector": "Materials",
+      "gics_sub_industry": "Construction Materials",
+      "headquarters": "Birmingham, Alabama",
+      "security": "Vulcan Materials Company",
+      "symbol": "VMC"
+    },
+    {
+      "cik": "0000011544",
+      "date_added": "2019-12-05",
+      "founded": "1967",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Property & Casualty Insurance",
+      "headquarters": "Greenwich, Connecticut",
+      "security": "W. R. Berkley Corporation",
+      "symbol": "WRB"
+    },
+    {
+      "cik": "0000277135",
+      "date_added": "1981-06-30",
+      "founded": "1927",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "Lake Forest, Illinois",
+      "security": "W. W. Grainger",
+      "symbol": "GWW"
+    },
+    {
+      "cik": "0000943452",
+      "date_added": "2019-02-27",
+      "founded": "1999 (1869)",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Construction Machinery & Heavy Transportation Equipment",
+      "headquarters": "Pittsburgh, Pennsylvania",
+      "security": "Wabtec",
+      "symbol": "WAB"
+    },
+    {
+      "cik": "0000104169",
+      "date_added": "1982-08-31",
+      "founded": "1962",
+      "gics_sector": "Consumer Staples",
+      "gics_sub_industry": "Consumer Staples Merchandise Retail",
+      "headquarters": "Bentonville, Arkansas",
+      "security": "Walmart",
+      "symbol": "WMT"
+    },
+    {
+      "cik": "0001744489",
+      "date_added": "1976-06-30",
+      "founded": "1923",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Movies & Entertainment",
+      "headquarters": "Burbank, California",
+      "security": "Walt Disney Company (The)",
+      "symbol": "DIS"
+    },
+    {
+      "cik": "0001437107",
+      "date_added": "2022-04-11",
+      "founded": "2022 (Warner Bros. 1923)",
+      "gics_sector": "Communication Services",
+      "gics_sub_industry": "Broadcasting",
+      "headquarters": "New York City, New York",
+      "security": "Warner Bros. Discovery",
+      "symbol": "WBD"
+    },
+    {
+      "cik": "0000823768",
+      "date_added": "1998-08-31",
+      "founded": "1968",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Environmental & Facilities Services",
+      "headquarters": "Houston, Texas",
+      "security": "Waste Management",
+      "symbol": "WM"
+    },
+    {
+      "cik": "0001000697",
+      "date_added": "2002-01-02",
+      "founded": "1958",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Life Sciences Tools & Services",
+      "headquarters": "Milford, Massachusetts",
+      "security": "Waters Corporation",
+      "symbol": "WAT"
+    },
+    {
+      "cik": "0000783325",
+      "date_added": "2008-10-31",
+      "founded": "1896",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Electric Utilities",
+      "headquarters": "Milwaukee, Wisconsin",
+      "security": "WEC Energy Group",
+      "symbol": "WEC"
+    },
+    {
+      "cik": "0000072971",
+      "date_added": "1976-06-30",
+      "founded": "1852",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Diversified Banks",
+      "headquarters": "San Francisco, California",
+      "security": "Wells Fargo",
+      "symbol": "WFC"
+    },
+    {
+      "cik": "0000766704",
+      "date_added": "2009-01-30",
+      "founded": "1970",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Health Care REITs",
+      "headquarters": "Toledo, Ohio",
+      "security": "Welltower",
+      "symbol": "WELL"
+    },
+    {
+      "cik": "0000105770",
+      "date_added": "2020-05-22",
+      "founded": "1923",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Supplies",
+      "headquarters": "Exton, Pennsylvania",
+      "security": "West Pharmaceutical Services",
+      "symbol": "WST"
+    },
+    {
+      "cik": "0000106040",
+      "date_added": "2009-07-01",
+      "founded": "1970",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Technology Hardware, Storage & Peripherals",
+      "headquarters": "San Jose, California",
+      "security": "Western Digital",
+      "symbol": "WDC"
+    },
+    {
+      "cik": "0000106535",
+      "date_added": "1979-10-01",
+      "founded": "1900",
+      "gics_sector": "Real Estate",
+      "gics_sub_industry": "Timber REITs",
+      "headquarters": "Seattle, Washington",
+      "security": "Weyerhaeuser",
+      "symbol": "WY"
+    },
+    {
+      "cik": "0000719955",
+      "date_added": "2025-03-24",
+      "founded": "1956",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Homefurnishing Retail",
+      "headquarters": "San Francisco, California",
+      "security": "Williams-Sonoma, Inc.",
+      "symbol": "WSM"
+    },
+    {
+      "cik": "0000107263",
+      "date_added": "1975-03-31",
+      "founded": "1908",
+      "gics_sector": "Energy",
+      "gics_sub_industry": "Oil & Gas Storage & Transportation",
+      "headquarters": "Tulsa, Oklahoma",
+      "security": "Williams Companies",
+      "symbol": "WMB"
+    },
+    {
+      "cik": "0001140536",
+      "date_added": "2016-01-05",
+      "founded": "2016",
+      "gics_sector": "Financials",
+      "gics_sub_industry": "Insurance Brokers",
+      "headquarters": "London, United Kingdom",
+      "security": "Willis Towers Watson",
+      "symbol": "WTW"
+    },
+    {
+      "cik": "0001327811",
+      "date_added": "2024-12-23",
+      "founded": "2005",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Application Software",
+      "headquarters": "Pleasanton, California",
+      "security": "Workday, Inc.",
+      "symbol": "WDAY"
+    },
+    {
+      "cik": "0001174922",
+      "date_added": "2008-11-14",
+      "founded": "2002",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Casinos & Gaming",
+      "headquarters": "Paradise, Nevada",
+      "security": "Wynn Resorts",
+      "symbol": "WYNN"
+    },
+    {
+      "cik": "0000072903",
+      "date_added": "1957-03-04",
+      "founded": "1909",
+      "gics_sector": "Utilities",
+      "gics_sub_industry": "Multi-Utilities",
+      "headquarters": "Minneapolis, Minnesota",
+      "security": "Xcel Energy",
+      "symbol": "XEL"
+    },
+    {
+      "cik": "0001524472",
+      "date_added": "2011-11-01",
+      "founded": "2011",
+      "gics_sector": "Industrials",
+      "gics_sub_industry": "Industrial Machinery & Supplies & Components",
+      "headquarters": "White Plains, New York",
+      "security": "Xylem Inc.",
+      "symbol": "XYL"
+    },
+    {
+      "cik": "0001041061",
+      "date_added": "1997-10-06",
+      "founded": "1997",
+      "gics_sector": "Consumer Discretionary",
+      "gics_sub_industry": "Restaurants",
+      "headquarters": "Louisville, Kentucky",
+      "security": "Yum! Brands",
+      "symbol": "YUM"
+    },
+    {
+      "cik": "0000877212",
+      "date_added": "2019-12-23",
+      "founded": "1969",
+      "gics_sector": "Information Technology",
+      "gics_sub_industry": "Electronic Equipment & Instruments",
+      "headquarters": "Lincolnshire, Illinois",
+      "security": "Zebra Technologies",
+      "symbol": "ZBRA"
+    },
+    {
+      "cik": "0001136869",
+      "date_added": "2001-08-07",
+      "founded": "1927",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Health Care Equipment",
+      "headquarters": "Warsaw, Indiana",
+      "security": "Zimmer Biomet",
+      "symbol": "ZBH"
+    },
+    {
+      "cik": "0001555280",
+      "date_added": "2013-06-21",
+      "founded": "1952",
+      "gics_sector": "Health Care",
+      "gics_sub_industry": "Pharmaceuticals",
+      "headquarters": "Parsippany, New Jersey",
+      "security": "Zoetis",
+      "symbol": "ZTS"
+    }
+  ],
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "schema_version": 1,
+  "source": {
+    "api_response_url": "https://en.wikipedia.org/w/api.php?action=parse&page=List+of+S%26P+500+companies&prop=text%7Crevid&format=json&formatversion=2",
+    "page_title": "List of S&P 500 companies",
+    "page_url": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
+    "response_checksum": "acbb4d5417b9728641b4c9c3c6700ab951cb8d16a4f9b1b4d946c2fb3e7ed64e",
+    "revision_id": 1367510220
+  }
+}

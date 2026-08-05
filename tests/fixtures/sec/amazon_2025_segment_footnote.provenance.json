@@ -1,0 +1,14 @@
+{
+  "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+  "accession": "0001018724-26-000004",
+  "form": "10-K",
+  "period": "2025-12-31",
+  "filed_at": "2026-02-06",
+  "retrieved_at": "2026-08-04",
+  "source_sha256": "beb1bfc28558135e76882db0cf36ba72a1ab44e2144fe37534f4da1e120ddb57",
+  "fixture_sha256": "9eb8d9d1438013c476d37dc593fcbe1c17aa1c2aa590b11f7504b26bfaa3f38d",
+  "fixture_snippet_sha256": "efc5c12c99f4337265a4588898311119ad22b2c4fb459db55feecbe12d54f40a",
+  "extraction": "Minimal source-shaped HTML retaining exact Note 10 segment descriptions, row labels, periods, units, and values from Amazon's filed 2025 Form 10-K.",
+  "license": "U.S. SEC public-domain filing content",
+  "terms_url": "https://www.sec.gov/about/privacy-information"
+}

@@ -1,0 +1,524 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-08-04T06:18:30.823723Z",
+  "board_archive_exceptions": [
+    {
+      "release": "G19",
+      "manifest_date": "2016-02-04",
+      "archive_date": "2016-02-04",
+      "declared_release_date": "2016-02-05",
+      "evidence_url": "https://www.federalreserve.gov/releases/g19/20160204/",
+      "finding": "The Board manifest/path use February 4, while the archived release page and PDF declare February 5.",
+      "verified_at": "2026-08-04T08:00:00Z"
+    },
+    {
+      "release": "H8",
+      "manifest_date": "2017-01-12",
+      "archive_date": "2017-01-12",
+      "declared_release_date": "2017-01-13",
+      "evidence_url": "https://www.federalreserve.gov/releases/h8/20170112/",
+      "finding": "The Board manifest/path use January 12, while the archived release page and PDF declare January 13.",
+      "verified_at": "2026-08-04T08:00:00Z"
+    },
+    {
+      "release": "H8",
+      "manifest_date": "2020-12-21",
+      "archive_date": "2020-12-21",
+      "declared_release_date": "2020-12-18",
+      "evidence_url": "https://www.federalreserve.gov/releases/h8/20201221/",
+      "finding": "The Board manifest/path use December 21, while the archived release page and PDF declare December 18.",
+      "verified_at": "2026-08-04T08:00:00Z"
+    },
+    {
+      "release": "H8",
+      "manifest_date": "2022-11-11",
+      "archive_date": "2022-11-10",
+      "declared_release_date": "2022-11-10",
+      "evidence_url": "https://www.federalreserve.gov/releases/h8/20221110/",
+      "finding": "The Board manifest lists the Veterans Day holiday; the available archived release path/page are dated November 10.",
+      "verified_at": "2026-08-04T08:00:00Z"
+    }
+  ],
+  "series": [
+    {
+      "series_id": "DTCTL.M",
+      "source": "federal_reserve_board",
+      "release": "G19",
+      "expected_title": "Total consumer credit owned and securitized, seasonally adjusted level",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"CREDTYP": "TOTAL", "DATAREP": "MILLDOLL", "FREQ": "129", "HOLDER": "ALL", "SA": "SA", "UNIT": "Currency", "UNIT_MULT": "1000000"},
+      "license_note": "Board website information is public domain unless otherwise indicated; cite the Board. Terms: https://www.federalreserve.gov/disclaimer.htm"
+    },
+    {
+      "series_id": "DTCTLR.M",
+      "source": "federal_reserve_board",
+      "release": "G19",
+      "expected_title": "Revolving consumer credit owned and securitized, seasonally adjusted level",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"CREDTYP": "REV", "DATAREP": "MILLDOLL", "FREQ": "129", "HOLDER": "ALL", "SA": "SA", "UNIT": "Currency", "UNIT_MULT": "1000000"},
+      "license_note": "Board website information is public domain unless otherwise indicated; cite the Board. Terms: https://www.federalreserve.gov/disclaimer.htm"
+    },
+    {
+      "series_id": "DTCTLN.M",
+      "source": "federal_reserve_board",
+      "release": "G19",
+      "expected_title": "Nonrevolving consumer credit owned and securitized, seasonally adjusted level",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"CREDTYP": "NONREV", "DATAREP": "MILLDOLL", "FREQ": "129", "HOLDER": "ALL", "SA": "SA", "UNIT": "Currency", "UNIT_MULT": "1000000"},
+      "license_note": "Board website information is public domain unless otherwise indicated; cite the Board. Terms: https://www.federalreserve.gov/disclaimer.htm"
+    },
+    {
+      "series_id": "DTCTL_N.M",
+      "source": "federal_reserve_board",
+      "release": "G19",
+      "expected_title": "Total consumer credit owned and securitized, not seasonally adjusted level",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"CREDTYP": "TOTAL", "DATAREP": "MILLDOLL", "FREQ": "129", "HOLDER": "ALL", "SA": "NSA", "UNIT": "Currency", "UNIT_MULT": "1000000"},
+      "license_note": "Board website information is public domain unless otherwise indicated; cite the Board. Terms: https://www.federalreserve.gov/disclaimer.htm"
+    },
+    {
+      "series_id": "DTCTLR_N.M",
+      "source": "federal_reserve_board",
+      "release": "G19",
+      "expected_title": "Revolving consumer credit owned and securitized, not seasonally adjusted level",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"CREDTYP": "REV", "DATAREP": "MILLDOLL", "FREQ": "129", "HOLDER": "ALL", "SA": "NSA", "UNIT": "Currency", "UNIT_MULT": "1000000"},
+      "license_note": "Board website information is public domain unless otherwise indicated; cite the Board. Terms: https://www.federalreserve.gov/disclaimer.htm"
+    },
+    {
+      "series_id": "DTCTLN_N.M",
+      "source": "federal_reserve_board",
+      "release": "G19",
+      "expected_title": "Nonrevolving consumer credit owned and securitized, not seasonally adjusted level",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"CREDTYP": "NONREV", "DATAREP": "MILLDOLL", "FREQ": "129", "HOLDER": "ALL", "SA": "NSA", "UNIT": "Currency", "UNIT_MULT": "1000000"},
+      "license_note": "Board website information is public domain unless otherwise indicated; cite the Board. Terms: https://www.federalreserve.gov/disclaimer.htm"
+    },
+    {
+      "series_id": "B1247NCBA",
+      "source": "federal_reserve_board",
+      "release": "H8",
+      "expected_title": "Consumer loans: Credit cards and other revolving plans, all commercial banks, seasonally adjusted",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Weekly, Ending Wednesday",
+      "expected_source_attributes": {"BG": "CB", "CATEGORY": "A", "FREQ": "19", "H8_UNITS": "LEVEL", "ITEM": "1247", "SA": "SA", "UNIT": "Currency", "UNIT_MULT": "1000000"},
+      "license_note": "Board website information is public domain unless otherwise indicated; cite the Board. Terms: https://www.federalreserve.gov/disclaimer.htm"
+    },
+    {
+      "series_id": "B1029NCBA",
+      "source": "federal_reserve_board",
+      "release": "H8",
+      "expected_title": "Consumer loans, all commercial banks, seasonally adjusted",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Weekly, Ending Wednesday",
+      "expected_source_attributes": {"BG": "CB", "CATEGORY": "A", "FREQ": "19", "H8_UNITS": "LEVEL", "ITEM": "1029", "SA": "SA", "UNIT": "Currency", "UNIT_MULT": "1000000"},
+      "license_note": "Board website information is public domain unless otherwise indicated; cite the Board. Terms: https://www.federalreserve.gov/disclaimer.htm"
+    },
+    {
+      "series_id": "B3248NCBA",
+      "source": "federal_reserve_board",
+      "release": "H8",
+      "expected_title": "Consumer loans: Other consumer loans, all commercial banks, seasonally adjusted",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Weekly, Ending Wednesday",
+      "expected_source_attributes": {"BG": "CB", "CATEGORY": "A", "FREQ": "19", "H8_UNITS": "LEVEL", "ITEM": "3248", "SA": "SA", "UNIT": "Currency", "UNIT_MULT": "1000000"},
+      "license_note": "Board website information is public domain unless otherwise indicated; cite the Board. Terms: https://www.federalreserve.gov/disclaimer.htm"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DPCERC",
+      "source": "bea",
+      "expected_title": "Personal consumption expenditures",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DPCERC", "line_number": "1", "cl_unit": "Level", "unit_mult": "6", "legacy_alias": "PCE"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DDURRC",
+      "source": "bea",
+      "expected_title": "Durable goods",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DDURRC", "line_number": "3", "cl_unit": "Level", "unit_mult": "6", "legacy_alias": "PCEDG"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DNDGRC",
+      "source": "bea",
+      "expected_title": "Nondurable goods",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DNDGRC", "line_number": "72", "cl_unit": "Level", "unit_mult": "6", "legacy_alias": "PCEND"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DSERRC",
+      "source": "bea",
+      "expected_title": "Services",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DSERRC", "line_number": "150", "cl_unit": "Level", "unit_mult": "6", "legacy_alias": "PCES"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DMOTRC",
+      "source": "bea",
+      "expected_title": "Motor vehicles and parts",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DMOTRC", "line_number": "4", "cl_unit": "Level", "unit_mult": "6"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DFDHRC",
+      "source": "bea",
+      "expected_title": "Furnishings and durable household equipment",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DFDHRC", "line_number": "23", "cl_unit": "Level", "unit_mult": "6"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DREQRC",
+      "source": "bea",
+      "expected_title": "Recreational goods and vehicles",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DREQRC", "line_number": "38", "cl_unit": "Level", "unit_mult": "6"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DFXARC",
+      "source": "bea",
+      "expected_title": "Food and beverages purchased for off-premises consumption",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DFXARC", "line_number": "73", "cl_unit": "Level", "unit_mult": "6"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DCLORC",
+      "source": "bea",
+      "expected_title": "Clothing and footwear",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DCLORC", "line_number": "104", "cl_unit": "Level", "unit_mult": "6"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DGOERC",
+      "source": "bea",
+      "expected_title": "Gasoline and other energy goods",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DGOERC", "line_number": "113", "cl_unit": "Level", "unit_mult": "6"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DHLCRC",
+      "source": "bea",
+      "expected_title": "Health care",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DHLCRC", "line_number": "172", "cl_unit": "Level", "unit_mult": "6"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DFSARC",
+      "source": "bea",
+      "expected_title": "Food services and accommodations",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DFSARC", "line_number": "234", "cl_unit": "Level", "unit_mult": "6"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIUnderlyingDetail:U20405:DIFSRC",
+      "source": "bea",
+      "expected_title": "Financial services and insurance",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIUnderlyingDetail", "table_name": "U20405", "series_code": "DIFSRC", "line_number": "252", "cl_unit": "Level", "unit_mult": "6"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "BEA:NIPA:T20600:A065RC",
+      "source": "bea",
+      "expected_title": "Personal income",
+      "units": "Millions of U.S. Dollars, seasonally adjusted annual rate",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "NIPA", "table_name": "T20600", "series_code": "A065RC", "line_number": "1", "cl_unit": "Level", "unit_mult": "6", "legacy_alias": "PI"},
+      "license_note": "BEA published information is public domain unless stated otherwise; cite BEA and display the API non-endorsement notice. Terms: https://apps.bea.gov/API/_pdf/bea_api_tos.pdf"
+    },
+    {
+      "series_id": "CENSUS:MARTS:44X72:SM:SA",
+      "source": "census",
+      "expected_title": "Retail Trade and Food Services",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "marts", "program_code": "MARTS", "category_code": "44X72", "data_type_code": "SM", "seasonally_adj": "yes", "legacy_alias": "RSAFS"},
+      "license_note": "Cite the U.S. Census Bureau and identify MARTS; independently produced DFRI estimates remain DFRI's responsibility. Terms: https://www.census.gov/data/developers/about/terms-of-service.html"
+    },
+    {
+      "series_id": "CENSUS:MARTS:441:SM:SA",
+      "source": "census",
+      "expected_title": "Motor Vehicle and Parts Dealers",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "marts", "program_code": "MARTS", "category_code": "441", "data_type_code": "SM", "seasonally_adj": "yes"},
+      "license_note": "Cite the U.S. Census Bureau and identify MARTS; independently produced DFRI estimates remain DFRI's responsibility. Terms: https://www.census.gov/data/developers/about/terms-of-service.html"
+    },
+    {
+      "series_id": "CENSUS:MARTS:4451:SM:SA",
+      "source": "census",
+      "expected_title": "Grocery Stores",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "marts", "program_code": "MARTS", "category_code": "4451", "data_type_code": "SM", "seasonally_adj": "yes"},
+      "license_note": "Cite the U.S. Census Bureau and identify MARTS; independently produced DFRI estimates remain DFRI's responsibility. Terms: https://www.census.gov/data/developers/about/terms-of-service.html"
+    },
+    {
+      "series_id": "CENSUS:MARTS:452:SM:SA",
+      "source": "census",
+      "expected_title": "General Merchandise Stores",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "marts", "program_code": "MARTS", "category_code": "452", "data_type_code": "SM", "seasonally_adj": "yes"},
+      "license_note": "Cite the U.S. Census Bureau and identify MARTS; independently produced DFRI estimates remain DFRI's responsibility. Terms: https://www.census.gov/data/developers/about/terms-of-service.html"
+    },
+    {
+      "series_id": "CENSUS:MARTS:454:SM:SA",
+      "source": "census",
+      "expected_title": "Nonstore Retailers",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "marts", "program_code": "MARTS", "category_code": "454", "data_type_code": "SM", "seasonally_adj": "yes"},
+      "license_note": "Cite the U.S. Census Bureau and identify MARTS; independently produced DFRI estimates remain DFRI's responsibility. Terms: https://www.census.gov/data/developers/about/terms-of-service.html"
+    },
+    {
+      "series_id": "CENSUS:MARTS:444:SM:SA",
+      "source": "census",
+      "expected_title": "Building Material and Garden Equipment and Supplies Dealers",
+      "units": "Millions of U.S. Dollars",
+      "frequency": "Monthly",
+      "expected_source_attributes": {"dataset": "marts", "program_code": "MARTS", "category_code": "444", "data_type_code": "SM", "seasonally_adj": "yes"},
+      "license_note": "Cite the U.S. Census Bureau and identify MARTS; independently produced DFRI estimates remain DFRI's responsibility. Terms: https://www.census.gov/data/developers/about/terms-of-service.html"
+    },
+    {
+      "series_id": "NYFED:HHDC:BALANCE:MORTGAGE",
+      "source": "new_york_fed",
+      "expected_title": "Mortgage debt balance",
+      "units": "Trillions of U.S. Dollars",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 3 Data", "sheet_title": "Total Debt Balance and Its Composition", "unit_label": "Trillions of $", "header_row": "4", "header": "Mortgage", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:BALANCE:HELOC",
+      "source": "new_york_fed",
+      "expected_title": "Home equity revolving debt balance",
+      "units": "Trillions of U.S. Dollars",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 3 Data", "sheet_title": "Total Debt Balance and Its Composition", "unit_label": "Trillions of $", "header_row": "4", "header": "HE Revolving", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:BALANCE:AUTO",
+      "source": "new_york_fed",
+      "expected_title": "Auto loan debt balance",
+      "units": "Trillions of U.S. Dollars",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 3 Data", "sheet_title": "Total Debt Balance and Its Composition", "unit_label": "Trillions of $", "header_row": "4", "header": "Auto Loan", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:BALANCE:CREDIT_CARD",
+      "source": "new_york_fed",
+      "expected_title": "Credit card debt balance",
+      "units": "Trillions of U.S. Dollars",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 3 Data", "sheet_title": "Total Debt Balance and Its Composition", "unit_label": "Trillions of $", "header_row": "4", "header": "Credit Card", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:BALANCE:STUDENT_LOAN",
+      "source": "new_york_fed",
+      "expected_title": "Student loan debt balance",
+      "units": "Trillions of U.S. Dollars",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 3 Data", "sheet_title": "Total Debt Balance and Its Composition", "unit_label": "Trillions of $", "header_row": "4", "header": "Student Loan", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:BALANCE:OTHER",
+      "source": "new_york_fed",
+      "expected_title": "Other debt balance",
+      "units": "Trillions of U.S. Dollars",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 3 Data", "sheet_title": "Total Debt Balance and Its Composition", "unit_label": "Trillions of $", "header_row": "4", "header": "Other", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:BALANCE:TOTAL",
+      "source": "new_york_fed",
+      "expected_title": "Total household debt balance",
+      "units": "Trillions of U.S. Dollars",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 3 Data", "sheet_title": "Total Debt Balance and Its Composition", "unit_label": "Trillions of $", "header_row": "4", "header": "Total", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:ORIGINATION:MORTGAGE:TOTAL",
+      "source": "new_york_fed",
+      "expected_title": "Mortgage origination volume",
+      "units": "Billions of U.S. Dollars",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 6 Data", "sheet_title": "Mortgage Origination Volume by Riskscore", "unit_label": "Billions of $", "header_row": "4", "header": "TOTAL", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:ORIGINATION:AUTO:TOTAL",
+      "source": "new_york_fed",
+      "expected_title": "Auto loan origination volume",
+      "units": "Billions of U.S. Dollars",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 8 Data", "sheet_title": "Auto Loan Origination Volume by Riskscore", "unit_label": "Billions of $", "header_row": "4", "header": "TOTAL", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:30PLUS:AUTO",
+      "source": "new_york_fed",
+      "expected_title": "Auto balance transitioning into 30+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 13 Data", "sheet_title": "New Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "AUTO", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:30PLUS:CREDIT_CARD",
+      "source": "new_york_fed",
+      "expected_title": "Credit card balance transitioning into 30+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 13 Data", "sheet_title": "New Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "CC", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:30PLUS:MORTGAGE",
+      "source": "new_york_fed",
+      "expected_title": "Mortgage balance transitioning into 30+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 13 Data", "sheet_title": "New Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "MORTGAGE", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:30PLUS:HELOC",
+      "source": "new_york_fed",
+      "expected_title": "HELOC balance transitioning into 30+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 13 Data", "sheet_title": "New Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "HELOC", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:30PLUS:STUDENT_LOAN",
+      "source": "new_york_fed",
+      "expected_title": "Student loan balance transitioning into 30+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 13 Data", "sheet_title": "New Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "STUDENT LOAN", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:30PLUS:OTHER",
+      "source": "new_york_fed",
+      "expected_title": "Other balance transitioning into 30+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 13 Data", "sheet_title": "New Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "OTHER", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:90PLUS:AUTO",
+      "source": "new_york_fed",
+      "expected_title": "Auto balance transitioning into 90+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 14 Data", "sheet_title": "New Seriously Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "AUTO", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:90PLUS:CREDIT_CARD",
+      "source": "new_york_fed",
+      "expected_title": "Credit card balance transitioning into 90+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 14 Data", "sheet_title": "New Seriously Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "CC", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:90PLUS:MORTGAGE",
+      "source": "new_york_fed",
+      "expected_title": "Mortgage balance transitioning into 90+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 14 Data", "sheet_title": "New Seriously Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "MORTGAGE", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:90PLUS:HELOC",
+      "source": "new_york_fed",
+      "expected_title": "HELOC balance transitioning into 90+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 14 Data", "sheet_title": "New Seriously Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "HELOC", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:90PLUS:STUDENT_LOAN",
+      "source": "new_york_fed",
+      "expected_title": "Student loan balance transitioning into 90+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 14 Data", "sheet_title": "New Seriously Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "STUDENT LOAN", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    },
+    {
+      "series_id": "NYFED:HHDC:DELINQUENCY:90PLUS:OTHER",
+      "source": "new_york_fed",
+      "expected_title": "Other balance transitioning into 90+ day delinquency",
+      "units": "Percent",
+      "frequency": "Quarterly",
+      "verified_at": "2026-08-04T08:48:52Z",
+      "expected_source_attributes": {"source_page": "https://www.newyorkfed.org/householdcredit/hhdc-iframe", "workbook_path_pattern": "/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_YYYYQn", "verified_workbook_url": "https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/HHD_C_Report_2026Q1", "verified_report_period": "2026Q1", "sheet": "Page 14 Data", "sheet_title": "New Seriously Delinquent* Balances by Loan Type", "unit_label": "Percent", "header_row": "5", "header": "OTHER", "max_lag_quarters": "0"},
+      "license_note": "Attribution: New York Fed Consumer Credit Panel / Equifax. DFRI derivatives must be clearly labeled and are subject to https://www.newyorkfed.org/privacy/termsofuse.html."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-08-04",
+  "edgar_surfaces": {
+    "submissions": "https://data.sec.gov/submissions/CIK##########.json",
+    "companyfacts": "https://data.sec.gov/api/xbrl/companyfacts/CIK##########.json",
+    "archives": "https://www.sec.gov/Archives/edgar/data/{cik}/{accession}/",
+    "efts": "https://efts.sec.gov/LATEST/search-index"
+  },
+  "reg_ab_ii": {
+    "status": "verified_current",
+    "source_url": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations-cfis/asset-backed-securities",
+    "final_rule_url": "https://www.sec.gov/files/rules/final/2014/33-9638.pdf",
+    "asset_level_classes": [
+      "residential mortgages",
+      "commercial mortgages",
+      "automobile loans",
+      "automobile leases",
+      "debt securities",
+      "resecuritizations"
+    ],
+    "dfri_scope": "Automobile-loan ABS-EE filings with EX-102 XML; initial bona fide offer on or after 2016-11-23."
+  },
+  "card_trusts": {
+    "status": "verified_current",
+    "form_url": "https://www.sec.gov/files/form10d.pdf",
+    "finding": "Form 10-D is the asset-backed issuer distribution report. Current 2026 credit-card trust filings confirm monthly pool-performance exhibits; credit cards are not claimed as a Regulation AB II asset-level class.",
+    "current_evidence": [
+      "https://www.sec.gov/Archives/edgar/data/1283434/000110465926083820/0001104659-26-083820-index.htm",
+      "https://www.sec.gov/Archives/edgar/data/921864/000119312526304533/0001193125-26-304533-index.htm",
+      "https://www.sec.gov/Archives/edgar/data/1128250/000114036126028491/0001140361-26-028491-index.htm"
+    ],
+    "metric_exhibits": [
+      "https://www.sec.gov/Archives/edgar/data/1283434/000110465926083820/tm2620300d1_ex99-01.htm",
+      "https://www.sec.gov/Archives/edgar/data/921864/000119312526304533/d347998dex99.htm",
+      "https://www.sec.gov/Archives/edgar/data/1128250/000114036126028491/ef20077490_ex99-1.htm"
+    ]
+  },
+  "auto_abs_ee_evidence": [
+    "https://www.sec.gov/Archives/edgar/data/1967111/000196711126000028/0001967111-26-000028-index.htm",
+    "https://www.sec.gov/Archives/edgar/data/1963240/000196324026000026/0001963240-26-000026-index.htm",
+    "https://www.sec.gov/Archives/edgar/data/1932377/000193237726000028/0001932377-26-000028-index.htm",
+    "https://www.sec.gov/Archives/edgar/data/2009921/000119312526303437/0001193125-26-303437-index.htm",
+    "https://www.sec.gov/Archives/edgar/data/1996308/000119312526305998/0001193125-26-305998-index.htm",
+    "https://www.sec.gov/Archives/edgar/data/1897392/000119312526184549/0001193125-26-184549-index.htm"
+  ]
+}

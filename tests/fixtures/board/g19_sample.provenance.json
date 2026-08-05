@@ -1,0 +1,8 @@
+{
+  "source_url": "https://www.federalreserve.gov/releases/g19/data/FRB_g19_xml.zip",
+  "retrieved_at": "2026-08-04",
+  "sha256": "62ad79838a506bd614eb136c36ca4ce37b29405b395c7e2029e6a0f423d42a0a",
+  "member": "G19_data.xml",
+  "extraction": "Exact minimal series fragment for DTCTLR.M and its two latest observations at retrieval time.",
+  "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+}

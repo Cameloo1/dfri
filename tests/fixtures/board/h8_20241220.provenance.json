@@ -1,0 +1,9 @@
+{
+  "source_url": "https://www.federalreserve.gov/releases/h8/20241220/",
+  "retrieved_at": "2026-08-04",
+  "sha256": "cc52a00f8b7e016b9b1fcb857792a80424bd9cee8d20a990291bcd6749b8af93",
+  "source_artifact_sha256": "f01d7d29aa3672a3c58ed302a015e7203983555d06fe6c9863168c9248dbf5fd",
+  "extraction": "Exact minimal Table 2 headers and weekly values for lines 20, 21, and 22 for all commercial banks, seasonally adjusted.",
+  "release_time_evidence": "https://www.federalreserve.gov/releases/h8/about.htm",
+  "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+}

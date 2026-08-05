@@ -1,0 +1,9 @@
+{
+  "source_url": "https://www.federalreserve.gov/releases/g19/20160204/",
+  "retrieved_at": "2026-08-04",
+  "sha256": "a53ca21168a52f539092ef88b52656b2943e303c309b1a1ee4de5976863f237a",
+  "source_artifact_sha256": "5b5629fe181d0938820ea2863b8dc75cc9d4cb586ea96849fde085b42939d568",
+  "extraction": "Exact minimal declared date, December 2015 preliminary headers, and adjusted/not-adjusted level rows.",
+  "manifest_url": "https://www.federalreserve.gov/releases/g19/releaseDates.json",
+  "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+}
