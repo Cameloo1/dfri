@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import html as html_lib
 import json
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
@@ -173,6 +174,56 @@ def test_feed_contract_has_publication_fields_license_and_typed_parquet(tmp_path
     assert all(row["published_at"] == PUBLISHED_AT.isoformat() for row in rebuilt["data"])
     assert all(row["data_vintage"] == DATA_VINTAGE.isoformat() for row in rebuilt["data"])
     assert store.read_table("publication_records").height == 2
+
+
+def test_attribution_feeds_and_ten_company_pages_publish_with_full_evidence(
+    tmp_path: Path,
+) -> None:
+    store = AppendOnlyParquetStore(tmp_path / "ledger")
+    seed(store)
+    output = tmp_path / "published"
+    publish_scoreboard(
+        store,
+        output,
+        published_at=PUBLISHED_AT,
+        data_vintage=DATA_VINTAGE,
+        publication_mode="live",
+        project_root=Path(__file__).parents[2],
+    )
+
+    companies = json.loads((output / "v1" / "feeds" / "dfri_companies.json").read_text())
+    assumptions = json.loads((output / "v1" / "feeds" / "assumptions.json").read_text())
+    schema = json.loads((output / "v1" / "feeds" / "schema.json").read_text())
+    assert len(companies["data"]) == 10
+    assert assumptions["data"]
+    assert companies["meta"]["weighting"] == "revenue-weighted"
+    assert set(schema["feeds"]) == {
+        "nowcast_predictions",
+        "scoreboard",
+        "dfri_companies",
+        "assumptions",
+    }
+    parquet = pq.read_table(output / "v1" / "feeds" / "dfri_companies.parquet")
+    assert parquet.num_rows == 10
+    assert parquet.schema.field("estimated_dfr_pct_mid").type == pa.float64()
+    methodology = (output / "methodology" / "index.html").read_text(encoding="utf-8")
+    assert "Assumption Registry" in methodology
+    assert "Matrix A has" in methodology
+    assert "Tier 1 — Observed" in methodology
+    home = (output / "index.html").read_text(encoding="utf-8")
+    assert "Estimated DFR%" in home
+    assert "range-chart" in home
+    assert (output / "changelog" / "index.html").exists()
+
+    for row in companies["data"]:
+        page = output / "companies" / row["ticker"].lower() / "index.html"
+        html = page.read_text(encoding="utf-8")
+        assert "Estimated DFR% band" in html
+        assert "Assumption sensitivity top 5" in html
+        assert row["tier1_excerpt"] in html_lib.unescape(html)
+        assert row["tier1_source_url"] in html
+        assert "Tier 1" in html and "Tier 2" in html and "Tier 3" in html
+        assert page.stat().st_size < 500_000
 
 
 def test_prepublication_filter_is_explicit_and_validation_blocks_bad_boundaries(

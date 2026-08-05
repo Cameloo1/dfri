@@ -18,6 +18,7 @@ if "%CARD_TRUST%"=="" set "CARD_TRUST=all"
 if "%BACKTEST_AS_OF%"=="" set "BACKTEST_AS_OF=2026-08-04T23:59:00+00:00"
 if "%BACKTEST_OUTPUT%"=="" set "BACKTEST_OUTPUT=reports\m2_backtest.json"
 if "%BACKTEST_MARKDOWN%"=="" set "BACKTEST_MARKDOWN=reports\M2_BACKTEST.md"
+if "%ATTRIBUTION_OUTPUT%"=="" set "ATTRIBUTION_OUTPUT=reports\dfri_companies.json"
 
 if /I "%TARGET%"=="bootstrap" (
   uv sync --locked --all-groups
@@ -147,6 +148,23 @@ if /I "%TARGET%"=="scoreboard-predict" (
 
 if /I "%TARGET%"=="scoreboard-grade" (
   uv run python -m dfri.scoreboard grade %SCOREBOARD_ARGS%
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="attribution" (
+  uv run python -m dfri.attribution.pipeline --output "%ATTRIBUTION_OUTPUT%"
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="recompute-check" (
+  uv run python -m dfri.attribution.pipeline --output "%ATTRIBUTION_OUTPUT%"
+  if errorlevel 1 exit /b 1
+  uv run python tools\recompute_check.py --published "%ATTRIBUTION_OUTPUT%"
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="provenance-check" (
+  uv run python -m dfri.publish.link_check
   exit /b !ERRORLEVEL!
 )
 

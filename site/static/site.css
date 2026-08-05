@@ -64,6 +64,29 @@ tbody tr:last-child td { border-bottom: 0; }
 .definition-list { display: grid; gap: 0.8rem; grid-template-columns: minmax(9rem, 0.3fr) 1fr; }
 .definition-list dt { color: var(--muted); font-weight: 700; }
 .definition-list dd { margin: 0; }
+.section-block { margin-top: 3.5rem; }
+.ticker { color: var(--muted); font-size: 0.5em; letter-spacing: 0; }
+.company-links { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.company-link { background: var(--surface); border: 1px solid var(--line); border-radius: 0.5rem; display: grid; gap: 0.2rem; padding: 1rem; text-decoration: none; }
+.company-link:hover { border-color: var(--blue); }
+.company-link span { color: var(--muted); font-size: 0.82rem; }
+.tier-line { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+.tier-badge { border: 1px solid currentColor; border-radius: 999px; display: inline-block; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.03em; padding: 0.18rem 0.45rem; text-transform: uppercase; }
+.tier-1 { background: #175b48; color: #fff; }
+.tier-2 { background: repeating-linear-gradient(135deg, #d9edf2 0, #d9edf2 4px, #fff 4px, #fff 8px); color: #174e65; }
+.tier-3 { background: #fff1cb; color: #684712; }
+.tier-mixed { background: #e5edf5; color: #274f75; }
+.range-chart { display: block; height: auto; margin-top: 0.5rem; max-width: 38rem; width: 100%; }
+.range-chart text { fill: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+.range-axis { stroke: #dae5ee; stroke-linecap: round; stroke-width: 12; }
+.range-band { stroke: var(--cyan); stroke-linecap: round; stroke-width: 12; }
+.range-mid { fill: var(--ink); stroke: var(--surface); stroke-width: 3; }
+.tier-stack { background: #e5e8eb; border-radius: 999px; display: flex; height: 1.2rem; margin: 1.5rem 0 1rem; overflow: hidden; }
+.tier-segment { display: block; height: 100%; }
+.assumption-list { columns: 2; padding-left: 1.2rem; }
+.assumption-list li { break-inside: avoid; margin-bottom: 0.45rem; }
+.sensitivity-list { line-height: 1.6; }
+.compact-table { min-width: 650px; }
 
 .site-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.82rem; padding: 2rem 0 3rem; }
 .site-footer .shell { display: grid; gap: 0.8rem; }
@@ -73,6 +96,7 @@ tbody tr:last-child td { border-bottom: 0; }
   main { padding-top: 2rem; }
   .card.primary, .card.metric { grid-column: 1 / -1; }
   .definition-list { grid-template-columns: 1fr; }
+  .assumption-list { columns: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

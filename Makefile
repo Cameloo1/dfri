@@ -1,4 +1,4 @@
-.PHONY: bootstrap lint typecheck test replay determinism verify live-smoke board-backfill board-snapshot board-targets census-archive context-history nyfed-history health spot-audit membership-verify filing-facts auto-abs card-trust backtest scoreboard-predict scoreboard-grade publish-scoreboard
+.PHONY: bootstrap lint typecheck test replay determinism verify live-smoke board-backfill board-snapshot board-targets census-archive context-history nyfed-history health spot-audit membership-verify filing-facts auto-abs card-trust backtest scoreboard-predict scoreboard-grade attribution recompute-check provenance-check publish-scoreboard
 
 AS_OF ?= 2024-01-31
 BOARD_START ?= 2015-01-01
@@ -21,6 +21,7 @@ BACKTEST_OUTPUT ?= reports/m2_backtest.json
 BACKTEST_MARKDOWN ?= reports/M2_BACKTEST.md
 SCOREBOARD_ARGS ?=
 PUBLISH_ARGS ?=
+ATTRIBUTION_OUTPUT ?= reports/dfri_companies.json
 
 bootstrap:
 	uv sync --locked --all-groups
@@ -90,6 +91,15 @@ scoreboard-predict:
 
 scoreboard-grade:
 	uv run python -m dfri.scoreboard grade $(SCOREBOARD_ARGS)
+
+attribution:
+	uv run python -m dfri.attribution.pipeline --output $(ATTRIBUTION_OUTPUT)
+
+recompute-check: attribution
+	uv run python tools/recompute_check.py --published $(ATTRIBUTION_OUTPUT)
+
+provenance-check:
+	uv run python -m dfri.publish.link_check
 
 publish-scoreboard:
 	uv run python -m dfri.publish.site $(PUBLISH_ARGS)

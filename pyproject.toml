@@ -42,6 +42,8 @@ dfri-card-trust = "dfri.ingest.card_trust:main"
 dfri-backtest = "dfri.backtest:main"
 dfri-scoreboard = "dfri.scoreboard:main"
 dfri-publish-scoreboard = "dfri.publish.site:main"
+dfri-attribution = "dfri.attribution.pipeline:main"
+dfri-check-provenance = "dfri.publish.link_check:main"
 
 [dependency-groups]
 dev = [

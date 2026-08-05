@@ -236,10 +236,10 @@ Dependencies: M2.1–M2.6.
 
 ### M3.1 Assumption Registry and matrices
 
-- `PENDING` Populate every non-observed Matrix A/B/model parameter with an assumption ID, source, tier, evidence, prior/band, sensitivity note, version, and active state.
-- `PENDING` Build Matrix A v1 with row-sum and evidence checks.
-- `PENDING` Build Matrix B v1 for ten P0 companies with non-negative weights, denominator evidence, and membership snapshot refs.
-- `PENDING` Keep the complete versioned Matrix A, Matrix B, and Assumption Registry sources public
+- `PASS` Populate every non-observed Matrix A/B/model parameter with an assumption ID, source, tier, evidence, prior/band, sensitivity note, version, and active state.
+- `PASS` Build Matrix A v1 with row-sum and evidence checks.
+- `PASS` Build Matrix B v1 for ten P0 companies with non-negative weights, denominator evidence, and membership snapshot refs.
+- `PASS` Keep the complete versioned Matrix A, Matrix B, and Assumption Registry sources public
   under the addendum escape hatch so an unauthenticated cold clone can reproduce every rendered
   assumption and company result.
 
@@ -247,10 +247,10 @@ Dependencies: verified public M2 clock and M1 category/company data. M2.6 contin
 
 ### M3.2 Company facts and Monte Carlo
 
-- `PENDING` Produce evidence-linked US consumer revenue denominator bands for ten P0 companies.
-- `PENDING` Implement >=10,000-draw deterministic Monte Carlo using registered priors and publish 10th/50th/90th percentiles.
-- `PENDING` Pass property tests for band ordering, finite flows, monotone percentiles, and tier shares summing to one.
-- `PENDING` Compute the homepage aggregate as total estimated debt-funded consumer revenue across
+- `PASS` Produce evidence-linked US consumer revenue denominator bands for ten P0 companies.
+- `PASS` Implement 20,000-draw deterministic Monte Carlo using registered triangular priors and publish 10th/50th/90th percentiles.
+- `PASS` Pass Hypothesis property tests for band ordering, finite flows, monotone percentiles, Matrix bounds, and tier shares summing to one.
+- `PASS` Compute the homepage aggregate as total estimated debt-funded consumer revenue across
   covered companies divided by their total estimated U.S. consumer revenue. Prohibit equal,
   market-cap, price, or other market-data weighting in code and tests.
 
@@ -258,15 +258,15 @@ Dependencies: M3.1.
 
 ### M3.3 P0 pages and independent recompute
 
-- `PENDING` Publish ten company pages with "estimated" DFR% bands, tier breakdowns, <=15-word Tier 1 quotes, accession links, assumption IDs, and top-five sensitivity sections.
-- `PENDING` Implement `tools/recompute_check.py` without attribution-engine code reuse beyond the lake reader; match three companies within +/-0.5 percentage points on the mid.
-- `PENDING` Pass provenance link checking.
+- `IN_PROGRESS` Publish ten company pages with "estimated" DFR% bands, tier breakdowns, <=15-word Tier 1 quotes, accession links, assumption IDs, and top-five sensitivity sections. The deterministic local build and tests pass; public Pages deployment evidence is pending.
+- `PASS` Implement `tools/recompute_check.py` without attribution-engine code reuse; AMZN, GM, and WMT match within 0.17 percentage points on the mid.
+- `PASS` Pass live provenance link checking for all 17 unique attribution evidence URLs; receipt is retained under ignored `.local/evidence/`.
 
 Dependencies: M3.2.
 
 ### M3.4 Cold verification and report
 
-- `PENDING` Pass fresh-clone verification and public-page checks.
+- `IN_PROGRESS` Pass fresh-clone verification and public-page checks. The primary 338-test suite passes at 85.19% total coverage; disposable cold-clone and public Pages evidence remain.
 - `PENDING` Write `MILESTONE_REPORTS/M3.md` with all P0 evidence and the M4 task map.
 
 Dependencies: all M3 ACs.
@@ -338,5 +338,5 @@ Dependencies: M5.1–M5.2.
 
 1. Preserve the first two genuine scheduled weekly prediction cycles and their deployment receipts.
 2. Verify the relevant G.19 release automatically grades the matured predictions.
-3. Begin M3.1 from the verified self-running clock while M2.6 continues in the background; do not
-   count manual, backfilled, or simulated runs toward M2.
+3. Publish the locally green M3 attribution capability through the filtered public lane, capture
+   cold-clone/CI/Pages evidence, and close M3 before beginning M4.

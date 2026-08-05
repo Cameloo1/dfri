@@ -1,0 +1,38 @@
+{
+  "methodology_version": "1.0.0",
+  "data_vintage": "2026-05-07T19:00:00+00:00",
+  "items": [
+    {
+      "debt_product": "revolving_credit",
+      "quarter": "2026-Q1",
+      "low": 15400.0,
+      "mid": 15400.0,
+      "high": 15400.0,
+      "unit": "Millions of U.S. Dollars",
+      "evidence_refs": [
+        "https://www.federalreserve.gov/releases/g19/20260306/",
+        "https://www.federalreserve.gov/releases/g19/20260407/",
+        "https://www.federalreserve.gov/releases/g19/20260507/",
+        "sha256:78bc0d830a59e30b460f575b9bc415a0b2171e21ef14784d9779c7a87df9380f",
+        "sha256:b5f4bf70aa15a5ddf0a2fc56edda02b8f40c43eaaa865eebee574b8b2f789ccd",
+        "sha256:f6d3e8b9a2410dea8cfd3848b59bb998655bf561a9dd210fa8fee18fb35a6f24"
+      ]
+    },
+    {
+      "debt_product": "nonrevolving_credit",
+      "quarter": "2026-Q1",
+      "low": 27000.0,
+      "mid": 27000.0,
+      "high": 27000.0,
+      "unit": "Millions of U.S. Dollars",
+      "evidence_refs": [
+        "https://www.federalreserve.gov/releases/g19/20260306/",
+        "https://www.federalreserve.gov/releases/g19/20260407/",
+        "https://www.federalreserve.gov/releases/g19/20260507/",
+        "sha256:78bc0d830a59e30b460f575b9bc415a0b2171e21ef14784d9779c7a87df9380f",
+        "sha256:b5f4bf70aa15a5ddf0a2fc56edda02b8f40c43eaaa865eebee574b8b2f789ccd",
+        "sha256:f6d3e8b9a2410dea8cfd3848b59bb998655bf561a9dd210fa8fee18fb35a6f24"
+      ]
+    }
+  ]
+}

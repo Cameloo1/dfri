@@ -16,7 +16,9 @@ baseline, ragged-edge bridge, state-space candidate, and reproducible backtest g
 Immutable prediction/grading ledgers, idempotent local jobs, and the deterministic feed/static-site
 builder also pass. The [public scoreboard](https://cameloo1.github.io/dfri/) and active external
 clock are now deployed; two genuine scheduled weekly cycles and automatic first-print grading
-remain. No live milestone is claimed yet.
+remain. M3 attribution is locally complete for the ten P0 companies and is awaiting the public
+Pages deployment/cold-clone evidence gate before its milestone report is closed. No M2 completion
+is claimed early.
 
 ## Outputs, sources, and evidence tiers
 
@@ -45,9 +47,8 @@ attribution. Commercial licensing is reserved; contact `ops@camelon.app`. Third-
 artifacts retain their own notices, including the separately attributed CC BY-SA 4.0 membership
 snapshot.
 
-The optional private mappings split is not used. When Matrix A, Matrix B, and the Assumption
-Registry are implemented, their complete versioned sources will be public alongside their rendered
-read-only methodology output. A private dependency would break unauthenticated cold-clone
+The optional private mappings split is not used. Matrix A, Matrix B, and the Assumption Registry
+are public alongside their rendered read-only methodology output. A private dependency would break unauthenticated cold-clone
 verification or make published numbers depend on hidden inputs. This is the addendum's explicit
 escape-hatch path and is recorded in `DEVIATIONS.md`.
 
@@ -73,6 +74,9 @@ Canonical commands:
 make bootstrap
 make verify
 make replay AS_OF=2024-01-31
+make attribution
+make recompute-check
+make provenance-check
 ```
 
 Windows equivalents:
@@ -82,6 +86,9 @@ make.cmd bootstrap
 make.cmd verify
 set AS_OF=2024-01-31
 make.cmd replay
+make.cmd attribution
+make.cmd recompute-check
+make.cmd provenance-check
 ```
 
 `make replay` writes a deterministic seed publication under `published/replay`. Runtime lake and publication artifacts are ignored by Git unless a reviewed, stable fixture or public report is intentionally promoted.
@@ -99,6 +106,34 @@ Archives, and EFTS response contracts. Its ignored JSON receipt contains source 
 checksums, counts, terms findings, and timestamps but no credential-bearing URL.
 
 The receipt excludes credential values. A source is not marked verified merely because its endpoint returned HTTP 200: its authoritative title, units, frequency, endpoint contract, and applicable automated-access/storage/derivative-redistribution terms must match the registry.
+
+## P0 company attribution
+
+The M3 engine publishes quarterly estimates for GM, F, AMZN, WMT, TGT, LOW, HD, BBY, ULTA,
+and TSCO. The first version uses the complete 2026-Q1 set of Board G.19 first prints; it does not
+substitute a revised or incomplete Q2 observation. For each company, annual SEC XBRL revenue is
+converted to a quarterly denominator and multiplied by a registered U.S.-consumer-share prior.
+The numerator follows the prescribed formula: credit flow × Matrix A product/category weight ×
+Matrix B category/company weight.
+
+`make attribution` performs 20,000 deterministic triangular-prior draws and writes the stable
+machine report to `reports/dfri_companies.json`. `make recompute-check` independently re-evaluates
+AMZN, GM, and WMT using only the committed JSON inputs and the formula; it imports no attribution
+engine code and requires each midpoint to match within ±0.5 percentage points.
+`make provenance-check` is the explicit live gate for every external evidence link and writes its
+ignored timestamped receipt to `.local/evidence/`.
+
+The static publisher emits all required v1 attribution feeds and ten no-JavaScript company pages:
+
+- `v1/feeds/dfri_companies.{csv,json,parquet}`
+- `v1/feeds/assumptions.{csv,json}`
+- `v1/feeds/schema.json`
+
+Each company page shows the word “estimated” with its DFR% band, Tier 1/2/3 shares, a specific SEC
+filing link and short observed-evidence excerpt, every relevant assumption ID, and the five inputs
+with the largest Monte Carlo correlation to the result. The homepage aggregate divides the total
+estimated debt-funded revenue by the total estimated U.S. consumer revenue across the covered
+companies; no price, market-cap, TradingView, or vendor data enters the computation.
 
 ## Membership snapshot
 

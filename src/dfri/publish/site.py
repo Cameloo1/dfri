@@ -18,6 +18,8 @@ from typing import Final, cast
 import pyarrow as pa
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 
+from dfri.attribution.engine import AttributionResult, CompanyEstimate, run_attribution
+from dfri.attribution.registry import Assumption, AttributionBundle, load_attribution_bundle
 from dfri.lake.store import AppendOnlyParquetStore, write_deterministic_parquet
 from dfri.publish.ledger import (
     GradeLedger,
@@ -126,6 +128,8 @@ def _build_scoreboard(
     if not isinstance(commercial_contact, str) or not commercial_contact.strip():
         raise SitePublishError("Branding contact must be a non-empty string")
     backtest = _load_object(root / "reports" / "m2_backtest.json", "backtest")
+    attribution_bundle = load_attribution_bundle()
+    attribution = run_attribution(attribution_bundle)
     all_predictions = PredictionLedger(ledger_store).read_all()
     predictions = tuple(
         item
@@ -219,6 +223,34 @@ def _build_scoreboard(
     _write_parquet(feeds / "nowcast_predictions.parquet", prediction_rows, _prediction_schema())
     _write_json(feeds / "scoreboard.json", {"meta": meta, "data": scoreboard_rows})
     _write_csv(feeds / "scoreboard.csv", scoreboard_rows, _scoreboard_columns())
+    company_rows = _company_feed_rows(
+        attribution,
+        published_at=published_at,
+        publication_mode=publication_mode,
+        commercial_contact=commercial_contact,
+    )
+    assumption_rows = _assumption_feed_rows(
+        attribution_bundle,
+        published_at=published_at,
+        publication_mode=publication_mode,
+        commercial_contact=commercial_contact,
+    )
+    attribution_meta = {
+        **build_meta,
+        "data_vintage": attribution.data_vintage,
+        "source_hash": attribution.source_hash,
+        "row_count": len(company_rows),
+        "weighting": attribution.aggregate.weighting,
+    }
+    _write_json(feeds / "dfri_companies.json", {"meta": attribution_meta, "data": company_rows})
+    _write_csv(feeds / "dfri_companies.csv", company_rows, _company_columns())
+    _write_parquet(feeds / "dfri_companies.parquet", company_rows, _company_schema())
+    assumption_meta = {
+        **attribution_meta,
+        "row_count": len(assumption_rows),
+    }
+    _write_json(feeds / "assumptions.json", {"meta": assumption_meta, "data": assumption_rows})
+    _write_csv(feeds / "assumptions.csv", assumption_rows, _assumption_columns())
     _write_json(feeds / "schema.json", _feed_schema(build_meta))
 
     assets = output_root / "assets"
@@ -249,6 +281,8 @@ def _build_scoreboard(
         "feed_license_url": LICENSE_URL,
         "commercial_license_contact": commercial_contact,
     }
+    company_displays = [_company_display(item) for item in attribution.companies]
+    aggregate_display = _aggregate_display(attribution)
     _render(
         environment,
         "home.html",
@@ -260,6 +294,8 @@ def _build_scoreboard(
             "description": "DFRI predictions and first-print Federal Reserve G.19 grades.",
             "latest": display_rows[0] if display_rows else None,
             "summary": summary,
+            "aggregate": aggregate_display,
+            "companies": company_displays,
         },
     )
     _render(
@@ -282,9 +318,37 @@ def _build_scoreboard(
             **base_context,
             "root": "../",
             "title": "Methodology",
-            "description": "Point-in-time DFRI nowcast methodology.",
+            "description": "Point-in-time DFRI nowcast and attribution methodology.",
+            "assumptions": [_assumption_display(item) for item in attribution_bundle.assumptions],
+            "matrix_a": attribution_bundle.matrix_a,
+            "matrix_b": attribution_bundle.matrix_b,
         },
     )
+    _render(
+        environment,
+        "changelog.html",
+        output_root / "changelog" / "index.html",
+        {
+            **base_context,
+            "root": "../",
+            "title": "Changelog",
+            "description": "Append-only DFRI publication and methodology changes.",
+            "attribution": aggregate_display,
+        },
+    )
+    for company, display in zip(attribution.companies, company_displays, strict=True):
+        _render(
+            environment,
+            "company.html",
+            output_root / "companies" / company.ticker.lower() / "index.html",
+            {
+                **base_context,
+                "root": "../../",
+                "title": f"{company.company_name} ({company.ticker})",
+                "description": (f"Estimated debt-funded revenue share for {company.company_name}."),
+                "company": display,
+            },
+        )
     for row in display_rows:
         _render(
             environment,
@@ -424,6 +488,157 @@ def _summary(rows: list[dict[str, object]], backtest: dict[str, object]) -> dict
     }
 
 
+def _company_feed_rows(
+    result: AttributionResult,
+    *,
+    published_at: datetime,
+    publication_mode: str,
+    commercial_contact: str,
+) -> list[dict[str, object]]:
+    common: dict[str, object] = {
+        "methodology_version": result.methodology_version,
+        "data_vintage": result.data_vintage,
+        "published_at": published_at.astimezone(UTC).isoformat(),
+        "publication_mode": publication_mode,
+        "license": LICENSE,
+        "license_url": LICENSE_URL,
+        "commercial_license_contact": commercial_contact,
+    }
+    return [
+        {
+            "ticker": item.ticker,
+            "company_name": item.company_name,
+            "quarter": item.quarter,
+            "estimated_dfr_pct_low": item.estimated_dfr_pct_low,
+            "estimated_dfr_pct_mid": item.estimated_dfr_pct_mid,
+            "estimated_dfr_pct_high": item.estimated_dfr_pct_high,
+            "estimated_debt_funded_revenue_mid_millions": (
+                item.estimated_debt_funded_revenue_mid_millions
+            ),
+            "estimated_us_consumer_revenue_mid_millions": (
+                item.estimated_us_consumer_revenue_mid_millions
+            ),
+            "tier1_share": item.tier1_share,
+            "tier2_share": item.tier2_share,
+            "tier3_share": item.tier3_share,
+            "revenue_source_url": item.revenue_source_url,
+            "tier1_source_url": item.tier1_source_url,
+            "tier1_excerpt": item.tier1_excerpt,
+            "assumption_ids": "|".join(item.assumption_ids),
+            "sensitivity_top5": json.dumps(
+                [
+                    {
+                        "assumption_id": sensitivity.assumption_id,
+                        "absolute_correlation": sensitivity.absolute_correlation,
+                        "direction": sensitivity.direction,
+                    }
+                    for sensitivity in item.sensitivity_top5
+                ],
+                sort_keys=True,
+                separators=(",", ":"),
+            ),
+            "permalink": f"/companies/{item.ticker.lower()}/",
+            **common,
+        }
+        for item in result.companies
+    ]
+
+
+def _assumption_feed_rows(
+    bundle: AttributionBundle,
+    *,
+    published_at: datetime,
+    publication_mode: str,
+    commercial_contact: str,
+) -> list[dict[str, object]]:
+    common: dict[str, object] = {
+        "methodology_version": bundle.methodology_version,
+        "data_vintage": bundle.data_vintage,
+        "published_at": published_at.astimezone(UTC).isoformat(),
+        "publication_mode": publication_mode,
+        "license": LICENSE,
+        "license_url": LICENSE_URL,
+        "commercial_license_contact": commercial_contact,
+    }
+    return [
+        {
+            "assumption_id": item.assumption_id,
+            "statement": item.statement,
+            "value_low": item.prior.low,
+            "value_mid": item.prior.mid,
+            "value_high": item.prior.high,
+            "tier": item.tier,
+            "source_url": item.source_url,
+            "evidence_snippet": item.evidence_snippet,
+            "sensitivity_note": item.sensitivity_note,
+            "version": item.version,
+            "active": item.active,
+            **common,
+        }
+        for item in bundle.assumptions
+    ]
+
+
+def _company_display(item: CompanyEstimate) -> dict[str, object]:
+    return {
+        "ticker": item.ticker,
+        "company_name": item.company_name,
+        "quarter": item.quarter,
+        "low": f"{item.estimated_dfr_pct_low:.2f}%",
+        "mid": f"{item.estimated_dfr_pct_mid:.2f}%",
+        "high": f"{item.estimated_dfr_pct_high:.2f}%",
+        "debt_revenue": f"{item.estimated_debt_funded_revenue_mid_millions:,.0f}",
+        "consumer_revenue": f"{item.estimated_us_consumer_revenue_mid_millions:,.0f}",
+        "tier1": f"{item.tier1_share * 100:.1f}%",
+        "tier2": f"{item.tier2_share * 100:.1f}%",
+        "tier3": f"{item.tier3_share * 100:.1f}%",
+        "tier1_width": f"{item.tier1_share * 100:.6f}",
+        "tier2_width": f"{item.tier2_share * 100:.6f}",
+        "tier3_width": f"{item.tier3_share * 100:.6f}",
+        "revenue_source_url": item.revenue_source_url,
+        "tier1_source_url": item.tier1_source_url,
+        "tier1_excerpt": item.tier1_excerpt,
+        "assumption_ids": item.assumption_ids,
+        "sensitivity": [
+            {
+                "assumption_id": sensitivity.assumption_id,
+                "correlation": f"{sensitivity.absolute_correlation:.3f}",
+                "direction": sensitivity.direction,
+            }
+            for sensitivity in item.sensitivity_top5
+        ],
+    }
+
+
+def _aggregate_display(result: AttributionResult) -> dict[str, object]:
+    aggregate = result.aggregate
+    return {
+        "quarter": aggregate.quarter,
+        "low": f"{aggregate.estimated_dfr_pct_low:.2f}%",
+        "mid": f"{aggregate.estimated_dfr_pct_mid:.2f}%",
+        "high": f"{aggregate.estimated_dfr_pct_high:.2f}%",
+        "debt_revenue": f"{aggregate.estimated_debt_funded_revenue_mid_millions:,.0f}",
+        "consumer_revenue": f"{aggregate.estimated_us_consumer_revenue_mid_millions:,.0f}",
+        "tier1": f"{aggregate.tier1_share * 100:.1f}%",
+        "tier2": f"{aggregate.tier2_share * 100:.1f}%",
+        "tier3": f"{aggregate.tier3_share * 100:.1f}%",
+        "weighting": aggregate.weighting,
+    }
+
+
+def _assumption_display(item: Assumption) -> dict[str, object]:
+    return {
+        "assumption_id": item.assumption_id,
+        "statement": item.statement,
+        "prior": f"{item.prior.low:g} / {item.prior.mid:g} / {item.prior.high:g}",
+        "tier": item.tier,
+        "source_url": item.source_url,
+        "evidence_snippet": item.evidence_snippet,
+        "sensitivity_note": item.sensitivity_note,
+        "version": item.version,
+    }
+
+
 def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
     return {
         "schema_version": "v1",
@@ -439,6 +654,14 @@ def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
             "scoreboard": {
                 "formats": ["csv", "json"],
                 "columns": _column_docs(_scoreboard_columns()),
+            },
+            "dfri_companies": {
+                "formats": ["csv", "json", "parquet"],
+                "columns": _column_docs(_company_columns()),
+            },
+            "assumptions": {
+                "formats": ["csv", "json"],
+                "columns": _column_docs(_assumption_columns()),
             },
         },
     }
@@ -480,8 +703,80 @@ def _scoreboard_columns() -> list[str]:
     ]
 
 
+def _company_columns() -> list[str]:
+    return [
+        "ticker",
+        "company_name",
+        "quarter",
+        "estimated_dfr_pct_low",
+        "estimated_dfr_pct_mid",
+        "estimated_dfr_pct_high",
+        "estimated_debt_funded_revenue_mid_millions",
+        "estimated_us_consumer_revenue_mid_millions",
+        "tier1_share",
+        "tier2_share",
+        "tier3_share",
+        "revenue_source_url",
+        "tier1_source_url",
+        "tier1_excerpt",
+        "assumption_ids",
+        "sensitivity_top5",
+        "permalink",
+        "methodology_version",
+        "data_vintage",
+        "published_at",
+        "publication_mode",
+        "license",
+        "license_url",
+        "commercial_license_contact",
+    ]
+
+
+def _assumption_columns() -> list[str]:
+    return [
+        "assumption_id",
+        "statement",
+        "value_low",
+        "value_mid",
+        "value_high",
+        "tier",
+        "source_url",
+        "evidence_snippet",
+        "sensitivity_note",
+        "version",
+        "active",
+        "methodology_version",
+        "data_vintage",
+        "published_at",
+        "publication_mode",
+        "license",
+        "license_url",
+        "commercial_license_contact",
+    ]
+
+
 def _column_docs(columns: list[str]) -> list[dict[str, str]]:
-    numeric = {"point", "low80", "high80", "low95", "high95", "actual_first_print", "abs_error"}
+    numeric = {
+        "point",
+        "low80",
+        "high80",
+        "low95",
+        "high95",
+        "actual_first_print",
+        "abs_error",
+        "estimated_dfr_pct_low",
+        "estimated_dfr_pct_mid",
+        "estimated_dfr_pct_high",
+        "estimated_debt_funded_revenue_mid_millions",
+        "estimated_us_consumer_revenue_mid_millions",
+        "tier1_share",
+        "tier2_share",
+        "tier3_share",
+        "value_low",
+        "value_mid",
+        "value_high",
+        "tier",
+    }
     return [
         {"name": item, "type": "number|null" if item in numeric else "string|null"}
         for item in columns
@@ -494,6 +789,25 @@ def _prediction_schema() -> pa.Schema:
         [
             pa.field(item, pa.float64() if item in numeric else pa.string(), nullable=False)
             for item in _prediction_columns()
+        ]
+    )
+
+
+def _company_schema() -> pa.Schema:
+    numeric = {
+        "estimated_dfr_pct_low",
+        "estimated_dfr_pct_mid",
+        "estimated_dfr_pct_high",
+        "estimated_debt_funded_revenue_mid_millions",
+        "estimated_us_consumer_revenue_mid_millions",
+        "tier1_share",
+        "tier2_share",
+        "tier3_share",
+    }
+    return pa.schema(
+        [
+            pa.field(item, pa.float64() if item in numeric else pa.string(), nullable=False)
+            for item in _company_columns()
         ]
     )
 

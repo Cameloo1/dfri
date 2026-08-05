@@ -1,12 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="eyebrow">Publicly falsifiable consumer-credit research</div>
-<h1>Predictions that cannot be revised away.</h1>
-<p class="lede">{{ brand.product_name }} records timestamped estimates of upcoming Federal Reserve consumer-credit flows, then grades each one against the first published G.19 value. Points are never shown without uncertainty bands.</p>
+<h1>Debt-funded revenue, with the assumptions exposed.</h1>
+<p class="lede">{{ brand.product_name }} estimates the share of covered companies' U.S. consumer revenue funded by new consumer credit. It also records timestamped Federal Reserve credit-flow predictions and grades them against first prints.</p>
 
 <section class="grid" aria-label="Scoreboard summary">
-  {% if latest %}
   <article class="card primary">
+    <div class="kicker">revenue-weighted company index · {{ aggregate.quarter }}</div>
+    <div class="number" title="Estimated from registered Matrix A and Matrix B priors; open Methodology for every input">Estimated {{ aggregate.mid }}</div>
+    <div class="meta">Estimated DFR% · 10-company coverage · {{ aggregate.weighting }} <span class="tier-badge tier-mixed">Tier 1–3</span></div>
+    <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="Estimated DFR percent band from {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}">
+      <title>Estimated DFR% band: {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}</title>
+      <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
+      <line x1="108" y1="36" x2="492" y2="36" class="range-band" />
+      <circle cx="300" cy="36" r="9" class="range-mid" />
+      <text x="108" y="68" text-anchor="middle">{{ aggregate.low }}</text>
+      <text x="300" y="68" text-anchor="middle">{{ aggregate.mid }}</text>
+      <text x="492" y="68" text-anchor="middle">{{ aggregate.high }}</text>
+    </svg>
+    <div class="tier-line"><span class="tier-badge tier-1">Tier 1 {{ aggregate.tier1 }}</span><span class="tier-badge tier-2">Tier 2 {{ aggregate.tier2 }}</span><span class="tier-badge tier-3">Tier 3 {{ aggregate.tier3 }}</span></div>
+    <p class="meta">Midpoint represents an estimated ${{ aggregate.debt_revenue }} million of debt-funded consumer revenue over an estimated ${{ aggregate.consumer_revenue }} million denominator. Bands are always shown.</p>
+  </article>
+  {% if latest %}
+  <article class="card metric">
     <div class="kicker">Latest prediction · {{ latest.target_label }} · {{ latest.target_period }}</div>
     <div class="number">{{ latest.point_display }}</div>
     <div class="meta">Millions of U.S. dollars · <span class="status {{ latest.grade_status_class }}">{{ latest.grade_status }}</span></div>
@@ -17,12 +33,20 @@
     <p><a href="scoreboard/predictions/{{ latest.prediction_id }}/index.html">Open immutable prediction →</a></p>
   </article>
   {% else %}
-  <article class="card primary"><h2>No predictions yet</h2><p>The feed is valid but the public clock has not started.</p></article>
+  <article class="card metric"><h2>No predictions yet</h2><p>The feed is valid but the public clock has not started.</p></article>
   {% endif %}
   <article class="card metric"><div class="kicker">Recorded predictions</div><div class="number">{{ summary.prediction_count }}</div><div class="meta">{{ summary.graded_count }} graded · {{ summary.pending_count }} awaiting first print</div></article>
   <article class="card metric"><div class="kicker">Primary backtest MAE</div><div class="number">{{ summary.mae_display }}</div><div class="meta">{{ summary.improvement_display }} better than {{ summary.best_naive }}</div></article>
   <article class="card metric"><div class="kicker">Backtest coverage</div><div class="number">{{ summary.coverage80_display }}</div><div class="meta">80% band · 95% band {{ summary.coverage95_display }}</div></article>
 </section>
 
-<p class="lede">The revenue-weighted company index is not shown yet. Attribution work may proceed while the public clock accumulates live-cycle evidence; M2 remains open until two scheduled weekly cycles and at least one automatic first-print grade are recorded.</p>
+<section id="companies" class="section-block">
+  <div class="eyebrow">P0 coverage</div>
+  <h2>Ten evidence-linked company estimates</h2>
+  <div class="company-links">
+    {% for company in companies %}
+    <a class="company-link" href="companies/{{ company.ticker|lower }}/index.html"><strong>{{ company.ticker }}</strong><span>{{ company.company_name }}</span><span>Estimated {{ company.low }}–{{ company.high }} DFR%</span></a>
+    {% endfor %}
+  </div>
+</section>
 {% endblock %}
