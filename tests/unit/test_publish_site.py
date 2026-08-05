@@ -9,13 +9,14 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
 
+import dfri.publish.site as site_module
 from dfri.lake.store import AppendOnlyParquetStore
 from dfri.nowcast.bridge import BridgeForecast
 from dfri.nowcast.targets import FirstPrintTarget
 from dfri.publish.ledger import GradeLedger, PredictionLedger
 from dfri.publish.site import SitePublishError, publish_scoreboard
 
-PUBLISHED_AT = datetime(2026, 8, 4, 21, 0, tzinfo=UTC)
+PUBLISHED_AT = datetime(2026, 8, 5, 5, 0, tzinfo=UTC)
 DATA_VINTAGE = datetime(2026, 7, 31, 20, 15, tzinfo=UTC)
 
 
@@ -111,6 +112,8 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert 'href="mailto:ops@camelon.app"' in home
     assert "revenue-weighted company index" in home
     assert first.total_bytes < 500_000
+    assert b"\r\n" not in (output / "assets" / "site.css").read_bytes()
+    assert b"\r\n" not in (output / "assets" / "site.js").read_bytes()
 
     filtered = publish_scoreboard(
         store,
@@ -173,6 +176,10 @@ def test_feed_contract_has_publication_fields_license_and_typed_parquet(tmp_path
     assert rebuilt["meta"]["published_at"] == later.isoformat()
     assert all(row["published_at"] == PUBLISHED_AT.isoformat() for row in rebuilt["data"])
     assert all(row["data_vintage"] == DATA_VINTAGE.isoformat() for row in rebuilt["data"])
+    company_rows = json.loads((output / "v1" / "feeds" / "dfri_companies.json").read_text())["data"]
+    assumption_rows = json.loads((output / "v1" / "feeds" / "assumptions.json").read_text())["data"]
+    assert {row["published_at"] for row in company_rows} == {"2026-08-05T04:17:33.789348+00:00"}
+    assert {row["published_at"] for row in assumption_rows} == {"2026-08-05T04:17:33.789348+00:00"}
     assert store.read_table("publication_records").height == 2
 
 
@@ -291,3 +298,80 @@ def test_publish_refuses_to_replace_unmanaged_destination(tmp_path: Path) -> Non
             project_root=Path(__file__).parents[2],
         )
     assert (output / "user-file.txt").read_text(encoding="utf-8") == "preserve me"
+
+
+def test_failed_build_preserves_last_good_publication_and_retry(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    store = AppendOnlyParquetStore(tmp_path / "ledger")
+    seed(store)
+    output = tmp_path / "published"
+    project = Path(__file__).parents[2]
+    publish_scoreboard(
+        store,
+        output,
+        published_at=PUBLISHED_AT,
+        data_vintage=DATA_VINTAGE,
+        publication_mode="preview",
+        project_root=project,
+    )
+    before = {
+        path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()
+    }
+    original = site_module._build_scoreboard
+
+    def fail_build(*args: object, **kwargs: object) -> object:
+        raise OSError("injected build failure")
+
+    monkeypatch.setattr(site_module, "_build_scoreboard", fail_build)
+    with pytest.raises(OSError, match="injected build failure"):
+        publish_scoreboard(
+            store,
+            output,
+            published_at=PUBLISHED_AT,
+            data_vintage=DATA_VINTAGE,
+            publication_mode="preview",
+            project_root=project,
+        )
+    assert before == {
+        path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()
+    }
+    assert not list(tmp_path.glob(".published.staging-*"))
+
+    monkeypatch.setattr(site_module, "_build_scoreboard", original)
+    receipt = publish_scoreboard(
+        store,
+        output,
+        published_at=PUBLISHED_AT,
+        data_vintage=DATA_VINTAGE,
+        publication_mode="preview",
+        project_root=project,
+    )
+    assert receipt.manifest_hash
+    assert before == {
+        path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()
+    }
+
+
+def test_failed_promotion_rolls_back_last_good_directory(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    destination = tmp_path / "public"
+    staging = tmp_path / ".public.staging-test"
+    destination.mkdir()
+    staging.mkdir()
+    (destination / "state.txt").write_text("last-good", encoding="utf-8")
+    (staging / "state.txt").write_text("candidate", encoding="utf-8")
+    original_replace = Path.replace
+
+    def replace_with_failure(path: Path, target: Path) -> Path:
+        if path == staging:
+            raise OSError("injected promotion failure")
+        return original_replace(path, target)
+
+    monkeypatch.setattr(Path, "replace", replace_with_failure)
+    with pytest.raises(OSError, match="injected promotion failure"):
+        site_module._promote_directory(staging, destination)
+
+    assert (destination / "state.txt").read_text(encoding="utf-8") == "last-good"
+    assert (staging / "state.txt").read_text(encoding="utf-8") == "candidate"

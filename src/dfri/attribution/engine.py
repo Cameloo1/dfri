@@ -64,6 +64,7 @@ class AggregateEstimate:
 class AttributionResult:
     methodology_version: str
     data_vintage: str
+    first_published_at: str
     source_hash: str
     quarter: str
     draws: int
@@ -177,6 +178,7 @@ def run_attribution(
     return AttributionResult(
         methodology_version=bundle.methodology_version,
         data_vintage=bundle.data_vintage,
+        first_published_at=bundle.first_published_at,
         source_hash=bundle.source_hash,
         quarter=quarter,
         draws=draws,

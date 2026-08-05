@@ -5,10 +5,13 @@
 <p class="lede">Recorded {{ row.made_at_display }} under model <span class="hash">{{ row.model_version }}</span>. This prediction row is append-only and cannot be edited after acceptance.</p>
 <section class="card">
   <div class="kicker">Point estimate</div><div class="number">{{ row.point_display }}</div><div class="meta">Millions of U.S. dollars</div>
-  <div class="band" aria-label="95 percent interval from {{ row.low95_display }} to {{ row.high95_display }}; 80 percent interval from {{ row.low80_display }} to {{ row.high80_display }}; point {{ row.point_display }}">
-    <div class="band-track"><span class="band-80"></span><span class="band-point"></span></div>
-    <div class="band-labels"><span>{{ row.low95_display }}</span><span>95% band</span><span>{{ row.high95_display }}</span></div>
-  </div>
+  <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="95 percent prediction interval from {{ row.low95_display }} to {{ row.high95_display }}; point {{ row.point_display }}">
+    <title>Prediction band: {{ row.low95_display }} to {{ row.high95_display }}, point {{ row.point_display }}</title>
+    <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
+    <line x1="108" y1="36" x2="492" y2="36" class="range-band" />
+    <circle cx="300" cy="36" r="9" class="range-mid" />
+    <text x="108" y="68" text-anchor="middle">{{ row.low95_display }}</text><text x="300" y="68" text-anchor="middle">{{ row.point_display }}</text><text x="492" y="68" text-anchor="middle">{{ row.high95_display }}</text>
+  </svg>
 </section>
 <section class="card card-follow"><h2>Evidence and grade</h2><dl class="definition-list">
   <dt>Prediction ID</dt><dd class="hash">{{ row.prediction_id }}</dd>

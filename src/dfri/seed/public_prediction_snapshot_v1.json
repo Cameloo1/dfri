@@ -1,0 +1,62 @@
+{
+  "schema_version": "v1",
+  "snapshot_id": "first-public-scoreboard-2026-08-05",
+  "source_url": "https://cameloo1.github.io/dfri/v1/feeds/scoreboard.json",
+  "captured_at": "2026-08-05T04:34:00+00:00",
+  "published_at": "2026-08-05T04:17:33.789348+00:00",
+  "data_vintage": "2026-07-31T20:15:00+00:00",
+  "rows": [
+    {
+      "prediction_id": "prd_6177c0c4e9f1c076686adb4cd5e4ead039b995aa246337288b9411c706e1a9dc",
+      "made_at": "2026-08-05T02:24:45.950514+00:00",
+      "model_version": "bridge-ridge-v2-alpha10",
+      "inputs_hash": "41993b404b22e01533ecf5eb05c27b1d989f2f9a0fc434f97608fef66496d377",
+      "target_series": "DELTA_DTCTLR.M",
+      "target_period": "2026-07-31",
+      "point": 4290.576403482268,
+      "low80": -3395.5682787595324,
+      "high80": 11976.721085724068,
+      "low95": -7464.367495912245,
+      "high95": 16045.520302876781
+    },
+    {
+      "prediction_id": "prd_680ac2b8c3b5e47edcf306e2f1089e50d6bbfbaf50e83592563cb3e8ee5d66e0",
+      "made_at": "2026-08-05T02:24:45.950514+00:00",
+      "model_version": "bridge-ridge-v2-alpha10",
+      "inputs_hash": "5ad7d36793429059df553c27030e7fb3a019137385c87a03ad69fdd99e9cf5f0",
+      "target_series": "DELTA_DTCTLN.M",
+      "target_period": "2026-06-30",
+      "point": 9968.153703794944,
+      "low80": 923.36711156829,
+      "high80": 19012.940296021596,
+      "low95": -3864.6536878308925,
+      "high95": 23800.961095420782
+    },
+    {
+      "prediction_id": "prd_89cff4ef13c82b4bccf6ded44e63c4d028bb1635da8c4890edbb9f7db44f86af",
+      "made_at": "2026-08-05T02:24:45.950514+00:00",
+      "model_version": "bridge-ridge-v2-alpha10",
+      "inputs_hash": "87e887e9ace0de3ccf447d423baf526e92d1a729e59cfcc9ffe15007851ff9ae",
+      "target_series": "DELTA_DTCTLR.M",
+      "target_period": "2026-06-30",
+      "point": -5529.373384842653,
+      "low80": -13243.229041927001,
+      "high80": 2184.4822722416957,
+      "low95": -17326.697563055528,
+      "high95": 6267.9507933702225
+    },
+    {
+      "prediction_id": "prd_c589a3d29179066784b619fc64987dcc9929c5cedff496ff4d7ca3472d543e44",
+      "made_at": "2026-08-05T02:24:45.950514+00:00",
+      "model_version": "bridge-ridge-v2-alpha10",
+      "inputs_hash": "6d7f8d85357eb2dcf3342050c59a2ff202006c1945933d90d789270998e1ab13",
+      "target_series": "DELTA_DTCTLN.M",
+      "target_period": "2026-07-31",
+      "point": 12522.532073617727,
+      "low80": 3453.8919158406934,
+      "high80": 21591.17223139476,
+      "low95": -1346.7561984022923,
+      "high95": 26391.820345637745
+    }
+  ]
+}

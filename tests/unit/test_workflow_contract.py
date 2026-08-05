@@ -61,4 +61,24 @@ def test_ci_uses_the_current_pinned_uv_contract() -> None:
     assert "astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b" in workflow
     assert 'version: "0.11.32"' in workflow
     assert "make verify" in workflow
+    assert "make publish" in workflow
+    assert "Verify published changelog history is append-only" in workflow
+    assert "m4-publication-verification" in workflow
+    assert "retention-days: 90" in workflow
+    assert_all_actions_are_commit_pinned(workflow)
+
+
+def test_m4_uptime_workflow_preserves_partial_api_and_owner_log_contract() -> None:
+    root = Path(__file__).parents[2]
+    workflow = (root / ".github" / "workflows" / "m4-uptime.yml").read_text()
+
+    assert 'cron: "17 * * * *"' in workflow
+    assert "cancel-in-progress: false" in workflow
+    assert "DFRI_API_BASE_URL" in workflow
+    assert "--require-api" in workflow
+    assert "https://cameloo1.github.io/dfri/" in workflow
+    assert "dfri.ops.uptime" in workflow
+    assert "if: always()" in workflow
+    assert "m4-uptime-${{ github.run_id }}-${{ github.run_attempt }}" in workflow
+    assert "retention-days: 90" in workflow
     assert_all_actions_are_commit_pinned(workflow)
