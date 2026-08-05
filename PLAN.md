@@ -316,27 +316,27 @@ Dependencies: M3 and M4 contracts.
 ### M5.2 Quarterly refresh and performance
 
 - `PASS` Implement the new-10-Q quarterly refresh path through recompute and append-only publish. The job selects a complete first-print Board quarter, applies point-in-time same-tag SEC TTM facts, reweights Matrix B, recomputes all 50 companies, and appends one content-addressed record.
-- `PASS` Demonstrate one live quarterly refresh with evidence and recovery logs. Refresh `qrf_9052d944fb00960d7d74c785` updated 35 of 50 denominators for 2026-Q1; an exact live retry appended zero, and an allowlisted state-bundle pack/unpack restored the same record and hash.
-- `PENDING` Optimize only after measurement until the full pipeline is <30 minutes on the CI runner.
+- `PASS` Demonstrate one production quarterly refresh with evidence and recovery logs. Run [30986960228](https://github.com/Cameloo1/dfri/actions/runs/30986960228) appended `qrf_c745102ac7134269b53f1323`, updating 35 of 50 denominators for 2026-Q1. Exact production retry [31033209605](https://github.com/Cameloo1/dfri/actions/runs/31033209605) appended zero and preserved that ID; an allowlisted state-bundle pack/unpack restored the same record and source hash. The committed pre-deployment demo remains reproducibility evidence and is source-semantically deduplicated from the live feed.
+- `PASS` Measure before optimizing and keep the full CI path below 30 minutes. PR run [30986517315](https://github.com/Cameloo1/dfri/actions/runs/30986517315) retained a 107-second locked-bootstrap + verify + publish receipt against the 1,800-second budget; the final idempotency PR and main runs completed in 2m00s and 2m02s.
 
 Dependencies: M5.1.
 
 ### M5.3 Methodology comparison and report
 
 - `PASS` Publish a sensitivity-analysis page comparing methodology versions without rewriting history. The comparison renders complete 1.0.0 and 1.1.0 bands for the original ten plus midpoint deltas; the dated coverage ledger remains separate.
-- `PENDING` Pass fresh-clone verification and write `MILESTONE_REPORTS/M5.md`.
+- `PASS` Pass fresh-clone verification and write `MILESTONE_REPORTS/M5.md`. A new clone of corrected public main `21ad8fcec8cfac230100dd139eacd717403c4e91` contains neither excluded control document and passes locked bootstrap, 389-test verification at 85.04% coverage, deterministic replay, deterministic publish, and 56 Axe/no-JavaScript pages. Production run [30986960228](https://github.com/Cameloo1/dfri/actions/runs/30986960228) appended the accepted refresh; exact retry [31033209605](https://github.com/Cameloo1/dfri/actions/runs/31033209605) appended zero and preserved its ID.
 
 Dependencies: M5.1–M5.2.
 
 ## Day-14 review packet
 
-- `PENDING` Include every milestone report completed by the review date.
-- `PENDING` Write a one-page summary of what exists and is live, what is blocked with evidence, and the five open questions whose answers would most change the build.
-- `PENDING` Ensure `QUESTIONS.md` and `DEVIATIONS.md` are current and distinguish current verified behavior from intent.
+- `PASS` Include every milestone report completed by the review date: M0, M1, M3, M4, and M5. M2 is correctly withheld until its calendar gate passes.
+- `PASS` Write `MILESTONE_REPORTS/DAY14_SUMMARY.md`: one page covering live capability, evidence-backed pending/deferred work, and Q-003 through Q-007.
+- `PASS` Keep `QUESTIONS.md` and `DEVIATIONS.md` current and distinguish verified behavior from intent. Q-001/Q-002 are resolved, Q-003–Q-007 remain non-blocking, D-010 remains a deferral rather than a pass, and M2 remains calendar-pending.
 
 ## Immediate next actions
 
 1. Preserve the first two genuine scheduled weekly prediction cycles and their deployment receipts.
 2. Verify the relevant G.19 release automatically grades the matured predictions.
 3. Preserve M4's Pages-only uptime receipts and keep the D-010 serverless appendix dormant until a trigger occurs.
-4. Obtain PR-CI timing evidence for the completed evidence-first 50-company M5 implementation, deploy the live refresh, then close M5 from a filtered fresh clone.
+4. Hold the verified 50-company M5 boundary until one of Q-003–Q-007 is answered; do not add market data, a paid vendor, or a public API by inference.

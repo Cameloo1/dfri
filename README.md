@@ -20,9 +20,10 @@ remain. M3 attribution is complete and live for the ten P0 companies; its public
 evidence is in the [M3 milestone report](MILESTONE_REPORTS/M3.md). M4's complete feed set, static
 site, deterministic publish, axe, no-JavaScript, recovery, and hourly Pages monitoring contracts
 pass; its [milestone report](MILESTONE_REPORTS/M4.md) marks the public FastAPI criteria deferred
-under D-010 rather than passed. M5 methodology 1.1.0 expands the evidence-first attribution
-universe to 50 companies and adds an append-only quarterly refresh path. No M2 completion is
-claimed early.
+under D-010 rather than passed. M5 methodology 1.1.0, the 50-company universe, exclusions,
+quarterly refresh, version comparison, performance, and final cold-clone gates now pass; see the
+[M5 milestone report](MILESTONE_REPORTS/M5.md). The [Day-14 review](MILESTONE_REPORTS/DAY14_SUMMARY.md)
+summarizes current live and pending work. No M2 completion is claimed early.
 
 ## Outputs, sources, and evidence tiers
 
@@ -186,6 +187,12 @@ companyfacts with explicit pacing, reweights Matrix B from refreshed denominator
 content fails closed. The same job is registered in the existing non-cancelling scoreboard
 workflow every Monday at 14:43 UTC, so source state, Pages promotion, accepted-state recovery, and
 deployment receipts remain in one lineage.
+
+The accepted production 2026-Q1 refresh is `qrf_c745102ac7134269b53f1323`. A cross-runner
+machine-epsilon difference found before milestone closure was removed from refresh identity
+without rewriting the accepted row. The exact production retry appended zero and the live feed
+contains one authoritative quarterly row. See the [M5 report](MILESTONE_REPORTS/M5.md) for the
+initial deployment, retry, CI timing, recovery, and cold-clone evidence.
 
 ## Membership snapshot
 
