@@ -198,3 +198,33 @@ def test_job_receipts_are_content_addressed_and_preserve_attempts(tmp_path: Path
         scoreboard.write_job_receipt(
             tmp_path, "predict", result, executed_at=ORIGIN, duration_ms=-1
         )
+
+
+def test_prediction_cli_payload_includes_aggregate_append_counts() -> None:
+    result = scoreboard.PredictionJobResult(
+        as_of=ORIGIN,
+        series=(
+            scoreboard.PredictionSeriesResult(
+                target_series="DELTA_DTCTLR.M",
+                h8_release_at=ORIGIN,
+                latest_h8_observation=date(2026, 7, 22),
+                target_periods=(date(2026, 6, 30), date(2026, 7, 31)),
+                appended=2,
+                already_present=0,
+            ),
+            scoreboard.PredictionSeriesResult(
+                target_series="DELTA_DTCTLN.M",
+                h8_release_at=ORIGIN,
+                latest_h8_observation=date(2026, 7, 22),
+                target_periods=(date(2026, 6, 30), date(2026, 7, 31)),
+                appended=1,
+                already_present=1,
+            ),
+        ),
+    )
+
+    payload = scoreboard.serialize_job_result(result)
+
+    assert payload["appended"] == 3
+    assert payload["already_present"] == 1
+    assert isinstance(payload["series"], list)

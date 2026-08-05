@@ -246,6 +246,18 @@ def _json_value(value: object) -> object:
     return value
 
 
+def serialize_job_result(result: PredictionJobResult | GradingJobResult) -> dict[str, object]:
+    """Return the stable CLI payload consumed by the scoreboard workflow."""
+
+    payload = _json_value(asdict(result))
+    if not isinstance(payload, dict):
+        raise ScoreboardJobError("Scoreboard result did not serialize as an object")
+    if isinstance(result, PredictionJobResult):
+        payload["appended"] = result.appended
+        payload["already_present"] = result.already_present
+    return payload
+
+
 def _parse_as_of(value: str) -> datetime:
     try:
         parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
@@ -286,9 +298,7 @@ def main() -> None:
         executed_at=datetime.now(UTC),
         duration_ms=duration_ms,
     )
-    payload = _json_value(asdict(result))
-    if not isinstance(payload, dict):
-        raise ScoreboardJobError("Scoreboard result did not serialize as an object")
+    payload = serialize_job_result(result)
     payload["receipt"] = str(receipt)
     print(json.dumps(payload, sort_keys=True))
 
