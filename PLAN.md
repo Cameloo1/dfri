@@ -37,7 +37,7 @@ Independent source-ingest work may proceed in parallel only where it cannot weak
 - `PASS` Add `.gitignore`, `.env.example` containing variable names only, and secret-safe logging/redaction tests. Never read or print `.env` values.
 - `PASS` Add a portable `Makefile` with `bootstrap`, `lint`, `typecheck`, `test`, `replay`, `verify`, and later `publish` targets; document Windows prerequisites and commands.
 - `PASS` Add `README.md`, `QUESTIONS.md`, and `DEVIATIONS.md` with explicit operating rules and environment variable names.
-- `IN_PROGRESS` Add GitHub Actions PR CI for lint, type, tests, and deterministic replay. The workflow and local-equivalent commands pass; external execution awaits the repository destination in Q-001.
+- `IN_PROGRESS` Add GitHub Actions PR CI for lint, type, tests, and deterministic replay. Local verification and public push runs `30967935599` and `30968775292` pass; a pull-request event remains to be observed. Q-001 is resolved.
 
 Dependencies: spec read-through. Evidence: scaffold tree, tool configs, fresh-environment command transcript, CI workflow.
 
@@ -207,7 +207,7 @@ Dependencies: M2.3 and M0/M1 publication primitives.
 
 - `PASS` Implement stable prediction/scoreboard JSON, CSV, and typed Parquet feeds with schema documentation plus methodology, data-vintage, publication-time, mode, and CC BY-NC fields. Publication is built in a disposable directory, atomically promoted, refuses unmanaged destinations, removes stale managed paths, and is byte-identical for pinned inputs.
 - `PASS` Build the no-JS static Home, Scoreboard, Methodology, and immutable prediction-permalink pages with nested 80/95% bands, first-print actuals/errors/provenance, accessible text equivalents, optional sorting enhancement, and local-only assets. The filtered four-row v2 preview explicitly excludes eight pre-public smoke rows, has four permalinks, totals 57,168 bytes, and reproduced manifest hash `3793b59199975166b89ada7be0355489b99c0ae32ef87fd7839f823d44414be7` on two documented builds.
-- `PENDING` Activate scheduled GitHub Actions and public hosting; verify H.8 and G.19 completion within four hours. The default-branch workflow, non-cancelling concurrency gate, current Board release windows, holiday-shifted H.8 checks, allowlisted SHA-256 state transfer, candidate-to-deployment-accepted state gate, explicit first-run bootstrap gate, append-only first-publication ledger, no-change deployment skip, Pages permissions/environment, SLA receipt, and recovery runbook pass locally. Q-001 still blocks remote activation, public URL evidence, and genuine scheduled cycles.
+- `PENDING` Verify scheduled H.8 and G.19 completion within four hours. The active default-branch workflow and [public scoreboard](https://cameloo1.github.io/dfri/) are deployed. Manual bootstrap run `30968841429` published four predictions, zero grades, and 15 manifest-verified files; its candidate and accepted state artifacts are byte-identical (`8d13c7f865da0a2c9a8a7f0d33f8d126bb6c3514b9fc5ee1aa98cf989cc50970`) and restore 1,029 allowlisted files with manifest hash `b9fbad744eb5d9e3b8ee47e58f6e1ac945830e16d86fca0f2286fab74185b87a`. Its receipt correctly failed the four-hour SLA because a manual bootstrap used the July 31 release 367,826 seconds later; it is not live-cycle evidence. Genuine scheduled-cycle latency remains pending.
 
 Dependencies: M2.4.
 
@@ -221,7 +221,7 @@ Dependencies: public M2.5 deployment and calendar time.
 
 ### M2.7 Cold verification and report
 
-- `PENDING` Pass scheduler/public URL checks. A disposable no-local clone of capability commit `7fe2884` completed the documented locked `make.cmd bootstrap` and `make.cmd verify` path on Python 3.12.13: lint/format and strict typing passed, 309 tests passed at 85.05% coverage, and all three determinism tests passed. The clone contained neither `.env` nor local lake state and was removed after its exact HEAD was verified.
+- `IN_PROGRESS` Pass scheduler/public URL checks. Workflow `327469010` is active, Pages is HTTPS and restricted to `main`, every live manifest file and permalink passes, and accepted state recovery passes. Two scheduled cycles remain. A disposable no-local clone of capability commit `7fe2884` completed the documented locked `make.cmd bootstrap` and `make.cmd verify` path on Python 3.12.13: lint/format and strict typing passed, 309 tests passed at 85.05% coverage, and all three determinism tests passed. The production append-count fix passes public CI with 310 tests at 85.10% coverage.
 - `PENDING` Write `MILESTONE_REPORTS/M2.md`, including metric bars or logged deviations and two-cycle evidence.
 
 Dependencies: M2.1–M2.6.
@@ -324,6 +324,6 @@ Dependencies: M5.1–M5.2.
 
 ## Immediate next actions
 
-1. Continue SEC P0 facts, lender evidence, and trust parsers now that macro histories are durable.
-2. Extend health inputs to filing/trust pipelines as they land and prove every parser has a real fixture.
-3. Keep external PR-CI evidence explicitly pending under Q-001 while continuing eligible local tracks.
+1. Preserve the first two genuine scheduled weekly prediction cycles and their deployment receipts.
+2. Verify the relevant G.19 release automatically grades the matured predictions.
+3. Keep M3 hard-blocked until M2.6 passes; use the activation-evidence pull request to close M0's final PR-CI item.

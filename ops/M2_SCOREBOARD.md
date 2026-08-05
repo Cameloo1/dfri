@@ -1,8 +1,23 @@
 # M2 scoreboard clock operations
 
-This runbook covers the checked-in but not yet activated M2 GitHub Actions clock. Activation is
-blocked on Q-001: the Camelon Systems repository and public hostname are not configured. Do not
-count local or manually backdated runs as live-cycle evidence.
+This runbook covers the active M2 GitHub Actions clock in `Cameloo1/dfri` and the public scoreboard
+at https://cameloo1.github.io/dfri/. Q-001 is resolved. Do not count local, manual, or backdated
+runs as live-cycle evidence.
+
+## Activation status
+
+The public baseline and first fix both passed push-triggered CI. GitHub Pages uses the custom
+workflow source, HTTPS is enforced, and the `github-pages` environment accepts only `main`.
+Workflow `327469010` is active with both schedules below.
+
+Manual bootstrap run https://github.com/Cameloo1/dfri/actions/runs/30968841429 deployed four
+predictions and zero grades. All 15 public manifest entries and four immutable permalinks passed
+HTTP, byte-length, and SHA-256 checks. Candidate artifact `8915896515` and accepted-state artifact
+`8915902293` are byte-identical and restore 1,029 allowlisted files with no private paths. Receipt
+artifact `8915902998` records a 367,826-second `FAIL`, as required: this manual recovery run used
+the July 31 H.8 release outside the live four-hour window. Pages and accepted-state promotion
+completed before that receipt failure, so the state is recoverable. Never enable
+`bootstrap_state` again. The next acceptance evidence must come from genuine scheduled runs.
 
 ## Current workflow contract
 
@@ -67,17 +82,17 @@ and receipt artifacts in the eventual `MILESTONE_REPORTS/M2.md`.
 
 ## Activation checklist
 
-1. Configure Q-001's repository and push the reviewed default branch.
-2. Enable GitHub Pages with GitHub Actions as its source and protect the `github-pages`
+1. **PASS:** Configure Q-001's repository and push the reviewed default branch.
+2. **PASS:** Enable GitHub Pages with GitHub Actions as its source and protect the `github-pages`
    environment to the default branch.
-3. Confirm Actions can read prior run artifacts and write Pages deployments. No paid secret is
+3. **PASS:** Confirm Actions can read prior run artifacts and write Pages deployments. No paid secret is
    required for the M2 Board/Census path.
-4. Run one manual `all` dispatch with `bootstrap_state=true` and without `force_publish`; inspect
-   the candidate and deployment-accepted state artifacts, feed, every permalink, and deployment
-   receipt. Never enable
-   `bootstrap_state` after the first accepted run.
-5. Confirm both weekday schedules remain enabled on the default branch.
-6. Start the two-cycle clock only from the first genuinely scheduled Friday prediction deployment.
+4. **PASS:** The one permitted manual `all` dispatch used `bootstrap_state=true` and
+   `force_publish=false`; its candidate, deployment-accepted state, feed, permalinks, manifest, and
+   receipt were inspected. Never enable `bootstrap_state` again.
+5. **PASS:** Confirm both weekday schedules remain enabled on the default branch.
+6. **PENDING:** Start the two-cycle clock only from the first genuinely scheduled Friday
+   prediction deployment.
 
 Pause/retry rules: cancel before deploy if source validation fails; retry the same workflow after a
 transient network failure; never skip a failed parser/data-quality gate; never delete/edit ledger

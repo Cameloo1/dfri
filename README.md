@@ -6,14 +6,16 @@ The controlling build contract is [DFRI_BUILD_SPEC.md](DFRI_BUILD_SPEC.md). Curr
 
 ## Current state
 
-M0 passes the local and fresh-clone gates; external PR-CI evidence remains pending because no
-repository destination is configured. M1 Board, public macro/category, issuer-fact, Auto ABS,
-and card-trust histories pass their ingest, live-audit, health, and fresh-clone gates. The
+M0 passes the local and fresh-clone gates, and the public repository's push-triggered CI passes;
+a pull-request-triggered CI run remains the final M0 evidence item. M1 Board, public
+macro/category, issuer-fact, Auto ABS, and card-trust histories pass their ingest, live-audit,
+health, and fresh-clone gates. The
 [M1 milestone report](MILESTONE_REPORTS/M1.md) records the evidence. M2 first-print target,
 baseline, ragged-edge bridge, state-space candidate, and reproducible backtest gates now pass.
 Immutable prediction/grading ledgers, idempotent local jobs, and the deterministic feed/static-site
-builder also pass. Public hosting, external scheduling, and two live cycles remain. No public DFRI
-number or live milestone is claimed yet.
+builder also pass. The [public scoreboard](https://cameloo1.github.io/dfri/) and active external
+clock are now deployed; two genuine scheduled weekly cycles and automatic first-print grading
+remain. No live milestone is claimed yet.
 
 ## Prerequisites
 
@@ -355,18 +357,19 @@ artifact. A destination without a publisher manifest is treated as user-managed 
 overwritten. Two identical local builds over the corrected four-row v2 preview produced the same
 manifest hash, `3793b59199975166b89ada7be0355489b99c0ae32ef87fd7839f823d44414be7`,
 and a 57,168-byte artifact. The eight earlier incorrectly timestamped smoke rows were explicitly
-excluded and are not live-cycle evidence. Generated publication files remain ignored; public-host
-deployment and genuine scheduled-cycle evidence are still pending.
+excluded and are not live-cycle evidence. Generated publication files remain ignored. The first
+manual public bootstrap produced a separate live four-row ledger and deployed all 15
+manifest-listed files with matching byte lengths and SHA-256 hashes; it is not live-cycle evidence.
 
-The inactive default-branch clock definition is `.github/workflows/m2-scoreboard.yml`; its
-activation and live evidence remain blocked on Q-001. It checks for first-print grades on weekdays
-after the Board's 3:00 p.m. Eastern G.19 window and checks for new H.8 input on weekdays after the
-4:15 p.m. Eastern window, covering both ordinary Fridays and holiday-shifted releases. Stable input
-identity makes non-release days no-ops. A single non-cancelling concurrency gate protects the
-ledger, deployment occurs only after an append, and a post-deployment receipt enforces the
-four-hour SLA. Disposable runners recover only from a SHA-256-verified, deployment-accepted,
-allowlisted state artifact; changed state remains a candidate until Pages succeeds, and an
-empty-state bootstrap requires an explicit first-run manual approval. See
+The active default-branch clock definition is `.github/workflows/m2-scoreboard.yml`. It checks for
+first-print grades on weekdays after the Board's 3:00 p.m. Eastern G.19 window and checks for new
+H.8 input on weekdays after the 4:15 p.m. Eastern window, covering both ordinary Fridays and
+holiday-shifted releases. Stable input identity makes non-release days no-ops. A single
+non-cancelling concurrency gate protects the ledger, deployment occurs only after an append, and a
+post-deployment receipt enforces the four-hour SLA. Disposable runners recover only from a
+SHA-256-verified, deployment-accepted, allowlisted state artifact; changed state remains a
+candidate until Pages succeeds. The one permitted empty-state bootstrap has completed and must not
+be enabled again. See
 [`ops/M2_SCOREBOARD.md`](ops/M2_SCOREBOARD.md) for activation, pause, retry, and recovery rules.
 
 ## New York Fed HHDC history
