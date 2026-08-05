@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="eyebrow">Append-only publication history</div>
+<h1>Changelog</h1>
+<p class="lede">Methodology changes, model versions, and restatements are added here. Prior published records are not silently rewritten.</p>
+<article class="card card-follow" id="methodology-1-0-0">
+  <div class="kicker">Methodology {{ methodology_version }} · {{ attribution.quarter }}</div>
+  <h2>P0 attribution introduced</h2>
+  <p>Published the first ten-company, revenue-weighted DFRI estimate with 20,000-draw bands, tier contribution shares, a public Assumption Registry, and per-company sensitivity rankings.</p>
+  <p><a href="{{ root }}v1/feeds/dfri_companies.json">Company feed</a> · <a href="{{ root }}v1/feeds/assumptions.json">Assumptions feed</a></p>
+</article>
+{% endblock %}

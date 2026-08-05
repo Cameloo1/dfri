@@ -1,0 +1,19 @@
+{
+  "methodology_version": "1.0.0",
+  "items": [
+    {"version": "1.0.0", "debt_product": "nonrevolving_credit", "spend_category": "gm_captive_auto", "weight_low": 0.08, "weight_mid": 0.11, "weight_high": 0.14, "tier": 1, "assumption_ids": ["A-T1-GM-CAPTIVE-001"]},
+    {"version": "1.0.0", "debt_product": "nonrevolving_credit", "spend_category": "ford_captive_auto", "weight_low": 0.07, "weight_mid": 0.1, "weight_high": 0.14, "tier": 1, "assumption_ids": ["A-T1-F-CAPTIVE-001"]},
+    {"version": "1.0.0", "debt_product": "revolving_credit", "spend_category": "amazon_payments", "weight_low": 0.01, "weight_mid": 0.02, "weight_high": 0.04, "tier": 1, "assumption_ids": ["A-T1-AMZN-PAYMENTS-001"]},
+    {"version": "1.0.0", "debt_product": "revolving_credit", "spend_category": "walmart_finance", "weight_low": 0.004, "weight_mid": 0.008, "weight_high": 0.015, "tier": 1, "assumption_ids": ["A-T1-WMT-FINANCE-001"]},
+    {"version": "1.0.0", "debt_product": "revolving_credit", "spend_category": "target_circle_card", "weight_low": 0.003, "weight_mid": 0.006, "weight_high": 0.01, "tier": 1, "assumption_ids": ["A-T1-TGT-CARD-001"]},
+    {"version": "1.0.0", "debt_product": "revolving_credit", "spend_category": "lowes_credit", "weight_low": 0.003, "weight_mid": 0.006, "weight_high": 0.012, "tier": 1, "assumption_ids": ["A-T1-LOW-CARD-001"]},
+    {"version": "1.0.0", "debt_product": "revolving_credit", "spend_category": "home_depot_credit", "weight_low": 0.004, "weight_mid": 0.008, "weight_high": 0.015, "tier": 1, "assumption_ids": ["A-T1-HD-CARD-001"]},
+    {"version": "1.0.0", "debt_product": "revolving_credit", "spend_category": "best_buy_credit", "weight_low": 0.002, "weight_mid": 0.005, "weight_high": 0.01, "tier": 1, "assumption_ids": ["A-T1-BBY-CARD-001"]},
+    {"version": "1.0.0", "debt_product": "revolving_credit", "spend_category": "ulta_credit", "weight_low": 0.0005, "weight_mid": 0.0015, "weight_high": 0.004, "tier": 1, "assumption_ids": ["A-T1-ULTA-CARD-001"]},
+    {"version": "1.0.0", "debt_product": "revolving_credit", "spend_category": "tractor_supply_credit", "weight_low": 0.0005, "weight_mid": 0.0015, "weight_high": 0.004, "tier": 1, "assumption_ids": ["A-T1-TSCO-CARD-001"]},
+    {"version": "1.0.0", "debt_product": "revolving_credit", "spend_category": "general_retail", "weight_low": 0.22, "weight_mid": 0.3, "weight_high": 0.42, "tier": 2, "assumption_ids": ["A-T2-REV-GENERAL-001"]},
+    {"version": "1.0.0", "debt_product": "nonrevolving_credit", "spend_category": "auto_market", "weight_low": 0.08, "weight_mid": 0.12, "weight_high": 0.18, "tier": 2, "assumption_ids": ["A-T2-NONREV-AUTO-001"]},
+    {"version": "1.0.0", "debt_product": "revolving_credit", "spend_category": "fungible_consumer", "weight_low": 0.06, "weight_mid": 0.1, "weight_high": 0.14, "tier": 3, "assumption_ids": ["A-T3-REV-FUNGIBLE-001"]},
+    {"version": "1.0.0", "debt_product": "nonrevolving_credit", "spend_category": "fungible_consumer_nonrevolving", "weight_low": 0.06, "weight_mid": 0.1, "weight_high": 0.14, "tier": 3, "assumption_ids": ["A-T3-NONREV-FUNGIBLE-001"]}
+  ]
+}
