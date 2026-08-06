@@ -38,6 +38,7 @@ REWEIGHTED_CATEGORIES: Final = (
     "fungible_consumer",
     "fungible_consumer_nonrevolving",
 )
+AUTO_TICKERS: Final = ("CVNA", "F", "GM", "TSLA")
 REFRESH_ID_PREFIX: Final = "qrf_"
 
 
@@ -618,7 +619,7 @@ def _reweighted_matrix_b(
         for company in companies
     }
     general = _normalized_weights(denominators)
-    auto = _normalized_weights({ticker: denominators[ticker] for ticker in ("F", "GM", "TSLA")})
+    auto = _normalized_weights({ticker: denominators[ticker] for ticker in AUTO_TICKERS})
     rows = [
         item
         for item in base.matrix_b
@@ -627,21 +628,40 @@ def _reweighted_matrix_b(
     by_ticker = {item.ticker: item for item in companies}
     for category in REWEIGHTED_CATEGORIES:
         rows.extend(
-            _fixed_b_row(category, ticker, weight, by_ticker[ticker], "consumer")
+            _fixed_b_row(
+                category,
+                ticker,
+                weight,
+                by_ticker[ticker],
+                "consumer",
+                base.methodology_version,
+            )
             for ticker, weight in sorted(general.items())
         )
     rows.extend(
-        _fixed_b_row("auto_market", ticker, weight, by_ticker[ticker], "covered-auto")
+        _fixed_b_row(
+            "auto_market",
+            ticker,
+            weight,
+            by_ticker[ticker],
+            "covered-auto",
+            base.methodology_version,
+        )
         for ticker, weight in sorted(auto.items())
     )
     return tuple(sorted(rows, key=lambda item: (item.spend_category, item.ticker)))
 
 
 def _fixed_b_row(
-    category: str, ticker: str, weight: float, company: CompanyInput, label: str
+    category: str,
+    ticker: str,
+    weight: float,
+    company: CompanyInput,
+    label: str,
+    methodology_version: str,
 ) -> MatrixBEntry:
     return MatrixBEntry(
-        version="1.1.0",
+        version=methodology_version,
         spend_category=category,
         ticker=ticker,
         prior=Prior(weight, weight, weight),

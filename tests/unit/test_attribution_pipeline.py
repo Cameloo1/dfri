@@ -17,7 +17,8 @@ def test_attribution_report_is_byte_stable_and_machine_readable(tmp_path: Path) 
 
     assert first == second
     payload = json.loads(first)
-    assert payload["methodology_version"] == "1.1.0"
+    assert payload["methodology_version"] == "1.1.1"
+    assert payload["evidence_lift_headline"]
     assert payload["aggregate"]["weighting"] == "revenue-weighted"
     assert len(payload["companies"]) == 50
 

@@ -15,6 +15,9 @@ class AttributionRegistryError(RuntimeError):
     """A source registry cannot support a reproducible attribution."""
 
 
+DEFAULT_METHODOLOGY_VERSION: Final = "1.1.1"
+
+
 @dataclass(frozen=True)
 class Prior:
     low: float
@@ -122,10 +125,19 @@ _RESOURCE_FILES: Final = {
         "company_inputs_v1_1.json",
         "flow_inputs_v1_1.json",
     ),
+    "1.1.1": (
+        "assumption_registry_v1_1_1.json",
+        "matrix_a_v1_1_1.json",
+        "matrix_b_v1_1_1.json",
+        "company_inputs_v1_1_1.json",
+        "flow_inputs_v1_1_1.json",
+    ),
 }
 
 
-def load_attribution_bundle(methodology_version: str = "1.1.0") -> AttributionBundle:
+def load_attribution_bundle(
+    methodology_version: str = DEFAULT_METHODOLOGY_VERSION,
+) -> AttributionBundle:
     """Load one immutable public methodology bundle and prove its contracts."""
 
     filenames = _RESOURCE_FILES.get(methodology_version)
@@ -239,7 +251,7 @@ def validate_attribution_bundle(bundle: AttributionBundle) -> None:
                 )
 
     tickers = {item.ticker for item in bundle.companies}
-    expected_count = {"1.0.0": 10, "1.1.0": 50}.get(bundle.methodology_version)
+    expected_count = {"1.0.0": 10, "1.1.0": 50, "1.1.1": 50}.get(bundle.methodology_version)
     if expected_count is None:
         raise AttributionRegistryError("Attribution methodology version is not registered")
     if len(tickers) != expected_count or len(tickers) != len(bundle.companies):
@@ -397,8 +409,11 @@ def _issuer_contracts(methodology_version: str) -> dict[str, dict[str, Any]]:
     ] != [
         "1.0.0",
         "1.1.0",
+        "1.1.1",
     ]:
-        raise AttributionRegistryError("Coverage history must preserve v1.0 before v1.1")
+        raise AttributionRegistryError(
+            "Coverage history must preserve v1.0, v1.1.0, and the v1.1.1 correction"
+        )
     latest_snapshot = snapshots[-1]
     if set(latest_snapshot.get("included_tickers", [])) != set(p0):
         raise AttributionRegistryError("Coverage history differs from methodology 1.1")

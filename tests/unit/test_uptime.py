@@ -31,6 +31,8 @@ def test_uptime_receipt_is_green_when_api_is_owner_deferred() -> None:
 
     assert receipt["status"] == "GREEN"
     assert receipt["site"]["status"] == "GREEN"
+    assert len(receipt["site"]["checks"]) == 11
+    assert any(item["url"].endswith("/v2/feeds/schema.json") for item in receipt["site"]["checks"])
     assert receipt["nowcast_freshness"]["status"] == "GREEN"
     assert receipt["api"] == {
         "status": "DEFERRED",

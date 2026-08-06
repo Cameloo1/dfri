@@ -19,7 +19,12 @@ import pyarrow as pa
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 
 from dfri.attribution.engine import AttributionResult, CompanyEstimate, run_attribution
-from dfri.attribution.registry import Assumption, AttributionBundle, load_attribution_bundle
+from dfri.attribution.registry import (
+    DEFAULT_METHODOLOGY_VERSION,
+    Assumption,
+    AttributionBundle,
+    load_attribution_bundle,
+)
 from dfri.lake.store import AppendOnlyParquetStore, write_deterministic_parquet
 from dfri.ops.quarterly_refresh import (
     QuarterlyRefreshLedger,
@@ -38,7 +43,7 @@ from dfri.publish.ledger import (
     publication_record,
 )
 
-METHODOLOGY_VERSION: Final = "1.1.0"
+METHODOLOGY_VERSION: Final = DEFAULT_METHODOLOGY_VERSION
 LICENSE: Final = (
     "CC BY-NC 4.0 — free for non-commercial use with attribution; commercial licensing reserved"
 )
@@ -142,7 +147,7 @@ def _build_scoreboard(
     backtest = _load_object(root / "reports" / "m2_backtest.json", "backtest")
     attribution_bundle = load_attribution_bundle()
     attribution = run_attribution(attribution_bundle)
-    prior_attribution = run_attribution(load_attribution_bundle("1.0.0"))
+    prior_attribution = run_attribution(load_attribution_bundle("1.1.0"))
     coverage = _load_object(
         root / "src" / "dfri" / "attribution" / "coverage_registry_v1_1.json",
         "coverage registry",
@@ -252,11 +257,14 @@ def _build_scoreboard(
     _write_parquet(feeds / "nowcast_predictions.parquet", prediction_rows, _prediction_schema())
     _write_json(feeds / "scoreboard.json", {"meta": meta, "data": scoreboard_rows})
     _write_csv(feeds / "scoreboard.csv", scoreboard_rows, _scoreboard_columns())
-    company_rows = _company_feed_rows(
+    company_rows_v2 = _company_feed_rows(
         attribution,
         publication_mode=publication_mode,
         commercial_contact=commercial_contact,
     )
+    company_rows = [
+        {column: row[column] for column in _company_columns()} for row in company_rows_v2
+    ]
     assumption_rows = _assumption_feed_rows(
         attribution_bundle,
         publication_mode=publication_mode,
@@ -272,6 +280,19 @@ def _build_scoreboard(
     _write_json(feeds / "dfri_companies.json", {"meta": attribution_meta, "data": company_rows})
     _write_csv(feeds / "dfri_companies.csv", company_rows, _company_columns())
     _write_parquet(feeds / "dfri_companies.parquet", company_rows, _company_schema())
+    feeds_v2 = output_root / "v2" / "feeds"
+    attribution_meta_v2 = {
+        **attribution_meta,
+        "schema_version": "v2",
+        "evidence_lift_headline": attribution.evidence_lift_headline,
+    }
+    _write_json(
+        feeds_v2 / "dfri_companies.json",
+        {"meta": attribution_meta_v2, "data": company_rows_v2},
+    )
+    _write_csv(feeds_v2 / "dfri_companies.csv", company_rows_v2, _company_columns_v2())
+    _write_parquet(feeds_v2 / "dfri_companies.parquet", company_rows_v2, _company_schema_v2())
+    _write_json(feeds_v2 / "schema.json", _company_feed_schema_v2(build_meta))
     assumption_meta = {
         **attribution_meta,
         "row_count": len(assumption_rows),
@@ -368,6 +389,11 @@ def _build_scoreboard(
             "summary": summary,
             "aggregate": aggregate_display,
             "companies": company_displays,
+            "companies_by_lift": sorted(
+                company_displays,
+                key=lambda item: (-cast(float, item["evidence_lift_value"]), str(item["ticker"])),
+            ),
+            "evidence_lift_headline": attribution.evidence_lift_headline,
             "company_count": len(company_displays),
         },
     )
@@ -407,7 +433,9 @@ def _build_scoreboard(
             **base_context,
             "root": "../../",
             "title": "Methodology sensitivity",
-            "description": "Immutable comparison of DFRI methodology versions 1.0.0 and 1.1.0.",
+            "description": "Immutable comparison of DFRI methodology versions 1.1.0 and 1.1.1.",
+            "prior_methodology_version": prior_attribution.methodology_version,
+            "current_methodology_version": attribution.methodology_version,
             "prior": _aggregate_display(prior_attribution),
             "current": aggregate_display,
             "rows": comparison_rows,
@@ -624,6 +652,10 @@ def _company_feed_rows(
             "estimated_us_consumer_revenue_mid_millions": (
                 item.estimated_us_consumer_revenue_mid_millions
             ),
+            "fungibility_baseline_dfr_pct_mid": item.fungibility_baseline_dfr_pct_mid,
+            "evidence_lift": item.evidence_lift,
+            "evidence_lift_status": item.evidence_lift_status,
+            "evidence_lift_headline": result.evidence_lift_headline,
             "tier1_share": item.tier1_share,
             "tier2_share": item.tier2_share,
             "tier3_share": item.tier3_share,
@@ -775,6 +807,11 @@ def _company_display(item: CompanyEstimate) -> dict[str, object]:
         "high": f"{item.estimated_dfr_pct_high:.2f}%",
         "debt_revenue": f"{item.estimated_debt_funded_revenue_mid_millions:,.0f}",
         "consumer_revenue": f"{item.estimated_us_consumer_revenue_mid_millions:,.0f}",
+        "fungibility_baseline": f"{item.fungibility_baseline_dfr_pct_mid:.2f}%",
+        "evidence_lift": f"{item.evidence_lift:.2f}x",
+        "evidence_lift_value": item.evidence_lift,
+        "evidence_lift_status": item.evidence_lift_status,
+        "baseline_only": item.evidence_lift_status == "baseline-only",
         "tier1": f"{item.tier1_share * 100:.1f}%",
         "tier2": f"{item.tier2_share * 100:.1f}%",
         "tier3": f"{item.tier3_share * 100:.1f}%",
@@ -939,6 +976,33 @@ def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
     }
 
 
+def _company_feed_schema_v2(common: Mapping[str, object]) -> dict[str, object]:
+    return {
+        "schema_version": "v2",
+        "predecessor_schema_url": "/v1/feeds/schema.json",
+        "methodology_version": common["methodology_version"],
+        "license": LICENSE,
+        "license_url": LICENSE_URL,
+        "commercial_license_contact": common["commercial_license_contact"],
+        "derived_metrics": {
+            "evidence_lift": (
+                "Company DFR% midpoint divided by its same-period pure-fungibility "
+                "counterfactual midpoint."
+            ),
+            "fungibility_baseline_dfr_pct_mid": (
+                "DFR% midpoint from broad proportional allocation lanes after excluding "
+                "company-specific financing and auto-category evidence."
+            ),
+        },
+        "feeds": {
+            "dfri_companies": {
+                "formats": ["csv", "json", "parquet"],
+                "columns": _column_docs(_company_columns_v2()),
+            }
+        },
+    }
+
+
 def _prediction_columns() -> list[str]:
     return [
         "prediction_id",
@@ -1001,6 +1065,19 @@ def _company_columns() -> list[str]:
         "license",
         "license_url",
         "commercial_license_contact",
+    ]
+
+
+def _company_columns_v2() -> list[str]:
+    columns = _company_columns()
+    insertion = columns.index("tier1_share")
+    return [
+        *columns[:insertion],
+        "fungibility_baseline_dfr_pct_mid",
+        "evidence_lift",
+        "evidence_lift_status",
+        "evidence_lift_headline",
+        *columns[insertion:],
     ]
 
 
@@ -1105,6 +1182,8 @@ def _column_docs(columns: list[str]) -> list[dict[str, str]]:
         "estimated_dfr_pct_high",
         "estimated_debt_funded_revenue_mid_millions",
         "estimated_us_consumer_revenue_mid_millions",
+        "fungibility_baseline_dfr_pct_mid",
+        "evidence_lift",
         "tier1_share",
         "tier2_share",
         "tier3_share",
@@ -1144,6 +1223,27 @@ def _company_schema() -> pa.Schema:
         [
             pa.field(item, pa.float64() if item in numeric else pa.string(), nullable=False)
             for item in _company_columns()
+        ]
+    )
+
+
+def _company_schema_v2() -> pa.Schema:
+    numeric = {
+        "estimated_dfr_pct_low",
+        "estimated_dfr_pct_mid",
+        "estimated_dfr_pct_high",
+        "estimated_debt_funded_revenue_mid_millions",
+        "estimated_us_consumer_revenue_mid_millions",
+        "fungibility_baseline_dfr_pct_mid",
+        "evidence_lift",
+        "tier1_share",
+        "tier2_share",
+        "tier3_share",
+    }
+    return pa.schema(
+        [
+            pa.field(item, pa.float64() if item in numeric else pa.string(), nullable=False)
+            for item in _company_columns_v2()
         ]
     )
 

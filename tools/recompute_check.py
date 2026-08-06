@@ -14,6 +14,7 @@ from typing import Any
 
 DEFAULT_TICKERS = ("AMZN", "GM", "WMT")
 TOLERANCE_PP = 0.5
+CURRENT_INPUT_SUFFIX = "v1_1_1"
 
 
 def _read(path: Path) -> dict[str, Any]:
@@ -37,17 +38,22 @@ def recompute(
 ) -> dict[str, Any]:
     assumptions = {
         row["assumption_id"]: float(row["mid"])
-        for row in _items(_read(inputs_root / "assumption_registry_v1_1.json"), "assumptions")
+        for row in _items(
+            _read(inputs_root / f"assumption_registry_{CURRENT_INPUT_SUFFIX}.json"),
+            "assumptions",
+        )
     }
     flows = {
         row["debt_product"]: float(row["mid"])
-        for row in _items(_read(inputs_root / "flow_inputs_v1_1.json"), "flows")
+        for row in _items(_read(inputs_root / f"flow_inputs_{CURRENT_INPUT_SUFFIX}.json"), "flows")
     }
-    matrix_a = _items(_read(inputs_root / "matrix_a_v1_1.json"), "Matrix A")
-    matrix_b = _items(_read(inputs_root / "matrix_b_v1_1.json"), "Matrix B")
+    matrix_a = _items(_read(inputs_root / f"matrix_a_{CURRENT_INPUT_SUFFIX}.json"), "Matrix A")
+    matrix_b = _items(_read(inputs_root / f"matrix_b_{CURRENT_INPUT_SUFFIX}.json"), "Matrix B")
     companies = {
         row["ticker"]: row
-        for row in _items(_read(inputs_root / "company_inputs_v1_1.json"), "companies")
+        for row in _items(
+            _read(inputs_root / f"company_inputs_{CURRENT_INPUT_SUFFIX}.json"), "companies"
+        )
     }
     published_payload = _read(published_report)
     published_rows = published_payload.get("companies")

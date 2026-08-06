@@ -21,7 +21,7 @@ def test_generated_m5_registries_are_current_and_partition_consumer_members() ->
     attribution = root / "src" / "dfri" / "attribution"
     coverage = json.loads((attribution / "coverage_registry_v1_1.json").read_text())
     history = json.loads((attribution / "coverage_history_v1.json").read_text())
-    matrix_b = json.loads((attribution / "matrix_b_v1_1.json").read_text())
+    matrix_b = json.loads((attribution / "matrix_b_v1_1_1.json").read_text())
 
     assert len(coverage["expansion"]) == 40
     assert len(coverage["excluded"]) == 31
@@ -36,6 +36,14 @@ def test_generated_m5_registries_are_current_and_partition_consumer_members() ->
     ):
         rows = [item for item in matrix_b["items"] if item["spend_category"] == category]
         assert abs(sum(item["weight_mid"] for item in rows) - 1) < 1e-12
+    auto_tickers = {
+        item["ticker"] for item in matrix_b["items"] if item["spend_category"] == "auto_market"
+    }
+    assert auto_tickers == {"CVNA", "F", "GM", "TSLA"}
+    assert any(
+        item["ticker"] == "CVNA" and item["spend_category"] == "carvana_auto_finance"
+        for item in matrix_b["items"]
+    )
 
 
 def test_registry_drift_check_is_independent_of_checkout_line_endings(tmp_path: Path) -> None:

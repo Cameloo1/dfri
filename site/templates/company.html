@@ -28,6 +28,12 @@
     <div class="tier-line"><span class="tier-badge tier-1">Tier 1 {{ company.tier1 }}</span><span class="tier-badge tier-2">Tier 2 {{ company.tier2 }}</span><span class="tier-badge tier-3">Tier 3 {{ company.tier3 }}</span></div>
     {{ tier_legend(root, expandable=true) }}
   </article>
+  <article class="card metric">
+    <div class="kicker">Evidence Lift</div>
+    <div class="number">{{ company.evidence_lift }}</div>
+    <p class="meta">DFR% midpoint divided by this company's {{ company.fungibility_baseline }} pure-fungibility baseline.</p>
+    {% if company.baseline_only %}<p><span class="status baseline-only">Baseline-only</span></p><p>No company-specific financing evidence found; estimate reflects proportional allocation.</p>{% else %}<p><span class="status evidence-supported">Evidence-supported</span></p>{% endif %}
+  </article>
 </section>
 
 <section class="section-block">

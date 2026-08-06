@@ -4,7 +4,7 @@
 <h1>Point in time, first print, bands always.</h1>
 <p class="lede">The nowcast estimates monthly G.19 credit flows. Attribution then applies registered product-to-category weights (Matrix A) and category-to-company weights (Matrix B), divided by estimated U.S. consumer revenue. Every modeled input has a public assumption ID and band.</p>
 <p>Primary nowcast sources: <a href="{{ nowcast_sources.h8_archive }}">Federal Reserve Board H.8 release archive</a>, <a href="{{ nowcast_sources.marts_archive }}">Census MARTS historic releases</a>, and the <a href="{{ nowcast_sources.g19_archive }}">Federal Reserve Board G.19 release archive</a> used for first-print grading.</p>
-<p>Methodology 1.1.0 expands the coverage boundary to {{ company_count }} companies without changing the attribution formula. <a href="sensitivity/index.html">Compare 1.0.0 with 1.1.0</a> or inspect the <a href="coverage/index.html">dated coverage and exclusion ledger</a>.</p>
+<p>Methodology {{ methodology_version }} preserves the {{ company_count }}-company coverage boundary and corrects Carvana's auto-market and originated-finance classification. <a href="sensitivity/index.html">Compare 1.1.0 with {{ methodology_version }}</a> or inspect the <a href="coverage/index.html">dated coverage and exclusion ledger</a>.</p>
 <section class="grid">
   <article class="card metric"><div class="kicker">Model</div><h2>Ragged-edge ridge bridge</h2><p>Partial <a href="{{ nowcast_sources.h8_archive }}">H.8</a> months expose observed coverage explicitly. Missing <a href="{{ nowcast_sources.marts_archive }}">retail data</a> remains missing and is represented by a trained availability indicator.</p></article>
   <article class="card metric"><div class="kicker">Grade</div><h2>First-print G.19</h2><p>The dated release page supplies the target-month preliminary level and revised prior-month level used for the release-coherent flow.</p></article>
@@ -12,6 +12,13 @@
   <article class="card metric"><div class="kicker">Tier 1 — Observed</div><h2>Direct financing link</h2><p>A disclosure directly links financing to the company's sales. The company page links the filing and a quote of no more than 15 words.</p></article>
   <article class="card metric"><div class="kicker">Tier 2 — Category-mapped</div><h2>Two registered matrices</h2><p>Credit flow is allocated to spend categories and then to companies by estimated category revenue share.</p></article>
   <article class="card metric"><div class="kicker">Tier 3 — Fungible</div><h2>Explicit broad allocation</h2><p>Unassignable flows are allocated in proportion to covered consumer revenue, with the widest bands.</p></article>
+</section>
+
+<section class="section-block" id="evidence-lift">
+  <div class="eyebrow">Derived metric</div>
+  <h2>Evidence Lift</h2>
+  <p>Evidence Lift equals a company's estimated DFR% midpoint divided by its pure Tier 3 fungibility baseline for the same period. The baseline is a counterfactual built from the already-computed broad proportional lanes—general retail plus the two fungible categories—with company-specific financing and auto-category evidence removed.</p>
+  <p>A value of 1.00× is baseline-only: no company-specific financing evidence was found, so the estimate reflects proportional allocation. A higher multiple shows how much registered evidence lifts the midpoint above that baseline. It does not measure risk, credit quality, or investment merit.</p>
 </section>
 
 <section class="section-block">
@@ -39,5 +46,5 @@
   <h2>Matrix contracts</h2>
   <p>Matrix A has {{ matrix_a|length }} product-to-category rows. Matrix B has {{ matrix_b|length }} category-to-company rows. Tests reject negative weights, missing evidence, unregistered uncertainty, or row allocations over 100%.</p>
 </section>
-<p><a href="{{ root }}v1/feeds/schema.json">Read the feed schema</a> · <a href="{{ root }}v1/feeds/assumptions.json">Inspect the Assumption Registry feed</a></p>
+<p><a href="{{ root }}v2/feeds/schema.json">Read the current feed schema</a> · <a href="{{ root }}v1/feeds/assumptions.json">Inspect the Assumption Registry feed</a></p>
 {% endblock %}

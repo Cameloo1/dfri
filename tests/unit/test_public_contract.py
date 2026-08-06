@@ -18,3 +18,6 @@ def test_repository_has_apache_license_and_self_contained_public_readme() -> Non
     assert "revenue-weighted" in readme
     assert "uses no market data" in readme
     assert "optional private mappings split is not used" in readme
+    assert "Methodology 1.1.1" in readme
+    assert "Evidence Lift" in readme
+    assert "v2/feeds/dfri_companies" in readme

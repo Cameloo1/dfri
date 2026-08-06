@@ -18,9 +18,9 @@ from dfri.attribution.registry import (
 def test_public_attribution_bundle_is_complete_and_source_hashed() -> None:
     bundle = load_attribution_bundle()
 
-    assert bundle.methodology_version == "1.1.0"
+    assert bundle.methodology_version == "1.1.1"
     assert bundle.data_vintage == "2026-05-07T19:00:00+00:00"
-    assert bundle.first_published_at == "2026-08-05T06:58:05.689617+00:00"
+    assert bundle.first_published_at == "2026-08-06T05:40:24.524787+00:00"
     assert len(bundle.source_hash) == 64
     assert len(bundle.companies) == 50
     assert {
@@ -42,11 +42,11 @@ def test_public_attribution_bundle_is_complete_and_source_hashed() -> None:
     digest = hashlib.sha256()
     root = Path(__file__).parents[2] / "src" / "dfri" / "attribution"
     for filename in (
-        "assumption_registry_v1_1.json",
-        "matrix_a_v1_1.json",
-        "matrix_b_v1_1.json",
-        "company_inputs_v1_1.json",
-        "flow_inputs_v1_1.json",
+        "assumption_registry_v1_1_1.json",
+        "matrix_a_v1_1_1.json",
+        "matrix_b_v1_1_1.json",
+        "company_inputs_v1_1_1.json",
+        "flow_inputs_v1_1_1.json",
     ):
         payload = json.loads((root / filename).read_text(encoding="utf-8"))
         digest.update(filename.encode())
@@ -82,6 +82,15 @@ def test_historical_v1_bundle_remains_reproducible() -> None:
     assert bundle.methodology_version == "1.0.0"
     assert len(bundle.companies) == 10
     assert bundle.first_published_at == "2026-08-05T04:17:33.789348+00:00"
+
+
+def test_historical_v1_1_0_bundle_remains_reproducible() -> None:
+    bundle = load_attribution_bundle("1.1.0")
+
+    assert bundle.methodology_version == "1.1.0"
+    assert len(bundle.companies) == 50
+    cvna = next(item for item in bundle.companies if item.ticker == "CVNA")
+    assert cvna.tier1_source_url == ""
 
 
 def test_registry_rejects_unknown_methodology_version() -> None:

@@ -16,14 +16,16 @@ baseline, ragged-edge bridge, state-space candidate, and reproducible backtest g
 Immutable prediction/grading ledgers, idempotent local jobs, and the deterministic feed/static-site
 builder also pass. The [public scoreboard](https://cameloo1.github.io/dfri/) and active external
 clock are now deployed; two genuine scheduled weekly cycles and automatic first-print grading
-remain. M3 attribution is complete and live for the ten P0 companies; its public/cold-clone
+remain. M3 attribution is complete; its public/cold-clone
 evidence is in the [M3 milestone report](MILESTONE_REPORTS/M3.md). M4's complete feed set, static
 site, deterministic publish, axe, no-JavaScript, recovery, and hourly Pages monitoring contracts
 pass; its [milestone report](MILESTONE_REPORTS/M4.md) marks the public FastAPI criteria deferred
 under D-010 rather than passed. M5 methodology 1.1.0, the 50-company universe, exclusions,
 quarterly refresh, version comparison, performance, and final cold-clone gates now pass; see the
 [M5 milestone report](MILESTONE_REPORTS/M5.md). The [Day-14 review](MILESTONE_REPORTS/DAY14_SUMMARY.md)
-summarizes current live and pending work. No M2 completion is claimed early.
+summarizes that milestone state. Methodology 1.1.1 subsequently corrects Carvana's auto-finance
+classification and adds the derived Evidence Lift view and versioned v2 company feed without
+rewriting 1.1.0. No M2 completion is claimed early.
 
 ## Outputs, sources, and evidence tiers
 
@@ -140,9 +142,10 @@ The receipt excludes credential values. A source is not marked verified merely b
 
 ## P1 company attribution
 
-Methodology 1.1.0 publishes quarterly estimates for exactly 50 evidence-ranked consumer-facing
-S&P 500 companies. The original GM, F, AMZN, WMT, TGT, LOW, HD, BBY, ULTA, and TSCO results remain
-available under immutable methodology 1.0.0. The P1 selection starts from the verified current
+Methodology 1.1.1 publishes quarterly estimates for exactly 50 evidence-ranked consumer-facing
+S&P 500 companies. It preserves immutable methodologies 1.0.0 and 1.1.0, while correcting
+Carvana's prior general-retail-only mapping with its SEC-filed originated-auto-finance and ABS
+trust evidence. The P1 selection starts from the verified current
 Consumer Discretionary and Consumer Staples membership rows, admits 40 additions through a
 deterministic filing-and-denominator evidence gate, and publishes all 31 evaluated exclusions with
 dated one-line reasons. It uses no security price or market-cap input.
@@ -171,6 +174,14 @@ P1 coverage and quarterly-history feeds:
 - `v1/feeds/quarterly_refreshes.json`
 - `v1/feeds/dfri_company_history.json`
 - `v1/feeds/schema.json`
+- `v2/feeds/dfri_companies.{csv,json,parquet}` — adds the derived Evidence Lift contract
+- `v2/feeds/schema.json`
+
+Evidence Lift is the company DFR% midpoint divided by its same-period pure-fungibility
+counterfactual midpoint. The counterfactual uses the already-computed broad proportional lanes
+and removes company-specific financing and auto-category evidence. A 1.00x row is baseline-only:
+no company-specific financing evidence was found, so the estimate reflects proportional
+allocation. Lift is evidence context, not a measure of risk, credit quality, or investment merit.
 
 Each company page shows the word “estimated” with its DFR% band, Tier 1/2/3 shares, a specific SEC
 filing link and a short observed-evidence excerpt when a direct Tier 1 disclosure exists, every
@@ -467,8 +478,9 @@ locally; external scheduling and public hosting remain separate gates.
 ## Scoreboard feeds and static site
 
 The deterministic publisher reads the append-only prediction and grade ledgers and creates one
-deployable document root under `published/public`. It contains the stable `/v1/feeds` JSON, CSV,
-and Parquet contracts; schema documentation; Home, Scoreboard, Methodology, and immutable
+deployable document root under `published/public`. It retains the stable `/v1/feeds` JSON, CSV,
+and Parquet contracts and adds the Evidence Lift company feed under `/v2/feeds`; schema
+documentation; Home, Scoreboard, Methodology, and immutable
 prediction-permalink pages; local assets; and a SHA-256 manifest. Feed rows carry the methodology
 version, input-data vintage, publication timestamp, publication mode, and CC BY-NC 4.0 notice.
 The server-rendered pages remain complete without JavaScript; the small script only enhances table

@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="eyebrow">Append-only methodology comparison</div>
-<h1>What changed when coverage expanded.</h1>
-<p class="lede">Methodology 1.0.0 remains reproducible as published. Methodology 1.1.0 retains the same formula and flow priors, expands coverage from 10 to 50 companies, and renormalizes category-to-company weights across the larger evidence-backed denominator.</p>
+<h1>What changed when Carvana was corrected.</h1>
+<p class="lede">Methodology {{ prior_methodology_version }} remains reproducible as published. Methodology {{ current_methodology_version }} preserves the same 50-company universe and flow priors, adds Carvana's observed originated-finance evidence, and includes it in the covered-auto allocation.</p>
 
 <section class="grid">
-  <article class="card metric"><div class="kicker">Methodology 1.0.0 · 10 companies</div><div class="number">Estimated {{ prior.mid }}</div><div class="meta">80% band {{ prior.low }}–{{ prior.high }} · {{ prior.weighting }} · <span class="tier-badge tier-mixed">Tier 1–3</span></div></article>
-  <article class="card metric"><div class="kicker">Methodology 1.1.0 · 50 companies</div><div class="number">Estimated {{ current.mid }}</div><div class="meta">80% band {{ current.low }}–{{ current.high }} · {{ current.weighting }} · <span class="tier-badge tier-mixed">Tier 1–3</span></div></article>
+  <article class="card metric"><div class="kicker">Methodology {{ prior_methodology_version }} · 50 companies</div><div class="number">Estimated {{ prior.mid }}</div><div class="meta">80% band {{ prior.low }}–{{ prior.high }} · {{ prior.weighting }} · <span class="tier-badge tier-mixed">Tier 1–3</span></div></article>
+  <article class="card metric"><div class="kicker">Methodology {{ current_methodology_version }} · 50 companies</div><div class="number">Estimated {{ current.mid }}</div><div class="meta">80% band {{ current.low }}–{{ current.high }} · {{ current.weighting }} · <span class="tier-badge tier-mixed">Tier 1–3</span></div></article>
 </section>
 
 <section class="section-block">
-  <div class="eyebrow">Common-company sensitivity</div><h2>The original ten under both versions</h2>
-  <p>Each row compares complete bands. The midpoint delta is a sensitivity result, not a restatement of the 1.0.0 record.</p>
-  <div class="table-wrap"><table><thead><tr><th>Company</th><th>Methodology 1.0.0 band</th><th>Methodology 1.1.0 band</th><th>Midpoint change</th></tr></thead><tbody>
+  <div class="eyebrow">Correction sensitivity</div><h2>All 50 companies under both versions</h2>
+  <p>Each row compares complete bands. The midpoint delta is a new-version result, not a restatement of the {{ prior_methodology_version }} record.</p>
+  <div class="table-wrap"><table><thead><tr><th>Company</th><th>Methodology {{ prior_methodology_version }} band</th><th>Methodology {{ current_methodology_version }} band</th><th>Midpoint change</th></tr></thead><tbody>
     {% for item in rows %}<tr><td><strong>{{ item.ticker }}</strong> {{ item.company_name }}</td><td>Estimated {{ item.prior_low }}–{{ item.prior_high }} (mid {{ item.prior_mid }})</td><td>Estimated {{ item.current_low }}–{{ item.current_high }} (mid {{ item.current_mid }})</td><td>{{ item.delta_mid }}</td></tr>{% endfor %}
   </tbody></table></div>
 </section>

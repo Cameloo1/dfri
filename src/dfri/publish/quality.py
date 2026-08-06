@@ -41,6 +41,7 @@ def check_site(root: Path) -> SiteQualityReceipt:
         root / "methodology" / "coverage" / "index.html",
         root / "changelog" / "index.html",
         root / "v1" / "feeds" / "schema.json",
+        root / "v2" / "feeds" / "schema.json",
     )
     missing = [str(path.relative_to(root)) for path in required if not path.is_file()]
     if missing:
@@ -75,13 +76,22 @@ def check_site(root: Path) -> SiteQualityReceipt:
     for path in company_files:
         _check_company(path.relative_to(root).as_posix(), path.read_text(encoding="utf-8"))
     home = (root / "index.html").read_text(encoding="utf-8")
-    if "revenue-weighted company index" not in home or "Estimated DFR%" not in home:
+    if (
+        "revenue-weighted company index" not in home
+        or "Estimated DFR%" not in home
+        or 'id="evidence-lift"' not in home
+        or "No company-specific financing evidence found" not in home
+    ):
         raise SiteQualityError("Homepage lacks the estimated revenue-weighted index contract")
     methodology = (root / "methodology" / "index.html").read_text(encoding="utf-8")
-    if "Assumption Registry" not in methodology or "Tier 1 — Observed" not in methodology:
+    if (
+        "Assumption Registry" not in methodology
+        or "Tier 1 — Observed" not in methodology
+        or "Evidence Lift" not in methodology
+    ):
         raise SiteQualityError("Methodology lacks the versioned assumption/tier contract")
     comparison = (root / "methodology" / "sensitivity" / "index.html").read_text(encoding="utf-8")
-    if "Methodology 1.0.0" not in comparison or "Methodology 1.1.0" not in comparison:
+    if "Methodology 1.1.0" not in comparison or "Methodology 1.1.1" not in comparison:
         raise SiteQualityError("Methodology sensitivity page lacks both immutable versions")
     exclusions = (root / "methodology" / "coverage" / "index.html").read_text(encoding="utf-8")
     if "31 excluded" not in exclusions or "one-line reason" not in exclusions:
@@ -134,6 +144,7 @@ def _check_document(relative: str, content: str) -> None:
 def _check_company(relative: str, content: str) -> None:
     required = (
         "Estimated DFR% band",
+        "Evidence Lift",
         "Tier 1",
         "Tier 2",
         "Tier 3",

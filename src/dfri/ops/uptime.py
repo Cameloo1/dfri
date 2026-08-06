@@ -23,6 +23,8 @@ SITE_PATHS: Final = (
     "v1/feeds/scoreboard.json",
     "v1/feeds/dfri_companies.json",
     "v1/feeds/assumptions.json",
+    "v2/feeds/schema.json",
+    "v2/feeds/dfri_companies.json",
 )
 API_PATHS: Final = (
     "v1/nowcast/latest",

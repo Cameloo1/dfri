@@ -136,6 +136,9 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert "Seasonally adjusted monthly flow · millions of U.S. dollars" in home
     assert "tier-explainer-visible" in home
     assert all(item in home for item in TIER_LEGEND_COPY)
+    assert "Evidence Lift measures company-specific financing evidence" in home
+    assert "No company-specific financing evidence found" in home
+    assert "Carvana has the highest Evidence Lift" in home
     prediction = (output / "scoreboard" / "predictions" / first_id / "index.html").read_text(
         encoding="utf-8"
     )
@@ -152,7 +155,7 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert "the nominal 80% band contained 71.3%" in methodology
     site_js = (output / "assets" / "site.js").read_text(encoding="utf-8")
     assert 'document.createElement("button")' in site_js
-    assert first.total_bytes < 1_000_000
+    assert first.total_bytes < 1_200_000
     assert b"\r\n" not in (output / "assets" / "site.css").read_bytes()
     assert b"\r\n" not in (output / "assets" / "site.js").read_bytes()
 
@@ -219,8 +222,8 @@ def test_feed_contract_has_publication_fields_license_and_typed_parquet(tmp_path
     assert all(row["data_vintage"] == DATA_VINTAGE.isoformat() for row in rebuilt["data"])
     company_rows = json.loads((output / "v1" / "feeds" / "dfri_companies.json").read_text())["data"]
     assumption_rows = json.loads((output / "v1" / "feeds" / "assumptions.json").read_text())["data"]
-    assert {row["published_at"] for row in company_rows} == {"2026-08-05T06:58:05.689617+00:00"}
-    assert {row["published_at"] for row in assumption_rows} == {"2026-08-05T06:58:05.689617+00:00"}
+    assert {row["published_at"] for row in company_rows} == {"2026-08-06T05:40:24.524787+00:00"}
+    assert {row["published_at"] for row in assumption_rows} == {"2026-08-06T05:40:24.524787+00:00"}
     assert store.read_table("publication_records").height == 2
 
 
@@ -253,6 +256,8 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     companies = json.loads((output / "v1" / "feeds" / "dfri_companies.json").read_text())
     assumptions = json.loads((output / "v1" / "feeds" / "assumptions.json").read_text())
     schema = json.loads((output / "v1" / "feeds" / "schema.json").read_text())
+    companies_v2 = json.loads((output / "v2" / "feeds" / "dfri_companies.json").read_text())
+    schema_v2 = json.loads((output / "v2" / "feeds" / "schema.json").read_text())
     assert len(companies["data"]) == 50
     assert assumptions["data"]
     assert companies["meta"]["weighting"] == "revenue-weighted"
@@ -265,9 +270,28 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
         "quarterly_refreshes",
         "dfri_company_history",
     }
+    assert schema_v2["schema_version"] == "v2"
+    assert schema_v2["predecessor_schema_url"] == "/v1/feeds/schema.json"
+    assert set(schema_v2["feeds"]) == {"dfri_companies"}
+    assert companies_v2["meta"]["evidence_lift_headline"].startswith("Carvana ")
+    assert len(companies_v2["data"]) == 50
+    assert all(
+        {
+            "fungibility_baseline_dfr_pct_mid",
+            "evidence_lift",
+            "evidence_lift_status",
+            "evidence_lift_headline",
+        }
+        <= set(row)
+        for row in companies_v2["data"]
+    )
+    assert all("evidence_lift" not in row for row in companies["data"])
     parquet = pq.read_table(output / "v1" / "feeds" / "dfri_companies.parquet")
     assert parquet.num_rows == 50
     assert parquet.schema.field("estimated_dfr_pct_mid").type == pa.float64()
+    parquet_v2 = pq.read_table(output / "v2" / "feeds" / "dfri_companies.parquet")
+    assert parquet_v2.num_rows == 50
+    assert parquet_v2.schema.field("evidence_lift").type == pa.float64()
     methodology = (output / "methodology" / "index.html").read_text(encoding="utf-8")
     assert "Assumption Registry" in methodology
     assert "Matrix A has" in methodology
@@ -275,6 +299,8 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     home = (output / "index.html").read_text(encoding="utf-8")
     assert "Estimated DFR%" in home
     assert "range-chart" in home
+    assert 'id="evidence-lift"' in home
+    assert "evidence, not risk, credit quality, or investment merit" in home
     assert (output / "changelog" / "index.html").exists()
     assert (output / "methodology" / "sensitivity" / "index.html").exists()
     assert (output / "methodology" / "coverage" / "index.html").exists()
@@ -286,6 +312,7 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     assert refreshes["data"][0]["refresh_id"] == "qrf_runtime_authoritative"
     assert len(history["data"]) == 50
 
+    v2_by_ticker = {row["ticker"]: row for row in companies_v2["data"]}
     for row in companies["data"]:
         page = output / "companies" / row["ticker"].lower() / "index.html"
         html = page.read_text(encoding="utf-8")
@@ -298,10 +325,18 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
         else:
             assert "No company-specific observed financing line" in html
         assert "Tier 1" in html and "Tier 2" in html and "Tier 3" in html
+        assert "Evidence Lift" in html
+        if v2_by_ticker[row["ticker"]]["evidence_lift_status"] == "baseline-only":
+            assert "No company-specific financing evidence found" in html
         assert '<details class="tier-explainer">' in html
         assert "<summary>What do these tiers mean?</summary>" in html
         assert all(item in html for item in TIER_LEGEND_COPY)
         assert page.stat().st_size < 500_000
+
+    cvna = v2_by_ticker["CVNA"]
+    assert cvna["evidence_lift"] > 10
+    assert 15 < cvna["estimated_dfr_pct_mid"] < 22
+    assert cvna["tier1_share"] > 0.5
 
 
 def test_prepublication_filter_is_explicit_and_validation_blocks_bad_boundaries(

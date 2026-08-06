@@ -75,6 +75,20 @@
         {"label": "Company history feed", "href": "/v1/feeds/dfri_company_history.json"},
         {"label": "Methodology", "href": "/methodology/"}
       ]
+    },
+    {
+      "entry_id": "v1-1-1-cvna-evidence-lift",
+      "published_on": "2026-08-06",
+      "kind": "methodology",
+      "version": "1.1.1",
+      "title": "Carvana auto-finance classification corrected",
+      "summary": "Added Carvana's SEC-filed originated-auto-finance and ABS trust evidence, included CVNA in the covered-auto allocation, and published the derived Evidence Lift ranking under a non-breaking v2 company-feed schema.",
+      "links": [
+        {"label": "Evidence Lift", "href": "/#evidence-lift"},
+        {"label": "Carvana", "href": "/companies/cvna/"},
+        {"label": "Company feed v2", "href": "/v2/feeds/dfri_companies.json"},
+        {"label": "Feed schema v2", "href": "/v2/feeds/schema.json"}
+      ]
     }
   ]
 }
