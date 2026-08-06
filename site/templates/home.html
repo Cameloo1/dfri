@@ -45,9 +45,28 @@
   <article class="card metric"><div class="kicker">Backtest coverage</div><div class="number">{{ summary.coverage80_display }}</div><div class="meta">80% band · 95% band {{ summary.coverage95_display }}</div></article>
 </section>
 
+<section id="evidence-lift" class="section-block">
+  <div class="eyebrow">Evidence Lift</div>
+  <h2>Which estimates rise above proportional allocation?</h2>
+  <p>Evidence Lift measures company-specific financing evidence, not risk, credit quality, or investment merit.</p>
+  <p class="lede">{{ evidence_lift_headline }}</p>
+  <div class="table-wrap"><table class="lift-table">
+    <caption>Covered companies ranked by DFR% midpoint divided by their same-period pure-fungibility baseline.</caption>
+    <thead><tr><th>Rank</th><th>Company</th><th>Lift</th><th>Estimated DFR% band</th><th>Evidence mix</th><th>Interpretation</th></tr></thead>
+    <tbody>{% for company in companies_by_lift %}<tr>
+      <td>{{ loop.index }}</td>
+      <td><a href="companies/{{ company.ticker|lower }}/index.html"><strong>{{ company.ticker }}</strong> {{ company.company_name }}</a></td>
+      <td class="lift-value">{{ company.evidence_lift }}</td>
+      <td>Estimated {{ company.low }}–{{ company.high }}</td>
+      <td><span class="tier-badge tier-1">T1 {{ company.tier1 }}</span> <span class="tier-badge tier-2">T2 {{ company.tier2 }}</span> <span class="tier-badge tier-3">T3 {{ company.tier3 }}</span></td>
+      <td>{% if company.baseline_only %}<span class="status baseline-only">Baseline-only</span><span class="lift-note">No company-specific financing evidence found; estimate reflects proportional allocation.</span>{% else %}<span class="status evidence-supported">Evidence-supported</span>{% endif %}</td>
+    </tr>{% endfor %}</tbody>
+  </table></div>
+</section>
+
 <section id="companies" class="section-block">
   <div class="eyebrow">P1 coverage</div>
-  <h2>{{ company_count }} evidence-linked company estimates</h2>
+  <h2>{{ company_count }} company estimates, alphabetically</h2>
   <div class="company-links">
     {% for company in companies %}
     <a class="company-link" href="companies/{{ company.ticker|lower }}/index.html"><strong>{{ company.ticker }}</strong><span>{{ company.company_name }}</span><span>Estimated {{ company.low }}–{{ company.high }} DFR%</span></a>

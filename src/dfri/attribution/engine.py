@@ -13,6 +13,13 @@ from dfri.attribution.registry import AttributionBundle, MatrixBEntry, Prior
 
 DEFAULT_DRAWS: Final = 20_000
 DEFAULT_SEED: Final = 2_026_080_4
+FUNGIBILITY_BASELINE_CATEGORIES: Final = frozenset(
+    {
+        "general_retail",
+        "fungible_consumer",
+        "fungible_consumer_nonrevolving",
+    }
+)
 
 
 class AttributionError(RuntimeError):
@@ -36,6 +43,9 @@ class CompanyEstimate:
     estimated_dfr_pct_high: float
     estimated_debt_funded_revenue_mid_millions: float
     estimated_us_consumer_revenue_mid_millions: float
+    fungibility_baseline_dfr_pct_mid: float
+    evidence_lift: float
+    evidence_lift_status: str
     tier1_share: float
     tier2_share: float
     tier3_share: float
@@ -69,6 +79,7 @@ class AttributionResult:
     quarter: str
     draws: int
     seed: int
+    evidence_lift_headline: str
     aggregate: AggregateEstimate
     companies: tuple[CompanyEstimate, ...]
 
@@ -99,6 +110,10 @@ def run_attribution(
     numerator_by_ticker = {
         ticker: np.zeros(draws, dtype=np.float64) for ticker in company_by_ticker
     }
+    baseline_numerator_by_ticker = {
+        ticker: np.zeros(draws, dtype=np.float64) for ticker in company_by_ticker
+    }
+    has_company_specific_evidence = dict.fromkeys(company_by_ticker, False)
     tier_by_ticker = {
         ticker: {tier: np.zeros(draws, dtype=np.float64) for tier in (1, 2, 3)}
         for ticker in company_by_ticker
@@ -119,6 +134,10 @@ def run_attribution(
             )
             contribution = flow_draws[a_row.debt_product] * a_draw * b_draw
             numerator_by_ticker[b_row.ticker] += contribution
+            if a_row.spend_category in FUNGIBILITY_BASELINE_CATEGORIES:
+                baseline_numerator_by_ticker[b_row.ticker] += contribution
+            else:
+                has_company_specific_evidence[b_row.ticker] = True
             tier_by_ticker[b_row.ticker][a_row.tier] += contribution
             used_by_ticker[b_row.ticker].update(a_row.assumption_ids)
             used_by_ticker[b_row.ticker].update(b_assumption_ids)
@@ -132,11 +151,19 @@ def run_attribution(
         if np.any(denominator <= 0):
             raise AttributionError(f"Non-positive denominator draw for {ticker}")
         ratio = numerator_by_ticker[ticker] / denominator * 100.0
+        baseline_ratio = baseline_numerator_by_ticker[ticker] / denominator * 100.0
         _finite(ratio, f"company ratio {ticker}")
+        _finite(baseline_ratio, f"fungibility baseline {ticker}")
         denominator_by_ticker[ticker] = denominator
         ratio_by_ticker[ticker] = ratio
         used_by_ticker[ticker].add(share_id)
         pct = _quantiles(ratio)
+        baseline_mid = float(np.quantile(baseline_ratio, 0.5))
+        if baseline_mid <= 0:
+            raise AttributionError(f"Non-positive fungibility baseline for {ticker}")
+        evidence_lift = pct[1] / baseline_mid
+        if not math.isfinite(evidence_lift) or evidence_lift < 1:
+            raise AttributionError(f"Invalid evidence lift for {ticker}")
         tier_shares = _tier_shares(tier_by_ticker[ticker])
         sensitivity = _sensitivities(ratio, used_by_ticker[ticker], assumption_draws)
         estimates.append(
@@ -151,6 +178,13 @@ def run_attribution(
                     np.quantile(numerator_by_ticker[ticker], 0.5)
                 ),
                 estimated_us_consumer_revenue_mid_millions=float(np.quantile(denominator, 0.5)),
+                fungibility_baseline_dfr_pct_mid=baseline_mid,
+                evidence_lift=evidence_lift,
+                evidence_lift_status=(
+                    "evidence-supported"
+                    if has_company_specific_evidence[ticker]
+                    else "baseline-only"
+                ),
                 tier1_share=tier_shares[0],
                 tier2_share=tier_shares[1],
                 tier3_share=tier_shares[2],
@@ -175,6 +209,12 @@ def run_attribution(
     }
     aggregate_shares = _tier_shares(aggregate_tiers)
     quarter = next(iter({item.quarter for item in bundle.flows}))
+    top_lift = max(estimates, key=lambda item: (item.evidence_lift, item.ticker))
+    median_lift = float(np.median([item.evidence_lift for item in estimates]))
+    evidence_lift_headline = (
+        f"{top_lift.company_name} has the highest Evidence Lift at "
+        f"{top_lift.evidence_lift:.2f}x versus {median_lift:.2f}x for the median covered company."
+    )
     return AttributionResult(
         methodology_version=bundle.methodology_version,
         data_vintage=bundle.data_vintage,
@@ -183,6 +223,7 @@ def run_attribution(
         quarter=quarter,
         draws=draws,
         seed=seed,
+        evidence_lift_headline=evidence_lift_headline,
         aggregate=AggregateEstimate(
             quarter=quarter,
             weighting="revenue-weighted",

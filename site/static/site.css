@@ -45,6 +45,8 @@ h2 { font-size: clamp(1.4rem, 3vw, 2.2rem); letter-spacing: -0.03em; margin-top:
 .status.pending { background: #e5edf5; color: #274f75; }
 .status.graded { background: #dcefe7; color: #175b48; }
 .status.superseded { background: #f2e2e2; color: #7d3030; }
+.status.baseline-only { background: #ece8df; color: #5d5140; }
+.status.evidence-supported { background: #dcefe7; color: #175b48; }
 
 .band { margin: 1.4rem 0 1rem; position: relative; }
 .band-track { background: #dae5ee; border-radius: 999px; height: 0.8rem; overflow: hidden; position: relative; }
@@ -99,6 +101,9 @@ tbody tr:last-child td { border-bottom: 0; }
 .assumption-list li { break-inside: avoid; margin-bottom: 0.45rem; }
 .sensitivity-list { line-height: 1.6; }
 .compact-table { min-width: 650px; }
+.lift-table { min-width: 1080px; }
+.lift-value { color: var(--blue); font-size: 1.05rem; font-weight: 800; white-space: nowrap; }
+.lift-note { display: block; margin-top: 0.45rem; max-width: 28rem; }
 
 .site-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.82rem; padding: 2rem 0 3rem; }
 .site-footer .shell { display: grid; gap: 0.8rem; }

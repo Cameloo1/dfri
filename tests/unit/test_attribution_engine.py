@@ -18,6 +18,7 @@ def test_attribution_is_deterministic_complete_and_finite() -> None:
     assert first.source_hash == bundle.source_hash
     assert len(first.companies) == 50
     assert first.aggregate.weighting == "revenue-weighted"
+    assert "highest Evidence Lift" in first.evidence_lift_headline
     for estimate in (*first.companies, first.aggregate):
         assert math.isfinite(estimate.estimated_dfr_pct_mid)
         assert (
@@ -35,6 +36,48 @@ def test_attribution_is_deterministic_complete_and_finite() -> None:
             1,
             abs_tol=1e-12,
         )
+
+    for company in first.companies:
+        assert company.fungibility_baseline_dfr_pct_mid > 0
+        assert company.evidence_lift >= 1
+        assert company.evidence_lift_status in {"baseline-only", "evidence-supported"}
+
+
+def test_carvana_correction_and_baseline_only_companies_are_explicit() -> None:
+    result = run_attribution(load_attribution_bundle())
+    by_ticker = {item.ticker: item for item in result.companies}
+
+    cvna = by_ticker["CVNA"]
+    assert cvna.tier1_source_url.endswith("/cvna-20251231.htm")
+    assert cvna.tier1_share > 0.5
+    assert cvna.evidence_lift_status == "evidence-supported"
+    assert 15 < cvna.estimated_dfr_pct_mid < 22
+    assert abs(cvna.estimated_dfr_pct_mid - by_ticker["GM"].estimated_dfr_pct_mid) < 2
+
+    baseline_only = [
+        item for item in result.companies if item.evidence_lift_status == "baseline-only"
+    ]
+    assert baseline_only
+    assert all(math.isclose(item.evidence_lift, 1.0, abs_tol=1e-12) for item in baseline_only)
+    evidence_supported = {
+        item.ticker
+        for item in result.companies
+        if item.evidence_lift_status == "evidence-supported"
+    }
+    assert evidence_supported == {
+        "AMZN",
+        "BBY",
+        "CVNA",
+        "F",
+        "GM",
+        "HD",
+        "LOW",
+        "TGT",
+        "TSCO",
+        "TSLA",
+        "ULTA",
+        "WMT",
+    }
 
 
 def test_each_company_exposes_traceability_and_ranked_sensitivity() -> None:

@@ -1,8 +1,9 @@
-"""Build the committed methodology 1.1 attribution registries from pinned evidence.
+"""Build the methodology 1.1.1 classification correction from pinned evidence.
 
 This file intentionally uses only the standard library. The coverage registry is
-the hand-reviewed selection/evidence boundary; all repeated Matrix B weights and
-per-company denominator rows are deterministic derivatives checked in CI.
+the immutable 50-company selection boundary; the prior 1.1.0 bundle is the input.
+The corrected Matrix B weights and Carvana evidence rows are deterministic
+derivatives checked in CI.
 """
 
 from __future__ import annotations
@@ -14,7 +15,15 @@ from decimal import ROUND_DOWN, Decimal
 from pathlib import Path
 from typing import Any
 
-METHODOLOGY_VERSION = "1.1.0"
+METHODOLOGY_VERSION = "1.1.1"
+FIRST_PUBLISHED_AT = "2026-08-06T05:40:24.524787+00:00"
+CARVANA_10K_URL = (
+    "https://www.sec.gov/Archives/edgar/data/1690820/000169082026000009/cvna-20251231.htm"
+)
+CARVANA_ABS_URL = (
+    "https://www.sec.gov/Archives/edgar/data/1770373/000110465926026877/tm267822d6_424b5.htm"
+)
+AUTO_TICKERS = ("CVNA", "F", "GM", "TSLA")
 GENERAL_CATEGORIES = {
     "general_retail",
     "auto_market",
@@ -22,96 +31,88 @@ GENERAL_CATEGORIES = {
     "fungible_consumer_nonrevolving",
 }
 OUTPUTS = (
-    "assumption_registry_v1_1.json",
-    "matrix_a_v1_1.json",
-    "matrix_b_v1_1.json",
-    "company_inputs_v1_1.json",
-    "flow_inputs_v1_1.json",
+    "assumption_registry_v1_1_1.json",
+    "matrix_a_v1_1_1.json",
+    "matrix_b_v1_1_1.json",
+    "company_inputs_v1_1_1.json",
+    "flow_inputs_v1_1_1.json",
     "coverage_history_v1.json",
 )
 
 
 def build(root: Path) -> dict[str, dict[str, Any]]:
     coverage = _read(root / "coverage_registry_v1_1.json")
-    base_assumptions = _read(root / "assumption_registry_v1.json")
-    base_matrix_a = _read(root / "matrix_a_v1.json")
-    base_matrix_b = _read(root / "matrix_b_v1.json")
-    base_companies = _read(root / "company_inputs_v1.json")
-    base_flows = _read(root / "flow_inputs_v1.json")
+    prior_assumptions = _read(root / "assumption_registry_v1_1.json")
+    prior_matrix_a = _read(root / "matrix_a_v1_1.json")
+    prior_matrix_b = _read(root / "matrix_b_v1_1.json")
+    prior_companies = _read(root / "company_inputs_v1_1.json")
+    prior_flows = _read(root / "flow_inputs_v1_1.json")
+    history = _read(root / "coverage_history_v1.json")
 
-    expansion = _objects(coverage, "expansion")
-    base_company_rows = _objects(base_companies, "items")
-    all_tickers = [str(item["ticker"]) for item in base_company_rows + expansion]
+    companies = [dict(item) for item in _objects(prior_companies, "items")]
+    all_tickers = [str(item["ticker"]) for item in companies]
     if len(all_tickers) != 50 or len(set(all_tickers)) != 50:
-        raise ValueError("Methodology 1.1 must derive exactly 50 unique companies")
+        raise ValueError("Methodology 1.1.1 must preserve exactly 50 unique companies")
 
-    assumptions = list(_objects(base_assumptions, "items"))
-    companies = list(base_company_rows)
-    denominator_midpoints: dict[str, Decimal] = {}
+    assumptions = [dict(item) for item in _objects(prior_assumptions, "items")]
+    assumptions.append(
+        {
+            "assumption_id": "A-T1-CVNA-FINANCE-001",
+            "statement": (
+                "Carvana receives 1% to 3% of national nonrevolving flow through its "
+                "originated used-auto finance channel."
+            ),
+            "low": 0.01,
+            "mid": 0.02,
+            "high": 0.03,
+            "tier": 1,
+            "source_url": CARVANA_ABS_URL,
+            "evidence_snippet": (
+                "Since February 2013, Carvana has also offered and originated loans to consumers."
+            ),
+            "sensitivity_note": (
+                "The wide prior is scaled below GM and Ford using Carvana's smaller registered "
+                "consumer-revenue denominator; the filing and ABS trust establish origination."
+            ),
+            "version": METHODOLOGY_VERSION,
+            "active": True,
+        }
+    )
+    cvna = next(item for item in companies if item["ticker"] == "CVNA")
+    cvna["tier1_source_url"] = CARVANA_10K_URL
+    cvna["tier1_excerpt"] = (
+        "Finance receivables include installment contracts the Company originates to its "
+        "customers to facilitate vehicle sales."
+    )
+
     assumptions_by_id = {str(item["assumption_id"]): item for item in assumptions}
-    for company in base_company_rows:
-        assumption = assumptions_by_id[str(company["consumer_share_assumption_id"])]
-        denominator_midpoints[str(company["ticker"])] = Decimal(
-            str(company["revenue_total_millions"])
-        ) * Decimal(str(assumption["mid"]))
-
-    for item in expansion:
-        filing = _object(item, "latest_10k")
-        revenue = _object(item, "revenue_fact")
-        prior = _object(item, "consumer_share_prior")
-        ticker = str(item["ticker"])
-        source_url = _filing_url(str(item["cik"]), filing)
-        assumption_id = f"A-DEN-{ticker}-001"
-        assumptions.append(
-            {
-                "assumption_id": assumption_id,
-                "statement": (
-                    f"{item['company_name']} U.S. consumer revenue is "
-                    f"{float(prior['low']) * 100:g}% to {float(prior['high']) * 100:g}% "
-                    "of consolidated annual revenue."
-                ),
-                "low": prior["low"],
-                "mid": prior["mid"],
-                "high": prior["high"],
-                "tier": 2,
-                "source_url": source_url,
-                "evidence_snippet": item["denominator_evidence"],
-                "sensitivity_note": (
-                    "This modeled geographic and customer-mix split moves the company denominator "
-                    "and its revenue weight in the aggregate index."
-                ),
-                "version": METHODOLOGY_VERSION,
-                "active": True,
-            }
-        )
-        revenue_millions = Decimal(str(revenue["value"])) / Decimal("1000000")
-        denominator_midpoints[ticker] = revenue_millions * Decimal(str(prior["mid"]))
-        companies.append(
-            {
-                "ticker": ticker,
-                "company_name": item["company_name"],
-                "cik": item["cik"],
-                "period": filing["period"],
-                "revenue_total_millions": float(revenue_millions),
-                "revenue_namespace": revenue["namespace"],
-                "revenue_tag": revenue["tag"],
-                "revenue_source_url": source_url,
-                "consumer_share_assumption_id": assumption_id,
-                "tier1_source_url": "",
-                "tier1_excerpt": "",
-                "membership_snapshot_ref": coverage["membership_snapshot_ref"],
-            }
-        )
+    denominator_midpoints = {
+        str(company["ticker"]): Decimal(str(company["revenue_total_millions"]))
+        * Decimal(str(assumptions_by_id[str(company["consumer_share_assumption_id"])]["mid"]))
+        for company in companies
+    }
 
     general_weights = _normalized_weights(denominator_midpoints)
     auto_weights = _normalized_weights(
-        {ticker: denominator_midpoints[ticker] for ticker in ("F", "GM", "TSLA")}
+        {ticker: denominator_midpoints[ticker] for ticker in AUTO_TICKERS}
     )
     matrix_b = [
         dict(item)
-        for item in _objects(base_matrix_b, "items")
+        for item in _objects(prior_matrix_b, "items")
         if str(item["spend_category"]) not in GENERAL_CATEGORIES
     ]
+    matrix_b.append(
+        {
+            "version": METHODOLOGY_VERSION,
+            "spend_category": "carvana_auto_finance",
+            "ticker": "CVNA",
+            "weight_low": 1.0,
+            "weight_mid": 1.0,
+            "weight_high": 1.0,
+            "method": "direct originated-auto-finance link",
+            "evidence_refs": [CARVANA_10K_URL, CARVANA_ABS_URL],
+        }
+    )
     for category in (
         "general_retail",
         "fungible_consumer",
@@ -154,22 +155,54 @@ def build(root: Path) -> dict[str, dict[str, Any]]:
             }
         )
 
-    matrix_a_rows = [dict(item) for item in _objects(base_matrix_a, "items")]
-    flow_rows = [dict(item) for item in _objects(base_flows, "items")]
+    matrix_a_rows = [dict(item) for item in _objects(prior_matrix_a, "items")]
+    matrix_a_rows.append(
+        {
+            "version": METHODOLOGY_VERSION,
+            "debt_product": "nonrevolving_credit",
+            "spend_category": "carvana_auto_finance",
+            "weight_low": 0.01,
+            "weight_mid": 0.02,
+            "weight_high": 0.03,
+            "tier": 1,
+            "assumption_ids": ["A-T1-CVNA-FINANCE-001"],
+        }
+    )
+    flow_rows = [dict(item) for item in _objects(prior_flows, "items")]
     coverage_digest = hashlib.sha256(_canonical(coverage)).hexdigest()
-    base_tickers = sorted(str(item["ticker"]) for item in base_company_rows)
-    expansion_tickers = sorted(str(item["ticker"]) for item in expansion)
-    exclusion_tickers = sorted(str(item["ticker"]) for item in _objects(coverage, "excluded"))
+    snapshots = [
+        dict(item)
+        for item in _objects(history, "snapshots")
+        if item["methodology_version"] != METHODOLOGY_VERSION
+    ]
+    if [item["methodology_version"] for item in snapshots] != ["1.0.0", "1.1.0"]:
+        raise ValueError("Coverage history does not end at immutable methodology 1.1.0")
+    snapshots.append(
+        {
+            "methodology_version": METHODOLOGY_VERSION,
+            "effective_at": FIRST_PUBLISHED_AT,
+            "membership_snapshot_ref": coverage["membership_snapshot_ref"],
+            "coverage_registry_sha256": coverage_digest,
+            "included_tickers": sorted(all_tickers),
+            "excluded_tickers": sorted(
+                str(item["ticker"]) for item in _objects(coverage, "excluded")
+            ),
+            "change": "Correct CVNA auto-market and originated-finance classification.",
+        }
+    )
     return {
-        "assumption_registry_v1_1.json": {
+        "assumption_registry_v1_1_1.json": {
             "methodology_version": METHODOLOGY_VERSION,
             "items": assumptions,
         },
-        "matrix_a_v1_1.json": {
+        "matrix_a_v1_1_1.json": {
             "methodology_version": METHODOLOGY_VERSION,
-            "items": matrix_a_rows,
+            "items": sorted(
+                matrix_a_rows,
+                key=lambda row: (str(row["debt_product"]), str(row["spend_category"])),
+            ),
         },
-        "matrix_b_v1_1.json": {
+        "matrix_b_v1_1_1.json": {
             "methodology_version": METHODOLOGY_VERSION,
             "weight_basis": (
                 "Fixed weights are normalized estimated U.S. consumer-revenue midpoints. "
@@ -179,35 +212,19 @@ def build(root: Path) -> dict[str, dict[str, Any]]:
                 matrix_b, key=lambda row: (str(row["spend_category"]), str(row["ticker"]))
             ),
         },
-        "company_inputs_v1_1.json": {
+        "company_inputs_v1_1_1.json": {
             "methodology_version": METHODOLOGY_VERSION,
-            "first_published_at": coverage["first_published_at"],
+            "first_published_at": FIRST_PUBLISHED_AT,
             "items": sorted(companies, key=lambda row: str(row["ticker"])),
         },
-        "flow_inputs_v1_1.json": {
+        "flow_inputs_v1_1_1.json": {
             "methodology_version": METHODOLOGY_VERSION,
-            "data_vintage": base_flows["data_vintage"],
+            "data_vintage": prior_flows["data_vintage"],
             "items": flow_rows,
         },
         "coverage_history_v1.json": {
             "schema_version": "v1",
-            "snapshots": [
-                {
-                    "methodology_version": "1.0.0",
-                    "effective_at": base_companies["first_published_at"],
-                    "membership_snapshot_ref": coverage["membership_snapshot_ref"],
-                    "included_tickers": base_tickers,
-                    "excluded_tickers": [],
-                },
-                {
-                    "methodology_version": METHODOLOGY_VERSION,
-                    "effective_at": coverage["first_published_at"],
-                    "membership_snapshot_ref": coverage["membership_snapshot_ref"],
-                    "coverage_registry_sha256": coverage_digest,
-                    "included_tickers": sorted(base_tickers + expansion_tickers),
-                    "excluded_tickers": exclusion_tickers,
-                },
-            ],
+            "snapshots": snapshots,
         },
     }
 
@@ -242,13 +259,6 @@ def _normalized_weights(values: dict[str, Decimal]) -> dict[str, float]:
     return {ticker: float(value) for ticker, value in raw.items()}
 
 
-def _filing_url(cik: str, filing: dict[str, Any]) -> str:
-    return (
-        "https://www.sec.gov/Archives/edgar/data/"
-        f"{int(cik)}/{str(filing['accession']).replace('-', '')}/{filing['primary_document']}"
-    )
-
-
 def _read(path: Path) -> dict[str, Any]:
     value = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(value, dict):
@@ -261,13 +271,6 @@ def _objects(value: dict[str, Any], key: str) -> list[dict[str, Any]]:
     if not isinstance(rows, list) or not all(isinstance(row, dict) for row in rows):
         raise ValueError(f"Expected object rows: {key}")
     return rows
-
-
-def _object(value: dict[str, Any], key: str) -> dict[str, Any]:
-    row = value.get(key)
-    if not isinstance(row, dict):
-        raise ValueError(f"Expected object: {key}")
-    return row
 
 
 def _canonical(value: dict[str, Any]) -> bytes:
