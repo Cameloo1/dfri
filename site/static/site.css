@@ -249,6 +249,55 @@ caption,
 
 .status.evidence-supported { border-style: double; border-width: 3px; }
 
+.calibration-ledger {
+  border-bottom: 1px solid var(--ink);
+  border-top: 4px double var(--ink);
+  margin: 2rem 0 0;
+  padding: 1.25rem 0 1.4rem;
+}
+
+.calibration-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 1.2rem 0;
+}
+
+.calibration-stats > div {
+  border-top: 1px solid var(--line);
+  padding: 0.75rem 0;
+}
+
+.calibration-stats dt,
+.calibration-stats span {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: var(--step--1);
+}
+
+.calibration-stats dd {
+  font-family: var(--mono);
+  font-size: var(--step-2);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0.3rem 0 0.15rem;
+}
+
+.calibration-stats dd span {
+  display: block;
+  font-weight: 400;
+  margin-top: 0.15rem;
+}
+
+.grade-callout {
+  border-bottom: 2px solid var(--ink);
+  border-top: 5px solid var(--ink);
+  margin: 2rem 0;
+  padding: 1.15rem 0 1.4rem;
+}
+
+.grade-callout p { max-width: 72ch; }
+
 .table-wrap {
   border-bottom: 2px solid var(--ink);
   border-top: 4px double var(--ink);
@@ -593,6 +642,10 @@ tbody tr:hover { background: color-mix(in srgb, var(--quiet-fill) 52%, transpare
   .card + .card { margin-top: 0; }
   .card.primary { grid-column: span 8; }
   .card.metric { grid-column: span 4; }
+
+  .calibration-stats { grid-template-columns: repeat(5, 1fr); }
+  .calibration-stats > div { padding: 0.75rem; }
+  .calibration-stats > div + div { border-left: 1px solid var(--line); }
 
   .definition-list { grid-template-columns: minmax(10rem, 0.3fr) 1fr; }
   .definition-list dt { padding-right: 1rem; }

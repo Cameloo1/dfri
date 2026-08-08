@@ -20,6 +20,7 @@ def test_public_changelog_is_ordered_permalinked_and_complete() -> None:
         "v1-1-quarterly-refresh-2026-q1",
         "v1-1-1-cvna-evidence-lift",
         "scoreboard-feed-grade-status-corrected",
+        "scoreboard-first-live-grades",
     ]
     assert all(item.permalink == f"/changelog/#{item.entry_id}" for item in entries)
     assert {item.kind for item in entries} == {"publication", "methodology"}

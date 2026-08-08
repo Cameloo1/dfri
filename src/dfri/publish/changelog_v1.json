@@ -101,6 +101,18 @@
         {"label": "Scoreboard feed", "href": "/v1/feeds/scoreboard.json"},
         {"label": "Feed schema", "href": "/v1/feeds/schema.json"}
       ]
+    },
+    {
+      "entry_id": "scoreboard-first-live-grades",
+      "published_on": "2026-08-08",
+      "kind": "publication",
+      "version": "bridge-ridge-v2-alpha10",
+      "title": "First live grades published without softening",
+      "summary": "Published the first two live grades, prominently flagging that the revolving prediction missed direction and its 80% interval; added running live-only coverage and MAE comparisons without retraining or retuning the model.",
+      "links": [
+        {"label": "Scoreboard", "href": "/scoreboard/"},
+        {"label": "Scoreboard feed", "href": "/v1/feeds/scoreboard.json"}
+      ]
     }
   ]
 }
