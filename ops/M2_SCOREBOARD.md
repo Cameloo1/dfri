@@ -44,13 +44,24 @@ recovery gate and must not be used to manufacture live-cycle evidence.
 
 ## State and recovery
 
-GitHub-hosted runners are disposable. Each build restores the newest deployment-accepted
-`dfri-m2-state` artifact, verifies its internal SHA-256 manifest and strict allowlist, and performs
-the run. A no-change run uploads its refreshed state directly under that accepted name. A changed
-run first uploads `dfri-m2-state-candidate`; only after GitHub Pages accepts the deployment does the
-deploy job copy it to the accepted `dfri-m2-state` name. A failed Pages deployment therefore cannot
-become the next clock state, while a successful deployment remains recoverable even if its later
-four-hour SLA check fails. Both artifact classes expire after 90 days. The bundle contains only:
+GitHub-hosted runners are disposable, but the public ledger is not runner state. Predictions,
+grades, and first-publication records are committed under `state/ledgers/` on the default branch.
+The manifest verifies canonical row hashes, exact Parquet byte hashes, sizes, row counts, and IDs.
+Every build restores these Git-authoritative files into the runtime lake before a clock job runs.
+
+The workflow still attempts to restore the newest deployment-accepted `dfri-m2-state` artifact as
+a speed and recovery cache. The bundle's SHA-256 manifest and strict allowlist are verified first;
+then its three public ledger tables must match Git. Missing artifacts are normal and trigger public
+source reconstruction plus Git-ledger restore. A cache with a ledger batch absent from Git is a
+hard stop because it signals an interrupted post-deployment promotion that must be reviewed.
+
+A no-change run uploads its refreshed cache directly under the accepted name. A changed run first
+uploads `dfri-m2-state-candidate`; only after GitHub Pages accepts the deployment does the deploy
+job preserve the accepted cache, verify the three-ledger candidate, and commit any new immutable
+batches plus `MANIFEST.json` to the default branch. Existing batch modifications, deletions,
+unmanaged paths, and non-ledger staged changes are rejected. The push retries against concurrent
+code-only default-branch changes without force. Both artifact classes may expire after 90 days
+without affecting fresh-clone ledger recovery. The bundle contains only:
 
 - public-source `raw_observations` Parquet batches;
 - append-only prediction, grade, and first-publication ledgers;
@@ -58,12 +69,12 @@ four-hour SLA check fails. Both artifact classes expire after 90 days. The bundl
 - scoreboard job receipts.
 
 Private SEC loan-level files, API keys, environment files, caches, locks, and unrelated local
-evidence cannot enter the bundle. Restore refuses a non-empty destination. If the clock has ever
-published and no valid prior state artifact can be restored, cancel the run and recover from a
-reviewed bundle before continuing; never bootstrap a second ledger over an existing public
-scoreboard. If Pages succeeds but promotion of its candidate state fails, preserve the candidate
-artifact, confirm the public feed manifest, and manually promote that exact reviewed bundle before
-the clock runs again.
+evidence cannot enter the bundle. Artifact restore refuses a non-empty destination. If the cache is
+missing, do not bootstrap or recreate ledger rows: restore `state/ledgers/` from the clone and let
+the public-source backfills rebuild disposable inputs. If Pages succeeds but the Git promotion
+fails, preserve the candidate artifact, confirm the public feed manifest, and manually merge that
+exact reviewed candidate before the clock runs again; the next run will fail closed while the
+artifact is ahead of Git.
 
 ## Deployment and evidence
 
@@ -87,9 +98,8 @@ and receipt artifacts in the eventual `MILESTONE_REPORTS/M2.md`.
    environment to the default branch.
 3. **PASS:** Confirm Actions can read prior run artifacts and write Pages deployments. No paid secret is
    required for the M2 Board/Census path.
-4. **PASS:** The one permitted manual `all` dispatch used `bootstrap_state=true` and
-   `force_publish=false`; its candidate, deployment-accepted state, feed, permalinks, manifest, and
-   receipt were inspected. Never enable `bootstrap_state` again.
+4. **PASS:** The historical bootstrap completed. The retained `bootstrap_state` input is now a
+   no-op compatibility field; repository ledger restore is mandatory on every run.
 5. **PASS:** Confirm both weekday schedules remain enabled on the default branch.
 6. **PENDING:** Start the two-cycle clock only from the first genuinely scheduled Friday
    prediction deployment.

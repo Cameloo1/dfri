@@ -1,2 +1,4 @@
 # Archived source fixtures are checksum-pinned evidence. Preserve their exact bytes.
 tests/fixtures/** -text
+state/ledgers/**/*.parquet binary
+state/ledgers/MANIFEST.json text eol=lf

@@ -453,6 +453,22 @@ grade exactly. First live publication metadata is a third append-only ledger: th
 `published_at`, input `data_vintage`, and methodology version for a prediction survive every later
 site rebuild.
 
+Those three public ledgers live under `state/ledgers/` in Git. Each immutable Parquet batch keeps
+its content-addressed filename and exact bytes; `MANIFEST.json` binds every path to its canonical
+row hash, byte hash, size, row count, and record IDs. A fresh clone restores the complete public
+ledger without an Actions artifact or any connected service:
+
+```sh
+uv run python -m dfri.ops.repository_ledger verify --repository-root state/ledgers
+uv run python -m dfri.ops.repository_ledger restore \
+  --repository-root state/ledgers --runtime-root .local/lake/curated
+```
+
+The scheduled workflow may restore a retained Actions state artifact to avoid downloading public
+source history again, but that artifact is only a redundant cache. Git is authoritative: cached
+ledger files must match repository bytes, missing cache files are restored from Git, and a cache
+that is ahead of repository history blocks the clock for explicit recovery.
+
 Prediction points and interval bounds are canonicalized to nine decimal places in their declared
 million-dollar unit before the first append. That boundary is one-thousandth of a dollar and
 removes irrelevant cross-runner BLAS noise while the ledger still rejects any economically
@@ -512,10 +528,11 @@ first-print grades on weekdays after the Board's 3:00 p.m. Eastern G.19 window a
 H.8 input on weekdays after the 4:15 p.m. Eastern window, covering both ordinary Fridays and
 holiday-shifted releases. Stable input identity makes non-release days no-ops. A single
 non-cancelling concurrency gate protects the ledger, deployment occurs only after an append, and a
-post-deployment receipt enforces the four-hour SLA. Disposable runners recover only from a
-SHA-256-verified, deployment-accepted, allowlisted state artifact; changed state remains a
-candidate until Pages succeeds. The one permitted empty-state bootstrap has completed and must not
-be enabled again. See
+post-deployment receipt enforces the four-hour SLA. Disposable runners restore public ledger state
+from Git and reconstruct source data when the optional artifact cache is absent. Changed ledger
+state remains a candidate until Pages succeeds; after acceptance, only new content-addressed
+batches and the corresponding manifest update may be committed by the scheduled job. The legacy
+`bootstrap_state` dispatch input is ignored and retained only for workflow-call compatibility. See
 [`ops/M2_SCOREBOARD.md`](ops/M2_SCOREBOARD.md) for activation, pause, retry, and recovery rules.
 
 ## Read-only API and publication monitoring

@@ -19,7 +19,7 @@ on:
         default: false
         type: boolean
       bootstrap_state:
-        description: Approve an empty state only for the first-ever clock run
+        description: Deprecated compatibility input; Git ledger state is always restored
         required: true
         default: false
         type: boolean
@@ -59,11 +59,10 @@ jobs:
       - name: Install the locked project
         run: make bootstrap
 
-      - name: Restore the newest integrity-checked runtime state
+      - name: Restore the newest redundant runtime cache when available
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-          ALLOW_EMPTY_STATE: ${{ inputs.bootstrap_state }}
         run: |
           set -euo pipefail
           restored=false
@@ -87,12 +86,14 @@ jobs:
               --jq '.[].databaseId'
           )
           if [[ "$restored" == false ]]; then
-            if [[ "$GITHUB_EVENT_NAME" != workflow_dispatch || "$ALLOW_EMPTY_STATE" != true ]]; then
-              echo "BLOCKED: no prior M2 state artifact; refusing an implicit clock reset." >&2
-              exit 1
-            fi
-            echo "Explicit first-run empty-state bootstrap approved by manual dispatch."
+            echo "No retained runtime cache is available; rebuilding from Git and public sources."
           fi
+
+      - name: Restore Git-authoritative public ledgers
+        run: |
+          uv run python -m dfri.ops.repository_ledger restore \
+            --repository-root state/ledgers \
+            --runtime-root .local/lake/curated
 
       - name: Refresh only the public-source nowcast lake
         shell: bash
@@ -226,7 +227,7 @@ jobs:
     timeout-minutes: 10
     permissions:
       actions: read
-      contents: read
+      contents: write
       pages: write
       id-token: write
     environment:
@@ -252,8 +253,70 @@ jobs:
           retention-days: 90
           compression-level: 0
 
-      - name: Check out the receipt writer
+      - name: Check out current default branch for ledger promotion and receipt writer
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - name: Install pinned uv for ledger promotion
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          version: "0.11.32"
+          enable-cache: true
+
+      - name: Install the locked project for ledger promotion
+        run: make bootstrap
+
+      - name: Verify and merge the deployment-accepted repository ledger candidate
+        id: repository_ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          uv run python -m dfri.ops.state_bundle unpack \
+            --bundle .local/accepted-state/runtime-state.tar.gz \
+            --root .local/repository-candidate-runtime
+          uv run python -m dfri.ops.repository_ledger snapshot \
+            --runtime-root .local/repository-candidate-runtime/lake/curated \
+            --output-root .local/repository-ledger-candidate
+          merge_json="$(uv run python -m dfri.ops.repository_ledger merge \
+            --candidate-root .local/repository-ledger-candidate \
+            --repository-root state/ledgers)"
+          echo "$merge_json"
+          echo "added_files=$(jq -r '.added_files' <<<"$merge_json")" >> "$GITHUB_OUTPUT"
+
+      - name: Commit newly appended public ledger batches to Git
+        if: steps.repository_ledger.outputs.added_files != '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "dfri-scoreboard[bot]"
+          git config user.email "ops@camelon.app"
+          git add -- state/ledgers
+          git diff --cached --check
+          while IFS=$'\t' read -r status path; do
+            if [[ "$path" == "state/ledgers/MANIFEST.json" && "$status" =~ ^[AM]$ ]]; then
+              continue
+            fi
+            if [[ "$path" == state/ledgers/*/batch-*.parquet && "$status" == "A" ]]; then
+              continue
+            fi
+            echo "BLOCKED: staged ledger change violates append-only policy: $status $path" >&2
+            exit 1
+          done < <(git diff --cached --name-status)
+          git commit -m "data: append immutable scoreboard ledger (run ${GITHUB_RUN_ID})"
+          for attempt in 1 2 3; do
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            if (( attempt == 3 )); then
+              break
+            fi
+            git fetch origin "$GITHUB_REF_NAME"
+            git rebase "origin/$GITHUB_REF_NAME"
+          done
+          echo "BLOCKED: could not persist accepted ledger state to Git after three attempts." >&2
+          exit 1
 
       - name: Write the deployment receipt and enforce the applicable four-hour SLA
         shell: bash
