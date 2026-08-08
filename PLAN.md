@@ -1,6 +1,6 @@
 # DFRI Execution Plan
 
-Status values: `PENDING`, `IN_PROGRESS`, `BLOCKED`, `PASS`, `DEVIATED`.
+Status values: `PENDING`, `IN_PROGRESS`, `BLOCKED`, `PASS`, `DEVIATED`, `NOT SCHEDULED`.
 
 This is the controlling execution map for `DFRI_BUILD_SPEC.md` v1.0. Sections 1 and 2 of the spec override every task below. A milestone may be marked complete only after its acceptance criteria pass from a fresh clone through the documented `make` targets and its milestone report records reproducible evidence.
 
@@ -29,6 +29,9 @@ This is the controlling execution map for `DFRI_BUILD_SPEC.md` v1.0. Sections 1 
    complete step 4.
 6. M4 publication hardening, depending on stable M2/M3 output contracts.
 7. M5 scale, depending on M3 per-company evidence and M4 publication gates.
+8. M6 is a future, unscheduled classification-assistance milestone. It has no start date and may
+   begin only after an explicit owner scheduling decision and the legal/evaluation gates in
+   `docs/PLANNED_CLASSIFICATION.md`.
 
 Independent source-ingest work may proceed in parallel only where it cannot weaken the M2 calendar-clock priority. A hard-blocked track is recorded in `DEVIATIONS.md` after 24 hours and another eligible track is selected.
 
@@ -330,6 +333,45 @@ Dependencies: M5.1.
 - `PASS` Pass fresh-clone verification and write `MILESTONE_REPORTS/M5.md`. A new clone of corrected public main `21ad8fcec8cfac230100dd139eacd717403c4e91` contains neither excluded control document and passes locked bootstrap, 389-test verification at 85.04% coverage, deterministic replay, deterministic publish, and 56 Axe/no-JavaScript pages. Production run [30986960228](https://github.com/Cameloo1/dfri/actions/runs/30986960228) appended the accepted refresh; exact retry [31033209605](https://github.com/Cameloo1/dfri/actions/runs/31033209605) appended zero and preserved its ID.
 
 Dependencies: M5.1–M5.2.
+
+## M6 — LLM-assisted Matrix B classification expansion (NOT SCHEDULED)
+
+Start date: none. This milestone is specification only and does not authorize implementation,
+provider selection, a model dependency, or a pipeline change. The complete contract is
+[`docs/PLANNED_CLASSIFICATION.md`](docs/PLANNED_CLASSIFICATION.md).
+
+### M6.1 Bounded classification and frozen provenance
+
+- `NOT SCHEDULED` **AC-M6-01:** Restrict model output to extraction and controlled-category label
+  proposals; prohibit numeric estimates, weights, tiers, denominators, bands, or nowcast inputs.
+- `NOT SCHEDULED` **AC-M6-02:** Verify then-current provider and source terms before the first model
+  call; a conflict is `BLOCKED`, never worked around.
+- `NOT SCHEDULED` **AC-M6-03:** Freeze every proposal with company/CIK, filing/accession evidence,
+  source and excerpt hashes, provider/model version, prompt version, response hash, and timestamp.
+- `NOT SCHEDULED` **AC-M6-04:** Enter every proposal under a stable assumption ID with append-only
+  `PENDING`, `ACCEPTED`, `REJECTED`, or `SUPERSEDED` review state.
+
+### M6.2 Review, evaluation, and publication gates
+
+- `NOT SCHEDULED` **AC-M6-05:** Fail publication when an active classification is unreviewed; never
+  compile `PENDING` or `REJECTED` labels into Matrix B.
+- `NOT SCHEDULED` **AC-M6-06:** Keep provider calls outside replay, publish, CI, scheduled jobs, and
+  page requests; prove byte-identical fresh-clone replay with provider access blocked.
+- `NOT SCHEDULED` **AC-M6-07:** Pass a frozen hand-labeled holdout at 90% exact category-set
+  accuracy, 0.90 macro-F1, 100% evidence-link precision, and zero accepted out-of-taxonomy labels.
+- `NOT SCHEDULED` **AC-M6-08:** Apply the 100%-then-20% owner audit in the specification and halt
+  expansion above 5% disagreement or on any filing/accession mismatch.
+- `NOT SCHEDULED` **AC-M6-09:** Preserve rejected/corrected proposals with reasons and supersession
+  links rather than silently deleting them.
+- `NOT SCHEDULED` **AC-M6-10:** Disclose machine-proposed mappings, evidence, model/prompt versions,
+  frozen artifact hash, review outcome, and separate weight derivation on methodology and feeds.
+- `NOT SCHEDULED` **AC-M6-11:** Enforce the explicit non-goals: no LLM in the nowcast, no generated
+  site commentary, and no model-authored number.
+- `NOT SCHEDULED` **AC-M6-12:** Pass every M6 criterion from a fresh clone and write a milestone
+  report before describing the layer as active.
+
+Dependencies: M5 mapping contracts, explicit owner scheduling, verified provider/source terms, and
+a frozen spending-category taxonomy. No current milestone depends on M6.
 
 ## Day-14 review packet
 
