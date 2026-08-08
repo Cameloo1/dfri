@@ -27,6 +27,10 @@ summarizes that milestone state. Methodology 1.1.1 subsequently corrects Carvana
 classification and adds the derived Evidence Lift view and versioned v2 company feed without
 rewriting 1.1.0. No M2 completion is claimed early.
 
+Active source-continuity risks and their fail-closed recovery paths are tracked in the
+[risk register](RISK_REGISTER.md). The current Federal Reserve DDP transition finding is documented
+in the [DDP retirement risk report](DDP_RETIREMENT_RISK_REPORT.md).
+
 ## Outputs, sources, and evidence tiers
 
 DFRI publishes immutable weekly predictions of Federal Reserve G.19 consumer-credit flows and
