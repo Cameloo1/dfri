@@ -91,6 +91,22 @@ counts, and release-to-public latency. More than 14,400 seconds fails the job bu
 still uploaded. Preserve the two successful weekly workflow URLs, state-artifact IDs, Pages URLs,
 and receipt artifacts in the eventual `MILESTONE_REPORTS/M2.md`.
 
+## First genuine scheduled cycle
+
+The August 7, 2026 cycle is accepted as the first of the two required consecutive weekly cycles:
+
+- Scheduled grade run https://github.com/Cameloo1/dfri/actions/runs/31222067493 appended two
+  June grades, verified re-grade integrity, and deployed 10,742 seconds after the 19:00 UTC G.19
+  first print. Its retained deployment receipt reports `PASS` against the 14,400-second SLA.
+- Scheduled prediction run https://github.com/Cameloo1/dfri/actions/runs/31228362108 appended one
+  July prediction per target from the 20:15 UTC H.8 release and deployed 12,994 seconds later.
+  Its retained deployment receipt also reports `PASS`.
+- The public rows preserve the original prediction timestamps and exact first-print grades. Later
+  workflow-dispatch runs are recovery/publication evidence only and do not add to the cycle count.
+
+One additional consecutive scheduled weekly prediction cycle remains. Do not write `M2.md` until
+that cycle succeeds and its receipt is preserved.
+
 ## Activation checklist
 
 1. **PASS:** Configure Q-001's repository and push the reviewed default branch.
@@ -101,8 +117,8 @@ and receipt artifacts in the eventual `MILESTONE_REPORTS/M2.md`.
 4. **PASS:** The historical bootstrap completed. The retained `bootstrap_state` input is now a
    no-op compatibility field; repository ledger restore is mandatory on every run.
 5. **PASS:** Confirm both weekday schedules remain enabled on the default branch.
-6. **PENDING:** Start the two-cycle clock only from the first genuinely scheduled Friday
-   prediction deployment.
+6. **IN PROGRESS:** The first genuinely scheduled Friday prediction deployment passed on August
+   7 in run `31228362108`; preserve one additional consecutive weekly cycle before closing M2.
 
 Pause/retry rules: cancel before deploy if source validation fails; retry the same workflow after a
 transient network failure; never skip a failed parser/data-quality gate; never delete/edit ledger

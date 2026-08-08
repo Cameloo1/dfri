@@ -205,7 +205,7 @@ Dependencies: M2.1–M2.2.
 - `PASS` Implement first-print grading as a separate append-only ledger. Grades bind a prediction to the exact Board G.19 vintage URL, first-print value, release timestamp, and absolute error; duplicate evidence is idempotent, changed evidence is rejected, immature predictions remain open, and full stored re-grade integrity is checked against raw first-print targets.
 - `PASS` Implement idempotent `scoreboard-predict` and `scoreboard-grade` commands. Input identity is keyed to the latest stored Thursday/Friday H.8 release and covers every unreleased month through its latest Wednesday observation; `made_at` is the actual first job execution time. Grading runs only after the stored first-print release boundary. Both commands write content-addressed attempt receipts. The corrected local August 4 run appended four July 31-input-origin v2 predictions and a later-timestamp retry appended zero while preserving the first timestamp; current targets remain immature. External scheduling remains M2.6.
 - `PASS` Persist the public prediction, grade, and first-publication ledgers in `state/ledgers/` on the default branch, with canonical row hashes and exact Parquet byte hashes. PRs [17](https://github.com/Cameloo1/dfri/pull/17) and [18](https://github.com/Cameloo1/dfri/pull/18) migrated 10 existing batches / 14 rows byte-identically. Hosted run [31281435353](https://github.com/Cameloo1/dfri/actions/runs/31281435353) restored and remerged the same manifest as a zero-append no-op, while a fresh public-main clone recovered all rows without an Actions artifact. Artifacts remain a redundant cache only; see `STATE_DURABILITY_REPORT.md`.
-- `PASS` Preserve the first two real June 2026 grades in the repository ledger. The scheduled-equivalent workflow-dispatch run [31280013811](https://github.com/Cameloo1/dfri/actions/runs/31280013811) graded revolving at 6,800 and nonrevolving at 7,400 against the dated August 7 Board first print. Because the trigger was `workflow_dispatch`, this proves grader correctness but does not satisfy the scheduled-cycle acceptance gate.
+- `PASS` Preserve the first two real June 2026 grades in the repository ledger. Genuine scheduled run [31222067493](https://github.com/Cameloo1/dfri/actions/runs/31222067493) appended revolving at 6,800 and nonrevolving at 7,400 against the dated August 7 Board first print, verified re-grade integrity, deployed both grades, and retained a passing release-latency receipt. Later manual runs only recovered or republished these immutable rows.
 
 Dependencies: M2.3 and M0/M1 publication primitives.
 
@@ -214,14 +214,14 @@ Dependencies: M2.3 and M0/M1 publication primitives.
 - `PASS` Implement stable prediction/scoreboard JSON, CSV, and typed Parquet feeds with schema documentation plus methodology, data-vintage, publication-time, mode, and CC BY-NC fields. Publication is built in a disposable directory, atomically promoted, refuses unmanaged destinations, removes stale managed paths, and is byte-identical for pinned inputs.
 - `PASS` Build the no-JS static Home, Scoreboard, Methodology, and immutable prediction-permalink pages with nested 80/95% bands, first-print actuals/errors/provenance, accessible text equivalents, optional sorting enhancement, and local-only assets. The filtered four-row v2 preview explicitly excludes eight pre-public smoke rows, has four permalinks, totals 57,168 bytes, and reproduced manifest hash `3793b59199975166b89ada7be0355489b99c0ae32ef87fd7839f823d44414be7` on two documented builds.
 - `PASS` Make joined scoreboard status grade-coherent and publish live-only running calibration separately from the backtest. Every joined row enforces `status == grade_status`; the scoreboard header reports `n=2`, 50.0% within both nominal bands, live MAE 7,449, and point-in-time AR(2) naive MAE 3,742. The first revolving miss is prominently flagged with its sign error, interval miss, approximately 12,330 absolute error, and explicit no-retune statement. The 62-page real-grade preview passes page-weight, contrast, no-JavaScript, axe, desktop, and mobile checks.
-- `PENDING` Verify scheduled H.8 and G.19 completion within four hours. The active default-branch workflow and [public scoreboard](https://cameloo1.github.io/dfri/) are deployed. Manual bootstrap run `30968841429` published four predictions, zero grades, and 15 manifest-verified files; its candidate and accepted state artifacts are byte-identical (`8d13c7f865da0a2c9a8a7f0d33f8d126bb6c3514b9fc5ee1aa98cf989cc50970`) and restore 1,029 allowlisted files with manifest hash `b9fbad744eb5d9e3b8ee47e58f6e1ac945830e16d86fca0f2286fab74185b87a`. Its receipt correctly failed the four-hour SLA because a manual bootstrap used the July 31 release 367,826 seconds later; it is not live-cycle evidence. Genuine scheduled-cycle latency remains pending.
+- `PASS` Verify scheduled H.8 and G.19 completion within four hours. Genuine scheduled grade run [31222067493](https://github.com/Cameloo1/dfri/actions/runs/31222067493) appended two grades and deployed 10,742 seconds after the August 7 G.19 first print. Genuine scheduled prediction run [31228362108](https://github.com/Cameloo1/dfri/actions/runs/31228362108) appended the July revolving/nonrevolving pair and deployed 12,994 seconds after the August 7 H.8 release. Both retained deployment receipts pass the 14,400-second SLA; the earlier manual-bootstrap failure remains correctly excluded.
 
 Dependencies: M2.4.
 
 ### M2.6 Two-live-cycle gate
 
-- `PENDING` Observe and preserve evidence for two consecutive scheduled weekly cycles; do not backfill these receipts.
-- `PENDING` Verify matured predictions are automatically graded by a genuine scheduled run on the relevant G.19 first print. Workflow-dispatch run `31280013811` proved the real first-print grader path and preserved two grades, but is ineligible for this scheduled-run criterion.
+- `IN_PROGRESS` Observe and preserve evidence for two consecutive scheduled weekly prediction cycles; do not backfill these receipts. The August 7 cycle passed in scheduled run `31228362108`; one additional consecutive weekly prediction cycle remains.
+- `PASS` Verify matured predictions are automatically graded by a genuine scheduled run on the relevant G.19 first print. Scheduled run `31222067493` appended both June grades, verified integrity, published them, and passed its release-to-public SLA.
 - `PASS` Release the M3 start gate after the active public workflow, accepted state recovery, Pages
   deployment, and both registered cron lanes were verified. Continue M2.6 in the background; no
   manual or backfilled run counts toward its remaining evidence.
@@ -230,7 +230,7 @@ Dependencies: public M2.5 deployment and calendar time.
 
 ### M2.7 Cold verification and report
 
-- `IN_PROGRESS` Pass scheduler/public URL checks. Workflow `327469010` is active, Pages is HTTPS and restricted to `main`, every live manifest file and permalink passes, and accepted state recovery passes. Two scheduled cycles remain. A disposable no-local clone of capability commit `7fe2884` completed the documented locked `make.cmd bootstrap` and `make.cmd verify` path on Python 3.12.13: lint/format and strict typing passed, 309 tests passed at 85.05% coverage, and all three determinism tests passed. The production append-count fix passes public CI with 310 tests at 85.10% coverage.
+- `IN_PROGRESS` Pass scheduler/public URL checks. Workflow `327469010` is active, Pages is HTTPS and restricted to `main`, every live manifest file and permalink passes, accepted state recovery passes, and the first genuine scheduled weekly prediction/grade cycle is preserved with passing SLA receipts. One additional consecutive weekly prediction cycle remains. Current public CI passes 405 tests at 85.05% coverage; the latest live feed exposes six immutable predictions and two grades with zero status mismatches.
 - `PENDING` Write `MILESTONE_REPORTS/M2.md`, including metric bars or logged deviations and two-cycle evidence.
 
 Dependencies: M2.1–M2.6.
@@ -339,7 +339,7 @@ Dependencies: M5.1–M5.2.
 
 ## Immediate next actions
 
-1. Preserve the first two genuine scheduled weekly prediction cycles and their deployment receipts.
-2. Verify the relevant G.19 release automatically grades the matured predictions.
+1. Preserve the next genuine scheduled weekly prediction cycle and its deployment receipt to complete the two-cycle M2 gate.
+2. Keep the now-proven automatic G.19 grading lane and repository ledger promotion fail-closed; do not count manual dispatches as cycle evidence.
 3. Preserve M4's Pages-only uptime receipts and keep the D-010 serverless appendix dormant until a trigger occurs.
 4. Hold the verified 50-company M5 boundary until one of Q-003–Q-007 is answered; do not add market data, a paid vendor, or a public API by inference.
