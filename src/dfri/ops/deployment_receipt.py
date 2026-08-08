@@ -61,7 +61,8 @@ def write_deployment_receipt(
     if min(prediction_appended, grade_appended, attribution_refresh_appended) < 0:
         raise DeploymentReceiptError("Deployment append counts cannot be negative")
     latency = round((deployed_at - source_release_at).total_seconds())
-    sla_applicable = mode != "refresh"
+    release_rows_appended = prediction_appended + grade_appended
+    sla_applicable = mode != "refresh" and release_rows_appended > 0
     status = (
         "PASS"
         if sla_applicable and latency <= round(SLA.total_seconds())
