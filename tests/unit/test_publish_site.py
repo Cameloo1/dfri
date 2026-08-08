@@ -203,6 +203,18 @@ def test_feed_contract_has_publication_fields_license_and_typed_parquet(tmp_path
         <= set(row)
         for row in payload["data"]
     )
+    assert all(row["status"] == row["grade_status"] for row in payload["data"])
+    assert {row["status"] for row in payload["data"]} == {
+        "GRADED",
+        "PENDING_FIRST_PRINT",
+    }
+    schema = json.loads((output / "v1" / "feeds" / "schema.json").read_text())
+    assert schema["feeds"]["scoreboard"]["invariants"] == [
+        {
+            "fields": ["status", "grade_status"],
+            "rule": "status equals grade_status for every scoreboard row",
+        }
+    ]
     parquet = pq.read_table(output / "v1" / "feeds" / "nowcast_predictions.parquet")
     assert parquet.num_rows == 2
     assert parquet.schema.field("point").type == pa.float64()

@@ -568,9 +568,14 @@ def _scoreboard_feed_row(
     grade: GradeRecord | None,
     common: Mapping[str, object],
 ) -> dict[str, object]:
+    grade_status = "GRADED" if grade else "PENDING_FIRST_PRINT"
     return {
         **_prediction_feed_row(prediction, common),
-        "grade_status": "GRADED" if grade else "PENDING_FIRST_PRINT",
+        # ``status`` predates grade_status and remains a compatibility field on
+        # this joined feed. It must describe the joined row, not the immutable
+        # prediction record in isolation.
+        "status": grade_status,
+        "grade_status": grade_status,
         "actual_first_print": grade.actual_first_print if grade else None,
         "vintage_url": grade.vintage_url if grade else None,
         "abs_error": grade.abs_error if grade else None,
@@ -951,6 +956,12 @@ def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
             "scoreboard": {
                 "formats": ["csv", "json"],
                 "columns": _column_docs(_scoreboard_columns()),
+                "invariants": [
+                    {
+                        "fields": ["status", "grade_status"],
+                        "rule": "status equals grade_status for every scoreboard row",
+                    }
+                ],
             },
             "dfri_companies": {
                 "formats": ["csv", "json", "parquet"],
