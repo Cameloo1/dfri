@@ -25,7 +25,14 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     assert "github.event.repository.default_branch" in workflow
     assert "dfri.ops.state_bundle unpack" in workflow
     assert "dfri.ops.state_bundle pack" in workflow
-    assert "refusing an implicit clock reset" in workflow
+    assert "No retained runtime cache is available" in workflow
+    assert "dfri.ops.repository_ledger restore" in workflow
+    assert "dfri.ops.repository_ledger snapshot" in workflow
+    assert "dfri.ops.repository_ledger merge" in workflow
+    assert "state/ledgers" in workflow
+    assert "git diff --cached --name-status" in workflow
+    assert 'git push origin "HEAD:${GITHUB_REF_NAME}"' in workflow
+    assert "could not persist accepted ledger state to Git after three attempts" in workflow
     assert "dfri-m2-state-candidate" in workflow
     assert "Preserve deployment-accepted runtime state" in workflow
     assert "bootstrap_state" in workflow
@@ -45,11 +52,16 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     assert "actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1" in workflow
     deploy = workflow.index("Deploy the accepted Pages artifact")
     accepted_state = workflow.index("Preserve deployment-accepted runtime state")
+    repository_merge = workflow.index(
+        "Verify and merge the deployment-accepted repository ledger candidate"
+    )
+    repository_commit = workflow.index("Commit newly appended public ledger batches to Git")
     receipt = workflow.index(
         "Write the deployment receipt and enforce the applicable four-hour SLA"
     )
-    assert deploy < accepted_state < receipt
+    assert deploy < accepted_state < repository_merge < repository_commit < receipt
     assert "pages: write" in workflow and "id-token: write" in workflow
+    assert "contents: write" in workflow
     assert "dfri.ops.deployment_receipt" in workflow
     assert "dfri.ops.quarterly_refresh" in workflow
     assert "attribution_refresh_appended" in workflow

@@ -52,6 +52,7 @@ dfri-changelog = "dfri.publish.changelog:main"
 dfri-publish = "dfri.seed.publication:main"
 dfri-api-benchmark = "dfri.api.benchmark:main"
 dfri-uptime = "dfri.ops.uptime:main"
+dfri-repository-ledger = "dfri.ops.repository_ledger:main"
 
 [dependency-groups]
 dev = [
