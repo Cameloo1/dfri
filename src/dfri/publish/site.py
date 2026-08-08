@@ -25,7 +25,10 @@ from dfri.attribution.registry import (
     AttributionBundle,
     load_attribution_bundle,
 )
+from dfri.lake.guard import VintageGuard
+from dfri.lake.readers import CachingSeriesReader, LakeSeriesReader
 from dfri.lake.store import AppendOnlyParquetStore, write_deterministic_parquet
+from dfri.nowcast.targets import read_first_print_targets
 from dfri.ops.quarterly_refresh import (
     QuarterlyRefreshLedger,
     QuarterlyRefreshRecord,
@@ -42,6 +45,7 @@ from dfri.publish.ledger import (
     PublicationRecord,
     publication_record,
 )
+from dfri.publish.live_calibration import LiveCalibration, calculate_live_calibration
 
 METHODOLOGY_VERSION: Final = DEFAULT_METHODOLOGY_VERSION
 LICENSE: Final = (
@@ -77,6 +81,7 @@ def publish_scoreboard(
     ledger_store: AppendOnlyParquetStore,
     output_root: Path,
     *,
+    raw_store: AppendOnlyParquetStore | None = None,
     published_at: datetime,
     data_vintage: datetime,
     publication_mode: str,
@@ -97,6 +102,7 @@ def publish_scoreboard(
         receipt = _build_scoreboard(
             ledger_store,
             staging_root,
+            raw_store=raw_store or ledger_store,
             published_at=published_at,
             data_vintage=data_vintage,
             publication_mode=publication_mode,
@@ -121,6 +127,7 @@ def _build_scoreboard(
     ledger_store: AppendOnlyParquetStore,
     output_root: Path,
     *,
+    raw_store: AppendOnlyParquetStore,
     published_at: datetime,
     data_vintage: datetime,
     publication_mode: str,
@@ -178,6 +185,25 @@ def _build_scoreboard(
     orphan_grades = sorted(set(grade_by_id) - prediction_ids)
     if orphan_grades:
         raise SitePublishError(f"Stored grade has no prediction: {orphan_grades[0]}")
+    selected_grades = tuple(
+        grade_by_id[item.prediction_id] for item in predictions if item.prediction_id in grade_by_id
+    )
+    graded_series = {
+        item.target_series for item in predictions if item.prediction_id in grade_by_id
+    }
+    target_histories = {}
+    if graded_series:
+        guard = VintageGuard(CachingSeriesReader(LakeSeriesReader(raw_store)))
+        target_histories = {
+            target_series: read_first_print_targets(guard, target_series, published_at)
+            for target_series in sorted(graded_series)
+        }
+    live_calibration = calculate_live_calibration(
+        predictions,
+        selected_grades,
+        target_histories,
+        backtest,
+    )
     publications = PublicationLedger(ledger_store)
     publication_by_id = {item.prediction_id: item for item in publications.read_all()}
     orphan_publications = sorted(set(publication_by_id) - prediction_ids)
@@ -251,6 +277,7 @@ def _build_scoreboard(
         **build_meta,
         "excluded_prepublication_count": excluded_count,
         "row_count": len(prediction_rows),
+        "live_calibration": live_calibration.feed(),
     }
     _write_json(feeds / "nowcast_predictions.json", {"meta": meta, "data": prediction_rows})
     _write_csv(feeds / "nowcast_predictions.csv", prediction_rows, _prediction_columns())
@@ -355,6 +382,8 @@ def _build_scoreboard(
         )
     ]
     summary = _summary(display_rows, backtest)
+    calibration_display = _calibration_display(live_calibration)
+    first_grade_callout = _first_grade_callout(predictions, grade_by_id, backtest)
     environment = Environment(
         loader=FileSystemLoader(root / "site" / "templates"),
         autoescape=select_autoescape(("html",)),
@@ -407,6 +436,8 @@ def _build_scoreboard(
             "title": "Scoreboard",
             "description": "Every immutable DFRI prediction and first-print grade.",
             "rows": display_rows,
+            "live_calibration": calibration_display,
+            "first_grade_callout": first_grade_callout,
         },
     )
     _render(
@@ -568,9 +599,14 @@ def _scoreboard_feed_row(
     grade: GradeRecord | None,
     common: Mapping[str, object],
 ) -> dict[str, object]:
+    grade_status = "GRADED" if grade else "PENDING_FIRST_PRINT"
     return {
         **_prediction_feed_row(prediction, common),
-        "grade_status": "GRADED" if grade else "PENDING_FIRST_PRINT",
+        # ``status`` predates grade_status and remains a compatibility field on
+        # this joined feed. It must describe the joined row, not the immutable
+        # prediction record in isolation.
+        "status": grade_status,
+        "grade_status": grade_status,
         "actual_first_print": grade.actual_first_print if grade else None,
         "vintage_url": grade.vintage_url if grade else None,
         "abs_error": grade.abs_error if grade else None,
@@ -621,6 +657,71 @@ def _summary(rows: list[dict[str, object]], backtest: dict[str, object]) -> dict
         "coverage80_display": f"{cast(float, metric['coverage80']) * 100:.1f}%",
         "coverage95_display": f"{cast(float, metric['coverage95']) * 100:.1f}%",
     }
+
+
+def _calibration_display(calibration: LiveCalibration) -> dict[str, object]:
+    versions = sorted(set(calibration.naive_model_versions.values()))
+    return {
+        "graded_count": calibration.graded_count,
+        "coverage80_display": _percentage(calibration.coverage80),
+        "coverage95_display": _percentage(calibration.coverage95),
+        "mae_display": _optional_number(calibration.mae),
+        "naive_mae_display": _optional_number(calibration.naive_mae),
+        "naive_model_display": ", ".join(versions) if versions else "awaiting first grade",
+    }
+
+
+def _first_grade_callout(
+    predictions: Sequence[PredictionRecord],
+    grade_by_id: Mapping[str, GradeRecord],
+    backtest: Mapping[str, object],
+) -> dict[str, str] | None:
+    graded_revolving = [
+        item
+        for item in sorted(predictions, key=lambda row: (row.made_at, row.prediction_id))
+        if item.target_series == "DELTA_DTCTLR.M" and item.prediction_id in grade_by_id
+    ]
+    if not graded_revolving:
+        return None
+    prediction = graded_revolving[0]
+    grade = grade_by_id[prediction.prediction_id]
+    sign_miss = (prediction.point < 0 < grade.actual_first_print) or (
+        prediction.point > 0 > grade.actual_first_print
+    )
+    outside80 = not (prediction.low80 <= grade.actual_first_print <= prediction.high80)
+    if not sign_miss or not outside80:
+        return None
+    return {
+        "prediction_id": prediction.prediction_id,
+        "predicted": _number(prediction.point),
+        "actual": _number(grade.actual_first_print),
+        "abs_error": _rounded_tens(grade.abs_error),
+        "backtest_mae": _number(_backtest_mae(backtest, prediction)),
+    }
+
+
+def _backtest_mae(backtest: Mapping[str, object], prediction: PredictionRecord) -> float:
+    targets = backtest.get("targets")
+    if not isinstance(targets, list):
+        raise SitePublishError("Backtest targets must be a list")
+    for raw_target in targets:
+        if not isinstance(raw_target, dict):
+            continue
+        if raw_target.get("target_series") != prediction.target_series:
+            continue
+        metrics = raw_target.get("metrics")
+        if not isinstance(metrics, list):
+            break
+        for metric in metrics:
+            if (
+                isinstance(metric, dict)
+                and metric.get("model_version") == prediction.model_version
+                and isinstance(metric.get("mae"), (int, float))
+            ):
+                return float(metric["mae"])
+    raise SitePublishError(
+        f"Backtest has no MAE for {prediction.target_series}/{prediction.model_version}"
+    )
 
 
 def _company_feed_rows(
@@ -951,6 +1052,19 @@ def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
             "scoreboard": {
                 "formats": ["csv", "json"],
                 "columns": _column_docs(_scoreboard_columns()),
+                "metadata": {
+                    "live_calibration": (
+                        "Running coverage and error statistics computed only from live grades; "
+                        "the naive comparator is refit using first prints available when each "
+                        "prediction was recorded."
+                    )
+                },
+                "invariants": [
+                    {
+                        "fields": ["status", "grade_status"],
+                        "rule": "status equals grade_status for every scoreboard row",
+                    }
+                ],
             },
             "dfri_companies": {
                 "formats": ["csv", "json", "parquet"],
@@ -1313,6 +1427,18 @@ def _number(value: float) -> str:
     return f"{value:,.0f}"
 
 
+def _rounded_tens(value: float) -> str:
+    return f"{round(value, -1):,.0f}"
+
+
+def _optional_number(value: float | None) -> str:
+    return _number(value) if value is not None else "—"
+
+
+def _percentage(value: float | None) -> str:
+    return f"{value * 100:.1f}%" if value is not None else "—"
+
+
 def _aware(value: datetime, label: str) -> None:
     if value.tzinfo is None or value.utcoffset() is None:
         raise SitePublishError(f"{label} must be timezone-aware")
@@ -1330,6 +1456,7 @@ def _parse_timestamp(value: str) -> datetime:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--raw-root", type=Path, default=Path(".local/lake/raw"))
     parser.add_argument("--ledger-root", type=Path, default=Path(".local/lake/curated"))
     parser.add_argument("--output", type=Path, default=Path("published/public"))
     parser.add_argument("--published-at", type=_parse_timestamp)
@@ -1340,6 +1467,7 @@ def main() -> None:
     receipt = publish_scoreboard(
         AppendOnlyParquetStore(args.ledger_root),
         args.output,
+        raw_store=AppendOnlyParquetStore(args.raw_root),
         published_at=args.published_at or datetime.now(UTC),
         data_vintage=args.data_vintage,
         publication_mode=args.publication_mode,

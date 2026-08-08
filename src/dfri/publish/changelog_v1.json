@@ -89,6 +89,30 @@
         {"label": "Company feed v2", "href": "/v2/feeds/dfri_companies.json"},
         {"label": "Feed schema v2", "href": "/v2/feeds/schema.json"}
       ]
+    },
+    {
+      "entry_id": "scoreboard-feed-grade-status-corrected",
+      "published_on": "2026-08-08",
+      "kind": "publication",
+      "version": "1.1.1",
+      "title": "Graded feed status corrected",
+      "summary": "Corrected the scoreboard compatibility status so every graded row reports GRADED, matching grade_status; the feed schema now states and tests that invariant.",
+      "links": [
+        {"label": "Scoreboard feed", "href": "/v1/feeds/scoreboard.json"},
+        {"label": "Feed schema", "href": "/v1/feeds/schema.json"}
+      ]
+    },
+    {
+      "entry_id": "scoreboard-first-live-grades",
+      "published_on": "2026-08-08",
+      "kind": "publication",
+      "version": "bridge-ridge-v2-alpha10",
+      "title": "First live grades published without softening",
+      "summary": "Published the first two live grades, prominently flagging that the revolving prediction missed direction and its 80% interval; added running live-only coverage and MAE comparisons without retraining or retuning the model.",
+      "links": [
+        {"label": "Scoreboard", "href": "/scoreboard/"},
+        {"label": "Scoreboard feed", "href": "/v1/feeds/scoreboard.json"}
+      ]
     }
   ]
 }

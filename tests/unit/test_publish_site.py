@@ -35,16 +35,57 @@ TIER_LEGEND_COPY = (
 
 
 def seed(store: AppendOnlyParquetStore) -> tuple[str, str]:
+    periods = [
+        date(2026, 1, 31),
+        date(2026, 2, 28),
+        date(2026, 3, 31),
+        date(2026, 4, 30),
+        date(2026, 5, 31),
+        date(2026, 6, 30),
+    ]
+    releases = [
+        datetime(2026, 2, 7, 19, tzinfo=UTC),
+        datetime(2026, 3, 7, 19, tzinfo=UTC),
+        datetime(2026, 4, 7, 19, tzinfo=UTC),
+        datetime(2026, 5, 7, 19, tzinfo=UTC),
+        datetime(2026, 6, 7, 19, tzinfo=UTC),
+        datetime(2026, 8, 4, 20, 30, tzinfo=UTC),
+    ]
+    store.append(
+        "raw_observations",
+        [
+            {
+                "source": "DFRI_DERIVED_BOARD_FIRST_PRINT_V1",
+                "series_id": "DELTA_DTCTLR.M",
+                "obs_period": period,
+                "value": value,
+                "unit": "Millions of U.S. Dollars",
+                "release_date": release,
+                "vintage_date": release.date(),
+                "ingested_at": release,
+                "source_url": (f"https://www.federalreserve.gov/releases/g19/{release:%Y%m%d}/"),
+                "checksum": f"{index:064x}",
+            }
+            for index, (period, release, value) in enumerate(
+                zip(
+                    periods,
+                    releases,
+                    [1_000.0, 3_000.0, -2_000.0, 4_500.0, 500.0, 10_500.0],
+                    strict=True,
+                )
+            )
+        ],
+    )
     first = BridgeForecast(
         model_version="bridge-ridge-v2-alpha10",
         target_series="DELTA_DTCTLR.M",
         target_period=date(2026, 6, 30),
         made_at=datetime(2026, 8, 4, 20, 0, tzinfo=UTC),
-        point=10_000.0,
-        low80=8_000.0,
-        high80=12_000.0,
-        low95=6_000.0,
-        high95=14_000.0,
+        point=-5_529.0,
+        low80=-13_243.0,
+        high80=2_184.0,
+        low95=-17_327.0,
+        high95=6_268.0,
         training_observations=137,
         inputs_hash="a" * 64,
     )
@@ -128,6 +169,11 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert first_id in scoreboard and second_id in scoreboard
     assert "Not released" in scoreboard
     assert "10,500" in scoreboard
+    assert "Live results only · not backtest" in scoreboard
+    assert "The first revolving forecast missed." in scoreboard
+    assert "missed the sign and fell outside its 80% interval" in scoreboard
+    assert "statistically uninformative" in scoreboard
+    assert "has not been retrained or retuned" in scoreboard
     assert "Research and educational content. Not investment advice." in home
     assert 'href="https://creativecommons.org/licenses/by-nc/4.0/"' in home
     assert 'href="mailto:ops@camelon.app"' in home
@@ -191,6 +237,11 @@ def test_feed_contract_has_publication_fields_license_and_typed_parquet(tmp_path
     assert payload["meta"]["license_url"] == "https://creativecommons.org/licenses/by-nc/4.0/"
     assert payload["meta"]["commercial_license_contact"] == "ops@camelon.app"
     assert payload["meta"]["publication_mode"] == "live"
+    assert payload["meta"]["live_calibration"]["scope"] == "live_grades_only"
+    assert payload["meta"]["live_calibration"]["graded_count"] == 1
+    assert payload["meta"]["live_calibration"]["coverage80"] == 0.0
+    assert payload["meta"]["live_calibration"]["coverage95"] == 0.0
+    assert payload["meta"]["live_calibration"]["mae"] == pytest.approx(16_029.0)
     assert all(
         {
             "methodology_version",
@@ -203,6 +254,19 @@ def test_feed_contract_has_publication_fields_license_and_typed_parquet(tmp_path
         <= set(row)
         for row in payload["data"]
     )
+    assert all(row["status"] == row["grade_status"] for row in payload["data"])
+    assert {row["status"] for row in payload["data"]} == {
+        "GRADED",
+        "PENDING_FIRST_PRINT",
+    }
+    schema = json.loads((output / "v1" / "feeds" / "schema.json").read_text())
+    assert schema["feeds"]["scoreboard"]["invariants"] == [
+        {
+            "fields": ["status", "grade_status"],
+            "rule": "status equals grade_status for every scoreboard row",
+        }
+    ]
+    assert "live grades" in schema["feeds"]["scoreboard"]["metadata"]["live_calibration"]
     parquet = pq.read_table(output / "v1" / "feeds" / "nowcast_predictions.parquet")
     assert parquet.num_rows == 2
     assert parquet.schema.field("point").type == pa.float64()
