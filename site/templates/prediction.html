@@ -3,13 +3,13 @@
 <div class="eyebrow">Immutable prediction permalink</div>
 <h1>{{ row.target_label }} · {{ row.target_period }}</h1>
 <p class="lede">Recorded {{ row.made_at_display }} under model <span class="hash">{{ row.model_version }}</span>. This prediction row is append-only and cannot be edited after acceptance.</p>
-<section class="card">
+<section class="card record-hero">
   <div class="kicker">Point estimate</div><div class="number">{{ row.point_display }}</div><div class="meta">Seasonally adjusted monthly flow, millions of U.S. dollars</div>
   <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="95 percent prediction interval from {{ row.low95_display }} to {{ row.high95_display }}; point {{ row.point_display }}">
     <title>Prediction band: {{ row.low95_display }} to {{ row.high95_display }}, point {{ row.point_display }}</title>
     <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
-    <line x1="108" y1="36" x2="492" y2="36" class="range-band" />
-    <circle cx="300" cy="36" r="9" class="range-mid" />
+    <rect x="108" y="23" width="384" height="26" class="range-band" />
+    <line x1="300" y1="18" x2="300" y2="54" class="range-mid-rule" />
     <text x="108" y="68" text-anchor="middle">{{ row.low95_display }}</text><text x="300" y="68" text-anchor="middle">{{ row.point_display }}</text><text x="492" y="68" text-anchor="middle">{{ row.high95_display }}</text>
   </svg>
 </section>
