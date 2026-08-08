@@ -400,6 +400,9 @@ refetch and byte-check every already stored dated artifact.
 
 ## Ragged-edge bridge model
 
+[The modeling architecture](docs/MODELING.md) gives the complete code-derived account of every
+implemented model, benchmark, point-in-time boundary, and attribution calculation.
+
 The deterministic bridge model predicts each monthly first-print G.19 flow from the matching
 H.8 weekly loan changes, the first-print MARTS retail flow when it was already public, and month
 seasonality. Model code obtains every observation through the Vintage Guard. H.8 changes use
@@ -414,8 +417,8 @@ backtest improved primary MAE while returning finite, operationally meaningful l
 Each forecast carries its model version, training count, forecast timestamp, evidence-sensitive
 input hash, point estimate, and 80/95% prediction bands. Historical evaluation uses only first
 prints and strictly prior training months. The state-space candidate and the reproducible M2
-model-selection report remain separate gates; the bridge is not yet claimed as the headline
-model.
+model-selection report remain separate evidence surfaces; the bridge is the selected headline
+model and the only model version in the public prediction ledger.
 
 The mixed-frequency candidate retains each available H.8 Wednesday change as its own measurement
 of a latent monthly G.19 flow in a statsmodels Kalman filter. The target, weekly H.8, and retail
