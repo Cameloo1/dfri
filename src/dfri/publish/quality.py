@@ -100,7 +100,9 @@ def check_site(root: Path) -> SiteQualityReceipt:
     forbidden = ("document.write", "google-analytics", "gtag(", "localStorage", "cookie")
     if any(item in javascript for item in forbidden):
         raise SiteQualityError("Site JavaScript contains a tracking, persistence, or content gate")
-    minimum_contrast = _check_contrast((root / "assets" / "site.css").read_text())
+    css = (root / "assets" / "site.css").read_text()
+    _check_editorial_contract(css)
+    minimum_contrast = _check_contrast(css)
     max_path = max(page_sizes, key=page_sizes.__getitem__)
     return SiteQualityReceipt(
         status="PASS",
@@ -136,6 +138,10 @@ def _check_document(relative: str, content: str) -> None:
     for svg in re.findall(r"<svg\b.*?</svg>", content, flags=re.DOTALL):
         if 'role="img"' not in svg or "<title>" not in svg:
             raise SiteQualityError(f"{relative} has an unlabelled SVG chart")
+        if ("range-chart" in svg or "history-chart" in svg) and (
+            "<rect " not in svg or 'class="range-band"' not in svg
+        ):
+            raise SiteQualityError(f"{relative} renders a band without a visible range")
     visible = re.sub(r"<[^>]+>", " ", content)
     if len(" ".join(visible.split())) < 100:
         raise SiteQualityError(f"{relative} lacks server-rendered no-JavaScript content")
@@ -165,9 +171,9 @@ def _check_contrast(css: str) -> float:
     pairs = (
         ("ink", "paper"),
         ("muted", "paper"),
-        ("blue", "paper"),
-        ("ink", "surface"),
-        ("muted", "surface"),
+        ("verified", "paper"),
+        ("ink", "raised-paper"),
+        ("muted", "raised-paper"),
     )
     try:
         ratios = [
@@ -180,6 +186,32 @@ def _check_contrast(css: str) -> float:
     if minimum < 4.5:
         raise SiteQualityError(f"Text contrast below WCAG AA: {minimum:.2f}:1")
     return minimum
+
+
+def _check_editorial_contract(css: str) -> None:
+    required = (
+        "--display:",
+        "--mono:",
+        "--verified:",
+        "font-variant-numeric: tabular-nums lining-nums",
+        ".section-block::before",
+        ".range-mid-rule",
+        ".status.graded",
+    )
+    missing = [item for item in required if item not in css]
+    if missing:
+        raise SiteQualityError(f"Editorial ledger CSS lacks required contract: {missing[0]}")
+    forbidden = ("@font-face", "box-shadow:", "filter: drop-shadow", "url(http")
+    used = [item for item in forbidden if item in css]
+    if used:
+        raise SiteQualityError(f"Editorial ledger CSS contains forbidden treatment: {used[0]}")
+    verified_selectors = [
+        selector.strip()
+        for selector, declarations in re.findall(r"([^{}]+)\{([^{}]*)\}", css)
+        if "var(--verified)" in declarations
+    ]
+    if verified_selectors != [".status.graded"]:
+        raise SiteQualityError("Verified accent must be exclusive to the graded state")
 
 
 def _contrast(first: str, second: str) -> float:

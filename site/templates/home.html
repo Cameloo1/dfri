@@ -13,8 +13,8 @@
     <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="Estimated DFR percent band from {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}">
       <title>Estimated DFR% band: {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}</title>
       <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
-      <line x1="108" y1="36" x2="492" y2="36" class="range-band" />
-      <circle cx="300" cy="36" r="9" class="range-mid" />
+      <rect x="108" y="23" width="384" height="26" class="range-band" />
+      <line x1="300" y1="18" x2="300" y2="54" class="range-mid-rule" />
       <text x="108" y="68" text-anchor="middle">{{ aggregate.low }}</text>
       <text x="300" y="68" text-anchor="middle">{{ aggregate.mid }}</text>
       <text x="492" y="68" text-anchor="middle">{{ aggregate.high }}</text>
@@ -31,8 +31,8 @@
     <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="95 percent prediction interval from {{ latest.low95_display }} to {{ latest.high95_display }}; point {{ latest.point_display }}">
       <title>Prediction band: {{ latest.low95_display }} to {{ latest.high95_display }}, point {{ latest.point_display }}</title>
       <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
-      <line x1="108" y1="36" x2="492" y2="36" class="range-band" />
-      <circle cx="300" cy="36" r="9" class="range-mid" />
+      <rect x="108" y="23" width="384" height="26" class="range-band" />
+      <line x1="300" y1="18" x2="300" y2="54" class="range-mid-rule" />
       <text x="108" y="68" text-anchor="middle">{{ latest.low95_display }}</text><text x="300" y="68" text-anchor="middle">{{ latest.point_display }}</text><text x="492" y="68" text-anchor="middle">{{ latest.high95_display }}</text>
     </svg>
     <p><a href="scoreboard/predictions/{{ latest.prediction_id }}/index.html">Open immutable prediction →</a></p>

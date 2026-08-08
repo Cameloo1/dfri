@@ -45,8 +45,31 @@ def test_quality_gate_rejects_missing_required_page(tmp_path: Path) -> None:
         check_site(root)
 
 
+def test_quality_gate_rejects_band_reduced_to_non_range_markup(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    page = root / "companies" / "gm" / "index.html"
+    content = page.read_text(encoding="utf-8").replace(
+        'class="range-band"', 'class="range-only-point"', 1
+    )
+    page.write_text(content, encoding="utf-8")
+
+    with pytest.raises(SiteQualityError, match="without a visible range"):
+        check_site(root)
+
+
+def test_quality_gate_reserves_accent_for_graded_state(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    css = root / "assets" / "site.css"
+    css.write_text(css.read_text(encoding="utf-8") + "\na { color: var(--verified); }\n")
+
+    with pytest.raises(SiteQualityError, match="exclusive to the graded state"):
+        check_site(root)
+
+
 def test_browser_accessibility_gate_includes_m5_methodology_pages() -> None:
     script = (Path(__file__).parents[2] / "tools" / "axe-check.mjs").read_text(encoding="utf-8")
 
     assert '"/methodology/coverage/"' in script
     assert '"/methodology/sensitivity/"' in script
+    assert '"scoreboard", "predictions"' in script
+    assert "`/scoreboard/predictions/${entry.name}/`" in script

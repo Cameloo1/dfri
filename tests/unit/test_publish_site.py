@@ -299,6 +299,8 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     home = (output / "index.html").read_text(encoding="utf-8")
     assert "Estimated DFR%" in home
     assert "range-chart" in home
+    assert '<rect x="108" y="23" width="384" height="26" class="range-band"' in home
+    assert 'class="range-mid-rule"' in home
     assert 'id="evidence-lift"' in home
     assert "evidence, not risk, credit quality, or investment merit" in home
     assert (output / "changelog" / "index.html").exists()
@@ -319,6 +321,8 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
         assert "Estimated DFR% band" in html
         assert "Assumption sensitivity top 5" in html
         assert "Estimated DFR% band over time" in html
+        assert 'class="range-band"' in html
+        assert 'class="range-mid-rule"' in html
         if row["tier1_source_url"]:
             assert row["tier1_excerpt"] in html_lib.unescape(html)
             assert row["tier1_source_url"] in html
@@ -337,6 +341,11 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     assert cvna["evidence_lift"] > 10
     assert 15 < cvna["estimated_dfr_pct_mid"] < 22
     assert cvna["tier1_share"] > 0.5
+
+    prediction = next((output / "scoreboard" / "predictions").glob("*/index.html"))
+    prediction_html = prediction.read_text(encoding="utf-8")
+    assert 'class="card record-hero"' in prediction_html
+    assert '<rect x="108" y="23" width="384" height="26" class="range-band"' in prediction_html
 
 
 def test_prepublication_filter_is_explicit_and_validation_blocks_bad_boundaries(

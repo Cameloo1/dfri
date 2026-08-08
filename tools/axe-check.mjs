@@ -30,6 +30,9 @@ function safePath(urlPath) {
 
 async function routes() {
   const companies = await readdir(join(publicationRoot, "companies"), { withFileTypes: true });
+  const predictions = await readdir(join(publicationRoot, "scoreboard", "predictions"), {
+    withFileTypes: true,
+  });
   return [
     "/",
     "/scoreboard/",
@@ -40,6 +43,10 @@ async function routes() {
     ...companies
       .filter((entry) => entry.isDirectory())
       .map((entry) => `/companies/${entry.name}/`)
+      .sort(),
+    ...predictions
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => `/scoreboard/predictions/${entry.name}/`)
       .sort(),
   ];
 }
