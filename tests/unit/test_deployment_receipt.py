@@ -74,6 +74,30 @@ def test_quarterly_refresh_receipt_preserves_age_without_claiming_the_m2_sla(
     assert payload["attribution_refresh_appended"] == 1
 
 
+def test_no_change_rebuild_records_evidence_without_claiming_the_release_sla(
+    tmp_path: Path,
+) -> None:
+    output = tmp_path / "rebuild.json"
+    receipt = write_deployment_receipt(
+        output,
+        mode="all",
+        source_release_at=RELEASED,
+        published_at=RELEASED + timedelta(days=1),
+        deployed_at=RELEASED + timedelta(days=1, minutes=2),
+        page_url="https://example.com/dfri/",
+        workflow_url="https://github.com/camelon/dfri/actions/runs/1",
+        commit_sha=SHA,
+        prediction_appended=0,
+        grade_appended=0,
+        attribution_refresh_appended=0,
+    )
+
+    payload = json.loads(output.read_text())
+    assert receipt.sla_status == "NOT_APPLICABLE"
+    assert payload["sla_applicable"] is False
+    assert payload["latency_seconds"] == 86_520
+
+
 @pytest.mark.parametrize(
     ("page_url", "commit_sha", "published_at", "message"),
     [
