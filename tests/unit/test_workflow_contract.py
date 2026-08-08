@@ -51,6 +51,10 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     )
     assert "actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1" in workflow
     deploy = workflow.index("Deploy the accepted Pages artifact")
+    checkout = workflow.index(
+        "Check out current default branch for ledger promotion and receipt writer"
+    )
+    candidate_download = workflow.index("Download the candidate runtime state")
     accepted_state = workflow.index("Preserve deployment-accepted runtime state")
     repository_merge = workflow.index(
         "Verify and merge the deployment-accepted repository ledger candidate"
@@ -59,7 +63,15 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     receipt = workflow.index(
         "Write the deployment receipt and enforce the applicable four-hour SLA"
     )
-    assert deploy < accepted_state < repository_merge < repository_commit < receipt
+    assert (
+        deploy
+        < checkout
+        < candidate_download
+        < accepted_state
+        < repository_merge
+        < repository_commit
+        < receipt
+    )
     assert "pages: write" in workflow and "id-token: write" in workflow
     assert "contents: write" in workflow
     assert "dfri.ops.deployment_receipt" in workflow
