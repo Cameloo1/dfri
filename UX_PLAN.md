@@ -237,4 +237,3 @@ No implementation is complete until all of the following pass:
    names on every page. Record the worst finding, including `none` only if the evidence supports it.
 5. Walk the primary path in the rendered site at desktop and mobile widths. Report observed
    behavior and remaining uncertainty; do not claim the untested behavioral hypotheses are proven.
-

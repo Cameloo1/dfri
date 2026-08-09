@@ -472,6 +472,24 @@ def _build_scoreboard(
     company_displays = [_company_display(item) for item in attribution.companies]
     company_histories = _company_histories(attribution, company_history_rows)
     aggregate_display = _aggregate_display(attribution)
+    company_midpoint_anchor = _company_midpoint_anchor(attribution)
+    companies_by_lift = [
+        {**item, "rank": rank}
+        for rank, item in enumerate(
+            sorted(
+                company_displays,
+                key=lambda item: (
+                    -cast(float, item["evidence_lift_value"]),
+                    str(item["ticker"]),
+                ),
+            ),
+            start=1,
+        )
+    ]
+    evidence_supported_companies = [
+        item for item in companies_by_lift if not cast(bool, item["baseline_only"])
+    ]
+    baseline_companies = [item for item in companies_by_lift if cast(bool, item["baseline_only"])]
     credit_flow = _credit_flow_view(attribution_bundle, attribution)
     comparison_rows = _methodology_comparison(prior_attribution, attribution)
     _render(
@@ -481,20 +499,34 @@ def _build_scoreboard(
         {
             **base_context,
             "root": "",
+            "active_nav": None,
             "title": "Immutable consumer-credit nowcasts",
             "description": "DFRI predictions and first-print Federal Reserve G.19 grades.",
             "latest": display_rows[0] if display_rows else None,
             "summary": summary,
+            "live_calibration": calibration_display,
             "aggregate": aggregate_display,
-            "companies": company_displays,
-            "companies_by_lift": sorted(
-                company_displays,
-                key=lambda item: (-cast(float, item["evidence_lift_value"]), str(item["ticker"])),
-            ),
+            "company_midpoint_anchor": company_midpoint_anchor,
+            "evidence_supported_companies": evidence_supported_companies,
+            "baseline_companies": baseline_companies,
             "evidence_lift_headline": attribution.evidence_lift_headline,
             "company_count": len(company_displays),
             "credit_flow": credit_flow,
             "credit_flow_methodology_href": "methodology/index.html#credit-flow",
+        },
+    )
+    _render(
+        environment,
+        "companies.html",
+        output_root / "companies" / "index.html",
+        {
+            **base_context,
+            "root": "../",
+            "active_nav": "companies",
+            "title": "Companies",
+            "description": "Alphabetical directory of all covered DFRI company estimates.",
+            "companies": sorted(company_displays, key=lambda item: str(item["ticker"])),
+            "company_count": len(company_displays),
         },
     )
     _render(
@@ -504,6 +536,7 @@ def _build_scoreboard(
         {
             **base_context,
             "root": "../",
+            "active_nav": "scoreboard",
             "title": "Scoreboard",
             "description": "Every immutable DFRI prediction and first-print grade.",
             "rows": display_rows,
@@ -518,6 +551,7 @@ def _build_scoreboard(
         {
             **base_context,
             "root": "../",
+            "active_nav": "methodology",
             "title": "Methodology",
             "description": "Point-in-time DFRI nowcast and attribution methodology.",
             "summary": summary,
@@ -536,6 +570,7 @@ def _build_scoreboard(
         {
             **base_context,
             "root": "../../",
+            "active_nav": "methodology",
             "title": "Methodology sensitivity",
             "description": "Immutable comparison of DFRI methodology versions 1.1.0 and 1.1.1.",
             "prior_methodology_version": prior_attribution.methodology_version,
@@ -553,6 +588,7 @@ def _build_scoreboard(
         {
             **base_context,
             "root": "../../",
+            "active_nav": "methodology",
             "title": "Coverage and exclusions",
             "description": "Dated DFRI P1 coverage boundary and exclusion reasons.",
             "verified_at": coverage["verified_at"],
@@ -569,6 +605,7 @@ def _build_scoreboard(
         {
             **base_context,
             "root": "../",
+            "active_nav": "changelog",
             "title": "Changelog",
             "description": "Append-only DFRI publication and methodology changes.",
             "entries": [item.display() for item in reversed(changelog)],
@@ -582,6 +619,7 @@ def _build_scoreboard(
             {
                 **base_context,
                 "root": "../../",
+                "active_nav": "companies",
                 "title": f"{company.company_name} ({company.ticker})",
                 "description": (f"Estimated debt-funded revenue share for {company.company_name}."),
                 "company": display,
@@ -596,6 +634,7 @@ def _build_scoreboard(
             {
                 **base_context,
                 "root": "../../../",
+                "active_nav": None,
                 "title": f"Prediction {row['prediction_id']}",
                 "description": (
                     "Immutable DFRI prediction, uncertainty bands, and first-print grade."
@@ -1069,6 +1108,25 @@ def _aggregate_display(result: AttributionResult) -> dict[str, object]:
         "tier3": f"{aggregate.tier3_share * 100:.1f}%",
         "weighting": aggregate.weighting,
         "company_count": len(result.companies),
+    }
+
+
+def _company_midpoint_anchor(result: AttributionResult) -> dict[str, object]:
+    ordered = sorted(
+        result.companies,
+        key=lambda company: (company.estimated_dfr_pct_mid, company.ticker),
+    )
+    if not ordered:
+        raise SitePublishError("Company midpoint comparison requires covered companies")
+    lowest = ordered[0]
+    highest = ordered[-1]
+    return {
+        "lowest_mid": f"{lowest.estimated_dfr_pct_mid:.2f}%",
+        "lowest_name": lowest.company_name,
+        "lowest_href": f"companies/{lowest.ticker.lower()}/index.html",
+        "highest_mid": f"{highest.estimated_dfr_pct_mid:.2f}%",
+        "highest_name": highest.company_name,
+        "highest_href": f"companies/{highest.ticker.lower()}/index.html",
     }
 
 

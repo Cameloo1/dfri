@@ -156,6 +156,7 @@ def check_site(root: Path) -> SiteQualityReceipt:
     required = (
         root / "index.html",
         root / "scoreboard" / "index.html",
+        root / "companies" / "index.html",
         root / "methodology" / "index.html",
         root / "methodology" / "sensitivity" / "index.html",
         root / "methodology" / "coverage" / "index.html",
@@ -201,8 +202,20 @@ def check_site(root: Path) -> SiteQualityReceipt:
         or "estimated share of U.S. consumer revenue" not in home
         or 'id="evidence-lift"' not in home
         or "No company-specific financing evidence found" not in home
+        or home.count('data-lift-status="evidence-supported"') != 12
+        or home.count('data-lift-status="baseline-only"') != 38
+        or '<details class="baseline-disclosure">' not in home
+        or 'href="companies/index.html"' not in home
     ):
         raise SiteQualityError("Homepage lacks the estimated revenue-weighted index contract")
+    directory = (root / "companies" / "index.html").read_text(encoding="utf-8")
+    if (
+        directory.count("data-company-directory-entry") != expected_company_count
+        or "covered companies, alphabetically by ticker" not in directory
+    ):
+        raise SiteQualityError(
+            "Company directory lacks the complete alphabetical coverage contract"
+        )
     methodology = (root / "methodology" / "index.html").read_text(encoding="utf-8")
     if (
         "Assumption Registry" not in methodology
@@ -248,7 +261,8 @@ def _check_document(relative: str, content: str) -> None:
     required = (
         '<html lang="en">',
         '<meta name="viewport"',
-        "<main>",
+        '<a class="skip-link" href="#main-content">Skip to main content</a>',
+        '<main id="main-content" tabindex="-1">',
         "<h1",
         'aria-label="Primary navigation"',
         "Research and educational content. Not investment advice.",
@@ -259,7 +273,9 @@ def _check_document(relative: str, content: str) -> None:
     missing = [item for item in required if item not in content]
     if missing:
         raise SiteQualityError(f"{relative} lacks required accessible markup: {missing[0]}")
-    main_before_heading = content.split("<main>", 1)[1].split("<h1", 1)[0]
+    main_before_heading = content.split('<main id="main-content" tabindex="-1">', 1)[1].split(
+        "<h1", 1
+    )[0]
     if 'class="eyebrow"' in main_before_heading or 'class="kicker"' in main_before_heading:
         raise SiteQualityError(f"{relative} places a tagline or kicker above its H1")
     if re.search(r'<script[^>]+src="https?://', content):
@@ -275,6 +291,36 @@ def _check_document(relative: str, content: str) -> None:
     if len(" ".join(visible.split())) < 100:
         raise SiteQualityError(f"{relative} lacks server-rendered no-JavaScript content")
     _check_figure_contracts(relative, content)
+    _check_navigation_semantics(relative, content)
+
+
+def _check_navigation_semantics(relative: str, content: str) -> None:
+    navigation_match = re.search(
+        r'<nav aria-label="Primary navigation">(.*?)</nav>', content, flags=re.DOTALL
+    )
+    if navigation_match is None:
+        raise SiteQualityError(f"{relative} lacks primary navigation")
+    navigation = navigation_match.group(1)
+    if "companies/index.html" not in navigation:
+        raise SiteQualityError(f"{relative} does not route Companies to the directory page")
+    expected: str | None = None
+    if relative == "scoreboard/index.html":
+        expected = "Scoreboard"
+    elif relative == "companies/index.html" or (
+        relative.startswith("companies/") and relative.count("/") == 2
+    ):
+        expected = "Companies"
+    elif relative.startswith("methodology/"):
+        expected = "Methodology"
+    elif relative == "changelog/index.html":
+        expected = "Changelog"
+    current = re.findall(r'<a [^>]*aria-current="page"[^>]*>([^<]+)</a>', navigation)
+    if expected is None and current:
+        raise SiteQualityError(f"{relative} exposes a false current-page navigation state")
+    if expected is not None and current != [expected]:
+        raise SiteQualityError(
+            f"{relative} must expose exactly one current-page navigation state for {expected}"
+        )
 
 
 def _check_figure_contracts(relative: str, content: str) -> None:

@@ -43,6 +43,23 @@ a {
 
 a:hover { text-decoration-thickness: 2px; }
 
+.skip-link {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  font-weight: 700;
+  left: 1rem;
+  padding: 0.7rem 0.85rem;
+  position: fixed;
+  top: 0;
+  transform: translateY(-150%);
+  transition: transform 0.12s ease-out;
+  z-index: 10;
+}
+
+.skip-link:focus { transform: translateY(0.75rem); }
+
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
@@ -110,6 +127,12 @@ nav a {
 
 nav a:hover { text-decoration: underline; }
 
+nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+}
+
 .preview-banner {
   background: var(--quiet-fill);
   border-bottom: 1px solid var(--ink);
@@ -122,6 +145,8 @@ main {
   counter-reset: ledger-section;
   padding: clamp(1.35rem, 3vw, 2.4rem) 0 clamp(3rem, 8vw, 6rem);
 }
+
+main:focus { outline: 0; }
 
 .eyebrow,
 .kicker,
@@ -176,6 +201,15 @@ dd {
   color: var(--muted);
   font-size: var(--step--1);
   line-height: 1.55;
+}
+
+.comparison-anchor {
+  border-top: 1px solid var(--line);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  margin: 1.15rem 0 0;
+  max-width: 76ch;
+  padding-top: 0.9rem;
 }
 
 .grid {
@@ -277,6 +311,8 @@ caption,
   margin: 2rem 0 0;
   padding: 1.25rem 0 1.4rem;
 }
+
+.home-calibration { margin-top: 1.5rem; }
 
 .calibration-stats {
   display: grid;
@@ -412,6 +448,8 @@ tbody tr:hover { background: color-mix(in srgb, var(--quiet-fill) 52%, transpare
   padding-top: 1rem;
   position: relative;
 }
+
+.home-first-section { margin-top: clamp(1.5rem, 3vw, 2.25rem); }
 
 .section-block::before {
   color: var(--muted);
@@ -622,6 +660,39 @@ tbody tr:hover { background: color-mix(in srgb, var(--quiet-fill) 52%, transpare
 
 .lift-note { display: block; margin-top: 0.5rem; max-width: 28rem; }
 
+.baseline-disclosure {
+  border-bottom: 2px solid var(--ink);
+  margin-top: 1.5rem;
+}
+
+.baseline-disclosure > summary {
+  border-top: 4px double var(--ink);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: var(--step-0);
+  font-weight: 700;
+  min-height: 3rem;
+  padding: 0.85rem 0;
+}
+
+.baseline-disclosure > p {
+  max-width: 76ch;
+}
+
+.baseline-disclosure .table-wrap {
+  border-bottom: 0;
+  margin-top: 1rem;
+}
+
+.directory-link {
+  display: inline-flex;
+  font-family: var(--mono);
+  font-size: var(--step-0);
+  font-weight: 700;
+  min-height: 2.75rem;
+  padding: 0.65rem 0;
+}
+
 .record-hero {
   border-bottom: 4px double var(--ink);
   border-top-width: 1px;
@@ -818,4 +889,5 @@ tbody tr:hover { background: color-mix(in srgb, var(--quiet-fill) 52%, transpare
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; }
+  .skip-link { transition: none; }
 }

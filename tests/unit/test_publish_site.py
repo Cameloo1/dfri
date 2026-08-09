@@ -448,6 +448,86 @@ def test_credit_flow_widths_are_linear_tiered_and_capped() -> None:
     assert all(item.amount_millions > 0 for item in links)
 
 
+def test_home_information_architecture_preserves_all_company_evidence_and_semantics(
+    tmp_path: Path,
+) -> None:
+    store = AppendOnlyParquetStore(tmp_path / "ledger")
+    seed(store)
+    output = tmp_path / "published"
+    publish_scoreboard(
+        store,
+        output,
+        published_at=PUBLISHED_AT,
+        data_vintage=DATA_VINTAGE,
+        publication_mode="preview",
+        project_root=Path(__file__).parents[2],
+    )
+
+    home = (output / "index.html").read_text(encoding="utf-8")
+    section_ids = [
+        'id="current-estimate"',
+        'id="prediction-ledger"',
+        'id="model-record"',
+        'id="evidence-tiers"',
+        'id="credit-flow"',
+        'id="evidence-lift"',
+        'id="companies"',
+    ]
+    assert [home.index(section_id) for section_id in section_ids] == sorted(
+        home.index(section_id) for section_id in section_ids
+    )
+    assert '<details class="baseline-disclosure">' in home
+    assert "Show 38 baseline-only companies at 1.00x" in home
+    assert home.count('data-lift-status="evidence-supported"') == 12
+    assert home.count('data-lift-status="baseline-only"') == 38
+    assert home.count("No company-specific financing evidence found") == 1
+    assert '<a class="directory-link" href="companies/index.html">' in home
+    assert 'class="company-links"' not in home
+
+    result = run_attribution(load_attribution_bundle())
+    ordered = sorted(
+        result.companies,
+        key=lambda company: (company.estimated_dfr_pct_mid, company.ticker),
+    )
+    assert f"{ordered[0].estimated_dfr_pct_mid:.2f}%" in home
+    assert f"{ordered[-1].estimated_dfr_pct_mid:.2f}%" in home
+    assert ordered[0].company_name in home
+    assert ordered[-1].company_name in home
+    assert all(
+        f'href="companies/{company.ticker.lower()}/index.html"' in home
+        for company in result.companies
+    )
+
+    directory = (output / "companies" / "index.html").read_text(encoding="utf-8")
+    assert directory.count("data-company-directory-entry") == 50
+    assert "50 covered companies, alphabetically" in directory
+    directory_positions = [
+        directory.index(f">{company.ticker}</strong>")
+        for company in sorted(result.companies, key=lambda company: company.ticker)
+    ]
+    assert directory_positions == sorted(directory_positions)
+
+    semantic_pages = {
+        "scoreboard/index.html": "Scoreboard",
+        "companies/index.html": "Companies",
+        "companies/cvna/index.html": "Companies",
+        "methodology/index.html": "Methodology",
+        "methodology/coverage/index.html": "Methodology",
+        "changelog/index.html": "Changelog",
+    }
+    for relative, current_label in semantic_pages.items():
+        html = (output / relative).read_text(encoding="utf-8")
+        assert '<a class="skip-link" href="#main-content">Skip to main content</a>' in html
+        assert '<main id="main-content" tabindex="-1">' in html
+        assert html.count('aria-current="page"') == 1
+        assert f'aria-current="page">{current_label}</a>' in html
+        assert 'href="' + ("../" * relative.count("/")) + 'companies/index.html"' in html
+
+    assert 'aria-current="page"' not in home
+    prediction = next((output / "scoreboard" / "predictions").glob("*/index.html"))
+    assert 'aria-current="page"' not in prediction.read_text(encoding="utf-8")
+
+
 def test_prepublication_filter_is_explicit_and_validation_blocks_bad_boundaries(
     tmp_path: Path,
 ) -> None:

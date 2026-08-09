@@ -125,6 +125,19 @@
         {"label": "Credit flow", "href": "/#credit-flow"},
         {"label": "Methodology", "href": "/methodology/#credit-flow"}
       ]
+    },
+    {
+      "entry_id": "ux-information-architecture",
+      "published_on": "2026-08-09",
+      "kind": "publication",
+      "version": "1.1.1",
+      "title": "Company directory and ledger path clarified",
+      "summary": "Separated the homepage claims into an ordered reading path, promoted the immutable prediction ledger, grouped 38 indistinguishable baseline-only Evidence Lift rows behind a native disclosure, and added a complete alphabetical company directory without changing any estimate or feed.",
+      "links": [
+        {"label": "Companies", "href": "/companies/"},
+        {"label": "Prediction ledger", "href": "/#prediction-ledger"},
+        {"label": "Evidence Lift", "href": "/#evidence-lift"}
+      ]
     }
   ]
 }

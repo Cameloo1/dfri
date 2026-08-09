@@ -22,6 +22,7 @@ def test_public_changelog_is_ordered_permalinked_and_complete() -> None:
         "scoreboard-feed-grade-status-corrected",
         "scoreboard-first-live-grades",
         "tier-flow-typographic-inversion",
+        "ux-information-architecture",
     ]
     assert all(item.permalink == f"/changelog/#{item.entry_id}" for item in entries)
     assert {item.kind for item in entries} == {"publication", "methodology"}
