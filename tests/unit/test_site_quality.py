@@ -278,4 +278,14 @@ def test_ux_inventory_crawler_captures_every_route_family_without_javascript() -
     assert "scoreboard/predictions/${String(row.prediction_id)}/" in script
     assert "response?.status() !== 200 || page.url() !== expected" in script
     assert "document.body?.innerText" in script
+    assert 'document.querySelectorAll("details")' in script
+    assert "disclosure.open = true" in script
     assert 'document.querySelectorAll("a[href]")' in script
+
+    diff_script = (Path(__file__).parents[2] / "tools" / "ux-inventory-diff.mjs").read_text(
+        encoding="utf-8"
+    )
+    assert "Missing routes" in diff_script
+    assert "Missing distinct lines" in diff_script
+    assert "Missing normalized internal targets" in diff_script
+    assert "Missing outbound targets" in diff_script

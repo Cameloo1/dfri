@@ -28,7 +28,7 @@ if (!Array.isArray(companyRows) || !Array.isArray(scoreboardRows)) {
 const routes = [
   "",
   "scoreboard/",
-  "companies/",
+  ...(phase === "after" ? ["companies/"] : []),
   "methodology/",
   "methodology/coverage/",
   "methodology/sensitivity/",
@@ -55,10 +55,22 @@ try {
     }
     const inventory = await page.evaluate(
       ({ siteRoot }) => {
-        const lines = (document.body?.innerText ?? "")
+        const defaultLines = (document.body?.innerText ?? "")
           .split("\n")
           .map((line) => line.replace(/\s+/g, " ").trim())
           .filter(Boolean);
+        const disclosures = [...document.querySelectorAll("details")];
+        const disclosureStates = disclosures.map((disclosure) => disclosure.open);
+        disclosures.forEach((disclosure) => {
+          disclosure.open = true;
+        });
+        const expandedLines = (document.body?.innerText ?? "")
+          .split("\n")
+          .map((line) => line.replace(/\s+/g, " ").trim())
+          .filter(Boolean);
+        disclosures.forEach((disclosure, index) => {
+          disclosure.open = disclosureStates[index];
+        });
         const headings = [...document.querySelectorAll("h1,h2,h3,h4,h5,h6")].map(
           (heading) => ({
             level: Number(heading.tagName.slice(1)),
@@ -80,7 +92,8 @@ try {
         return {
           title: document.title,
           headings,
-          lines,
+          defaultLines,
+          expandedLines,
           internalLinks: links.filter((link) => link.url.startsWith(siteRoot)),
           outboundLinks: links.filter((link) => !link.url.startsWith(siteRoot)),
         };
@@ -123,7 +136,7 @@ const markdown = [
   `- HTML routes: ${pages.length}`,
   `- Distinct internal link targets: ${allInternalTargets.length}`,
   `- Distinct outbound link targets: ${allOutboundTargets.length}`,
-  "- Capture mode: rendered HTML with JavaScript disabled. Visible lines remain in DOM reading order; repeated lines remain repeated so later loss or deduplication is detectable.",
+  "- Capture mode: rendered HTML with JavaScript disabled. Native disclosures are inventoried both closed and expanded. Lines remain in DOM reading order; repeated lines remain repeated so later loss or deduplication is detectable.",
   "",
   "## Route index",
   "",
@@ -142,7 +155,8 @@ const markdown = [
     "",
     `- URL: <${page.url}>`,
     `- Title: ${escapeText(page.title)}`,
-    `- Visible information lines: ${page.lines.length}`,
+    `- Default-visible information lines: ${page.defaultLines.length}`,
+    `- Disclosure-expanded information lines: ${page.expandedLines.length}`,
     `- Internal links: ${page.internalLinks.length}`,
     `- Outbound links: ${page.outboundLinks.length}`,
     "",
@@ -152,9 +166,9 @@ const markdown = [
       ? page.headings.map((heading) => `- H${heading.level}: ${escapeText(heading.text)}`)
       : ["- None"]),
     "",
-    "### User-visible information",
+    "### User-visible information with native disclosures expanded",
     "",
-    ...page.lines.map((line, lineIndex) => `${lineIndex + 1}. ${escapeText(line)}`),
+    ...page.expandedLines.map((line, lineIndex) => `${lineIndex + 1}. ${escapeText(line)}`),
     "",
     "### Internal links",
     "",
@@ -171,7 +185,7 @@ const markdown = [
   ]),
 ].join("\n");
 
-await writeFile(output, `${markdown}\n`, "utf8");
+await writeFile(output, `${markdown.trimEnd()}\n`, "utf8");
 process.stdout.write(
   `${JSON.stringify({
     pages: pages.length,

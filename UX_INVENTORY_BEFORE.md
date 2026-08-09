@@ -2,13 +2,13 @@
 
 Status: **BASELINE CAPTURED**
 
-- Deployed site: <https://cameloo1.github.io/dfri/>
-- Source baseline: `c6c62b5afb7baf27878f6a04bc268ed4978df85e`
-- Captured at: `2026-08-09T21:32:08.027Z`
+- Rendered site: <https://cameloo1.github.io/dfri/>
+- Source reference: `c6c62b5`
+- Captured at: `2026-08-09T22:19:46.003Z`
 - HTML routes: 62
 - Distinct internal link targets: 148
 - Distinct outbound link targets: 62
-- Capture mode: rendered HTML with JavaScript disabled. Visible lines remain in DOM reading order; repeated lines remain repeated so later loss or deduplication is detectable.
+- Capture mode: rendered HTML with JavaScript disabled. Native disclosures are inventoried both closed and expanded. Lines remain in DOM reading order; repeated lines remain repeated so later loss or deduplication is detectable.
 
 ## Route index
 
@@ -295,7 +295,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/>
 - Title: Immutable consumer-credit nowcasts · DFRI
-- Visible information lines: 329
+- Default-visible information lines: 329
+- Disclosure-expanded information lines: 329
 - Internal links: 113
 - Outbound links: 2
 
@@ -306,7 +307,7 @@ Status: **BASELINE CAPTURED**
 - H2: Evidence Lift
 - H2: Company estimates
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -763,7 +764,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/scoreboard/>
 - Title: Scoreboard · DFRI
-- Visible information lines: 42
+- Default-visible information lines: 42
+- Disclosure-expanded information lines: 42
 - Internal links: 16
 - Outbound links: 2
 
@@ -773,7 +775,7 @@ Status: **BASELINE CAPTURED**
 - H2: Live calibration
 - H2: First revolving miss
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -846,7 +848,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/methodology/>
 - Title: Methodology · DFRI
-- Visible information lines: 227
+- Default-visible information lines: 227
+- Disclosure-expanded information lines: 227
 - Internal links: 11
 - Outbound links: 63
 
@@ -865,7 +868,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Matrix A and B
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -1179,7 +1182,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/methodology/coverage/>
 - Title: Coverage and exclusions · DFRI
-- Visible information lines: 200
+- Default-visible information lines: 200
+- Disclosure-expanded information lines: 200
 - Internal links: 58
 - Outbound links: 2
 
@@ -1189,7 +1193,7 @@ Status: **BASELINE CAPTURED**
 - H2: Included
 - H2: Excluded
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -1462,7 +1466,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/methodology/sensitivity/>
 - Title: Methodology sensitivity · DFRI
-- Visible information lines: 76
+- Default-visible information lines: 76
+- Disclosure-expanded information lines: 76
 - Internal links: 9
 - Outbound links: 2
 
@@ -1471,7 +1476,7 @@ Status: **BASELINE CAPTURED**
 - H1: Methodology comparison
 - H2: Company comparison
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -1571,7 +1576,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/changelog/>
 - Title: Changelog · DFRI
-- Visible information lines: 52
+- Default-visible information lines: 52
+- Disclosure-expanded information lines: 52
 - Internal links: 34
 - Outbound links: 2
 
@@ -1589,7 +1595,7 @@ Status: **BASELINE CAPTURED**
 - H2: P0 attribution introduced
 - H2: Public scoreboard clock started
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -1690,7 +1696,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/abnb/>
 - Title: Airbnb (ABNB) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -1702,7 +1709,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -1727,39 +1734,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.17%–2.12% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.17%–2.12% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.18%–2.15% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-ABNB-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-ABNB-001 — decreases the estimate; absolute correlation 0.894.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.288.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.198.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.117.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.17%–2.12% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.17%–2.12% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.18%–2.15% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-ABNB-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-ABNB-001 — decreases the estimate; absolute correlation 0.894.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.288.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.198.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.117.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -1787,7 +1801,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/amzn/>
 - Title: Amazon (AMZN) · DFRI
-- Visible information lines: 57
+- Default-visible information lines: 57
+- Disclosure-expanded information lines: 64
 - Internal links: 14
 - Outbound links: 4
 
@@ -1799,7 +1814,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -1824,40 +1839,47 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 42.5%
 22. TIER 3 37.8%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.25x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 1.63%–2.15% · UPDATED\_TTM\_FROM\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 1.63%–2.15% · UPDATED\_TTM\_FROM\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 1.66%–2.19% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link “We also offer co-branded credit card programs.” Specific SEC filing TIER 1
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-AMZN-001
-44. A-T1-AMZN-PAYMENTS-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-AMZN-001 — decreases the estimate; absolute correlation 0.542.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.524.
-52. A-T1-AMZN-PAYMENTS-001 — increases the estimate; absolute correlation 0.506.
-53. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.367.
-54. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.206.
-55. Research and educational content. Not investment advice.
-56. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-57. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.25x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 1.63%–2.15% · UPDATED\_TTM\_FROM\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 1.63%–2.15% · UPDATED\_TTM\_FROM\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 1.66%–2.19% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link “We also offer co-branded credit card programs.” Specific SEC filing TIER 1
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-AMZN-001
+51. A-T1-AMZN-PAYMENTS-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-AMZN-001 — decreases the estimate; absolute correlation 0.542.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.524.
+59. A-T1-AMZN-PAYMENTS-001 — increases the estimate; absolute correlation 0.506.
+60. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.367.
+61. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.206.
+62. Research and educational content. Not investment advice.
+63. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+64. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -1887,7 +1909,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/azo/>
 - Title: AutoZone (AZO) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -1899,7 +1922,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -1924,39 +1947,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.31%–1.77% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.31%–1.77% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.33%–1.80% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-AZO-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-AZO-001 — decreases the estimate; absolute correlation 0.640.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.595.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.411.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.233.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.31%–1.77% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.31%–1.77% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.33%–1.80% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-AZO-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-AZO-001 — decreases the estimate; absolute correlation 0.640.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.595.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.411.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.233.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -1984,7 +2014,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/bby/>
 - Title: Best Buy (BBY) · DFRI
-- Visible information lines: 57
+- Default-visible information lines: 57
+- Disclosure-expanded information lines: 64
 - Internal links: 14
 - Outbound links: 4
 
@@ -1996,7 +2027,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -2021,40 +2052,47 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 33.0%
 22. TIER 3 29.3%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.61x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 2.08%–2.93% · BASELINE\_NO\_NEW\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 2.08%–2.93% · BASELINE\_NO\_NEW\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 2.10%–2.95% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link “We facilitate credit applications in our stores and online.” Specific SEC filing TIER 1
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-BBY-001
-44. A-T1-BBY-CARD-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T1-BBY-CARD-001 — increases the estimate; absolute correlation 0.864.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.336.
-52. A-DEN-BBY-001 — decreases the estimate; absolute correlation 0.260.
-53. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.234.
-54. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.117.
-55. Research and educational content. Not investment advice.
-56. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-57. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.61x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 2.08%–2.93% · BASELINE\_NO\_NEW\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 2.08%–2.93% · BASELINE\_NO\_NEW\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 2.10%–2.95% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link “We facilitate credit applications in our stores and online.” Specific SEC filing TIER 1
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-BBY-001
+51. A-T1-BBY-CARD-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T1-BBY-CARD-001 — increases the estimate; absolute correlation 0.864.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.336.
+59. A-DEN-BBY-001 — decreases the estimate; absolute correlation 0.260.
+60. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.234.
+61. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.117.
+62. Research and educational content. Not investment advice.
+63. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+64. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -2084,7 +2122,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/bkng/>
 - Title: Booking Holdings (BKNG) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -2096,7 +2135,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -2121,39 +2160,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.45% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.00%–2.22% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.00%–2.23% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.02%–2.25% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-BKNG-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-BKNG-001 — decreases the estimate; absolute correlation 0.897.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.208.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.152.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.082.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.45% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.00%–2.22% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.00%–2.23% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.02%–2.25% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-BKNG-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-BKNG-001 — decreases the estimate; absolute correlation 0.897.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.208.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.152.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.082.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -2181,7 +2227,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/casy/>
 - Title: Casey's (CASY) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -2193,7 +2240,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -2218,39 +2265,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.34%–1.73% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.34%–1.73% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.36%–1.75% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-CASY-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.720.
-51. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.500.
-52. A-DEN-CASY-001 — decreases the estimate; absolute correlation 0.373.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.284.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.34%–1.73% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.34%–1.73% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.36%–1.75% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-CASY-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.720.
+58. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.500.
+59. A-DEN-CASY-001 — decreases the estimate; absolute correlation 0.373.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.284.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -2278,7 +2332,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/ccl/>
 - Title: Carnival Corporation (CCL) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -2290,7 +2345,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -2315,39 +2370,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.56% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.21%–2.07% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.20%–2.07% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.22%–2.10% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-CCL-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-CCL-001 — decreases the estimate; absolute correlation 0.882.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.320.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.222.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.130.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.56% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.21%–2.07% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.20%–2.07% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.22%–2.10% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-CCL-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-CCL-001 — decreases the estimate; absolute correlation 0.882.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.320.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.222.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.130.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -2375,7 +2437,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/cmg/>
 - Title: Chipotle Mexican Grill (CMG) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -2387,7 +2450,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -2412,39 +2475,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.35%–1.72% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.35%–1.72% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.37%–1.75% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-CMG-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.738.
-51. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.514.
-52. A-DEN-CMG-001 — decreases the estimate; absolute correlation 0.321.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.291.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.35%–1.72% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.35%–1.72% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.37%–1.75% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-CMG-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.738.
+58. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.514.
+59. A-DEN-CMG-001 — decreases the estimate; absolute correlation 0.321.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.291.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -2472,7 +2542,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/cost/>
 - Title: Costco (COST) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -2484,7 +2555,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -2509,39 +2580,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.30%–1.79% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.30%–1.79% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.32%–1.81% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-COST-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-COST-001 — decreases the estimate; absolute correlation 0.689.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.551.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.385.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.226.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.30%–1.79% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.30%–1.79% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.32%–1.81% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-COST-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-COST-001 — decreases the estimate; absolute correlation 0.689.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.551.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.385.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.226.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -2569,7 +2647,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/cvna/>
 - Title: Carvana (CVNA) · DFRI
-- Visible information lines: 58
+- Default-visible information lines: 58
+- Disclosure-expanded information lines: 65
 - Internal links: 15
 - Outbound links: 4
 
@@ -2581,7 +2660,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -2606,41 +2685,48 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 31.9%
 22. TIER 3 3.9%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 12.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.56% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 14.18%–20.78% · UPDATED\_TTM\_FROM\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 1.34%–1.75% · UPDATED\_TTM\_FROM\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 15.14%–22.39% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link “Finance receivables include installment contracts the Company originates to its customers to facilitate vehicle sales.” Specific SEC filing TIER 1
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-CVNA-001
-44. A-T1-CVNA-FINANCE-001
-45. A-T2-NONREV-AUTO-001
-46. A-T2-REV-GENERAL-001
-47. A-T3-NONREV-FUNGIBLE-001
-48. A-T3-REV-FUNGIBLE-001
-49. Sensitivity
-50. Top five assumptions by absolute correlation with the estimated band.
-51. A-T1-CVNA-FINANCE-001 — increases the estimate; absolute correlation 0.890.
-52. A-DEN-CVNA-001 — decreases the estimate; absolute correlation 0.330.
-53. A-T2-NONREV-AUTO-001 — increases the estimate; absolute correlation 0.303.
-54. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.049.
-55. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.023.
-56. Research and educational content. Not investment advice.
-57. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-58. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 12.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.56% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 14.18%–20.78% · UPDATED\_TTM\_FROM\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 1.34%–1.75% · UPDATED\_TTM\_FROM\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 15.14%–22.39% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link “Finance receivables include installment contracts the Company originates to its customers to facilitate vehicle sales.” Specific SEC filing TIER 1
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-CVNA-001
+51. A-T1-CVNA-FINANCE-001
+52. A-T2-NONREV-AUTO-001
+53. A-T2-REV-GENERAL-001
+54. A-T3-NONREV-FUNGIBLE-001
+55. A-T3-REV-FUNGIBLE-001
+56. Sensitivity
+57. Top five assumptions by absolute correlation with the estimated band.
+58. A-T1-CVNA-FINANCE-001 — increases the estimate; absolute correlation 0.890.
+59. A-DEN-CVNA-001 — decreases the estimate; absolute correlation 0.330.
+60. A-T2-NONREV-AUTO-001 — increases the estimate; absolute correlation 0.303.
+61. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.049.
+62. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.023.
+63. Research and educational content. Not investment advice.
+64. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+65. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -2671,7 +2757,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/dash/>
 - Title: DoorDash (DASH) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -2683,7 +2770,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -2708,39 +2795,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.57% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.31%–1.85% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.31%–1.86% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.33%–1.88% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-DASH-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-DASH-001 — decreases the estimate; absolute correlation 0.738.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.509.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.352.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.207.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.57% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.31%–1.85% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.31%–1.86% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.33%–1.88% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-DASH-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-DASH-001 — decreases the estimate; absolute correlation 0.738.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.509.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.352.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.207.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -2768,7 +2862,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/deck/>
 - Title: Deckers Brands (DECK) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -2780,7 +2875,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -2805,39 +2900,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.16%–2.09% · BASELINE\_NO\_NEW\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.16%–2.09% · BASELINE\_NO\_NEW\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.18%–2.11% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-DECK-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-DECK-001 — decreases the estimate; absolute correlation 0.892.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.296.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.195.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.111.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.16%–2.09% · BASELINE\_NO\_NEW\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.16%–2.09% · BASELINE\_NO\_NEW\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.18%–2.11% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-DECK-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-DECK-001 — decreases the estimate; absolute correlation 0.892.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.296.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.195.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.111.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -2865,7 +2967,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/dg/>
 - Title: Dollar General (DG) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -2877,7 +2980,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -2902,39 +3005,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.37%–1.74% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-DG-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.759.
-51. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.529.
-52. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.295.
-53. A-DEN-DG-001 — decreases the estimate; absolute correlation 0.221.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.37%–1.74% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-DG-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.759.
+58. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.529.
+59. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.295.
+60. A-DEN-DG-001 — decreases the estimate; absolute correlation 0.221.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -2962,7 +3072,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/dltr/>
 - Title: Dollar Tree (DLTR) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -2974,7 +3085,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -2999,39 +3110,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.37%–1.74% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-DLTR-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.759.
-51. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.528.
-52. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.298.
-53. A-DEN-DLTR-001 — decreases the estimate; absolute correlation 0.233.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.37%–1.74% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-DLTR-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.759.
+58. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.528.
+59. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.298.
+60. A-DEN-DLTR-001 — decreases the estimate; absolute correlation 0.233.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -3059,7 +3177,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/dpz/>
 - Title: Domino's (DPZ) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -3071,7 +3190,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -3096,39 +3215,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.56% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.30%–1.83% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.30%–1.82% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.32%–1.86% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-DPZ-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-DPZ-001 — decreases the estimate; absolute correlation 0.730.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.534.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.377.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.200.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.56% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.30%–1.83% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.30%–1.82% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.32%–1.86% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-DPZ-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-DPZ-001 — decreases the estimate; absolute correlation 0.730.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.534.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.377.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.200.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -3156,7 +3282,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/dri/>
 - Title: Darden Restaurants (DRI) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -3168,7 +3295,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -3193,39 +3320,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.35%–1.72% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.35%–1.72% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.37%–1.74% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-DRI-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.758.
-51. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.531.
-52. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.295.
-53. A-DEN-DRI-001 — decreases the estimate; absolute correlation 0.217.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.35%–1.72% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.35%–1.72% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.37%–1.74% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-DRI-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.758.
+58. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.531.
+59. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.295.
+60. A-DEN-DRI-001 — decreases the estimate; absolute correlation 0.217.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -3253,7 +3387,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/ebay/>
 - Title: eBay (EBAY) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -3265,7 +3400,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -3290,39 +3425,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.19%–2.02% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.19%–2.02% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.20%–2.05% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-EBAY-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-EBAY-001 — decreases the estimate; absolute correlation 0.879.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.333.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.239.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.130.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.19%–2.02% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.19%–2.02% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.20%–2.05% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-EBAY-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-EBAY-001 — decreases the estimate; absolute correlation 0.879.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.333.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.239.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.130.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -3350,7 +3492,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/el/>
 - Title: Estée Lauder (EL) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -3362,7 +3505,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -3387,39 +3530,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.50% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.09%–2.13% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.09%–2.13% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.11%–2.16% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-EL-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-EL-001 — decreases the estimate; absolute correlation 0.900.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.254.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.181.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.105.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.50% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.09%–2.13% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.09%–2.13% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.11%–2.16% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-EL-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-EL-001 — decreases the estimate; absolute correlation 0.900.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.254.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.181.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.105.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -3447,7 +3597,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/expe/>
 - Title: Expedia Group (EXPE) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -3459,7 +3610,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -3484,39 +3635,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.19%–2.03% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.19%–2.03% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.21%–2.06% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-EXPE-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-EXPE-001 — decreases the estimate; absolute correlation 0.882.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.329.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.224.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.119.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.19%–2.03% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.19%–2.03% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.21%–2.06% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-EXPE-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-EXPE-001 — decreases the estimate; absolute correlation 0.882.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.329.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.224.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.119.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -3544,7 +3702,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/f/>
 - Title: Ford Motor Company (F) · DFRI
-- Visible information lines: 58
+- Default-visible information lines: 58
+- Disclosure-expanded information lines: 65
 - Internal links: 15
 - Outbound links: 4
 
@@ -3556,7 +3715,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -3581,41 +3740,48 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 33.9%
 22. TIER 3 4.2%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 11.35x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 14.64%–20.19% · UPDATED\_TTM\_FROM\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 14.99%–20.68% · UPDATED\_TTM\_FROM\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 14.86%–20.49% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link “The predominant share of Ford Credit's business consists of financing our vehicles.” Specific SEC filing TIER 1
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-F-001
-44. A-T1-F-CAPTIVE-001
-45. A-T2-NONREV-AUTO-001
-46. A-T2-REV-GENERAL-001
-47. A-T3-NONREV-FUNGIBLE-001
-48. A-T3-REV-FUNGIBLE-001
-49. Sensitivity
-50. Top five assumptions by absolute correlation with the estimated band.
-51. A-T1-F-CAPTIVE-001 — increases the estimate; absolute correlation 0.686.
-52. A-DEN-F-001 — decreases the estimate; absolute correlation 0.604.
-53. A-T2-NONREV-AUTO-001 — increases the estimate; absolute correlation 0.383.
-54. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.055.
-55. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.024.
-56. Research and educational content. Not investment advice.
-57. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-58. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 11.35x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 14.64%–20.19% · UPDATED\_TTM\_FROM\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 14.99%–20.68% · UPDATED\_TTM\_FROM\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 14.86%–20.49% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link “The predominant share of Ford Credit's business consists of financing our vehicles.” Specific SEC filing TIER 1
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-F-001
+51. A-T1-F-CAPTIVE-001
+52. A-T2-NONREV-AUTO-001
+53. A-T2-REV-GENERAL-001
+54. A-T3-NONREV-FUNGIBLE-001
+55. A-T3-REV-FUNGIBLE-001
+56. Sensitivity
+57. Top five assumptions by absolute correlation with the estimated band.
+58. A-T1-F-CAPTIVE-001 — increases the estimate; absolute correlation 0.686.
+59. A-DEN-F-001 — decreases the estimate; absolute correlation 0.604.
+60. A-T2-NONREV-AUTO-001 — increases the estimate; absolute correlation 0.383.
+61. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.055.
+62. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.024.
+63. Research and educational content. Not investment advice.
+64. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+65. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -3646,7 +3812,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/gm/>
 - Title: General Motors (GM) · DFRI
-- Visible information lines: 58
+- Default-visible information lines: 58
+- Disclosure-expanded information lines: 65
 - Internal links: 15
 - Outbound links: 4
 
@@ -3658,7 +3825,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -3683,41 +3850,48 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 32.2%
 22. TIER 3 4.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 11.89x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 15.69%–21.10% · UPDATED\_TTM\_FROM\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 16.07%–21.55% · UPDATED\_TTM\_FROM\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 15.76%–21.19% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link “GM Financial's penetration of our retail sales in the U.S. was 33%.” Specific SEC filing TIER 1
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-GM-001
-44. A-T1-GM-CAPTIVE-001
-45. A-T2-NONREV-AUTO-001
-46. A-T2-REV-GENERAL-001
-47. A-T3-NONREV-FUNGIBLE-001
-48. A-T3-REV-FUNGIBLE-001
-49. Sensitivity
-50. Top five assumptions by absolute correlation with the estimated band.
-51. A-DEN-GM-001 — decreases the estimate; absolute correlation 0.667.
-52. A-T1-GM-CAPTIVE-001 — increases the estimate; absolute correlation 0.635.
-53. A-T2-NONREV-AUTO-001 — increases the estimate; absolute correlation 0.392.
-54. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.043.
-55. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.029.
-56. Research and educational content. Not investment advice.
-57. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-58. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 11.89x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 15.69%–21.10% · UPDATED\_TTM\_FROM\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 16.07%–21.55% · UPDATED\_TTM\_FROM\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 15.76%–21.19% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link “GM Financial's penetration of our retail sales in the U.S. was 33%.” Specific SEC filing TIER 1
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-GM-001
+51. A-T1-GM-CAPTIVE-001
+52. A-T2-NONREV-AUTO-001
+53. A-T2-REV-GENERAL-001
+54. A-T3-NONREV-FUNGIBLE-001
+55. A-T3-REV-FUNGIBLE-001
+56. Sensitivity
+57. Top five assumptions by absolute correlation with the estimated band.
+58. A-DEN-GM-001 — decreases the estimate; absolute correlation 0.667.
+59. A-T1-GM-CAPTIVE-001 — increases the estimate; absolute correlation 0.635.
+60. A-T2-NONREV-AUTO-001 — increases the estimate; absolute correlation 0.392.
+61. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.043.
+62. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.029.
+63. Research and educational content. Not investment advice.
+64. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+65. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -3748,7 +3922,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/grmn/>
 - Title: Garmin (GRMN) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -3760,7 +3935,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -3785,39 +3960,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.15%–2.08% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.16%–2.08% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.17%–2.11% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-GRMN-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-GRMN-001 — decreases the estimate; absolute correlation 0.893.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.302.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.208.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.115.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.15%–2.08% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.16%–2.08% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.17%–2.11% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-GRMN-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-GRMN-001 — decreases the estimate; absolute correlation 0.893.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.302.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.208.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.115.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -3845,7 +4027,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/has/>
 - Title: Hasbro (HAS) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -3857,7 +4040,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -3882,39 +4065,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.18%–2.07% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.17%–2.07% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.19%–2.10% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-HAS-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-HAS-001 — decreases the estimate; absolute correlation 0.889.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.309.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.225.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.113.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.18%–2.07% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.17%–2.07% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.19%–2.10% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-HAS-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-HAS-001 — decreases the estimate; absolute correlation 0.889.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.309.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.225.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.113.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -3942,7 +4132,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/hd/>
 - Title: Home Depot (HD) · DFRI
-- Visible information lines: 57
+- Default-visible information lines: 57
+- Disclosure-expanded information lines: 64
 - Internal links: 14
 - Outbound links: 4
 
@@ -3954,7 +4145,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -3979,40 +4170,47 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 42.0%
 22. TIER 3 37.3%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.27x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 1.69%–2.17% · BASELINE\_NO\_NEW\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 1.69%–2.17% · BASELINE\_NO\_NEW\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 1.71%–2.19% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link “third-party service providers who directly extend credit to customers” Specific SEC filing TIER 1
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-HD-001
-44. A-T1-HD-CARD-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.561.
-51. A-T1-HD-CARD-001 — increases the estimate; absolute correlation 0.553.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.404.
-53. A-DEN-HD-001 — decreases the estimate; absolute correlation 0.383.
-54. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.225.
-55. Research and educational content. Not investment advice.
-56. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-57. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.27x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 1.69%–2.17% · BASELINE\_NO\_NEW\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 1.69%–2.17% · BASELINE\_NO\_NEW\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 1.71%–2.19% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link “third-party service providers who directly extend credit to customers” Specific SEC filing TIER 1
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-HD-001
+51. A-T1-HD-CARD-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.561.
+58. A-T1-HD-CARD-001 — increases the estimate; absolute correlation 0.553.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.404.
+60. A-DEN-HD-001 — decreases the estimate; absolute correlation 0.383.
+61. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.225.
+62. Research and educational content. Not investment advice.
+63. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+64. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -4042,7 +4240,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/hlt/>
 - Title: Hilton Worldwide (HLT) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -4054,7 +4253,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -4079,39 +4278,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.16%–2.14% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.16%–2.13% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.17%–2.16% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-HLT-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-HLT-001 — decreases the estimate; absolute correlation 0.896.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.279.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.199.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.111.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.16%–2.14% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.16%–2.13% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.17%–2.16% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-HLT-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-HLT-001 — decreases the estimate; absolute correlation 0.896.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.279.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.199.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.111.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -4139,7 +4345,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/kr/>
 - Title: Kroger (KR) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -4151,7 +4358,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -4176,39 +4383,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.37%–1.74% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-KR-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.750.
-51. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.524.
-52. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.291.
-53. A-DEN-KR-001 — decreases the estimate; absolute correlation 0.276.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.35%–1.72% · BASELINE\_NO\_NEW\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.37%–1.74% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-KR-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.750.
+58. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.524.
+59. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.291.
+60. A-DEN-KR-001 — decreases the estimate; absolute correlation 0.276.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -4236,7 +4450,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/low/>
 - Title: Lowe's (LOW) · DFRI
-- Visible information lines: 57
+- Default-visible information lines: 57
+- Disclosure-expanded information lines: 64
 - Internal links: 14
 - Outbound links: 4
 
@@ -4248,7 +4463,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -4273,40 +4488,47 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 39.2%
 22. TIER 3 34.8%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.36x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 1.82%–2.37% · BASELINE\_NO\_NEW\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 1.82%–2.38% · BASELINE\_NO\_NEW\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 1.84%–2.40% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link “branded and private label proprietary credit cards which generate sales” Specific SEC filing TIER 1
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-LOW-001
-44. A-T1-LOW-CARD-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T1-LOW-CARD-001 — increases the estimate; absolute correlation 0.691.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.504.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.351.
-53. A-DEN-LOW-001 — decreases the estimate; absolute correlation 0.322.
-54. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.196.
-55. Research and educational content. Not investment advice.
-56. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-57. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.36x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 1.82%–2.37% · BASELINE\_NO\_NEW\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 1.82%–2.38% · BASELINE\_NO\_NEW\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 1.84%–2.40% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link “branded and private label proprietary credit cards which generate sales” Specific SEC filing TIER 1
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-LOW-001
+51. A-T1-LOW-CARD-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T1-LOW-CARD-001 — increases the estimate; absolute correlation 0.691.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.504.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.351.
+60. A-DEN-LOW-001 — decreases the estimate; absolute correlation 0.322.
+61. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.196.
+62. Research and educational content. Not investment advice.
+63. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+64. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -4336,7 +4558,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/lulu/>
 - Title: Lululemon Athletica (LULU) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -4348,7 +4571,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -4373,39 +4596,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.26%–1.90% · BASELINE\_NO\_NEW\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.26%–1.90% · BASELINE\_NO\_NEW\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.28%–1.92% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-LULU-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-LULU-001 — decreases the estimate; absolute correlation 0.813.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.441.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.306.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.164.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.26%–1.90% · BASELINE\_NO\_NEW\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.26%–1.90% · BASELINE\_NO\_NEW\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.28%–1.92% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-LULU-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-LULU-001 — decreases the estimate; absolute correlation 0.813.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.441.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.306.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.164.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -4433,7 +4663,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/mar/>
 - Title: Marriott International (MAR) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -4445,7 +4676,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -4470,39 +4701,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.16%–2.12% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.16%–2.11% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.18%–2.15% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-MAR-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-MAR-001 — decreases the estimate; absolute correlation 0.895.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.279.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.201.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.110.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.16%–2.12% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.16%–2.11% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.18%–2.15% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-MAR-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-MAR-001 — decreases the estimate; absolute correlation 0.895.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.279.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.201.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.110.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -4530,7 +4768,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/mcd/>
 - Title: McDonald's (MCD) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -4542,7 +4781,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -4567,39 +4806,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.21%–1.97% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.21%–1.97% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.22%–2.00% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-MCD-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-MCD-001 — decreases the estimate; absolute correlation 0.867.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.352.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.255.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.145.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.21%–1.97% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.21%–1.97% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.22%–2.00% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-MCD-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-MCD-001 — decreases the estimate; absolute correlation 0.867.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.352.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.255.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.145.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -4627,7 +4873,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/mgm/>
 - Title: MGM Resorts (MGM) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -4639,7 +4886,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -4664,39 +4911,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.29%–1.81% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.29%–1.81% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.31%–1.84% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-MGM-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-MGM-001 — decreases the estimate; absolute correlation 0.725.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.531.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.372.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.190.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.29%–1.81% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.29%–1.81% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.31%–1.84% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-MGM-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-MGM-001 — decreases the estimate; absolute correlation 0.725.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.531.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.372.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.190.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -4724,7 +4978,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/nclh/>
 - Title: Norwegian Cruise Line Holdings (NCLH) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -4736,7 +4991,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -4761,39 +5016,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.22%–1.99% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.22%–1.99% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.24%–2.01% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-NCLH-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-NCLH-001 — decreases the estimate; absolute correlation 0.863.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.363.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.248.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.133.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.22%–1.99% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.22%–1.99% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.24%–2.01% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-NCLH-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-NCLH-001 — decreases the estimate; absolute correlation 0.863.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.363.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.248.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.133.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -4821,7 +5083,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/nke/>
 - Title: Nike (NKE) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -4833,7 +5096,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -4858,39 +5121,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.19%–2.04% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.19%–2.04% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.21%–2.07% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-NKE-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-NKE-001 — decreases the estimate; absolute correlation 0.881.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.330.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.229.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.119.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.19%–2.04% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.19%–2.04% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.21%–2.07% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-NKE-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-NKE-001 — decreases the estimate; absolute correlation 0.881.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.330.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.229.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.119.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -4918,7 +5188,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/orly/>
 - Title: O'Reilly Automotive (ORLY) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -4930,7 +5201,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -4955,39 +5226,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.29%–1.81% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.29%–1.82% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.31%–1.84% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-ORLY-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-ORLY-001 — decreases the estimate; absolute correlation 0.730.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.531.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.370.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.212.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.29%–1.81% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.29%–1.82% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.31%–1.84% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-ORLY-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-ORLY-001 — decreases the estimate; absolute correlation 0.730.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.531.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.370.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.212.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -5015,7 +5293,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/pep/>
 - Title: PepsiCo (PEP) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -5027,7 +5306,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -5052,39 +5331,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.23%–1.95% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.23%–1.94% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.25%–1.97% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-PEP-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-PEP-001 — decreases the estimate; absolute correlation 0.851.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.393.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.273.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.154.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.23%–1.95% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.23%–1.94% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.25%–1.97% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-PEP-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-PEP-001 — decreases the estimate; absolute correlation 0.851.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.393.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.273.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.154.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -5112,7 +5398,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/pg/>
 - Title: Procter & Gamble (PG) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -5124,7 +5411,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -5149,39 +5436,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.52% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.14%–2.08% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.15%–2.07% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.16%–2.10% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-PG-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-PG-001 — decreases the estimate; absolute correlation 0.893.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.303.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.203.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.113.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.52% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.14%–2.08% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.15%–2.07% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.16%–2.10% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-PG-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-PG-001 — decreases the estimate; absolute correlation 0.893.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.303.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.203.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.113.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -5209,7 +5503,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/rcl/>
 - Title: Royal Caribbean Group (RCL) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -5221,7 +5516,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -5246,39 +5541,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.22%–1.99% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.22%–1.99% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.24%–2.01% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-RCL-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-RCL-001 — decreases the estimate; absolute correlation 0.865.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.362.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.251.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.142.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.22%–1.99% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.22%–1.99% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.24%–2.01% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-RCL-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-RCL-001 — decreases the estimate; absolute correlation 0.865.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.362.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.251.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.142.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -5306,7 +5608,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/rl/>
 - Title: Ralph Lauren (RL) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -5318,7 +5621,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -5343,39 +5646,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.17%–2.11% · BASELINE\_NO\_NEW\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.17%–2.10% · BASELINE\_NO\_NEW\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.18%–2.14% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-RL-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-RL-001 — decreases the estimate; absolute correlation 0.893.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.287.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.203.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.121.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.17%–2.11% · BASELINE\_NO\_NEW\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.17%–2.10% · BASELINE\_NO\_NEW\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.18%–2.14% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-RL-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-RL-001 — decreases the estimate; absolute correlation 0.893.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.287.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.203.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.121.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -5403,7 +5713,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/rost/>
 - Title: Ross Stores (ROST) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -5415,7 +5726,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -5440,39 +5751,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.35%–1.71% · BASELINE\_NO\_NEW\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.35%–1.71% · BASELINE\_NO\_NEW\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.37%–1.74% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-ROST-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.770.
-51. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.535.
-52. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.299.
-53. A-DEN-ROST-001 — decreases the estimate; absolute correlation 0.167.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.35%–1.71% · BASELINE\_NO\_NEW\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.35%–1.71% · BASELINE\_NO\_NEW\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.37%–1.74% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-ROST-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.770.
+58. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.535.
+59. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.299.
+60. A-DEN-ROST-001 — decreases the estimate; absolute correlation 0.167.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -5500,7 +5818,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/sbux/>
 - Title: Starbucks (SBUX) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -5512,7 +5831,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -5537,39 +5856,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.29%–1.84% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.29%–1.84% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.31%–1.86% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-SBUX-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-SBUX-001 — decreases the estimate; absolute correlation 0.749.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.505.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.351.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.203.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.29%–1.84% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.29%–1.84% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.31%–1.86% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-SBUX-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-SBUX-001 — decreases the estimate; absolute correlation 0.749.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.505.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.351.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.203.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -5597,7 +5923,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/tgt/>
 - Title: Target (TGT) · DFRI
-- Visible information lines: 57
+- Default-visible information lines: 57
+- Disclosure-expanded information lines: 64
 - Internal links: 14
 - Outbound links: 4
 
@@ -5609,7 +5936,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -5634,40 +5961,47 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 42.7%
 22. TIER 3 37.9%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.24x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 1.69%–2.11% · BASELINE\_NO\_NEW\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 1.69%–2.11% · BASELINE\_NO\_NEW\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 1.71%–2.13% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link “total Target Circle Card Penetration was 16.9 percent” Specific SEC filing TIER 1
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-TGT-001
-44. A-T1-TGT-CARD-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.663.
-51. A-T1-TGT-CARD-001 — increases the estimate; absolute correlation 0.526.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.462.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.257.
-54. A-DEN-TGT-001 — decreases the estimate; absolute correlation 0.032.
-55. Research and educational content. Not investment advice.
-56. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-57. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.24x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 1.69%–2.11% · BASELINE\_NO\_NEW\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 1.69%–2.11% · BASELINE\_NO\_NEW\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 1.71%–2.13% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link “total Target Circle Card Penetration was 16.9 percent” Specific SEC filing TIER 1
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-TGT-001
+51. A-T1-TGT-CARD-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.663.
+58. A-T1-TGT-CARD-001 — increases the estimate; absolute correlation 0.526.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.462.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.257.
+61. A-DEN-TGT-001 — decreases the estimate; absolute correlation 0.032.
+62. Research and educational content. Not investment advice.
+63. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+64. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -5697,7 +6031,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/tjx/>
 - Title: TJX Companies (TJX) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -5709,7 +6044,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -5734,39 +6069,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.56% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.33%–1.80% · BASELINE\_NO\_NEW\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.33%–1.80% · BASELINE\_NO\_NEW\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.35%–1.82% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-TJX-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-TJX-001 — decreases the estimate; absolute correlation 0.646.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.589.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.406.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.241.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.56% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.33%–1.80% · BASELINE\_NO\_NEW\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.33%–1.80% · BASELINE\_NO\_NEW\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.35%–1.82% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-TJX-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-TJX-001 — decreases the estimate; absolute correlation 0.646.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.589.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.406.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.241.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -5794,7 +6136,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/tpr/>
 - Title: Tapestry (TPR) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -5806,7 +6149,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -5831,39 +6174,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.16%–2.08% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.16%–2.08% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.18%–2.11% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-TPR-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-TPR-001 — decreases the estimate; absolute correlation 0.891.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.297.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.216.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.116.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.16%–2.08% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.16%–2.08% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.18%–2.11% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-TPR-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-TPR-001 — decreases the estimate; absolute correlation 0.891.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.297.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.216.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.116.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -5891,7 +6241,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/tsco/>
 - Title: Tractor Supply (TSCO) · DFRI
-- Visible information lines: 57
+- Default-visible information lines: 57
+- Disclosure-expanded information lines: 64
 - Internal links: 14
 - Outbound links: 4
 
@@ -5903,7 +6254,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -5928,40 +6279,47 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 34.5%
 22. TIER 3 30.6%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.54x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 1.95%–2.87% · UPDATED\_TTM\_FROM\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 1.95%–2.87% · UPDATED\_TTM\_FROM\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 1.98%–2.91% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link “Sales generated through the Company's private label credit cards” Specific SEC filing TIER 1
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-TSCO-001
-44. A-T1-TSCO-CARD-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T1-TSCO-CARD-001 — increases the estimate; absolute correlation 0.905.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.302.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.203.
-53. A-DEN-TSCO-001 — decreases the estimate; absolute correlation 0.167.
-54. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.124.
-55. Research and educational content. Not investment advice.
-56. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-57. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.54x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 1.95%–2.87% · UPDATED\_TTM\_FROM\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 1.95%–2.87% · UPDATED\_TTM\_FROM\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 1.98%–2.91% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link “Sales generated through the Company's private label credit cards” Specific SEC filing TIER 1
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-TSCO-001
+51. A-T1-TSCO-CARD-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T1-TSCO-CARD-001 — increases the estimate; absolute correlation 0.905.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.302.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.203.
+60. A-DEN-TSCO-001 — decreases the estimate; absolute correlation 0.167.
+61. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.124.
+62. Research and educational content. Not investment advice.
+63. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+64. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -5991,7 +6349,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/tsla/>
 - Title: Tesla (TSLA) · DFRI
-- Visible information lines: 57
+- Default-visible information lines: 57
+- Disclosure-expanded information lines: 64
 - Internal links: 14
 - Outbound links: 3
 
@@ -6003,7 +6362,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -6028,40 +6387,47 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 89.1%
 22. TIER 3 10.9%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 4.32x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 4.88%–9.06% · UPDATED\_TTM\_FROM\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 5.15%–9.66% · UPDATED\_TTM\_FROM\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 4.96%–9.21% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-TSLA-001
-44. A-T2-NONREV-AUTO-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-TSLA-001 — decreases the estimate; absolute correlation 0.825.
-51. A-T2-NONREV-AUTO-001 — increases the estimate; absolute correlation 0.494.
-52. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.067.
-53. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.052.
-54. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.022.
-55. Research and educational content. Not investment advice.
-56. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-57. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 4.32x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.53% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 4.88%–9.06% · UPDATED\_TTM\_FROM\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 5.15%–9.66% · UPDATED\_TTM\_FROM\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 4.96%–9.21% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-TSLA-001
+51. A-T2-NONREV-AUTO-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-TSLA-001 — decreases the estimate; absolute correlation 0.825.
+58. A-T2-NONREV-AUTO-001 — increases the estimate; absolute correlation 0.494.
+59. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.067.
+60. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.052.
+61. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.022.
+62. Research and educational content. Not investment advice.
+63. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+64. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -6090,7 +6456,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/ulta/>
 - Title: Ulta Beauty (ULTA) · DFRI
-- Visible information lines: 57
+- Default-visible information lines: 57
+- Disclosure-expanded information lines: 64
 - Internal links: 14
 - Outbound links: 4
 
@@ -6102,7 +6469,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -6127,40 +6494,47 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 32.1%
 22. TIER 3 28.6%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.65x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 2.07%–3.17% · BASELINE\_NO\_NEW\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 2.07%–3.17% · BASELINE\_NO\_NEW\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 2.09%–3.19% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link “Other revenue includes private label and co-branded credit card programs.” Specific SEC filing TIER 1
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-ULTA-001
-44. A-T1-ULTA-CARD-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T1-ULTA-CARD-001 — increases the estimate; absolute correlation 0.936.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.259.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.182.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.108.
-54. A-DEN-ULTA-001 — decreases the estimate; absolute correlation 0.104.
-55. Research and educational content. Not investment advice.
-56. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-57. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.65x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.55% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 2.07%–3.17% · BASELINE\_NO\_NEW\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 2.07%–3.17% · BASELINE\_NO\_NEW\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 2.09%–3.19% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link “Other revenue includes private label and co-branded credit card programs.” Specific SEC filing TIER 1
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-ULTA-001
+51. A-T1-ULTA-CARD-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T1-ULTA-CARD-001 — increases the estimate; absolute correlation 0.936.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.259.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.182.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.108.
+61. A-DEN-ULTA-001 — decreases the estimate; absolute correlation 0.104.
+62. Research and educational content. Not investment advice.
+63. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+64. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -6190,7 +6564,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/wmt/>
 - Title: Walmart (WMT) · DFRI
-- Visible information lines: 57
+- Default-visible information lines: 57
+- Disclosure-expanded information lines: 64
 - Internal links: 14
 - Outbound links: 4
 
@@ -6202,7 +6577,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -6227,40 +6602,47 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 49.5%
 22. TIER 3 44.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.07x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
-29. EVIDENCE-SUPPORTED
-30. History
-31. 2026-05-22
-32. 2026-Q1 refresh · Estimated 1.44%–1.82% · BASELINE\_NO\_NEW\_10Q
-33. 2026-05-22
-34. 2026-Q1 refresh · Estimated 1.44%–1.82% · BASELINE\_NO\_NEW\_10Q
-35. 2026-08-06
-36. 2026-Q1 methodology snapshot · Estimated 1.46%–1.84% · VERSIONED\_BASELINE
-37. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-38. Evidence
-39. INPUT EVIDENCE TIER
-40. Financing-to-sales link “co-branded credit cards, limited access to cryptocurrency and equity investment products, installment lending” Specific SEC filing TIER 1
-41. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-42. Assumptions
-43. A-DEN-WMT-001
-44. A-T1-WMT-FINANCE-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.738.
-51. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.519.
-52. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.284.
-53. A-DEN-WMT-001 — decreases the estimate; absolute correlation 0.269.
-54. A-T1-WMT-FINANCE-001 — increases the estimate; absolute correlation 0.194.
-55. Research and educational content. Not investment advice.
-56. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-57. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.07x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.54% pure-fungibility baseline.
+36. EVIDENCE-SUPPORTED
+37. History
+38. 2026-05-22
+39. 2026-Q1 refresh · Estimated 1.44%–1.82% · BASELINE\_NO\_NEW\_10Q
+40. 2026-05-22
+41. 2026-Q1 refresh · Estimated 1.44%–1.82% · BASELINE\_NO\_NEW\_10Q
+42. 2026-08-06
+43. 2026-Q1 methodology snapshot · Estimated 1.46%–1.84% · VERSIONED\_BASELINE
+44. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+45. Evidence
+46. INPUT EVIDENCE TIER
+47. Financing-to-sales link “co-branded credit cards, limited access to cryptocurrency and equity investment products, installment lending” Specific SEC filing TIER 1
+48. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+49. Assumptions
+50. A-DEN-WMT-001
+51. A-T1-WMT-FINANCE-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.738.
+58. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.519.
+59. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.284.
+60. A-DEN-WMT-001 — decreases the estimate; absolute correlation 0.269.
+61. A-T1-WMT-FINANCE-001 — increases the estimate; absolute correlation 0.194.
+62. Research and educational content. Not investment advice.
+63. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+64. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -6290,7 +6672,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/wsm/>
 - Title: Williams-Sonoma (WSM) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -6302,7 +6685,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -6327,39 +6710,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.56% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.34%–1.77% · BASELINE\_NO\_NEW\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.34%–1.77% · BASELINE\_NO\_NEW\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.36%–1.79% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-WSM-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.647.
-51. A-DEN-WSM-001 — decreases the estimate; absolute correlation 0.546.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.459.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.251.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.56% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.34%–1.77% · BASELINE\_NO\_NEW\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.34%–1.77% · BASELINE\_NO\_NEW\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.36%–1.79% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-WSM-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.647.
+58. A-DEN-WSM-001 — decreases the estimate; absolute correlation 0.546.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.459.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.251.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -6387,7 +6777,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/wynn/>
 - Title: Wynn Resorts (WYNN) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -6399,7 +6790,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -6424,39 +6815,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.52% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.15%–2.07% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.14%–2.07% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.16%–2.09% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-WYNN-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-WYNN-001 — decreases the estimate; absolute correlation 0.892.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.295.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.199.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.103.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.52% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.15%–2.07% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.14%–2.07% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.16%–2.09% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-WYNN-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-WYNN-001 — decreases the estimate; absolute correlation 0.892.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.295.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.199.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.103.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -6484,7 +6882,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/companies/yum/>
 - Title: Yum! Brands (YUM) · DFRI
-- Visible information lines: 56
+- Default-visible information lines: 56
+- Disclosure-expanded information lines: 63
 - Internal links: 13
 - Outbound links: 3
 
@@ -6496,7 +6895,7 @@ Status: **BASELINE CAPTURED**
 - H2: Assumptions
 - H2: Sensitivity
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -6521,39 +6920,46 @@ Status: **BASELINE CAPTURED**
 21. TIER 2 53.0%
 22. TIER 3 47.0%
 23. Tier definitions
-24. 2026-Q1 · multiple of Tier 3 baseline
-25. 1.00x
-26. Evidence Lift
-27. Definition
-28. DFR% midpoint divided by this company's 1.52% pure-fungibility baseline.
-29. BASELINE-ONLY
-30. No company-specific financing evidence found; estimate reflects proportional allocation.
-31. History
-32. 2026-05-22
-33. 2026-Q1 refresh · Estimated 1.15%–2.08% · UPDATED\_TTM\_FROM\_10Q
-34. 2026-05-22
-35. 2026-Q1 refresh · Estimated 1.15%–2.08% · UPDATED\_TTM\_FROM\_10Q
-36. 2026-08-06
-37. 2026-Q1 methodology snapshot · Estimated 1.16%–2.11% · VERSIONED\_BASELINE
-38. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
-39. Evidence
-40. INPUT EVIDENCE TIER
-41. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
-42. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
-43. Assumptions
-44. A-DEN-YUM-001
-45. A-T2-REV-GENERAL-001
-46. A-T3-NONREV-FUNGIBLE-001
-47. A-T3-REV-FUNGIBLE-001
-48. Sensitivity
-49. Top five assumptions by absolute correlation with the estimated band.
-50. A-DEN-YUM-001 — decreases the estimate; absolute correlation 0.892.
-51. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.294.
-52. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.199.
-53. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.109.
-54. Research and educational content. Not investment advice.
-55. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
-56. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
+24. T1 — OBSERVED
+25. A company disclosure directly links financing to sales.
+26. T2 — CATEGORY-MAPPED
+27. Credit is mapped to spending categories, then to companies using registered weights.
+28. T3 — FUNGIBLE
+29. Credit that cannot be assigned directly is allocated broadly by estimated consumer revenue, with the widest uncertainty.
+30. Tier percentages show how the estimate was constructed—not confidence scores. Full methodology
+31. 2026-Q1 · multiple of Tier 3 baseline
+32. 1.00x
+33. Evidence Lift
+34. Definition
+35. DFR% midpoint divided by this company's 1.52% pure-fungibility baseline.
+36. BASELINE-ONLY
+37. No company-specific financing evidence found; estimate reflects proportional allocation.
+38. History
+39. 2026-05-22
+40. 2026-Q1 refresh · Estimated 1.15%–2.08% · UPDATED\_TTM\_FROM\_10Q
+41. 2026-05-22
+42. 2026-Q1 refresh · Estimated 1.15%–2.08% · UPDATED\_TTM\_FROM\_10Q
+43. 2026-08-06
+44. 2026-Q1 methodology snapshot · Estimated 1.16%–2.11% · VERSIONED\_BASELINE
+45. Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.
+46. Evidence
+47. INPUT EVIDENCE TIER
+48. Financing-to-sales link No company-specific observed financing line is registered. This estimate begins with category-mapped and fungible inputs. TIER 1 0.0%
+49. Revenue denominator Pinned SEC XBRL filing; U.S. consumer share is registered as an assumption. TIER 2
+50. Assumptions
+51. A-DEN-YUM-001
+52. A-T2-REV-GENERAL-001
+53. A-T3-NONREV-FUNGIBLE-001
+54. A-T3-REV-FUNGIBLE-001
+55. Sensitivity
+56. Top five assumptions by absolute correlation with the estimated band.
+57. A-DEN-YUM-001 — decreases the estimate; absolute correlation 0.892.
+58. A-T2-REV-GENERAL-001 — increases the estimate; absolute correlation 0.294.
+59. A-T3-NONREV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.199.
+60. A-T3-REV-FUNGIBLE-001 — increases the estimate; absolute correlation 0.109.
+61. Research and educational content. Not investment advice.
+62. Feeds licensed CC BY-NC 4.0: free for non-commercial use with attribution; commercial licensing reserved — contact ops@camelon.app.
+63. Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
 ### Internal links
 
@@ -6581,7 +6987,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/scoreboard/predictions/prd_4613c5a7c6b9b652464e7c3230252f46a9fbf90f1b6d5c24b57244bba5a89966/>
 - Title: Prediction prd\_4613c5a7c6b9b652464e7c3230252f46a9fbf90f1b6d5c24b57244bba5a89966 · DFRI
-- Visible information lines: 42
+- Default-visible information lines: 42
+- Disclosure-expanded information lines: 42
 - Internal links: 6
 - Outbound links: 7
 
@@ -6590,7 +6997,7 @@ Status: **BASELINE CAPTURED**
 - H1: Revolving credit flow · 2026-07-31
 - H2: Record
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -6653,11 +7060,13 @@ Status: **BASELINE CAPTURED**
 - Federal Reserve Board G.19 release archive — <https://www.federalreserve.gov/releases/g19/>
 - CC BY-NC 4.0 — <https://creativecommons.org/licenses/by-nc/4.0/>
 - ops@camelon.app — <mailto:ops@camelon.app>
+
 ## Page 58: `/scoreboard/predictions/prd_6177c0c4e9f1c076686adb4cd5e4ead039b995aa246337288b9411c706e1a9dc/`
 
 - URL: <https://cameloo1.github.io/dfri/scoreboard/predictions/prd_6177c0c4e9f1c076686adb4cd5e4ead039b995aa246337288b9411c706e1a9dc/>
 - Title: Prediction prd\_6177c0c4e9f1c076686adb4cd5e4ead039b995aa246337288b9411c706e1a9dc · DFRI
-- Visible information lines: 42
+- Default-visible information lines: 42
+- Disclosure-expanded information lines: 42
 - Internal links: 6
 - Outbound links: 7
 
@@ -6666,7 +7075,7 @@ Status: **BASELINE CAPTURED**
 - H1: Revolving credit flow · 2026-07-31
 - H2: Record
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -6734,7 +7143,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/scoreboard/predictions/prd_680ac2b8c3b5e47edcf306e2f1089e50d6bbfbaf50e83592563cb3e8ee5d66e0/>
 - Title: Prediction prd\_680ac2b8c3b5e47edcf306e2f1089e50d6bbfbaf50e83592563cb3e8ee5d66e0 · DFRI
-- Visible information lines: 42
+- Default-visible information lines: 42
+- Disclosure-expanded information lines: 42
 - Internal links: 6
 - Outbound links: 8
 
@@ -6743,7 +7153,7 @@ Status: **BASELINE CAPTURED**
 - H1: Nonrevolving credit flow · 2026-06-30
 - H2: Record
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -6812,7 +7222,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/scoreboard/predictions/prd_89cff4ef13c82b4bccf6ded44e63c4d028bb1635da8c4890edbb9f7db44f86af/>
 - Title: Prediction prd\_89cff4ef13c82b4bccf6ded44e63c4d028bb1635da8c4890edbb9f7db44f86af · DFRI
-- Visible information lines: 42
+- Default-visible information lines: 42
+- Disclosure-expanded information lines: 42
 - Internal links: 6
 - Outbound links: 8
 
@@ -6821,7 +7232,7 @@ Status: **BASELINE CAPTURED**
 - H1: Revolving credit flow · 2026-06-30
 - H2: Record
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -6890,7 +7301,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/scoreboard/predictions/prd_c589a3d29179066784b619fc64987dcc9929c5cedff496ff4d7ca3472d543e44/>
 - Title: Prediction prd\_c589a3d29179066784b619fc64987dcc9929c5cedff496ff4d7ca3472d543e44 · DFRI
-- Visible information lines: 42
+- Default-visible information lines: 42
+- Disclosure-expanded information lines: 42
 - Internal links: 6
 - Outbound links: 7
 
@@ -6899,7 +7311,7 @@ Status: **BASELINE CAPTURED**
 - H1: Nonrevolving credit flow · 2026-07-31
 - H2: Record
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
@@ -6967,7 +7379,8 @@ Status: **BASELINE CAPTURED**
 
 - URL: <https://cameloo1.github.io/dfri/scoreboard/predictions/prd_f180179664ad5f7d7df1c53740dc939220dbda78e29303b85e7d714454537d93/>
 - Title: Prediction prd\_f180179664ad5f7d7df1c53740dc939220dbda78e29303b85e7d714454537d93 · DFRI
-- Visible information lines: 42
+- Default-visible information lines: 42
+- Disclosure-expanded information lines: 42
 - Internal links: 6
 - Outbound links: 7
 
@@ -6976,7 +7389,7 @@ Status: **BASELINE CAPTURED**
 - H1: Nonrevolving credit flow · 2026-07-31
 - H2: Record
 
-### User-visible information
+### User-visible information with native disclosures expanded
 
 1. DFRI
 2. CAMELON SYSTEMS
