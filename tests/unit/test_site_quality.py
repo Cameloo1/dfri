@@ -266,6 +266,10 @@ def test_browser_accessibility_gate_includes_m5_methodology_pages() -> None:
     assert "`/scoreboard/predictions/${entry.name}/`" in script
     assert "keyboardAudit" in script
     assert "semanticAudit" in script
+    assert "mobileLayoutAudit" in script
+    assert "viewport: { width: 390, height: 844 }" in script
+    assert "document.documentElement.scrollWidth" in script
+    assert "mobileLayoutFailures.length === 0" in script
     assert "details.baseline-disclosure" in script
 
 

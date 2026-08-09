@@ -176,6 +176,26 @@ async function keyboardAudit(page) {
   return { failures, focusableCount: expectedCount };
 }
 
+async function mobileLayoutAudit(page) {
+  return page.evaluate(() => {
+    const tolerance = 1;
+    const viewportWidth = window.innerWidth;
+    const documentWidth = document.documentElement.scrollWidth;
+    const failures = [];
+    if (documentWidth > viewportWidth + tolerance) {
+      failures.push(`document overflows by ${documentWidth - viewportWidth}px`);
+    }
+    const overflowingSvgs = [...document.querySelectorAll('svg[role="img"]')].filter((svg) => {
+      const bounds = svg.getBoundingClientRect();
+      return bounds.left < -tolerance || bounds.right > viewportWidth + tolerance;
+    });
+    if (overflowingSvgs.length > 0) {
+      failures.push(`${overflowingSvgs.length} SVG image(s) leave the mobile viewport`);
+    }
+    return { failures, viewportWidth, documentWidth };
+  });
+}
+
 const server = createServer(async (request, response) => {
   try {
     const path = safePath(request.url ?? "/");
@@ -248,6 +268,17 @@ try {
     }
   }
   await noJsContext.close();
+
+  const mobileContext = await browser.newContext({
+    javaScriptEnabled: false,
+    viewport: { width: 390, height: 844 },
+  });
+  const mobilePage = await mobileContext.newPage();
+  for (const result of results) {
+    await mobilePage.goto(`${baseUrl}${result.route}`, { waitUntil: "load" });
+    result.mobileLayout = await mobileLayoutAudit(mobilePage);
+  }
+  await mobileContext.close();
 } finally {
   await browser.close();
   await new Promise((resolveClosed, rejectClosed) =>
@@ -266,9 +297,15 @@ const semanticFailures = results.flatMap((result) =>
 const keyboardFailures = results.flatMap((result) =>
   result.keyboard.failures.map((failure) => ({ route: result.route, failure })),
 );
+const mobileLayoutFailures = results.flatMap((result) =>
+  result.mobileLayout.failures.map((failure) => ({ route: result.route, failure })),
+);
 const receipt = {
   status:
-    critical.length === 0 && semanticFailures.length === 0 && keyboardFailures.length === 0
+    critical.length === 0 &&
+    semanticFailures.length === 0 &&
+    keyboardFailures.length === 0 &&
+    mobileLayoutFailures.length === 0
       ? "PASS"
       : "FAIL",
   axeVersion: "4.12.1",
@@ -281,8 +318,14 @@ const receipt = {
   semanticFailures,
   keyboardFailureCount: keyboardFailures.length,
   keyboardFailures,
+  mobileLayoutFailureCount: mobileLayoutFailures.length,
+  mobileLayoutFailures,
   worstFinding:
-    critical[0] ?? semanticFailures[0] ?? keyboardFailures[0] ?? "none",
+    critical[0] ??
+    semanticFailures[0] ??
+    keyboardFailures[0] ??
+    mobileLayoutFailures[0] ??
+    "none",
   results,
 };
 await writeFile(outputPath, `${JSON.stringify(receipt, null, 2)}\n`, { encoding: "utf8" });
