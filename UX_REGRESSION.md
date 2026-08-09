@@ -115,10 +115,10 @@ The focused adversarial run passed three explicit proofs: an attempted predictio
 an unchanged repository-ledger candidate is a no-op without rewritten bytes, and a fresh runtime
 restores byte-identically from Git without an artifact.
 
-A fresh clone of the pushed branch at `ec58650`, with no local state, artifact, virtual environment,
-or dependency cache, passed the documented `make bootstrap`, `make verify`, `make publish`, and
-`make site-quality` Windows targets. The real GitHub runner also passed at
-[CI run 31339340546](https://github.com/Cameloo1/dfri/actions/runs/31339340546).
+A fresh clone of the pushed branch, with no local state, artifact, virtual environment, or
+dependency cache, passed the documented `make bootstrap`, `make verify`, `make publish`, and
+`make site-quality` Windows targets. The real runner evidence remains available from
+[PR #26 checks](https://github.com/Cameloo1/dfri/pull/26/checks).
 
 ## 6. Accessibility and budgets
 
