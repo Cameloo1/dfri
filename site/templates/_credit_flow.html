@@ -1,0 +1,40 @@
+{% macro credit_flow(flow, methodology_href, show_table=false) -%}
+<figure class="credit-flow-figure" aria-labelledby="credit-flow-title credit-flow-caption">
+  <div class="figure-label">{{ flow.period }} · registered midpoint allocations · millions of U.S. dollars</div>
+  <div class="figure-evidence"><span>Width = estimated dollars</span><span>Style = how much is actually known</span><a href="{{ methodology_href }}">Method and provenance</a></div>
+  <svg class="credit-flow" viewBox="0 0 360 675" role="img" data-node-count="{{ flow.node_count }}">
+    <title>{{ flow.period }} consumer-credit attribution flow</title>
+    <desc>Credit products flow through tiered categories to {{ flow.top_company_labels }} and other covered companies. Width is midpoint $M; solid, dashed, and dotted mean Tiers 1, 2, and 3.</desc>
+    <text x="8" y="18" class="flow-layer-label">Credit products</text>
+    <text x="8" y="231" class="flow-layer-label">Spending categories</text>
+    <text x="8" y="491" class="flow-layer-label">Covered companies</text>
+    <g class="flow-links flow-links-products">
+      {% for link in flow.product_links %}<path d="{{ link.path }}" class="flow-ribbon tier-{{ link.tier }}" style="stroke-width: {{ link.stroke_width }}px"/>{% endfor %}
+    </g>
+    <g class="flow-links flow-links-companies">
+      {% for link in flow.company_links %}<path d="{{ link.path }}" class="flow-ribbon tier-{{ link.tier }}" style="stroke-width: {{ link.stroke_width }}px"/>{% endfor %}
+    </g>
+    <g class="flow-nodes flow-products">
+      {% for node in flow.product_nodes %}<g><rect x="{{ node.x }}" y="{{ node.y }}" width="{{ node.width }}" height="{{ node.height }}" class="flow-node"/><text x="{{ node.x + node.width / 2 }}" y="{{ node.y + 18 }}" text-anchor="middle" class="flow-node-label">{% for line in node.label_lines %}<tspan x="{{ node.x + node.width / 2 }}" dy="{% if loop.first %}0{% else %}12{% endif %}">{{ line }}</tspan>{% endfor %}</text><text x="{{ node.x + node.width / 2 }}" y="{{ node.y + node.height - 9 }}" text-anchor="middle" class="flow-node-value">{{ node.amount_display }}</text></g>{% endfor %}
+    </g>
+    <g class="flow-nodes flow-categories">
+      {% for node in flow.category_nodes %}<g><rect x="{{ node.x }}" y="{{ node.y }}" width="{{ node.width }}" height="{{ node.height }}" class="flow-node"/><text x="{{ node.x + node.width / 2 }}" y="{{ node.y + 16 }}" text-anchor="middle" class="flow-node-label">{% for line in node.label_lines %}<tspan x="{{ node.x + node.width / 2 }}" dy="{% if loop.first %}0{% else %}11{% endif %}">{{ line }}</tspan>{% endfor %}</text><text x="{{ node.x + node.width / 2 }}" y="{{ node.y + node.height - 8 }}" text-anchor="middle" class="flow-node-value">{{ node.amount_display }}</text></g>{% endfor %}
+    </g>
+    <g class="flow-nodes flow-companies">
+      {% for node in flow.company_nodes %}<g><rect x="{{ node.x }}" y="{{ node.y }}" width="{{ node.width }}" height="{{ node.height }}" class="flow-node"/><text x="{{ node.x + node.width / 2 }}" y="{{ node.y + 16 }}" text-anchor="middle" class="flow-node-label">{% for line in node.label_lines %}<tspan x="{{ node.x + node.width / 2 }}" dy="{% if loop.first %}0{% else %}11{% endif %}">{{ line }}</tspan>{% endfor %}</text><text x="{{ node.x + node.width / 2 }}" y="{{ node.y + node.height - 8 }}" text-anchor="middle" class="flow-node-value">{{ node.amount_display }}</text></g>{% endfor %}
+    </g>
+  </svg>
+  <div class="flow-legend" aria-label="Credit-flow evidence legend">
+    <strong>Ribbon key</strong>
+    <span><i class="flow-key tier-1" aria-hidden="true"></i>Tier 1 · observed link</span>
+    <span><i class="flow-key tier-2" aria-hidden="true"></i>Tier 2 · category-mapped</span>
+    <span><i class="flow-key tier-3" aria-hidden="true"></i>Tier 3 · fungible</span>
+  </div>
+  <figcaption id="credit-flow-caption">The diagram begins with the portion of measured G.19 flow represented by published attribution lanes; it is not a complete use-of-funds decomposition. Tier 3 flows are proportional allocations, not observed transfers.</figcaption>
+  {% if show_table %}<div class="table-wrap flow-table-wrap"><table class="flow-table">
+    <caption>Exact static values behind the diagram. Highest-lift companies are shown separately; the remaining covered companies are bundled.</caption>
+    <thead><tr><th>Credit lane</th><th>Spending category</th><th>Tier</th><th>Estimated midpoint</th><th>Covered-company destinations</th></tr></thead>
+    <tbody>{% for row in flow.rows %}<tr><td>{{ row.lane }}</td><td>{{ row.category }}</td><td><span class="tier-badge tier-{{ row.tier }}">Tier {{ row.tier }}</span></td><td>{{ row.amount_display }}</td><td>{{ row.destinations }}</td></tr>{% endfor %}</tbody>
+  </table></div>{% endif %}
+</figure>
+{%- endmacro %}

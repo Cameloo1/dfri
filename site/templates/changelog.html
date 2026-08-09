@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="eyebrow">Append-only publication history</div>
 <h1>Changelog</h1>
-<p class="lede">Methodology changes, model versions, and restatements are added here. Prior published records are not silently rewritten.</p>
+<p class="lede">Methodology, model, and publication changes. Prior records are not silently rewritten.</p>
 {% for entry in entries %}
 <article class="card card-follow" id="{{ entry.entry_id }}">
-  <div class="kicker">{{ entry.published_on }} · {{ entry.kind }} · {{ entry.version }}</div>
+  <div class="entry-label">{{ entry.published_on }} · {{ entry.kind }} · {{ entry.version }}</div>
   <h2><a href="#{{ entry.entry_id }}">{{ entry.title }}</a></h2>
   <p>{{ entry.summary }}</p>
   <p>{% for link in entry.links %}<a href="{% if link.href.startswith('https://') %}{{ link.href }}{% else %}{{ root }}{{ link.href|trim('/') }}{% endif %}">{{ link.label }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>

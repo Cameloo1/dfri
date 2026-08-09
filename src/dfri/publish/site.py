@@ -9,6 +9,7 @@ import io
 import json
 import shutil
 import uuid
+from collections import defaultdict
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, replace
 from datetime import UTC, datetime
@@ -23,6 +24,7 @@ from dfri.attribution.registry import (
     DEFAULT_METHODOLOGY_VERSION,
     Assumption,
     AttributionBundle,
+    MatrixBEntry,
     load_attribution_bundle,
 )
 from dfri.lake.guard import VintageGuard
@@ -61,6 +63,15 @@ NOWCAST_SOURCE_URLS: Final = {
     "marts_archive": "https://www.census.gov/retail/marts/historic_releases.html",
     "g19_archive": "https://www.federalreserve.gov/releases/g19/",
 }
+FLOW_PRODUCT_LABELS: Final = {
+    "revolving_credit": "Revolving",
+    "nonrevolving_credit": "Nonrevolving",
+}
+FLOW_CATEGORY_LABELS: Final = {
+    "general_retail": "General retail",
+    "auto_market": "Auto market",
+    "gm_captive_auto": "GM captive",
+}
 
 
 class SitePublishError(RuntimeError):
@@ -75,6 +86,63 @@ class PublishReceipt:
     excluded_count: int
     total_bytes: int
     manifest_hash: str
+
+
+@dataclass(frozen=True)
+class CreditFlowNode:
+    key: str
+    label_lines: tuple[str, ...]
+    amount_display: str
+    x: float
+    y: float
+    width: float
+    height: float
+
+
+@dataclass(frozen=True)
+class CreditFlowLink:
+    path: str
+    tier: int
+    stroke_width: str
+    amount_millions: float
+    amount_display: str
+    source_label: str
+    target_label: str
+
+
+@dataclass(frozen=True)
+class CreditFlowRow:
+    lane: str
+    category: str
+    tier: int
+    amount_display: str
+    destinations: str
+
+
+@dataclass(frozen=True)
+class CreditFlowView:
+    period: str
+    node_count: int
+    product_nodes: tuple[CreditFlowNode, ...]
+    category_nodes: tuple[CreditFlowNode, ...]
+    company_nodes: tuple[CreditFlowNode, ...]
+    product_links: tuple[CreditFlowLink, ...]
+    company_links: tuple[CreditFlowLink, ...]
+    rows: tuple[CreditFlowRow, ...]
+    top_company_labels: str
+
+
+@dataclass
+class _CreditFlowGroup:
+    key: str
+    label: str
+    tier: int
+    product_amounts: dict[str, float]
+    company_amounts: dict[str, float]
+
+    @property
+    def total(self) -> float:
+        return sum(self.company_amounts.values())
 
 
 def publish_scoreboard(
@@ -371,7 +439,7 @@ def _build_scoreboard(
     _write_json(feeds / "schema.json", _feed_schema(build_meta))
 
     assets = output_root / "assets"
-    _copy(root / "site" / "static" / "site.css", assets / "site.css")
+    _copy_stylesheet(root / "site" / "static" / "site.css", assets / "site.css")
     _copy(root / "site" / "static" / "site.js", assets / "site.js")
     display_rows = [
         _display_row(item, grade_by_id.get(item.prediction_id))
@@ -404,6 +472,7 @@ def _build_scoreboard(
     company_displays = [_company_display(item) for item in attribution.companies]
     company_histories = _company_histories(attribution, company_history_rows)
     aggregate_display = _aggregate_display(attribution)
+    credit_flow = _credit_flow_view(attribution_bundle, attribution)
     comparison_rows = _methodology_comparison(prior_attribution, attribution)
     _render(
         environment,
@@ -424,6 +493,8 @@ def _build_scoreboard(
             ),
             "evidence_lift_headline": attribution.evidence_lift_headline,
             "company_count": len(company_displays),
+            "credit_flow": credit_flow,
+            "credit_flow_methodology_href": "methodology/index.html#credit-flow",
         },
     )
     _render(
@@ -454,6 +525,8 @@ def _build_scoreboard(
             "matrix_a": attribution_bundle.matrix_a,
             "matrix_b": attribution_bundle.matrix_b,
             "company_count": len(company_displays),
+            "credit_flow": credit_flow,
+            "credit_flow_methodology_href": "#credit-flow-method",
         },
     )
     _render(
@@ -999,6 +1072,348 @@ def _aggregate_display(result: AttributionResult) -> dict[str, object]:
     }
 
 
+def _credit_flow_view(
+    bundle: AttributionBundle,
+    result: AttributionResult,
+) -> CreditFlowView:
+    """Collapse published midpoint mappings into a small, tier-preserving SVG view."""
+
+    flow_midpoints = {item.debt_product: item.prior.mid for item in bundle.flows}
+    b_by_category: dict[str, list[MatrixBEntry]] = defaultdict(list)
+    for b_entry in bundle.matrix_b:
+        b_by_category[b_entry.spend_category].append(b_entry)
+
+    category_groups: dict[str, _CreditFlowGroup] = {}
+    for a_row in bundle.matrix_a:
+        if a_row.debt_product not in flow_midpoints:
+            raise SitePublishError(f"Flow view lacks product input: {a_row.debt_product}")
+        group = category_groups.setdefault(
+            a_row.spend_category,
+            _CreditFlowGroup(
+                key=a_row.spend_category,
+                label=FLOW_CATEGORY_LABELS.get(
+                    a_row.spend_category,
+                    a_row.spend_category.replace("_", " ").capitalize(),
+                ),
+                tier=a_row.tier,
+                product_amounts={},
+                company_amounts={},
+            ),
+        )
+        if group.tier != a_row.tier:
+            raise SitePublishError(
+                f"Flow view cannot combine tiers for category: {a_row.spend_category}"
+            )
+        for b_row in b_by_category.get(a_row.spend_category, []):
+            ticker = b_row.ticker
+            b_mid = b_row.prior.mid
+            amount = flow_midpoints[a_row.debt_product] * a_row.prior.mid * b_mid
+            if amount <= 0:
+                continue
+            group.product_amounts[a_row.debt_product] = (
+                group.product_amounts.get(a_row.debt_product, 0.0) + amount
+            )
+            group.company_amounts[ticker] = group.company_amounts.get(ticker, 0.0) + amount
+
+    ordered_categories = sorted(
+        (item for item in category_groups.values() if item.total > 0),
+        key=lambda item: (-item.total, item.key),
+    )
+    # One named category plus tier-specific remainder groups keeps the static view
+    # readable at 320-360 CSS pixels without losing the evidence-style encoding.
+    named = ordered_categories[:1]
+    named_keys = {item.key for item in named}
+    groups = list(named)
+    remainder_labels = {
+        1: "Other Tier 1",
+        2: "Other Tier 2",
+        3: "Tier 3 proportional",
+    }
+    for tier in (1, 2, 3):
+        remainder = [
+            item for item in ordered_categories if item.key not in named_keys and item.tier == tier
+        ]
+        if not remainder:
+            continue
+        product_amounts: dict[str, float] = defaultdict(float)
+        company_amounts: dict[str, float] = defaultdict(float)
+        for remainder_group in remainder:
+            for product, amount in remainder_group.product_amounts.items():
+                product_amounts[product] += amount
+            for ticker, amount in remainder_group.company_amounts.items():
+                company_amounts[ticker] += amount
+        groups.append(
+            _CreditFlowGroup(
+                key=f"other-tier-{tier}",
+                label=remainder_labels[tier],
+                tier=tier,
+                product_amounts=dict(product_amounts),
+                company_amounts=dict(company_amounts),
+            )
+        )
+    groups.sort(key=lambda item: (-item.total, item.key))
+
+    top_companies = tuple(
+        sorted(result.companies, key=lambda item: (-item.evidence_lift, item.ticker))[:2]
+    )
+    top_tickers = tuple(item.ticker for item in top_companies)
+    product_keys = tuple(item.debt_product for item in bundle.flows)
+    product_totals = {
+        product: sum(item.product_amounts.get(product, 0.0) for item in groups)
+        for product in product_keys
+    }
+    company_totals = {
+        ticker: sum(item.company_amounts.get(ticker, 0.0) for item in groups)
+        for ticker in top_tickers
+    }
+    company_totals["all-other"] = sum(
+        amount
+        for item in groups
+        for ticker, amount in item.company_amounts.items()
+        if ticker not in top_tickers
+    )
+
+    product_centers = _flow_centers(len(product_keys), 90.0)
+    category_centers = _flow_centers(len(groups), 30.0)
+    company_keys = (*top_tickers, "all-other")
+    company_centers = _flow_centers(len(company_keys), 42.0)
+    product_nodes = tuple(
+        CreditFlowNode(
+            key=key,
+            label_lines=(FLOW_PRODUCT_LABELS.get(key, key.replace("_", " ").capitalize()),),
+            amount_display=_flow_amount(product_totals[key]),
+            x=center - 58.0,
+            y=30.0,
+            width=116.0,
+            height=52.0,
+        )
+        for key, center in zip(product_keys, product_centers, strict=True)
+    )
+    category_nodes = tuple(
+        CreditFlowNode(
+            key=item.key,
+            label_lines=_flow_label_lines(item.label),
+            amount_display=_flow_amount(item.total),
+            x=center - 27.0,
+            y=245.0,
+            width=54.0,
+            height=62.0,
+        )
+        for item, center in zip(groups, category_centers, strict=True)
+    )
+    lift_by_ticker = {item.ticker: item.evidence_lift for item in top_companies}
+    company_nodes = tuple(
+        CreditFlowNode(
+            key=key,
+            label_lines=(
+                (key, f"{lift_by_ticker[key]:.2f}x lift")
+                if key != "all-other"
+                else ("All other", "covered")
+            ),
+            amount_display=_flow_amount(company_totals[key]),
+            x=center - 38.0,
+            y=505.0,
+            width=76.0,
+            height=62.0,
+        )
+        for key, center in zip(company_keys, company_centers, strict=True)
+    )
+
+    product_raw = [
+        (
+            product,
+            group.key,
+            amount,
+            group.tier,
+            FLOW_PRODUCT_LABELS.get(product, product),
+            group.label,
+        )
+        for group in groups
+        for product, amount in group.product_amounts.items()
+        if amount > 0
+    ]
+    company_raw = [
+        (
+            group.key,
+            ticker,
+            (
+                group.company_amounts.get(ticker, 0.0)
+                if ticker != "all-other"
+                else sum(
+                    amount
+                    for company_ticker, amount in group.company_amounts.items()
+                    if company_ticker not in top_tickers
+                )
+            ),
+            group.tier,
+            group.label,
+            (ticker if ticker != "all-other" else "All other covered companies"),
+        )
+        for group in groups
+        for ticker in company_keys
+    ]
+    company_raw = [item for item in company_raw if item[2] > 0]
+    all_amounts = [item[2] for item in (*product_raw, *company_raw)]
+    if not all_amounts:
+        raise SitePublishError("Flow view has no positive published attribution lanes")
+    scale = 24.0 / max(all_amounts)
+    product_links = _flow_links(
+        product_raw,
+        product_nodes,
+        category_nodes,
+        source_y=82.0,
+        target_y=245.0,
+        scale=scale,
+    )
+    company_links = _flow_links(
+        company_raw,
+        category_nodes,
+        company_nodes,
+        source_y=307.0,
+        target_y=505.0,
+        scale=scale,
+    )
+
+    rows = tuple(
+        CreditFlowRow(
+            lane=" + ".join(
+                FLOW_PRODUCT_LABELS.get(product, product)
+                for product in product_keys
+                if item.product_amounts.get(product, 0.0) > 0
+            ),
+            category=item.label,
+            tier=item.tier,
+            amount_display=_flow_amount(item.total),
+            destinations="; ".join(
+                f"{(ticker if ticker != 'all-other' else 'All other')} {_flow_amount(amount)}"
+                for ticker, amount in (
+                    *((ticker, item.company_amounts.get(ticker, 0.0)) for ticker in top_tickers),
+                    (
+                        "all-other",
+                        sum(
+                            amount
+                            for ticker, amount in item.company_amounts.items()
+                            if ticker not in top_tickers
+                        ),
+                    ),
+                )
+                if amount > 0
+            ),
+        )
+        for item in groups
+    )
+    node_count = len(product_nodes) + len(category_nodes) + len(company_nodes)
+    if node_count > 9:
+        raise SitePublishError(f"Flow view exceeds the 9-node readability cap: {node_count}")
+    return CreditFlowView(
+        period=result.quarter,
+        node_count=node_count,
+        product_nodes=product_nodes,
+        category_nodes=category_nodes,
+        company_nodes=company_nodes,
+        product_links=product_links,
+        company_links=company_links,
+        rows=rows,
+        top_company_labels=", ".join(top_tickers),
+    )
+
+
+def _flow_links(
+    raw: list[tuple[str, str, float, int, str, str]],
+    source_nodes: tuple[CreditFlowNode, ...],
+    target_nodes: tuple[CreditFlowNode, ...],
+    *,
+    source_y: float,
+    target_y: float,
+    scale: float,
+) -> tuple[CreditFlowLink, ...]:
+    source_centers = {item.key: item.x + item.width / 2.0 for item in source_nodes}
+    target_centers = {item.key: item.x + item.width / 2.0 for item in target_nodes}
+    source_slots = _flow_slots(
+        raw,
+        group_index=0,
+        other_index=1,
+        group_centers=source_centers,
+        other_centers=target_centers,
+        scale=scale,
+    )
+    target_slots = _flow_slots(
+        raw,
+        group_index=1,
+        other_index=0,
+        group_centers=target_centers,
+        other_centers=source_centers,
+        scale=scale,
+    )
+    midpoint = (source_y + target_y) / 2.0
+    links = []
+    for index, (_, _, amount, tier, source_label, target_label) in enumerate(raw):
+        start = source_slots[index]
+        end = target_slots[index]
+        links.append(
+            CreditFlowLink(
+                path=(
+                    f"M {start:.2f} {source_y:.2f} C {start:.2f} {midpoint:.2f} "
+                    f"{end:.2f} {midpoint:.2f} {end:.2f} {target_y:.2f}"
+                ),
+                tier=tier,
+                stroke_width=f"{amount * scale:.3f}",
+                amount_millions=amount,
+                amount_display=_flow_amount(amount),
+                source_label=source_label,
+                target_label=target_label,
+            )
+        )
+    return tuple(links)
+
+
+def _flow_slots(
+    raw: list[tuple[str, str, float, int, str, str]],
+    *,
+    group_index: int,
+    other_index: int,
+    group_centers: dict[str, float],
+    other_centers: dict[str, float],
+    scale: float,
+) -> dict[int, float]:
+    grouped: dict[str, list[int]] = defaultdict(list)
+    for index, item in enumerate(raw):
+        grouped[cast(str, item[group_index])].append(index)
+    slots: dict[int, float] = {}
+    for key, indexes in grouped.items():
+        ordered = sorted(
+            indexes,
+            key=lambda index: (other_centers[cast(str, raw[index][other_index])], index),
+        )
+        widths = [raw[index][2] * scale for index in ordered]
+        cursor = group_centers[key] - sum(widths) / 2.0
+        for index, width in zip(ordered, widths, strict=True):
+            slots[index] = cursor + width / 2.0
+            cursor += width
+    return slots
+
+
+def _flow_centers(count: int, margin: float) -> tuple[float, ...]:
+    if count <= 0:
+        raise SitePublishError("Flow view requires at least one node per layer")
+    if count == 1:
+        return (180.0,)
+    step = (360.0 - margin * 2.0) / (count - 1)
+    return tuple(margin + index * step for index in range(count))
+
+
+def _flow_label_lines(label: str) -> tuple[str, ...]:
+    words = label.split()
+    if len(label) <= 12 or len(words) == 1:
+        return (label,)
+    split = max(1, len(words) // 2)
+    return (" ".join(words[:split]), " ".join(words[split:]))
+
+
+def _flow_amount(value: float) -> str:
+    return f"${value:,.0f}M"
+
+
 def _methodology_comparison(
     prior: AttributionResult, current: AttributionResult
 ) -> list[dict[str, object]]:
@@ -1388,6 +1803,12 @@ def _render(
 def _copy(source: Path, destination: Path) -> None:
     content = source.read_text(encoding="utf-8").replace("\r\n", "\n")
     _atomic_write(destination, content.encode())
+
+
+def _copy_stylesheet(source: Path, destination: Path) -> None:
+    content = source.read_text(encoding="utf-8").replace("\r\n", "\n")
+    compact = " ".join(content.split()) + "\n"
+    _atomic_write(destination, compact.encode())
 
 
 def _atomic_write(path: Path, content: bytes) -> None:

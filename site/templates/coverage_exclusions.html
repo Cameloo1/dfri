@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="eyebrow">Coverage snapshot · {{ verified_at }}</div>
-<h1>Fifty included, 31 excluded—with a one-line reason for every exclusion.</h1>
+<h1>Coverage</h1>
 <p class="lede">The P1 universe partitions every Consumer Discretionary and Consumer Staples member in the pinned, cross-checked S&amp;P 500 snapshot. Historical coverage is preserved by methodology version; no past company set is rewritten.</p>
-<p>{{ policy.ranking }}</p>
+<p>Verified {{ verified_at }}. Fifty included, 31 excluded, with a one-line reason for every exclusion. {{ policy.ranking }}</p>
 
-<section class="section-block"><div class="eyebrow">Included</div><h2>50 evidence-backed companies</h2>
+<section class="section-block"><h2>Included</h2><p>50 evidence-backed companies.</p>
   <div class="company-links">{% for company in included %}<a class="company-link" href="{{ root }}companies/{{ company.ticker|lower }}/index.html"><strong>{{ company.ticker }}</strong><span>{{ company.company_name }}</span><span>Estimated {{ company.low }}–{{ company.high }} DFR%</span></a>{% endfor %}</div>
 </section>
 
-<section class="section-block"><div class="eyebrow">Excluded</div><h2>31 excluded members</h2>
+<section class="section-block"><h2>Excluded</h2><p>31 excluded members.</p>
   <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Company</th><th>Sub-industry</th><th>One-line reason</th></tr></thead><tbody>
   {% for item in exclusions %}<tr><td class="hash">{{ item.ticker }}</td><td>{{ item.company_name }}</td><td>{{ item.gics_sub_industry }}</td><td>{{ item.reason }}</td></tr>{% endfor %}
   </tbody></table></div>

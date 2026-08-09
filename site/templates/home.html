@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% from "_tier_legend.html" import tier_legend %}
+{% from "_credit_flow.html" import credit_flow as render_credit_flow %}
 {% block content %}
-<div class="eyebrow">Publicly falsifiable consumer-credit research</div>
-<h1>Debt-funded revenue, with the assumptions exposed.</h1>
+<h1>Debt-funded revenue</h1>
 <p class="lede">{{ brand.product_name }} estimates the share of covered companies' U.S. consumer revenue funded by new consumer credit. It also predicts each month's change in U.S. consumer borrowing before the Federal Reserve publishes the official G.19 figure, records that forecast with a timestamp, and grades it against the first print.</p>
 
 <section class="grid" aria-label="Scoreboard summary">
   <article class="card primary">
-    <div class="kicker">revenue-weighted company index · {{ aggregate.quarter }}</div>
-    <div class="number" title="Estimated from registered Matrix A and Matrix B priors; open Methodology for every input">Estimated {{ aggregate.mid }}</div>
-    <div class="meta">Estimated DFR% · {{ company_count }}-company coverage · {{ aggregate.weighting }} <span class="tier-badge tier-mixed">Tier 1–3</span></div>
+    <div class="figure-label">{{ aggregate.quarter }} · estimated share of U.S. consumer revenue</div>
+    <div class="number" title="Estimated from registered Matrix A and Matrix B priors; open Methodology for every input">{{ aggregate.mid }}</div>
+    <div class="figure-evidence"><span>Revenue-weighted DFR% · {{ company_count }} companies</span><span class="tier-badge tier-mixed">Tier 1–3</span><a href="methodology/index.html">Method and provenance</a></div>
     <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="Estimated DFR percent band from {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}">
       <title>Estimated DFR% band: {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}</title>
       <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
@@ -25,9 +25,9 @@
   </article>
   {% if latest %}
   <article class="card metric">
-    <div class="kicker">Latest prediction · {{ latest.target_label }} · {{ latest.target_period }}</div>
+    <div class="figure-label">{{ latest.target_period }} · {{ latest.target_label }} · $M monthly flow</div>
     <div class="number">{{ latest.point_display }}</div>
-    <div class="meta">Seasonally adjusted monthly flow · millions of U.S. dollars · <span class="status {{ latest.grade_status_class }}">{{ latest.grade_status }}</span></div>
+    <div class="figure-evidence"><span>Seasonally adjusted · millions of U.S. dollars</span><span class="status {{ latest.grade_status_class }}">{{ latest.grade_status }}</span><a href="scoreboard/predictions/{{ latest.prediction_id }}/index.html">Immutable record</a></div>
     <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="95 percent prediction interval from {{ latest.low95_display }} to {{ latest.high95_display }}; point {{ latest.point_display }}">
       <title>Prediction band: {{ latest.low95_display }} to {{ latest.high95_display }}, point {{ latest.point_display }}</title>
       <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
@@ -35,19 +35,23 @@
       <line x1="300" y1="18" x2="300" y2="54" class="range-mid-rule" />
       <text x="108" y="68" text-anchor="middle">{{ latest.low95_display }}</text><text x="300" y="68" text-anchor="middle">{{ latest.point_display }}</text><text x="492" y="68" text-anchor="middle">{{ latest.high95_display }}</text>
     </svg>
-    <p><a href="scoreboard/predictions/{{ latest.prediction_id }}/index.html">Open immutable prediction →</a></p>
   </article>
   {% else %}
   <article class="card metric"><h2>No predictions yet</h2><p>The feed is valid but the public clock has not started.</p></article>
   {% endif %}
-  <article class="card metric"><div class="kicker">Recorded predictions</div><div class="number">{{ summary.prediction_count }}</div><div class="meta">{{ summary.graded_count }} graded · {{ summary.pending_count }} awaiting first print</div></article>
-  <article class="card metric"><div class="kicker">Primary backtest MAE</div><div class="number">{{ summary.mae_display }}</div><div class="meta">{{ summary.improvement_display }} better than {{ summary.best_naive }}</div></article>
-  <article class="card metric"><div class="kicker">Backtest coverage</div><div class="number">{{ summary.coverage80_display }}</div><div class="meta">80% band · 95% band {{ summary.coverage95_display }}</div></article>
+  <article class="card metric"><div class="figure-label">Current ledger · prediction records</div><div class="number secondary">{{ summary.prediction_count }}</div><div class="figure-evidence"><span>{{ summary.graded_count }} graded · {{ summary.pending_count }} pending</span><a href="scoreboard/index.html">Full ledger</a></div></article>
+  <article class="card metric"><div class="figure-label">2018–2026 backtest · $M mean absolute error</div><div class="number secondary">{{ summary.mae_display }}</div><div class="figure-evidence"><span>{{ summary.improvement_display }} better than {{ summary.best_naive }}</span><a href="methodology/index.html">Model evidence</a></div></article>
+  <article class="card metric"><div class="figure-label">2018–2026 backtest · share inside 80% band</div><div class="number secondary">{{ summary.coverage80_display }}</div><div class="figure-evidence"><span>95% band {{ summary.coverage95_display }}</span><a href="methodology/index.html">Coverage method</a></div></article>
+</section>
+
+<section id="credit-flow" class="section-block">
+  <h2>Credit flow</h2>
+  <p>Current-period midpoint allocations show how published consumer-credit lanes pass through spending categories to the highest-lift companies and the rest of the covered universe.</p>
+  {{ render_credit_flow(credit_flow, credit_flow_methodology_href) }}
 </section>
 
 <section id="evidence-lift" class="section-block">
-  <div class="eyebrow">Evidence Lift</div>
-  <h2>Which estimates rise above proportional allocation?</h2>
+  <h2>Evidence Lift</h2>
   <p>Evidence Lift measures company-specific financing evidence, not risk, credit quality, or investment merit.</p>
   <p class="lede">{{ evidence_lift_headline }}</p>
   <div class="table-wrap"><table class="lift-table">
@@ -65,8 +69,8 @@
 </section>
 
 <section id="companies" class="section-block">
-  <div class="eyebrow">P1 coverage</div>
-  <h2>{{ company_count }} company estimates, alphabetically</h2>
+  <h2>Company estimates</h2>
+  <p>{{ company_count }} covered companies, alphabetically.</p>
   <div class="company-links">
     {% for company in companies %}
     <a class="company-link" href="companies/{{ company.ticker|lower }}/index.html"><strong>{{ company.ticker }}</strong><span>{{ company.company_name }}</span><span>Estimated {{ company.low }}–{{ company.high }} DFR%</span></a>

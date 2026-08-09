@@ -77,8 +77,8 @@ def check_site(root: Path) -> SiteQualityReceipt:
         _check_company(path.relative_to(root).as_posix(), path.read_text(encoding="utf-8"))
     home = (root / "index.html").read_text(encoding="utf-8")
     if (
-        "revenue-weighted company index" not in home
-        or "Estimated DFR%" not in home
+        "Revenue-weighted DFR%" not in home
+        or "estimated share of U.S. consumer revenue" not in home
         or 'id="evidence-lift"' not in home
         or "No company-specific financing evidence found" not in home
     ):
@@ -86,10 +86,13 @@ def check_site(root: Path) -> SiteQualityReceipt:
     methodology = (root / "methodology" / "index.html").read_text(encoding="utf-8")
     if (
         "Assumption Registry" not in methodology
-        or "Tier 1 — Observed" not in methodology
+        or "<h2>Tier 1</h2><p>Observed:" not in methodology
         or "Evidence Lift" not in methodology
+        or 'id="credit-flow"' not in methodology
     ):
         raise SiteQualityError("Methodology lacks the versioned assumption/tier contract")
+    _check_credit_flow("index.html", home, require_table=False)
+    _check_credit_flow("methodology/index.html", methodology, require_table=True)
     comparison = (root / "methodology" / "sensitivity" / "index.html").read_text(encoding="utf-8")
     if "Methodology 1.1.0" not in comparison or "Methodology 1.1.1" not in comparison:
         raise SiteQualityError("Methodology sensitivity page lacks both immutable versions")
@@ -133,6 +136,9 @@ def _check_document(relative: str, content: str) -> None:
     missing = [item for item in required if item not in content]
     if missing:
         raise SiteQualityError(f"{relative} lacks required accessible markup: {missing[0]}")
+    main_before_heading = content.split("<main>", 1)[1].split("<h1", 1)[0]
+    if 'class="eyebrow"' in main_before_heading or 'class="kicker"' in main_before_heading:
+        raise SiteQualityError(f"{relative} places a tagline or kicker above its H1")
     if re.search(r'<script[^>]+src="https?://', content):
         raise SiteQualityError(f"{relative} loads remote JavaScript")
     for svg in re.findall(r"<svg\b.*?</svg>", content, flags=re.DOTALL):
@@ -149,14 +155,15 @@ def _check_document(relative: str, content: str) -> None:
 
 def _check_company(relative: str, content: str) -> None:
     required = (
-        "Estimated DFR% band",
+        "estimated DFR% of U.S. consumer revenue",
         "Evidence Lift",
         "Tier 1",
         "Tier 2",
         "Tier 3",
-        "Assumption IDs",
-        "Assumption sensitivity top 5",
-        "Estimated DFR% band over time",
+        "<h2>Assumptions</h2>",
+        "<h2>Sensitivity</h2>",
+        "<h2>History</h2>",
+        'class="figure-evidence"',
         "history-chart",
         "https://www.sec.gov/Archives/",
         "<svg",
@@ -164,6 +171,26 @@ def _check_company(relative: str, content: str) -> None:
     missing = [item for item in required if item not in content]
     if missing:
         raise SiteQualityError(f"{relative} lacks company evidence contract: {missing[0]}")
+
+
+def _check_credit_flow(relative: str, content: str, *, require_table: bool) -> None:
+    required = (
+        'class="credit-flow"',
+        "Width = estimated dollars",
+        "Style = how much is actually known",
+        'class="flow-ribbon tier-1"',
+        'class="flow-ribbon tier-2"',
+        'class="flow-ribbon tier-3"',
+        "Tier 3 flows are proportional allocations, not observed transfers.",
+    )
+    missing = [item for item in required if item not in content]
+    if missing:
+        raise SiteQualityError(f"{relative} lacks the tier-encoded flow contract: {missing[0]}")
+    match = re.search(r'data-node-count="(\d+)"', content)
+    if match is None or int(match.group(1)) > 9:
+        raise SiteQualityError(f"{relative} exceeds the 9-node flow readability cap")
+    if require_table and "Exact static values behind the diagram." not in content:
+        raise SiteQualityError(f"{relative} lacks the static flow-value ledger")
 
 
 def _check_contrast(css: str) -> float:
@@ -197,6 +224,11 @@ def _check_editorial_contract(css: str) -> None:
         ".section-block::before",
         ".range-mid-rule",
         ".status.graded",
+        "--figure-large:",
+        ".figure-label",
+        ".flow-ribbon.tier-1",
+        ".flow-ribbon.tier-2",
+        ".flow-ribbon.tier-3",
     )
     missing = [item for item in required if item not in css]
     if missing:
@@ -205,6 +237,9 @@ def _check_editorial_contract(css: str) -> None:
     used = [item for item in forbidden if item in css]
     if used:
         raise SiteQualityError(f"Editorial ledger CSS contains forbidden treatment: {used[0]}")
+    figure_label = re.search(r"\.figure-label\s*\{([^}]*)\}", css, flags=re.DOTALL)
+    if figure_label is None or "text-transform" in figure_label.group(1):
+        raise SiteQualityError("Figure labels must exist and remain uppercase-free")
     verified_selectors = [
         selector.strip()
         for selector, declarations in re.findall(r"([^{}]+)\{([^{}]*)\}", css)

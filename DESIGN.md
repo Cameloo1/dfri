@@ -108,9 +108,10 @@ estimate.
   opacity, Tier 2 is dashed at 0.72 opacity, and Tier 3 is finely dotted at 0.46 opacity.
 - A visible legend says “width = estimated dollars” and “style = how much is known,” with direct
   Tier 1/2/3 labels.
-- The static view contains no more than 12 nodes: two credit products; the three largest spending
-  categories; tier-preserving remainder-category groups where needed; the three highest-lift
-  companies; and one “all other covered companies” node.
+- The static view contains no more than nine nodes: two credit products; the largest spending
+  category; tier-preserving remainder-category groups where needed; the two highest-lift
+  companies; and one “all other covered companies” node. This lower cap is the mobile legibility
+  budget; it is deliberately stricter than the roughly-12-node product requirement.
 - Omitted categories are never combined across tiers. The tier of every ribbon therefore remains
   unambiguous after aggregation.
 - The mobile view uses a vertical flow with direct labels. If 12 nodes do not remain readable at

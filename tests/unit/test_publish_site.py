@@ -11,6 +11,8 @@ import pyarrow.parquet as pq
 import pytest
 
 import dfri.publish.site as site_module
+from dfri.attribution.engine import run_attribution
+from dfri.attribution.registry import load_attribution_bundle
 from dfri.lake.store import AppendOnlyParquetStore
 from dfri.nowcast.bridge import BridgeForecast
 from dfri.nowcast.targets import FirstPrintTarget
@@ -158,9 +160,9 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert (output / "scoreboard" / "predictions" / second_id / "index.html").exists()
     scoreboard = (output / "scoreboard" / "index.html").read_text(encoding="utf-8")
     home = (output / "index.html").read_text(encoding="utf-8")
-    assert "Every prediction. No silent edits." in scoreboard
-    assert "monthly change in U.S. consumer borrowing" in scoreboard
-    assert "seasonally adjusted monthly flows in millions of U.S. dollars" in scoreboard
+    assert "<h1>Predictions</h1>" in scoreboard
+    assert "monthly U.S. consumer borrowing" in scoreboard
+    assert "seasonally adjusted flows in millions of U.S. dollars" in scoreboard
     assert "Point estimate ($M)" in scoreboard
     assert "80% band ($M)" in scoreboard
     assert "First print ($M)" in scoreboard
@@ -169,17 +171,17 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert first_id in scoreboard and second_id in scoreboard
     assert "Not released" in scoreboard
     assert "10,500" in scoreboard
-    assert "Live results only · not backtest" in scoreboard
-    assert "The first revolving forecast missed." in scoreboard
+    assert "Live calibration" in scoreboard
+    assert "First revolving miss" in scoreboard
     assert "missed the sign and fell outside its 80% interval" in scoreboard
     assert "statistically uninformative" in scoreboard
     assert "has not been retrained or retuned" in scoreboard
     assert "Research and educational content. Not investment advice." in home
     assert 'href="https://creativecommons.org/licenses/by-nc/4.0/"' in home
     assert 'href="mailto:ops@camelon.app"' in home
-    assert "revenue-weighted company index" in home
+    assert "Revenue-weighted DFR%" in home
     assert "each month's change in U.S. consumer borrowing" in home
-    assert "Seasonally adjusted monthly flow · millions of U.S. dollars" in home
+    assert "Seasonally adjusted · millions of U.S. dollars" in home
     assert "tier-explainer-visible" in home
     assert all(item in home for item in TIER_LEGEND_COPY)
     assert "Evidence Lift measures company-specific financing evidence" in home
@@ -188,7 +190,7 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     prediction = (output / "scoreboard" / "predictions" / first_id / "index.html").read_text(
         encoding="utf-8"
     )
-    assert "Seasonally adjusted monthly flow, millions of U.S. dollars" in prediction
+    assert "seasonally adjusted monthly flow · $M" in prediction
     assert "<dt>Model version</dt>" in prediction
     assert "<dt>Input sources</dt>" in prediction
     assert "https://www.federalreserve.gov/releases/h8/" in prediction
@@ -359,13 +361,22 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     methodology = (output / "methodology" / "index.html").read_text(encoding="utf-8")
     assert "Assumption Registry" in methodology
     assert "Matrix A has" in methodology
-    assert "Tier 1 — Observed" in methodology
+    assert "<h2>Tier 1</h2><p>Observed:" in methodology
+    assert 'id="credit-flow"' in methodology
+    assert "does not enter the nowcast" in methodology
+    assert "Exact static values behind the diagram." in methodology
     home = (output / "index.html").read_text(encoding="utf-8")
-    assert "Estimated DFR%" in home
+    assert "Revenue-weighted DFR%" in home
     assert "range-chart" in home
     assert '<rect x="108" y="23" width="384" height="26" class="range-band"' in home
     assert 'class="range-mid-rule"' in home
     assert 'id="evidence-lift"' in home
+    assert 'id="credit-flow"' in home
+    assert 'data-node-count="9"' in home
+    assert "Width = estimated dollars" in home
+    assert "Style = how much is actually known" in home
+    assert "Tier 3 flows are proportional allocations, not observed transfers." in home
+    assert all(f'class="flow-ribbon tier-{tier}"' in home for tier in (1, 2, 3))
     assert "evidence, not risk, credit quality, or investment merit" in home
     assert (output / "changelog" / "index.html").exists()
     assert (output / "methodology" / "sensitivity" / "index.html").exists()
@@ -382,9 +393,11 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     for row in companies["data"]:
         page = output / "companies" / row["ticker"].lower() / "index.html"
         html = page.read_text(encoding="utf-8")
-        assert "Estimated DFR% band" in html
-        assert "Assumption sensitivity top 5" in html
-        assert "Estimated DFR% band over time" in html
+        assert "estimated DFR% of U.S. consumer revenue" in html
+        assert "<h2>Assumptions</h2>" in html
+        assert "<h2>Sensitivity</h2>" in html
+        assert "<h2>History</h2>" in html
+        assert 'class="figure-evidence"' in html
         assert 'class="range-band"' in html
         assert 'class="range-mid-rule"' in html
         if row["tier1_source_url"]:
@@ -397,7 +410,7 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
         if v2_by_ticker[row["ticker"]]["evidence_lift_status"] == "baseline-only":
             assert "No company-specific financing evidence found" in html
         assert '<details class="tier-explainer">' in html
-        assert "<summary>What do these tiers mean?</summary>" in html
+        assert "<summary>Tier definitions</summary>" in html
         assert all(item in html for item in TIER_LEGEND_COPY)
         assert page.stat().st_size < 500_000
 
@@ -410,6 +423,25 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     prediction_html = prediction.read_text(encoding="utf-8")
     assert 'class="card record-hero"' in prediction_html
     assert '<rect x="108" y="23" width="384" height="26" class="range-band"' in prediction_html
+
+
+def test_credit_flow_widths_are_linear_tiered_and_capped() -> None:
+    bundle = load_attribution_bundle()
+    view = site_module._credit_flow_view(bundle, run_attribution(bundle))
+
+    assert view.node_count <= 9
+    assert len(view.product_nodes) == 2
+    assert len(view.category_nodes) <= 4
+    assert [item.key for item in view.company_nodes[:2]] == ["CVNA", "GM"]
+    assert view.company_nodes[-1].key == "all-other"
+    links = (*view.product_links, *view.company_links)
+    assert {item.tier for item in links} == {1, 2, 3}
+    scale = float(links[0].stroke_width) / links[0].amount_millions
+    assert all(
+        float(item.stroke_width) / item.amount_millions == pytest.approx(scale, rel=0.01)
+        for item in links
+    )
+    assert all(item.amount_millions > 0 for item in links)
 
 
 def test_prepublication_filter_is_explicit_and_validation_blocks_bad_boundaries(
