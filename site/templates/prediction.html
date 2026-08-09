@@ -2,7 +2,7 @@
 {% block content %}
 <h1>{{ row.target_label }} · {{ row.target_period }}</h1>
 <p class="lede">Recorded {{ row.made_at_display }} under <span class="hash">{{ row.model_version }}</span>; append-only after acceptance.</p>
-<section class="card record-hero">
+<section class="card record-hero" data-figure="prediction">
   <div class="figure-label">{{ row.target_period }} · seasonally adjusted monthly flow · $M</div><div class="number">{{ row.point_display }}</div><div class="figure-evidence"><span>Millions of U.S. dollars</span><span class="status {{ row.grade_status_class }}">{{ row.grade_status }}</span><a href="{{ nowcast_sources.h8_archive }}">H.8 source</a><a href="{{ nowcast_sources.marts_archive }}">Retail source</a></div>
   <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="95 percent prediction interval from {{ row.low95_display }} to {{ row.high95_display }}; point {{ row.point_display }}">
     <title>Prediction band: {{ row.low95_display }} to {{ row.high95_display }}, point {{ row.point_display }}</title>

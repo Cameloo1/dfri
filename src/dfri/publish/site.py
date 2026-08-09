@@ -1797,7 +1797,9 @@ def _write_json(path: Path, payload: object) -> None:
 def _render(
     environment: Environment, template: str, path: Path, context: dict[str, object]
 ) -> None:
-    _atomic_write(path, environment.get_template(template).render(**context).encode())
+    rendered = environment.get_template(template).render(**context)
+    compact = "\n".join(line.strip() for line in rendered.splitlines() if line.strip()) + "\n"
+    _atomic_write(path, compact.encode())
 
 
 def _copy(source: Path, destination: Path) -> None:

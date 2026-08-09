@@ -101,6 +101,8 @@ def test_ci_uses_the_current_pinned_uv_contract() -> None:
     assert "dfri.ops.privacy excluded-tracked" in workflow
     assert "make verify" in workflow
     assert "make publish" in workflow
+    assert "Assert rendered publication rules" in workflow
+    assert "make site-quality" in workflow
     assert "Verify published changelog history is append-only" in workflow
     assert "Start the M5 end-to-end pipeline timer" in workflow
     assert "elapsed < 1800" in workflow

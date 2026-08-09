@@ -7,7 +7,8 @@ import json
 import math
 import re
 from collections.abc import Sequence
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Final
 
@@ -15,6 +16,56 @@ MAX_PAGE_BYTES: Final = 500_000
 FOUR_G_BYTES_PER_SECOND: Final = 200_000
 FOUR_G_RTT_MS: Final = 150.0
 MAX_ESTIMATED_4G_MS: Final = 1_000.0
+UNIT_PATTERNS: Final = {
+    "percent": re.compile(r"%|\bpercent\b", re.IGNORECASE),
+    "millions-usd": re.compile(r"\$M|\bmillions? of U\.S\. dollars\b|\bmillion\b"),
+    "records": re.compile(r"\brecords?\b", re.IGNORECASE),
+    "ratio": re.compile(r"\bmultiple\b|\blift\b|\d+(?:\.\d+)?x\b", re.IGNORECASE),
+}
+
+
+@dataclass(frozen=True)
+class _FigureRule:
+    unit: str
+    band: str = "not-applicable"
+    tiered: bool = False
+    provenance: bool = False
+    estimated: bool = False
+
+
+FIGURE_CONTRACTS: Final = {
+    "dfr": _FigureRule(
+        unit="percent", band="required", tiered=True, provenance=True, estimated=True
+    ),
+    "prediction": _FigureRule(unit="millions-usd", band="required", provenance=True),
+    "count": _FigureRule(unit="records", provenance=True),
+    "diagnostic-usd": _FigureRule(unit="millions-usd", provenance=True),
+    "diagnostic-percent": _FigureRule(unit="percent", provenance=True),
+    "tier-share": _FigureRule(unit="percent", tiered=True, provenance=True),
+    "derived-ratio": _FigureRule(unit="ratio", provenance=True),
+    "allocation": _FigureRule(unit="millions-usd", tiered=True, provenance=True),
+    "calibration-count": _FigureRule(unit="records"),
+    "calibration-percent": _FigureRule(unit="percent"),
+    "calibration-usd": _FigureRule(unit="millions-usd"),
+}
+VOID_HTML_TAGS: Final = frozenset(
+    {
+        "area",
+        "base",
+        "br",
+        "col",
+        "embed",
+        "hr",
+        "img",
+        "input",
+        "link",
+        "meta",
+        "param",
+        "source",
+        "track",
+        "wbr",
+    }
+)
 
 
 class SiteQualityError(RuntimeError):
@@ -30,6 +81,75 @@ class SiteQualityReceipt:
     max_page_bytes: int
     max_estimated_4g_ms: float
     minimum_contrast_ratio: float
+
+
+@dataclass
+class _RenderedFigure:
+    attributes: dict[str, str | None]
+    text: list[str] = field(default_factory=list)
+    classes: set[str] = field(default_factory=set)
+    link_count: int = 0
+    number_count: int = 0
+    has_range_band: bool = False
+
+
+class _FigureContractParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.figures: list[_RenderedFigure] = []
+        self.active: list[_RenderedFigure] = []
+        self.stack: list[tuple[str, bool, bool]] = []
+        self.number_outside_figure = 0
+        self.measured_outside_tier1 = 0
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        self._start(tag, attrs, push=tag not in VOID_HTML_TAGS)
+
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        self._start(tag, attrs, push=False)
+
+    def _start(self, tag: str, attrs: list[tuple[str, str | None]], *, push: bool) -> None:
+        attributes = dict(attrs)
+        starts_figure = "data-figure" in attributes
+        if starts_figure:
+            new_figure = _RenderedFigure(attributes=attributes)
+            self.figures.append(new_figure)
+            self.active.append(new_figure)
+        figure: _RenderedFigure | None = self.active[-1] if self.active else None
+        classes = set(str(attributes.get("class") or "").split())
+        if "number" in classes:
+            if figure is None:
+                self.number_outside_figure += 1
+            else:
+                figure.number_count += 1
+        if figure is not None:
+            figure.classes.update(classes)
+            figure.has_range_band = figure.has_range_band or "range-band" in classes
+            if tag == "a":
+                figure.link_count += 1
+        tier1_context = (self.stack[-1][2] if self.stack else False) or (
+            attributes.get("data-evidence-tier") == "1"
+        )
+        if push:
+            self.stack.append((tag, starts_figure, tier1_context))
+
+    def handle_endtag(self, tag: str) -> None:
+        if not self.stack:
+            return
+        while self.stack:
+            opened_tag, started_figure, _tier1 = self.stack.pop()
+            if started_figure and self.active:
+                self.active.pop()
+            if opened_tag == tag:
+                return
+
+    def handle_data(self, data: str) -> None:
+        if self.active:
+            self.active[-1].text.append(data)
+        if re.search(r"\bmeasured\b", data, flags=re.IGNORECASE):
+            tier1_context = self.stack[-1][2] if self.stack else False
+            if not tier1_context:
+                self.measured_outside_tier1 += 1
 
 
 def check_site(root: Path) -> SiteQualityReceipt:
@@ -132,6 +252,9 @@ def _check_document(relative: str, content: str) -> None:
         "<h1",
         'aria-label="Primary navigation"',
         "Research and educational content. Not investment advice.",
+        "CC BY-NC 4.0",
+        "commercial licensing reserved",
+        'href="mailto:ops@camelon.app"',
     )
     missing = [item for item in required if item not in content]
     if missing:
@@ -151,6 +274,35 @@ def _check_document(relative: str, content: str) -> None:
     visible = re.sub(r"<[^>]+>", " ", content)
     if len(" ".join(visible.split())) < 100:
         raise SiteQualityError(f"{relative} lacks server-rendered no-JavaScript content")
+    _check_figure_contracts(relative, content)
+
+
+def _check_figure_contracts(relative: str, content: str) -> None:
+    parser = _FigureContractParser()
+    parser.feed(content)
+    if parser.number_outside_figure:
+        raise SiteQualityError(f"{relative} renders a headline number outside a figure contract")
+    if parser.measured_outside_tier1:
+        raise SiteQualityError(f"{relative} uses measured outside an explicit Tier 1 context")
+    for index, figure in enumerate(parser.figures, start=1):
+        kind = figure.attributes.get("data-figure") or ""
+        rule = FIGURE_CONTRACTS.get(kind)
+        label = f"{relative} figure {index}"
+        if rule is None:
+            raise SiteQualityError(f"{label} lacks a known figure contract")
+        visible = " ".join(" ".join(figure.text).split())
+        if not UNIT_PATTERNS[rule.unit].search(visible):
+            raise SiteQualityError(f"{label} does not render its declared {rule.unit} unit")
+        if rule.band == "required" and not (
+            figure.has_range_band or re.search(r"\b(?:80|95)%? band\b", visible)
+        ):
+            raise SiteQualityError(f"{label} renders a modeled point without its band")
+        if rule.tiered and "tier-badge" not in figure.classes:
+            raise SiteQualityError(f"{label} carries tiers without a tier badge")
+        if rule.provenance and figure.link_count == 0:
+            raise SiteQualityError(f"{label} lacks a provenance link")
+        if rule.estimated and not re.search(r"\bestimated\b", visible, flags=re.IGNORECASE):
+            raise SiteQualityError(f"{label} renders DFR% without estimated")
 
 
 def _check_company(relative: str, content: str) -> None:
@@ -247,6 +399,21 @@ def _check_editorial_contract(css: str) -> None:
     ]
     if verified_selectors != [".status.graded"]:
         raise SiteQualityError("Verified accent must be exclusive to the graded state")
+    tier_contracts = {
+        ".tier-1": ("border:",),
+        ".tier-2": ("background-image:",),
+        ".tier-3": ("background-image:", "background-size:"),
+        ".flow-ribbon.tier-2": ("stroke-dasharray:",),
+        ".flow-ribbon.tier-3": ("stroke-dasharray:", "stroke-linecap: round"),
+        ".flow-key.tier-2": ("border-top-style: dashed",),
+        ".flow-key.tier-3": ("border-top-style: dotted",),
+    }
+    for selector, declarations in tier_contracts.items():
+        block = re.search(rf"{re.escape(selector)}\s*\{{([^}}]*)\}}", css, flags=re.DOTALL)
+        if block is None or any(item not in block.group(1) for item in declarations):
+            raise SiteQualityError(
+                f"Tier distinction depends on color or lacks texture: {selector}"
+            )
 
 
 def _contrast(first: str, second: str) -> float:
