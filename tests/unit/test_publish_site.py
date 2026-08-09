@@ -204,6 +204,10 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     site_js = (output / "assets" / "site.js").read_text(encoding="utf-8")
     assert 'document.createElement("button")' in site_js
     assert first.total_bytes < 1_200_000
+    assert all(
+        line == line.lstrip()
+        for line in (output / "index.html").read_text(encoding="utf-8").splitlines()
+    )
     assert b"\r\n" not in (output / "assets" / "site.css").read_bytes()
     assert b"\r\n" not in (output / "assets" / "site.js").read_bytes()
 

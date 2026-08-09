@@ -67,6 +67,8 @@ jobs:
             uv run python -m dfri.publish.changelog
           fi
       - run: make publish
+      - name: Assert rendered publication rules
+        run: make site-quality
       - name: Enforce the M5 end-to-end CI budget
         shell: bash
         run: |

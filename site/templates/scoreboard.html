@@ -6,11 +6,11 @@
 <section class="calibration-ledger" aria-labelledby="live-calibration-heading">
   <h2 id="live-calibration-heading">Live calibration</h2>
   <dl class="calibration-stats">
-    <div><dt>Graded</dt><dd>{{ live_calibration.graded_count }}</dd></div>
-    <div><dt>Within 80% band</dt><dd>{{ live_calibration.coverage80_display }}<span>versus 80% nominal</span></dd></div>
-    <div><dt>Within 95% band</dt><dd>{{ live_calibration.coverage95_display }}<span>versus 95% nominal</span></dd></div>
-    <div><dt>Mean absolute error</dt><dd>{{ live_calibration.mae_display }}<span>$M · live grades only</span></dd></div>
-    <div><dt>Naive MAE</dt><dd>{{ live_calibration.naive_mae_display }}<span>$M · {{ live_calibration.naive_model_display }}</span></dd></div>
+    <div data-figure="calibration-count"><dt>Graded records</dt><dd>{{ live_calibration.graded_count }}</dd></div>
+    <div data-figure="calibration-percent"><dt>Within 80% band</dt><dd>{{ live_calibration.coverage80_display }}<span>versus 80% nominal</span></dd></div>
+    <div data-figure="calibration-percent"><dt>Within 95% band</dt><dd>{{ live_calibration.coverage95_display }}<span>versus 95% nominal</span></dd></div>
+    <div data-figure="calibration-usd"><dt>Mean absolute error</dt><dd>{{ live_calibration.mae_display }}<span>$M · live grades only</span></dd></div>
+    <div data-figure="calibration-usd"><dt>Naive MAE</dt><dd>{{ live_calibration.naive_mae_display }}<span>$M · {{ live_calibration.naive_model_display }}</span></dd></div>
   </dl>
   <p class="meta">The naive comparator is refit for each target using only first prints available when that prediction was recorded. These statistics update from live grades only and remain separate from the historical backtest.</p>
 </section>

@@ -1,5 +1,5 @@
 {% macro credit_flow(flow, methodology_href, show_table=false) -%}
-<figure class="credit-flow-figure" aria-labelledby="credit-flow-title credit-flow-caption">
+<figure class="credit-flow-figure" aria-labelledby="credit-flow-title credit-flow-caption" data-figure="allocation">
   <div class="figure-label">{{ flow.period }} · registered midpoint allocations · millions of U.S. dollars</div>
   <div class="figure-evidence"><span>Width = estimated dollars</span><span>Style = how much is actually known</span><a href="{{ methodology_href }}">Method and provenance</a></div>
   <svg class="credit-flow" viewBox="0 0 360 675" role="img" data-node-count="{{ flow.node_count }}">
@@ -26,11 +26,11 @@
   </svg>
   <div class="flow-legend" aria-label="Credit-flow evidence legend">
     <strong>Ribbon key</strong>
-    <span><i class="flow-key tier-1" aria-hidden="true"></i>Tier 1 · observed link</span>
-    <span><i class="flow-key tier-2" aria-hidden="true"></i>Tier 2 · category-mapped</span>
-    <span><i class="flow-key tier-3" aria-hidden="true"></i>Tier 3 · fungible</span>
+    <span class="tier-badge tier-1"><i class="flow-key tier-1" aria-hidden="true"></i>Tier 1 · observed link</span>
+    <span class="tier-badge tier-2"><i class="flow-key tier-2" aria-hidden="true"></i>Tier 2 · category-mapped</span>
+    <span class="tier-badge tier-3"><i class="flow-key tier-3" aria-hidden="true"></i>Tier 3 · fungible</span>
   </div>
-  <figcaption id="credit-flow-caption">The diagram begins with the portion of measured G.19 flow represented by published attribution lanes; it is not a complete use-of-funds decomposition. Tier 3 flows are proportional allocations, not observed transfers.</figcaption>
+  <figcaption id="credit-flow-caption">The diagram begins with the portion of published G.19 flow represented by attribution lanes; it is not a complete use-of-funds decomposition. Tier 3 flows are proportional allocations, not observed transfers.</figcaption>
   {% if show_table %}<div class="table-wrap flow-table-wrap"><table class="flow-table">
     <caption>Exact static values behind the diagram. Highest-lift companies are shown separately; the remaining covered companies are bundled.</caption>
     <thead><tr><th>Credit lane</th><th>Spending category</th><th>Tier</th><th>Estimated midpoint</th><th>Covered-company destinations</th></tr></thead>

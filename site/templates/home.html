@@ -6,7 +6,7 @@
 <p class="lede">{{ brand.product_name }} estimates the share of covered companies' U.S. consumer revenue funded by new consumer credit. It also predicts each month's change in U.S. consumer borrowing before the Federal Reserve publishes the official G.19 figure, records that forecast with a timestamp, and grades it against the first print.</p>
 
 <section class="grid" aria-label="Scoreboard summary">
-  <article class="card primary">
+  <article class="card primary" data-figure="dfr">
     <div class="figure-label">{{ aggregate.quarter }} · estimated share of U.S. consumer revenue</div>
     <div class="number" title="Estimated from registered Matrix A and Matrix B priors; open Methodology for every input">{{ aggregate.mid }}</div>
     <div class="figure-evidence"><span>Revenue-weighted DFR% · {{ company_count }} companies</span><span class="tier-badge tier-mixed">Tier 1–3</span><a href="methodology/index.html">Method and provenance</a></div>
@@ -24,7 +24,7 @@
     <p class="meta">Midpoint represents an estimated ${{ aggregate.debt_revenue }} million of debt-funded consumer revenue over an estimated ${{ aggregate.consumer_revenue }} million denominator. Bands are always shown.</p>
   </article>
   {% if latest %}
-  <article class="card metric">
+  <article class="card metric" data-figure="prediction">
     <div class="figure-label">{{ latest.target_period }} · {{ latest.target_label }} · $M monthly flow</div>
     <div class="number">{{ latest.point_display }}</div>
     <div class="figure-evidence"><span>Seasonally adjusted · millions of U.S. dollars</span><span class="status {{ latest.grade_status_class }}">{{ latest.grade_status }}</span><a href="scoreboard/predictions/{{ latest.prediction_id }}/index.html">Immutable record</a></div>
@@ -39,9 +39,9 @@
   {% else %}
   <article class="card metric"><h2>No predictions yet</h2><p>The feed is valid but the public clock has not started.</p></article>
   {% endif %}
-  <article class="card metric"><div class="figure-label">Current ledger · prediction records</div><div class="number secondary">{{ summary.prediction_count }}</div><div class="figure-evidence"><span>{{ summary.graded_count }} graded · {{ summary.pending_count }} pending</span><a href="scoreboard/index.html">Full ledger</a></div></article>
-  <article class="card metric"><div class="figure-label">2018–2026 backtest · $M mean absolute error</div><div class="number secondary">{{ summary.mae_display }}</div><div class="figure-evidence"><span>{{ summary.improvement_display }} better than {{ summary.best_naive }}</span><a href="methodology/index.html">Model evidence</a></div></article>
-  <article class="card metric"><div class="figure-label">2018–2026 backtest · share inside 80% band</div><div class="number secondary">{{ summary.coverage80_display }}</div><div class="figure-evidence"><span>95% band {{ summary.coverage95_display }}</span><a href="methodology/index.html">Coverage method</a></div></article>
+  <article class="card metric" data-figure="count"><div class="figure-label">Current ledger · prediction records</div><div class="number secondary">{{ summary.prediction_count }}</div><div class="figure-evidence"><span>{{ summary.graded_count }} graded · {{ summary.pending_count }} pending</span><a href="scoreboard/index.html">Full ledger</a></div></article>
+  <article class="card metric" data-figure="diagnostic-usd"><div class="figure-label">2018–2026 backtest · $M mean absolute error</div><div class="number secondary">{{ summary.mae_display }}</div><div class="figure-evidence"><span>{{ summary.improvement_display }} better than {{ summary.best_naive }}</span><a href="methodology/index.html">Model evidence</a></div></article>
+  <article class="card metric" data-figure="diagnostic-percent"><div class="figure-label">2018–2026 backtest · share inside 80% band</div><div class="number secondary">{{ summary.coverage80_display }}</div><div class="figure-evidence"><span>95% band {{ summary.coverage95_display }}</span><a href="methodology/index.html">Coverage method</a></div></article>
 </section>
 
 <section id="credit-flow" class="section-block">

@@ -5,7 +5,7 @@
 <p class="lede">Estimated debt-funded revenue share with its band, tiers, sources, assumptions, and sensitivity.</p>
 
 <section class="grid">
-  <article class="card primary">
+  <article class="card primary" data-figure="dfr">
     <div class="figure-label">{{ company.quarter }} · estimated DFR% of U.S. consumer revenue</div>
     <div class="number" title="Computed from the linked evidence and registered assumptions">{{ company.mid }}</div>
     <div class="figure-evidence"><span>Midpoint with 80% band</span><span class="tier-badge tier-mixed">Tier 1–3</span><a href="#evidence">Provenance</a></div>
@@ -20,7 +20,7 @@
     </svg>
     <p class="meta">Estimated midpoint: ${{ company.debt_revenue }} million debt-funded consumer revenue / ${{ company.consumer_revenue }} million estimated U.S. consumer revenue.</p>
   </article>
-  <article class="card metric">
+  <article class="card metric" data-figure="tier-share">
     <div class="figure-label">{{ company.quarter }} · share of estimated debt-funded revenue</div>
     <div class="tier-stack" role="img" aria-label="Tier 1 {{ company.tier1 }}, Tier 2 {{ company.tier2 }}, Tier 3 {{ company.tier3 }}">
       <span class="tier-segment tier-1" style="width: {{ company.tier1_width }}%"></span><span class="tier-segment tier-2" style="width: {{ company.tier2_width }}%"></span><span class="tier-segment tier-3" style="width: {{ company.tier3_width }}%"></span>
@@ -28,7 +28,7 @@
     <div class="tier-line"><span class="tier-badge tier-1">Tier 1 {{ company.tier1 }}</span><span class="tier-badge tier-2">Tier 2 {{ company.tier2 }}</span><span class="tier-badge tier-3">Tier 3 {{ company.tier3 }}</span></div>
     {{ tier_legend(root, expandable=true) }}
   </article>
-  <article class="card metric">
+  <article class="card metric" data-figure="derived-ratio">
     <div class="figure-label">{{ company.quarter }} · multiple of Tier 3 baseline</div>
     <div class="number secondary">{{ company.evidence_lift }}</div>
     <div class="figure-evidence"><span>Evidence Lift</span><a href="{{ root }}methodology/index.html#evidence-lift">Definition</a></div>

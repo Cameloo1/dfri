@@ -106,6 +106,109 @@ def test_quality_gate_rejects_page_tagline_above_h1(tmp_path: Path) -> None:
         check_site(root)
 
 
+def test_quality_gate_rejects_headline_number_without_figure_contract(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    page = root / "index.html"
+    page.write_text(
+        page.read_text(encoding="utf-8").replace('data-figure="dfr"', 'data-not-a-figure="dfr"', 1),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match="headline number outside a figure contract"):
+        check_site(root)
+
+
+def test_quality_gate_rejects_figure_without_declared_or_visible_unit(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    page = root / "companies" / "gm" / "index.html"
+    content = page.read_text(encoding="utf-8").replace("DFR%", "DFR share")
+    content = content.replace("%", " pct").replace("percent", "share")
+    page.write_text(content, encoding="utf-8")
+
+    with pytest.raises(SiteQualityError, match="does not render its declared percent unit"):
+        check_site(root)
+
+
+def test_quality_gate_rejects_modeled_point_without_band_copy(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    page = root / "methodology" / "sensitivity" / "index.html"
+    page.write_text(
+        page.read_text(encoding="utf-8").replace("80% band", "point estimate"),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match="modeled point without its band"):
+        check_site(root)
+
+
+def test_quality_gate_rejects_tiered_figure_without_badge(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    page = root / "companies" / "gm" / "index.html"
+    page.write_text(
+        page.read_text(encoding="utf-8").replace(
+            'class="tier-badge tier-mixed"', 'class="tier-label tier-mixed"', 1
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match="carries tiers without a tier badge"):
+        check_site(root)
+
+
+def test_quality_gate_rejects_color_only_tier_distinction(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    css = root / "assets" / "site.css"
+    css.write_text(
+        css.read_text(encoding="utf-8").replace(
+            ".tier-2 { background-color: var(--raised-paper); background-image:",
+            ".tier-2 { background-color: var(--raised-paper); color:",
+            1,
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match="depends on color or lacks texture"):
+        check_site(root)
+
+
+def test_quality_gate_requires_estimated_for_dfr_figures(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    page = root / "companies" / "gm" / "index.html"
+    content = page.read_text(encoding="utf-8").replace("Estimated", "Modeled")
+    page.write_text(content.replace("estimated", "modeled"), encoding="utf-8")
+
+    with pytest.raises(SiteQualityError, match="renders DFR% without estimated"):
+        check_site(root)
+
+
+def test_quality_gate_reserves_measured_for_explicit_tier_one_context(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    page = root / "scoreboard" / "index.html"
+    page.write_text(
+        page.read_text(encoding="utf-8").replace(
+            "Each row is an immutable forecast", "Each measured row is an immutable forecast"
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match="uses measured outside an explicit Tier 1"):
+        check_site(root)
+
+
+def test_quality_gate_requires_sitewide_disclaimer_and_license(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    page = root / "changelog" / "index.html"
+    page.write_text(
+        page.read_text(encoding="utf-8").replace(
+            "commercial licensing reserved", "commercial terms available"
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match="lacks required accessible markup"):
+        check_site(root)
+
+
 def test_browser_accessibility_gate_includes_m5_methodology_pages() -> None:
     script = (Path(__file__).parents[2] / "tools" / "axe-check.mjs").read_text(encoding="utf-8")
 
