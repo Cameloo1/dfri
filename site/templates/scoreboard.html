@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="eyebrow">Append-only record</div>
-<h1>Every prediction. No silent edits.</h1>
-<p class="lede">Each row forecasts the monthly change in U.S. consumer borrowing: revolving credit is mainly credit cards, while nonrevolving credit is mainly auto and student loans. All figures are seasonally adjusted monthly flows in millions of U.S. dollars. The 80% and 95% bands show uncertainty; a point estimate without its band would overstate what the model knows.</p>
+<h1>Predictions</h1>
+<p class="lede">Each row is an immutable forecast of monthly U.S. consumer borrowing. Figures are seasonally adjusted flows in millions of U.S. dollars, always shown with 80% and 95% bands.</p>
 <p class="meta">Predictions are recorded before the Federal Reserve publishes the official G.19 figure. Rows are newest first without JavaScript; browser controls add optional sorting. Actuals are release-coherent first prints, never later revisions.</p>
 <section class="calibration-ledger" aria-labelledby="live-calibration-heading">
-  <div class="eyebrow">Live results only · not backtest</div>
-  <h2 id="live-calibration-heading">Running calibration</h2>
+  <h2 id="live-calibration-heading">Live calibration</h2>
   <dl class="calibration-stats">
     <div><dt>Graded</dt><dd>{{ live_calibration.graded_count }}</dd></div>
     <div><dt>Within 80% band</dt><dd>{{ live_calibration.coverage80_display }}<span>versus 80% nominal</span></dd></div>
@@ -18,8 +16,7 @@
 </section>
 {% if first_grade_callout %}
 <aside class="grade-callout" aria-labelledby="first-grade-heading">
-  <div class="eyebrow">First grade flag</div>
-  <h2 id="first-grade-heading">The first revolving forecast missed.</h2>
+  <h2 id="first-grade-heading">First revolving miss</h2>
   <p>The prediction forecast <strong>{{ first_grade_callout.predicted }} $M</strong>; the first print was <strong>+{{ first_grade_callout.actual }} $M</strong>. It missed the sign and fell outside its 80% interval. Its absolute error was about <strong>{{ first_grade_callout.abs_error }} $M</strong>, versus a <strong>{{ first_grade_callout.backtest_mae }} $M</strong> 101-month backtest MAE.</p>
   <p>One miss in one graded pair is statistically uninformative, but DFRI flags it rather than burying it. The model has not been retrained or retuned in response.</p>
   <p><a href="predictions/{{ first_grade_callout.prediction_id }}/index.html">Open the immutable prediction and grade →</a></p>

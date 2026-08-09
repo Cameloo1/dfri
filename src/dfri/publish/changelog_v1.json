@@ -113,6 +113,18 @@
         {"label": "Scoreboard", "href": "/scoreboard/"},
         {"label": "Scoreboard feed", "href": "/v1/feeds/scoreboard.json"}
       ]
+    },
+    {
+      "entry_id": "tier-flow-typographic-inversion",
+      "published_on": "2026-08-08",
+      "kind": "publication",
+      "version": "1.1.1",
+      "title": "Numbers promoted; credit flow added",
+      "summary": "Compressed the heading scale so figures carry the hierarchy and added a server-rendered current-period flow view whose ribbon width represents estimated dollars and whose solid, dashed, and dotted styles expose evidence tiers without color dependence.",
+      "links": [
+        {"label": "Credit flow", "href": "/#credit-flow"},
+        {"label": "Methodology", "href": "/methodology/#credit-flow"}
+      ]
     }
   ]
 }
