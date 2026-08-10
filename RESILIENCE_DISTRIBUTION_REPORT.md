@@ -43,6 +43,10 @@ Status date: 2026-08-10
   `make.cmd site-quality` with the same passing results. Windows Application Control required the
   clone to reuse the policy-allowed parent Python executable; the clone's dependencies were still
   synchronized from its own exact lock and all product/runtime state came only from the clone.
+- A second clean clone of commit `6f6a384` produced archive SHA-256
+  `e2228fea7c86cd680faa62f31e0f4be025b4828595a7acf1fbcaac8dd720375b`, byte-identical to the
+  source worktree after canonicalizing tracked text line endings. The immutable ledger manifest
+  hash remained `3eadf24738b1c329c0d9f2760ad4a88b037ca869a8637cdd58dfb9dd67e7fcf3`.
 
 Generated publications, vulnerability caches, browser evidence, archive tarballs, and local test
 workspaces remain ignored development artifacts and are not public source files.
