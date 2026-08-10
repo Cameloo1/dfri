@@ -1,6 +1,6 @@
 # DFRI information-architecture plan
 
-Status: **ROUND-TWO IMPLEMENTED ON PR #26; OWNER-APPROVED OPENING-SPREAD FOLLOW-UP IN PROGRESS**
+Status: **ROUND-TWO AND OWNER-APPROVED OPENING-SPREAD FOLLOW-UP IMPLEMENTED ON PR #26**
 
 This plan governs the second frontend overhaul. It follows the Laws of UX process, but the laws
 are treated as explanatory heuristics rather than proof. Accessibility, honest presentation,

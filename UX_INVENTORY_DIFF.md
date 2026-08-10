@@ -1,12 +1,12 @@
 # UX inventory diff
 
-Status: **PASS — EVERY LOSS DISPOSITIONED**
+Status: **PASS — EVERY REMOVAL DISPOSED**
 
 - Before inventory: `UX_INVENTORY_BEFORE.md`
 - After inventory: `UX_INVENTORY_AFTER.md`
 - Routes: 62 before, 63 after
-- Disclosure-expanded information lines: 4343 before, 4415 after
-- Distinct information lines: 1336 before, 1358 after
+- Disclosure-expanded information lines: 4343 before, 4482 after
+- Distinct information lines: 1336 before, 1362 after
 - Distinct outbound targets: 62 before, 62 after
 
 ## Route changes
@@ -19,13 +19,19 @@ Added routes (1):
 
 ## Information-line changes
 
-Missing distinct lines (4):
+Missing distinct lines (8):
+- 2018–2026 backtest · $M mean absolute error
+- 2018–2026 backtest · share inside 80% band
 - 50 covered companies, alphabetically.
 - Covered companies ranked by DFR% midpoint divided by their same-period pure-fungibility baseline.
+- Current ledger · prediction records
 - DFRI estimates the share of covered companies' U.S. consumer revenue funded by new consumer credit. It also predicts each month's change in U.S. consumer borrowing before the Federal Reserve publishes the official G.19 figure, records that forecast with a timestamp, and grades it against the first print.
 - Full ledger
+- Methodology 1.1.1 · Data vintage 2026-08-07T20:15:00+00:00 · Published 2026-08-09T01:47:15.163392+00:00
 
-Added distinct lines (26):
+Added distinct lines (34):
+- 2018–2026 · $M mean absolute error
+- 2018–2026 · share inside 80% band
 - 2026-08-09 · publication · 1.1.1
 - 50 covered companies, alphabetically by ticker.
 - Across the same publication, covered-company midpoint estimates range from 1.45% at Booking Holdings to 18.67% at Carvana. The 3.36% headline is revenue-weighted, not a threshold or a typical-company score.
@@ -40,18 +46,24 @@ Added distinct lines (26):
 - DFRI publishes two linked records. It estimates the share of covered companies' U.S. consumer revenue funded by new consumer credit. It also predicts each month's change in U.S. consumer borrowing before the Federal Reserve publishes the official G.19 figure, records that forecast with a timestamp, and grades it against the first print.
 - Each forecast is timestamped before the official G.19 release and kept as an immutable record. Grades use the first published figure, never a later revision.
 - Every estimate separates directly observed financing links from category mappings and proportional allocation.
-- Historical backtests compare the nowcast with explicit naive benchmarks; they are not live-grade results.
+- Historical backtest
+- Historical tests compare the nowcast with explicit naive benchmarks; they are not live-grade results.
 - How much is known
 - Live grade record
+- Live ledger · prediction records
 - Live-grade statistics remain separate from the historical backtest. Read every prediction, grade, and the published first miss.
-- Model record
+- Local preview. Not a public live-cycle record. 0 pre-public engineering prediction(s) excluded.
+- Methodology 1.1.1 · Data vintage 2026-08-09T00:00:00+00:00 · Published 2026-08-10T00:00:00+00:00
 - No company-specific financing evidence found; each estimate reflects proportional allocation. Their indistinguishability is the finding, so the full rows remain available here.
 - Open the full ledger
+- Prediction evidence moved beside the forecast
 - Prediction ledger
+- Prediction ledger · Scoreboard · Methodology
 - Separated the homepage claims into an ordered reading path, promoted the immutable prediction ledger, grouped 38 indistinguishable baseline-only Evidence Lift rows behind a native disclosure, and added a complete alphabetical company directory without changing any estimate or feed.
 - Show 38 baseline-only companies at 1.00x
 - Skip to main content
 - The complete alphabetical directory keeps all 50 company estimates, bands, evidence tiers, assumptions, and source links one step away.
+- Used the wide homepage's prediction rail for the live ledger count and existing historical backtest figures, while preserving explicit live-versus-backtest labels, mobile reading order, and the separate live-grade calibration record.
 
 The repeated baseline interpretation sentence appears 38 time(s) on the old homepage and 0 time(s) on the new homepage.
 
@@ -60,11 +72,12 @@ The repeated baseline interpretation sentence appears 38 time(s) on the old home
 Missing normalized internal targets (1):
 - /index.html#companies
 
-Added normalized internal targets (67):
+Added normalized internal targets (68):
 - /#main-content
 - /#prediction-ledger
 - /changelog/#main-content
 - /changelog/#ux-information-architecture
+- /changelog/#ux-prediction-evidence-rail
 - /companies
 - /companies/#main-content
 - /companies/abnb/#main-content
@@ -135,31 +148,27 @@ Missing outbound targets (0):
 Added outbound targets (0):
 - None
 
-## Disposition of every reported loss
+## Removal disposition
 
-The machine diff reports no missing route and no changed outbound target. All 50 Evidence Lift row
-lines compare exactly before and after when the native disclosure is expanded: 50 before, 50 after,
-zero changed. The four missing distinct lines are copy replacements, not information losses:
+No route, company, prediction permalink, evidence value, or outbound provenance target was lost.
+The eight missing distinct lines are accounted for as follows:
 
-1. `50 covered companies, alphabetically.` is now `50 covered companies, alphabetically by
-   ticker.` on `/companies/`. The added phrase states the actual sort key.
-2. `Covered companies ranked by DFR% midpoint divided by their same-period pure-fungibility
-   baseline.` is replaced by the more precise split: the default table says it contains companies
-   above baseline, while the native disclosure says it retains the complete baseline-only group,
-   every rank, band, and Tier 1/2/3 split.
-3. The original one-sentence project description is retained verbatim after the new orienting clause
-   `DFRI publishes two linked records.` The diff treats the combined line as new because its prefix
-   changed.
-4. The link label `Full ledger` is now the literal action `Open the full ledger`; its destination
-   remains `/scoreboard/`.
+| Missing literal | Final location or disposition |
+| --- | --- |
+| `2018–2026 backtest · $M mean absolute error` | The same value and method link remain once in the prediction rail as `2018–2026 · $M mean absolute error`, under the explicit `Historical backtest` heading. |
+| `2018–2026 backtest · share inside 80% band` | The same 80% and 95% values and coverage-method link remain once in the adjacent historical-backtest cell. |
+| `50 covered companies, alphabetically.` | The dedicated `/companies/` page states the more precise `50 covered companies, alphabetically by ticker.` |
+| `Covered companies ranked by DFR% midpoint divided by their same-period pure-fungibility baseline.` | The Evidence Lift caption now says the same thing in complete grammatical form and retains all 50 rows. |
+| `Current ledger · prediction records` | Renamed `Live ledger · prediction records` to distinguish current append-only state from the historical backtest; count, graded/pending split, and ledger link are unchanged. |
+| The prior one-sentence DFRI description | Retained verbatim after the orienting prefix `DFRI publishes two linked records.` |
+| `Full ledger` | Renamed `Open the full ledger`; destination unchanged. |
+| The prior methodology/data-vintage/publication metadata line | Replaced only by the regenerated accepted-preview timestamp and data-vintage line. Methodology version remains 1.1.1; no methodology content changed. |
 
-The old homepage repeated its baseline interpretation sentence 38 times. The new homepage replaces
-those repetitions with one group-level explanation and retains all 38 data rows inside a native
-`details` disclosure. This is the explicitly justified consolidation in `UX_PLAN.md`, not a loss of
-access.
+The old normalized nav target `/index.html#companies` is no longer emitted because `Companies`
+now opens the dedicated directory. Direct `index.html#companies` still returns HTTP 200 without a
+redirect, and the `companies` anchor remains in the document. The inventory adds skip targets,
+the directory, and changelog anchors; it removes no outbound target.
 
-The sole missing internal *link target*, `/index.html#companies`, is the intentionally replaced nav
-destination. It is not a missing URL: `/index.html` still returns HTTP 200 directly with no redirect,
-and the `#companies` target remains in the document. The page now links onward to the complete
-`/companies/` directory. Sixty-seven added internal targets comprise that directory, the prediction
-ledger anchor, and first-focus skip targets on every rendered page.
+The owner follow-up moves the ledger count and historical backtest values into the wide prediction
+rail. It does not remove or duplicate them. Their static DOM order is prediction, live ledger count,
+historical MAE, historical interval coverage, then full-width live-grade calibration.

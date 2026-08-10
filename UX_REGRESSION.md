@@ -1,10 +1,11 @@
 # Information-architecture regression verification
 
-Status: **BRANCH PASS — OWNER-AUTHORIZED MERGE AND DEPLOYMENT PENDING**
+Status: **LOCAL BRANCH PASS — FINAL PUSHED-COMMIT CI, MERGE, AND DEPLOYMENT PENDING**
 
 This report compares the deployed pre-change source at `c6c62b5` with the information-architecture
-branch. It covers the complete inventory, data and ledger invariants, URLs, provenance, permanent
-rendered-page rules, cold recovery, accessibility, mobile layout, and the observed visitor path.
+branch, including the owner-approved prediction-evidence rail. It covers the complete inventory,
+data and ledger invariants, URLs, provenance, permanent rendered-page rules, cold recovery,
+accessibility, mobile layout, and the observed visitor path.
 The verified review surface is [PR #26](https://github.com/Cameloo1/dfri/pull/26).
 
 ## 1. Inventory and access preservation
@@ -19,14 +20,14 @@ The disclosure-expanded inventories and their machine diff are published as
 | Added route | `/companies/` |
 | Company pages | 50 before, 50 after |
 | Prediction permalinks | 6 before, 6 after |
-| Disclosure-expanded information lines | 4,343 before, 4,415 after |
+| Disclosure-expanded information lines | 4,343 before, 4,482 after |
 | Evidence Lift rows | 50 before, 50 after, zero changed |
 | Distinct outbound targets | 62 before, 62 after, zero changed |
 
-The machine diff found four missing distinct text lines. Each is a literal replacement documented in
-`UX_INVENTORY_DIFF.md`: the directory sort key is made explicit, the lift introduction now describes
-the visible subset and expanded baseline group separately, the project description gains one
-orienting prefix, and `Full ledger` becomes `Open the full ledger` without changing its destination.
+The final machine diff found eight missing distinct text lines. Every one is disposed in
+`UX_INVENTORY_DIFF.md`: four are the previously documented orientation/directory replacements, three
+rename the ledger and backtest labels while preserving their values and links, and one is the
+regenerated preview metadata timestamp. No user-visible value or destination disappeared.
 
 The old homepage repeated the baseline interpretation 38 times. The new homepage states it once at
 group level and preserves every rank, band, and tier split inside a native disclosure. With
@@ -50,8 +51,9 @@ The canonical repository ledger hashes remain:
 - grades: `25103f7188d2f6a2bbd376b773b5bf6d4659783d915feac8b360109a02ef1d30`
 - publication records: `52c220bb4935f45bef849d8c6177833f08b132973088889c892421a1a0c8ba58`
 
-All 19 existing deterministic feed payloads compare byte-for-byte equal. The most scrutinized feed
-hashes remain:
+All 19 existing deterministic feed payloads compare byte-for-byte equal between `5ffec47` and the
+owner-follow-up implementation when rendered from the same accepted six-prediction/two-grade state
+with identical publication inputs. The most scrutinized pre-overhaul feed hashes remain:
 
 | Feed | SHA-256 |
 | --- | --- |
@@ -125,8 +127,8 @@ dependency cache, passed the documented `make bootstrap`, `make verify`, `make p
 | Gate | Result |
 | --- | ---: |
 | Heaviest page | `methodology/index.html` |
-| Heaviest page including shared assets | 75,688 bytes |
-| Maximum estimated 4G first load | 528.44 ms |
+| Heaviest page including shared assets | 76,924 bytes |
+| Maximum estimated 4G first load | 534.62 ms |
 | Minimum checked text contrast | 5.736:1 |
 | JavaScript-enabled pages audited | 61 |
 | JavaScript-disabled pages audited | 61 |
@@ -138,21 +140,26 @@ document width equals the 390 px viewport and every accessible SVG remains insid
 
 ## 7. Observed primary path
 
-The rendered path was walked at 1,280 px and 390 px rather than inferred from templates:
+The rendered path was walked at 1,440, 1,280, 768, and 390 px rather than inferred from templates:
 
 1. A cold arrival exposes one H1, a two-record plain-language description, then the 3.36% estimated
    band and its same-publication company range. At 390 px the number, units, tier badge, provenance,
    and band are visible without horizontal scrolling.
-2. The immutable prediction ledger is the second numbered section. It states the timestamp and
-   first-print rule, shows graded and pending counts, and links to the full scoreboard.
-3. Tier definitions follow the claim and ledger under `How much is known`; they no longer occupy the
+2. The immutable prediction ledger is the second numbered section. At 1,280 and 1,440 px it forms
+   the right side of the opening spread: latest prediction and full interval, live ledger count,
+   then two equal historical-backtest cells. The estimate and prediction columns end on the same
+   baseline; live-grade calibration begins full-width beneath them.
+3. At 768 px the estimate and prediction rail stack while the two historical diagnostics remain
+   paired. At 390 px their source and visual order is prediction, live ledger count, historical
+   MAE, historical interval coverage, then live-grade calibration, with no horizontal overflow.
+4. Tier definitions follow the claim and ledger under `How much is known`; they no longer occupy the
    opening figure.
-4. The Evidence Lift table exposes the 12 differentiated rows. Its native summary announces the 38
+5. The Evidence Lift table exposes the 12 differentiated rows. Its native summary announces the 38
    baseline-only rows before expansion.
-5. `Companies` in primary navigation opens a real alphabetical-by-ticker directory. Carvana was
+6. `Companies` in primary navigation opens a real alphabetical-by-ticker directory. Carvana was
    reached in one further activation; its page retained the 15.14%–22.39% band, Tier 1/2/3 split,
    SEC filing link, assumption IDs, and sensitivity record.
-6. The first Tab after reload focuses a visibly outlined `Skip to main content` link. Activating it
+7. The first Tab after reload focuses a visibly outlined `Skip to main content` link. Activating it
    moves both the URL fragment and focus to the main landmark.
 
 These observations prove order, access, semantics, and traceability. They do not prove the untested
@@ -162,13 +169,13 @@ testing. No engagement, urgency, or conversion claim is made.
 
 ## 8. Manual and publication boundaries
 
-Human inspection was used only for text collision and hierarchy at desktop and mobile widths; it
-found no collision or clipping. All data, route, link, rules, no-JavaScript, keyboard, overflow,
-contrast, weight, determinism, and immutability checks above are automated.
+Human inspection was used only for text collision, balance, and hierarchy at the four stated
+widths; it found no collision or clipping. All data, route, link, rules, no-JavaScript, keyboard,
+overflow, contrast, weight, determinism, and immutability checks above are automated.
 
 Relaybase discovery was unavailable during local inspection, so the documented direct-port fallback
-was used. The process was command-line verified before each stop, and the port was proven closed
-afterward. No runtime manifest or local path was committed.
+was used. Both preview processes were identity-checked before stop, and ports 8138 and 8139 were
+proven closed afterward. No runtime manifest or local path was committed.
 
 The PR is ready and CI-green, but merging into public `main` was not performed because that external
 mutation requires explicit owner approval in the current execution environment. Consequently the
