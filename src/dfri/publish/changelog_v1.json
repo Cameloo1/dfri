@@ -127,19 +127,6 @@
       ]
     },
     {
-      "entry_id": "methodology-1-2-auto-allocation-sources",
-      "published_on": "2026-08-09",
-      "kind": "methodology",
-      "version": "1.2.0",
-      "title": "Auto allocation moved to regulatory and filing evidence",
-      "summary": "Retired the NY Fed Household Debt and Credit source from the active auto-allocation assumption; reconciled FFIEC bank, NCUA credit-union, Federal Reserve Board G.19, and SEC Auto ABS evidence; separately versioned the resulting 50-company and headline-index restatement; and added computed source criticality with independent fallbacks and visible degraded-source bands.",
-      "links": [
-        {"label": "Methodology", "href": "/methodology/"},
-        {"label": "Version comparison", "href": "/methodology/sensitivity/"},
-        {"label": "Critical source strategy", "href": "/methodology/#source-resilience"}
-      ]
-    },
-    {
       "entry_id": "ux-information-architecture",
       "published_on": "2026-08-09",
       "kind": "publication",
@@ -163,6 +150,19 @@
         {"label": "Prediction ledger", "href": "/#prediction-ledger"},
         {"label": "Scoreboard", "href": "/scoreboard/"},
         {"label": "Methodology", "href": "/methodology/"}
+      ]
+    },
+    {
+      "entry_id": "methodology-1-2-auto-allocation-sources",
+      "published_on": "2026-08-10",
+      "kind": "methodology",
+      "version": "1.2.0",
+      "title": "Auto allocation moved to regulatory and filing evidence",
+      "summary": "Retired the NY Fed Household Debt and Credit source from the active auto-allocation assumption; reconciled FFIEC bank, NCUA credit-union, Federal Reserve Board G.19, and SEC Auto ABS evidence; separately versioned the resulting 50-company and headline-index restatement; and added computed source criticality with independent fallbacks and visible degraded-source bands.",
+      "links": [
+        {"label": "Methodology", "href": "/methodology/"},
+        {"label": "Version comparison", "href": "/methodology/sensitivity/"},
+        {"label": "Critical source strategy", "href": "/methodology/#source-resilience"}
       ]
     },
     {
