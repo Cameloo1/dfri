@@ -9,7 +9,7 @@
     <div class="figure-label">{{ company.quarter }} · estimated DFR% of U.S. consumer revenue</div>
     <div class="number" title="Computed from the linked evidence and registered assumptions">{{ company.mid }}</div>
     <div class="figure-evidence"><span>Midpoint with 80% band</span><span class="tier-badge tier-mixed">Tier 1–3</span><a href="#evidence">Provenance</a></div>
-    <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="Estimated DFR percent band from {{ company.low }} to {{ company.high }}, midpoint {{ company.mid }}">
+    <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="Estimated DFR percent band from {{ company.low }} to {{ company.high }}, midpoint {{ company.mid }}" aria-describedby="company-dfr-band-data" data-chart-equivalent="company-dfr-band-data">
       <title>Estimated DFR% band: {{ company.low }} to {{ company.high }}, midpoint {{ company.mid }}</title>
       <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
       <rect x="108" y="23" width="384" height="26" class="range-band" />
@@ -18,14 +18,22 @@
       <text x="300" y="68" text-anchor="middle">{{ company.mid }}</text>
       <text x="492" y="68" text-anchor="middle">{{ company.high }}</text>
     </svg>
+    <div class="table-wrap chart-equivalent-wrap"><table id="company-dfr-band-data" class="chart-equivalent-table" data-chart-table="band">
+      <caption>Text equivalent for the current estimated DFR% band for {{ company.company_name }}.</caption>
+      <tbody><tr><th scope="row">Period</th><td>{{ company.quarter }}</td></tr><tr><th scope="row">Estimated 80% band</th><td>{{ company.low }} to {{ company.high }} of U.S. consumer revenue</td></tr><tr><th scope="row">Estimated midpoint</th><td>{{ company.mid }} of U.S. consumer revenue</td></tr><tr><th scope="row">Evidence</th><td><span class="tier-badge tier-mixed">Tier 1–3</span></td></tr><tr><th scope="row">Provenance</th><td><a href="#evidence">Company evidence and assumptions</a></td></tr></tbody>
+    </table></div>
     <p class="meta">Estimated midpoint: ${{ company.debt_revenue }} million debt-funded consumer revenue / ${{ company.consumer_revenue }} million estimated U.S. consumer revenue.</p>
   </article>
   <article class="card metric" data-figure="tier-share">
     <div class="figure-label">{{ company.quarter }} · share of estimated debt-funded revenue</div>
-    <div class="tier-stack" role="img" aria-label="Tier 1 {{ company.tier1 }}, Tier 2 {{ company.tier2 }}, Tier 3 {{ company.tier3 }}">
+    <div class="tier-stack" role="img" aria-label="Tier 1 {{ company.tier1 }}, Tier 2 {{ company.tier2 }}, Tier 3 {{ company.tier3 }}" aria-describedby="company-revenue-decomposition-data" data-chart-equivalent="company-revenue-decomposition-data">
       <span class="tier-segment tier-1" style="width: {{ company.tier1_width }}%"></span><span class="tier-segment tier-2" style="width: {{ company.tier2_width }}%"></span><span class="tier-segment tier-3" style="width: {{ company.tier3_width }}%"></span>
     </div>
     <div class="tier-line"><span class="tier-badge tier-1">Tier 1 {{ company.tier1 }}</span><span class="tier-badge tier-2">Tier 2 {{ company.tier2 }}</span><span class="tier-badge tier-3">Tier 3 {{ company.tier3 }}</span></div>
+    <div class="table-wrap chart-equivalent-wrap"><table id="company-revenue-decomposition-data" class="chart-equivalent-table" data-chart-table="decomposition">
+      <caption>Text equivalent for the evidence-tier decomposition of estimated debt-funded revenue.</caption>
+      <thead><tr><th scope="col">Component</th><th scope="col">Share</th><th scope="col">Meaning</th></tr></thead><tbody><tr><th scope="row"><span class="tier-badge tier-1">Tier 1</span></th><td>{{ company.tier1 }}</td><td>Observed company financing link</td></tr><tr><th scope="row"><span class="tier-badge tier-2">Tier 2</span></th><td>{{ company.tier2 }}</td><td>Category-mapped allocation</td></tr><tr><th scope="row"><span class="tier-badge tier-3">Tier 3</span></th><td>{{ company.tier3 }}</td><td>Fungible proportional allocation</td></tr><tr><th scope="row">Provenance</th><td colspan="2"><a href="#evidence">Company evidence and registered assumptions</a></td></tr></tbody>
+    </table></div>
     {{ tier_legend(root, expandable=true) }}
   </article>
   <article class="card metric" data-figure="derived-ratio">
@@ -39,10 +47,14 @@
 
 <section class="section-block" id="evidence">
   <h2>History</h2>
-  <svg class="history-chart" viewBox="0 0 600 {{ history[0].height }}" role="img" aria-label="Versioned estimated DFR percent bands for {{ company.company_name }}">
+  <svg class="history-chart" viewBox="0 0 600 {{ history[0].height }}" role="img" aria-label="Versioned estimated DFR percent bands for {{ company.company_name }}" aria-describedby="company-history-band-data" data-chart-equivalent="company-history-band-data">
     <title>Versioned estimated DFR% bands for {{ company.company_name }}</title>
     {% for item in history %}<text x="8" y="{{ item.y + 4 }}">{{ item.effective_at }}</text><rect x="{{ item.low_x }}" y="{{ item.y - 6 }}" width="{{ item.high_x - item.low_x }}" height="12" class="range-band"/><line x1="{{ item.mid_x }}" y1="{{ item.y - 10 }}" x2="{{ item.mid_x }}" y2="{{ item.y + 10 }}" class="range-mid-rule"/><text x="90" y="{{ item.y + 23 }}">{{ item.label }} · Estimated {{ item.low }}–{{ item.high }} · {{ item.status }}</text>{% endfor %}
   </svg>
+  <div class="table-wrap chart-equivalent-wrap"><table id="company-history-band-data" class="chart-equivalent-table history-equivalent-table" data-chart-table="band">
+    <caption>Text equivalent for every versioned estimated DFR% band in the history chart.</caption>
+    <thead><tr><th scope="col">Effective date</th><th scope="col">Record</th><th scope="col">Estimated low</th><th scope="col">Estimated midpoint</th><th scope="col">Estimated high</th><th scope="col">Status and provenance</th></tr></thead><tbody>{% for item in history %}<tr><td>{{ item.effective_at }}</td><th scope="row">{{ item.label }}</th><td>{{ item.low }} of U.S. consumer revenue</td><td>{{ item.mid }} of U.S. consumer revenue</td><td>{{ item.high }} of U.S. consumer revenue</td><td>{{ item.status }} · <a href="{{ root }}{{ item.provenance_path }}">Versioned source record</a></td></tr>{% endfor %}</tbody>
+  </table></div>
   <p class="meta">Refresh records are append-only. A new filing adds a record; it never replaces the earlier band.</p>
 </section>
 

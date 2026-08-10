@@ -25,7 +25,7 @@
 <section class="section-block" id="credit-flow">
   <h2>Credit flow</h2>
   <p id="credit-flow-method">The view uses the registered current-period midpoint flow, Matrix A midpoint, and Matrix B midpoint for each lane. It groups only after those published mappings are applied, keeps every remainder group within one evidence tier, and does not enter the nowcast or change any company estimate.</p>
-  {{ render_credit_flow(credit_flow, credit_flow_methodology_href, show_table=true) }}
+  {{ render_credit_flow(credit_flow, credit_flow_methodology_href, "methodology-credit-flow-data") }}
 </section>
 
 <section class="section-block" id="evidence-lift">

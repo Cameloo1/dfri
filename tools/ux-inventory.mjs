@@ -32,6 +32,8 @@ const routes = [
   "methodology/",
   "methodology/coverage/",
   "methodology/sensitivity/",
+  "roadmap/",
+  "corrections/",
   "changelog/",
   ...companyRows.map((row) => `companies/${String(row.ticker).toLowerCase()}/`).sort(),
   ...scoreboardRows

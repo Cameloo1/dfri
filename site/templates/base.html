@@ -34,6 +34,7 @@
         <a href="{{ root }}scoreboard/index.html"{% if active_nav == "scoreboard" %} aria-current="page"{% endif %}>Scoreboard</a>
         <a href="{{ root }}companies/index.html"{% if active_nav == "companies" %} aria-current="page"{% endif %}>Companies</a>
         <a href="{{ root }}methodology/index.html"{% if active_nav == "methodology" %} aria-current="page"{% endif %}>Methodology</a>
+        <a href="{{ root }}roadmap/index.html"{% if active_nav == "roadmap" %} aria-current="page"{% endif %}>Roadmap</a>
         <a href="{{ root }}changelog/index.html"{% if active_nav == "changelog" %} aria-current="page"{% endif %}>Changelog</a>
         <a href="{{ root }}v2/feeds/schema.json">Data schema</a>
       </nav>
@@ -52,6 +53,7 @@
   <footer class="site-footer"><div class="shell">
     <div>Research and educational content. Not investment advice.</div>
     <div>Feeds licensed <a href="{{ feed_license_url }}">CC BY-NC 4.0</a>: free for non-commercial use with attribution; commercial licensing reserved — contact <a href="mailto:{{ commercial_license_contact }}">{{ commercial_license_contact }}</a>.</div>
+    <div><a href="{{ root }}corrections/index.html">Corrections policy</a> · <a href="{{ root }}roadmap/index.html">Roadmap and boundaries</a></div>
     <div>Methodology {{ methodology_version }} · Data vintage {{ data_vintage }} · Published {{ published_at }}</div>
     {% if archive_citation %}<div class="cite-this"><strong>Cite this release.</strong> {{ archive_citation.provider }} DOI <a href="{{ archive_citation.record_url }}">{{ archive_citation.version_doi }}</a>. Concept DOI {{ archive_citation.concept_doi }}.</div>{% endif %}
   </div></footer>

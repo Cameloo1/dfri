@@ -163,6 +163,8 @@ def check_site(root: Path) -> SiteQualityReceipt:
         root / "methodology" / "sensitivity" / "index.html",
         root / "methodology" / "coverage" / "index.html",
         root / "changelog" / "index.html",
+        root / "roadmap" / "index.html",
+        root / "corrections" / "index.html",
         root / "v1" / "feeds" / "schema.json",
         root / "v2" / "feeds" / "schema.json",
         root / "v1" / "status.json",
@@ -233,7 +235,7 @@ def check_site(root: Path) -> SiteQualityReceipt:
         or 'id="credit-flow"' not in methodology
     ):
         raise SiteQualityError("Methodology lacks the versioned assumption/tier contract")
-    _check_credit_flow("index.html", home, require_table=False)
+    _check_credit_flow("index.html", home, require_table=True)
     _check_credit_flow("methodology/index.html", methodology, require_table=True)
     comparison = (root / "methodology" / "sensitivity" / "index.html").read_text(encoding="utf-8")
     required_methodologies = ("Methodology 1.1.0", "Methodology 1.2.0", "Methodology 1.2.1")
@@ -314,6 +316,7 @@ def _check_document(relative: str, content: str) -> None:
     if len(" ".join(visible.split())) < 100:
         raise SiteQualityError(f"{relative} lacks server-rendered no-JavaScript content")
     _check_figure_contracts(relative, content)
+    _check_chart_equivalents(relative, content)
     _check_navigation_semantics(relative, content)
 
 
@@ -352,6 +355,8 @@ def _check_navigation_semantics(relative: str, content: str) -> None:
         expected = "Methodology"
     elif relative == "changelog/index.html":
         expected = "Changelog"
+    elif relative == "roadmap/index.html":
+        expected = "Roadmap"
     current = re.findall(r'<a [^>]*aria-current="page"[^>]*>([^<]+)</a>', navigation)
     if expected is None and current:
         raise SiteQualityError(f"{relative} exposes a false current-page navigation state")
@@ -409,6 +414,58 @@ def _check_company(relative: str, content: str) -> None:
         raise SiteQualityError(f"{relative} lacks company evidence contract: {missing[0]}")
 
 
+def _check_chart_equivalents(relative: str, content: str) -> None:
+    chart_tags = [
+        *re.findall(
+            r'<svg\b[^>]*class="[^"]*(?:range-chart|history-chart|credit-flow)[^"]*"[^>]*>',
+            content,
+        ),
+        *re.findall(r'<div\b[^>]*class="[^"]*tier-stack[^"]*"[^>]*>', content),
+    ]
+    for tag in chart_tags:
+        association = re.search(r'data-chart-equivalent="([a-z0-9-]+)"', tag)
+        if association is None:
+            raise SiteQualityError(f"{relative} chart lacks a text-equivalent association")
+        table_id = association.group(1)
+        if f'aria-describedby="{table_id}"' not in tag:
+            raise SiteQualityError(f"{relative} chart does not describe its text-equivalent table")
+        table_match = re.search(
+            rf'<table\b[^>]*id="{re.escape(table_id)}"[^>]*data-chart-table="([a-z]+)"[^>]*>'
+            rf"(.*?)</table>",
+            content,
+            flags=re.DOTALL,
+        )
+        if table_match is None:
+            raise SiteQualityError(f"{relative} chart lacks its visible text-equivalent table")
+        kind, table = table_match.groups()
+        if "<caption>Text equivalent" not in table:
+            raise SiteQualityError(
+                f"{relative} chart table lacks an explicit text-equivalent caption"
+            )
+        visible = " ".join(re.sub(r"<[^>]+>", " ", table).split())
+        required: tuple[str, ...]
+        if kind == "flow":
+            required = ("Source", "Destination", "Estimated amount", "Evidence tier", "millions")
+        elif kind == "decomposition":
+            required = ("Component", "Share", "Tier 1", "Tier 2", "Tier 3", "Provenance")
+        elif kind == "band":
+            required = ("Provenance",)
+            if not re.search(r"\b(?:band|interval)\b", visible, flags=re.IGNORECASE):
+                raise SiteQualityError(f"{relative} band table lacks its interval or band values")
+            if not ("%" in visible or "millions of U.S. dollars" in visible):
+                raise SiteQualityError(f"{relative} band table lacks explicit units")
+        else:
+            raise SiteQualityError(f"{relative} chart table has an unknown contract: {kind}")
+        visible_folded = visible.casefold()
+        missing = [item for item in required if item.casefold() not in visible_folded]
+        if missing:
+            raise SiteQualityError(
+                f"{relative} chart table lacks required text-equivalent data: {missing[0]}"
+            )
+        if kind in {"band", "decomposition"} and "<a " not in table:
+            raise SiteQualityError(f"{relative} chart table lacks a provenance link")
+
+
 def _check_credit_flow(relative: str, content: str, *, require_table: bool) -> None:
     required = (
         'class="credit-flow"',
@@ -425,7 +482,7 @@ def _check_credit_flow(relative: str, content: str, *, require_table: bool) -> N
     match = re.search(r'data-node-count="(\d+)"', content)
     if match is None or int(match.group(1)) > 9:
         raise SiteQualityError(f"{relative} exceeds the 9-node flow readability cap")
-    if require_table and "Exact static values behind the diagram." not in content:
+    if require_table and "Text equivalent for the flow diagram." not in content:
         raise SiteQualityError(f"{relative} lacks the static flow-value ledger")
 
 

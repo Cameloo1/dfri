@@ -22,7 +22,7 @@
       <div class="figure-label">{{ aggregate.quarter }} · estimated share of U.S. consumer revenue</div>
       <div class="number" title="Estimated from registered Matrix A and Matrix B priors; open Methodology for every input">{{ aggregate.mid }}</div>
       <div class="figure-evidence"><span>Revenue-weighted DFR% · {{ company_count }} companies</span><span class="tier-badge tier-mixed">Tier 1–3</span><a href="methodology/index.html">Method and provenance</a></div>
-      <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="Estimated DFR percent band from {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}">
+      <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="Estimated DFR percent band from {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}" aria-describedby="home-dfr-band-data" data-chart-equivalent="home-dfr-band-data">
         <title>Estimated DFR% band: {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}</title>
         <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
         <rect x="108" y="23" width="384" height="26" class="range-band" />
@@ -32,6 +32,10 @@
         <text x="492" y="68" text-anchor="middle">{{ aggregate.high }}</text>
       </svg>
       <div class="tier-line"><span class="tier-badge tier-1">Tier 1 {{ aggregate.tier1 }}</span><span class="tier-badge tier-2">Tier 2 {{ aggregate.tier2 }}</span><span class="tier-badge tier-3">Tier 3 {{ aggregate.tier3 }}</span></div>
+      <div class="table-wrap chart-equivalent-wrap"><table id="home-dfr-band-data" class="chart-equivalent-table" data-chart-table="band">
+        <caption>Text equivalent for the current revenue-weighted estimated DFR% band.</caption>
+        <tbody><tr><th scope="row">Period</th><td>{{ aggregate.quarter }}</td></tr><tr><th scope="row">Estimated 80% band</th><td>{{ aggregate.low }} to {{ aggregate.high }} of U.S. consumer revenue</td></tr><tr><th scope="row">Estimated midpoint</th><td>{{ aggregate.mid }} of U.S. consumer revenue</td></tr><tr><th scope="row">Evidence mix</th><td><span class="tier-badge tier-1">Tier 1 {{ aggregate.tier1 }}</span> <span class="tier-badge tier-2">Tier 2 {{ aggregate.tier2 }}</span> <span class="tier-badge tier-3">Tier 3 {{ aggregate.tier3 }}</span></td></tr><tr><th scope="row">Provenance</th><td><a href="methodology/index.html">Method and registered assumptions</a></td></tr></tbody>
+      </table></div>
       <p class="comparison-anchor">Across the same publication, covered-company midpoint estimates range from <a href="{{ company_midpoint_anchor.lowest_href }}">{{ company_midpoint_anchor.lowest_mid }} at {{ company_midpoint_anchor.lowest_name }}</a> to <a href="{{ company_midpoint_anchor.highest_href }}">{{ company_midpoint_anchor.highest_mid }} at {{ company_midpoint_anchor.highest_name }}</a>. The {{ aggregate.mid }} headline is revenue-weighted, not a threshold or a typical-company score.</p>
       <p class="meta">Midpoint represents an estimated ${{ aggregate.debt_revenue }} million of debt-funded consumer revenue over an estimated ${{ aggregate.consumer_revenue }} million denominator. Bands are always shown.</p>
     </article>
@@ -45,13 +49,17 @@
       <div class="figure-label">{{ latest.target_period }} · {{ latest.target_label }} · $M monthly flow</div>
       <div class="number secondary">{{ latest.point_display }}</div>
       <div class="figure-evidence"><span>{{ latest.unit_context }}</span><span class="status {{ latest.grade_status_class }}">{{ latest.grade_status }}</span><a href="scoreboard/predictions/{{ latest.prediction_id }}/index.html">Immutable record</a></div>
-      <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="95 percent prediction interval from {{ latest.low95_display }} to {{ latest.high95_display }}; point {{ latest.point_display }}">
+      <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="95 percent prediction interval from {{ latest.low95_display }} to {{ latest.high95_display }}; point {{ latest.point_display }}" aria-describedby="home-prediction-band-data" data-chart-equivalent="home-prediction-band-data">
         <title>Prediction band: {{ latest.low95_display }} to {{ latest.high95_display }}, point {{ latest.point_display }}</title>
         <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
         <rect x="108" y="23" width="384" height="26" class="range-band" />
         <line x1="300" y1="18" x2="300" y2="54" class="range-mid-rule" />
         <text x="108" y="68" text-anchor="middle">{{ latest.low95_display }}</text><text x="300" y="68" text-anchor="middle">{{ latest.point_display }}</text><text x="492" y="68" text-anchor="middle">{{ latest.high95_display }}</text>
       </svg>
+      <div class="table-wrap chart-equivalent-wrap"><table id="home-prediction-band-data" class="chart-equivalent-table" data-chart-table="band">
+        <caption>Text equivalent for the latest immutable prediction band.</caption>
+        <tbody><tr><th scope="row">Series and period</th><td>{{ latest.target_label }}, {{ latest.target_period }}</td></tr><tr><th scope="row">Point</th><td>{{ latest.point_display }} millions of U.S. dollars</td></tr><tr><th scope="row">80% interval</th><td>{{ latest.low80_display }} to {{ latest.high80_display }} millions of U.S. dollars</td></tr><tr><th scope="row">95% interval</th><td>{{ latest.low95_display }} to {{ latest.high95_display }} millions of U.S. dollars</td></tr><tr><th scope="row">Status</th><td>{{ latest.grade_status }}</td></tr><tr><th scope="row">Provenance</th><td><a href="scoreboard/predictions/{{ latest.prediction_id }}/index.html">Immutable prediction record</a></td></tr></tbody>
+      </table></div>
     </article>
     {% else %}
     <article class="card prediction-hero"><h3>No predictions yet</h3><p>The feed is valid but the public clock has not started.</p></article>
@@ -93,7 +101,7 @@
 <section id="credit-flow" class="section-block">
   <h2>Credit flow</h2>
   <p>Current-period midpoint allocations show how published consumer-credit lanes pass through spending categories to the highest-lift companies and the rest of the covered universe.</p>
-  {{ render_credit_flow(credit_flow, credit_flow_methodology_href) }}
+  {{ render_credit_flow(credit_flow, credit_flow_methodology_href, "home-credit-flow-data") }}
 </section>
 
 <section id="evidence-lift" class="section-block">

@@ -17,6 +17,8 @@ SITE_PATHS: Final = (
     "",
     "scoreboard/",
     "methodology/",
+    "roadmap/",
+    "corrections/",
     "changelog/",
     "v1/feeds/schema.json",
     "v1/feeds/nowcast_predictions.json",

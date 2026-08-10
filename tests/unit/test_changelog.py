@@ -28,6 +28,7 @@ def test_public_changelog_is_ordered_permalinked_and_complete() -> None:
         "moat-a-treasury-mts-second-clock",
         "moat-b-methodology-1-2-1-tjx-tier1",
         "resilience-status-events-and-citation-boundary",
+        "site-accessible-chart-equivalents-and-public-boundaries",
     ]
     assert all(item.permalink == f"/changelog/#{item.entry_id}" for item in entries)
     assert {item.kind for item in entries} == {"publication", "methodology"}

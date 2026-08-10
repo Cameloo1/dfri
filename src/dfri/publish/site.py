@@ -780,6 +780,42 @@ def _build_scoreboard(
             "entries": [item.display() for item in reversed(changelog)],
         },
     )
+    _render(
+        environment,
+        "roadmap.html",
+        output_root / "roadmap" / "index.html",
+        {
+            **base_context,
+            **_page_metadata(
+                site_url,
+                "roadmap/",
+                "assets/social/methodology.png",
+                "DFRI current scope, planned work, and deliberate exclusions",
+            ),
+            "root": "../",
+            "active_nav": "roadmap",
+            "title": "Roadmap and boundaries",
+            "description": "What DFRI measures, plans, and deliberately excludes.",
+        },
+    )
+    _render(
+        environment,
+        "corrections.html",
+        output_root / "corrections" / "index.html",
+        {
+            **base_context,
+            **_page_metadata(
+                site_url,
+                "corrections/",
+                "assets/social/changelog.png",
+                "DFRI append-only corrections policy",
+            ),
+            "root": "../",
+            "active_nav": None,
+            "title": "Corrections policy",
+            "description": "How to report, verify, publish, and retrieve DFRI corrections.",
+        },
+    )
     for company, display in zip(attribution.companies, company_displays, strict=True):
         _render(
             environment,
@@ -1263,6 +1299,7 @@ def _company_histories(
                 "mid_value": float(cast(float, row["estimated_dfr_pct_mid"])),
                 "high_value": float(cast(float, row["estimated_dfr_pct_high"])),
                 "status": row["input_status"],
+                "provenance_path": "v1/feeds/dfri_company_history.json",
             }
         )
     for item in current.companies:
@@ -1274,6 +1311,7 @@ def _company_histories(
                 "mid_value": item.estimated_dfr_pct_mid,
                 "high_value": item.estimated_dfr_pct_high,
                 "status": "VERSIONED_BASELINE",
+                "provenance_path": "v2/feeds/dfri_companies.json",
             }
         )
     for rows in grouped.values():

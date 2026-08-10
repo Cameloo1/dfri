@@ -203,6 +203,19 @@
         {"label": "Event feed", "href": "/v1/events.json"},
         {"label": "RSS", "href": "/events.xml"}
       ]
+    },
+    {
+      "entry_id": "site-accessible-chart-equivalents-and-public-boundaries",
+      "published_on": "2026-08-10",
+      "kind": "publication",
+      "version": "1.2.1",
+      "title": "Chart equivalents and public boundaries added",
+      "summary": "Added visible text-equivalent tables for every published flow, band, and company evidence-decomposition chart; published append-only corrections and scope-boundary policies; and added permanent build checks for those accessibility contracts without changing any estimate or feed.",
+      "links": [
+        {"label": "Corrections policy", "href": "/corrections/"},
+        {"label": "Roadmap and boundaries", "href": "/roadmap/"},
+        {"label": "Credit flow", "href": "/#credit-flow"}
+      ]
     }
   ]
 }

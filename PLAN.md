@@ -190,6 +190,65 @@ Dependencies: Git-backed ledgers, M2/MTS workflow candidates, deterministic stat
 source-fallback registry, and existing M4 quality gates. Publication, workflow registration, and
 the external archive deposit remain separate owner approval gates.
 
+## Polish and legitimacy (owner-directed, pre-expansion)
+
+This pass is additive publication work. It may not alter a prediction, grade, publication record,
+company estimate, aggregate value, feed field, canonical ledger hash, URL, or permalink. Any such
+difference is a correctness failure and stops this pass.
+
+### Accessible chart equivalents
+
+- `PASS` Inventory every rendered flow view, revenue-decomposition graphic, and modeled
+  band chart across the homepage, methodology, company pages, and prediction permalinks.
+- `PASS` Put a visible, no-JavaScript text-equivalent table beside every inventoried chart and
+  programmatically associate each figure with its table. Flow rows must expose source,
+  destination, amount, units, and tier; decomposition and band rows must expose every value,
+  units, tier context, and provenance needed to interpret the graphic.
+- `PASS` Add a permanent blocking publication check that rejects a required chart without its
+  associated table, required columns, units, tier context, or provenance.
+- `PASS` Traverse the primary first-visit and company-audit paths with an actual screen reader,
+  record the observed reading order and table experience, and report any remaining awkwardness
+  separately from automated axe and semantic checks.
+
+### Corrections, scope, and first-visit path
+
+- `PASS` Publish a plain corrections policy at a stable URL covering the report channel,
+  acknowledgement target, verification process, append-only versioned correction records,
+  changelog disclosure, and retrieval of prior values; link it from every page.
+- `PASS` Publish a stable roadmap-and-boundaries page describing what is measured now, what is
+  planned, and what is deliberately excluded. Name sources rejected on terms grounds and explain
+  why permitted access/use does not establish permitted storage or derivative redistribution.
+- `PASS` Walk the rendered site cold before and after the changes, document where a reader first
+  understands the claim, evidence depth, and credibility basis, fix cheap observed breaks, and
+  list remaining uncertainty without asserting untested behavior.
+
+### Calendar-triggered model diagnostics
+
+- `PENDING TRIGGER — G.19` For each G.19 `target_series`, when its immutable live-grade count first
+  reaches 8, publish an exactly-once live-versus-backtest diagnostic comparing realized MAE,
+  naive-benchmark MAE, and 80%/95% interval coverage with that series' frozen backtest
+  expectations. State whether the divergence warrants a model change; do not retrain or retune
+  automatically. Any approved change receives a new `model_version`, while every prior prediction
+  remains graded under the version that made it. Current Git-backed counts: revolving 1 of 8;
+  nonrevolving 1 of 8.
+- `PENDING TRIGGER — MTS` Apply the same exactly-once obligation independently to each MTS
+  `target_series` when its immutable live-grade count first reaches 8. Never blend MTS and G.19
+  calibration statistics or triggers. Current Git-backed counts: deficit 0 of 8; outlays 0 of 8.
+- `PASS` Record each trigger threshold, current count, diagnostic artifact/version, decision,
+  and completion state in the plan and changelog so the obligation cannot disappear between
+  scheduled runs.
+
+### Verification and handoff
+
+- `PASS` Append a publication changelog entry, update tests, and pass focused publication tests,
+  `make verify`, deterministic double-publication, no-JavaScript, accessibility, URL/provenance,
+  page-weight, and first-visit checks.
+- `PASS` Preserve generated browser evidence and diagnostic logs only under ignored `.local/`
+  paths; commit only durable source, tests, policies, and stable public reports.
+
+Dependencies: current deterministic publisher, section 8.3 quality gates, active Git-backed clock,
+and the existing stable chart and permalink URLs. Deployment remains a separate owner approval.
+
 ## M0 — Foundation (repo, CI, contracts)
 
 ### M0.1 Repository and toolchain scaffold

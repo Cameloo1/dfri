@@ -180,6 +180,8 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert "Research and educational content. Not investment advice." in home
     assert 'href="https://creativecommons.org/licenses/by-nc/4.0/"' in home
     assert 'href="mailto:ops@camelon.app"' in home
+    assert 'href="corrections/index.html"' in home
+    assert 'href="roadmap/index.html"' in home
     assert "Revenue-weighted DFR%" in home
     assert "each month's change in U.S. consumer borrowing" in home
     assert "Seasonally adjusted · millions of U.S. dollars" in home
@@ -188,6 +190,12 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert "Evidence Lift measures company-specific financing evidence" in home
     assert "No company-specific financing evidence found" in home
     assert "Carvana has the highest Evidence Lift" in home
+    assert 'data-chart-equivalent="home-dfr-band-data"' in home
+    assert 'id="home-dfr-band-data"' in home
+    assert 'data-chart-equivalent="home-prediction-band-data"' in home
+    assert 'id="home-prediction-band-data"' in home
+    assert 'id="home-credit-flow-data"' in home
+    assert "Text equivalent for the flow diagram" in home
     prediction = (output / "scoreboard" / "predictions" / first_id / "index.html").read_text(
         encoding="utf-8"
     )
@@ -197,17 +205,30 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert "https://www.federalreserve.gov/releases/h8/" in prediction
     assert "https://www.census.gov/retail/marts/historic_releases.html" in prediction
     assert "https://www.federalreserve.gov/releases/g19/" in prediction
+    assert 'data-chart-equivalent="prediction-band-data"' in prediction
+    assert 'id="prediction-band-data"' in prediction
     methodology = (output / "methodology" / "index.html").read_text(encoding="utf-8")
     assert "https://www.federalreserve.gov/releases/h8/" in methodology
     assert "https://www.census.gov/retail/marts/historic_releases.html" in methodology
     assert "https://www.federalreserve.gov/releases/g19/" in methodology
     assert "the nominal 80% band contained 71.3%" in methodology
+    assert 'id="methodology-credit-flow-data"' in methodology
+    corrections = (output / "corrections" / "index.html").read_text(encoding="utf-8")
+    roadmap = (output / "roadmap" / "index.html").read_text(encoding="utf-8")
+    assert "acknowledge a complete report within five business days" in corrections
+    assert "new versioned row or superseding record" in corrections
+    assert "permitted access/use does not establish" not in roadmap
+    assert "Use is not redistribution" in roadmap
+    assert "FRED and ALFRED" in roadmap and "FINRA margin statistics" in roadmap
+    assert "Market and price data" in roadmap
     site_js = (output / "assets" / "site.js").read_text(encoding="utf-8")
     assert 'document.createElement("button")' in site_js
     # The tree-wide cap guards runaway duplication; the product's hard 500 KB budget is checked
     # per rendered page below. MTS adds two targets and per-series calibration metadata, while
-    # deterministic metadata-only social previews add one compact image per stable URL.
-    assert first.total_bytes < 1_800_000
+    # deterministic metadata-only social previews add one compact image per stable URL. Visible
+    # screen-reader-equivalent tables intentionally duplicate chart values in the HTML tree; the
+    # product's hard budget remains the per-page 500 KB gate.
+    assert first.total_bytes < 2_100_000
     assert all(
         line == line.lstrip()
         for line in (output / "index.html").read_text(encoding="utf-8").splitlines()
@@ -409,7 +430,7 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     assert "<h2>Tier 1</h2><p>Observed:" in methodology
     assert 'id="credit-flow"' in methodology
     assert "does not enter the nowcast" in methodology
-    assert "Exact static values behind the diagram." in methodology
+    assert "Text equivalent for the flow diagram." in methodology
     assert "This build has 11 critical assumptions and 0 critical assumptions" in methodology
     assert "FFIEC bank, NCUA credit-union" in methodology
     assert 'id="mts-clock"' in methodology
@@ -448,6 +469,12 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
         assert 'class="figure-evidence"' in html
         assert 'class="range-band"' in html
         assert 'class="range-mid-rule"' in html
+        assert 'data-chart-equivalent="company-dfr-band-data"' in html
+        assert 'id="company-dfr-band-data"' in html
+        assert 'data-chart-equivalent="company-revenue-decomposition-data"' in html
+        assert 'id="company-revenue-decomposition-data"' in html
+        assert 'data-chart-equivalent="company-history-band-data"' in html
+        assert 'id="company-history-band-data"' in html
         if row["tier1_source_url"]:
             assert row["tier1_excerpt"] in html_lib.unescape(html)
             assert row["tier1_source_url"] in html

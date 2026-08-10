@@ -40,6 +40,8 @@ async function routes() {
     "/methodology/",
     "/methodology/coverage/",
     "/methodology/sensitivity/",
+    "/roadmap/",
+    "/corrections/",
     "/changelog/",
     ...companies
       .filter((entry) => entry.isDirectory())
@@ -90,6 +92,8 @@ async function semanticAudit(page, route) {
             ? "Methodology"
             : currentRoute === "/changelog/"
               ? "Changelog"
+              : currentRoute === "/roadmap/"
+                ? "Roadmap"
               : null;
     const currentLinks = [...document.querySelectorAll('nav a[aria-current="page"]')].map((link) =>
       link.textContent.trim(),
