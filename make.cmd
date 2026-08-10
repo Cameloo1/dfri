@@ -42,6 +42,13 @@ if /I "%TARGET%"=="registries-check" (
   exit /b !ERRORLEVEL!
 )
 
+if /I "%TARGET%"=="criticality-check" (
+  uv run python scripts\sync_assumption_criticality.py --check
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.attribution.criticality --check
+  exit /b !ERRORLEVEL!
+)
+
 if /I "%TARGET%"=="lint" (
   uv run ruff check src tests
   if errorlevel 1 exit /b 1
@@ -77,6 +84,10 @@ if /I "%TARGET%"=="verify" (
   uv run python -m dfri.ops.privacy markdown
   if errorlevel 1 exit /b 1
   uv run python tools\build_m5_registries.py --check
+  if errorlevel 1 exit /b 1
+  uv run python scripts\sync_assumption_criticality.py --check
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.attribution.criticality --check
   if errorlevel 1 exit /b 1
   uv run ruff check src tests
   if errorlevel 1 exit /b 1
@@ -220,6 +231,10 @@ if /I "%TARGET%"=="publish" (
   uv run python -m dfri.ops.privacy excluded-staged
   if errorlevel 1 exit /b 1
   uv run python tools\build_m5_registries.py --check
+  if errorlevel 1 exit /b 1
+  uv run python scripts\sync_assumption_criticality.py --check
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.attribution.criticality --check
   if errorlevel 1 exit /b 1
   uv run python -m dfri.api.openapi --check --output docs\openapi-v1.json
   if errorlevel 1 exit /b 1

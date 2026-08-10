@@ -22,6 +22,7 @@ def test_public_changelog_is_ordered_permalinked_and_complete() -> None:
         "scoreboard-feed-grade-status-corrected",
         "scoreboard-first-live-grades",
         "tier-flow-typographic-inversion",
+        "methodology-1-2-auto-allocation-sources",
         "ux-information-architecture",
         "ux-prediction-evidence-rail",
     ]

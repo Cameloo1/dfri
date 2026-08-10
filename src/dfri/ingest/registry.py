@@ -101,6 +101,7 @@ class SourceContract:
     automated_access: bool
     storage: bool
     derivative_redistribution: bool
+    active_publication: bool
     terms_url: str
     conditions: tuple[str, ...]
     finding: str
@@ -406,6 +407,7 @@ def load_source_contracts() -> dict[str, SourceContract]:
             automated_access=_required_bool(raw, "automated_access", source_id),
             storage=_required_bool(raw, "storage", source_id),
             derivative_redistribution=_required_bool(raw, "derivative_redistribution", source_id),
+            active_publication=_optional_bool(raw, "active_publication", source_id, True),
             terms_url=_required_str(raw, "terms_url", source_id),
             conditions=tuple(conditions),
             finding=_required_str(raw, "finding", source_id),
@@ -430,6 +432,13 @@ def _required_str(raw: dict[object, object], key: str, source_id: str) -> str:
 
 def _required_bool(raw: dict[object, object], key: str, source_id: str) -> bool:
     value = raw.get(key)
+    if not isinstance(value, bool):
+        raise RegistryError(f"{source_id}.{key} must be a boolean")
+    return value
+
+
+def _optional_bool(raw: dict[object, object], key: str, source_id: str, default: bool) -> bool:
+    value = raw.get(key, default)
     if not isinstance(value, bool):
         raise RegistryError(f"{source_id}.{key} must be a boolean")
     return value

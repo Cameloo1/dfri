@@ -23,12 +23,15 @@ pass; its [milestone report](MILESTONE_REPORTS/M4.md) marks the public FastAPI c
 under D-010 rather than passed. M5 methodology 1.1.0, the 50-company universe, exclusions,
 quarterly refresh, version comparison, performance, and final cold-clone gates now pass; see the
 [M5 milestone report](MILESTONE_REPORTS/M5.md). The [Day-14 review](MILESTONE_REPORTS/DAY14_SUMMARY.md)
-summarizes that milestone state. Methodology 1.1.1 subsequently corrects Carvana's auto-finance
-classification and adds the derived Evidence Lift view and versioned v2 company feed without
-rewriting 1.1.0. No M2 completion is claimed early.
+summarizes that milestone state. Methodology 1.1.1 subsequently corrected Carvana's auto-finance
+classification and added the derived Evidence Lift view. Methodology 1.2.0 replaces the active
+NY Fed-sourced auto-allocation assumption with reconciled FFIEC, NCUA, Board G.19, and SEC Auto
+ABS evidence, and adds computed source criticality plus independent fallbacks without rewriting
+1.1.1. No M2 completion is claimed early.
 
 Active source-continuity risks and their fail-closed recovery paths are tracked in the
-[risk register](RISK_REGISTER.md). The current Federal Reserve DDP transition finding is documented
+[risk register](RISK_REGISTER.md). Source permission and fallback decisions are documented in
+[SOURCE_LICENSING.md](SOURCE_LICENSING.md). The current Federal Reserve DDP transition finding is documented
 in the [DDP retirement risk report](DDP_RETIREMENT_RISK_REPORT.md).
 
 ## Outputs, sources, and evidence tiers
@@ -45,9 +48,11 @@ estimated U.S. consumer revenue. It is never equal-weighted or market-cap-weight
 - **Tier 3 — Fungible:** debt that cannot be assigned more directly is allocated using an explicit,
   widest-band fungibility assumption.
 
-Primary inputs are Federal Reserve Board dated G.19 and H.8 releases, SEC EDGAR filings, Census
-MARTS releases, BEA product-level consumer spending, and the New York Fed Household Debt and
-Credit workbook. DFRI uses no market data, price feeds, TradingView data, or paid vendor inputs.
+Primary inputs are Federal Reserve Board dated G.19 and H.8 releases, FFIEC and NCUA regulatory
+Call Reports, SEC EDGAR filings, Census MARTS releases, and BEA product-level consumer spending.
+The New York Fed Household Debt and Credit source is retained only in historical methodology
+1.1.1 and is not active in methodology 1.2.0. DFRI uses no market data, price feeds, TradingView
+data, or paid vendor inputs.
 
 ## Licensing and mapping-source policy
 

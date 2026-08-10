@@ -11,7 +11,7 @@ import shutil
 import uuid
 from collections import defaultdict
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass, replace
+from dataclasses import asdict, dataclass, replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Final, cast
@@ -19,6 +19,7 @@ from typing import Final, cast
 import pyarrow as pa
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 
+from dfri.attribution.criticality import criticality_payload
 from dfri.attribution.engine import AttributionResult, CompanyEstimate, run_attribution
 from dfri.attribution.registry import (
     DEFAULT_METHODOLOGY_VERSION,
@@ -27,6 +28,7 @@ from dfri.attribution.registry import (
     MatrixBEntry,
     load_attribution_bundle,
 )
+from dfri.attribution.resilience import SourceDegradation
 from dfri.lake.guard import VintageGuard
 from dfri.lake.readers import CachingSeriesReader, LakeSeriesReader
 from dfri.lake.store import AppendOnlyParquetStore, write_deterministic_parquet
@@ -222,7 +224,8 @@ def _build_scoreboard(
     backtest = _load_object(root / "reports" / "m2_backtest.json", "backtest")
     attribution_bundle = load_attribution_bundle()
     attribution = run_attribution(attribution_bundle)
-    prior_attribution = run_attribution(load_attribution_bundle("1.1.0"))
+    original_attribution = run_attribution(load_attribution_bundle("1.1.0"))
+    prior_attribution = run_attribution(load_attribution_bundle("1.1.1"))
     coverage = _load_object(
         root / "src" / "dfri" / "attribution" / "coverage_registry_v1_1.json",
         "coverage registry",
@@ -380,6 +383,9 @@ def _build_scoreboard(
         **attribution_meta,
         "schema_version": "v2",
         "evidence_lift_headline": attribution.evidence_lift_headline,
+        "source_status": "DEGRADED" if attribution.source_degradations else "PRIMARY",
+        "source_degradation_count": len(attribution.source_degradations),
+        "source_degradations": [asdict(item) for item in attribution.source_degradations],
     }
     _write_json(
         feeds_v2 / "dfri_companies.json",
@@ -387,7 +393,7 @@ def _build_scoreboard(
     )
     _write_csv(feeds_v2 / "dfri_companies.csv", company_rows_v2, _company_columns_v2())
     _write_parquet(feeds_v2 / "dfri_companies.parquet", company_rows_v2, _company_schema_v2())
-    _write_json(feeds_v2 / "schema.json", _company_feed_schema_v2(build_meta))
+    _write_json(feeds_v2 / "schema.json", _feed_schema_v2(build_meta))
     assumption_meta = {
         **attribution_meta,
         "row_count": len(assumption_rows),
@@ -468,6 +474,9 @@ def _build_scoreboard(
         "feed_license_url": LICENSE_URL,
         "commercial_license_contact": commercial_contact,
         "nowcast_sources": NOWCAST_SOURCE_URLS,
+        "source_degradations": [
+            _source_degradation_display(item) for item in attribution.source_degradations
+        ],
     }
     company_displays = [_company_display(item) for item in attribution.companies]
     company_histories = _company_histories(attribution, company_history_rows)
@@ -491,7 +500,11 @@ def _build_scoreboard(
     ]
     baseline_companies = [item for item in companies_by_lift if cast(bool, item["baseline_only"])]
     credit_flow = _credit_flow_view(attribution_bundle, attribution)
-    comparison_rows = _methodology_comparison(prior_attribution, attribution)
+    comparison_rows = _methodology_comparison(
+        original_attribution,
+        prior_attribution,
+        attribution,
+    )
     _render(
         environment,
         "home.html",
@@ -555,7 +568,16 @@ def _build_scoreboard(
             "title": "Methodology",
             "description": "Point-in-time DFRI nowcast and attribution methodology.",
             "summary": summary,
-            "assumptions": [_assumption_display(item) for item in attribution_bundle.assumptions],
+            "assumptions": [
+                _assumption_display(item, attribution.source_degradations)
+                for item in attribution_bundle.assumptions
+            ],
+            "critical_assumptions": [
+                _assumption_display(item, attribution.source_degradations)
+                for item in attribution_bundle.assumptions
+                if item.criticality_rating == "CRITICAL"
+            ],
+            "criticality": criticality_payload(attribution_bundle),
             "matrix_a": attribution_bundle.matrix_a,
             "matrix_b": attribution_bundle.matrix_b,
             "company_count": len(company_displays),
@@ -572,9 +594,13 @@ def _build_scoreboard(
             "root": "../../",
             "active_nav": "methodology",
             "title": "Methodology sensitivity",
-            "description": "Immutable comparison of DFRI methodology versions 1.1.0 and 1.1.1.",
+            "description": (
+                "Immutable comparison of DFRI methodology versions 1.1.0, 1.1.1, and 1.2.0."
+            ),
+            "original_methodology_version": original_attribution.methodology_version,
             "prior_methodology_version": prior_attribution.methodology_version,
             "current_methodology_version": attribution.methodology_version,
+            "original": _aggregate_display(original_attribution),
             "prior": _aggregate_display(prior_attribution),
             "current": aggregate_display,
             "rows": comparison_rows,
@@ -1473,16 +1499,23 @@ def _flow_amount(value: float) -> str:
 
 
 def _methodology_comparison(
-    prior: AttributionResult, current: AttributionResult
+    original: AttributionResult,
+    prior: AttributionResult,
+    current: AttributionResult,
 ) -> list[dict[str, object]]:
+    original_by_ticker = {item.ticker: item for item in original.companies}
     current_by_ticker = {item.ticker: item for item in current.companies}
     rows: list[dict[str, object]] = []
     for item in prior.companies:
         current_item = current_by_ticker[item.ticker]
+        original_item = original_by_ticker[item.ticker]
         rows.append(
             {
                 "ticker": item.ticker,
                 "company_name": item.company_name,
+                "original_low": f"{original_item.estimated_dfr_pct_low:.2f}%",
+                "original_mid": f"{original_item.estimated_dfr_pct_mid:.2f}%",
+                "original_high": f"{original_item.estimated_dfr_pct_high:.2f}%",
                 "prior_low": f"{item.estimated_dfr_pct_low:.2f}%",
                 "prior_mid": f"{item.estimated_dfr_pct_mid:.2f}%",
                 "prior_high": f"{item.estimated_dfr_pct_high:.2f}%",
@@ -1497,7 +1530,23 @@ def _methodology_comparison(
     return rows
 
 
-def _assumption_display(item: Assumption) -> dict[str, object]:
+def _source_degradation_display(item: SourceDegradation) -> dict[str, object]:
+    return {
+        "assumption_id": item.assumption_id,
+        "active_source_id": item.active_source_id,
+        "reason": item.reason,
+        "band_multiplier": f"{item.band_multiplier:.2f}x",
+    }
+
+
+def _assumption_display(
+    item: Assumption,
+    degradations: tuple[SourceDegradation, ...],
+) -> dict[str, object]:
+    degradation = next(
+        (entry for entry in degradations if entry.assumption_id == item.assumption_id),
+        None,
+    )
     return {
         "assumption_id": item.assumption_id,
         "statement": item.statement,
@@ -1507,6 +1556,15 @@ def _assumption_display(item: Assumption) -> dict[str, object]:
         "evidence_snippet": item.evidence_snippet,
         "sensitivity_note": item.sensitivity_note,
         "version": item.version,
+        "primary_source_id": item.primary_source_id,
+        "fallback_source_ids": item.fallback_source_ids,
+        "active_source_id": (
+            degradation.active_source_id if degradation is not None else item.primary_source_id
+        ),
+        "source_status": "DEGRADED" if degradation is not None else "PRIMARY",
+        "source_note": degradation.reason if degradation is not None else "",
+        "criticality_rating": item.criticality_rating,
+        "criticality_dependency_share": f"{item.criticality_dependency_share * 100:.1f}%",
     }
 
 
@@ -1563,7 +1621,7 @@ def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
     }
 
 
-def _company_feed_schema_v2(common: Mapping[str, object]) -> dict[str, object]:
+def _feed_schema_v2(common: Mapping[str, object]) -> dict[str, object]:
     return {
         "schema_version": "v2",
         "predecessor_schema_url": "/v1/feeds/schema.json",
@@ -1585,7 +1643,13 @@ def _company_feed_schema_v2(common: Mapping[str, object]) -> dict[str, object]:
             "dfri_companies": {
                 "formats": ["csv", "json", "parquet"],
                 "columns": _column_docs(_company_columns_v2()),
-            }
+                "metadata": {
+                    "source_status": "PRIMARY or DEGRADED for the active build",
+                    "source_degradations": (
+                        "Active fallback IDs, reasons, multipliers, and effective assumption bands"
+                    ),
+                },
+            },
         },
     }
 

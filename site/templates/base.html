@@ -25,6 +25,11 @@
   {% if publication_mode != "live" %}
   <div class="preview-banner"><div class="shell"><strong>Local preview.</strong> Not a public live-cycle record. {{ excluded_count }} pre-public engineering prediction(s) excluded.</div></div>
   {% endif %}
+  {% if source_degradations %}
+  <div class="source-banner"><div class="shell"><strong>Source fallback active.</strong>
+    {% for item in source_degradations %}<span>{{ item.assumption_id }} uses {{ item.active_source_id }}; its assumption band is widened {{ item.band_multiplier }}. {{ item.reason }}</span>{% endfor %}
+  </div></div>
+  {% endif %}
   <main id="main-content" tabindex="-1"><div class="shell">{% block content %}{% endblock %}</div></main>
   <footer class="site-footer"><div class="shell">
     <div>Research and educational content. Not investment advice.</div>

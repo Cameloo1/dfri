@@ -7,7 +7,7 @@ import json
 import os
 import tempfile
 from dataclasses import asdict
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import cast
 
@@ -15,7 +15,9 @@ from dfri.ingest.bea import BeaClient
 from dfri.ingest.board import FederalReserveBoardClient
 from dfri.ingest.census import CensusClient
 from dfri.ingest.edgar import EdgarClient, EdgarJsonReceipt
+from dfri.ingest.ffiec import FfiecClient
 from dfri.ingest.http import DEFAULT_USER_AGENT, HttpTransport
+from dfri.ingest.ncua import NcuaClient
 from dfri.ingest.registry import (
     SourceContract,
     load_board_series,
@@ -31,6 +33,8 @@ class VerificationError(RuntimeError):
 
 def validate_source_contracts(contracts: dict[str, SourceContract]) -> None:
     required = {
+        "ffiec_call_reports",
+        "ncua_call_reports",
         "federal_reserve_board",
         "bea",
         "census",
@@ -41,6 +45,8 @@ def validate_source_contracts(contracts: dict[str, SourceContract]) -> None:
     if set(contracts) != required:
         raise VerificationError("Source-contract registry is incomplete")
     for contract in contracts.values():
+        if not contract.active_publication:
+            continue
         if not (
             contract.automated_access and contract.storage and contract.derivative_redistribution
         ):
@@ -92,6 +98,9 @@ def _verify_live(  # pragma: no cover - exercised only by the opt-in live smoke
         census_receipts = CensusClient(transport, census_api_key).verify_series(
             context_definitions, month=census_month
         )
+        report_date = date(2026, 3, 31)
+        ffiec_receipt = FfiecClient(transport).fetch(report_date)
+        ncua_receipt = NcuaClient(transport).fetch(report_date)
 
     with HttpTransport(user_agent=DEFAULT_USER_AGENT, min_interval_seconds=0.11) as sec_transport:
         edgar = EdgarClient(sec_transport)
@@ -115,6 +124,7 @@ def _verify_live(  # pragma: no cover - exercised only by the opt-in live smoke
                 "status": contract.status,
                 "terms_url": contract.terms_url,
                 "conditions": list(contract.conditions),
+                "active_publication": contract.active_publication,
             }
             for source_id, contract in sorted(contracts.items())
         },
@@ -125,6 +135,20 @@ def _verify_live(  # pragma: no cover - exercised only by the opt-in live smoke
             },
             "bea": {"series": [asdict(receipt) for receipt in bea_receipts]},
             "census": {"series": [asdict(receipt) for receipt in census_receipts]},
+            "ffiec_call_reports": {
+                **asdict(ffiec_receipt),
+                "report_date": ffiec_receipt.report_date.isoformat(),
+                "automobile_share_of_direct_nonrevolving": (
+                    ffiec_receipt.automobile_share_of_direct_nonrevolving
+                ),
+            },
+            "ncua_call_reports": {
+                **asdict(ncua_receipt),
+                "report_date": ncua_receipt.report_date.isoformat(),
+                "automobile_share_of_nonrevolving_consumer": (
+                    ncua_receipt.automobile_share_of_nonrevolving_consumer
+                ),
+            },
             "sec_edgar": {
                 "submissions": _edgar_receipt(submissions),
                 "companyfacts": _edgar_receipt(companyfacts),

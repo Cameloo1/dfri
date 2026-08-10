@@ -26,3 +26,20 @@ fail closed when source fidelity cannot be established.
 No migration is performed while the Board's statistical release XML and dated archive surfaces
 remain live. The risk is reviewed when the Board publishes transition details and before the
 November 9, 2026 Build Your Package removal.
+
+## R-002 — Critical assumption source continuity
+
+| Field | Current assessment |
+|---|---|
+| Status | CONTROLLED — continuous report required |
+| Opened | 2026-08-09 |
+| Owner | DFRI methodology and operations |
+| Likelihood | Individual source outages, field drift, and terms changes are expected over a long-lived public methodology. |
+| Impact | High when one assumption supplies at least 5% of the midpoint numerator or covered-company denominator. |
+| Current exposure | Methodology 1.2 computes 11 critical assumptions. All 11 have at least one registered independent fallback; `reports/ASSUMPTION_CRITICALITY.json` currently reports zero warnings. |
+| Early-warning signals | Source registry status changes; source health failure; terms change; pinned field or identifier drift; criticality report warning. |
+| Detection | Registry validation, source-specific contract tests, the blocking stale-report check, and a CI warning for every critical assumption without an independent fallback. |
+| Immediate response | Switch only the affected assumption to the first permitted independent fallback, retain the midpoint, widen the band by the registered multiplier, and publish the active-source note. |
+| Recovery | Restore the primary only after identity, terms, fields, and output reconciliation pass again. A missing fallback produces `BLOCKED`; it never produces an unlabeled value. |
+| Remaining structural risk | Independent category aggregates are weaker fallbacks for the five critical SEC issuer-denominator assumptions. They preserve continuity but cannot reproduce issuer-specific segment disclosure; their 1.25x bands and visible degraded status are mandatory. |
+| Evidence | [`SOURCE_LICENSING.md`](SOURCE_LICENSING.md) and [`reports/ASSUMPTION_CRITICALITY.json`](reports/ASSUMPTION_CRITICALITY.json). |

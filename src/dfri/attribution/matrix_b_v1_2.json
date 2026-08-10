@@ -1,0 +1,2141 @@
+{
+  "methodology_version": "1.2.0",
+  "weight_basis": "Fixed weights are normalized estimated U.S. consumer-revenue midpoints. The underlying denominator uncertainty remains registered and sampled.",
+  "items": [
+    {
+      "version": "1.0.0",
+      "spend_category": "amazon_payments",
+      "ticker": "AMZN",
+      "weight_low": 1.0,
+      "weight_mid": 1.0,
+      "weight_high": 1.0,
+      "method": "direct branded-financing link",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "auto_market",
+      "ticker": "CVNA",
+      "weight_low": 0.068343500957,
+      "weight_mid": 0.068343500957,
+      "weight_high": 0.068343500957,
+      "method": "normalized covered-auto U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1690820/000169082026000009/cvna-20251231.htm",
+        "denominator_assumption:A-DEN-CVNA-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "auto_market",
+      "ticker": "F",
+      "weight_low": 0.384868359224,
+      "weight_mid": 0.384868359224,
+      "weight_high": 0.384868359224,
+      "method": "normalized covered-auto U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/37996/000003799626000015/f-20251231.htm",
+        "denominator_assumption:A-DEN-F-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "auto_market",
+      "ticker": "GM",
+      "weight_low": 0.380248302986,
+      "weight_mid": 0.380248302986,
+      "weight_high": 0.380248302986,
+      "method": "normalized covered-auto U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
+        "denominator_assumption:A-DEN-GM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "auto_market",
+      "ticker": "TSLA",
+      "weight_low": 0.166539836833,
+      "weight_mid": 0.166539836833,
+      "weight_high": 0.166539836833,
+      "method": "normalized covered-auto U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
+        "denominator_assumption:A-DEN-TSLA-001"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "spend_category": "best_buy_credit",
+      "ticker": "BBY",
+      "weight_low": 1.0,
+      "weight_mid": 1.0,
+      "weight_high": 1.0,
+      "method": "direct branded-card link",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/764478/000076447826000009/bby-20260131.htm"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "carvana_auto_finance",
+      "ticker": "CVNA",
+      "weight_low": 1.0,
+      "weight_mid": 1.0,
+      "weight_high": 1.0,
+      "method": "direct originated-auto-finance link",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1690820/000169082026000009/cvna-20251231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1770373/000110465926026877/tm267822d6_424b5.htm"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "spend_category": "ford_captive_auto",
+      "ticker": "F",
+      "weight_low": 1.0,
+      "weight_mid": 1.0,
+      "weight_high": 1.0,
+      "method": "direct captive-finance link",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/37996/000003799626000015/f-20251231.htm"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "ABNB",
+      "weight_low": 0.002595354211,
+      "weight_mid": 0.002595354211,
+      "weight_high": 0.002595354211,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1559720/000155972026000004/abnb-20251231.htm",
+        "denominator_assumption:A-DEN-ABNB-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "AMZN",
+      "weight_low": 0.15808337486,
+      "weight_mid": 0.15808337486,
+      "weight_high": 0.15808337486,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "denominator_assumption:A-DEN-AMZN-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "AZO",
+      "weight_low": 0.006424661897,
+      "weight_mid": 0.006424661897,
+      "weight_high": 0.006424661897,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/866787/000110465925102611/azo-20250830x10k.htm",
+        "denominator_assumption:A-DEN-AZO-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "BBY",
+      "weight_low": 0.015557317693,
+      "weight_mid": 0.015557317693,
+      "weight_high": 0.015557317693,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/764478/000076447826000009/bby-20260131.htm",
+        "denominator_assumption:A-DEN-BBY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "BKNG",
+      "weight_low": 0.003424188349,
+      "weight_mid": 0.003424188349,
+      "weight_high": 0.003424188349,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1075531/000107553126000009/bkng-20251231.htm",
+        "denominator_assumption:A-DEN-BKNG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "CASY",
+      "weight_low": 0.006776459843,
+      "weight_mid": 0.006776459843,
+      "weight_high": 0.006776459843,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/726958/000072695826000046/casy-20260430.htm",
+        "denominator_assumption:A-DEN-CASY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "CCL",
+      "weight_low": 0.006208877689,
+      "weight_mid": 0.006208877689,
+      "weight_high": 0.006208877689,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/815097/000081509726000007/ccl-20251130.htm",
+        "denominator_assumption:A-DEN-CCL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "CMG",
+      "weight_low": 0.00475354779,
+      "weight_mid": 0.00475354779,
+      "weight_high": 0.00475354779,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000009/cmg-20251231.htm",
+        "denominator_assumption:A-DEN-CMG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "COST",
+      "weight_low": 0.08169800204,
+      "weight_mid": 0.08169800204,
+      "weight_high": 0.08169800204,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+        "denominator_assumption:A-DEN-COST-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "CVNA",
+      "weight_low": 0.007755658762,
+      "weight_mid": 0.007755658762,
+      "weight_high": 0.007755658762,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1690820/000169082026000009/cvna-20251231.htm",
+        "denominator_assumption:A-DEN-CVNA-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "DASH",
+      "weight_low": 0.004362446742,
+      "weight_mid": 0.004362446742,
+      "weight_high": 0.004362446742,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1792789/000179278926000013/dash-20251231.htm",
+        "denominator_assumption:A-DEN-DASH-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "DECK",
+      "weight_low": 0.001113834213,
+      "weight_mid": 0.001113834213,
+      "weight_high": 0.001113834213,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/910521/000162828026037664/deck-20260331.htm",
+        "denominator_assumption:A-DEN-DECK-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "DG",
+      "weight_low": 0.017392284319,
+      "weight_mid": 0.017392284319,
+      "weight_high": 0.017392284319,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm",
+        "denominator_assumption:A-DEN-DG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "DLTR",
+      "weight_low": 0.007895623431,
+      "weight_mid": 0.007895623431,
+      "weight_high": 0.007895623431,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/935703/000093570326000025/dltr-20260131.htm",
+        "denominator_assumption:A-DEN-DLTR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "DPZ",
+      "weight_low": 0.001529181437,
+      "weight_mid": 0.001529181437,
+      "weight_high": 0.001529181437,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1286681/000119312526062321/dpz-20251228.htm",
+        "denominator_assumption:A-DEN-DPZ-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "DRI",
+      "weight_low": 0.005377908072,
+      "weight_mid": 0.005377908072,
+      "weight_high": 0.005377908072,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/940944/000094094426000025/dri-20260531.htm",
+        "denominator_assumption:A-DEN-DRI-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "EBAY",
+      "weight_low": 0.002447575281,
+      "weight_mid": 0.002447575281,
+      "weight_high": 0.002447575281,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000027/ebay-20251231.htm",
+        "denominator_assumption:A-DEN-EBAY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "EL",
+      "weight_low": 0.002308438344,
+      "weight_mid": 0.002308438344,
+      "weight_high": 0.002308438344,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000099/el-20250630.htm",
+        "denominator_assumption:A-DEN-EL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "EXPE",
+      "weight_low": 0.003123711592,
+      "weight_mid": 0.003123711592,
+      "weight_high": 0.003123711592,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000008/expe-20251231.htm",
+        "denominator_assumption:A-DEN-EXPE-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "F",
+      "weight_low": 0.043675076941,
+      "weight_mid": 0.043675076941,
+      "weight_high": 0.043675076941,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/37996/000003799626000015/f-20251231.htm",
+        "denominator_assumption:A-DEN-F-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "GM",
+      "weight_low": 0.043150790372,
+      "weight_mid": 0.043150790372,
+      "weight_high": 0.043150790372,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
+        "denominator_assumption:A-DEN-GM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "GRMN",
+      "weight_low": 0.001474757023,
+      "weight_mid": 0.001474757023,
+      "weight_high": 0.001474757023,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1121788/000119312526056028/grmn-20251227.htm",
+        "denominator_assumption:A-DEN-GRMN-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "HAS",
+      "weight_low": 0.001036647357,
+      "weight_mid": 0.001036647357,
+      "weight_high": 0.001036647357,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/46080/000004608026000011/has-20251228.htm",
+        "denominator_assumption:A-DEN-HAS-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "HD",
+      "weight_low": 0.057262770761,
+      "weight_mid": 0.057262770761,
+      "weight_high": 0.057262770761,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/354950/000162828026019436/hd-20260201.htm",
+        "denominator_assumption:A-DEN-HD-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "HLT",
+      "weight_low": 0.002552525884,
+      "weight_mid": 0.002552525884,
+      "weight_high": 0.002552525884,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1585689/000158568926000007/hlt-20251231.htm",
+        "denominator_assumption:A-DEN-HLT-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "KR",
+      "weight_low": 0.059476206547,
+      "weight_mid": 0.059476206547,
+      "weight_high": 0.059476206547,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/56873/000110465926037723/kr-20260131x10k.htm",
+        "denominator_assumption:A-DEN-KR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "LOW",
+      "weight_low": 0.032930064561,
+      "weight_mid": 0.032930064561,
+      "weight_high": 0.032930064561,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/60667/000006066726000029/low-20260130.htm",
+        "denominator_assumption:A-DEN-LOW-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "LULU",
+      "weight_low": 0.002918946392,
+      "weight_mid": 0.002918946392,
+      "weight_high": 0.002918946392,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm",
+        "denominator_assumption:A-DEN-LULU-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "MAR",
+      "weight_low": 0.005329913207,
+      "weight_mid": 0.005329913207,
+      "weight_high": 0.005329913207,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1048286/000104828626000007/mar-20251231.htm",
+        "denominator_assumption:A-DEN-MAR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "MCD",
+      "weight_low": 0.005700195897,
+      "weight_mid": 0.005700195897,
+      "weight_high": 0.005700195897,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+        "denominator_assumption:A-DEN-MCD-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "MGM",
+      "weight_low": 0.005354444831,
+      "weight_mid": 0.005354444831,
+      "weight_high": 0.005354444831,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/789570/000078957026000018/mgm-20251231.htm",
+        "denominator_assumption:A-DEN-MGM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "NCLH",
+      "weight_low": 0.002417045621,
+      "weight_mid": 0.002417045621,
+      "weight_high": 0.002417045621,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1513761/000110465926022067/nclh-20251231x10k.htm",
+        "denominator_assumption:A-DEN-NCLH-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "NKE",
+      "weight_low": 0.00983736988,
+      "weight_mid": 0.00983736988,
+      "weight_high": 0.00983736988,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/320187/000032018726000088/nke-20260531.htm",
+        "denominator_assumption:A-DEN-NKE-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "ORLY",
+      "weight_low": 0.005429035019,
+      "weight_mid": 0.005429035019,
+      "weight_high": 0.005429035019,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/898173/000089817326000009/orly-20251231x10k.htm",
+        "denominator_assumption:A-DEN-ORLY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "PEP",
+      "weight_low": 0.021905523139,
+      "weight_mid": 0.021905523139,
+      "weight_high": 0.021905523139,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/77476/000007747626000007/pep-20251227.htm",
+        "denominator_assumption:A-DEN-PEP-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "PG",
+      "weight_low": 0.015500224565,
+      "weight_mid": 0.015500224565,
+      "weight_high": 0.015500224565,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/80424/000008042426000103/pg-20260630.htm",
+        "denominator_assumption:A-DEN-PG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "RCL",
+      "weight_low": 0.00441102085,
+      "weight_mid": 0.00441102085,
+      "weight_high": 0.00441102085,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/884887/000088488726000007/rcl-20251231.htm",
+        "denominator_assumption:A-DEN-RCL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "RL",
+      "weight_low": 0.001617220949,
+      "weight_mid": 0.001617220949,
+      "weight_high": 0.001617220949,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1037038/000162828026037074/rl-20260328.htm",
+        "denominator_assumption:A-DEN-RL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "ROST",
+      "weight_low": 0.009406031392,
+      "weight_mid": 0.009406031392,
+      "weight_high": 0.009406031392,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/745732/000074573226000006/rost-20260131.htm",
+        "denominator_assumption:A-DEN-ROST-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "SBUX",
+      "weight_low": 0.011037445045,
+      "weight_mid": 0.011037445045,
+      "weight_high": 0.011037445045,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/829224/000082922425000114/sbux-20250928.htm",
+        "denominator_assumption:A-DEN-SBUX-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "TGT",
+      "weight_low": 0.04420905289,
+      "weight_mid": 0.04420905289,
+      "weight_high": 0.04420905289,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/27419/000002741926000016/tgt-20260131.htm",
+        "denominator_assumption:A-DEN-TGT-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "TJX",
+      "weight_low": 0.019968245254,
+      "weight_mid": 0.019968245254,
+      "weight_high": 0.019968245254,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/109198/000010919826000008/tjx-20260131.htm",
+        "denominator_assumption:A-DEN-TJX-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "TPR",
+      "weight_low": 0.001426961831,
+      "weight_mid": 0.001426961831,
+      "weight_high": 0.001426961831,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1116132/000111613225000019/tpr-20250628.htm",
+        "denominator_assumption:A-DEN-TPR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "TSCO",
+      "weight_low": 0.006056231731,
+      "weight_mid": 0.006056231731,
+      "weight_high": 0.006056231731,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/916365/000091636526000014/tsco-20251227.htm",
+        "denominator_assumption:A-DEN-TSCO-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "TSLA",
+      "weight_low": 0.01889903395,
+      "weight_mid": 0.01889903395,
+      "weight_high": 0.01889903395,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
+        "denominator_assumption:A-DEN-TSLA-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "ULTA",
+      "weight_low": 0.004992332276,
+      "weight_mid": 0.004992332276,
+      "weight_high": 0.004992332276,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1403568/000110465926035243/ulta-20260131x10k.htm",
+        "denominator_assumption:A-DEN-ULTA-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "WMT",
+      "weight_low": 0.217736398792,
+      "weight_mid": 0.217736398792,
+      "weight_high": 0.217736398792,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm",
+        "denominator_assumption:A-DEN-WMT-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "WSM",
+      "weight_low": 0.002846965018,
+      "weight_mid": 0.002846965018,
+      "weight_high": 0.002846965018,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/719955/000071995526000059/wsm-20260201.htm",
+        "denominator_assumption:A-DEN-WSM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "WYNN",
+      "weight_low": 0.001150178518,
+      "weight_mid": 0.001150178518,
+      "weight_high": 0.001150178518,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1174922/000117492226000013/wynn-20251231.htm",
+        "denominator_assumption:A-DEN-WYNN-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer",
+      "ticker": "YUM",
+      "weight_low": 0.001462896942,
+      "weight_mid": 0.001462896942,
+      "weight_high": 0.001462896942,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000084/yum-20251231.htm",
+        "denominator_assumption:A-DEN-YUM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "ABNB",
+      "weight_low": 0.002595354211,
+      "weight_mid": 0.002595354211,
+      "weight_high": 0.002595354211,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1559720/000155972026000004/abnb-20251231.htm",
+        "denominator_assumption:A-DEN-ABNB-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "AMZN",
+      "weight_low": 0.15808337486,
+      "weight_mid": 0.15808337486,
+      "weight_high": 0.15808337486,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "denominator_assumption:A-DEN-AMZN-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "AZO",
+      "weight_low": 0.006424661897,
+      "weight_mid": 0.006424661897,
+      "weight_high": 0.006424661897,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/866787/000110465925102611/azo-20250830x10k.htm",
+        "denominator_assumption:A-DEN-AZO-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "BBY",
+      "weight_low": 0.015557317693,
+      "weight_mid": 0.015557317693,
+      "weight_high": 0.015557317693,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/764478/000076447826000009/bby-20260131.htm",
+        "denominator_assumption:A-DEN-BBY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "BKNG",
+      "weight_low": 0.003424188349,
+      "weight_mid": 0.003424188349,
+      "weight_high": 0.003424188349,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1075531/000107553126000009/bkng-20251231.htm",
+        "denominator_assumption:A-DEN-BKNG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "CASY",
+      "weight_low": 0.006776459843,
+      "weight_mid": 0.006776459843,
+      "weight_high": 0.006776459843,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/726958/000072695826000046/casy-20260430.htm",
+        "denominator_assumption:A-DEN-CASY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "CCL",
+      "weight_low": 0.006208877689,
+      "weight_mid": 0.006208877689,
+      "weight_high": 0.006208877689,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/815097/000081509726000007/ccl-20251130.htm",
+        "denominator_assumption:A-DEN-CCL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "CMG",
+      "weight_low": 0.00475354779,
+      "weight_mid": 0.00475354779,
+      "weight_high": 0.00475354779,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000009/cmg-20251231.htm",
+        "denominator_assumption:A-DEN-CMG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "COST",
+      "weight_low": 0.08169800204,
+      "weight_mid": 0.08169800204,
+      "weight_high": 0.08169800204,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+        "denominator_assumption:A-DEN-COST-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "CVNA",
+      "weight_low": 0.007755658762,
+      "weight_mid": 0.007755658762,
+      "weight_high": 0.007755658762,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1690820/000169082026000009/cvna-20251231.htm",
+        "denominator_assumption:A-DEN-CVNA-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "DASH",
+      "weight_low": 0.004362446742,
+      "weight_mid": 0.004362446742,
+      "weight_high": 0.004362446742,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1792789/000179278926000013/dash-20251231.htm",
+        "denominator_assumption:A-DEN-DASH-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "DECK",
+      "weight_low": 0.001113834213,
+      "weight_mid": 0.001113834213,
+      "weight_high": 0.001113834213,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/910521/000162828026037664/deck-20260331.htm",
+        "denominator_assumption:A-DEN-DECK-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "DG",
+      "weight_low": 0.017392284319,
+      "weight_mid": 0.017392284319,
+      "weight_high": 0.017392284319,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm",
+        "denominator_assumption:A-DEN-DG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "DLTR",
+      "weight_low": 0.007895623431,
+      "weight_mid": 0.007895623431,
+      "weight_high": 0.007895623431,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/935703/000093570326000025/dltr-20260131.htm",
+        "denominator_assumption:A-DEN-DLTR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "DPZ",
+      "weight_low": 0.001529181437,
+      "weight_mid": 0.001529181437,
+      "weight_high": 0.001529181437,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1286681/000119312526062321/dpz-20251228.htm",
+        "denominator_assumption:A-DEN-DPZ-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "DRI",
+      "weight_low": 0.005377908072,
+      "weight_mid": 0.005377908072,
+      "weight_high": 0.005377908072,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/940944/000094094426000025/dri-20260531.htm",
+        "denominator_assumption:A-DEN-DRI-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "EBAY",
+      "weight_low": 0.002447575281,
+      "weight_mid": 0.002447575281,
+      "weight_high": 0.002447575281,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000027/ebay-20251231.htm",
+        "denominator_assumption:A-DEN-EBAY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "EL",
+      "weight_low": 0.002308438344,
+      "weight_mid": 0.002308438344,
+      "weight_high": 0.002308438344,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000099/el-20250630.htm",
+        "denominator_assumption:A-DEN-EL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "EXPE",
+      "weight_low": 0.003123711592,
+      "weight_mid": 0.003123711592,
+      "weight_high": 0.003123711592,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000008/expe-20251231.htm",
+        "denominator_assumption:A-DEN-EXPE-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "F",
+      "weight_low": 0.043675076941,
+      "weight_mid": 0.043675076941,
+      "weight_high": 0.043675076941,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/37996/000003799626000015/f-20251231.htm",
+        "denominator_assumption:A-DEN-F-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "GM",
+      "weight_low": 0.043150790372,
+      "weight_mid": 0.043150790372,
+      "weight_high": 0.043150790372,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
+        "denominator_assumption:A-DEN-GM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "GRMN",
+      "weight_low": 0.001474757023,
+      "weight_mid": 0.001474757023,
+      "weight_high": 0.001474757023,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1121788/000119312526056028/grmn-20251227.htm",
+        "denominator_assumption:A-DEN-GRMN-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "HAS",
+      "weight_low": 0.001036647357,
+      "weight_mid": 0.001036647357,
+      "weight_high": 0.001036647357,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/46080/000004608026000011/has-20251228.htm",
+        "denominator_assumption:A-DEN-HAS-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "HD",
+      "weight_low": 0.057262770761,
+      "weight_mid": 0.057262770761,
+      "weight_high": 0.057262770761,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/354950/000162828026019436/hd-20260201.htm",
+        "denominator_assumption:A-DEN-HD-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "HLT",
+      "weight_low": 0.002552525884,
+      "weight_mid": 0.002552525884,
+      "weight_high": 0.002552525884,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1585689/000158568926000007/hlt-20251231.htm",
+        "denominator_assumption:A-DEN-HLT-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "KR",
+      "weight_low": 0.059476206547,
+      "weight_mid": 0.059476206547,
+      "weight_high": 0.059476206547,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/56873/000110465926037723/kr-20260131x10k.htm",
+        "denominator_assumption:A-DEN-KR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "LOW",
+      "weight_low": 0.032930064561,
+      "weight_mid": 0.032930064561,
+      "weight_high": 0.032930064561,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/60667/000006066726000029/low-20260130.htm",
+        "denominator_assumption:A-DEN-LOW-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "LULU",
+      "weight_low": 0.002918946392,
+      "weight_mid": 0.002918946392,
+      "weight_high": 0.002918946392,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm",
+        "denominator_assumption:A-DEN-LULU-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "MAR",
+      "weight_low": 0.005329913207,
+      "weight_mid": 0.005329913207,
+      "weight_high": 0.005329913207,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1048286/000104828626000007/mar-20251231.htm",
+        "denominator_assumption:A-DEN-MAR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "MCD",
+      "weight_low": 0.005700195897,
+      "weight_mid": 0.005700195897,
+      "weight_high": 0.005700195897,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+        "denominator_assumption:A-DEN-MCD-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "MGM",
+      "weight_low": 0.005354444831,
+      "weight_mid": 0.005354444831,
+      "weight_high": 0.005354444831,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/789570/000078957026000018/mgm-20251231.htm",
+        "denominator_assumption:A-DEN-MGM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "NCLH",
+      "weight_low": 0.002417045621,
+      "weight_mid": 0.002417045621,
+      "weight_high": 0.002417045621,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1513761/000110465926022067/nclh-20251231x10k.htm",
+        "denominator_assumption:A-DEN-NCLH-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "NKE",
+      "weight_low": 0.00983736988,
+      "weight_mid": 0.00983736988,
+      "weight_high": 0.00983736988,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/320187/000032018726000088/nke-20260531.htm",
+        "denominator_assumption:A-DEN-NKE-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "ORLY",
+      "weight_low": 0.005429035019,
+      "weight_mid": 0.005429035019,
+      "weight_high": 0.005429035019,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/898173/000089817326000009/orly-20251231x10k.htm",
+        "denominator_assumption:A-DEN-ORLY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "PEP",
+      "weight_low": 0.021905523139,
+      "weight_mid": 0.021905523139,
+      "weight_high": 0.021905523139,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/77476/000007747626000007/pep-20251227.htm",
+        "denominator_assumption:A-DEN-PEP-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "PG",
+      "weight_low": 0.015500224565,
+      "weight_mid": 0.015500224565,
+      "weight_high": 0.015500224565,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/80424/000008042426000103/pg-20260630.htm",
+        "denominator_assumption:A-DEN-PG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "RCL",
+      "weight_low": 0.00441102085,
+      "weight_mid": 0.00441102085,
+      "weight_high": 0.00441102085,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/884887/000088488726000007/rcl-20251231.htm",
+        "denominator_assumption:A-DEN-RCL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "RL",
+      "weight_low": 0.001617220949,
+      "weight_mid": 0.001617220949,
+      "weight_high": 0.001617220949,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1037038/000162828026037074/rl-20260328.htm",
+        "denominator_assumption:A-DEN-RL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "ROST",
+      "weight_low": 0.009406031392,
+      "weight_mid": 0.009406031392,
+      "weight_high": 0.009406031392,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/745732/000074573226000006/rost-20260131.htm",
+        "denominator_assumption:A-DEN-ROST-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "SBUX",
+      "weight_low": 0.011037445045,
+      "weight_mid": 0.011037445045,
+      "weight_high": 0.011037445045,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/829224/000082922425000114/sbux-20250928.htm",
+        "denominator_assumption:A-DEN-SBUX-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "TGT",
+      "weight_low": 0.04420905289,
+      "weight_mid": 0.04420905289,
+      "weight_high": 0.04420905289,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/27419/000002741926000016/tgt-20260131.htm",
+        "denominator_assumption:A-DEN-TGT-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "TJX",
+      "weight_low": 0.019968245254,
+      "weight_mid": 0.019968245254,
+      "weight_high": 0.019968245254,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/109198/000010919826000008/tjx-20260131.htm",
+        "denominator_assumption:A-DEN-TJX-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "TPR",
+      "weight_low": 0.001426961831,
+      "weight_mid": 0.001426961831,
+      "weight_high": 0.001426961831,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1116132/000111613225000019/tpr-20250628.htm",
+        "denominator_assumption:A-DEN-TPR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "TSCO",
+      "weight_low": 0.006056231731,
+      "weight_mid": 0.006056231731,
+      "weight_high": 0.006056231731,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/916365/000091636526000014/tsco-20251227.htm",
+        "denominator_assumption:A-DEN-TSCO-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "TSLA",
+      "weight_low": 0.01889903395,
+      "weight_mid": 0.01889903395,
+      "weight_high": 0.01889903395,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
+        "denominator_assumption:A-DEN-TSLA-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "ULTA",
+      "weight_low": 0.004992332276,
+      "weight_mid": 0.004992332276,
+      "weight_high": 0.004992332276,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1403568/000110465926035243/ulta-20260131x10k.htm",
+        "denominator_assumption:A-DEN-ULTA-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "WMT",
+      "weight_low": 0.217736398792,
+      "weight_mid": 0.217736398792,
+      "weight_high": 0.217736398792,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm",
+        "denominator_assumption:A-DEN-WMT-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "WSM",
+      "weight_low": 0.002846965018,
+      "weight_mid": 0.002846965018,
+      "weight_high": 0.002846965018,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/719955/000071995526000059/wsm-20260201.htm",
+        "denominator_assumption:A-DEN-WSM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "WYNN",
+      "weight_low": 0.001150178518,
+      "weight_mid": 0.001150178518,
+      "weight_high": 0.001150178518,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1174922/000117492226000013/wynn-20251231.htm",
+        "denominator_assumption:A-DEN-WYNN-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "fungible_consumer_nonrevolving",
+      "ticker": "YUM",
+      "weight_low": 0.001462896942,
+      "weight_mid": 0.001462896942,
+      "weight_high": 0.001462896942,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000084/yum-20251231.htm",
+        "denominator_assumption:A-DEN-YUM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "ABNB",
+      "weight_low": 0.002595354211,
+      "weight_mid": 0.002595354211,
+      "weight_high": 0.002595354211,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1559720/000155972026000004/abnb-20251231.htm",
+        "denominator_assumption:A-DEN-ABNB-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "AMZN",
+      "weight_low": 0.15808337486,
+      "weight_mid": 0.15808337486,
+      "weight_high": 0.15808337486,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "denominator_assumption:A-DEN-AMZN-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "AZO",
+      "weight_low": 0.006424661897,
+      "weight_mid": 0.006424661897,
+      "weight_high": 0.006424661897,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/866787/000110465925102611/azo-20250830x10k.htm",
+        "denominator_assumption:A-DEN-AZO-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "BBY",
+      "weight_low": 0.015557317693,
+      "weight_mid": 0.015557317693,
+      "weight_high": 0.015557317693,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/764478/000076447826000009/bby-20260131.htm",
+        "denominator_assumption:A-DEN-BBY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "BKNG",
+      "weight_low": 0.003424188349,
+      "weight_mid": 0.003424188349,
+      "weight_high": 0.003424188349,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1075531/000107553126000009/bkng-20251231.htm",
+        "denominator_assumption:A-DEN-BKNG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "CASY",
+      "weight_low": 0.006776459843,
+      "weight_mid": 0.006776459843,
+      "weight_high": 0.006776459843,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/726958/000072695826000046/casy-20260430.htm",
+        "denominator_assumption:A-DEN-CASY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "CCL",
+      "weight_low": 0.006208877689,
+      "weight_mid": 0.006208877689,
+      "weight_high": 0.006208877689,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/815097/000081509726000007/ccl-20251130.htm",
+        "denominator_assumption:A-DEN-CCL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "CMG",
+      "weight_low": 0.00475354779,
+      "weight_mid": 0.00475354779,
+      "weight_high": 0.00475354779,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1058090/000105809026000009/cmg-20251231.htm",
+        "denominator_assumption:A-DEN-CMG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "COST",
+      "weight_low": 0.08169800204,
+      "weight_mid": 0.08169800204,
+      "weight_high": 0.08169800204,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+        "denominator_assumption:A-DEN-COST-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "CVNA",
+      "weight_low": 0.007755658762,
+      "weight_mid": 0.007755658762,
+      "weight_high": 0.007755658762,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1690820/000169082026000009/cvna-20251231.htm",
+        "denominator_assumption:A-DEN-CVNA-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "DASH",
+      "weight_low": 0.004362446742,
+      "weight_mid": 0.004362446742,
+      "weight_high": 0.004362446742,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1792789/000179278926000013/dash-20251231.htm",
+        "denominator_assumption:A-DEN-DASH-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "DECK",
+      "weight_low": 0.001113834213,
+      "weight_mid": 0.001113834213,
+      "weight_high": 0.001113834213,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/910521/000162828026037664/deck-20260331.htm",
+        "denominator_assumption:A-DEN-DECK-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "DG",
+      "weight_low": 0.017392284319,
+      "weight_mid": 0.017392284319,
+      "weight_high": 0.017392284319,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/29534/000110465926032325/dg-20260130x10k.htm",
+        "denominator_assumption:A-DEN-DG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "DLTR",
+      "weight_low": 0.007895623431,
+      "weight_mid": 0.007895623431,
+      "weight_high": 0.007895623431,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/935703/000093570326000025/dltr-20260131.htm",
+        "denominator_assumption:A-DEN-DLTR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "DPZ",
+      "weight_low": 0.001529181437,
+      "weight_mid": 0.001529181437,
+      "weight_high": 0.001529181437,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1286681/000119312526062321/dpz-20251228.htm",
+        "denominator_assumption:A-DEN-DPZ-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "DRI",
+      "weight_low": 0.005377908072,
+      "weight_mid": 0.005377908072,
+      "weight_high": 0.005377908072,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/940944/000094094426000025/dri-20260531.htm",
+        "denominator_assumption:A-DEN-DRI-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "EBAY",
+      "weight_low": 0.002447575281,
+      "weight_mid": 0.002447575281,
+      "weight_high": 0.002447575281,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000027/ebay-20251231.htm",
+        "denominator_assumption:A-DEN-EBAY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "EL",
+      "weight_low": 0.002308438344,
+      "weight_mid": 0.002308438344,
+      "weight_high": 0.002308438344,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1001250/000100125025000099/el-20250630.htm",
+        "denominator_assumption:A-DEN-EL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "EXPE",
+      "weight_low": 0.003123711592,
+      "weight_mid": 0.003123711592,
+      "weight_high": 0.003123711592,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1324424/000132442426000008/expe-20251231.htm",
+        "denominator_assumption:A-DEN-EXPE-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "F",
+      "weight_low": 0.043675076941,
+      "weight_mid": 0.043675076941,
+      "weight_high": 0.043675076941,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/37996/000003799626000015/f-20251231.htm",
+        "denominator_assumption:A-DEN-F-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "GM",
+      "weight_low": 0.043150790372,
+      "weight_mid": 0.043150790372,
+      "weight_high": 0.043150790372,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
+        "denominator_assumption:A-DEN-GM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "GRMN",
+      "weight_low": 0.001474757023,
+      "weight_mid": 0.001474757023,
+      "weight_high": 0.001474757023,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1121788/000119312526056028/grmn-20251227.htm",
+        "denominator_assumption:A-DEN-GRMN-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "HAS",
+      "weight_low": 0.001036647357,
+      "weight_mid": 0.001036647357,
+      "weight_high": 0.001036647357,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/46080/000004608026000011/has-20251228.htm",
+        "denominator_assumption:A-DEN-HAS-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "HD",
+      "weight_low": 0.057262770761,
+      "weight_mid": 0.057262770761,
+      "weight_high": 0.057262770761,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/354950/000162828026019436/hd-20260201.htm",
+        "denominator_assumption:A-DEN-HD-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "HLT",
+      "weight_low": 0.002552525884,
+      "weight_mid": 0.002552525884,
+      "weight_high": 0.002552525884,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1585689/000158568926000007/hlt-20251231.htm",
+        "denominator_assumption:A-DEN-HLT-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "KR",
+      "weight_low": 0.059476206547,
+      "weight_mid": 0.059476206547,
+      "weight_high": 0.059476206547,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/56873/000110465926037723/kr-20260131x10k.htm",
+        "denominator_assumption:A-DEN-KR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "LOW",
+      "weight_low": 0.032930064561,
+      "weight_mid": 0.032930064561,
+      "weight_high": 0.032930064561,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/60667/000006066726000029/low-20260130.htm",
+        "denominator_assumption:A-DEN-LOW-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "LULU",
+      "weight_low": 0.002918946392,
+      "weight_mid": 0.002918946392,
+      "weight_high": 0.002918946392,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm",
+        "denominator_assumption:A-DEN-LULU-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "MAR",
+      "weight_low": 0.005329913207,
+      "weight_mid": 0.005329913207,
+      "weight_high": 0.005329913207,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1048286/000104828626000007/mar-20251231.htm",
+        "denominator_assumption:A-DEN-MAR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "MCD",
+      "weight_low": 0.005700195897,
+      "weight_mid": 0.005700195897,
+      "weight_high": 0.005700195897,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+        "denominator_assumption:A-DEN-MCD-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "MGM",
+      "weight_low": 0.005354444831,
+      "weight_mid": 0.005354444831,
+      "weight_high": 0.005354444831,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/789570/000078957026000018/mgm-20251231.htm",
+        "denominator_assumption:A-DEN-MGM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "NCLH",
+      "weight_low": 0.002417045621,
+      "weight_mid": 0.002417045621,
+      "weight_high": 0.002417045621,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1513761/000110465926022067/nclh-20251231x10k.htm",
+        "denominator_assumption:A-DEN-NCLH-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "NKE",
+      "weight_low": 0.00983736988,
+      "weight_mid": 0.00983736988,
+      "weight_high": 0.00983736988,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/320187/000032018726000088/nke-20260531.htm",
+        "denominator_assumption:A-DEN-NKE-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "ORLY",
+      "weight_low": 0.005429035019,
+      "weight_mid": 0.005429035019,
+      "weight_high": 0.005429035019,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/898173/000089817326000009/orly-20251231x10k.htm",
+        "denominator_assumption:A-DEN-ORLY-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "PEP",
+      "weight_low": 0.021905523139,
+      "weight_mid": 0.021905523139,
+      "weight_high": 0.021905523139,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/77476/000007747626000007/pep-20251227.htm",
+        "denominator_assumption:A-DEN-PEP-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "PG",
+      "weight_low": 0.015500224565,
+      "weight_mid": 0.015500224565,
+      "weight_high": 0.015500224565,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/80424/000008042426000103/pg-20260630.htm",
+        "denominator_assumption:A-DEN-PG-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "RCL",
+      "weight_low": 0.00441102085,
+      "weight_mid": 0.00441102085,
+      "weight_high": 0.00441102085,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/884887/000088488726000007/rcl-20251231.htm",
+        "denominator_assumption:A-DEN-RCL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "RL",
+      "weight_low": 0.001617220949,
+      "weight_mid": 0.001617220949,
+      "weight_high": 0.001617220949,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1037038/000162828026037074/rl-20260328.htm",
+        "denominator_assumption:A-DEN-RL-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "ROST",
+      "weight_low": 0.009406031392,
+      "weight_mid": 0.009406031392,
+      "weight_high": 0.009406031392,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/745732/000074573226000006/rost-20260131.htm",
+        "denominator_assumption:A-DEN-ROST-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "SBUX",
+      "weight_low": 0.011037445045,
+      "weight_mid": 0.011037445045,
+      "weight_high": 0.011037445045,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/829224/000082922425000114/sbux-20250928.htm",
+        "denominator_assumption:A-DEN-SBUX-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "TGT",
+      "weight_low": 0.04420905289,
+      "weight_mid": 0.04420905289,
+      "weight_high": 0.04420905289,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/27419/000002741926000016/tgt-20260131.htm",
+        "denominator_assumption:A-DEN-TGT-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "TJX",
+      "weight_low": 0.019968245254,
+      "weight_mid": 0.019968245254,
+      "weight_high": 0.019968245254,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/109198/000010919826000008/tjx-20260131.htm",
+        "denominator_assumption:A-DEN-TJX-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "TPR",
+      "weight_low": 0.001426961831,
+      "weight_mid": 0.001426961831,
+      "weight_high": 0.001426961831,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1116132/000111613225000019/tpr-20250628.htm",
+        "denominator_assumption:A-DEN-TPR-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "TSCO",
+      "weight_low": 0.006056231731,
+      "weight_mid": 0.006056231731,
+      "weight_high": 0.006056231731,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/916365/000091636526000014/tsco-20251227.htm",
+        "denominator_assumption:A-DEN-TSCO-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "TSLA",
+      "weight_low": 0.01889903395,
+      "weight_mid": 0.01889903395,
+      "weight_high": 0.01889903395,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
+        "denominator_assumption:A-DEN-TSLA-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "ULTA",
+      "weight_low": 0.004992332276,
+      "weight_mid": 0.004992332276,
+      "weight_high": 0.004992332276,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1403568/000110465926035243/ulta-20260131x10k.htm",
+        "denominator_assumption:A-DEN-ULTA-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "WMT",
+      "weight_low": 0.217736398792,
+      "weight_mid": 0.217736398792,
+      "weight_high": 0.217736398792,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm",
+        "denominator_assumption:A-DEN-WMT-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "WSM",
+      "weight_low": 0.002846965018,
+      "weight_mid": 0.002846965018,
+      "weight_high": 0.002846965018,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/719955/000071995526000059/wsm-20260201.htm",
+        "denominator_assumption:A-DEN-WSM-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "WYNN",
+      "weight_low": 0.001150178518,
+      "weight_mid": 0.001150178518,
+      "weight_high": 0.001150178518,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1174922/000117492226000013/wynn-20251231.htm",
+        "denominator_assumption:A-DEN-WYNN-001"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "spend_category": "general_retail",
+      "ticker": "YUM",
+      "weight_low": 0.001462896942,
+      "weight_mid": 0.001462896942,
+      "weight_high": 0.001462896942,
+      "method": "normalized estimated U.S. consumer revenue midpoint",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1041061/000104106126000084/yum-20251231.htm",
+        "denominator_assumption:A-DEN-YUM-001"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "spend_category": "gm_captive_auto",
+      "ticker": "GM",
+      "weight_low": 1.0,
+      "weight_mid": 1.0,
+      "weight_high": 1.0,
+      "method": "direct captive-finance link",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "spend_category": "home_depot_credit",
+      "ticker": "HD",
+      "weight_low": 1.0,
+      "weight_mid": 1.0,
+      "weight_high": 1.0,
+      "method": "direct customer-credit link",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/354950/000162828026019436/hd-20260201.htm"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "spend_category": "lowes_credit",
+      "ticker": "LOW",
+      "weight_low": 1.0,
+      "weight_mid": 1.0,
+      "weight_high": 1.0,
+      "method": "direct private-label-card link",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/60667/000006066726000029/low-20260130.htm"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "spend_category": "target_circle_card",
+      "ticker": "TGT",
+      "weight_low": 1.0,
+      "weight_mid": 1.0,
+      "weight_high": 1.0,
+      "method": "direct observed card-penetration link",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/27419/000002741925000126/tgt-20251101.htm"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "spend_category": "tractor_supply_credit",
+      "ticker": "TSCO",
+      "weight_low": 1.0,
+      "weight_mid": 1.0,
+      "weight_high": 1.0,
+      "method": "direct private-label-card link",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/916365/000091636526000014/tsco-20251227.htm"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "spend_category": "ulta_credit",
+      "ticker": "ULTA",
+      "weight_low": 1.0,
+      "weight_mid": 1.0,
+      "weight_high": 1.0,
+      "method": "direct branded-card link",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1403568/000110465926035243/ulta-20260131x10k.htm"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "spend_category": "walmart_finance",
+      "ticker": "WMT",
+      "weight_low": 1.0,
+      "weight_mid": 1.0,
+      "weight_high": 1.0,
+      "method": "direct financial-services link",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm"
+      ]
+    }
+  ]
+}

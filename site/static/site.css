@@ -133,13 +133,16 @@ nav a[aria-current="page"] {
   text-underline-offset: 0.35em;
 }
 
-.preview-banner {
+.preview-banner,
+.source-banner {
   background: var(--quiet-fill);
   border-bottom: 1px solid var(--ink);
   font-family: var(--mono);
   font-size: var(--step--1);
   padding: 0.7rem 0;
 }
+
+.source-banner span { display: block; margin-top: 0.35rem; }
 
 main {
   counter-reset: ledger-section;
@@ -946,6 +949,7 @@ tbody tr:hover { background: color-mix(in srgb, var(--quiet-fill) 52%, transpare
 @media print {
   nav,
   .preview-banner,
+  .source-banner,
   .site-footer { break-inside: avoid; }
   a { text-decoration: none; }
   .card,

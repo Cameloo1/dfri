@@ -1,7 +1,36 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-08-04",
+  "checked_at": "2026-08-09",
   "sources": {
+    "ffiec_call_reports": {
+      "status": "permitted",
+      "automated_access": true,
+      "storage": true,
+      "derivative_redistribution": true,
+      "terms_url": "https://catalog.data.gov/dataset/ffiec-call-reports",
+      "automation_url": "https://cdr.ffiec.gov/public/PWS/DownloadBulkData.aspx",
+      "api_url": "https://api.fdic.gov/banks/docs/",
+      "conditions": [
+        "Cite FFIEC/FDIC and identify DFRI calculations as derivatives.",
+        "Reverify Schedule RC-C item identifiers against the current form before a new methodology version.",
+        "Treat amendments as new source snapshots; never rewrite a frozen published assumption silently."
+      ],
+      "finding": "The official federal catalog labels FFIEC Call Reports public domain, and the public distribution service documents bulk downloads and automated retrieval."
+    },
+    "ncua_call_reports": {
+      "status": "permitted",
+      "automated_access": true,
+      "storage": true,
+      "derivative_redistribution": true,
+      "terms_url": "https://ncua.gov/support-services/guaranteed-notes-program",
+      "automation_url": "https://ncua.gov/analysis/credit-union-corporate-call-report-data/quarterly-data",
+      "conditions": [
+        "Cite NCUA and identify DFRI calculations as derivatives.",
+        "Check AcctDesc active flags and current 5300 account codes for every new quarter.",
+        "Exclude any separately marked copyrighted material."
+      ],
+      "finding": "NCUA publishes quarterly Call Report CSV ZIP files for public download and states that federal website material is public domain unless otherwise noted."
+    },
     "federal_reserve_board": {
       "status": "permitted",
       "automated_access": true,
@@ -45,10 +74,11 @@
       "finding": "The API permits services that retrieve, display, and analyze published Census data, and the public-use statement explicitly anticipates independently produced estimates."
     },
     "new_york_fed": {
-      "status": "permitted_with_conditions",
+      "status": "retired_incompatible_feed_license",
       "automated_access": true,
       "storage": true,
-      "derivative_redistribution": true,
+      "derivative_redistribution": false,
+      "active_publication": false,
       "terms_url": "https://www.newyorkfed.org/privacy/termsofuse.html",
       "conditions": [
         "Use the exact attribution: New York Fed Consumer Credit Panel / Equifax.",
@@ -56,7 +86,7 @@
         "Do not impose more restrictive terms on redistributed New York Fed Content.",
         "Do not republish raw New York Fed workbooks in DFRI feeds; publish separately labeled DFRI-derived aggregates only."
       ],
-      "finding": "The terms expressly permit automated access, downloading, storage, copying, distribution, modification, and derivative works, subject to attribution and distribution conditions."
+      "finding": "The terms permit automated access, storage, copying, distribution, modification, and derivatives, but prohibit imposing more restrictive redistribution terms. DFRI's blanket CC BY-NC feed license is therefore incompatible for redistributed New York Fed content or derivatives, so this source is historical-only after methodology 1.1.1."
     },
     "sec_edgar": {
       "status": "permitted",

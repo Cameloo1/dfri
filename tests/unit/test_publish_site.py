@@ -10,6 +10,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
 
+import dfri.attribution.resilience as resilience_module
 import dfri.publish.site as site_module
 from dfri.attribution.engine import run_attribution
 from dfri.attribution.registry import load_attribution_bundle
@@ -297,6 +298,37 @@ def test_feed_contract_has_publication_fields_license_and_typed_parquet(tmp_path
     assert store.read_table("publication_records").height == 2
 
 
+def test_source_fallback_is_visible_and_published_with_the_effective_band(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    sources = resilience_module.load_source_registry()
+    sources["ffiec_call_reports"] = replace(sources["ffiec_call_reports"], available=False)
+    monkeypatch.setattr(resilience_module, "load_source_registry", lambda: sources)
+    store = AppendOnlyParquetStore(tmp_path / "ledger")
+    seed(store)
+    output = tmp_path / "published"
+
+    publish_scoreboard(
+        store,
+        output,
+        published_at=PUBLISHED_AT,
+        data_vintage=DATA_VINTAGE,
+        publication_mode="preview",
+        project_root=Path(__file__).parents[2],
+    )
+
+    home = (output / "index.html").read_text(encoding="utf-8")
+    companies = json.loads((output / "v2" / "feeds" / "dfri_companies.json").read_text())
+    assert "Source fallback active." in home
+    assert "uses ncua_call_reports" in home
+    assert companies["meta"]["source_status"] == "DEGRADED"
+    assert companies["meta"]["source_degradation_count"] == 1
+    assert companies["meta"]["source_degradations"][0]["active_source_id"] == ("ncua_call_reports")
+    assert companies["meta"]["source_degradations"][0]["effective_prior_low"] < 0.1
+    assert companies["meta"]["source_degradations"][0]["effective_prior_high"] > 0.23
+
+
 def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     tmp_path: Path,
 ) -> None:
@@ -369,6 +401,8 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     assert 'id="credit-flow"' in methodology
     assert "does not enter the nowcast" in methodology
     assert "Exact static values behind the diagram." in methodology
+    assert "This build has 11 critical assumptions and 0 critical assumptions" in methodology
+    assert "FFIEC bank, NCUA credit-union" in methodology
     home = (output / "index.html").read_text(encoding="utf-8")
     assert "Revenue-weighted DFR%" in home
     assert "range-chart" in home

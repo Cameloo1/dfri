@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-08-09",
+  "criticality_policy_id": "midpoint-dependency-v1",
+  "sources": [
+    {
+      "source_id": "ffiec_call_reports",
+      "family": "FFIEC Call Reports",
+      "independent_group": "bank-regulatory-reports",
+      "data_url": "https://cdr.ffiec.gov/public/PWS/DownloadBulkData.aspx",
+      "automation_url": "https://api.fdic.gov/banks/docs/",
+      "terms_url": "https://catalog.data.gov/dataset/ffiec-call-reports",
+      "terms_status": "PERMITTED",
+      "permissions_summary": "Public-domain federal Call Report data; public bulk download and FDIC API access are documented.",
+      "available": true
+    },
+    {
+      "source_id": "ncua_call_reports",
+      "family": "NCUA 5300 Call Reports",
+      "independent_group": "credit-union-regulatory-reports",
+      "data_url": "https://ncua.gov/analysis/credit-union-corporate-call-report-data/quarterly-data",
+      "automation_url": "https://ncua.gov/files/publications/analysis/call-report-data-2026-03.zip",
+      "terms_url": "https://ncua.gov/support-services/guaranteed-notes-program",
+      "terms_status": "PERMITTED",
+      "permissions_summary": "Quarterly federal CSV data are published for download; NCUA federal material is public domain unless separately noted.",
+      "available": true
+    },
+    {
+      "source_id": "board_g19_motor_vehicle",
+      "family": "Federal Reserve Board G.19",
+      "independent_group": "board-national-consumer-credit",
+      "data_url": "https://www.federalreserve.gov/releases/g19/20260507/",
+      "automation_url": "https://www.federalreserve.gov/releases/g19/20260507/",
+      "terms_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "terms_status": "PERMITTED",
+      "permissions_summary": "Board statistical-release data are federal public-domain material unless separately marked.",
+      "available": true
+    },
+    {
+      "source_id": "board_g19_nonrevolving",
+      "family": "Federal Reserve Board G.19",
+      "independent_group": "board-national-consumer-credit",
+      "data_url": "https://www.federalreserve.gov/releases/g19/20260507/",
+      "automation_url": "https://www.federalreserve.gov/releases/g19/20260507/",
+      "terms_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "terms_status": "PERMITTED",
+      "permissions_summary": "Board statistical-release data are federal public-domain material unless separately marked.",
+      "available": true
+    },
+    {
+      "source_id": "sec_auto_abs",
+      "family": "SEC EDGAR Auto ABS-EE",
+      "independent_group": "securitization-trust-filings",
+      "data_url": "https://www.sec.gov/edgar/search/",
+      "automation_url": "https://www.sec.gov/about/developer-resources",
+      "terms_url": "https://www.sec.gov/about/privacy-information",
+      "terms_status": "PERMITTED",
+      "permissions_summary": "SEC permits automated EDGAR access under fair-access limits and permits copying or redistribution with citation.",
+      "available": true
+    },
+    {
+      "source_id": "sec_company_filing",
+      "family": "SEC EDGAR issuer filings",
+      "independent_group": "issuer-periodic-filings",
+      "data_url": "https://www.sec.gov/edgar/search/",
+      "automation_url": "https://www.sec.gov/about/developer-resources",
+      "terms_url": "https://www.sec.gov/about/privacy-information",
+      "terms_status": "PERMITTED",
+      "permissions_summary": "SEC permits automated EDGAR access under fair-access limits and permits copying or redistribution with citation.",
+      "available": true
+    },
+    {
+      "source_id": "sec_gm_auto_abs",
+      "family": "GM Financial Auto ABS filings",
+      "independent_group": "gm-securitization-trust-filings",
+      "data_url": "https://www.sec.gov/Archives/edgar/data/1963240/",
+      "automation_url": "https://www.sec.gov/about/developer-resources",
+      "terms_url": "https://www.sec.gov/about/privacy-information",
+      "terms_status": "PERMITTED",
+      "permissions_summary": "Separate GM Financial trust filings provide an independent disclosure contract through permitted EDGAR access.",
+      "available": true
+    },
+    {
+      "source_id": "sec_ford_auto_abs",
+      "family": "Ford Credit Auto ABS filings",
+      "independent_group": "ford-securitization-trust-filings",
+      "data_url": "https://www.sec.gov/Archives/edgar/data/1967111/",
+      "automation_url": "https://www.sec.gov/about/developer-resources",
+      "terms_url": "https://www.sec.gov/about/privacy-information",
+      "terms_status": "PERMITTED",
+      "permissions_summary": "Separate Ford Credit trust filings provide an independent disclosure contract through permitted EDGAR access.",
+      "available": true
+    },
+    {
+      "source_id": "census_marts",
+      "family": "Census MARTS",
+      "independent_group": "census-retail-sales",
+      "data_url": "https://www.census.gov/retail/index.html",
+      "automation_url": "https://api.census.gov/data/timeseries/eits/marts.html",
+      "terms_url": "https://www.census.gov/data/developers/about/terms-of-service.html",
+      "terms_status": "PERMITTED",
+      "permissions_summary": "The Census API permits retrieval, display, and analysis; independently produced estimates must be labeled and attributed.",
+      "available": true
+    },
+    {
+      "source_id": "bea_pce",
+      "family": "BEA PCE",
+      "independent_group": "bea-national-accounts",
+      "data_url": "https://apps.bea.gov/iTable/?ReqID=19&step=2",
+      "automation_url": "https://apps.bea.gov/api/data/",
+      "terms_url": "https://apps.bea.gov/API/_pdf/bea_api_tos.pdf",
+      "terms_status": "PERMITTED",
+      "permissions_summary": "BEA permits retrieval, display, and analysis; published BEA information is public domain unless stated otherwise.",
+      "available": true
+    }
+  ]
+}

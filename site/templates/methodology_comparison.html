@@ -1,18 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Methodology comparison</h1>
-<p class="lede">Methodology {{ prior_methodology_version }} remains reproducible as published. Methodology {{ current_methodology_version }} preserves the same 50-company universe and flow priors, adds Carvana's observed originated-finance evidence, and includes it in the covered-auto allocation.</p>
+<p class="lede">Methodologies {{ original_methodology_version }} and {{ prior_methodology_version }} remain reproducible as published. Methodology {{ current_methodology_version }} preserves the same 50-company universe and credit-flow inputs while replacing the auto-allocation assumption with reconciled FFIEC, NCUA, Board G.19, and SEC Auto ABS evidence.</p>
 
 <section class="grid">
+  <article class="card metric" data-figure="dfr"><div class="figure-label">Methodology {{ original_methodology_version }} · estimated DFR%</div><div class="number secondary">{{ original.mid }}</div><div class="figure-evidence"><span>80% band {{ original.low }}–{{ original.high }} · {{ original.weighting }}</span><span class="tier-badge tier-mixed">Tier 1–3</span><a href="../index.html">Method</a></div></article>
   <article class="card metric" data-figure="dfr"><div class="figure-label">Methodology {{ prior_methodology_version }} · estimated DFR%</div><div class="number secondary">{{ prior.mid }}</div><div class="figure-evidence"><span>80% band {{ prior.low }}–{{ prior.high }} · {{ prior.weighting }}</span><span class="tier-badge tier-mixed">Tier 1–3</span><a href="../index.html">Method</a></div></article>
   <article class="card metric" data-figure="dfr"><div class="figure-label">Methodology {{ current_methodology_version }} · estimated DFR%</div><div class="number secondary">{{ current.mid }}</div><div class="figure-evidence"><span>80% band {{ current.low }}–{{ current.high }} · {{ current.weighting }}</span><span class="tier-badge tier-mixed">Tier 1–3</span><a href="../index.html">Method</a></div></article>
 </section>
 
 <section class="section-block">
   <h2>Company comparison</h2>
-  <p>Each row compares complete bands. The midpoint delta is a new-version result, not a restatement of the {{ prior_methodology_version }} record.</p>
-  <div class="table-wrap"><table><thead><tr><th>Company</th><th>Methodology {{ prior_methodology_version }} band</th><th>Methodology {{ current_methodology_version }} band</th><th>Midpoint change</th></tr></thead><tbody>
-    {% for item in rows %}<tr><td><strong>{{ item.ticker }}</strong> {{ item.company_name }}</td><td>Estimated {{ item.prior_low }}–{{ item.prior_high }} (mid {{ item.prior_mid }})</td><td>Estimated {{ item.current_low }}–{{ item.current_high }} (mid {{ item.current_mid }})</td><td>{{ item.delta_mid }}</td></tr>{% endfor %}
+  <p>Each row compares complete bands. Methodologies {{ original_methodology_version }} and {{ prior_methodology_version }} remain retrievable; the {{ current_methodology_version }} values are a separately versioned restatement and do not rewrite either prior record.</p>
+  <div class="table-wrap"><table><caption>All values are estimated DFR% bands.</caption><thead><tr><th>Company</th><th>Methodology {{ original_methodology_version }} band</th><th>Methodology {{ prior_methodology_version }} band</th><th>Methodology {{ current_methodology_version }} band</th><th>{{ prior_methodology_version }} to {{ current_methodology_version }} midpoint change</th></tr></thead><tbody>
+    {% for item in rows %}<tr><td><strong>{{ item.ticker }}</strong> {{ item.company_name }}</td><td>{{ item.original_low }}–{{ item.original_high }} (mid {{ item.original_mid }})</td><td>{{ item.prior_low }}–{{ item.prior_high }} (mid {{ item.prior_mid }})</td><td>{{ item.current_low }}–{{ item.current_high }} (mid {{ item.current_mid }})</td><td>{{ item.delta_mid }}</td></tr>{% endfor %}
   </tbody></table></div>
 </section>
 <p><a href="../index.html">Return to methodology</a> · <a href="../coverage/index.html">Inspect coverage decisions</a></p>

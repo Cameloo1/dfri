@@ -227,8 +227,9 @@ def check_site(root: Path) -> SiteQualityReceipt:
     _check_credit_flow("index.html", home, require_table=False)
     _check_credit_flow("methodology/index.html", methodology, require_table=True)
     comparison = (root / "methodology" / "sensitivity" / "index.html").read_text(encoding="utf-8")
-    if "Methodology 1.1.0" not in comparison or "Methodology 1.1.1" not in comparison:
-        raise SiteQualityError("Methodology sensitivity page lacks both immutable versions")
+    required_methodologies = ("Methodology 1.1.0", "Methodology 1.1.1", "Methodology 1.2.0")
+    if any(item not in comparison for item in required_methodologies):
+        raise SiteQualityError("Methodology sensitivity page lacks an immutable version")
     exclusions = (root / "methodology" / "coverage" / "index.html").read_text(encoding="utf-8")
     if "31 excluded" not in exclusions or "one-line reason" not in exclusions:
         raise SiteQualityError("Coverage page lacks the dated exclusion contract")

@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "assumption_id": "A-T2-NONREV-AUTO-002",
+  "period": "2026-Q1",
+  "verified_at": "2026-08-09",
+  "units": "U.S. dollars unless stated otherwise",
+  "ffiec": {
+    "report_date": "2026-03-31",
+    "source_url": "https://api.fdic.gov/banks/financials?filters=REPDTE%3A20260331&fields=REPDTE%2CCERT%2CLNCON%2CLNCRCD%2CLNAUTO%2CLNCONOTH%2CLNCONORP&limit=10000&format=json",
+    "bulk_url": "https://cdr.ffiec.gov/public/PWS/DownloadBulkData.aspx",
+    "instructions_url": "https://www.ffiec.gov/resources/reporting-forms/ffiec051",
+    "terms_url": "https://catalog.data.gov/dataset/ffiec-call-reports",
+    "checksum": "a6c5dc5185a0ccdf904d255c7377368f0a9ce37a6a8eaf6c72dbd1bb6664eee2",
+    "record_count": 4352,
+    "unit_multiplier": 1000,
+    "fields": {
+      "credit_cards": "RCONB538 / LNCRCD",
+      "other_revolving": "RCONB539 / residual within LNCONORP",
+      "automobile": "RCONK137 / LNAUTO",
+      "other_consumer": "RCONK207 / LNCONOTH"
+    },
+    "automobile": 541687729,
+    "other_consumer": 316798391,
+    "credit_cards": 1161264222,
+    "other_revolving": 30929719
+  },
+  "ncua": {
+    "report_date": "2026-03-31",
+    "source_url": "https://ncua.gov/files/publications/analysis/call-report-data-2026-03.zip",
+    "account_descriptions_url": "https://ncua.gov/files/publications/regulations/account-descriptions-march-2026.zip",
+    "terms_url": "https://ncua.gov/support-services/guaranteed-notes-program",
+    "checksum": "6d7fdf1e7eaf9078b33a498be966163e07e368949dbbdf3736527842c51f7567",
+    "account_descriptions_checksum": "b67b3bea42d673c2d8441a29627f2a5ea832cf786365c144080eaeff2db1e857",
+    "fields": {
+      "used_vehicle": "ACCT_370",
+      "new_vehicle": "ACCT_385",
+      "credit_cards": "ACCT_396",
+      "leases": "ACCT_002",
+      "total_loans_and_leases": "ACCT_025B1",
+      "consumer_real_estate": "ACCT_RL0047",
+      "commercial_member": "ACCT_400A1",
+      "commercial_nonmember": "ACCT_400B1"
+    },
+    "used_vehicle": 324047384550,
+    "new_vehicle": 159879587088,
+    "credit_cards": 86485223215,
+    "leases": 5977177345,
+    "total_loans_and_leases": 1744967146905,
+    "consumer_real_estate": 822607933452,
+    "commercial_member": 176902135493,
+    "commercial_nonmember": 22968577720
+  },
+  "board_g19": {
+    "report_date": "2026-03-31",
+    "release_date": "2026-05-07",
+    "source_url": "https://www.federalreserve.gov/releases/g19/20260507/",
+    "checksum": "f6d3e8b9a2410dea8cfd3848b59bb998655bf561a9dd210fa8fee18fb35a6f24",
+    "unit_multiplier": 1000000000,
+    "nonrevolving": 3805.0,
+    "motor_vehicle": 1561.0
+  },
+  "auto_abs": {
+    "metric": "original_loan_amount_sum from the earliest curated snapshot per trust",
+    "covered_sponsors": ["ford_2023_a", "amcar_2023_1", "gmcar_2022_3"],
+    "trusts": [
+      {"trust_id": "amcar_2023_1", "amount": 885093484.67, "source_url": "https://www.sec.gov/Archives/edgar/data/1963240/000196324025000028/exh1024460072025.xml", "checksum": "fe6e0c85e95cea488373b722bac133783a49b4a533c1580156f6611300cebeb7"},
+      {"trust_id": "drive_2024_1", "amount": 1384457804.73, "source_url": "https://www.sec.gov/Archives/edgar/data/2009921/000095013125003244/drive241ex102.xml", "checksum": "d10e0c66fcfec2146cf55affdd6df82d946738fa0bbc8d3eb19fd0260968ee17"},
+      {"trust_id": "ford_2023_a", "amount": 1202191658.30, "source_url": "https://www.sec.gov/Archives/edgar/data/1967111/000196711125000033/autoloanmonthlydeal1117pool.xml", "checksum": "a6f750b3bb1e12e6c411de221fb861dd418960198940c7abb3048fc29c8e840b"},
+      {"trust_id": "gmcar_2022_3", "amount": 801702714.89, "source_url": "https://www.sec.gov/Archives/edgar/data/1932377/000193237725000028/exh1024380072025.xml", "checksum": "990042e6500f2c6073d520234787fd05170f55cbd7b8b780d574b3590ed9d742"},
+      {"trust_id": "honda_2023_4", "amount": 1757450020.60, "source_url": "https://www.sec.gov/Archives/edgar/data/1996308/000095013125003440/harot234ex102_0825-1149.xml", "checksum": "ee0f30ded519b71042c4b19ae3549b4c51362b89aac77a52e09660bdbd7fb97c"},
+      {"trust_id": "toyota_2022_a", "amount": 1113050858.88, "source_url": "https://www.sec.gov/Archives/edgar/data/1897392/000095013125002254/taot22aex102.xml", "checksum": "4a3402363edd2892772a3ab97260685a7ba0737748164b7415c002905bce703a"}
+    ]
+  },
+  "reconciliation": {
+    "prior_low": 0.10,
+    "prior_mid": 0.165903581813124,
+    "prior_high": 0.23,
+    "method": "Board motor-vehicle share of national nonrevolving balances multiplied by the covered-sponsor share of the six-trust ABS sample. FFIEC and NCUA directly validate bank and credit-union auto balances. Bounds enclose leave-one-trust-out results and widen for scope and sample disagreement.",
+    "restatement_required": true
+  }
+}

@@ -10,6 +10,7 @@ import numpy as np
 import numpy.typing as npt
 
 from dfri.attribution.registry import AttributionBundle, MatrixBEntry, Prior
+from dfri.attribution.resilience import SourceDegradation, resolve_assumption_sources
 
 DEFAULT_DRAWS: Final = 20_000
 DEFAULT_SEED: Final = 2_026_080_4
@@ -80,6 +81,7 @@ class AttributionResult:
     draws: int
     seed: int
     evidence_lift_headline: str
+    source_degradations: tuple[SourceDegradation, ...]
     aggregate: AggregateEstimate
     companies: tuple[CompanyEstimate, ...]
 
@@ -92,6 +94,7 @@ def run_attribution(
     *,
     draws: int = DEFAULT_DRAWS,
     seed: int = DEFAULT_SEED,
+    unavailable_source_ids: frozenset[str] = frozenset(),
 ) -> AttributionResult:
     """Compute company and revenue-weighted aggregate bands from registered priors."""
 
@@ -99,6 +102,10 @@ def run_attribution(
         raise AttributionError("Attribution requires at least 10,000 Monte Carlo draws")
     if seed < 0:
         raise AttributionError("Monte Carlo seed must be non-negative")
+    bundle, source_degradations = resolve_assumption_sources(
+        bundle,
+        unavailable_source_ids=unavailable_source_ids,
+    )
     rng = np.random.default_rng(seed)
     assumptions = bundle.assumptions_by_id
     assumption_draws = {
@@ -224,6 +231,7 @@ def run_attribution(
         draws=draws,
         seed=seed,
         evidence_lift_headline=evidence_lift_headline,
+        source_degradations=source_degradations,
         aggregate=AggregateEstimate(
             quarter=quarter,
             weighting="revenue-weighted",
