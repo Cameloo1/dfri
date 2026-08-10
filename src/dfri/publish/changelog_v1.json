@@ -138,6 +138,19 @@
         {"label": "Prediction ledger", "href": "/#prediction-ledger"},
         {"label": "Evidence Lift", "href": "/#evidence-lift"}
       ]
+    },
+    {
+      "entry_id": "ux-prediction-evidence-rail",
+      "published_on": "2026-08-09",
+      "kind": "publication",
+      "version": "1.1.1",
+      "title": "Prediction evidence moved beside the forecast",
+      "summary": "Used the wide homepage's prediction rail for the live ledger count and existing historical backtest figures, while preserving explicit live-versus-backtest labels, mobile reading order, and the separate live-grade calibration record.",
+      "links": [
+        {"label": "Prediction ledger", "href": "/#prediction-ledger"},
+        {"label": "Scoreboard", "href": "/scoreboard/"},
+        {"label": "Methodology", "href": "/methodology/"}
+      ]
     }
   ]
 }

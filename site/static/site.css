@@ -451,6 +451,41 @@ tbody tr:hover { background: color-mix(in srgb, var(--quiet-fill) 52%, transpare
 
 .home-first-section { margin-top: clamp(1.5rem, 3vw, 2.25rem); }
 
+.opening-spread {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.prediction-hero { margin-top: 1.35rem; }
+
+.rail-ledger-count { margin-top: 1rem; }
+
+.rail-model-record {
+  border-top: 4px double var(--ink);
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+}
+
+.rail-model-record h3,
+.prediction-hero h3 {
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  margin: 0 0 0.65rem;
+}
+
+.rail-model-record > p {
+  color: var(--muted);
+  font-size: var(--step--1);
+  margin: 0;
+  max-width: 62ch;
+}
+
+.rail-backtest-grid { margin-top: 1rem; }
+
+.opening-calibration { min-width: 0; }
+
 .section-block::before {
   color: var(--muted);
   content: "Ledger " counter(ledger-section, decimal-leading-zero);
@@ -843,6 +878,8 @@ tbody tr:hover { background: color-mix(in srgb, var(--quiet-fill) 52%, transpare
   .card.primary { grid-column: span 8; }
   .card.metric { grid-column: span 4; }
 
+  .rail-backtest-grid > .card { grid-column: span 6; }
+
   .calibration-stats { grid-template-columns: repeat(5, 1fr); }
   .calibration-stats > div { padding: 0.75rem; }
   .calibration-stats > div + div { border-left: 1px solid var(--line); }
@@ -868,8 +905,38 @@ tbody tr:hover { background: color-mix(in srgb, var(--quiet-fill) 52%, transpare
 }
 
 @media (min-width: 68rem) {
+  .opening-spread {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  }
+
+  .opening-spread > .section-block {
+    margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  }
+
+  .opening-estimate { padding-right: 1rem; }
+
+  .prediction-rail {
+    border-left: 1px solid var(--line);
+    padding-left: 1rem;
+  }
+
+  .prediction-rail > .card,
+  .rail-backtest-grid > .card {
+    border-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .rail-backtest-grid > .card + .card {
+    border-left: 1px solid var(--line);
+    padding-left: 1rem;
+  }
+
+  .opening-calibration { grid-column: 1 / -1; }
+
   .card.primary { grid-column: span 7; }
   .card.metric { grid-column: span 5; }
+  .rail-backtest-grid > .card { grid-column: span 6; }
   .company-links { grid-template-columns: repeat(3, 1fr); }
   .company-link:nth-child(n) { border-left: 0; padding-left: 0; padding-right: 1rem; }
   .company-link:nth-child(3n + 2),

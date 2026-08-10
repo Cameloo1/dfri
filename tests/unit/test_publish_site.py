@@ -476,6 +476,23 @@ def test_home_information_architecture_preserves_all_company_evidence_and_semant
     assert [home.index(section_id) for section_id in section_ids] == sorted(
         home.index(section_id) for section_id in section_ids
     )
+    assert '<div class="opening-spread">' in home
+    assert 'class="section-block prediction-rail"' in home
+    rail_items = [
+        'data-figure="prediction"',
+        'data-figure="count"',
+        'id="model-record"',
+        'data-figure="diagnostic-usd"',
+        'data-figure="diagnostic-percent"',
+        'class="calibration-ledger home-calibration opening-calibration"',
+    ]
+    rail_positions = [home.index(item) for item in rail_items]
+    assert rail_positions == sorted(rail_positions)
+    assert home.count("Live ledger · prediction records") == 1
+    assert home.count("2018\u20132026 · $M mean absolute error") == 1
+    assert home.count("2018\u20132026 · share inside 80% band") == 1
+    assert "Historical tests compare the nowcast" in home
+    assert "they are not live-grade results" in home
     assert '<details class="baseline-disclosure">' in home
     assert "Show 38 baseline-only companies at 1.00x" in home
     assert home.count('data-lift-status="evidence-supported"') == 12

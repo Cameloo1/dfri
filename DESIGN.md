@@ -159,6 +159,12 @@ main landmark.
 
 - Start with a single-column ledger.
 - At 48rem, summary records may span a 12-column editorial grid.
+- At 68rem, the homepage opening becomes a two-column spread: the current DFR estimate remains in
+  the left column and the prediction, live ledger count, and explicitly labeled historical
+  backtest evidence form the right rail. Live-grade calibration remains full-width below both.
+- The prediction rail uses normal document flow and CSS Grid only. At narrower widths its source
+  and visual order are estimate, prediction, live ledger count, historical MAE, historical
+  coverage, then live-grade calibration.
 - Primary figures and their evidence stay in the same grid item.
 - Tables scroll horizontally without clipping content or relying on scripts.
 - Tap targets are at least 44px where navigation or sorting controls are interactive.
