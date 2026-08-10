@@ -9,14 +9,15 @@
   <script defer src="{{ root }}assets/site.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header">
     <div class="shell">
       <a class="brand" href="{{ root }}index.html">{{ brand.product_name }}<small>{{ brand.organization }}</small></a>
       <nav aria-label="Primary navigation">
-        <a href="{{ root }}scoreboard/index.html">Scoreboard</a>
-        <a href="{{ root }}index.html#companies">Companies</a>
-        <a href="{{ root }}methodology/index.html">Methodology</a>
-        <a href="{{ root }}changelog/index.html">Changelog</a>
+        <a href="{{ root }}scoreboard/index.html"{% if active_nav == "scoreboard" %} aria-current="page"{% endif %}>Scoreboard</a>
+        <a href="{{ root }}companies/index.html"{% if active_nav == "companies" %} aria-current="page"{% endif %}>Companies</a>
+        <a href="{{ root }}methodology/index.html"{% if active_nav == "methodology" %} aria-current="page"{% endif %}>Methodology</a>
+        <a href="{{ root }}changelog/index.html"{% if active_nav == "changelog" %} aria-current="page"{% endif %}>Changelog</a>
         <a href="{{ root }}v2/feeds/schema.json">Data schema</a>
       </nav>
     </div>
@@ -24,7 +25,7 @@
   {% if publication_mode != "live" %}
   <div class="preview-banner"><div class="shell"><strong>Local preview.</strong> Not a public live-cycle record. {{ excluded_count }} pre-public engineering prediction(s) excluded.</div></div>
   {% endif %}
-  <main><div class="shell">{% block content %}{% endblock %}</div></main>
+  <main id="main-content" tabindex="-1"><div class="shell">{% block content %}{% endblock %}</div></main>
   <footer class="site-footer"><div class="shell">
     <div>Research and educational content. Not investment advice.</div>
     <div>Feeds licensed <a href="{{ feed_license_url }}">CC BY-NC 4.0</a>: free for non-commercial use with attribution; commercial licensing reserved — contact <a href="mailto:{{ commercial_license_contact }}">{{ commercial_license_contact }}</a>.</div>

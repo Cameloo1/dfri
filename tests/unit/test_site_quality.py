@@ -45,6 +45,53 @@ def test_quality_gate_rejects_missing_required_page(tmp_path: Path) -> None:
         check_site(root)
 
 
+def test_quality_gate_requires_complete_company_directory(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    page = root / "companies" / "index.html"
+    page.write_text(
+        page.read_text(encoding="utf-8").replace("data-company-directory-entry", "", 1),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match="complete alphabetical coverage"):
+        check_site(root)
+
+
+def test_quality_gate_requires_skip_target_and_current_page_semantics(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    scoreboard = root / "scoreboard" / "index.html"
+    scoreboard.write_text(
+        scoreboard.read_text(encoding="utf-8").replace(' aria-current="page"', "", 1),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match="current-page navigation state"):
+        check_site(root)
+
+    build_publication(tmp_path)
+    home = root / "index.html"
+    home.write_text(
+        home.read_text(encoding="utf-8").replace('id="main-content"', 'id="missing-main"', 1),
+        encoding="utf-8",
+    )
+    with pytest.raises(SiteQualityError, match="main-content"):
+        check_site(root)
+
+
+def test_quality_gate_requires_full_evidence_lift_partition(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    home = root / "index.html"
+    home.write_text(
+        home.read_text(encoding="utf-8").replace(
+            'data-lift-status="baseline-only"', 'data-lift-status="missing"', 1
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match="revenue-weighted index contract"):
+        check_site(root)
+
+
 def test_quality_gate_rejects_band_reduced_to_non_range_markup(tmp_path: Path) -> None:
     root = build_publication(tmp_path)
     page = root / "companies" / "gm" / "index.html"
@@ -214,5 +261,35 @@ def test_browser_accessibility_gate_includes_m5_methodology_pages() -> None:
 
     assert '"/methodology/coverage/"' in script
     assert '"/methodology/sensitivity/"' in script
+    assert '"/companies/"' in script
     assert '"scoreboard", "predictions"' in script
     assert "`/scoreboard/predictions/${entry.name}/`" in script
+    assert "keyboardAudit" in script
+    assert "semanticAudit" in script
+    assert "mobileLayoutAudit" in script
+    assert "viewport: { width: 390, height: 844 }" in script
+    assert "document.documentElement.scrollWidth" in script
+    assert "mobileLayoutFailures.length === 0" in script
+    assert "details.baseline-disclosure" in script
+
+
+def test_ux_inventory_crawler_captures_every_route_family_without_javascript() -> None:
+    script = (Path(__file__).parents[2] / "tools" / "ux-inventory.mjs").read_text(encoding="utf-8")
+
+    assert "javaScriptEnabled: false" in script
+    assert '"companies/"' in script
+    assert "companies/${String(row.ticker).toLowerCase()}/" in script
+    assert "scoreboard/predictions/${String(row.prediction_id)}/" in script
+    assert "response?.status() !== 200 || page.url() !== expected" in script
+    assert "document.body?.innerText" in script
+    assert 'document.querySelectorAll("details")' in script
+    assert "disclosure.open = true" in script
+    assert 'document.querySelectorAll("a[href]")' in script
+
+    diff_script = (Path(__file__).parents[2] / "tools" / "ux-inventory-diff.mjs").read_text(
+        encoding="utf-8"
+    )
+    assert "Missing routes" in diff_script
+    assert "Missing distinct lines" in diff_script
+    assert "Missing normalized internal targets" in diff_script
+    assert "Missing outbound targets" in diff_script

@@ -63,7 +63,12 @@ All listed text pairs exceed WCAG AA for normal text. Paper text on verified gre
 - The masthead is bounded by a strong top rule and a double bottom rule. The product name, organization, navigation, methodology version, and publication vintage read like edition metadata.
 - Every page begins with a short literal H1 and, only when needed, one compact explanatory paragraph.
   There is no eyebrow, tagline, or kicker above the H1, and real data appears in the first screen.
-- Major sections begin with a numbered ledger marker and a full-width rule. Existing section order and content remain intact.
+- Major sections begin with a numbered ledger marker and a full-width rule. Reordering may clarify
+  the reading path, but content remains reachable and its evidence context stays intact.
+- The homepage stages its claims in a fixed reading order: current estimate, immutable prediction
+  ledger, historical model record, evidence tiers, credit flow, Evidence Lift, then the company
+  directory route. Relocation never separates a figure from its units, band, tier badge, or
+  provenance.
 - `.card` remains as a compatibility class in templates but renders as an open ledger entry: square corners, no shadow, no floating surface, and rule-based separation.
 - Summary metrics use a responsive ledger grid. Each figure lock-up has a hairline top rule, a
   sentence-case period-and-unit label, a tabular figure, and one joined evidence line containing
@@ -143,12 +148,23 @@ Links use currentColor, an underline, and an increased underline offset. They do
 
 ### Navigation
 
-Navigation wraps on small screens and remains plain anchor markup. The primary five destinations and all existing hrefs remain unchanged.
+Navigation wraps on small screens and remains plain anchor markup. Page-shaped labels open real
+pages: `Companies` targets the complete `/companies/` directory, while the historical
+`/#companies` fragment remains present as a compatibility landing point. Existing company pages,
+methodology pages, scoreboard routes, and immutable prediction permalinks do not move. The current
+primary page uses `aria-current="page"`, and the first keyboard stop is a visible skip link to the
+main landmark.
 
 ### Responsive behavior
 
 - Start with a single-column ledger.
 - At 48rem, summary records may span a 12-column editorial grid.
+- At 68rem, the homepage opening becomes a two-column spread: the current DFR estimate remains in
+  the left column and the prediction, live ledger count, and explicitly labeled historical
+  backtest evidence form the right rail. Live-grade calibration remains full-width below both.
+- The prediction rail uses normal document flow and CSS Grid only. At narrower widths its source
+  and visual order are estimate, prediction, live ledger count, historical MAE, historical
+  coverage, then live-grade calibration.
 - Primary figures and their evidence stay in the same grid item.
 - Tables scroll horizontally without clipping content or relying on scripts.
 - Tap targets are at least 44px where navigation or sorting controls are interactive.
@@ -159,11 +175,16 @@ JavaScript may only replace existing table-heading text with sorting buttons, re
 already-rendered rows, or reveal already-rendered flow detail. No content, navigation, chart,
 provenance, status, flow value, or default flow label depends on scripting.
 
+Evidence Lift uses native HTML disclosure for the 38 baseline-only rows. The summary states the
+row count and 1.00x result; every company, rank, band, tier split, status, and link remains in the
+server-rendered document and can be expanded without JavaScript. The shared baseline
+interpretation is stated once instead of repeated per row.
+
 ## Page coverage
 
 The system applies to every generated surface:
 
-- Homepage and company index
+- Homepage and dedicated alphabetical company index
 - Evidence Lift ranking
 - Current-period tier-encoded credit-flow view on the homepage and Methodology
 - Scoreboard
