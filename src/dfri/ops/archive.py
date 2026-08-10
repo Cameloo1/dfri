@@ -58,7 +58,13 @@ def create_archive(repository_root: Path, archive: Path) -> ArchiveReceipt:
     missing = [path for path in paths if not path.is_file() or path.is_symlink()]
     if missing:
         raise ArchiveError(f"Archive source is missing or unsafe: {missing[0]}")
-    payloads = [(path.relative_to(repository_root).as_posix(), path.read_bytes()) for path in paths]
+    payloads = [
+        (
+            path.relative_to(repository_root).as_posix(),
+            _canonical_source_bytes(path, path.relative_to(repository_root).as_posix()),
+        )
+        for path in paths
+    ]
     manifest = {
         "schema_version": ARCHIVE_SCHEMA_VERSION,
         "ledger_manifest_hash": ledger_receipt.manifest_hash,
@@ -213,6 +219,13 @@ def _member_bytes(archive: tarfile.TarFile, member: tarfile.TarInfo) -> bytes:
 
 def _canonical_json(payload: object) -> bytes:
     return (json.dumps(payload, sort_keys=True, separators=(",", ":")) + "\n").encode()
+
+
+def _canonical_source_bytes(path: Path, relative: str) -> bytes:
+    content = path.read_bytes()
+    if relative in STATIC_FILES:
+        return content.replace(b"\r\n", b"\n")
+    return content
 
 
 def main() -> int:

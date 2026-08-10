@@ -183,7 +183,7 @@ accession-linked evidence contract, and active M2 clock.
   permalinks without runtime JavaScript or network calls.
 - `PASS` Render a site-wide “cite this” block only when the archive registry contains a verified
   DOI. Until then publish no placeholder DOI and keep the archive state explicit.
-- `IN_PROGRESS` Run focused tests, complete verification, deterministic double-publish, no-JavaScript,
+- `PASS` Run focused tests, complete verification, deterministic double-publish, no-JavaScript,
   accessibility, provenance, URL, and page-weight gates; then run the final cold-clone proof.
 
 Dependencies: Git-backed ledgers, M2/MTS workflow candidates, deterministic static publisher,

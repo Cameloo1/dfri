@@ -6,7 +6,14 @@ from pathlib import Path
 
 import pytest
 
-from dfri.ops.archive import ArchiveError, create_archive, main, prove_round_trip, verify_archive
+from dfri.ops.archive import (
+    ArchiveError,
+    _canonical_source_bytes,
+    create_archive,
+    main,
+    prove_round_trip,
+    verify_archive,
+)
 
 
 def test_archive_is_deterministic_and_round_trips_repository_ledgers(tmp_path: Path) -> None:
@@ -33,6 +40,13 @@ def test_archive_rejects_truncation(tmp_path: Path) -> None:
 
     with pytest.raises(ArchiveError, match="Cannot read"):
         verify_archive(archive)
+
+
+def test_archive_canonicalizes_tracked_text_line_endings(tmp_path: Path) -> None:
+    source = tmp_path / "CITATION.cff"
+    source.write_bytes(b"cff-version: 1.2.0\r\ntitle: DFRI\r\n")
+
+    assert _canonical_source_bytes(source, "CITATION.cff") == (b"cff-version: 1.2.0\ntitle: DFRI\n")
 
 
 @pytest.mark.parametrize("command", ["create", "verify", "round-trip"])

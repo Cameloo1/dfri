@@ -38,6 +38,11 @@ Status date: 2026-08-10
   and automated accessibility checks with zero failures.
 - `make.cmd site-quality`: PASS; heaviest page 86,451 bytes, estimated 4G load 582.255 ms, minimum
   contrast 5.736:1, 50 company pages and 61 pages total.
+- A disposable clone of commit `07ecff9` with no runtime state completed locked bootstrap,
+  `make.cmd verify`, `make.cmd archive-round-trip`, `make.cmd publish`, and
+  `make.cmd site-quality` with the same passing results. Windows Application Control required the
+  clone to reuse the policy-allowed parent Python executable; the clone's dependencies were still
+  synchronized from its own exact lock and all product/runtime state came only from the clone.
 
 Generated publications, vulnerability caches, browser evidence, archive tarballs, and local test
 workspaces remain ignored development artifacts and are not public source files.
