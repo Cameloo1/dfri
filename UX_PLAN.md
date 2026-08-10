@@ -1,6 +1,6 @@
 # DFRI information-architecture plan
 
-Status: **APPROVED SCOPE, NOT YET IMPLEMENTED**
+Status: **ROUND-TWO IMPLEMENTED ON PR #26; OWNER-APPROVED OPENING-SPREAD FOLLOW-UP IN PROGRESS**
 
 This plan governs the second frontend overhaul. It follows the Laws of UX process, but the laws
 are treated as explanatory heuristics rather than proof. Accessibility, honest presentation,
@@ -102,6 +102,36 @@ contrast. Invoking those principles would not justify a product change here.
 - **Verification:** The homepage uses only the existing summary, latest-record, and live-calibration
   view objects; the complete row ledger remains only on `/scoreboard/`. Every displayed statistic
   carries its unit and link context. The public ledger and feed hashes must remain byte-identical.
+
+### Owner follow-up — use the prediction rail for its evidence
+
+- **User evidence:** In the rendered wide layout, the latest-prediction figure ends well before the
+  current-estimate column. The resulting empty area sits directly above the ledger-count and
+  historical-backtest figures, even though those figures explain the prediction record. The owner
+  identified this relationship in the rendered page and requested that the three figures occupy
+  that unused prediction-side area.
+- **Relevant principles:** Cognitive Load and Gestalt Proximity. Proximity is used narrowly here to
+  keep evidence beside the claim it qualifies, not to imply that unlike evidence types are the
+  same measurement.
+- **Hypothesis:** *Untested behavioral hypothesis:* a prediction-side evidence rail will let a
+  reader connect the latest forecast with the public record and its historical validation without
+  scanning into a separate lower grid.
+- **Product decision:** At wide viewports, render the current DFR estimate in the left column and a
+  prediction rail in the right. The rail contains the latest prediction and interval first, the
+  current ledger count second, then the existing historical MAE and interval-coverage figures in
+  two equal cells. Keep live-grade calibration as a full-width block below the opening spread.
+  At narrow viewports, retain the semantic reading order: estimate, prediction, ledger count,
+  backtest MAE, backtest coverage, then live calibration. Use CSS Grid without fixed heights,
+  absolute positioning, or JavaScript layout behavior.
+- **Counter-risk:** The ledger count is current public state, while MAE and coverage are historical
+  backtest results. A visually undifferentiated cluster could make all three appear to describe the
+  latest forecast or live grades.
+- **Verification:** Use explicit `Live ledger` and `Historical backtest` labels separated by
+  hairline rules. Preserve the figures' units and adjacent record/method links. Assert that each
+  value appears once, that source order matches the narrow-screen visual order, and that the
+  live-calibration block remains visibly and semantically separate. Inspect 390, 768, 1280, and
+  1440 pixel layouts; rerun the no-JavaScript, keyboard, screen-reader, overflow, page-weight,
+  inventory, feed, ledger, replay, and immutable-state gates.
 
 ## Material change 3 — publish the baseline as a group finding
 
