@@ -1,0 +1,11 @@
+{
+  "title": "DFRI: Debt-Funded Revenue Index",
+  "upload_type": "software",
+  "description": "An auditable evidence pipeline, immutable prediction ledger, and statistical nowcast for debt-funded consumer revenue.",
+  "creators": [
+    {"name": "Camelon Systems"}
+  ],
+  "access_right": "open",
+  "license": "Apache-2.0",
+  "keywords": ["consumer credit", "nowcasting", "reproducible research", "public ledger"]
+}

@@ -43,6 +43,7 @@
   <h2>Assumptions</h2>
   <p>Low / midpoint / high values are triangular priors unless all three values are identical. Source files are public so a cold clone can reproduce every result.</p>
   <p>Criticality is computed, not assigned: an assumption is critical when it supplies at least 5% of either the midpoint attributed numerator or covered-company denominator. This build has {{ criticality.critical_count }} critical assumptions and {{ criticality.warning_count }} critical assumptions without an independent fallback. A permitted but unavailable primary automatically selects its first permitted independent fallback and widens the registered band; if no fallback remains, the build emits BLOCKED rather than inventing a value.</p>
+  <p>A real fallback activation is a versioned <code>source_fallback</code> changelog event. It appears in the JSON and RSS event feeds with the reviewed activation date; the publisher does not manufacture a timestamp from a transient network failure.</p>
   <div class="table-wrap"><table>
     <caption>Every non-observed attribution parameter in methodology {{ methodology_version }}.</caption>
     <thead><tr><th>ID</th><th>Review</th><th>Tier</th><th>Statement</th><th>Low / mid / high</th><th>Evidence</th><th>Sensitivity note</th></tr></thead>

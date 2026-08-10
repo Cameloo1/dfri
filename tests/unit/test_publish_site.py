@@ -205,8 +205,9 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     site_js = (output / "assets" / "site.js").read_text(encoding="utf-8")
     assert 'document.createElement("button")' in site_js
     # The tree-wide cap guards runaway duplication; the product's hard 500 KB budget is checked
-    # per rendered page below. MTS adds two targets and per-series calibration metadata.
-    assert first.total_bytes < 1_400_000
+    # per rendered page below. MTS adds two targets and per-series calibration metadata, while
+    # deterministic metadata-only social previews add one compact image per stable URL.
+    assert first.total_bytes < 1_800_000
     assert all(
         line == line.lstrip()
         for line in (output / "index.html").read_text(encoding="utf-8").splitlines()

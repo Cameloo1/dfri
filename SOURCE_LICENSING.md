@@ -91,3 +91,7 @@ row becomes unavailable or non-permitted, the deterministic build selects the fi
 permitted fallback from a different independent group. It preserves the midpoint, widens the
 registered band, and renders a site-wide source note. If no registered source remains, the build
 fails with `BLOCKED`.
+
+Every real fallback activation also appends a versioned changelog row with kind
+`source_fallback`. The static JSON and RSS event feeds derive the activation event from that row;
+publication does not invent an activation timestamp from a transient network observation.

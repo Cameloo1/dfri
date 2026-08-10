@@ -190,6 +190,19 @@
         {"label": "Version comparison", "href": "/methodology/sensitivity/"},
         {"label": "Assumption feed v2", "href": "/v2/feeds/assumptions.json"}
       ]
+    },
+    {
+      "entry_id": "resilience-status-events-and-citation-boundary",
+      "published_on": "2026-08-10",
+      "kind": "publication",
+      "version": "1.2.1",
+      "title": "Automation status and event distribution added",
+      "summary": "Added per-lane run and release-SLA status, visible status and fallback notices, failure issues, versioned JSON/RSS events, deterministic social previews, exact dependency and vulnerability gates, and a conditional citation surface that remains absent until a real DOI is verified.",
+      "links": [
+        {"label": "Status", "href": "/v1/status.json"},
+        {"label": "Event feed", "href": "/v1/events.json"},
+        {"label": "RSS", "href": "/events.xml"}
+      ]
     }
   ]
 }

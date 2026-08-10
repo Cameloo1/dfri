@@ -4,7 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{{ description }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ brand.product_name }}">
+  <meta property="og:title" content="{{ title }} · {{ brand.product_name }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:image" content="{{ social_image_url }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ social_image_alt }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }} · {{ brand.product_name }}">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image" content="{{ social_image_url }}">
+  <meta name="twitter:image:alt" content="{{ social_image_alt }}">
   <title>{{ title }} · {{ brand.product_name }}</title>
+  <link rel="alternate" type="application/rss+xml" title="DFRI publication events" href="{{ site_url }}events.xml">
+  <link rel="alternate" type="application/json" title="DFRI publication events" href="{{ site_url }}v1/events.json">
   <link rel="stylesheet" href="{{ root }}assets/site.css">
   <script defer src="{{ root }}assets/site.js"></script>
 </head>
@@ -25,6 +42,7 @@
   {% if publication_mode != "live" %}
   <div class="preview-banner"><div class="shell"><strong>Local preview.</strong> Not a public live-cycle record. {{ excluded_count }} pre-public engineering prediction(s) excluded.</div></div>
   {% endif %}
+  <iframe class="status-frame" title="DFRI scheduled automation status" src="{{ root }}status/banner.html"></iframe>
   {% if source_degradations %}
   <div class="source-banner"><div class="shell"><strong>Source fallback active.</strong>
     {% for item in source_degradations %}<span>{{ item.assumption_id }} uses {{ item.active_source_id }}; its assumption band is widened {{ item.band_multiplier }}. {{ item.reason }}</span>{% endfor %}
@@ -35,6 +53,7 @@
     <div>Research and educational content. Not investment advice.</div>
     <div>Feeds licensed <a href="{{ feed_license_url }}">CC BY-NC 4.0</a>: free for non-commercial use with attribution; commercial licensing reserved — contact <a href="mailto:{{ commercial_license_contact }}">{{ commercial_license_contact }}</a>.</div>
     <div>Methodology {{ methodology_version }} · Data vintage {{ data_vintage }} · Published {{ published_at }}</div>
+    {% if archive_citation %}<div class="cite-this"><strong>Cite this release.</strong> {{ archive_citation.provider }} DOI <a href="{{ archive_citation.record_url }}">{{ archive_citation.version_doi }}</a>. Concept DOI {{ archive_citation.concept_doi }}.</div>{% endif %}
   </div></footer>
 </body>
 </html>

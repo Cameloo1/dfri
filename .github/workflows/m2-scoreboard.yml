@@ -27,7 +27,7 @@ on:
         type: boolean
 
 concurrency:
-  group: dfri-m2-scoreboard
+  group: dfri-pages-publication
   cancel-in-progress: false
 
 jobs:
@@ -153,7 +153,11 @@ jobs:
             fi
           fi
           if [[ "$mode" == grade || "$mode" == mts-grade || "$mode" == all ]]; then
-            grade_json="$(uv run python -m dfri.scoreboard grade --as-of "$run_at")"
+            grade_command=grade
+            if [[ "$mode" == mts-grade ]]; then
+              grade_command=mts-grade
+            fi
+            grade_json="$(uv run python -m dfri.scoreboard "$grade_command" --as-of "$run_at")"
             echo "$grade_json"
             grade_appended="$(jq -r '.appended' <<<"$grade_json")"
             if (( grade_appended > 0 )); then
@@ -192,6 +196,30 @@ jobs:
             echo "attribution_refresh_appended=$attribution_refresh_appended"
             echo "data_vintage=$data_vintage"
           } >> "$GITHUB_OUTPUT"
+
+      - name: Append immutable scheduled-job success receipts
+        shell: bash
+        env:
+          MODE: ${{ steps.clock.outputs.mode }}
+          SUCCEEDED_AT: ${{ steps.clock.outputs.published_at }}
+        run: |
+          set -euo pipefail
+          jobs=()
+          case "$MODE" in
+            predict) jobs=(h8-predict) ;;
+            grade) jobs=(g19-grade) ;;
+            mts-predict) jobs=(mts-predict) ;;
+            mts-grade) jobs=(mts-grade) ;;
+            refresh) jobs=(quarterly-refresh) ;;
+            all) jobs=(h8-predict g19-grade mts-predict mts-grade) ;;
+            *) echo "BLOCKED: unknown clock mode $MODE" >&2; exit 1 ;;
+          esac
+          for job_id in "${jobs[@]}"; do
+            uv run python -m dfri.ops.job_status record \
+              --job-id "$job_id" \
+              --succeeded-at "$SUCCEEDED_AT" \
+              --workflow-run-url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          done
 
       - name: Build the live immutable feed and site
         if: steps.clock.outputs.publish == 'true'
@@ -363,3 +391,35 @@ jobs:
           path: .local/evidence/deployments/*.json
           if-no-files-found: error
           retention-days: 90
+
+  notify-failure:
+    if: ${{ always() && (needs.build.result == 'failure' || needs.deploy.result == 'failure') }}
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Open or update the owner-readable automation incident
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          BUILD_RESULT: ${{ needs.build.result }}
+          DEPLOY_RESULT: ${{ needs.deploy.result }}
+        run: |
+          set -euo pipefail
+          title="[automation] M2 scoreboard clock failed"
+          body="Workflow run: $RUN_URL
+
+          Build result: $BUILD_RESULT
+          Deploy result: $DEPLOY_RESULT
+          Event: $GITHUB_EVENT_NAME
+          Ref: $GITHUB_REF_NAME
+
+          Follow ops/RESILIENCE.md before retrying. Do not backfill a missed scheduled cycle as live evidence."
+          existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$title in:title" --json number --jq '.[0].number // empty')"
+          if [[ -n "$existing" ]]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body"
+          fi

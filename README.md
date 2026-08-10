@@ -37,7 +37,9 @@ claimed early.
 Active source-continuity risks and their fail-closed recovery paths are tracked in the
 [risk register](RISK_REGISTER.md). Source permission and fallback decisions are documented in
 [SOURCE_LICENSING.md](SOURCE_LICENSING.md). The current Federal Reserve DDP transition finding is documented
-in the [DDP retirement risk report](DDP_RETIREMENT_RISK_REPORT.md).
+in the [DDP retirement risk report](DDP_RETIREMENT_RISK_REPORT.md). Scheduled-run recovery is in
+[ops/RESILIENCE.md](ops/RESILIENCE.md); immutable-ledger archival and its pending credential gate
+are in [ops/ARCHIVE.md](ops/ARCHIVE.md).
 
 ## Outputs, sources, and evidence tiers
 
@@ -117,6 +119,8 @@ make attribution
 make quarterly-refresh ATTRIBUTION_REFRESH_ARGS="--as-of 2026-08-05T07:15:00+00:00"
 make recompute-check
 make provenance-check
+make supply-chain
+make archive-round-trip
 make publish
 ```
 
@@ -132,10 +136,17 @@ set ATTRIBUTION_REFRESH_ARGS=--as-of 2026-08-05T07:15:00+00:00
 make.cmd quarterly-refresh
 make.cmd recompute-check
 make.cmd provenance-check
+make.cmd supply-chain
+make.cmd archive-round-trip
 make.cmd publish
 ```
 
 `make replay` writes a deterministic seed publication under `published/replay`. Runtime lake and publication artifacts are ignored by Git unless a reviewed, stable fixture or public report is intentionally promoted.
+
+`make supply-chain` verifies exact direct Python, Node, and GitHub Action pins against `uv.lock`
+and `package-lock.json`, then runs the pinned Python and npm vulnerability scanners. CI installs
+only from those locks and blocks on the same scan. `make archive-round-trip` creates the allowlisted
+ledger archive twice and proves byte-identical clean recovery; it does not claim an offsite DOI.
 
 `make publish` validates the committed OpenAPI and append-only changelog contracts, rebuilds the
 complete public site twice from a frozen copy of the first four genuine public predictions,
@@ -193,6 +204,9 @@ P1 coverage and quarterly-history feeds:
 - `v1/feeds/schema.json`
 - `v2/feeds/dfri_companies.{csv,json,parquet}` — adds the derived Evidence Lift contract
 - `v2/feeds/schema.json`
+- `v1/status.json` — per-lane last success, next run, run SLA, and release-SLA state
+- `v1/events.json` and `/events.xml` — predictions, grades, restatements, source fallbacks, and
+  methodology/publication changes
 
 Evidence Lift is the company DFR% midpoint divided by its same-period pure-fungibility
 counterfactual midpoint. The counterfactual uses the already-computed broad proportional lanes

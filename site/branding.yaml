@@ -2,5 +2,6 @@
   "product_name": "DFRI",
   "organization": "Camelon Systems",
   "descriptor": "Debt-Funded Revenue Index",
-  "contact": "ops@camelon.app"
+  "contact": "ops@camelon.app",
+  "canonical_base_url": "https://cameloo1.github.io/dfri/"
 }

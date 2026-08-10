@@ -35,12 +35,16 @@ This is the controlling execution map for `DFRI_BUILD_SPEC.md` v1.0. Sections 1 
    Treasury MTS prediction/grade clock and close filing-backed Tier 1 evidence gaps. This advances
    parts of Expansion AC7.4 and AC9.6 without closing M7 or M9 and without changing any existing
    G.19 record.
-10. Revalidate M4 after the restatement candidates pass every existing M4 gate. Publishing any
+10. Complete the owner-directed resilience and distribution layer before new expansion milestone
+   scope: make job health visible, lock and audit the supply chain, build a recoverable archival
+   package, and publish deterministic event/social surfaces. A real offsite DOI remains an explicit
+   credential and connected-account gate; it may not be simulated.
+11. Revalidate M4 after the restatement candidates pass every existing M4 gate. Publishing any
    restatement remains a separate owner approval gate.
-11. Execute expansion milestones M6 through M10 in order. M6 is a byte-identity refactor and any
+12. Execute expansion milestones M6 through M10 in order. M6 is a byte-identity refactor and any
     published-value movement blocks it; M7-M10 retain every acceptance criterion in
     `DFRI_EXPANSION_SPEC.md`.
-12. LLM-assisted classification is renumbered M11, remains unscheduled, and may begin only after
+13. LLM-assisted classification is renumbered M11, remains unscheduled, and may begin only after
     an explicit owner scheduling decision and the legal/evaluation gates in
     `docs/PLANNED_CLASSIFICATION.md`.
 
@@ -138,6 +142,53 @@ Vintage Guard, immutable prediction/grade schemas, and the existing scoreboard p
 
 Dependencies: existing EDGAR source contract, immutable methodology 1.2 candidate lineage,
 accession-linked evidence contract, and active M2 clock.
+
+## Resilience and distribution (owner-directed, pre-expansion)
+
+### Failure visibility
+
+- `PASS` Publish a versioned, machine-checkable job-status document containing, for every
+  scheduled lane, its last successful run, next expected run, release-SLA state, and whether an
+  expected run or release was missed. Generate it from content-addressed success receipts rather
+  than workflow intent.
+- `PASS` Render a site-wide stale-data notice when a release SLA is exceeded and preserve the
+  existing visible fallback-source notice. Both states must remain usable without JavaScript and
+  must expose their evidence in the status document.
+- `PASS` Add deduplicated GitHub-issue notification on scheduled workflow failure using only the
+  repository-scoped `GITHUB_TOKEN`; no paid service or separately connected notification account.
+- `PASS` Add an operator runbook for a missed schedule, unreachable source, changed release
+  format, and simultaneous primary/fallback failure, with inspect, retry, pause, abort, recovery,
+  and evidence-preservation steps.
+
+### Supply chain and archival
+
+- `PASS` Prove every direct Python, build, Node, and GitHub Action dependency is exact and
+  lock-backed; make CI bootstrap from the lock files and fail on floating constraints.
+- `PASS` Add blocking Python and Node vulnerability scans to CI with pinned scanner versions and
+  a reproducible local make target.
+- `PASS` Create a deterministic, allowlisted archive package for the Git-backed immutable
+  ledgers, verify every member hash, and prove byte-identical round-trip recovery in a clean
+  workspace. Document archive cadence and recovery.
+- `BLOCKED — CREDENTIAL/POLICY` Deposit and retrieve one real offsite Zenodo archive and publish its
+  DOI. Zenodo requires either a connected GitHub account or a Zenodo account plus deposit token;
+  the owner explicitly disallowed connected accounts and supplied no credential. Prepare the
+  release metadata and upload boundary, but do not fabricate a DOI or claim an offsite proof.
+
+### Distribution surfaces
+
+- `PASS` Generate versioned JSON and RSS event feeds for predictions, grades, restatements,
+  source-fallback activations, and methodology changes from immutable/versioned source records.
+- `PASS` Add canonical Open Graph and Twitter-card metadata to every rendered page and generate
+  deterministic 1200×630 static preview images for generic pages, company pages, and prediction
+  permalinks without runtime JavaScript or network calls.
+- `PASS` Render a site-wide “cite this” block only when the archive registry contains a verified
+  DOI. Until then publish no placeholder DOI and keep the archive state explicit.
+- `IN_PROGRESS` Run focused tests, complete verification, deterministic double-publish, no-JavaScript,
+  accessibility, provenance, URL, and page-weight gates; then run the final cold-clone proof.
+
+Dependencies: Git-backed ledgers, M2/MTS workflow candidates, deterministic static publisher,
+source-fallback registry, and existing M4 quality gates. Publication, workflow registration, and
+the external archive deposit remain separate owner approval gates.
 
 ## M0 — Foundation (repo, CI, contracts)
 

@@ -91,6 +91,8 @@ if /I "%TARGET%"=="verify" (
   if errorlevel 1 exit /b 1
   uv run python -m dfri.attribution.criticality --check
   if errorlevel 1 exit /b 1
+  uv run python -m dfri.ops.supply_chain
+  if errorlevel 1 exit /b 1
   uv run ruff check src tests
   if errorlevel 1 exit /b 1
   uv run ruff format --check src tests
@@ -122,6 +124,32 @@ if /I "%TARGET%"=="board-snapshot" (
 
 if /I "%TARGET%"=="board-targets" (
   uv run python -m dfri.ingest.board_targets --start %BOARD_TARGET_START% %BOARD_TARGET_ARGS%
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="supply-chain-contract" (
+  uv run python -m dfri.ops.supply_chain
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="vulnerability-scan" (
+  uv run pip-audit --cache-dir .local\pip-audit-cache --local --skip-editable
+  if errorlevel 1 exit /b 1
+  npm.cmd audit --audit-level=high
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="supply-chain" (
+  uv run python -m dfri.ops.supply_chain
+  if errorlevel 1 exit /b 1
+  uv run pip-audit --cache-dir .local\pip-audit-cache --local --skip-editable
+  if errorlevel 1 exit /b 1
+  npm.cmd audit --audit-level=high
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="archive-round-trip" (
+  uv run python -m dfri.ops.archive round-trip --archive .local\archive\dfri-ledger.tar.gz
   exit /b !ERRORLEVEL!
 )
 
@@ -257,6 +285,8 @@ if /I "%TARGET%"=="publish" (
   uv run python scripts\sync_assumption_criticality.py --check
   if errorlevel 1 exit /b 1
   uv run python -m dfri.attribution.criticality --check
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.ops.supply_chain
   if errorlevel 1 exit /b 1
   uv run python -m dfri.api.openapi --check --output docs\openapi-v1.json
   if errorlevel 1 exit /b 1

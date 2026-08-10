@@ -1,0 +1,9 @@
+{
+  "schema_version": "v1",
+  "status": "PENDING_CREDENTIAL",
+  "provider": "Zenodo",
+  "concept_doi": null,
+  "version_doi": null,
+  "record_url": null,
+  "verified_at": null
+}

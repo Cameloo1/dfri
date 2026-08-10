@@ -12,6 +12,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Final
 
+from PIL import Image
+
 MAX_PAGE_BYTES: Final = 500_000
 FOUR_G_BYTES_PER_SECOND: Final = 200_000
 FOUR_G_RTT_MS: Final = 150.0
@@ -163,11 +165,16 @@ def check_site(root: Path) -> SiteQualityReceipt:
         root / "changelog" / "index.html",
         root / "v1" / "feeds" / "schema.json",
         root / "v2" / "feeds" / "schema.json",
+        root / "v1" / "status.json",
+        root / "v1" / "events.json",
+        root / "events.xml",
+        root / "status" / "banner.html",
     )
     missing = [str(path.relative_to(root)) for path in required if not path.is_file()]
     if missing:
         raise SiteQualityError(f"Missing required publication page: {missing[0]}")
-    html_files = sorted(root.rglob("*.html"))
+    status_banner = root / "status" / "banner.html"
+    html_files = sorted(path for path in root.rglob("*.html") if path != status_banner)
     company_files = sorted((root / "companies").glob("*/index.html"))
     company_feed = json.loads(
         (root / "v1" / "feeds" / "dfri_companies.json").read_text(encoding="utf-8")
@@ -178,12 +185,14 @@ def check_site(root: Path) -> SiteQualityReceipt:
             f"Expected 50 company pages from the feed contract, found {len(company_files)}"
         )
     assets = sum(path.stat().st_size for path in (root / "assets").glob("*") if path.is_file())
+    assets += status_banner.stat().st_size
     page_sizes: dict[str, int] = {}
     estimated: dict[str, float] = {}
     for path in html_files:
         relative = path.relative_to(root).as_posix()
         content = path.read_text(encoding="utf-8")
         _check_document(relative, content)
+        _check_social_metadata(root, relative, content)
         page_bytes = path.stat().st_size + assets
         page_sizes[relative] = page_bytes
         estimated[relative] = FOUR_G_RTT_MS + page_bytes / FOUR_G_BYTES_PER_SECOND * 1_000
@@ -238,6 +247,14 @@ def check_site(root: Path) -> SiteQualityReceipt:
     if any(item in javascript for item in forbidden):
         raise SiteQualityError("Site JavaScript contains a tracking, persistence, or content gate")
     css = (root / "assets" / "site.css").read_text()
+    status_payload = json.loads((root / "v1" / "status.json").read_text(encoding="utf-8"))
+    if status_payload.get("schema_version") != "v1" or len(status_payload.get("jobs", [])) != 5:
+        raise SiteQualityError("Machine-readable job status lacks all five scheduled lanes")
+    event_payload = json.loads((root / "v1" / "events.json").read_text(encoding="utf-8"))
+    if event_payload.get("schema_version") != "v1" or not event_payload.get("data"):
+        raise SiteQualityError("Versioned event feed is missing or empty")
+    if "Automation " not in status_banner.read_text(encoding="utf-8"):
+        raise SiteQualityError("Visible no-JavaScript automation status is missing")
     _check_editorial_contract(css)
     minimum_contrast = _check_contrast(css)
     max_path = max(page_sizes, key=page_sizes.__getitem__)
@@ -270,6 +287,11 @@ def _check_document(relative: str, content: str) -> None:
         "CC BY-NC 4.0",
         "commercial licensing reserved",
         'href="mailto:ops@camelon.app"',
+        '<link rel="canonical" href="https://',
+        '<meta property="og:image" content="https://',
+        '<meta name="twitter:card" content="summary_large_image">',
+        '<link rel="alternate" type="application/rss+xml"',
+        'title="DFRI scheduled automation status"',
     )
     missing = [item for item in required if item not in content]
     if missing:
@@ -293,6 +315,21 @@ def _check_document(relative: str, content: str) -> None:
         raise SiteQualityError(f"{relative} lacks server-rendered no-JavaScript content")
     _check_figure_contracts(relative, content)
     _check_navigation_semantics(relative, content)
+
+
+def _check_social_metadata(root: Path, relative: str, content: str) -> None:
+    match = re.search(r'<meta property="og:image" content="([^"]+)">', content)
+    if match is None:
+        raise SiteQualityError(f"{relative} lacks an Open Graph preview image")
+    marker = "/dfri/"
+    if marker not in match.group(1):
+        raise SiteQualityError(f"{relative} social image is outside the canonical site")
+    image_path = root / Path(match.group(1).split(marker, 1)[1])
+    if not image_path.is_file():
+        raise SiteQualityError(f"{relative} social image is missing: {image_path.name}")
+    with Image.open(image_path) as image:
+        if image.size != (1200, 630) or image.format != "PNG":
+            raise SiteQualityError(f"{relative} social image must be a 1200x630 PNG")
 
 
 def _check_navigation_semantics(relative: str, content: str) -> None:

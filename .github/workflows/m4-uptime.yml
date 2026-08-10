@@ -9,13 +9,20 @@ permissions:
   contents: read
 
 concurrency:
-  group: m4-uptime
+  group: dfri-pages-publication
   cancel-in-progress: false
 
 jobs:
   public-check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     env:
       DFRI_API_BASE_URL: ${{ vars.DFRI_API_BASE_URL }}
     steps:
@@ -25,18 +32,52 @@ jobs:
           version: "0.11.32"
           enable-cache: true
       - run: uv sync --locked --no-dev
-      - name: Check public site, feeds, freshness, and configured API
+      - name: Mirror the accepted publication and refresh only status evidence
         shell: bash
         run: |
+          set -euo pipefail
+          run_at="$(date -u +%Y-%m-%dT%H:%M:%S.%6NZ)"
+          uv run python -m dfri.ops.status_refresh \
+            --site-base https://cameloo1.github.io/dfri/ \
+            --output-root .local/status-publication \
+            --as-of "$run_at"
+
+      - name: Configure GitHub Pages for the status-only candidate
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      - name: Upload the verified status-only publication
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: .local/status-publication
+
+      - name: Deploy the status-only publication
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+
+      - name: Check public site, event feeds, status, freshness, and configured API
+        shell: bash
+        run: |
+          set -euo pipefail
           mkdir -p .local/evidence/uptime
-          ARGS=(
-            --site-base https://cameloo1.github.io/dfri/
-            --output ".local/evidence/uptime/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.json"
-          )
-          if [[ -n "$DFRI_API_BASE_URL" ]]; then
-            ARGS+=(--api-base "$DFRI_API_BASE_URL" --require-api)
+          passed=false
+          for attempt in 1 2 3 4 5; do
+            ARGS=(
+              --site-base https://cameloo1.github.io/dfri/
+              --output ".local/evidence/uptime/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${attempt}.json"
+            )
+            if [[ -n "$DFRI_API_BASE_URL" ]]; then
+              ARGS+=(--api-base "$DFRI_API_BASE_URL" --require-api)
+            fi
+            if uv run python -m dfri.ops.uptime "${ARGS[@]}"; then
+              passed=true
+              break
+            fi
+            sleep 5
+          done
+          if [[ "$passed" != true ]]; then
+            echo "BLOCKED: status-only deployment did not become healthy after five checks." >&2
+            exit 1
           fi
-          uv run python -m dfri.ops.uptime "${ARGS[@]}"
       - name: Preserve owner-readable uptime receipt
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -45,3 +86,28 @@ jobs:
           path: .local/evidence/uptime/*.json
           if-no-files-found: error
           retention-days: 90
+
+  notify-failure:
+    if: ${{ always() && needs.public-check.result == 'failure' }}
+    needs: public-check
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Open or update the owner-readable uptime incident
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          title="[automation] Public uptime or release SLA failed"
+          body="Workflow run: $RUN_URL
+
+          The public mirror, status refresh, or post-deploy health gate failed. Inspect the attached uptime receipt and follow ops/RESILIENCE.md."
+          existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$title in:title" --json number --jq '.[0].number // empty')"
+          if [[ -n "$existing" ]]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body"
+          fi

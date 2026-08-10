@@ -1,4 +1,4 @@
-.PHONY: bootstrap privacy-check privacy-staged registries-check criticality-check lint typecheck test replay determinism verify live-smoke board-backfill board-snapshot board-targets treasury-mts mts-backtest mts-predict mts-grade census-archive context-history nyfed-history health spot-audit membership-verify filing-facts auto-abs card-trust backtest scoreboard-predict scoreboard-grade attribution quarterly-refresh recompute-check provenance-check api-openapi api site-quality publish-scoreboard publish
+.PHONY: bootstrap privacy-check privacy-staged registries-check criticality-check supply-chain-contract vulnerability-scan supply-chain archive-round-trip lint typecheck test replay determinism verify live-smoke board-backfill board-snapshot board-targets treasury-mts mts-backtest mts-predict mts-grade census-archive context-history nyfed-history health spot-audit membership-verify filing-facts auto-abs card-trust backtest scoreboard-predict scoreboard-grade attribution quarterly-refresh recompute-check provenance-check api-openapi api site-quality publish-scoreboard publish
 
 AS_OF ?= 2024-01-31
 BOARD_START ?= 2015-01-01
@@ -44,6 +44,18 @@ criticality-check:
 	uv run python scripts/sync_assumption_criticality.py --check
 	uv run python -m dfri.attribution.criticality --check
 
+supply-chain-contract:
+	uv run python -m dfri.ops.supply_chain
+
+vulnerability-scan:
+	uv run pip-audit --cache-dir .local/pip-audit-cache --local --skip-editable
+	npm audit --audit-level=high
+
+supply-chain: supply-chain-contract vulnerability-scan
+
+archive-round-trip:
+	uv run python -m dfri.ops.archive round-trip --archive .local/archive/dfri-ledger.tar.gz
+
 lint:
 	uv run ruff check src tests
 	uv run ruff format --check src tests
@@ -60,7 +72,7 @@ replay:
 determinism:
 	uv run pytest --no-cov tests/integration/test_deterministic_replay.py
 
-verify: privacy-check registries-check criticality-check lint typecheck test determinism
+verify: privacy-check registries-check criticality-check supply-chain-contract lint typecheck test determinism
 
 live-smoke:
 	uv run python -m dfri.ingest.verify --output .local/evidence/source-verification.json
@@ -146,7 +158,7 @@ site-quality:
 publish-scoreboard: privacy-staged
 	uv run python -m dfri.publish.site $(PUBLISH_ARGS)
 
-publish: privacy-staged registries-check criticality-check
+publish: privacy-staged registries-check criticality-check supply-chain-contract
 	uv run python -m dfri.api.openapi --check --output docs/openapi-v1.json
 	uv run python -m dfri.publish.changelog
 	uv run python -m dfri.seed.publication --output published/public --evidence .local/evidence/m4-publication.json

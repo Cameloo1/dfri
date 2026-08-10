@@ -34,13 +34,16 @@ from dfri.lake.readers import CachingSeriesReader, LakeSeriesReader
 from dfri.lake.store import AppendOnlyParquetStore, write_deterministic_parquet
 from dfri.nowcast.mts import read_mts_first_print_targets
 from dfri.nowcast.targets import FirstPrintTarget, read_first_print_targets
+from dfri.ops.job_status import build_status_report, render_status_banner
 from dfri.ops.quarterly_refresh import (
     QuarterlyRefreshLedger,
     QuarterlyRefreshRecord,
     load_refresh_report,
     refresh_identity,
 )
+from dfri.publish.archive_registry import load_archive_citation
 from dfri.publish.changelog import load_changelog
+from dfri.publish.events import build_events, canonical_json, json_feed, rss_feed
 from dfri.publish.ledger import (
     GradeLedger,
     GradeRecord,
@@ -55,6 +58,7 @@ from dfri.publish.live_calibration import (
     calculate_live_calibration,
     calculate_live_calibration_by_series,
 )
+from dfri.publish.social import SocialCard, render_social_image
 
 METHODOLOGY_VERSION: Final = DEFAULT_METHODOLOGY_VERSION
 LICENSE: Final = (
@@ -230,6 +234,10 @@ def _build_scoreboard(
     commercial_contact = brand.get("contact")
     if not isinstance(commercial_contact, str) or not commercial_contact.strip():
         raise SitePublishError("Branding contact must be a non-empty string")
+    site_url = brand.get("canonical_base_url")
+    if not isinstance(site_url, str) or not site_url.startswith("https://"):
+        raise SitePublishError("Branding canonical_base_url must be an HTTPS URL")
+    site_url = site_url.rstrip("/") + "/"
     backtest = _load_object(root / "reports" / "m2_backtest.json", "backtest")
     mts_backtest_path = root / "reports" / "mts_backtest.json"
     mts_backtest = (
@@ -503,6 +511,25 @@ def _build_scoreboard(
     )
     _write_json(feeds / "schema.json", _feed_schema(build_meta))
 
+    automation_status = build_status_report(
+        as_of=published_at,
+        receipt_directory=root / ".local" / "evidence" / "job_status",
+        publication_mode=publication_mode,
+    )
+    _write_json(output_root / "v1" / "status.json", automation_status)
+    _atomic_write(output_root / "status" / "banner.html", render_status_banner(automation_status))
+    publication_events = build_events(
+        predictions,
+        selected_grades,
+        changelog,
+        site_url=site_url,
+    )
+    _atomic_write(
+        output_root / "v1" / "events.json",
+        canonical_json(json_feed(publication_events, generated_at=published_at)),
+    )
+    _atomic_write(output_root / "events.xml", rss_feed(publication_events, site_url=site_url))
+
     assets = output_root / "assets"
     _copy_stylesheet(root / "site" / "static" / "site.css", assets / "site.css")
     _copy(root / "site" / "static" / "site.js", assets / "site.js")
@@ -532,6 +559,7 @@ def _build_scoreboard(
     )
     base_context = {
         "brand": brand,
+        "site_url": site_url,
         "publication_mode": publication_mode,
         "excluded_count": excluded_count,
         "methodology_version": METHODOLOGY_VERSION,
@@ -543,6 +571,8 @@ def _build_scoreboard(
         "source_degradations": [
             _source_degradation_display(item) for item in attribution.source_degradations
         ],
+        "automation_status": automation_status,
+        "archive_citation": load_archive_citation(),
     }
     company_displays = [_company_display(item) for item in attribution.companies]
     company_histories = _company_histories(attribution, company_history_rows)
@@ -571,12 +601,23 @@ def _build_scoreboard(
         prior_attribution,
         attribution,
     )
+    _render_social_images(
+        assets / "social",
+        aggregate=aggregate_display,
+        rows=display_rows,
+        companies=company_displays,
+        changelog_count=len(changelog),
+        exclusion_count=len(cast(list[dict[str, object]], coverage["excluded"])),
+    )
     _render(
         environment,
         "home.html",
         output_root / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url, "", "assets/social/home.png", "DFRI headline estimate and range"
+            ),
             "root": "",
             "active_nav": None,
             "title": "Immutable consumer-credit nowcasts",
@@ -600,6 +641,12 @@ def _build_scoreboard(
         output_root / "companies" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "companies/",
+                "assets/social/companies.png",
+                "DFRI covered company count",
+            ),
             "root": "../",
             "active_nav": "companies",
             "title": "Companies",
@@ -614,6 +661,12 @@ def _build_scoreboard(
         output_root / "scoreboard" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "scoreboard/",
+                "assets/social/scoreboard.png",
+                "DFRI immutable prediction ledger count",
+            ),
             "root": "../",
             "active_nav": "scoreboard",
             "title": "Scoreboard",
@@ -629,6 +682,12 @@ def _build_scoreboard(
         output_root / "methodology" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "methodology/",
+                "assets/social/methodology.png",
+                "DFRI methodology version",
+            ),
             "root": "../",
             "active_nav": "methodology",
             "title": "Methodology",
@@ -657,6 +716,12 @@ def _build_scoreboard(
         output_root / "methodology" / "sensitivity" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "methodology/sensitivity/",
+                "assets/social/sensitivity.png",
+                "DFRI methodology sensitivity estimate and range",
+            ),
             "root": "../../",
             "active_nav": "methodology",
             "title": "Methodology sensitivity",
@@ -679,6 +744,12 @@ def _build_scoreboard(
         output_root / "methodology" / "coverage" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "methodology/coverage/",
+                "assets/social/coverage.png",
+                "DFRI coverage and exclusion counts",
+            ),
             "root": "../../",
             "active_nav": "methodology",
             "title": "Coverage and exclusions",
@@ -696,6 +767,12 @@ def _build_scoreboard(
         output_root / "changelog" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "changelog/",
+                "assets/social/changelog.png",
+                "DFRI append-only changelog entry count",
+            ),
             "root": "../",
             "active_nav": "changelog",
             "title": "Changelog",
@@ -710,6 +787,12 @@ def _build_scoreboard(
             output_root / "companies" / company.ticker.lower() / "index.html",
             {
                 **base_context,
+                **_page_metadata(
+                    site_url,
+                    f"companies/{company.ticker.lower()}/",
+                    f"assets/social/company-{company.ticker.lower()}.png",
+                    f"{company.company_name} estimated DFR percent and range",
+                ),
                 "root": "../../",
                 "active_nav": "companies",
                 "title": f"{company.company_name} ({company.ticker})",
@@ -725,6 +808,12 @@ def _build_scoreboard(
             output_root / "scoreboard" / "predictions" / str(row["prediction_id"]) / "index.html",
             {
                 **base_context,
+                **_page_metadata(
+                    site_url,
+                    f"scoreboard/predictions/{row['prediction_id']}/",
+                    f"assets/social/prediction-{row['prediction_id']}.png",
+                    f"{row['target_label']} prediction and uncertainty range",
+                ),
                 "root": "../../../",
                 "active_nav": None,
                 "title": f"Prediction {row['prediction_id']}",
@@ -2025,6 +2114,124 @@ def _write_csv(path: Path, rows: list[dict[str, object]], columns: list[str]) ->
 
 def _write_json(path: Path, payload: object) -> None:
     _atomic_write(path, (json.dumps(payload, indent=2, sort_keys=True) + "\n").encode())
+
+
+def _page_metadata(
+    site_url: str, page_path: str, image_path: str, image_alt: str
+) -> dict[str, str]:
+    base = site_url.rstrip("/") + "/"
+    return {
+        "canonical_url": f"{base}{page_path}",
+        "social_image_url": f"{base}{image_path}",
+        "social_image_alt": image_alt,
+    }
+
+
+def _render_social_images(
+    directory: Path,
+    *,
+    aggregate: Mapping[str, object],
+    rows: Sequence[Mapping[str, object]],
+    companies: Sequence[Mapping[str, object]],
+    changelog_count: int,
+    exclusion_count: int,
+) -> None:
+    cards = {
+        "home.png": SocialCard(
+            label=f"{aggregate['quarter']} · estimated share of U.S. consumer revenue",
+            title="Debt-Funded Revenue Index",
+            figure=str(aggregate["mid"]),
+            units=f"80% band {aggregate['low']} to {aggregate['high']}",
+            detail=(
+                f"Revenue-weighted estimate across {aggregate['company_count']} covered companies."
+            ),
+        ),
+        "companies.png": SocialCard(
+            label="Current coverage",
+            title="Covered companies",
+            figure=str(len(companies)),
+            units="company estimates with visible ranges",
+            detail="Every estimate carries evidence tiers, assumption IDs, and provenance links.",
+        ),
+        "scoreboard.png": SocialCard(
+            label="Immutable prediction ledger",
+            title="Predictions and first-print grades",
+            figure=str(len(rows)),
+            units="versioned prediction records",
+            detail=(
+                "Original timestamps, uncertainty bands, model versions, and grades "
+                "remain retrievable."
+            ),
+        ),
+        "methodology.png": SocialCard(
+            label="Current evidence method",
+            title="DFRI methodology",
+            figure=METHODOLOGY_VERSION,
+            units="versioned methodology",
+            detail=(
+                "Point-in-time nowcasting and evidence-linked attribution with explicit "
+                "uncertainty."
+            ),
+        ),
+        "sensitivity.png": SocialCard(
+            label="Methodology sensitivity",
+            title="Current revenue-weighted estimate",
+            figure=str(aggregate["mid"]),
+            units=f"80% band {aggregate['low']} to {aggregate['high']}",
+            detail="Prior methodology values remain preserved for direct, immutable comparison.",
+        ),
+        "coverage.png": SocialCard(
+            label="Dated coverage boundary",
+            title="Included and excluded companies",
+            figure=f"{len(companies)} / {exclusion_count}",
+            units="included / explicitly excluded",
+            detail=(
+                "Coverage decisions publish dated reasons instead of silently dropping companies."
+            ),
+        ),
+        "changelog.png": SocialCard(
+            label="Append-only publication history",
+            title="DFRI changelog",
+            figure=str(changelog_count),
+            units="versioned public entries",
+            detail=(
+                "Restatements, source fallbacks, grades, and methodology changes are never silent."
+            ),
+        ),
+    }
+    for filename, card in cards.items():
+        render_social_image(directory / filename, card)
+    for company in companies:
+        ticker = str(company["ticker"]).lower()
+        render_social_image(
+            directory / f"company-{ticker}.png",
+            SocialCard(
+                label=f"{company['quarter']} · estimated DFR%",
+                title=f"{company['company_name']} ({company['ticker']})",
+                figure=str(company["mid"]),
+                units=f"80% band {company['low']} to {company['high']}",
+                detail=(
+                    f"Evidence Lift {company['evidence_lift']}; tier shares "
+                    f"T1 {company['tier1']}, T2 {company['tier2']}, T3 {company['tier3']}."
+                ),
+            ),
+        )
+    for row in rows:
+        graded = row["grade_status"] == "Graded"
+        render_social_image(
+            directory / f"prediction-{row['prediction_id']}.png",
+            SocialCard(
+                label=f"{row['target_period']} · {row['source_family']}",
+                title=str(row["target_label"]),
+                figure=str(row["point_display"]),
+                units=(f"$M point; 80% band {row['low80_display']} to {row['high80_display']}"),
+                detail=(
+                    f"95% band {row['low95_display']} to {row['high95_display']}. "
+                    f"Status: {row['grade_status']}."
+                ),
+                verified=graded,
+            ),
+        )
 
 
 def _render(

@@ -45,6 +45,8 @@ jobs:
           mkdir -p .local/evidence
           date -u +%s > .local/evidence/m5-ci-start-epoch
       - run: make bootstrap
+      - name: Scan locked Python and Node dependencies for known vulnerabilities
+        run: make supply-chain
       - name: Block local paths and excluded documents
         run: |
           uv run python -m dfri.ops.privacy markdown
