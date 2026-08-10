@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import math
 from dataclasses import asdict, dataclass
 from typing import Final
@@ -108,11 +109,35 @@ def run_attribution(
     )
     rng = np.random.default_rng(seed)
     assumptions = bundle.assumptions_by_id
-    assumption_draws = {
-        assumption_id: _draw(rng, assumption.prior, draws)
-        for assumption_id, assumption in sorted(assumptions.items())
-    }
-    flow_draws = {item.debt_product: _draw(rng, item.prior, draws) for item in bundle.flows}
+    if bundle.methodology_version == "1.2.1":
+        # Preserve every 1.2.0 draw stream byte-for-byte. New reviewed evidence gets an
+        # independent, identity-keyed stream so an additive assumption cannot perturb unrelated
+        # companies merely by changing iteration order.
+        legacy_assumptions = {
+            assumption_id: assumption
+            for assumption_id, assumption in assumptions.items()
+            if assumption.version != "1.2.1"
+        }
+        assumption_draws = {
+            assumption_id: _draw(rng, assumption.prior, draws)
+            for assumption_id, assumption in sorted(legacy_assumptions.items())
+        }
+        flow_draws = {item.debt_product: _draw(rng, item.prior, draws) for item in bundle.flows}
+        for assumption_id, assumption in sorted(assumptions.items()):
+            if assumption.version != "1.2.1":
+                continue
+            keyed_seed = int.from_bytes(
+                hashlib.sha256(f"{seed}:{assumption_id}".encode()).digest()[:8], "big"
+            )
+            assumption_draws[assumption_id] = _draw(
+                np.random.default_rng(keyed_seed), assumption.prior, draws
+            )
+    else:
+        assumption_draws = {
+            assumption_id: _draw(rng, assumption.prior, draws)
+            for assumption_id, assumption in sorted(assumptions.items())
+        }
+        flow_draws = {item.debt_product: _draw(rng, item.prior, draws) for item in bundle.flows}
     company_by_ticker = {item.ticker: item for item in bundle.companies}
     numerator_by_ticker = {
         ticker: np.zeros(draws, dtype=np.float64) for ticker in company_by_ticker

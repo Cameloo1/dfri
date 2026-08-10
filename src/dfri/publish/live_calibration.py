@@ -18,6 +18,14 @@ from dfri.nowcast.baselines import (
     random_walk,
     seasonal_naive,
 )
+from dfri.nowcast.mts import (
+    MTS_AR2_VERSION,
+    MTS_RANDOM_WALK_VERSION,
+    MTS_SEASONAL_VERSION,
+)
+from dfri.nowcast.mts import (
+    point_forecast as mts_point_forecast,
+)
 from dfri.nowcast.targets import FirstPrintTarget
 from dfri.publish.ledger import GradeRecord, PredictionRecord
 
@@ -166,6 +174,34 @@ def calculate_live_calibration(
     )
 
 
+def calculate_live_calibration_by_series(
+    predictions: Sequence[PredictionRecord],
+    grades: Sequence[GradeRecord],
+    target_histories: Mapping[str, Sequence[FirstPrintTarget]],
+    backtest: Mapping[str, object],
+) -> dict[str, LiveCalibration]:
+    """Return isolated calibration ledgers; no statistic crosses a target-series boundary."""
+
+    grade_by_prediction = {item.prediction_id: item for item in grades}
+    output: dict[str, LiveCalibration] = {}
+    for target_series in sorted({item.target_series for item in predictions}):
+        series_predictions = tuple(
+            item for item in predictions if item.target_series == target_series
+        )
+        series_grades = tuple(
+            grade_by_prediction[item.prediction_id]
+            for item in series_predictions
+            if item.prediction_id in grade_by_prediction
+        )
+        output[target_series] = calculate_live_calibration(
+            series_predictions,
+            series_grades,
+            {target_series: target_histories.get(target_series, ())},
+            backtest,
+        )
+    return output
+
+
 def _best_naive_versions(backtest: Mapping[str, object]) -> dict[str, str]:
     raw_targets = backtest.get("targets")
     if not isinstance(raw_targets, list):
@@ -185,7 +221,12 @@ def _best_naive_versions(backtest: Mapping[str, object]) -> dict[str, str]:
                 continue
             version = raw_metric.get("model_version")
             mae = raw_metric.get("mae")
-            if version in NAIVE_VERSIONS and isinstance(mae, (int, float)):
+            if version in {
+                *NAIVE_VERSIONS,
+                MTS_RANDOM_WALK_VERSION,
+                MTS_SEASONAL_VERSION,
+                MTS_AR2_VERSION,
+            } and isinstance(mae, (int, float)):
                 candidates.append((float(mae), cast(str, version)))
         if not candidates:
             raise LiveCalibrationError(f"Backtest has no naive metrics for {target_series}")
@@ -207,4 +248,16 @@ def _forecast(
         return forecast
     if model_version == AR2_VERSION:
         return ar2(history, target_period)
+    if model_version in {MTS_RANDOM_WALK_VERSION, MTS_SEASONAL_VERSION, MTS_AR2_VERSION}:
+        result = mts_point_forecast(model_version, history, target_period)
+        if result is None:
+            raise LiveCalibrationError("MTS naive comparator is unavailable")
+        return BaselineForecast(
+            model_version=result.model_version,
+            target_series=result.target_series,
+            target_period=result.target_period,
+            point=result.point,
+            training_observations=len(history),
+            inputs_hash=result.inputs_hash,
+        )
     raise LiveCalibrationError(f"Unsupported naive comparator: {model_version}")

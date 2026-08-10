@@ -164,6 +164,32 @@
         {"label": "Scoreboard", "href": "/scoreboard/"},
         {"label": "Methodology", "href": "/methodology/"}
       ]
+    },
+    {
+      "entry_id": "moat-a-treasury-mts-second-clock",
+      "published_on": "2026-08-10",
+      "kind": "publication",
+      "version": "mts-point-in-time-backtest-v1",
+      "title": "Treasury deficit and outlays clock added",
+      "summary": "Added immutable, first-print-graded Monthly Treasury Statement predictions for federal deficit and total outlays; benchmark selection, empirical intervals, and live calibration remain separate for each series and never alter or blend with G.19 records.",
+      "links": [
+        {"label": "Scoreboard", "href": "/scoreboard/"},
+        {"label": "Methodology", "href": "/methodology/#mts-clock"},
+        {"label": "Scoreboard feed", "href": "/v1/feeds/scoreboard.json"}
+      ]
+    },
+    {
+      "entry_id": "moat-b-methodology-1-2-1-tjx-tier1",
+      "published_on": "2026-08-10",
+      "kind": "methodology",
+      "version": "1.2.1",
+      "title": "TJX moved off the fungibility baseline",
+      "summary": "Added a reviewed TJX private-label-card lane using two dated Synchrony trust filings with program-level receivables; preserved methodology 1.2.0, left all 49 unaffected company result objects unchanged, and published the restatement under the versioned v2 assumption feed.",
+      "links": [
+        {"label": "TJX", "href": "/companies/tjx/"},
+        {"label": "Version comparison", "href": "/methodology/sensitivity/"},
+        {"label": "Assumption feed v2", "href": "/v2/feeds/assumptions.json"}
+      ]
     }
   ]
 }

@@ -1,0 +1,105 @@
+{
+  "as_of": "2026-08-10T23:59:00+00:00",
+  "backtest_version": "mts-point-in-time-backtest-v1",
+  "report_hash": "5f431ba5828c8d1c4ce6d2f056a42c78e0a65259ebd305aec07c45e3a8a1b0b7",
+  "targets": [
+    {
+      "accuracy_gap_logged": true,
+      "accuracy_note": "The benchmark is published regardless of its absolute accuracy; no unproved bridge or state-space candidate displaced it.",
+      "first_vintage_url": "https://fiscaldata.treasury.gov/static-data/published-reports/mts/MonthlyTreasuryStatement_201712.pdf",
+      "last_vintage_url": "https://fiscaldata.treasury.gov/static-data/published-reports/mts/MonthlyTreasuryStatement_202606.pdf",
+      "metrics": [
+        {
+          "acceleration_sign_accuracy": 0.0,
+          "coverage80": 0.7571428571428571,
+          "coverage95": 0.9,
+          "interval_observations": 70,
+          "mae": 197055.03811009097,
+          "model_version": "mts-naive-random-walk-v1",
+          "observations": 94,
+          "period_end": "2026-06-30",
+          "period_start": "2018-01-31",
+          "rmse": 257615.31991573554
+        },
+        {
+          "acceleration_sign_accuracy": 0.7619047619047619,
+          "coverage80": 0.8333333333333334,
+          "coverage95": 1.0,
+          "interval_observations": 60,
+          "mae": 130896.67287236059,
+          "model_version": "mts-naive-seasonal-v1",
+          "observations": 84,
+          "period_end": "2026-06-30",
+          "period_start": "2018-12-31",
+          "rmse": 221921.11540048814
+        },
+        {
+          "acceleration_sign_accuracy": 0.7169811320754716,
+          "coverage80": 0.8275862068965517,
+          "coverage95": 0.9655172413793104,
+          "interval_observations": 29,
+          "mae": 148769.87950587252,
+          "model_version": "mts-ar2-ols-v1",
+          "observations": 53,
+          "period_end": "2026-06-30",
+          "period_start": "2020-08-31",
+          "rmse": 194565.74106872868
+        }
+      ],
+      "selected_model_version": "mts-naive-seasonal-v1",
+      "selection_rule": "lowest point-in-time MAE among naive, seasonal, and AR(2)",
+      "target_observations": 95,
+      "target_series": "MTS:DEFICIT.M"
+    },
+    {
+      "accuracy_gap_logged": true,
+      "accuracy_note": "The benchmark is published regardless of its absolute accuracy; no unproved bridge or state-space candidate displaced it.",
+      "first_vintage_url": "https://fiscaldata.treasury.gov/static-data/published-reports/mts/MonthlyTreasuryStatement_201712.pdf",
+      "last_vintage_url": "https://fiscaldata.treasury.gov/static-data/published-reports/mts/MonthlyTreasuryStatement_202606.pdf",
+      "metrics": [
+        {
+          "acceleration_sign_accuracy": 0.0,
+          "coverage80": 0.7571428571428571,
+          "coverage95": 0.9571428571428572,
+          "interval_observations": 70,
+          "mae": 103732.0252712783,
+          "model_version": "mts-naive-random-walk-v1",
+          "observations": 94,
+          "period_end": "2026-06-30",
+          "period_start": "2018-01-31",
+          "rmse": 151185.19646952237
+        },
+        {
+          "acceleration_sign_accuracy": 0.6904761904761905,
+          "coverage80": 0.8333333333333334,
+          "coverage95": 0.9833333333333333,
+          "interval_observations": 60,
+          "mae": 110826.2943741456,
+          "model_version": "mts-naive-seasonal-v1",
+          "observations": 84,
+          "period_end": "2026-06-30",
+          "period_start": "2018-12-31",
+          "rmse": 179758.61271681037
+        },
+        {
+          "acceleration_sign_accuracy": 0.6226415094339622,
+          "coverage80": 0.8620689655172413,
+          "coverage95": 1.0,
+          "interval_observations": 29,
+          "mae": 90750.57029409602,
+          "model_version": "mts-ar2-ols-v1",
+          "observations": 53,
+          "period_end": "2026-06-30",
+          "period_start": "2020-08-31",
+          "rmse": 151392.09484132
+        }
+      ],
+      "selected_model_version": "mts-ar2-ols-v1",
+      "selection_rule": "lowest point-in-time MAE among naive, seasonal, and AR(2)",
+      "target_observations": 95,
+      "target_series": "MTS:OUTLAYS.M"
+    }
+  ],
+  "vintage_policy": "Only release timestamps pinned to an official Treasury schedule are used; historical September issues without exact dates are omitted, not imputed.",
+  "window_start": "2018-01-31"
+}

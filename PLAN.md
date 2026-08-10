@@ -31,12 +31,16 @@ This is the controlling execution map for `DFRI_BUILD_SPEC.md` v1.0. Sections 1 
 7. M5 scale, depending on M3 per-company evidence and M4 publication gates.
 8. Complete the owner-directed auto-allocation source replacement and source-redundancy guard
    before M4 revalidation. This advances Expansion AC9.2 only; it does not start M9.
-9. Revalidate M4 after the restatement candidate passes every existing M4 gate. Publishing the
+9. Execute the owner-directed moat acceleration before new expansion milestone scope: add the
+   Treasury MTS prediction/grade clock and close filing-backed Tier 1 evidence gaps. This advances
+   parts of Expansion AC7.4 and AC9.6 without closing M7 or M9 and without changing any existing
+   G.19 record.
+10. Revalidate M4 after the restatement candidates pass every existing M4 gate. Publishing any
    restatement remains a separate owner approval gate.
-10. Execute expansion milestones M6 through M10 in order. M6 is a byte-identity refactor and any
+11. Execute expansion milestones M6 through M10 in order. M6 is a byte-identity refactor and any
     published-value movement blocks it; M7-M10 retain every acceptance criterion in
     `DFRI_EXPANSION_SPEC.md`.
-11. LLM-assisted classification is renumbered M11, remains unscheduled, and may begin only after
+12. LLM-assisted classification is renumbered M11, remains unscheduled, and may begin only after
     an explicit owner scheduling decision and the legal/evaluation gates in
     `docs/PLANNED_CLASSIFICATION.md`.
 
@@ -71,6 +75,69 @@ Independent source-ingest work may proceed in parallel only where it cannot weak
 Dependencies: verified source contracts, existing M1 Auto ABS aggregates, immutable methodology
 v1.1.1 baseline, and the active M2 clock. Evidence: source URLs/checksums, deterministic report,
 criticality report, tests, and pre-publication restatement comparison.
+
+## Moat acceleration — second clock and Tier 1 filing evidence (owner-directed)
+
+These tasks intentionally advance calendar-compounding work ahead of M6–M10. They do not waive
+any milestone acceptance criterion, do not close M7 or M9, and may not alter an existing G.19
+prediction, grade, publication record, ID, timestamp, value, model version, or canonical hash.
+
+### Task A — Monthly Treasury Statement prediction clock
+
+- `PASS` Verify Treasury Fiscal Data terms before design: the API documentation offers the data
+  free and without restriction for copying, adaptation, redistribution, and commercial or
+  non-commercial use; automated API access and downloads are first-class documented paths.
+- `PASS` Verify a genuine point-in-time target: Table 1 retains issue-specific monthly rows, the
+  Bureau of the Fiscal Service publishes dated PDF/XLSX issues back before 2018, and the official
+  release calendar currently schedules the July 2026 issue for 2026-08-12 at 18:00 UTC.
+- `PASS` Register the Treasury source, Table 1 endpoint and exact target fields for monthly
+  federal deficit and total outlays, with terms URL, release calendar, archive URL, units, and
+  `verified_at`; add runtime metadata/unit verification and a real archived fixture.
+- `PASS` Ingest first-print MTS history through the Vintage Guard with immutable source URLs,
+  issue/release dates, checksums, and a strict first-print selector that rejects revised rows.
+- `PASS` Backtest naive last-value, seasonal naive, and AR benchmarks first; add a bridge or
+  state-space model only if it beats the best benchmark. Report MAE, RMSE, 80/95 coverage, and
+  acceleration-sign accuracy separately for deficit and outlays, logging unmet bars honestly.
+- `PASS` Reuse the prediction/grade/publication schema with `target_series` as the series
+  dimension; append MTS rows without rewriting or re-identifying any G.19 record. Add adversarial
+  immutability and unchanged-input no-op tests.
+- `PASS (deployment candidate)` Add an MTS prediction check before each scheduled release and automatic grading after
+  release. Preserve Git-backed ledger authority and the candidate-before-Pages-before-Git
+  promotion boundary; artifacts remain cache only.
+- `PASS (deployment candidate)` Publish MTS rows and permalinks on the existing scoreboard, visibly distinguished from
+  G.19, with calibration statistics computed per series and never blended.
+- `PASS (deployment candidate)` Run the complete regression, determinism, URL, provenance,
+  accessibility, page-weight, no-JS, and clock-health gates before requesting deployment approval.
+  A fresh-clone verification is the final publication-candidate handoff gate.
+- `PENDING OWNER APPROVAL` Push the reviewed candidate and deploy it so the two new cron lanes are
+  registered. Do not count local or manually dispatched rows as calendar-clock evidence.
+
+Dependencies: active M2 repository-backed clock, Treasury first-print and release-calendar gate,
+Vintage Guard, immutable prediction/grade schemas, and the existing scoreboard publisher.
+
+### Task B — filing-backed Tier 1 evidence gap
+
+- `PASS` Verify current filing/accession identities for Synchrony, Bread Financial, other
+  comparable private-label/co-brand issuers, Affirm, Klarna, and Block through the existing
+  permitted EDGAR/public-filing lane before extracting evidence.
+- `PASS` Mine 10-K/10-Q disclosures for named retail partner programs and only disclosed
+  partner-level receivables, purchase volume, or sales measures; record an explicit no-usable-line
+  result rather than infer a value where disclosure is absent.
+- `PASS` Extend named-merchant BNPL evidence from Affirm, Klarna, and Block only where a specific
+  public filing ties financing volume or merchant activity to a covered company.
+- `PASS` Give every proposed link a stable assumption ID, issuer accession or filing URL,
+  <=15-word evidence snippet, sensitivity note, and review status. Publication fails when an active
+  mapping is unreviewed.
+- `PASS` Recompute under a new immutable methodology version, preserve every prior value, and
+  report the count moving off baseline-only plus every affected low/mid/high and tier-share change
+  before requesting publication approval.
+- `PASS (deployment candidate)` Append a factual changelog entry for any approved DFR% restatement and pass independent
+  recompute, provenance, regression, determinism, and cold-clone gates.
+- `PENDING OWNER APPROVAL` Publish methodology 1.2.1. Until deployment, methodology 1.2.0 remains
+  the live public value set and no live DFR% has been restated.
+
+Dependencies: existing EDGAR source contract, immutable methodology 1.2 candidate lineage,
+accession-linked evidence contract, and active M2 clock.
 
 ## M0 — Foundation (repo, CI, contracts)
 

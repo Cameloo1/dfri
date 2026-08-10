@@ -18,7 +18,7 @@ from dfri.attribution.registry import (
 def test_public_attribution_bundle_is_complete_and_source_hashed() -> None:
     bundle = load_attribution_bundle()
 
-    assert bundle.methodology_version == "1.2.0"
+    assert bundle.methodology_version == "1.2.1"
     assert bundle.data_vintage == "2026-05-07T19:00:00+00:00"
     assert bundle.first_published_at == "2026-08-06T05:40:24.524787+00:00"
     assert len(bundle.source_hash) == 64
@@ -42,13 +42,14 @@ def test_public_attribution_bundle_is_complete_and_source_hashed() -> None:
     digest = hashlib.sha256()
     root = Path(__file__).parents[2] / "src" / "dfri" / "attribution"
     for filename in (
-        "assumption_registry_v1_2.json",
-        "matrix_a_v1_2.json",
-        "matrix_b_v1_2.json",
-        "company_inputs_v1_2.json",
-        "flow_inputs_v1_2.json",
+        "assumption_registry_v1_2_1.json",
+        "matrix_a_v1_2_1.json",
+        "matrix_b_v1_2_1.json",
+        "company_inputs_v1_2_1.json",
+        "flow_inputs_v1_2_1.json",
         "auto_allocation_evidence_v1.json",
         "source_registry_v1.json",
+        "tier1_evidence_review_v1.json",
     ):
         payload = json.loads((root / filename).read_text(encoding="utf-8"))
         digest.update(filename.encode())
@@ -101,6 +102,50 @@ def test_historical_v1_1_1_bundle_remains_reproducible() -> None:
     assert bundle.methodology_version == "1.1.1"
     assert len(bundle.companies) == 50
     assert bundle.assumptions_by_id["A-T2-NONREV-AUTO-001"].prior == Prior(0.08, 0.12, 0.18)
+
+
+def test_historical_v1_2_0_bundle_remains_reproducible() -> None:
+    bundle = load_attribution_bundle("1.2.0")
+
+    assert bundle.methodology_version == "1.2.0"
+    assert "A-T1-TJX-SYF-001" not in bundle.assumptions_by_id
+    tjx = next(item for item in bundle.companies if item.ticker == "TJX")
+    assert tjx.tier1_source_url == ""
+
+
+def test_new_tier1_mapping_requires_approved_review_status() -> None:
+    bundle = load_attribution_bundle()
+    tjx = bundle.assumptions_by_id["A-T1-TJX-SYF-001"]
+
+    with pytest.raises(AttributionRegistryError, match="owner-review ready"):
+        validate_attribution_bundle(
+            replace(
+                bundle,
+                assumptions=tuple(
+                    replace(item, review_status="PENDING") if item == tjx else item
+                    for item in bundle.assumptions
+                ),
+            )
+        )
+
+
+def test_tier1_evidence_review_only_activates_approved_numeric_mappings() -> None:
+    bundle = load_attribution_bundle()
+    root = Path(__file__).parents[2] / "src" / "dfri" / "attribution"
+    review = json.loads((root / "tier1_evidence_review_v1.json").read_text("utf-8"))
+    active_ids = {item for row in bundle.matrix_a for item in row.assumption_ids}
+
+    for item in review["items"]:
+        if item["review_status"] == "APPROVED_NUMERIC_MAPPING":
+            assert item["assumption_ids"]
+            assert set(item["assumption_ids"]) <= active_ids
+            assert all(
+                bundle.assumptions_by_id[assumption_id].review_status == "APPROVED"
+                for assumption_id in item["assumption_ids"]
+            )
+        elif item["review_status"] == "NO_COVERED_PROGRAM_AMOUNT":
+            assert item["covered_tickers"] == []
+            assert item["assumption_ids"] == []
 
 
 def test_registry_rejects_unknown_methodology_version() -> None:

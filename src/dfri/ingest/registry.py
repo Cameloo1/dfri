@@ -107,6 +107,34 @@ class SourceContract:
     finding: str
 
 
+@dataclass(frozen=True)
+class TreasuryMtsTargetDefinition:
+    target_series_id: str
+    expected_title: str
+    api_field: str
+    unit: str
+
+
+@dataclass(frozen=True)
+class TreasuryMtsDefinition:
+    source: str
+    dataset_id: str
+    expected_dataset_name: str
+    expected_table_name: str
+    api_url: str
+    dataset_url: str
+    metadata_url: str
+    archive_url_pattern: str
+    release_calendar_url: str
+    release_time: str
+    time_zone: str
+    verified_at: datetime
+    targets: tuple[TreasuryMtsTargetDefinition, ...]
+    release_schedule: dict[date, date]
+    release_schedule_evidence: tuple[str, ...]
+    unverified_historical_periods: tuple[str, ...]
+
+
 def _load_json(filename: str) -> dict[str, object]:
     text = resources.files("dfri.ingest").joinpath(filename).read_text(encoding="utf-8")
     parsed = json.loads(text)
@@ -415,6 +443,96 @@ def load_source_contracts() -> dict[str, SourceContract]:
     return contracts
 
 
+def load_treasury_mts() -> TreasuryMtsDefinition:
+    """Load the pinned Treasury MTS API, archive, release-time, and target contract."""
+
+    payload = _load_json("treasury_mts_registry.json")
+    required = (
+        "source",
+        "dataset_id",
+        "expected_dataset_name",
+        "expected_table_name",
+        "api_url",
+        "dataset_url",
+        "metadata_url",
+        "archive_url_pattern",
+        "release_calendar_url",
+        "release_time",
+        "time_zone",
+        "verified_at",
+    )
+    if not all(isinstance(payload.get(key), str) for key in required):
+        raise RegistryError("Treasury MTS registry is missing a required string")
+    raw_targets = payload.get("targets")
+    if not isinstance(raw_targets, list) or not raw_targets:
+        raise RegistryError("Treasury MTS registry requires targets")
+    targets: list[TreasuryMtsTargetDefinition] = []
+    for raw in raw_targets:
+        if not isinstance(raw, dict):
+            raise RegistryError("Treasury MTS target must be an object")
+        target_required = ("target_series_id", "expected_title", "api_field", "unit")
+        if not all(isinstance(raw.get(key), str) for key in target_required):
+            raise RegistryError("Treasury MTS target is missing a required string")
+        targets.append(
+            TreasuryMtsTargetDefinition(
+                target_series_id=cast(str, raw["target_series_id"]),
+                expected_title=cast(str, raw["expected_title"]),
+                api_field=cast(str, raw["api_field"]),
+                unit=cast(str, raw["unit"]),
+            )
+        )
+    target_ids = [item.target_series_id for item in targets]
+    fields = [item.api_field for item in targets]
+    if len(target_ids) != len(set(target_ids)) or len(fields) != len(set(fields)):
+        raise RegistryError("Treasury MTS target IDs and fields must be unique")
+    raw_schedule = payload.get("release_schedule")
+    raw_evidence = payload.get("release_schedule_evidence")
+    raw_unverified = payload.get("unverified_historical_periods")
+    if not isinstance(raw_schedule, dict) or not raw_schedule:
+        raise RegistryError("Treasury MTS registry requires a release schedule")
+    if not isinstance(raw_evidence, list) or not all(
+        isinstance(item, str) for item in raw_evidence
+    ):
+        raise RegistryError("Treasury MTS release evidence must be URLs")
+    if not isinstance(raw_unverified, list) or not all(
+        isinstance(item, str) for item in raw_unverified
+    ):
+        raise RegistryError("Treasury MTS unverified periods must be strings")
+    schedule: dict[date, date] = {}
+    try:
+        for raw_period, raw_release in raw_schedule.items():
+            if not isinstance(raw_period, str) or not isinstance(raw_release, str):
+                raise RegistryError("Treasury MTS release schedule must map strings")
+            period_start = date.fromisoformat(f"{raw_period}-01")
+            period = _month_end(period_start)
+            release = date.fromisoformat(raw_release)
+            if release <= period:
+                raise RegistryError("Treasury MTS release must follow its target month")
+            schedule[period] = release
+    except ValueError as exc:
+        raise RegistryError("Treasury MTS release schedule has an invalid date") from exc
+    return TreasuryMtsDefinition(
+        source=cast(str, payload["source"]),
+        dataset_id=cast(str, payload["dataset_id"]),
+        expected_dataset_name=cast(str, payload["expected_dataset_name"]),
+        expected_table_name=cast(str, payload["expected_table_name"]),
+        api_url=cast(str, payload["api_url"]),
+        dataset_url=cast(str, payload["dataset_url"]),
+        metadata_url=cast(str, payload["metadata_url"]),
+        archive_url_pattern=cast(str, payload["archive_url_pattern"]),
+        release_calendar_url=cast(str, payload["release_calendar_url"]),
+        release_time=cast(str, payload["release_time"]),
+        time_zone=cast(str, payload["time_zone"]),
+        verified_at=datetime.fromisoformat(
+            cast(str, payload["verified_at"]).replace("Z", "+00:00")
+        ),
+        targets=tuple(targets),
+        release_schedule=schedule,
+        release_schedule_evidence=tuple(cast(list[str], raw_evidence)),
+        unverified_historical_periods=tuple(cast(list[str], raw_unverified)),
+    )
+
+
 def load_sec_contracts() -> dict[str, object]:
     payload = _load_json("sec_contracts.json")
     required = {"edgar_surfaces", "reg_ab_ii", "card_trusts", "auto_abs_ee_evidence"}
@@ -442,3 +560,9 @@ def _optional_bool(raw: dict[object, object], key: str, source_id: str, default:
     if not isinstance(value, bool):
         raise RegistryError(f"{source_id}.{key} must be a boolean")
     return value
+
+
+def _month_end(period: date) -> date:
+    year = period.year + int(period.month == 12)
+    month = 1 if period.month == 12 else period.month + 1
+    return date(year, month, 1) - date.resolution

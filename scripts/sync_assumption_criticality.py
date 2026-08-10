@@ -11,16 +11,19 @@ from pathlib import Path
 from dfri.attribution.criticality import compute_assumption_criticality
 from dfri.attribution.registry import load_attribution_bundle
 
-DEFAULT_REGISTRY = Path("src/dfri/attribution/assumption_registry_v1_2.json")
+DEFAULT_REGISTRY = Path("src/dfri/attribution/assumption_registry_v1_2_1.json")
 
 
 def synchronize(registry_path: Path, *, check: bool) -> bool:
     payload = json.loads(registry_path.read_text("utf-8"))
     if not isinstance(payload, dict) or not isinstance(payload.get("items"), list):
         raise RuntimeError("Assumption registry payload is malformed")
+    methodology_version = payload.get("methodology_version")
+    if not isinstance(methodology_version, str) or not methodology_version:
+        raise RuntimeError("Assumption registry methodology version is missing")
     rows = {
         row.assumption_id: row
-        for row in compute_assumption_criticality(load_attribution_bundle("1.2.0"))
+        for row in compute_assumption_criticality(load_attribution_bundle(methodology_version))
     }
     changed = False
     for item in payload["items"]:

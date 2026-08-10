@@ -204,7 +204,9 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert "the nominal 80% band contained 71.3%" in methodology
     site_js = (output / "assets" / "site.js").read_text(encoding="utf-8")
     assert 'document.createElement("button")' in site_js
-    assert first.total_bytes < 1_200_000
+    # The tree-wide cap guards runaway duplication; the product's hard 500 KB budget is checked
+    # per rendered page below. MTS adds two targets and per-series calibration metadata.
+    assert first.total_bytes < 1_400_000
     assert all(
         line == line.lstrip()
         for line in (output / "index.html").read_text(encoding="utf-8").splitlines()
@@ -359,6 +361,7 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     assumptions = json.loads((output / "v1" / "feeds" / "assumptions.json").read_text())
     schema = json.loads((output / "v1" / "feeds" / "schema.json").read_text())
     companies_v2 = json.loads((output / "v2" / "feeds" / "dfri_companies.json").read_text())
+    assumptions_v2 = json.loads((output / "v2" / "feeds" / "assumptions.json").read_text())
     schema_v2 = json.loads((output / "v2" / "feeds" / "schema.json").read_text())
     assert len(companies["data"]) == 50
     assert assumptions["data"]
@@ -374,7 +377,7 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     }
     assert schema_v2["schema_version"] == "v2"
     assert schema_v2["predecessor_schema_url"] == "/v1/feeds/schema.json"
-    assert set(schema_v2["feeds"]) == {"dfri_companies"}
+    assert set(schema_v2["feeds"]) == {"dfri_companies", "assumptions"}
     assert companies_v2["meta"]["evidence_lift_headline"].startswith("Carvana ")
     assert len(companies_v2["data"]) == 50
     assert all(
@@ -388,6 +391,11 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
         for row in companies_v2["data"]
     )
     assert all("evidence_lift" not in row for row in companies["data"])
+    assert all("review_status" not in row for row in assumptions["data"])
+    tjx_assumption = next(
+        row for row in assumptions_v2["data"] if row["assumption_id"] == "A-T1-TJX-SYF-001"
+    )
+    assert tjx_assumption["review_status"] == "APPROVED"
     parquet = pq.read_table(output / "v1" / "feeds" / "dfri_companies.parquet")
     assert parquet.num_rows == 50
     assert parquet.schema.field("estimated_dfr_pct_mid").type == pa.float64()
@@ -403,6 +411,7 @@ def test_attribution_feeds_and_fifty_company_pages_publish_with_full_evidence(
     assert "Exact static values behind the diagram." in methodology
     assert "This build has 11 critical assumptions and 0 critical assumptions" in methodology
     assert "FFIEC bank, NCUA credit-union" in methodology
+    assert 'id="mts-clock"' in methodology
     home = (output / "index.html").read_text(encoding="utf-8")
     assert "Revenue-weighted DFR%" in home
     assert "range-chart" in home
@@ -528,9 +537,9 @@ def test_home_information_architecture_preserves_all_company_evidence_and_semant
     assert "Historical tests compare the nowcast" in home
     assert "they are not live-grade results" in home
     assert '<details class="baseline-disclosure">' in home
-    assert "Show 38 baseline-only companies at 1.00x" in home
-    assert home.count('data-lift-status="evidence-supported"') == 12
-    assert home.count('data-lift-status="baseline-only"') == 38
+    assert "Show 37 baseline-only companies at 1.00x" in home
+    assert home.count('data-lift-status="evidence-supported"') == 13
+    assert home.count('data-lift-status="baseline-only"') == 37
     assert home.count("No company-specific financing evidence found") == 1
     assert '<a class="directory-link" href="companies/index.html">' in home
     assert 'class="company-links"' not in home

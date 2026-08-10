@@ -2,6 +2,20 @@
   "schema_version": 1,
   "checked_at": "2026-08-09",
   "sources": {
+    "treasury_fiscal_data": {
+      "status": "permitted",
+      "automated_access": true,
+      "storage": true,
+      "derivative_redistribution": true,
+      "terms_url": "https://fiscaldata.treasury.gov/api-documentation/",
+      "automation_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/mts/mts_table_1",
+      "conditions": [
+        "Cite the U.S. Department of the Treasury and preserve the dated MTS issue URL for every first-print observation.",
+        "Pin release timestamps from the official calendar or dated issue; the API record_date is the statement month, not proof of publication time.",
+        "Do not assign an unverified release date to historical September statements whose annual schedule says only subject to completion."
+      ],
+      "finding": "Treasury Fiscal Data documents free public API access and permits copying, adapting, and redistributing its data for commercial and non-commercial use."
+    },
     "ffiec_call_reports": {
       "status": "permitted",
       "automated_access": true,

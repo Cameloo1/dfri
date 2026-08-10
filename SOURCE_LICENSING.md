@@ -1,6 +1,6 @@
 # Source licensing and continuity
 
-Verified through 2026-08-09. This is the public record for source identity, automation,
+Verified through 2026-08-10. This is the public record for source identity, automation,
 storage, derivative use, redistribution, and fallback status. The machine-readable source
 contracts remain in `src/dfri/ingest/source_contracts.json`; assumption-specific active and
 fallback sources remain in `src/dfri/attribution/source_registry_v1.json`.
@@ -18,6 +18,28 @@ derived compilation under DFRI's feed license. Every source must independently p
 Failure of either gate marks that source non-permitted for the affected publication lane. The
 pipeline must use a registered permitted fallback with a wider band or publish `BLOCKED`; it must
 not silently retain a disallowed source.
+
+## Treasury Monthly Treasury Statement
+
+The Bureau of the Fiscal Service publishes the Monthly Treasury Statement through the
+[Fiscal Data dataset](https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/), its
+[documented API](https://fiscaldata.treasury.gov/api-documentation/), a dated-issue archive, and an
+[official release calendar](https://fiscaldata.treasury.gov/release-calendar/). The API terms state
+that Fiscal Data datasets are available without restriction for copying, adaptation,
+redistribution, and commercial or non-commercial use. Automated retrieval, local point-in-time
+storage, statistical transformation, and redistribution of DFRI's derived forecasts therefore
+pass both permission gates.
+
+The Fiscal Service also maintains the human-readable
+[previous-issues index](https://fiscal.treasury.gov/accounting/monthly-treasury-statement/previous),
+which lists the separately dated PDF and machine-readable issue files. The registered Fiscal Data
+PDF URLs resolve byte-identically to those official archived issue documents.
+
+Registry `TREASURY_MTS_FIRST_PRINT_V1` pins dataset `015-BFS-2014Q1-13`, Table 1, target fields
+`current_month_dfct_sur_amt` and `current_month_gross_outly_amt`, currency units, the metadata/API
+URLs, and the dated PDF pattern. Runtime ingest rejects identity, title, field, unit, release-date,
+or archive-checksum drift. Historical September issues whose official schedules gave no exact
+release date are omitted rather than assigned an inferred timestamp.
 
 ## Methodology 1.2 auto-allocation sources
 

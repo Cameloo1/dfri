@@ -2,10 +2,10 @@
 {% from "_credit_flow.html" import credit_flow as render_credit_flow %}
 {% block content %}
 <h1>Methodology</h1>
-<p class="lede">The nowcast estimates monthly G.19 credit flows. Attribution then applies registered product-to-category weights (Matrix A) and category-to-company weights (Matrix B), divided by estimated U.S. consumer revenue. Every judgmental uncertain input has a public assumption ID and band; fixed derived mappings retain their method and evidence.</p>
-<p>Primary nowcast sources: <a href="{{ nowcast_sources.h8_archive }}">Federal Reserve Board H.8 release archive</a>, <a href="{{ nowcast_sources.marts_archive }}">Census MARTS historic releases</a>, and the <a href="{{ nowcast_sources.g19_archive }}">Federal Reserve Board G.19 release archive</a> used for first-print grading.</p>
+<p class="lede">The nowcast estimates monthly G.19 credit flows and separately predicts Treasury MTS deficit and outlays. Attribution then applies registered product-to-category weights (Matrix A) and category-to-company weights (Matrix B), divided by estimated U.S. consumer revenue. Every judgmental uncertain input has a public assumption ID and band; fixed derived mappings retain their method and evidence.</p>
+<p>Primary nowcast sources: <a href="{{ nowcast_sources.h8_archive }}">Federal Reserve Board H.8 release archive</a>, <a href="{{ nowcast_sources.marts_archive }}">Census MARTS historic releases</a>, the <a href="{{ nowcast_sources.g19_archive }}">Federal Reserve Board G.19 release archive</a>, and <a href="{{ nowcast_sources.mts_archive }}">dated Treasury MTS issues</a> used for their respective first-print grades.</p>
 <p><a href="https://github.com/Cameloo1/dfri/blob/main/docs/MODELING.md">Read the complete code-derived modeling architecture</a>, including implemented benchmarks, selection rules, point-in-time controls, attribution mechanics, and documented divergences.</p>
-<p>Methodology {{ methodology_version }} preserves the {{ company_count }}-company coverage boundary and replaces the retired household-debt auto-allocation source with reconciled FFIEC bank, NCUA credit-union, Federal Reserve Board G.19, and SEC Auto ABS evidence. <a href="sensitivity/index.html">Compare 1.1.1 with {{ methodology_version }}</a> or inspect the <a href="coverage/index.html">dated coverage and exclusion ledger</a>.</p>
+<p>Methodology {{ methodology_version }} preserves the {{ company_count }}-company coverage boundary and the 1.2.0 regulatory auto allocation from FFIEC bank, NCUA credit-union, Board G.19, and SEC Auto ABS evidence while adding one reviewed TJX private-label-card lane from dated Synchrony trust filings. <a href="sensitivity/index.html">Compare 1.2.0 with {{ methodology_version }}</a> or inspect the <a href="coverage/index.html">dated coverage and exclusion ledger</a>.</p>
 <p><a href="https://github.com/Cameloo1/dfri/blob/main/SOURCE_LICENSING.md">Source licensing and fallback policy</a> records why permission to access a source and permission to store or redistribute derived output are separate gates.</p>
 <section class="grid">
   <article class="card metric"><h2>Bridge model</h2><p>Partial <a href="{{ nowcast_sources.h8_archive }}">H.8</a> months expose observed coverage explicitly. Missing <a href="{{ nowcast_sources.marts_archive }}">retail data</a> remains missing and is represented by an explicit availability indicator whose coefficient is fitted with the bridge.</p></article>
@@ -14,6 +14,12 @@
   <article class="card metric"><h2>Tier 1</h2><p>Observed: a disclosure directly links financing to the company's sales. The company page links the filing and a quote of no more than 15 words.</p></article>
   <article class="card metric"><h2>Tier 2</h2><p>Category-mapped: credit flow is allocated to spend categories and then to companies by estimated category revenue share.</p></article>
   <article class="card metric"><h2>Tier 3</h2><p>Fungible: unassignable flows are allocated in proportion to covered consumer revenue, with the widest bands.</p></article>
+</section>
+
+<section class="section-block" id="mts-clock">
+  <h2>Treasury clock</h2>
+  <p>Federal deficit and total outlays are predicted and graded separately from G.19. The selected benchmark for each series minimizes point-in-time MAE among last value, seasonal naive, and AR(2). Empirical 80% and 95% bands use only prior out-of-sample errors, and live calibration is never blended across series. Historical MTS months without an exact official release timestamp remain omitted.</p>
+  <p>The 2018–2026 first-print backtest selected seasonal naive for deficit (MAE $130,896.7M; 83.3% / 100.0% interval coverage; 76.2% acceleration-sign accuracy) and AR(2) for outlays (MAE $90,750.6M; 86.2% / 100.0% coverage; 62.3% sign accuracy). Outlays improved only 12.5% over random walk and missed the inherited improvement, 80%-coverage, and sign-accuracy bars; it remains published unchanged rather than being replaced by an unproved model.</p>
 </section>
 
 <section class="section-block" id="credit-flow">
@@ -39,9 +45,9 @@
   <p>Criticality is computed, not assigned: an assumption is critical when it supplies at least 5% of either the midpoint attributed numerator or covered-company denominator. This build has {{ criticality.critical_count }} critical assumptions and {{ criticality.warning_count }} critical assumptions without an independent fallback. A permitted but unavailable primary automatically selects its first permitted independent fallback and widens the registered band; if no fallback remains, the build emits BLOCKED rather than inventing a value.</p>
   <div class="table-wrap"><table>
     <caption>Every non-observed attribution parameter in methodology {{ methodology_version }}.</caption>
-    <thead><tr><th>ID</th><th>Tier</th><th>Statement</th><th>Low / mid / high</th><th>Evidence</th><th>Sensitivity note</th></tr></thead>
+    <thead><tr><th>ID</th><th>Review</th><th>Tier</th><th>Statement</th><th>Low / mid / high</th><th>Evidence</th><th>Sensitivity note</th></tr></thead>
     <tbody>{% for item in assumptions %}<tr>
-      <td class="hash">{{ item.assumption_id }}</td><td><span class="tier-badge tier-{{ item.tier }}">Tier {{ item.tier }}</span></td>
+      <td class="hash">{{ item.assumption_id }}</td><td>{{ item.review_status }}</td><td><span class="tier-badge tier-{{ item.tier }}">Tier {{ item.tier }}</span></td>
       <td>{{ item.statement }}</td><td>{{ item.prior }}</td>
       <td><a href="{{ item.source_url }}">Source</a><br><span class="meta">{{ item.evidence_snippet }}</span></td>
       <td>{{ item.sensitivity_note }}</td>

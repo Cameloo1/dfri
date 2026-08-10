@@ -75,6 +75,7 @@ def test_carvana_correction_and_baseline_only_companies_are_explicit() -> None:
         "TGT",
         "TSCO",
         "TSLA",
+        "TJX",
         "ULTA",
         "WMT",
     }

@@ -18,6 +18,8 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     root = Path(__file__).parents[2]
     workflow = (root / ".github" / "workflows" / "m2-scoreboard.yml").read_text()
 
+    assert 'cron: "17 16 * * 1-5"' in workflow
+    assert 'cron: "17 19 * * 1-5"' in workflow
     assert 'cron: "17 21 * * 1-5"' in workflow
     assert 'cron: "17 23 * * 1-5"' in workflow
     assert 'cron: "43 14 * * 1"' in workflow
@@ -77,7 +79,10 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     assert "dfri.ops.deployment_receipt" in workflow
     assert "dfri.ops.quarterly_refresh" in workflow
     assert "attribution_refresh_appended" in workflow
-    assert "options: [predict, grade, refresh, all]" in workflow
+    assert "options: [predict, grade, mts-predict, mts-grade, refresh, all]" in workflow
+    assert "make MTS_START=2017-12-31 treasury-mts" in workflow
+    assert "python -m dfri.mts_backtest" in workflow
+    assert "python -m dfri.scoreboard mts-predict" in workflow
     assert "retention-days: 90" in workflow
     assert "FRED" not in workflow and "ALFRED" not in workflow
     assert_all_actions_are_commit_pinned(workflow)

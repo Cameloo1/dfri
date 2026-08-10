@@ -76,7 +76,7 @@ def resolve_assumption_sources(
     *,
     unavailable_source_ids: frozenset[str] = frozenset(),
 ) -> tuple[AttributionBundle, tuple[SourceDegradation, ...]]:
-    if bundle.methodology_version != "1.2.0":
+    if bundle.methodology_version not in {"1.2.0", "1.2.1"}:
         return bundle, ()
     sources = load_source_registry()
     resolved = []

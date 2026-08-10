@@ -41,6 +41,7 @@ def validate_source_contracts(contracts: dict[str, SourceContract]) -> None:
         "new_york_fed",
         "sec_edgar",
         "wikimedia",
+        "treasury_fiscal_data",
     }
     if set(contracts) != required:
         raise VerificationError("Source-contract registry is incomplete")

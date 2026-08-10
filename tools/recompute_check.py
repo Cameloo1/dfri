@@ -1,4 +1,4 @@
-"""Independently recompute three published DFRI company midpoints.
+"""Independently recompute four published DFRI company midpoints.
 
 This script intentionally imports no DFRI code. It reads the committed curated
 inputs directly and performs the formula in DFRI_BUILD_SPEC.md section 7.2.
@@ -12,9 +12,9 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
-DEFAULT_TICKERS = ("AMZN", "GM", "WMT")
+DEFAULT_TICKERS = ("AMZN", "GM", "TJX", "WMT")
 TOLERANCE_PP = 0.5
-CURRENT_INPUT_SUFFIX = "v1_2"
+CURRENT_INPUT_SUFFIX = "v1_2_1"
 
 
 def _assumption_mid(row: dict[str, Any]) -> float:
@@ -111,7 +111,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--published", default=project_root / "reports" / "dfri_companies.json", type=Path
     )
-    parser.add_argument("--tickers", nargs=3, default=DEFAULT_TICKERS)
+    parser.add_argument("--tickers", nargs="+", default=DEFAULT_TICKERS)
     return parser
 
 

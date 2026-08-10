@@ -1,6 +1,6 @@
 # DFRI
 
-DFRI is a provenance-first system for estimating what share of consumer-facing company revenue is financed by net new consumer debt. It publishes modeled results as bands, separates observed inputs from assumptions, and keeps weekly nowcast predictions immutable so they can be graded against later first-print releases.
+DFRI is a provenance-first system for estimating what share of consumer-facing company revenue is financed by net new consumer debt. It publishes modeled results as bands, separates observed inputs from assumptions, and keeps prediction records immutable so they can be graded against later first-print releases.
 
 Current execution status lives in [PLAN.md](PLAN.md). Intended behavior is not treated as shipped
 behavior; milestone reports record the acceptance evidence that exists. The controlling build
@@ -27,7 +27,12 @@ summarizes that milestone state. Methodology 1.1.1 subsequently corrected Carvan
 classification and added the derived Evidence Lift view. Methodology 1.2.0 replaces the active
 NY Fed-sourced auto-allocation assumption with reconciled FFIEC, NCUA, Board G.19, and SEC Auto
 ABS evidence, and adds computed source criticality plus independent fallbacks without rewriting
-1.1.1. No M2 completion is claimed early.
+1.1.1. The 2026-08-10 deployment candidate adds a separately calibrated Treasury MTS clock for
+monthly federal deficit and outlays, plus methodology 1.2.1, which moves TJX off baseline-only using
+reviewed program-level Synchrony trust evidence. It changes no existing G.19 record and preserves
+all 1.2.0 company values for comparison. These additions are implemented and locally verifiable but
+are not described as live until the separately approved deployment completes. No M2 completion is
+claimed early.
 
 Active source-continuity risks and their fail-closed recovery paths are tracked in the
 [risk register](RISK_REGISTER.md). Source permission and fallback decisions are documented in
@@ -36,7 +41,9 @@ in the [DDP retirement risk report](DDP_RETIREMENT_RISK_REPORT.md).
 
 ## Outputs, sources, and evidence tiers
 
-DFRI publishes immutable weekly predictions of Federal Reserve G.19 consumer-credit flows and
+DFRI publishes immutable weekly predictions of Federal Reserve G.19 consumer-credit flows and the
+deployment candidate adds monthly first-print predictions for Treasury MTS deficit and outlays. It
+also publishes
 quarterly estimates of debt-funded revenue for covered companies. Modeled
 company results are always `[low, mid, high]` bands. The homepage aggregate is revenue-weighted:
 total estimated debt-funded consumer revenue across covered companies divided by their total
@@ -48,7 +55,8 @@ estimated U.S. consumer revenue. It is never equal-weighted or market-cap-weight
 - **Tier 3 — Fungible:** debt that cannot be assigned more directly is allocated using an explicit,
   widest-band fungibility assumption.
 
-Primary inputs are Federal Reserve Board dated G.19 and H.8 releases, FFIEC and NCUA regulatory
+Primary inputs are Federal Reserve Board dated G.19 and H.8 releases, U.S. Treasury dated Monthly
+Treasury Statements, FFIEC and NCUA regulatory
 Call Reports, SEC EDGAR filings, Census MARTS releases, and BEA product-level consumer spending.
 The New York Fed Household Debt and Credit source is retained only in historical methodology
 1.1.1 and is not active in methodology 1.2.0. DFRI uses no market data, price feeds, TradingView

@@ -13,7 +13,7 @@
 {%- endmacro %}
 {% block content %}
 <h1>Debt-funded revenue</h1>
-<p class="lede">DFRI publishes two linked records. It estimates the share of covered companies' U.S. consumer revenue funded by new consumer credit. It also predicts each month's change in U.S. consumer borrowing before the Federal Reserve publishes the official G.19 figure, records that forecast with a timestamp, and grades it against the first print.</p>
+<p class="lede">DFRI estimates the share of covered companies' U.S. consumer revenue funded by new consumer credit. Its append-only ledger records each month's change in U.S. consumer borrowing and monthly federal-fiscal forecasts before release, then grades each against the relevant first print.</p>
 
 <div class="opening-spread">
   <section id="current-estimate" class="section-block home-first-section opening-estimate" aria-labelledby="current-estimate-heading">
@@ -39,12 +39,12 @@
 
   <section id="prediction-ledger" class="section-block prediction-rail" aria-labelledby="prediction-ledger-heading">
     <h2 id="prediction-ledger-heading">Prediction ledger</h2>
-    <p>Each forecast is timestamped before the official G.19 release and kept as an immutable record. Grades use the first published figure, never a later revision.</p>
+    <p>Each forecast is timestamped before its official agency release and kept as an immutable record. Grades use the first published figure, never a later revision.</p>
     {% if latest %}
     <article class="card prediction-hero" data-figure="prediction">
       <div class="figure-label">{{ latest.target_period }} · {{ latest.target_label }} · $M monthly flow</div>
       <div class="number secondary">{{ latest.point_display }}</div>
-      <div class="figure-evidence"><span>Seasonally adjusted · millions of U.S. dollars</span><span class="status {{ latest.grade_status_class }}">{{ latest.grade_status }}</span><a href="scoreboard/predictions/{{ latest.prediction_id }}/index.html">Immutable record</a></div>
+      <div class="figure-evidence"><span>{{ latest.unit_context }}</span><span class="status {{ latest.grade_status_class }}">{{ latest.grade_status }}</span><a href="scoreboard/predictions/{{ latest.prediction_id }}/index.html">Immutable record</a></div>
       <svg class="range-chart" viewBox="0 0 600 76" role="img" aria-label="95 percent prediction interval from {{ latest.low95_display }} to {{ latest.high95_display }}; point {{ latest.point_display }}">
         <title>Prediction band: {{ latest.low95_display }} to {{ latest.high95_display }}, point {{ latest.point_display }}</title>
         <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
@@ -71,15 +71,15 @@
     </section>
   </section>
 
-  <div class="calibration-ledger home-calibration opening-calibration" aria-label="Live grade calibration">
+  <div class="calibration-ledger home-calibration opening-calibration" aria-label="Live grade calibration by target series">
     <div class="tier-explainer-title">Live grade record</div>
-    <dl class="calibration-stats">
-      <div data-figure="calibration-count"><dt>Graded records</dt><dd>{{ live_calibration.graded_count }}</dd></div>
-      <div data-figure="calibration-percent"><dt>Within 80% band</dt><dd>{{ live_calibration.coverage80_display }}<span>versus 80% nominal</span></dd></div>
-      <div data-figure="calibration-percent"><dt>Within 95% band</dt><dd>{{ live_calibration.coverage95_display }}<span>versus 95% nominal</span></dd></div>
-      <div data-figure="calibration-usd"><dt>Mean absolute error</dt><dd>{{ live_calibration.mae_display }}<span>$M · live grades only</span></dd></div>
-      <div data-figure="calibration-usd"><dt>Naive MAE</dt><dd>{{ live_calibration.naive_mae_display }}<span>$M · {{ live_calibration.naive_model_display }}</span></dd></div>
-    </dl>
+    {% for calibration in live_calibration %}<h3>{{ calibration.target_label }}</h3><dl class="calibration-stats">
+      <div data-figure="calibration-count"><dt>Graded records</dt><dd>{{ calibration.graded_count }}</dd></div>
+      <div data-figure="calibration-percent"><dt>Within 80% band</dt><dd>{{ calibration.coverage80_display }}<span>versus 80% nominal</span></dd></div>
+      <div data-figure="calibration-percent"><dt>Within 95% band</dt><dd>{{ calibration.coverage95_display }}<span>versus 95% nominal</span></dd></div>
+      <div data-figure="calibration-usd"><dt>Mean absolute error</dt><dd>{{ calibration.mae_display }}<span>$M · live grades only</span></dd></div>
+      <div data-figure="calibration-usd"><dt>Naive MAE</dt><dd>{{ calibration.naive_mae_display }}<span>$M · {{ calibration.naive_model_display }}</span></dd></div>
+    </dl>{% endfor %}
     <p class="meta">Live-grade statistics remain separate from the historical backtest. <a href="scoreboard/index.html">Read every prediction, grade, and the published first miss.</a></p>
   </div>
 </div>

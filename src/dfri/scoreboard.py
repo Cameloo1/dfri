@@ -10,7 +10,9 @@ from dataclasses import asdict, dataclass, replace
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Final
+from zoneinfo import ZoneInfo
 
+from dfri.ingest.registry import load_treasury_mts
 from dfri.lake.guard import VintageGuard
 from dfri.lake.readers import CachingSeriesReader, LakeSeriesReader
 from dfri.lake.store import AppendOnlyParquetStore
@@ -19,6 +21,12 @@ from dfri.nowcast.features import (
     build_bridge_feature,
     historical_bridge_features,
     latest_h8_data_vintage,
+)
+from dfri.nowcast.mts import (
+    MTS_BACKTEST_START,
+    fit_mts_forecast,
+    read_mts_first_print_targets,
+    run_mts_backtest,
 )
 from dfri.nowcast.targets import FirstPrintTarget, read_first_print_targets
 from dfri.publish.ledger import (
@@ -31,6 +39,7 @@ from dfri.publish.ledger import (
 
 TARGET_START: Final = date(2015, 1, 1)
 TARGET_SERIES: Final = ("DELTA_DTCTLR.M", "DELTA_DTCTLN.M")
+MTS_TARGET_SERIES: Final = ("MTS:DEFICIT.M", "MTS:OUTLAYS.M")
 
 
 class ScoreboardJobError(RuntimeError):
@@ -70,6 +79,31 @@ class GradingJobResult:
     not_matured: int
     integrity_verified: bool
     latest_graded_at: datetime | None
+
+
+@dataclass(frozen=True)
+class MtsPredictionSeriesResult:
+    target_series: str
+    latest_mts_release_at: datetime
+    target_period: date
+    model_version: str
+    appended: int
+    already_present: int
+
+
+@dataclass(frozen=True)
+class MtsPredictionJobResult:
+    as_of: datetime
+    series: tuple[MtsPredictionSeriesResult, ...]
+    skipped_unverified_periods: tuple[date, ...] = ()
+
+    @property
+    def appended(self) -> int:
+        return sum(item.appended for item in self.series)
+
+    @property
+    def already_present(self) -> int:
+        return sum(item.already_present for item in self.series)
 
 
 def run_prediction_job(
@@ -132,6 +166,10 @@ def run_grading_job(
     targets: list[FirstPrintTarget] = []
     for target_series in TARGET_SERIES:
         targets.extend(read_first_print_targets(guard, target_series, as_of, start=TARGET_START))
+    for target_series in MTS_TARGET_SERIES:
+        targets.extend(
+            read_mts_first_print_targets(guard, target_series, as_of, start=MTS_BACKTEST_START)
+        )
     predictions = PredictionLedger(ledger_store)
     grades = GradeLedger(ledger_store)
     existing_grade_ids = {item.prediction_id for item in grades.read_all()}
@@ -147,10 +185,80 @@ def run_grading_job(
     )
 
 
+def run_mts_prediction_job(
+    raw_store: AppendOnlyParquetStore,
+    ledger_store: AppendOnlyParquetStore,
+    *,
+    as_of: datetime,
+) -> MtsPredictionJobResult:
+    """Append one immutable MTS benchmark prediction per target series."""
+
+    _validate_as_of(as_of)
+    guard = VintageGuard(CachingSeriesReader(LakeSeriesReader(raw_store)))
+    histories = {
+        target_series: read_mts_first_print_targets(
+            guard, target_series, as_of, start=MTS_BACKTEST_START
+        )
+        for target_series in MTS_TARGET_SERIES
+    }
+    if any(not history for history in histories.values()):
+        raise ScoreboardJobError("No vintage-safe MTS training history is available")
+    report = run_mts_backtest(histories, as_of=as_of)
+    ledger = PredictionLedger(ledger_store)
+    results: list[MtsPredictionSeriesResult] = []
+    skipped_periods: set[date] = set()
+    mts_definition = load_treasury_mts()
+    for target_series in MTS_TARGET_SERIES:
+        history = histories[target_series]
+        target_period = _next_month_end(history[-1].target_period)
+        scheduled_date = mts_definition.release_schedule.get(target_period)
+        if scheduled_date is None:
+            skipped_periods.add(target_period)
+            continue
+        release_hour, release_minute, release_second = (
+            int(item) for item in mts_definition.release_time.split(":")
+        )
+        scheduled_release = datetime(
+            scheduled_date.year,
+            scheduled_date.month,
+            scheduled_date.day,
+            release_hour,
+            release_minute,
+            release_second,
+            tzinfo=ZoneInfo(mts_definition.time_zone),
+        )
+        if as_of >= scheduled_release:
+            raise ScoreboardJobError(
+                f"MTS prediction boundary passed for {target_period}; first print was not ingested"
+            )
+        forecast = fit_mts_forecast(
+            history,
+            target_period=target_period,
+            made_at=as_of,
+            backtest=report,
+        )
+        receipt = ledger.append(forecast)
+        results.append(
+            MtsPredictionSeriesResult(
+                target_series=target_series,
+                latest_mts_release_at=history[-1].release_at,
+                target_period=target_period,
+                model_version=forecast.model_version,
+                appended=int(receipt.appended),
+                already_present=int(not receipt.appended),
+            )
+        )
+    return MtsPredictionJobResult(
+        as_of=as_of,
+        series=tuple(results),
+        skipped_unverified_periods=tuple(sorted(skipped_periods)),
+    )
+
+
 def write_job_receipt(
     directory: Path,
     kind: str,
-    result: PredictionJobResult | GradingJobResult,
+    result: PredictionJobResult | MtsPredictionJobResult | GradingJobResult,
     *,
     executed_at: datetime,
     duration_ms: int,
@@ -246,13 +354,15 @@ def _json_value(value: object) -> object:
     return value
 
 
-def serialize_job_result(result: PredictionJobResult | GradingJobResult) -> dict[str, object]:
+def serialize_job_result(
+    result: PredictionJobResult | MtsPredictionJobResult | GradingJobResult,
+) -> dict[str, object]:
     """Return the stable CLI payload consumed by the scoreboard workflow."""
 
     payload = _json_value(asdict(result))
     if not isinstance(payload, dict):
         raise ScoreboardJobError("Scoreboard result did not serialize as an object")
-    if isinstance(result, PredictionJobResult):
+    if isinstance(result, (PredictionJobResult, MtsPredictionJobResult)):
         payload["appended"] = result.appended
         payload["already_present"] = result.already_present
     return payload
@@ -270,7 +380,9 @@ def _parse_as_of(value: str) -> datetime:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("predict", "grade", "data-vintage"))
+    parser.add_argument(
+        "command", choices=("predict", "grade", "mts-predict", "mts-grade", "data-vintage")
+    )
     parser.add_argument("--as-of", type=_parse_as_of)
     parser.add_argument("--raw-root", type=Path, default=Path(".local/lake/raw"))
     parser.add_argument("--ledger-root", type=Path, default=Path(".local/lake/curated"))
@@ -285,9 +397,11 @@ def main() -> None:
         data_vintage = latest_h8_data_vintage(guard, as_of)
         print(json.dumps({"as_of": as_of.isoformat(), "data_vintage": data_vintage.isoformat()}))
         return
-    result: PredictionJobResult | GradingJobResult
+    result: PredictionJobResult | MtsPredictionJobResult | GradingJobResult
     if args.command == "predict":
         result = run_prediction_job(raw_store, ledger_store, as_of=as_of)
+    elif args.command == "mts-predict":
+        result = run_mts_prediction_job(raw_store, ledger_store, as_of=as_of)
     else:
         result = run_grading_job(raw_store, ledger_store, as_of=as_of)
     duration_ms = round((time.perf_counter() - started) * 1000)

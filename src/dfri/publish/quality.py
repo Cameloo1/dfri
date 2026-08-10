@@ -202,8 +202,8 @@ def check_site(root: Path) -> SiteQualityReceipt:
         or "estimated share of U.S. consumer revenue" not in home
         or 'id="evidence-lift"' not in home
         or "No company-specific financing evidence found" not in home
-        or home.count('data-lift-status="evidence-supported"') != 12
-        or home.count('data-lift-status="baseline-only"') != 38
+        or home.count('data-lift-status="evidence-supported"') != 13
+        or home.count('data-lift-status="baseline-only"') != 37
         or '<details class="baseline-disclosure">' not in home
         or 'href="companies/index.html"' not in home
     ):
@@ -227,7 +227,7 @@ def check_site(root: Path) -> SiteQualityReceipt:
     _check_credit_flow("index.html", home, require_table=False)
     _check_credit_flow("methodology/index.html", methodology, require_table=True)
     comparison = (root / "methodology" / "sensitivity" / "index.html").read_text(encoding="utf-8")
-    required_methodologies = ("Methodology 1.1.0", "Methodology 1.1.1", "Methodology 1.2.0")
+    required_methodologies = ("Methodology 1.1.0", "Methodology 1.2.0", "Methodology 1.2.1")
     if any(item not in comparison for item in required_methodologies):
         raise SiteQualityError("Methodology sensitivity page lacks an immutable version")
     exclusions = (root / "methodology" / "coverage" / "index.html").read_text(encoding="utf-8")

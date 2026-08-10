@@ -32,7 +32,8 @@ from dfri.attribution.resilience import SourceDegradation
 from dfri.lake.guard import VintageGuard
 from dfri.lake.readers import CachingSeriesReader, LakeSeriesReader
 from dfri.lake.store import AppendOnlyParquetStore, write_deterministic_parquet
-from dfri.nowcast.targets import read_first_print_targets
+from dfri.nowcast.mts import read_mts_first_print_targets
+from dfri.nowcast.targets import FirstPrintTarget, read_first_print_targets
 from dfri.ops.quarterly_refresh import (
     QuarterlyRefreshLedger,
     QuarterlyRefreshRecord,
@@ -49,7 +50,11 @@ from dfri.publish.ledger import (
     PublicationRecord,
     publication_record,
 )
-from dfri.publish.live_calibration import LiveCalibration, calculate_live_calibration
+from dfri.publish.live_calibration import (
+    LiveCalibration,
+    calculate_live_calibration,
+    calculate_live_calibration_by_series,
+)
 
 METHODOLOGY_VERSION: Final = DEFAULT_METHODOLOGY_VERSION
 LICENSE: Final = (
@@ -59,11 +64,15 @@ LICENSE_URL: Final = "https://creativecommons.org/licenses/by-nc/4.0/"
 TARGET_LABELS: Final = {
     "DELTA_DTCTLR.M": "Revolving credit flow",
     "DELTA_DTCTLN.M": "Nonrevolving credit flow",
+    "MTS:DEFICIT.M": "Federal deficit",
+    "MTS:OUTLAYS.M": "Federal outlays",
 }
 NOWCAST_SOURCE_URLS: Final = {
     "h8_archive": "https://www.federalreserve.gov/releases/h8/",
     "marts_archive": "https://www.census.gov/retail/marts/historic_releases.html",
     "g19_archive": "https://www.federalreserve.gov/releases/g19/",
+    "mts_dataset": "https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/",
+    "mts_archive": "https://fiscal.treasury.gov/accounting/monthly-treasury-statement/previous",
 }
 FLOW_PRODUCT_LABELS: Final = {
     "revolving_credit": "Revolving",
@@ -222,10 +231,22 @@ def _build_scoreboard(
     if not isinstance(commercial_contact, str) or not commercial_contact.strip():
         raise SitePublishError("Branding contact must be a non-empty string")
     backtest = _load_object(root / "reports" / "m2_backtest.json", "backtest")
+    mts_backtest_path = root / "reports" / "mts_backtest.json"
+    mts_backtest = (
+        _load_object(mts_backtest_path, "MTS backtest")
+        if mts_backtest_path.exists()
+        else {"targets": []}
+    )
+    calibration_backtest = {
+        "targets": [
+            *cast(list[object], backtest["targets"]),
+            *cast(list[object], mts_backtest["targets"]),
+        ]
+    }
     attribution_bundle = load_attribution_bundle()
     attribution = run_attribution(attribution_bundle)
     original_attribution = run_attribution(load_attribution_bundle("1.1.0"))
-    prior_attribution = run_attribution(load_attribution_bundle("1.1.1"))
+    prior_attribution = run_attribution(load_attribution_bundle("1.2.0"))
     coverage = _load_object(
         root / "src" / "dfri" / "attribution" / "coverage_registry_v1_1.json",
         "coverage registry",
@@ -262,17 +283,39 @@ def _build_scoreboard(
     graded_series = {
         item.target_series for item in predictions if item.prediction_id in grade_by_id
     }
-    target_histories = {}
+    target_histories: dict[str, tuple[FirstPrintTarget, ...]] = {}
     if graded_series:
         guard = VintageGuard(CachingSeriesReader(LakeSeriesReader(raw_store)))
-        target_histories = {
-            target_series: read_first_print_targets(guard, target_series, published_at)
-            for target_series in sorted(graded_series)
-        }
-    live_calibration = calculate_live_calibration(
+        target_histories = {}
+        for target_series in sorted(graded_series):
+            if target_series.startswith("MTS:"):
+                target_histories[target_series] = read_mts_first_print_targets(
+                    guard, target_series, published_at
+                )
+            else:
+                target_histories[target_series] = read_first_print_targets(
+                    guard, target_series, published_at
+                )
+    live_calibration_by_series = calculate_live_calibration_by_series(
         predictions,
         selected_grades,
         target_histories,
+        calibration_backtest,
+    )
+    g19_predictions = tuple(
+        item for item in predictions if not item.target_series.startswith("MTS:")
+    )
+    g19_prediction_ids = {item.prediction_id for item in g19_predictions}
+    g19_grades = tuple(item for item in selected_grades if item.prediction_id in g19_prediction_ids)
+    g19_histories = {
+        series_id: history
+        for series_id, history in target_histories.items()
+        if not series_id.startswith("MTS:")
+    }
+    legacy_live_calibration = calculate_live_calibration(
+        g19_predictions,
+        g19_grades,
+        g19_histories,
         backtest,
     )
     publications = PublicationLedger(ledger_store)
@@ -348,7 +391,13 @@ def _build_scoreboard(
         **build_meta,
         "excluded_prepublication_count": excluded_count,
         "row_count": len(prediction_rows),
-        "live_calibration": live_calibration.feed(),
+        "live_calibration_by_series": {
+            series_id: calibration.feed()
+            for series_id, calibration in live_calibration_by_series.items()
+        },
+        # Compatibility field: preserve the pre-MTS G.19-only aggregate byte contract.
+        # All current UI and new consumers use live_calibration_by_series.
+        "live_calibration": legacy_live_calibration.feed(),
     }
     _write_json(feeds / "nowcast_predictions.json", {"meta": meta, "data": prediction_rows})
     _write_csv(feeds / "nowcast_predictions.csv", prediction_rows, _prediction_columns())
@@ -363,11 +412,15 @@ def _build_scoreboard(
     company_rows = [
         {column: row[column] for column in _company_columns()} for row in company_rows_v2
     ]
-    assumption_rows = _assumption_feed_rows(
+    assumption_rows_v2 = _assumption_feed_rows(
         attribution_bundle,
         publication_mode=publication_mode,
         commercial_contact=commercial_contact,
     )
+    assumption_rows = [
+        {column: row.get(column, "") for column in _assumption_columns()}
+        for row in assumption_rows_v2
+    ]
     attribution_meta = {
         **build_meta,
         "data_vintage": attribution.data_vintage,
@@ -400,6 +453,12 @@ def _build_scoreboard(
     }
     _write_json(feeds / "assumptions.json", {"meta": assumption_meta, "data": assumption_rows})
     _write_csv(feeds / "assumptions.csv", assumption_rows, _assumption_columns())
+    assumption_meta_v2 = {**assumption_meta, "schema_version": "v2"}
+    _write_json(
+        feeds_v2 / "assumptions.json",
+        {"meta": assumption_meta_v2, "data": assumption_rows_v2},
+    )
+    _write_csv(feeds_v2 / "assumptions.csv", assumption_rows_v2, _assumption_columns_v2())
     exclusion_rows = _exclusion_feed_rows(
         coverage,
         common=attribution_meta,
@@ -456,7 +515,14 @@ def _build_scoreboard(
         )
     ]
     summary = _summary(display_rows, backtest)
-    calibration_display = _calibration_display(live_calibration)
+    calibration_display = [
+        {
+            "target_series": series_id,
+            "target_label": TARGET_LABELS[series_id],
+            **_calibration_display(calibration),
+        }
+        for series_id, calibration in live_calibration_by_series.items()
+    ]
     first_grade_callout = _first_grade_callout(predictions, grade_by_id, backtest)
     environment = Environment(
         loader=FileSystemLoader(root / "site" / "templates"),
@@ -595,7 +661,7 @@ def _build_scoreboard(
             "active_nav": "methodology",
             "title": "Methodology sensitivity",
             "description": (
-                "Immutable comparison of DFRI methodology versions 1.1.0, 1.1.1, and 1.2.0."
+                "Immutable comparison of DFRI methodology versions 1.1.0, 1.2.0, and 1.2.1."
             ),
             "original_methodology_version": original_attribution.methodology_version,
             "prior_methodology_version": prior_attribution.methodology_version,
@@ -756,6 +822,7 @@ def _display_row(prediction: PredictionRecord, grade: GradeRecord | None) -> dic
     label = TARGET_LABELS.get(prediction.target_series)
     if label is None:
         raise SitePublishError(f"No public target label for {prediction.target_series}")
+    is_mts = prediction.target_series.startswith("MTS:")
     return {
         **prediction.row(),
         "target_label": label,
@@ -773,6 +840,26 @@ def _display_row(prediction: PredictionRecord, grade: GradeRecord | None) -> dic
         "abs_error_display": _number(grade.abs_error) if grade else "—",
         "abs_error_sort": grade.abs_error if grade else "",
         "vintage_url": grade.vintage_url if grade else None,
+        "source_family": "Treasury MTS" if is_mts else "Federal Reserve G.19",
+        "unit_context": (
+            "Unadjusted monthly total · millions of U.S. dollars"
+            if is_mts
+            else "Seasonally adjusted · millions of U.S. dollars"
+        ),
+        "permalink_unit_context": (
+            "unadjusted monthly total · $M" if is_mts else "seasonally adjusted monthly flow · $M"
+        ),
+        "input_source_label": (
+            "U.S. Treasury MTS dated issues"
+            if is_mts
+            else "Federal Reserve H.8 and Census MARTS dated releases"
+        ),
+        "grading_source_label": (
+            "U.S. Treasury dated MTS issue"
+            if is_mts
+            else "Federal Reserve Board dated G.19 release"
+        ),
+        "is_mts": is_mts,
     }
 
 
@@ -1030,6 +1117,7 @@ def _assumption_feed_rows(
             "sensitivity_note": item.sensitivity_note,
             "version": item.version,
             "active": item.active,
+            "review_status": item.review_status,
             **common,
         }
         for item in bundle.assumptions
@@ -1565,6 +1653,7 @@ def _assumption_display(
         "source_note": degradation.reason if degradation is not None else "",
         "criticality_rating": item.criticality_rating,
         "criticality_dependency_share": f"{item.criticality_dependency_share * 100:.1f}%",
+        "review_status": item.review_status,
     }
 
 
@@ -1585,10 +1674,16 @@ def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
                 "columns": _column_docs(_scoreboard_columns()),
                 "metadata": {
                     "live_calibration": (
-                        "Running coverage and error statistics computed only from live grades; "
+                        "Compatibility view of live grades in the pre-MTS G.19-only aggregate. "
+                        "It excludes every Treasury series; new consumers should use the "
+                        "per-series field."
+                    ),
+                    "live_calibration_by_series": (
+                        "Per-series running coverage and error statistics computed only from "
+                        "live grades; no calibration statistic blends target series. "
                         "the naive comparator is refit using first prints available when each "
                         "prediction was recorded."
-                    )
+                    ),
                 },
                 "invariants": [
                     {
@@ -1648,6 +1743,16 @@ def _feed_schema_v2(common: Mapping[str, object]) -> dict[str, object]:
                     "source_degradations": (
                         "Active fallback IDs, reasons, multipliers, and effective assumption bands"
                     ),
+                },
+            },
+            "assumptions": {
+                "formats": ["csv", "json"],
+                "columns": _column_docs(_assumption_columns_v2()),
+                "metadata": {
+                    "review_status": (
+                        "APPROVED for new numerical mappings; APPROVED_LEGACY for assumptions "
+                        "accepted before the explicit review-status contract."
+                    )
                 },
             },
         },
@@ -1755,6 +1860,12 @@ def _assumption_columns() -> list[str]:
         "license_url",
         "commercial_license_contact",
     ]
+
+
+def _assumption_columns_v2() -> list[str]:
+    columns = _assumption_columns()
+    insertion = columns.index("active") + 1
+    return [*columns[:insertion], "review_status", *columns[insertion:]]
 
 
 def _exclusion_columns() -> list[str]:

@@ -20,6 +20,17 @@ def test_attribution_link_inventory_is_https_complete_and_unique() -> None:
     assert {item.tier1_source_url for item in bundle.companies if item.tier1_source_url} <= set(
         links
     )
+    review = json.loads(
+        (
+            Path(__file__).parents[2]
+            / "src"
+            / "dfri"
+            / "attribution"
+            / "tier1_evidence_review_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    review_links = {url for item in review["items"] for url in item["evidence_urls"]}
+    assert review_links <= set(links)
 
 
 def test_link_checker_records_green_http_sources(tmp_path: Path) -> None:

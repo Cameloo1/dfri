@@ -79,6 +79,7 @@ def test_every_enabled_source_contract_permits_required_operations() -> None:
         "census",
         "new_york_fed",
         "sec_edgar",
+        "treasury_fiscal_data",
         "wikimedia",
     }
     for contract in contracts.values():

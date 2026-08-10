@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Methodology comparison</h1>
-<p class="lede">Methodologies {{ original_methodology_version }} and {{ prior_methodology_version }} remain reproducible as published. Methodology {{ current_methodology_version }} preserves the same 50-company universe and credit-flow inputs while replacing the auto-allocation assumption with reconciled FFIEC, NCUA, Board G.19, and SEC Auto ABS evidence.</p>
+<p class="lede">Methodologies {{ original_methodology_version }} and {{ prior_methodology_version }} remain reproducible as published. Methodology {{ current_methodology_version }} preserves the same 50-company universe and credit-flow inputs while adding the reviewed, filing-backed TJX private-label-card lane.</p>
 
 <section class="grid">
   <article class="card metric" data-figure="dfr"><div class="figure-label">Methodology {{ original_methodology_version }} · estimated DFR%</div><div class="number secondary">{{ original.mid }}</div><div class="figure-evidence"><span>80% band {{ original.low }}–{{ original.high }} · {{ original.weighting }}</span><span class="tier-badge tier-mixed">Tier 1–3</span><a href="../index.html">Method</a></div></article>

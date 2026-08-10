@@ -262,8 +262,8 @@ try {
         throw new Error("No-JavaScript baseline disclosure did not expand natively");
       }
       const baselineRows = await disclosure.locator('tr[data-lift-status="baseline-only"]').count();
-      if (baselineRows !== 38) {
-        throw new Error(`No-JavaScript baseline disclosure exposes ${baselineRows} rows, not 38`);
+      if (baselineRows !== 37) {
+        throw new Error(`No-JavaScript baseline disclosure exposes ${baselineRows} rows, not 37`);
       }
     }
   }

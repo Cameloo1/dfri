@@ -1,4 +1,4 @@
-.PHONY: bootstrap privacy-check privacy-staged registries-check criticality-check lint typecheck test replay determinism verify live-smoke board-backfill board-snapshot board-targets census-archive context-history nyfed-history health spot-audit membership-verify filing-facts auto-abs card-trust backtest scoreboard-predict scoreboard-grade attribution quarterly-refresh recompute-check provenance-check api-openapi api site-quality publish-scoreboard publish
+.PHONY: bootstrap privacy-check privacy-staged registries-check criticality-check lint typecheck test replay determinism verify live-smoke board-backfill board-snapshot board-targets treasury-mts mts-backtest mts-predict mts-grade census-archive context-history nyfed-history health spot-audit membership-verify filing-facts auto-abs card-trust backtest scoreboard-predict scoreboard-grade attribution quarterly-refresh recompute-check provenance-check api-openapi api site-quality publish-scoreboard publish
 
 AS_OF ?= 2024-01-31
 BOARD_START ?= 2015-01-01
@@ -6,6 +6,9 @@ BOARD_RELEASE ?= all
 BOARD_ARGS ?=
 BOARD_TARGET_START ?= 2015-01-01
 BOARD_TARGET_ARGS ?=
+MTS_START ?= 2017-12-31
+MTS_ARGS ?=
+MTS_BACKTEST_AS_OF ?= 2026-08-10T23:59:00+00:00
 CENSUS_ARCHIVE_START ?= 2015-01-01
 CENSUS_ARCHIVE_ARGS ?=
 CONTEXT_START ?= 2015-01-01
@@ -70,6 +73,18 @@ board-snapshot:
 
 board-targets:
 	uv run python -m dfri.ingest.board_targets --start $(BOARD_TARGET_START) $(BOARD_TARGET_ARGS)
+
+treasury-mts:
+	uv run python -m dfri.ingest.treasury_mts --start $(MTS_START) $(MTS_ARGS)
+
+mts-backtest:
+	uv run python -m dfri.mts_backtest --as-of $(MTS_BACKTEST_AS_OF) --output reports/mts_backtest.json
+
+mts-predict:
+	uv run python -m dfri.scoreboard mts-predict $(SCOREBOARD_ARGS)
+
+mts-grade:
+	uv run python -m dfri.scoreboard mts-grade $(SCOREBOARD_ARGS)
 
 census-archive:
 	uv run python -m dfri.ingest.census_archive --start $(CENSUS_ARCHIVE_START) $(CENSUS_ARCHIVE_ARGS)

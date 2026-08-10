@@ -437,8 +437,13 @@ def _validate_grade(record: GradeRecord) -> None:
         raise LedgerError("Grade contains a non-finite value")
     if record.abs_error < 0:
         raise LedgerError("Grade absolute error cannot be negative")
-    if not record.vintage_url.startswith("https://www.federalreserve.gov/releases/g19/"):
-        raise LedgerError("Grade vintage is not a Board G.19 release URL")
+    permitted_vintage = record.vintage_url.startswith(
+        "https://www.federalreserve.gov/releases/g19/"
+    ) or record.vintage_url.startswith(
+        "https://fiscaldata.treasury.gov/static-data/published-reports/mts/"
+    )
+    if not permitted_vintage:
+        raise LedgerError("Grade vintage is not a permitted dated first-print URL")
     if record.graded_at.tzinfo is None or record.graded_at.utcoffset() is None:
         raise LedgerError("Grade timestamp must be timezone-aware")
 

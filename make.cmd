@@ -8,6 +8,8 @@ if "%AS_OF%"=="" set "AS_OF=2024-01-31"
 if "%BOARD_START%"=="" set "BOARD_START=2015-01-01"
 if "%BOARD_RELEASE%"=="" set "BOARD_RELEASE=all"
 if "%BOARD_TARGET_START%"=="" set "BOARD_TARGET_START=2015-01-01"
+if "%MTS_START%"=="" set "MTS_START=2017-12-31"
+if "%MTS_BACKTEST_AS_OF%"=="" set "MTS_BACKTEST_AS_OF=2026-08-10T23:59:00+00:00"
 if "%CENSUS_ARCHIVE_START%"=="" set "CENSUS_ARCHIVE_START=2015-01-01"
 if "%CONTEXT_START%"=="" set "CONTEXT_START=2015-01-01"
 if "%CONTEXT_SOURCE%"=="" set "CONTEXT_SOURCE=all"
@@ -120,6 +122,26 @@ if /I "%TARGET%"=="board-snapshot" (
 
 if /I "%TARGET%"=="board-targets" (
   uv run python -m dfri.ingest.board_targets --start %BOARD_TARGET_START% %BOARD_TARGET_ARGS%
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="treasury-mts" (
+  uv run python -m dfri.ingest.treasury_mts --start %MTS_START% %MTS_ARGS%
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="mts-backtest" (
+  uv run python -m dfri.mts_backtest --as-of %MTS_BACKTEST_AS_OF% --output reports\mts_backtest.json
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="mts-predict" (
+  uv run python -m dfri.scoreboard mts-predict %SCOREBOARD_ARGS%
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="mts-grade" (
+  uv run python -m dfri.scoreboard mts-grade %SCOREBOARD_ARGS%
   exit /b !ERRORLEVEL!
 )
 

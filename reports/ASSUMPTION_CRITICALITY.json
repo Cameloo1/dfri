@@ -675,10 +675,10 @@
     {
       "assumption_id": "A-T1-AMZN-PAYMENTS-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.015089313517652516,
+      "dependency_share": 0.01499878497013324,
       "fallback_source_ids": [],
       "independent_fallback_count": 0,
-      "numerator_dependency_share": 0.015089313517652516,
+      "numerator_dependency_share": 0.01499878497013324,
       "primary_source_id": "sec_company_filing",
       "rating": "NONCRITICAL",
       "warning": ""
@@ -686,10 +686,10 @@
     {
       "assumption_id": "A-T1-BBY-CARD-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.003772328379413129,
+      "dependency_share": 0.00374969624253331,
       "fallback_source_ids": [],
       "independent_fallback_count": 0,
-      "numerator_dependency_share": 0.003772328379413129,
+      "numerator_dependency_share": 0.00374969624253331,
       "primary_source_id": "sec_company_filing",
       "rating": "NONCRITICAL",
       "warning": ""
@@ -697,10 +697,10 @@
     {
       "assumption_id": "A-T1-CVNA-FINANCE-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.02645528993354662,
+      "dependency_share": 0.026296571051532304,
       "fallback_source_ids": [],
       "independent_fallback_count": 0,
-      "numerator_dependency_share": 0.02645528993354662,
+      "numerator_dependency_share": 0.026296571051532304,
       "primary_source_id": "sec_company_filing",
       "rating": "NONCRITICAL",
       "warning": ""
@@ -708,12 +708,12 @@
     {
       "assumption_id": "A-T1-F-CAPTIVE-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.1322764496677331,
+      "dependency_share": 0.1314828552576615,
       "fallback_source_ids": [
         "sec_ford_auto_abs"
       ],
       "independent_fallback_count": 1,
-      "numerator_dependency_share": 0.1322764496677331,
+      "numerator_dependency_share": 0.1314828552576615,
       "primary_source_id": "sec_company_filing",
       "rating": "CRITICAL",
       "warning": ""
@@ -721,12 +721,12 @@
     {
       "assumption_id": "A-T1-GM-CAPTIVE-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.1455040946345064,
+      "dependency_share": 0.14463114078342768,
       "fallback_source_ids": [
         "sec_gm_auto_abs"
       ],
       "independent_fallback_count": 1,
-      "numerator_dependency_share": 0.1455040946345064,
+      "numerator_dependency_share": 0.14463114078342768,
       "primary_source_id": "sec_company_filing",
       "rating": "CRITICAL",
       "warning": ""
@@ -734,10 +734,10 @@
     {
       "assumption_id": "A-T1-HD-CARD-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.006035725407061007,
+      "dependency_share": 0.005999513988053296,
       "fallback_source_ids": [],
       "independent_fallback_count": 0,
-      "numerator_dependency_share": 0.006035725407061007,
+      "numerator_dependency_share": 0.005999513988053296,
       "primary_source_id": "sec_company_filing",
       "rating": "NONCRITICAL",
       "warning": ""
@@ -745,10 +745,10 @@
     {
       "assumption_id": "A-T1-LOW-CARD-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.004526794055295755,
+      "dependency_share": 0.004499635491039973,
       "fallback_source_ids": [],
       "independent_fallback_count": 0,
-      "numerator_dependency_share": 0.004526794055295755,
+      "numerator_dependency_share": 0.004499635491039973,
       "primary_source_id": "sec_company_filing",
       "rating": "NONCRITICAL",
       "warning": ""
@@ -756,10 +756,21 @@
     {
       "assumption_id": "A-T1-TGT-CARD-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.004526794055295755,
+      "dependency_share": 0.004499635491039973,
       "fallback_source_ids": [],
       "independent_fallback_count": 0,
-      "numerator_dependency_share": 0.004526794055295755,
+      "numerator_dependency_share": 0.004499635491039973,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-TJX-SYF-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.005999513988053296,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.005999513988053296,
       "primary_source_id": "sec_company_filing",
       "rating": "NONCRITICAL",
       "warning": ""
@@ -767,10 +778,10 @@
     {
       "assumption_id": "A-T1-TSCO-CARD-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.0011316985138239387,
+      "dependency_share": 0.0011249088727599932,
       "fallback_source_ids": [],
       "independent_fallback_count": 0,
-      "numerator_dependency_share": 0.0011316985138239387,
+      "numerator_dependency_share": 0.0011249088727599932,
       "primary_source_id": "sec_company_filing",
       "rating": "NONCRITICAL",
       "warning": ""
@@ -778,10 +789,10 @@
     {
       "assumption_id": "A-T1-ULTA-CARD-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.0011316985138239387,
+      "dependency_share": 0.0011249088727599932,
       "fallback_source_ids": [],
       "independent_fallback_count": 0,
-      "numerator_dependency_share": 0.0011316985138239387,
+      "numerator_dependency_share": 0.0011249088727599932,
       "primary_source_id": "sec_company_filing",
       "rating": "NONCRITICAL",
       "warning": ""
@@ -789,10 +800,10 @@
     {
       "assumption_id": "A-T1-WMT-FINANCE-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.006035725407061007,
+      "dependency_share": 0.005999513988053296,
       "fallback_source_ids": [],
       "independent_fallback_count": 0,
-      "numerator_dependency_share": 0.006035725407061007,
+      "numerator_dependency_share": 0.005999513988053296,
       "primary_source_id": "sec_company_filing",
       "rating": "NONCRITICAL",
       "warning": ""
@@ -800,14 +811,14 @@
     {
       "assumption_id": "A-T2-NONREV-AUTO-002",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.21945136789400338,
+      "dependency_share": 0.2181347663426259,
       "fallback_source_ids": [
         "ncua_call_reports",
         "board_g19_motor_vehicle",
         "sec_auto_abs"
       ],
       "independent_fallback_count": 3,
-      "numerator_dependency_share": 0.21945136789400338,
+      "numerator_dependency_share": 0.2181347663426259,
       "primary_source_id": "ffiec_call_reports",
       "rating": "CRITICAL",
       "warning": ""
@@ -815,12 +826,12 @@
     {
       "assumption_id": "A-T2-REV-GENERAL-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.2263397027647878,
+      "dependency_share": 0.22498177455199864,
       "fallback_source_ids": [
         "bea_pce"
       ],
       "independent_fallback_count": 1,
-      "numerator_dependency_share": 0.2263397027647878,
+      "numerator_dependency_share": 0.22498177455199864,
       "primary_source_id": "census_marts",
       "rating": "CRITICAL",
       "warning": ""
@@ -828,12 +839,12 @@
     {
       "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.13227644966773314,
+      "dependency_share": 0.13148285525766157,
       "fallback_source_ids": [
         "board_g19_nonrevolving"
       ],
       "independent_fallback_count": 1,
-      "numerator_dependency_share": 0.13227644966773314,
+      "numerator_dependency_share": 0.13148285525766157,
       "primary_source_id": "bea_pce",
       "rating": "CRITICAL",
       "warning": ""
@@ -841,18 +852,18 @@
     {
       "assumption_id": "A-T3-REV-FUNGIBLE-001",
       "denominator_dependency_share": 0.0,
-      "dependency_share": 0.07544656758826256,
+      "dependency_share": 0.07499392485066618,
       "fallback_source_ids": [
         "census_marts"
       ],
       "independent_fallback_count": 1,
-      "numerator_dependency_share": 0.07544656758826256,
+      "numerator_dependency_share": 0.07499392485066618,
       "primary_source_id": "bea_pce",
       "rating": "CRITICAL",
       "warning": ""
     }
   ],
-  "methodology_version": "1.2.0",
+  "methodology_version": "1.2.1",
   "policy_id": "midpoint-dependency-v1",
   "rating_basis": "Maximum of each assumption's share of midpoint attributed numerator and midpoint covered-company denominator.",
   "schema_version": 1,

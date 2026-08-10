@@ -15,7 +15,7 @@ class AttributionRegistryError(RuntimeError):
     """A source registry cannot support a reproducible attribution."""
 
 
-DEFAULT_METHODOLOGY_VERSION: Final = "1.2.0"
+DEFAULT_METHODOLOGY_VERSION: Final = "1.2.1"
 
 
 @dataclass(frozen=True)
@@ -42,6 +42,7 @@ class Assumption:
     sensitivity_note: str
     version: str
     active: bool
+    review_status: str
     primary_source_id: str
     fallback_source_ids: tuple[str, ...]
     fallback_band_multiplier: float
@@ -145,12 +146,24 @@ _RESOURCE_FILES: Final = {
         "company_inputs_v1_2.json",
         "flow_inputs_v1_2.json",
     ),
+    "1.2.1": (
+        "assumption_registry_v1_2_1.json",
+        "matrix_a_v1_2_1.json",
+        "matrix_b_v1_2_1.json",
+        "company_inputs_v1_2_1.json",
+        "flow_inputs_v1_2_1.json",
+    ),
 }
 _AUXILIARY_RESOURCE_FILES: Final = {
     "1.2.0": (
         "auto_allocation_evidence_v1.json",
         "source_registry_v1.json",
-    )
+    ),
+    "1.2.1": (
+        "auto_allocation_evidence_v1.json",
+        "source_registry_v1.json",
+        "tier1_evidence_review_v1.json",
+    ),
 }
 
 
@@ -209,7 +222,7 @@ def load_attribution_bundle(
     if bundle.methodology_version != methodology_version:
         raise AttributionRegistryError("Loaded methodology version differs from request")
     validate_attribution_bundle(bundle)
-    if methodology_version == "1.2.0":
+    if methodology_version in {"1.2.0", "1.2.1"}:
         from dfri.attribution.auto_allocation import load_auto_allocation_reconciliation
 
         reconciliation = load_auto_allocation_reconciliation()
@@ -259,7 +272,11 @@ def validate_attribution_bundle(bundle: AttributionBundle) -> None:
             raise AttributionRegistryError(
                 f"Assumption evidence is incomplete: {assumption_item.assumption_id}"
             )
-        if bundle.methodology_version == "1.2.0":
+        if assumption_item.version == "1.2.1" and assumption_item.review_status != "APPROVED":
+            raise AttributionRegistryError(
+                f"New assumption is not owner-review ready: {assumption_item.assumption_id}"
+            )
+        if bundle.methodology_version in {"1.2.0", "1.2.1"}:
             if not assumption_item.primary_source_id:
                 raise AttributionRegistryError(
                     f"Assumption primary source is missing: {assumption_item.assumption_id}"
@@ -312,9 +329,13 @@ def validate_attribution_bundle(bundle: AttributionBundle) -> None:
                 )
 
     tickers = {item.ticker for item in bundle.companies}
-    expected_count = {"1.0.0": 10, "1.1.0": 50, "1.1.1": 50, "1.2.0": 50}.get(
-        bundle.methodology_version
-    )
+    expected_count = {
+        "1.0.0": 10,
+        "1.1.0": 50,
+        "1.1.1": 50,
+        "1.2.0": 50,
+        "1.2.1": 50,
+    }.get(bundle.methodology_version)
     if expected_count is None:
         raise AttributionRegistryError("Attribution methodology version is not registered")
     if len(tickers) != expected_count or len(tickers) != len(bundle.companies):
@@ -504,6 +525,7 @@ def _assumption(item: dict[str, Any]) -> Assumption:
         sensitivity_note=_required_str(item, "sensitivity_note"),
         version=_required_str(item, "version"),
         active=_required_bool(item, "active"),
+        review_status=_metadata_str(item, "review_status") or "APPROVED_LEGACY",
         primary_source_id=_metadata_str(item, "primary_source_id"),
         fallback_source_ids=_optional_string_tuple(item, "fallback_source_ids"),
         fallback_band_multiplier=_optional_float(item, "fallback_band_multiplier", 1.0),

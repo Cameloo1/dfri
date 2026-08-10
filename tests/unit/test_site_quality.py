@@ -233,7 +233,8 @@ def test_quality_gate_reserves_measured_for_explicit_tier_one_context(tmp_path: 
     page = root / "scoreboard" / "index.html"
     page.write_text(
         page.read_text(encoding="utf-8").replace(
-            "Each row is an immutable forecast", "Each measured row is an immutable forecast"
+            "Each row is an immutable monthly forecast",
+            "Each measured row is an immutable monthly forecast",
         ),
         encoding="utf-8",
     )
