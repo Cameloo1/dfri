@@ -533,6 +533,7 @@ def _build_scoreboard(
     assets = output_root / "assets"
     _copy_stylesheet(root / "site" / "static" / "site.css", assets / "site.css")
     _copy(root / "site" / "static" / "site.js", assets / "site.js")
+    shutil.copytree(root / "site" / "static" / "fonts", assets / "fonts")
     display_rows = [
         _display_row(item, grade_by_id.get(item.prediction_id))
         for item in sorted(
@@ -860,7 +861,12 @@ def _build_scoreboard(
             },
         )
     files = sorted(
-        path for path in output_root.rglob("*") if path.is_file() and path.name != "manifest.json"
+        (
+            path
+            for path in output_root.rglob("*")
+            if path.is_file() and path != output_root / "manifest.json"
+        ),
+        key=lambda path: path.relative_to(output_root).as_posix(),
     )
     manifest = {
         "methodology_version": METHODOLOGY_VERSION,

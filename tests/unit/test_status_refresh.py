@@ -54,6 +54,9 @@ def test_status_refresh_changes_only_status_documents_and_manifest(tmp_path: Pat
         "status/banner.html",
         "v1/status.json",
     }
+    refreshed_manifest = json.loads(after["manifest.json"])
+    refreshed_paths = [entry["path"] for entry in refreshed_manifest["files"]]
+    assert refreshed_paths == sorted(refreshed_paths)
     status = json.loads(after["v1/status.json"])
     assert status["publication_mode"] == "live"
     assert b"Automation stale" in after["status/banner.html"]

@@ -283,6 +283,39 @@ def test_quality_gate_requires_sitewide_disclaimer_and_license(tmp_path: Path) -
         check_site(root)
 
 
+def test_quality_gate_rejects_missing_local_font(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    (root / "assets" / "fonts" / "newsreader-latin-400-700.woff2").unlink()
+
+    with pytest.raises(SiteQualityError, match="approved asset set"):
+        check_site(root)
+
+
+def test_quality_gate_rejects_remote_font_source(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    css = root / "assets" / "site.css"
+    css.write_text(
+        css.read_text(encoding="utf-8").replace(
+            'url("fonts/newsreader-latin-400-700.woff2")',
+            "url(https://fonts.example/newsreader.woff2)",
+            1,
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match=r"forbidden treatment: url\(http"):
+        check_site(root)
+
+
+def test_quality_gate_rejects_legacy_font_fallback(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    css = root / "assets" / "site.css"
+    css.write_text(css.read_text(encoding="utf-8") + "\nbody { font-family: Arial; }\n")
+
+    with pytest.raises(SiteQualityError, match="forbidden treatment: Arial"):
+        check_site(root)
+
+
 def test_browser_accessibility_gate_includes_m5_methodology_pages() -> None:
     script = (Path(__file__).parents[2] / "tools" / "axe-check.mjs").read_text(encoding="utf-8")
 

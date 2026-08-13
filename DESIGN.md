@@ -20,11 +20,14 @@ This document changes presentation only. Published content, values, tiers, prove
 
 ## Typography
 
-No font files or remote font requests are permitted.
+Fonts are self-hosted WOFF2 assets. No page makes a remote font request. The exact files, source
+repository commit, SHA-256 hashes, and SIL Open Font License texts are pinned under
+`site/static/fonts/` and enforced by the publication quality gate.
 
-- Display serif: `Iowan Old Style`, `Palatino Linotype`, `Book Antiqua`, `Palatino`, `Georgia`, serif.
-- Body grotesque: `Inter`, `Arial`, `Helvetica Neue`, system-ui, sans-serif. Inter is a fallback name only; the site does not fetch it.
-- Ledger numerals: `SFMono-Regular`, `Cascadia Mono`, `Roboto Mono`, `Consolas`, monospace, with `font-variant-numeric: tabular-nums lining-nums`.
+- Display serif: `Newsreader`, serif.
+- Body grotesque: `IBM Plex Sans`, sans-serif.
+- Ledger numerals: `IBM Plex Mono`, monospace, with
+  `font-variant-numeric: tabular-nums lining-nums`.
 
 Mobile-first type scale. Heading tokens are deliberately compressed; only figure tokens may become
 display-sized:
@@ -199,7 +202,7 @@ The system applies to every generated surface:
 ## Performance and accessibility budget
 
 - No remote fonts, images, trackers, cookies, or third-party scripts.
-- Shared CSS and enhancement JavaScript remain the only page assets.
+- Shared CSS, enhancement JavaScript, and the pinned local WOFF2 package are the only page assets.
 - Every generated page plus shared assets must remain below 500 KB.
 - Estimated first load on the existing 4G model must remain below 1 second.
 - Minimum tested text contrast is 4.5:1.
