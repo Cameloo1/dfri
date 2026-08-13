@@ -1,0 +1,53 @@
+{
+  "license": "SIL Open Font License 1.1",
+  "repository": "https://github.com/google/fonts",
+  "repository_commit": "038b637da7b3fd956a4ed93ffc607c3d5e4ce172",
+  "source": "Google Fonts",
+  "assets": [
+    {
+      "family": "Newsreader",
+      "file": "newsreader-latin-400-700.woff2",
+      "license_file": "OFL-Newsreader.txt",
+      "sha256": "62981321d9a3cc7a61a73792729043703fd6112da86e8ec848bb57f088578757",
+      "source_url": "https://fonts.gstatic.com/s/newsreader/v26/cY9VfjOCX1hbuyalUrK49dLac06G1ZGsZBtoBAbNJYQ.woff2",
+      "style": "normal",
+      "weight": "400 700"
+    },
+    {
+      "family": "IBM Plex Sans",
+      "file": "ibm-plex-sans-latin-400-700.woff2",
+      "license_file": "OFL-IBM-Plex-Sans.txt",
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+      "source_url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+      "style": "normal",
+      "weight": "400 700"
+    },
+    {
+      "family": "IBM Plex Mono",
+      "file": "ibm-plex-mono-latin-400.woff2",
+      "license_file": "OFL-IBM-Plex-Mono.txt",
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+      "source_url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
+      "style": "normal",
+      "weight": "400"
+    },
+    {
+      "family": "IBM Plex Mono",
+      "file": "ibm-plex-mono-latin-600.woff2",
+      "license_file": "OFL-IBM-Plex-Mono.txt",
+      "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83",
+      "source_url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2",
+      "style": "normal",
+      "weight": "600"
+    },
+    {
+      "family": "IBM Plex Mono",
+      "file": "ibm-plex-mono-latin-700.woff2",
+      "license_file": "OFL-IBM-Plex-Mono.txt",
+      "sha256": "4f84d86cfd060f4ded334358ff8a4c81d4db2ed5addd568359d693f44a87765a",
+      "source_url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3pQPwlBFgg.woff2",
+      "style": "normal",
+      "weight": "700"
+    }
+  ]
+}

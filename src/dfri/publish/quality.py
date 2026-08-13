@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import re
@@ -68,6 +69,29 @@ VOID_HTML_TAGS: Final = frozenset(
         "wbr",
     }
 )
+FONT_ASSET_HASHES: Final = {
+    "newsreader-latin-400-700.woff2": (
+        "62981321d9a3cc7a61a73792729043703fd6112da86e8ec848bb57f088578757"
+    ),
+    "ibm-plex-sans-latin-400-700.woff2": (
+        "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470"
+    ),
+    "ibm-plex-mono-latin-400.woff2": (
+        "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+    ),
+    "ibm-plex-mono-latin-600.woff2": (
+        "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83"
+    ),
+    "ibm-plex-mono-latin-700.woff2": (
+        "4f84d86cfd060f4ded334358ff8a4c81d4db2ed5addd568359d693f44a87765a"
+    ),
+}
+FONT_LICENSE_FILES: Final = {
+    "OFL-Newsreader.txt",
+    "OFL-IBM-Plex-Sans.txt",
+    "OFL-IBM-Plex-Mono.txt",
+}
+FONT_REPOSITORY_COMMIT: Final = "038b637da7b3fd956a4ed93ffc607c3d5e4ce172"
 
 
 class SiteQualityError(RuntimeError):
@@ -257,7 +281,7 @@ def check_site(root: Path) -> SiteQualityReceipt:
         raise SiteQualityError("Versioned event feed is missing or empty")
     if "Automation " not in status_banner.read_text(encoding="utf-8"):
         raise SiteQualityError("Visible no-JavaScript automation status is missing")
-    _check_editorial_contract(css)
+    _check_editorial_contract(root, css)
     minimum_contrast = _check_contrast(css)
     max_path = max(page_sizes, key=page_sizes.__getitem__)
     return SiteQualityReceipt(
@@ -508,9 +532,12 @@ def _check_contrast(css: str) -> float:
     return minimum
 
 
-def _check_editorial_contract(css: str) -> None:
+def _check_editorial_contract(root: Path, css: str) -> None:
     required = (
         "--display:",
+        '--display: "Newsreader", serif',
+        '--body: "IBM Plex Sans", sans-serif',
+        '--mono: "IBM Plex Mono", monospace',
         "--mono:",
         "--verified:",
         "font-variant-numeric: tabular-nums lining-nums",
@@ -526,13 +553,30 @@ def _check_editorial_contract(css: str) -> None:
     missing = [item for item in required if item not in css]
     if missing:
         raise SiteQualityError(f"Editorial ledger CSS lacks required contract: {missing[0]}")
-    forbidden = ("@font-face", "box-shadow:", "filter: drop-shadow", "url(http")
+    forbidden = (
+        "box-shadow:",
+        "filter: drop-shadow",
+        "url(http",
+        "Iowan Old Style",
+        "Palatino Linotype",
+        "Book Antiqua",
+        "Georgia",
+        "Inter",
+        "Arial",
+        "Helvetica Neue",
+        "system-ui",
+        "SFMono-Regular",
+        "Cascadia Mono",
+        "Roboto Mono",
+        "Consolas",
+    )
     used = [item for item in forbidden if item in css]
     if used:
         raise SiteQualityError(f"Editorial ledger CSS contains forbidden treatment: {used[0]}")
     figure_label = re.search(r"\.figure-label\s*\{([^}]*)\}", css, flags=re.DOTALL)
     if figure_label is None or "text-transform" in figure_label.group(1):
         raise SiteQualityError("Figure labels must exist and remain uppercase-free")
+    _check_local_fonts(root, css)
     verified_selectors = [
         selector.strip()
         for selector, declarations in re.findall(r"([^{}]+)\{([^{}]*)\}", css)
@@ -555,6 +599,53 @@ def _check_editorial_contract(css: str) -> None:
             raise SiteQualityError(
                 f"Tier distinction depends on color or lacks texture: {selector}"
             )
+
+
+def _check_local_fonts(root: Path, css: str) -> None:
+    fonts = root / "assets" / "fonts"
+    manifest_path = fonts / "manifest.json"
+    if not manifest_path.is_file():
+        raise SiteQualityError("Missing local font provenance manifest")
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        raise SiteQualityError("Local font provenance manifest is invalid") from exc
+    if manifest.get("repository_commit") != FONT_REPOSITORY_COMMIT:
+        raise SiteQualityError(
+            "Local font provenance is not pinned to the approved repository commit"
+        )
+    entries = manifest.get("assets")
+    if not isinstance(entries, list):
+        raise SiteQualityError("Local font provenance manifest lacks an asset list")
+    declared = {
+        entry.get("file"): entry.get("sha256") for entry in entries if isinstance(entry, dict)
+    }
+    if declared != FONT_ASSET_HASHES:
+        raise SiteQualityError(
+            "Local font provenance manifest does not match the approved asset set"
+        )
+    actual_font_files = {path.name for path in fonts.glob("*.woff2")}
+    if actual_font_files != set(FONT_ASSET_HASHES):
+        raise SiteQualityError("Published local font files do not match the approved asset set")
+    for filename, expected_hash in FONT_ASSET_HASHES.items():
+        path = fonts / filename
+        actual_hash = hashlib.sha256(path.read_bytes()).hexdigest()
+        if actual_hash != expected_hash:
+            raise SiteQualityError(f"Local font checksum mismatch: {filename}")
+        if f'url("fonts/{filename}") format("woff2")' not in css:
+            raise SiteQualityError(f"Local font asset is not declared in CSS: {filename}")
+    for filename in FONT_LICENSE_FILES:
+        license_path = fonts / filename
+        license_text = license_path.read_text(encoding="utf-8") if license_path.is_file() else ""
+        if "SIL OPEN FONT LICENSE Version 1.1" not in license_text:
+            raise SiteQualityError(f"Local font license is missing or invalid: {filename}")
+    font_faces = re.findall(r"@font-face\s*\{(.*?)\}", css, flags=re.DOTALL)
+    if len(font_faces) != len(FONT_ASSET_HASHES):
+        raise SiteQualityError(
+            "Editorial ledger CSS does not declare the complete approved font set"
+        )
+    if any("font-display: swap" not in face for face in font_faces):
+        raise SiteQualityError("Every local font face must use font-display: swap")
 
 
 def _contrast(first: str, second: str) -> float:

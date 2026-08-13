@@ -226,13 +226,22 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     # The tree-wide cap guards runaway duplication; the product's hard 500 KB budget is checked
     # per rendered page below. MTS adds two targets and per-series calibration metadata, while
     # deterministic metadata-only social previews add one compact image per stable URL. Visible
-    # screen-reader-equivalent tables intentionally duplicate chart values in the HTML tree; the
-    # product's hard budget remains the per-page 500 KB gate.
-    assert first.total_bytes < 2_100_000
+    # screen-reader-equivalent tables intentionally duplicate chart values in the HTML tree, and
+    # the self-hosted font package is separately capped below. The product's hard budget remains
+    # the per-page 500 KB gate.
+    assert first.total_bytes < 2_300_000
     assert all(
         line == line.lstrip()
         for line in (output / "index.html").read_text(encoding="utf-8").splitlines()
     )
+    font_package_bytes = sum(
+        path.stat().st_size for path in (output / "assets" / "fonts").rglob("*") if path.is_file()
+    )
+    assert font_package_bytes < 170_000
+    manifest = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
+    manifest_paths = [entry["path"] for entry in manifest["files"]]
+    assert manifest_paths == sorted(manifest_paths)
+    assert "assets/fonts/manifest.json" in manifest_paths
     assert b"\r\n" not in (output / "assets" / "site.css").read_bytes()
     assert b"\r\n" not in (output / "assets" / "site.js").read_bytes()
 

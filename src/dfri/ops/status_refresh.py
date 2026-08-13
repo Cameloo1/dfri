@@ -152,7 +152,8 @@ def _manifest_entries(manifest: object) -> list[dict[str, object]]:
 
 def _write_manifest(root: Path, prior: dict[str, object]) -> None:
     files = sorted(
-        path for path in root.rglob("*") if path.is_file() and path.name != "manifest.json"
+        (path for path in root.rglob("*") if path.is_file() and path != root / "manifest.json"),
+        key=lambda path: path.relative_to(root).as_posix(),
     )
     manifest = {key: value for key, value in prior.items() if key != "files"}
     manifest["files"] = [
@@ -174,7 +175,7 @@ def _verify_local_tree(root: Path) -> None:
     actual = sorted(
         path.relative_to(root).as_posix()
         for path in root.rglob("*")
-        if path.is_file() and path.name != "manifest.json"
+        if path.is_file() and path != root / "manifest.json"
     )
     if actual != [cast(str, item["path"]) for item in entries]:
         raise StatusRefreshError("Refreshed public tree differs from its manifest")
