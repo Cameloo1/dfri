@@ -1,4 +1,4 @@
-"""Independently recompute three published DFRI company midpoints.
+"""Independently recompute four published DFRI company midpoints.
 
 This script intentionally imports no DFRI code. It reads the committed curated
 inputs directly and performs the formula in DFRI_BUILD_SPEC.md section 7.2.
@@ -12,9 +12,16 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
-DEFAULT_TICKERS = ("AMZN", "GM", "WMT")
+DEFAULT_TICKERS = ("AMZN", "GM", "TJX", "WMT")
 TOLERANCE_PP = 0.5
-CURRENT_INPUT_SUFFIX = "v1_1_1"
+CURRENT_INPUT_SUFFIX = "v1_2_1"
+
+
+def _assumption_mid(row: dict[str, Any]) -> float:
+    value = row.get("mid", row.get("weight_mid"))
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError(f"Assumption has no numeric midpoint: {row.get('assumption_id')}")
+    return float(value)
 
 
 def _read(path: Path) -> dict[str, Any]:
@@ -37,7 +44,7 @@ def recompute(
     tickers: Sequence[str] = DEFAULT_TICKERS,
 ) -> dict[str, Any]:
     assumptions = {
-        row["assumption_id"]: float(row["mid"])
+        row["assumption_id"]: _assumption_mid(row)
         for row in _items(
             _read(inputs_root / f"assumption_registry_{CURRENT_INPUT_SUFFIX}.json"),
             "assumptions",
@@ -104,7 +111,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--published", default=project_root / "reports" / "dfri_companies.json", type=Path
     )
-    parser.add_argument("--tickers", nargs=3, default=DEFAULT_TICKERS)
+    parser.add_argument("--tickers", nargs="+", default=DEFAULT_TICKERS)
     return parser
 
 

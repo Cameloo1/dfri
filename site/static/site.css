@@ -133,12 +133,20 @@ nav a[aria-current="page"] {
   text-underline-offset: 0.35em;
 }
 
-.preview-banner {
+.preview-banner,
+.source-banner {
   background: var(--quiet-fill);
   border-bottom: 1px solid var(--ink);
   font-family: var(--mono);
   font-size: var(--step--1);
   padding: 0.7rem 0;
+}
+
+.source-banner span { display: block; margin-top: 0.35rem; }
+.status-frame { display: block; width: 100%; height: 44px; border: 0; background: var(--paper); }
+.status-frame:focus {
+  outline: 3px double var(--ink);
+  outline-offset: -4px;
 }
 
 main {
@@ -836,12 +844,22 @@ tbody tr:hover { background: color-mix(in srgb, var(--quiet-fill) 52%, transpare
 
 .flow-table-wrap { margin-top: 1rem; }
 .flow-table { min-width: 0; table-layout: fixed; }
-.flow-table th:nth-child(1) { width: 17%; }
-.flow-table th:nth-child(2) { width: 18%; }
-.flow-table th:nth-child(3) { width: 13%; }
+.flow-table th:nth-child(1) { width: 27%; }
+.flow-table th:nth-child(2) { width: 27%; }
+.flow-table th:nth-child(3) { width: 29%; }
 .flow-table th:nth-child(4) { width: 17%; }
-.flow-table th:nth-child(5) { width: 35%; }
 .flow-table td { overflow-wrap: anywhere; }
+
+.chart-equivalent-wrap {
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  margin-top: 1rem;
+}
+
+.chart-equivalent-table { min-width: 0; table-layout: fixed; }
+.chart-equivalent-table th[scope="row"] { width: 34%; }
+.chart-equivalent-table td { overflow-wrap: anywhere; }
+.history-equivalent-table { min-width: 52rem; }
 
 .site-footer {
   border-bottom: 5px solid var(--ink);
@@ -946,6 +964,8 @@ tbody tr:hover { background: color-mix(in srgb, var(--quiet-fill) 52%, transpare
 @media print {
   nav,
   .preview-banner,
+  .source-banner,
+  .status-frame,
   .site-footer { break-inside: avoid; }
   a { text-decoration: none; }
   .card,

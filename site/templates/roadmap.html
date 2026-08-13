@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Roadmap and boundaries</h1>
+<p class="lede">DFRI publishes a deliberately bounded claim: estimates of debt-funded U.S. consumer revenue, plus immutable forecasts that are graded against official first prints. The boundaries below distinguish missing work from work intentionally excluded.</p>
+
+<section class="section-block">
+  <h2>Published now</h2>
+  <ul>
+    <li>A revenue-weighted estimated DFR% band for the covered company universe, with company bands, Tier 1/2/3 shares, assumptions, and provenance.</li>
+    <li>Monthly Federal Reserve G.19 revolving and nonrevolving credit-flow predictions, recorded before release and graded against dated first prints.</li>
+    <li>A deployment candidate for separate Monthly Treasury Statement deficit and outlays clocks. These series remain distinct from consumer-credit attribution and are not blended into DFR%.</li>
+    <li>Aggregate, versioned feeds and append-only prediction, grade, publication, methodology, and restatement records.</li>
+  </ul>
+</section>
+
+<section class="section-block">
+  <h2>Planned</h2>
+  <ul>
+    <li>A byte-identical multi-stream refactor before any new revenue stream is activated.</li>
+    <li>A federal-award stream that keeps observed awards at Tier 1 and the deficit-financed share as a separate Tier 2 assumption.</li>
+    <li>Dedicated no-JavaScript flow views, household-credit gap filling, and a published business-debt feasibility decision.</li>
+    <li>At eight immutable live grades per target series, a live-versus-backtest diagnostic for MAE and interval coverage before any model change is considered.</li>
+  </ul>
+  <p>Planned work is not current measurement. See the public <a href="https://github.com/Cameloo1/dfri/blob/main/PLAN.md">execution plan</a> for acceptance criteria and trigger state.</p>
+</section>
+
+<section class="section-block">
+  <h2>Deliberately excluded</h2>
+  <dl class="definition-list">
+    <dt>FRED and ALFRED</dt><dd>Rejected because their terms conflict with the project's software, storage, and redistribution path. Board release-page data and dated Federal Reserve archives are used instead.</dd>
+    <dt>FINRA margin statistics</dt><dd>Rejected after the terms audit did not establish a clean derivative-redistribution path. No FINRA rows are stored or published.</dd>
+    <dt>NY Fed Household Debt and Credit derivatives</dt><dd>Retired from the active auto-allocation assumption because its share-alike condition conflicts with the blanket non-commercial feed license. Prior methodology remains historical; active values use FFIEC, NCUA, Board G.19, and SEC evidence.</dd>
+    <dt>Market and price data</dt><dd>No TradingView, market-cap, share-price, or paid-vendor feed is used. DFRI is not a valuation, return, or investment-ranking product.</dd>
+    <dt>Personal and loan-level publication</dt><dd>No borrower, account, vehicle, loan-level, or other personal record is redistributed. Public outputs are aggregate.</dd>
+    <dt>Public API server</dt><dd>The FastAPI service is deferred until external demand or unwieldy feed size warrants serverless deployment. Static JSON, CSV, and Parquet feeds are the current access surface.</dd>
+  </dl>
+</section>
+
+<section class="section-block">
+  <h2>Use is not redistribution</h2>
+  <p>Being able to view or download a source does not establish permission to automate retrieval, store it in a reproducible pipeline, or redistribute a derivative under DFRI's license. Each active source must pass those questions separately before ingestion. A conflict produces a blocked or retired source with public evidence, not an improvised substitute.</p>
+  <p><a href="https://github.com/Cameloo1/dfri/blob/main/SOURCE_LICENSING.md">Read the source licensing and fallback record</a> · <a href="{{ root }}methodology/index.html">Read the methodology</a></p>
+</section>
+{% endblock %}

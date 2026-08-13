@@ -15,7 +15,7 @@ class AttributionRegistryError(RuntimeError):
     """A source registry cannot support a reproducible attribution."""
 
 
-DEFAULT_METHODOLOGY_VERSION: Final = "1.1.1"
+DEFAULT_METHODOLOGY_VERSION: Final = "1.2.1"
 
 
 @dataclass(frozen=True)
@@ -42,6 +42,13 @@ class Assumption:
     sensitivity_note: str
     version: str
     active: bool
+    review_status: str
+    primary_source_id: str
+    fallback_source_ids: tuple[str, ...]
+    fallback_band_multiplier: float
+    criticality_policy_id: str
+    criticality_rating: str
+    criticality_dependency_share: float
 
 
 @dataclass(frozen=True)
@@ -132,6 +139,31 @@ _RESOURCE_FILES: Final = {
         "company_inputs_v1_1_1.json",
         "flow_inputs_v1_1_1.json",
     ),
+    "1.2.0": (
+        "assumption_registry_v1_2.json",
+        "matrix_a_v1_2.json",
+        "matrix_b_v1_2.json",
+        "company_inputs_v1_2.json",
+        "flow_inputs_v1_2.json",
+    ),
+    "1.2.1": (
+        "assumption_registry_v1_2_1.json",
+        "matrix_a_v1_2_1.json",
+        "matrix_b_v1_2_1.json",
+        "company_inputs_v1_2_1.json",
+        "flow_inputs_v1_2_1.json",
+    ),
+}
+_AUXILIARY_RESOURCE_FILES: Final = {
+    "1.2.0": (
+        "auto_allocation_evidence_v1.json",
+        "source_registry_v1.json",
+    ),
+    "1.2.1": (
+        "auto_allocation_evidence_v1.json",
+        "source_registry_v1.json",
+        "tier1_evidence_review_v1.json",
+    ),
 }
 
 
@@ -155,6 +187,14 @@ def load_attribution_bundle(
         digest.update(b"\0")
         digest.update(json.dumps(value, sort_keys=True, separators=(",", ":")).encode())
         payloads[filename] = value
+    for filename in _AUXILIARY_RESOURCE_FILES.get(methodology_version, ()):
+        raw = resources.files("dfri.attribution").joinpath(filename).read_bytes()
+        value = json.loads(raw)
+        if not isinstance(value, dict):
+            raise AttributionRegistryError(f"{filename} must contain a JSON object")
+        digest.update(filename.encode())
+        digest.update(b"\0")
+        digest.update(json.dumps(value, sort_keys=True, separators=(",", ":")).encode())
 
     assumptions_payload, matrix_a_payload, matrix_b_payload, companies_payload, flows_payload = (
         payloads[filename] for filename in filenames
@@ -182,6 +222,19 @@ def load_attribution_bundle(
     if bundle.methodology_version != methodology_version:
         raise AttributionRegistryError("Loaded methodology version differs from request")
     validate_attribution_bundle(bundle)
+    if methodology_version in {"1.2.0", "1.2.1"}:
+        from dfri.attribution.auto_allocation import load_auto_allocation_reconciliation
+
+        reconciliation = load_auto_allocation_reconciliation()
+        registered = bundle.assumptions_by_id[reconciliation.assumption_id]
+        if registered.prior != Prior(
+            reconciliation.prior_low,
+            reconciliation.prior_mid,
+            reconciliation.prior_high,
+        ):
+            raise AttributionRegistryError(
+                "Auto-allocation prior differs from the frozen source reconciliation"
+            )
     return bundle
 
 
@@ -219,6 +272,31 @@ def validate_attribution_bundle(bundle: AttributionBundle) -> None:
             raise AttributionRegistryError(
                 f"Assumption evidence is incomplete: {assumption_item.assumption_id}"
             )
+        if assumption_item.version == "1.2.1" and assumption_item.review_status != "APPROVED":
+            raise AttributionRegistryError(
+                f"New assumption is not owner-review ready: {assumption_item.assumption_id}"
+            )
+        if bundle.methodology_version in {"1.2.0", "1.2.1"}:
+            if not assumption_item.primary_source_id:
+                raise AttributionRegistryError(
+                    f"Assumption primary source is missing: {assumption_item.assumption_id}"
+                )
+            if assumption_item.fallback_band_multiplier < 1:
+                raise AttributionRegistryError(
+                    f"Fallback band multiplier is invalid: {assumption_item.assumption_id}"
+                )
+            if assumption_item.criticality_policy_id != "midpoint-dependency-v1":
+                raise AttributionRegistryError(
+                    f"Criticality policy changed: {assumption_item.assumption_id}"
+                )
+            if assumption_item.criticality_rating not in {"CRITICAL", "NONCRITICAL"}:
+                raise AttributionRegistryError(
+                    f"Criticality rating is invalid: {assumption_item.assumption_id}"
+                )
+            if not 0 <= assumption_item.criticality_dependency_share <= 1:
+                raise AttributionRegistryError(
+                    f"Criticality dependency share is invalid: {assumption_item.assumption_id}"
+                )
 
     products = {item.debt_product for item in bundle.flows}
     if len(products) != len(bundle.flows):
@@ -251,7 +329,13 @@ def validate_attribution_bundle(bundle: AttributionBundle) -> None:
                 )
 
     tickers = {item.ticker for item in bundle.companies}
-    expected_count = {"1.0.0": 10, "1.1.0": 50, "1.1.1": 50}.get(bundle.methodology_version)
+    expected_count = {
+        "1.0.0": 10,
+        "1.1.0": 50,
+        "1.1.1": 50,
+        "1.2.0": 50,
+        "1.2.1": 50,
+    }.get(bundle.methodology_version)
     if expected_count is None:
         raise AttributionRegistryError("Attribution methodology version is not registered")
     if len(tickers) != expected_count or len(tickers) != len(bundle.companies):
@@ -441,6 +525,13 @@ def _assumption(item: dict[str, Any]) -> Assumption:
         sensitivity_note=_required_str(item, "sensitivity_note"),
         version=_required_str(item, "version"),
         active=_required_bool(item, "active"),
+        review_status=_metadata_str(item, "review_status") or "APPROVED_LEGACY",
+        primary_source_id=_metadata_str(item, "primary_source_id"),
+        fallback_source_ids=_optional_string_tuple(item, "fallback_source_ids"),
+        fallback_band_multiplier=_optional_float(item, "fallback_band_multiplier", 1.0),
+        criticality_policy_id=_metadata_str(item, "criticality_policy_id"),
+        criticality_rating=_metadata_str(item, "criticality_rating"),
+        criticality_dependency_share=_optional_float(item, "criticality_dependency_share", 0.0),
     )
 
 
@@ -513,6 +604,27 @@ def _optional_str(item: dict[str, Any], key: str) -> str:
     if not isinstance(value, str):
         raise AttributionRegistryError(f"Required string field is invalid: {key}")
     return value
+
+
+def _metadata_str(item: dict[str, Any], key: str) -> str:
+    value = item.get(key, "")
+    if not isinstance(value, str):
+        raise AttributionRegistryError(f"Optional string field is invalid: {key}")
+    return value
+
+
+def _optional_float(item: dict[str, Any], key: str, default: float) -> float:
+    value = item.get(key, default)
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise AttributionRegistryError(f"Optional number field is invalid: {key}")
+    return float(value)
+
+
+def _optional_string_tuple(item: dict[str, Any], key: str) -> tuple[str, ...]:
+    value = item.get(key, [])
+    if not isinstance(value, list) or not all(isinstance(entry, str) for entry in value):
+        raise AttributionRegistryError(f"Optional string list is invalid: {key}")
+    return tuple(value)
 
 
 def _required_str(item: dict[str, Any], key: str) -> str:

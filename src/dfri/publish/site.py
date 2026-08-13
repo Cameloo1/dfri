@@ -11,7 +11,7 @@ import shutil
 import uuid
 from collections import defaultdict
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass, replace
+from dataclasses import asdict, dataclass, replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Final, cast
@@ -19,6 +19,7 @@ from typing import Final, cast
 import pyarrow as pa
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 
+from dfri.attribution.criticality import criticality_payload
 from dfri.attribution.engine import AttributionResult, CompanyEstimate, run_attribution
 from dfri.attribution.registry import (
     DEFAULT_METHODOLOGY_VERSION,
@@ -27,17 +28,22 @@ from dfri.attribution.registry import (
     MatrixBEntry,
     load_attribution_bundle,
 )
+from dfri.attribution.resilience import SourceDegradation
 from dfri.lake.guard import VintageGuard
 from dfri.lake.readers import CachingSeriesReader, LakeSeriesReader
 from dfri.lake.store import AppendOnlyParquetStore, write_deterministic_parquet
-from dfri.nowcast.targets import read_first_print_targets
+from dfri.nowcast.mts import read_mts_first_print_targets
+from dfri.nowcast.targets import FirstPrintTarget, read_first_print_targets
+from dfri.ops.job_status import build_status_report, render_status_banner
 from dfri.ops.quarterly_refresh import (
     QuarterlyRefreshLedger,
     QuarterlyRefreshRecord,
     load_refresh_report,
     refresh_identity,
 )
+from dfri.publish.archive_registry import load_archive_citation
 from dfri.publish.changelog import load_changelog
+from dfri.publish.events import build_events, canonical_json, json_feed, rss_feed
 from dfri.publish.ledger import (
     GradeLedger,
     GradeRecord,
@@ -47,7 +53,12 @@ from dfri.publish.ledger import (
     PublicationRecord,
     publication_record,
 )
-from dfri.publish.live_calibration import LiveCalibration, calculate_live_calibration
+from dfri.publish.live_calibration import (
+    LiveCalibration,
+    calculate_live_calibration,
+    calculate_live_calibration_by_series,
+)
+from dfri.publish.social import SocialCard, render_social_image
 
 METHODOLOGY_VERSION: Final = DEFAULT_METHODOLOGY_VERSION
 LICENSE: Final = (
@@ -57,11 +68,15 @@ LICENSE_URL: Final = "https://creativecommons.org/licenses/by-nc/4.0/"
 TARGET_LABELS: Final = {
     "DELTA_DTCTLR.M": "Revolving credit flow",
     "DELTA_DTCTLN.M": "Nonrevolving credit flow",
+    "MTS:DEFICIT.M": "Federal deficit",
+    "MTS:OUTLAYS.M": "Federal outlays",
 }
 NOWCAST_SOURCE_URLS: Final = {
     "h8_archive": "https://www.federalreserve.gov/releases/h8/",
     "marts_archive": "https://www.census.gov/retail/marts/historic_releases.html",
     "g19_archive": "https://www.federalreserve.gov/releases/g19/",
+    "mts_dataset": "https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/",
+    "mts_archive": "https://fiscal.treasury.gov/accounting/monthly-treasury-statement/previous",
 }
 FLOW_PRODUCT_LABELS: Final = {
     "revolving_credit": "Revolving",
@@ -219,10 +234,27 @@ def _build_scoreboard(
     commercial_contact = brand.get("contact")
     if not isinstance(commercial_contact, str) or not commercial_contact.strip():
         raise SitePublishError("Branding contact must be a non-empty string")
+    site_url = brand.get("canonical_base_url")
+    if not isinstance(site_url, str) or not site_url.startswith("https://"):
+        raise SitePublishError("Branding canonical_base_url must be an HTTPS URL")
+    site_url = site_url.rstrip("/") + "/"
     backtest = _load_object(root / "reports" / "m2_backtest.json", "backtest")
+    mts_backtest_path = root / "reports" / "mts_backtest.json"
+    mts_backtest = (
+        _load_object(mts_backtest_path, "MTS backtest")
+        if mts_backtest_path.exists()
+        else {"targets": []}
+    )
+    calibration_backtest = {
+        "targets": [
+            *cast(list[object], backtest["targets"]),
+            *cast(list[object], mts_backtest["targets"]),
+        ]
+    }
     attribution_bundle = load_attribution_bundle()
     attribution = run_attribution(attribution_bundle)
-    prior_attribution = run_attribution(load_attribution_bundle("1.1.0"))
+    original_attribution = run_attribution(load_attribution_bundle("1.1.0"))
+    prior_attribution = run_attribution(load_attribution_bundle("1.2.0"))
     coverage = _load_object(
         root / "src" / "dfri" / "attribution" / "coverage_registry_v1_1.json",
         "coverage registry",
@@ -259,17 +291,39 @@ def _build_scoreboard(
     graded_series = {
         item.target_series for item in predictions if item.prediction_id in grade_by_id
     }
-    target_histories = {}
+    target_histories: dict[str, tuple[FirstPrintTarget, ...]] = {}
     if graded_series:
         guard = VintageGuard(CachingSeriesReader(LakeSeriesReader(raw_store)))
-        target_histories = {
-            target_series: read_first_print_targets(guard, target_series, published_at)
-            for target_series in sorted(graded_series)
-        }
-    live_calibration = calculate_live_calibration(
+        target_histories = {}
+        for target_series in sorted(graded_series):
+            if target_series.startswith("MTS:"):
+                target_histories[target_series] = read_mts_first_print_targets(
+                    guard, target_series, published_at
+                )
+            else:
+                target_histories[target_series] = read_first_print_targets(
+                    guard, target_series, published_at
+                )
+    live_calibration_by_series = calculate_live_calibration_by_series(
         predictions,
         selected_grades,
         target_histories,
+        calibration_backtest,
+    )
+    g19_predictions = tuple(
+        item for item in predictions if not item.target_series.startswith("MTS:")
+    )
+    g19_prediction_ids = {item.prediction_id for item in g19_predictions}
+    g19_grades = tuple(item for item in selected_grades if item.prediction_id in g19_prediction_ids)
+    g19_histories = {
+        series_id: history
+        for series_id, history in target_histories.items()
+        if not series_id.startswith("MTS:")
+    }
+    legacy_live_calibration = calculate_live_calibration(
+        g19_predictions,
+        g19_grades,
+        g19_histories,
         backtest,
     )
     publications = PublicationLedger(ledger_store)
@@ -345,7 +399,13 @@ def _build_scoreboard(
         **build_meta,
         "excluded_prepublication_count": excluded_count,
         "row_count": len(prediction_rows),
-        "live_calibration": live_calibration.feed(),
+        "live_calibration_by_series": {
+            series_id: calibration.feed()
+            for series_id, calibration in live_calibration_by_series.items()
+        },
+        # Compatibility field: preserve the pre-MTS G.19-only aggregate byte contract.
+        # All current UI and new consumers use live_calibration_by_series.
+        "live_calibration": legacy_live_calibration.feed(),
     }
     _write_json(feeds / "nowcast_predictions.json", {"meta": meta, "data": prediction_rows})
     _write_csv(feeds / "nowcast_predictions.csv", prediction_rows, _prediction_columns())
@@ -360,11 +420,15 @@ def _build_scoreboard(
     company_rows = [
         {column: row[column] for column in _company_columns()} for row in company_rows_v2
     ]
-    assumption_rows = _assumption_feed_rows(
+    assumption_rows_v2 = _assumption_feed_rows(
         attribution_bundle,
         publication_mode=publication_mode,
         commercial_contact=commercial_contact,
     )
+    assumption_rows = [
+        {column: row.get(column, "") for column in _assumption_columns()}
+        for row in assumption_rows_v2
+    ]
     attribution_meta = {
         **build_meta,
         "data_vintage": attribution.data_vintage,
@@ -380,6 +444,9 @@ def _build_scoreboard(
         **attribution_meta,
         "schema_version": "v2",
         "evidence_lift_headline": attribution.evidence_lift_headline,
+        "source_status": "DEGRADED" if attribution.source_degradations else "PRIMARY",
+        "source_degradation_count": len(attribution.source_degradations),
+        "source_degradations": [asdict(item) for item in attribution.source_degradations],
     }
     _write_json(
         feeds_v2 / "dfri_companies.json",
@@ -387,13 +454,19 @@ def _build_scoreboard(
     )
     _write_csv(feeds_v2 / "dfri_companies.csv", company_rows_v2, _company_columns_v2())
     _write_parquet(feeds_v2 / "dfri_companies.parquet", company_rows_v2, _company_schema_v2())
-    _write_json(feeds_v2 / "schema.json", _company_feed_schema_v2(build_meta))
+    _write_json(feeds_v2 / "schema.json", _feed_schema_v2(build_meta))
     assumption_meta = {
         **attribution_meta,
         "row_count": len(assumption_rows),
     }
     _write_json(feeds / "assumptions.json", {"meta": assumption_meta, "data": assumption_rows})
     _write_csv(feeds / "assumptions.csv", assumption_rows, _assumption_columns())
+    assumption_meta_v2 = {**assumption_meta, "schema_version": "v2"}
+    _write_json(
+        feeds_v2 / "assumptions.json",
+        {"meta": assumption_meta_v2, "data": assumption_rows_v2},
+    )
+    _write_csv(feeds_v2 / "assumptions.csv", assumption_rows_v2, _assumption_columns_v2())
     exclusion_rows = _exclusion_feed_rows(
         coverage,
         common=attribution_meta,
@@ -438,6 +511,25 @@ def _build_scoreboard(
     )
     _write_json(feeds / "schema.json", _feed_schema(build_meta))
 
+    automation_status = build_status_report(
+        as_of=published_at,
+        receipt_directory=root / ".local" / "evidence" / "job_status",
+        publication_mode=publication_mode,
+    )
+    _write_json(output_root / "v1" / "status.json", automation_status)
+    _atomic_write(output_root / "status" / "banner.html", render_status_banner(automation_status))
+    publication_events = build_events(
+        predictions,
+        selected_grades,
+        changelog,
+        site_url=site_url,
+    )
+    _atomic_write(
+        output_root / "v1" / "events.json",
+        canonical_json(json_feed(publication_events, generated_at=published_at)),
+    )
+    _atomic_write(output_root / "events.xml", rss_feed(publication_events, site_url=site_url))
+
     assets = output_root / "assets"
     _copy_stylesheet(root / "site" / "static" / "site.css", assets / "site.css")
     _copy(root / "site" / "static" / "site.js", assets / "site.js")
@@ -450,7 +542,14 @@ def _build_scoreboard(
         )
     ]
     summary = _summary(display_rows, backtest)
-    calibration_display = _calibration_display(live_calibration)
+    calibration_display = [
+        {
+            "target_series": series_id,
+            "target_label": TARGET_LABELS[series_id],
+            **_calibration_display(calibration),
+        }
+        for series_id, calibration in live_calibration_by_series.items()
+    ]
     first_grade_callout = _first_grade_callout(predictions, grade_by_id, backtest)
     environment = Environment(
         loader=FileSystemLoader(root / "site" / "templates"),
@@ -460,6 +559,7 @@ def _build_scoreboard(
     )
     base_context = {
         "brand": brand,
+        "site_url": site_url,
         "publication_mode": publication_mode,
         "excluded_count": excluded_count,
         "methodology_version": METHODOLOGY_VERSION,
@@ -468,6 +568,11 @@ def _build_scoreboard(
         "feed_license_url": LICENSE_URL,
         "commercial_license_contact": commercial_contact,
         "nowcast_sources": NOWCAST_SOURCE_URLS,
+        "source_degradations": [
+            _source_degradation_display(item) for item in attribution.source_degradations
+        ],
+        "automation_status": automation_status,
+        "archive_citation": load_archive_citation(),
     }
     company_displays = [_company_display(item) for item in attribution.companies]
     company_histories = _company_histories(attribution, company_history_rows)
@@ -491,13 +596,28 @@ def _build_scoreboard(
     ]
     baseline_companies = [item for item in companies_by_lift if cast(bool, item["baseline_only"])]
     credit_flow = _credit_flow_view(attribution_bundle, attribution)
-    comparison_rows = _methodology_comparison(prior_attribution, attribution)
+    comparison_rows = _methodology_comparison(
+        original_attribution,
+        prior_attribution,
+        attribution,
+    )
+    _render_social_images(
+        assets / "social",
+        aggregate=aggregate_display,
+        rows=display_rows,
+        companies=company_displays,
+        changelog_count=len(changelog),
+        exclusion_count=len(cast(list[dict[str, object]], coverage["excluded"])),
+    )
     _render(
         environment,
         "home.html",
         output_root / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url, "", "assets/social/home.png", "DFRI headline estimate and range"
+            ),
             "root": "",
             "active_nav": None,
             "title": "Immutable consumer-credit nowcasts",
@@ -521,6 +641,12 @@ def _build_scoreboard(
         output_root / "companies" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "companies/",
+                "assets/social/companies.png",
+                "DFRI covered company count",
+            ),
             "root": "../",
             "active_nav": "companies",
             "title": "Companies",
@@ -535,6 +661,12 @@ def _build_scoreboard(
         output_root / "scoreboard" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "scoreboard/",
+                "assets/social/scoreboard.png",
+                "DFRI immutable prediction ledger count",
+            ),
             "root": "../",
             "active_nav": "scoreboard",
             "title": "Scoreboard",
@@ -550,12 +682,27 @@ def _build_scoreboard(
         output_root / "methodology" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "methodology/",
+                "assets/social/methodology.png",
+                "DFRI methodology version",
+            ),
             "root": "../",
             "active_nav": "methodology",
             "title": "Methodology",
             "description": "Point-in-time DFRI nowcast and attribution methodology.",
             "summary": summary,
-            "assumptions": [_assumption_display(item) for item in attribution_bundle.assumptions],
+            "assumptions": [
+                _assumption_display(item, attribution.source_degradations)
+                for item in attribution_bundle.assumptions
+            ],
+            "critical_assumptions": [
+                _assumption_display(item, attribution.source_degradations)
+                for item in attribution_bundle.assumptions
+                if item.criticality_rating == "CRITICAL"
+            ],
+            "criticality": criticality_payload(attribution_bundle),
             "matrix_a": attribution_bundle.matrix_a,
             "matrix_b": attribution_bundle.matrix_b,
             "company_count": len(company_displays),
@@ -569,12 +716,22 @@ def _build_scoreboard(
         output_root / "methodology" / "sensitivity" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "methodology/sensitivity/",
+                "assets/social/sensitivity.png",
+                "DFRI methodology sensitivity estimate and range",
+            ),
             "root": "../../",
             "active_nav": "methodology",
             "title": "Methodology sensitivity",
-            "description": "Immutable comparison of DFRI methodology versions 1.1.0 and 1.1.1.",
+            "description": (
+                "Immutable comparison of DFRI methodology versions 1.1.0, 1.2.0, and 1.2.1."
+            ),
+            "original_methodology_version": original_attribution.methodology_version,
             "prior_methodology_version": prior_attribution.methodology_version,
             "current_methodology_version": attribution.methodology_version,
+            "original": _aggregate_display(original_attribution),
             "prior": _aggregate_display(prior_attribution),
             "current": aggregate_display,
             "rows": comparison_rows,
@@ -587,6 +744,12 @@ def _build_scoreboard(
         output_root / "methodology" / "coverage" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "methodology/coverage/",
+                "assets/social/coverage.png",
+                "DFRI coverage and exclusion counts",
+            ),
             "root": "../../",
             "active_nav": "methodology",
             "title": "Coverage and exclusions",
@@ -604,11 +767,53 @@ def _build_scoreboard(
         output_root / "changelog" / "index.html",
         {
             **base_context,
+            **_page_metadata(
+                site_url,
+                "changelog/",
+                "assets/social/changelog.png",
+                "DFRI append-only changelog entry count",
+            ),
             "root": "../",
             "active_nav": "changelog",
             "title": "Changelog",
             "description": "Append-only DFRI publication and methodology changes.",
             "entries": [item.display() for item in reversed(changelog)],
+        },
+    )
+    _render(
+        environment,
+        "roadmap.html",
+        output_root / "roadmap" / "index.html",
+        {
+            **base_context,
+            **_page_metadata(
+                site_url,
+                "roadmap/",
+                "assets/social/methodology.png",
+                "DFRI current scope, planned work, and deliberate exclusions",
+            ),
+            "root": "../",
+            "active_nav": "roadmap",
+            "title": "Roadmap and boundaries",
+            "description": "What DFRI measures, plans, and deliberately excludes.",
+        },
+    )
+    _render(
+        environment,
+        "corrections.html",
+        output_root / "corrections" / "index.html",
+        {
+            **base_context,
+            **_page_metadata(
+                site_url,
+                "corrections/",
+                "assets/social/changelog.png",
+                "DFRI append-only corrections policy",
+            ),
+            "root": "../",
+            "active_nav": None,
+            "title": "Corrections policy",
+            "description": "How to report, verify, publish, and retrieve DFRI corrections.",
         },
     )
     for company, display in zip(attribution.companies, company_displays, strict=True):
@@ -618,6 +823,12 @@ def _build_scoreboard(
             output_root / "companies" / company.ticker.lower() / "index.html",
             {
                 **base_context,
+                **_page_metadata(
+                    site_url,
+                    f"companies/{company.ticker.lower()}/",
+                    f"assets/social/company-{company.ticker.lower()}.png",
+                    f"{company.company_name} estimated DFR percent and range",
+                ),
                 "root": "../../",
                 "active_nav": "companies",
                 "title": f"{company.company_name} ({company.ticker})",
@@ -633,6 +844,12 @@ def _build_scoreboard(
             output_root / "scoreboard" / "predictions" / str(row["prediction_id"]) / "index.html",
             {
                 **base_context,
+                **_page_metadata(
+                    site_url,
+                    f"scoreboard/predictions/{row['prediction_id']}/",
+                    f"assets/social/prediction-{row['prediction_id']}.png",
+                    f"{row['target_label']} prediction and uncertainty range",
+                ),
                 "root": "../../../",
                 "active_nav": None,
                 "title": f"Prediction {row['prediction_id']}",
@@ -730,6 +947,7 @@ def _display_row(prediction: PredictionRecord, grade: GradeRecord | None) -> dic
     label = TARGET_LABELS.get(prediction.target_series)
     if label is None:
         raise SitePublishError(f"No public target label for {prediction.target_series}")
+    is_mts = prediction.target_series.startswith("MTS:")
     return {
         **prediction.row(),
         "target_label": label,
@@ -747,6 +965,26 @@ def _display_row(prediction: PredictionRecord, grade: GradeRecord | None) -> dic
         "abs_error_display": _number(grade.abs_error) if grade else "—",
         "abs_error_sort": grade.abs_error if grade else "",
         "vintage_url": grade.vintage_url if grade else None,
+        "source_family": "Treasury MTS" if is_mts else "Federal Reserve G.19",
+        "unit_context": (
+            "Unadjusted monthly total · millions of U.S. dollars"
+            if is_mts
+            else "Seasonally adjusted · millions of U.S. dollars"
+        ),
+        "permalink_unit_context": (
+            "unadjusted monthly total · $M" if is_mts else "seasonally adjusted monthly flow · $M"
+        ),
+        "input_source_label": (
+            "U.S. Treasury MTS dated issues"
+            if is_mts
+            else "Federal Reserve H.8 and Census MARTS dated releases"
+        ),
+        "grading_source_label": (
+            "U.S. Treasury dated MTS issue"
+            if is_mts
+            else "Federal Reserve Board dated G.19 release"
+        ),
+        "is_mts": is_mts,
     }
 
 
@@ -1004,6 +1242,7 @@ def _assumption_feed_rows(
             "sensitivity_note": item.sensitivity_note,
             "version": item.version,
             "active": item.active,
+            "review_status": item.review_status,
             **common,
         }
         for item in bundle.assumptions
@@ -1060,6 +1299,7 @@ def _company_histories(
                 "mid_value": float(cast(float, row["estimated_dfr_pct_mid"])),
                 "high_value": float(cast(float, row["estimated_dfr_pct_high"])),
                 "status": row["input_status"],
+                "provenance_path": "v1/feeds/dfri_company_history.json",
             }
         )
     for item in current.companies:
@@ -1071,6 +1311,7 @@ def _company_histories(
                 "mid_value": item.estimated_dfr_pct_mid,
                 "high_value": item.estimated_dfr_pct_high,
                 "status": "VERSIONED_BASELINE",
+                "provenance_path": "v2/feeds/dfri_companies.json",
             }
         )
     for rows in grouped.values():
@@ -1473,16 +1714,23 @@ def _flow_amount(value: float) -> str:
 
 
 def _methodology_comparison(
-    prior: AttributionResult, current: AttributionResult
+    original: AttributionResult,
+    prior: AttributionResult,
+    current: AttributionResult,
 ) -> list[dict[str, object]]:
+    original_by_ticker = {item.ticker: item for item in original.companies}
     current_by_ticker = {item.ticker: item for item in current.companies}
     rows: list[dict[str, object]] = []
     for item in prior.companies:
         current_item = current_by_ticker[item.ticker]
+        original_item = original_by_ticker[item.ticker]
         rows.append(
             {
                 "ticker": item.ticker,
                 "company_name": item.company_name,
+                "original_low": f"{original_item.estimated_dfr_pct_low:.2f}%",
+                "original_mid": f"{original_item.estimated_dfr_pct_mid:.2f}%",
+                "original_high": f"{original_item.estimated_dfr_pct_high:.2f}%",
                 "prior_low": f"{item.estimated_dfr_pct_low:.2f}%",
                 "prior_mid": f"{item.estimated_dfr_pct_mid:.2f}%",
                 "prior_high": f"{item.estimated_dfr_pct_high:.2f}%",
@@ -1497,7 +1745,23 @@ def _methodology_comparison(
     return rows
 
 
-def _assumption_display(item: Assumption) -> dict[str, object]:
+def _source_degradation_display(item: SourceDegradation) -> dict[str, object]:
+    return {
+        "assumption_id": item.assumption_id,
+        "active_source_id": item.active_source_id,
+        "reason": item.reason,
+        "band_multiplier": f"{item.band_multiplier:.2f}x",
+    }
+
+
+def _assumption_display(
+    item: Assumption,
+    degradations: tuple[SourceDegradation, ...],
+) -> dict[str, object]:
+    degradation = next(
+        (entry for entry in degradations if entry.assumption_id == item.assumption_id),
+        None,
+    )
     return {
         "assumption_id": item.assumption_id,
         "statement": item.statement,
@@ -1507,6 +1771,16 @@ def _assumption_display(item: Assumption) -> dict[str, object]:
         "evidence_snippet": item.evidence_snippet,
         "sensitivity_note": item.sensitivity_note,
         "version": item.version,
+        "primary_source_id": item.primary_source_id,
+        "fallback_source_ids": item.fallback_source_ids,
+        "active_source_id": (
+            degradation.active_source_id if degradation is not None else item.primary_source_id
+        ),
+        "source_status": "DEGRADED" if degradation is not None else "PRIMARY",
+        "source_note": degradation.reason if degradation is not None else "",
+        "criticality_rating": item.criticality_rating,
+        "criticality_dependency_share": f"{item.criticality_dependency_share * 100:.1f}%",
+        "review_status": item.review_status,
     }
 
 
@@ -1527,10 +1801,16 @@ def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
                 "columns": _column_docs(_scoreboard_columns()),
                 "metadata": {
                     "live_calibration": (
-                        "Running coverage and error statistics computed only from live grades; "
+                        "Compatibility view of live grades in the pre-MTS G.19-only aggregate. "
+                        "It excludes every Treasury series; new consumers should use the "
+                        "per-series field."
+                    ),
+                    "live_calibration_by_series": (
+                        "Per-series running coverage and error statistics computed only from "
+                        "live grades; no calibration statistic blends target series. "
                         "the naive comparator is refit using first prints available when each "
                         "prediction was recorded."
-                    )
+                    ),
                 },
                 "invariants": [
                     {
@@ -1563,7 +1843,7 @@ def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
     }
 
 
-def _company_feed_schema_v2(common: Mapping[str, object]) -> dict[str, object]:
+def _feed_schema_v2(common: Mapping[str, object]) -> dict[str, object]:
     return {
         "schema_version": "v2",
         "predecessor_schema_url": "/v1/feeds/schema.json",
@@ -1585,7 +1865,23 @@ def _company_feed_schema_v2(common: Mapping[str, object]) -> dict[str, object]:
             "dfri_companies": {
                 "formats": ["csv", "json", "parquet"],
                 "columns": _column_docs(_company_columns_v2()),
-            }
+                "metadata": {
+                    "source_status": "PRIMARY or DEGRADED for the active build",
+                    "source_degradations": (
+                        "Active fallback IDs, reasons, multipliers, and effective assumption bands"
+                    ),
+                },
+            },
+            "assumptions": {
+                "formats": ["csv", "json"],
+                "columns": _column_docs(_assumption_columns_v2()),
+                "metadata": {
+                    "review_status": (
+                        "APPROVED for new numerical mappings; APPROVED_LEGACY for assumptions "
+                        "accepted before the explicit review-status contract."
+                    )
+                },
+            },
         },
     }
 
@@ -1691,6 +1987,12 @@ def _assumption_columns() -> list[str]:
         "license_url",
         "commercial_license_contact",
     ]
+
+
+def _assumption_columns_v2() -> list[str]:
+    columns = _assumption_columns()
+    insertion = columns.index("active") + 1
+    return [*columns[:insertion], "review_status", *columns[insertion:]]
 
 
 def _exclusion_columns() -> list[str]:
@@ -1850,6 +2152,124 @@ def _write_csv(path: Path, rows: list[dict[str, object]], columns: list[str]) ->
 
 def _write_json(path: Path, payload: object) -> None:
     _atomic_write(path, (json.dumps(payload, indent=2, sort_keys=True) + "\n").encode())
+
+
+def _page_metadata(
+    site_url: str, page_path: str, image_path: str, image_alt: str
+) -> dict[str, str]:
+    base = site_url.rstrip("/") + "/"
+    return {
+        "canonical_url": f"{base}{page_path}",
+        "social_image_url": f"{base}{image_path}",
+        "social_image_alt": image_alt,
+    }
+
+
+def _render_social_images(
+    directory: Path,
+    *,
+    aggregate: Mapping[str, object],
+    rows: Sequence[Mapping[str, object]],
+    companies: Sequence[Mapping[str, object]],
+    changelog_count: int,
+    exclusion_count: int,
+) -> None:
+    cards = {
+        "home.png": SocialCard(
+            label=f"{aggregate['quarter']} · estimated share of U.S. consumer revenue",
+            title="Debt-Funded Revenue Index",
+            figure=str(aggregate["mid"]),
+            units=f"80% band {aggregate['low']} to {aggregate['high']}",
+            detail=(
+                f"Revenue-weighted estimate across {aggregate['company_count']} covered companies."
+            ),
+        ),
+        "companies.png": SocialCard(
+            label="Current coverage",
+            title="Covered companies",
+            figure=str(len(companies)),
+            units="company estimates with visible ranges",
+            detail="Every estimate carries evidence tiers, assumption IDs, and provenance links.",
+        ),
+        "scoreboard.png": SocialCard(
+            label="Immutable prediction ledger",
+            title="Predictions and first-print grades",
+            figure=str(len(rows)),
+            units="versioned prediction records",
+            detail=(
+                "Original timestamps, uncertainty bands, model versions, and grades "
+                "remain retrievable."
+            ),
+        ),
+        "methodology.png": SocialCard(
+            label="Current evidence method",
+            title="DFRI methodology",
+            figure=METHODOLOGY_VERSION,
+            units="versioned methodology",
+            detail=(
+                "Point-in-time nowcasting and evidence-linked attribution with explicit "
+                "uncertainty."
+            ),
+        ),
+        "sensitivity.png": SocialCard(
+            label="Methodology sensitivity",
+            title="Current revenue-weighted estimate",
+            figure=str(aggregate["mid"]),
+            units=f"80% band {aggregate['low']} to {aggregate['high']}",
+            detail="Prior methodology values remain preserved for direct, immutable comparison.",
+        ),
+        "coverage.png": SocialCard(
+            label="Dated coverage boundary",
+            title="Included and excluded companies",
+            figure=f"{len(companies)} / {exclusion_count}",
+            units="included / explicitly excluded",
+            detail=(
+                "Coverage decisions publish dated reasons instead of silently dropping companies."
+            ),
+        ),
+        "changelog.png": SocialCard(
+            label="Append-only publication history",
+            title="DFRI changelog",
+            figure=str(changelog_count),
+            units="versioned public entries",
+            detail=(
+                "Restatements, source fallbacks, grades, and methodology changes are never silent."
+            ),
+        ),
+    }
+    for filename, card in cards.items():
+        render_social_image(directory / filename, card)
+    for company in companies:
+        ticker = str(company["ticker"]).lower()
+        render_social_image(
+            directory / f"company-{ticker}.png",
+            SocialCard(
+                label=f"{company['quarter']} · estimated DFR%",
+                title=f"{company['company_name']} ({company['ticker']})",
+                figure=str(company["mid"]),
+                units=f"80% band {company['low']} to {company['high']}",
+                detail=(
+                    f"Evidence Lift {company['evidence_lift']}; tier shares "
+                    f"T1 {company['tier1']}, T2 {company['tier2']}, T3 {company['tier3']}."
+                ),
+            ),
+        )
+    for row in rows:
+        graded = row["grade_status"] == "Graded"
+        render_social_image(
+            directory / f"prediction-{row['prediction_id']}.png",
+            SocialCard(
+                label=f"{row['target_period']} · {row['source_family']}",
+                title=str(row["target_label"]),
+                figure=str(row["point_display"]),
+                units=(f"$M point; 80% band {row['low80_display']} to {row['high80_display']}"),
+                detail=(
+                    f"95% band {row['low95_display']} to {row['high95_display']}. "
+                    f"Status: {row['grade_status']}."
+                ),
+                verified=graded,
+            ),
+        )
 
 
 def _render(

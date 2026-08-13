@@ -18,6 +18,8 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     root = Path(__file__).parents[2]
     workflow = (root / ".github" / "workflows" / "m2-scoreboard.yml").read_text()
 
+    assert 'cron: "17 16 * * 1-5"' in workflow
+    assert 'cron: "17 19 * * 1-5"' in workflow
     assert 'cron: "17 21 * * 1-5"' in workflow
     assert 'cron: "17 23 * * 1-5"' in workflow
     assert 'cron: "43 14 * * 1"' in workflow
@@ -77,7 +79,16 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     assert "dfri.ops.deployment_receipt" in workflow
     assert "dfri.ops.quarterly_refresh" in workflow
     assert "attribution_refresh_appended" in workflow
-    assert "options: [predict, grade, refresh, all]" in workflow
+    assert "options: [predict, grade, mts-predict, mts-grade, refresh, all]" in workflow
+    assert "make MTS_START=2017-12-31 treasury-mts" in workflow
+    assert "python -m dfri.mts_backtest" in workflow
+    assert "python -m dfri.scoreboard mts-predict" in workflow
+    assert "dfri.ops.job_status record" in workflow
+    assert "jobs=(h8-predict g19-grade mts-predict mts-grade)" in workflow
+    assert "issues: write" in workflow
+    assert "gh issue create" in workflow
+    assert "gh issue comment" in workflow
+    assert "dfri-pages-publication" in workflow
     assert "retention-days: 90" in workflow
     assert "FRED" not in workflow and "ALFRED" not in workflow
     assert_all_actions_are_commit_pinned(workflow)
@@ -100,6 +111,7 @@ def test_ci_uses_the_current_pinned_uv_contract() -> None:
     assert "dfri.ops.privacy markdown" in workflow
     assert "dfri.ops.privacy excluded-tracked" in workflow
     assert "make verify" in workflow
+    assert "make supply-chain" in workflow
     assert "make publish" in workflow
     assert "Assert rendered publication rules" in workflow
     assert "make site-quality" in workflow
@@ -122,7 +134,25 @@ def test_m4_uptime_workflow_preserves_partial_api_and_owner_log_contract() -> No
     assert "--require-api" in workflow
     assert "https://cameloo1.github.io/dfri/" in workflow
     assert "dfri.ops.uptime" in workflow
+    assert "dfri.ops.status_refresh" in workflow
+    assert "Upload the verified status-only publication" in workflow
+    assert "actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0" in workflow
+    assert "issues: write" in workflow
+    assert "gh issue create" in workflow
     assert "if: always()" in workflow
     assert "m4-uptime-${{ github.run_id }}-${{ github.run_attempt }}" in workflow
+    assert "retention-days: 90" in workflow
+    assert_all_actions_are_commit_pinned(workflow)
+
+
+def test_release_archive_workflow_is_pinned_and_proves_recovery_before_upload() -> None:
+    root = Path(__file__).parents[2]
+    workflow = (root / ".github" / "workflows" / "archive.yml").read_text()
+
+    assert "types: [published]" in workflow
+    assert "uv sync --locked --no-dev" in workflow
+    assert "dfri.ops.archive round-trip" in workflow
+    assert "gh release upload" in workflow
+    assert "contents: write" in workflow
     assert "retention-days: 90" in workflow
     assert_all_actions_are_commit_pinned(workflow)

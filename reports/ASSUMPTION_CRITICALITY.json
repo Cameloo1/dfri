@@ -1,0 +1,873 @@
+{
+  "critical_count": 11,
+  "critical_threshold": 0.05,
+  "items": [
+    {
+      "assumption_id": "A-B-AUTO-F-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-B-AUTO-GM-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-B-GENERAL-AMZN-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-B-GENERAL-BBY-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-B-GENERAL-HD-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-B-GENERAL-LOW-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-B-GENERAL-TGT-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-B-GENERAL-TSCO-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-B-GENERAL-ULTA-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-B-GENERAL-WMT-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-ABNB-001",
+      "denominator_dependency_share": 0.0025953542115420628,
+      "dependency_share": 0.0025953542115420628,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-AMZN-001",
+      "denominator_dependency_share": 0.15808337486037133,
+      "dependency_share": 0.15808337486037133,
+      "fallback_source_ids": [
+        "census_marts"
+      ],
+      "independent_fallback_count": 1,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "CRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-AZO-001",
+      "denominator_dependency_share": 0.006424661897185297,
+      "dependency_share": 0.006424661897185297,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-BBY-001",
+      "denominator_dependency_share": 0.015557317693226392,
+      "dependency_share": 0.015557317693226392,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-BKNG-001",
+      "denominator_dependency_share": 0.0034241883495830915,
+      "dependency_share": 0.0034241883495830915,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-CASY-001",
+      "denominator_dependency_share": 0.006776459843165695,
+      "dependency_share": 0.006776459843165695,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-CCL-001",
+      "denominator_dependency_share": 0.006208877689865213,
+      "dependency_share": 0.006208877689865213,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-CMG-001",
+      "denominator_dependency_share": 0.00475354779081595,
+      "dependency_share": 0.00475354779081595,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-COST-001",
+      "denominator_dependency_share": 0.08169800204062508,
+      "dependency_share": 0.08169800204062508,
+      "fallback_source_ids": [
+        "census_marts"
+      ],
+      "independent_fallback_count": 1,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "CRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-CVNA-001",
+      "denominator_dependency_share": 0.007755658762888983,
+      "dependency_share": 0.007755658762888983,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-DASH-001",
+      "denominator_dependency_share": 0.004362446742879153,
+      "dependency_share": 0.004362446742879153,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-DECK-001",
+      "denominator_dependency_share": 0.0011138342138378068,
+      "dependency_share": 0.0011138342138378068,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-DG-001",
+      "denominator_dependency_share": 0.017392284319719314,
+      "dependency_share": 0.017392284319719314,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-DLTR-001",
+      "denominator_dependency_share": 0.007895623431676192,
+      "dependency_share": 0.007895623431676192,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-DPZ-001",
+      "denominator_dependency_share": 0.0015291814377929155,
+      "dependency_share": 0.0015291814377929155,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-DRI-001",
+      "denominator_dependency_share": 0.005377908072074274,
+      "dependency_share": 0.005377908072074274,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-EBAY-001",
+      "denominator_dependency_share": 0.0024475752812712667,
+      "dependency_share": 0.0024475752812712667,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-EL-001",
+      "denominator_dependency_share": 0.0023084383441107107,
+      "dependency_share": 0.0023084383441107107,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-EXPE-001",
+      "denominator_dependency_share": 0.0031237115920798313,
+      "dependency_share": 0.0031237115920798313,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-F-001",
+      "denominator_dependency_share": 0.043675076941927314,
+      "dependency_share": 0.043675076941927314,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-GM-001",
+      "denominator_dependency_share": 0.043150790372668175,
+      "dependency_share": 0.043150790372668175,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-GRMN-001",
+      "denominator_dependency_share": 0.0014747570232333726,
+      "dependency_share": 0.0014747570232333726,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-HAS-001",
+      "denominator_dependency_share": 0.001036647357643298,
+      "dependency_share": 0.001036647357643298,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-HD-001",
+      "denominator_dependency_share": 0.05726277076184836,
+      "dependency_share": 0.05726277076184836,
+      "fallback_source_ids": [
+        "census_marts"
+      ],
+      "independent_fallback_count": 1,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "CRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-HLT-001",
+      "denominator_dependency_share": 0.002552525884548231,
+      "dependency_share": 0.002552525884548231,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-KR-001",
+      "denominator_dependency_share": 0.059476206547744236,
+      "dependency_share": 0.059476206547744236,
+      "fallback_source_ids": [
+        "census_marts"
+      ],
+      "independent_fallback_count": 1,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "CRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-LOW-001",
+      "denominator_dependency_share": 0.032930064561295096,
+      "dependency_share": 0.032930064561295096,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-LULU-001",
+      "denominator_dependency_share": 0.00291894639242243,
+      "dependency_share": 0.00291894639242243,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-MAR-001",
+      "denominator_dependency_share": 0.005329913207099325,
+      "dependency_share": 0.005329913207099325,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-MCD-001",
+      "denominator_dependency_share": 0.005700195897174117,
+      "dependency_share": 0.005700195897174117,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-MGM-001",
+      "denominator_dependency_share": 0.005354444831796837,
+      "dependency_share": 0.005354444831796837,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-NCLH-001",
+      "denominator_dependency_share": 0.002417045621465552,
+      "dependency_share": 0.002417045621465552,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-NKE-001",
+      "denominator_dependency_share": 0.00983736988049413,
+      "dependency_share": 0.00983736988049413,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-ORLY-001",
+      "denominator_dependency_share": 0.005429035019246995,
+      "dependency_share": 0.005429035019246995,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-PEP-001",
+      "denominator_dependency_share": 0.02190552313953085,
+      "dependency_share": 0.02190552313953085,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-PG-001",
+      "denominator_dependency_share": 0.01550022456504372,
+      "dependency_share": 0.01550022456504372,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-RCL-001",
+      "denominator_dependency_share": 0.004411020850375623,
+      "dependency_share": 0.004411020850375623,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-RL-001",
+      "denominator_dependency_share": 0.0016172209496433775,
+      "dependency_share": 0.0016172209496433775,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-ROST-001",
+      "denominator_dependency_share": 0.009406031392483707,
+      "dependency_share": 0.009406031392483707,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-SBUX-001",
+      "denominator_dependency_share": 0.01103744504543179,
+      "dependency_share": 0.01103744504543179,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-TGT-001",
+      "denominator_dependency_share": 0.044209052890115265,
+      "dependency_share": 0.044209052890115265,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-TJX-001",
+      "denominator_dependency_share": 0.01996824525417688,
+      "dependency_share": 0.01996824525417688,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-TPR-001",
+      "denominator_dependency_share": 0.0014269618315516399,
+      "dependency_share": 0.0014269618315516399,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-TSCO-001",
+      "denominator_dependency_share": 0.006056231731553125,
+      "dependency_share": 0.006056231731553125,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-TSLA-001",
+      "denominator_dependency_share": 0.018899033950561656,
+      "dependency_share": 0.018899033950561656,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-ULTA-001",
+      "denominator_dependency_share": 0.004992332276919953,
+      "dependency_share": 0.004992332276919953,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-WMT-001",
+      "denominator_dependency_share": 0.21773639879217382,
+      "dependency_share": 0.21773639879217382,
+      "fallback_source_ids": [
+        "census_marts"
+      ],
+      "independent_fallback_count": 1,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "CRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-WSM-001",
+      "denominator_dependency_share": 0.0028469650183036038,
+      "dependency_share": 0.0028469650183036038,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-WYNN-001",
+      "denominator_dependency_share": 0.001150178518703623,
+      "dependency_share": 0.001150178518703623,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-DEN-YUM-001",
+      "denominator_dependency_share": 0.0014628969181136723,
+      "dependency_share": 0.0014628969181136723,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-AMZN-PAYMENTS-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.01499878497013324,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.01499878497013324,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-BBY-CARD-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.00374969624253331,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.00374969624253331,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-CVNA-FINANCE-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.026296571051532304,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.026296571051532304,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-F-CAPTIVE-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.1314828552576615,
+      "fallback_source_ids": [
+        "sec_ford_auto_abs"
+      ],
+      "independent_fallback_count": 1,
+      "numerator_dependency_share": 0.1314828552576615,
+      "primary_source_id": "sec_company_filing",
+      "rating": "CRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-GM-CAPTIVE-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.14463114078342768,
+      "fallback_source_ids": [
+        "sec_gm_auto_abs"
+      ],
+      "independent_fallback_count": 1,
+      "numerator_dependency_share": 0.14463114078342768,
+      "primary_source_id": "sec_company_filing",
+      "rating": "CRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-HD-CARD-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.005999513988053296,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.005999513988053296,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-LOW-CARD-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.004499635491039973,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.004499635491039973,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-TGT-CARD-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.004499635491039973,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.004499635491039973,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-TJX-SYF-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.005999513988053296,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.005999513988053296,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-TSCO-CARD-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0011249088727599932,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0011249088727599932,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-ULTA-CARD-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.0011249088727599932,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.0011249088727599932,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T1-WMT-FINANCE-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.005999513988053296,
+      "fallback_source_ids": [],
+      "independent_fallback_count": 0,
+      "numerator_dependency_share": 0.005999513988053296,
+      "primary_source_id": "sec_company_filing",
+      "rating": "NONCRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T2-NONREV-AUTO-002",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.2181347663426259,
+      "fallback_source_ids": [
+        "ncua_call_reports",
+        "board_g19_motor_vehicle",
+        "sec_auto_abs"
+      ],
+      "independent_fallback_count": 3,
+      "numerator_dependency_share": 0.2181347663426259,
+      "primary_source_id": "ffiec_call_reports",
+      "rating": "CRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T2-REV-GENERAL-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.22498177455199864,
+      "fallback_source_ids": [
+        "bea_pce"
+      ],
+      "independent_fallback_count": 1,
+      "numerator_dependency_share": 0.22498177455199864,
+      "primary_source_id": "census_marts",
+      "rating": "CRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T3-NONREV-FUNGIBLE-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.13148285525766157,
+      "fallback_source_ids": [
+        "board_g19_nonrevolving"
+      ],
+      "independent_fallback_count": 1,
+      "numerator_dependency_share": 0.13148285525766157,
+      "primary_source_id": "bea_pce",
+      "rating": "CRITICAL",
+      "warning": ""
+    },
+    {
+      "assumption_id": "A-T3-REV-FUNGIBLE-001",
+      "denominator_dependency_share": 0.0,
+      "dependency_share": 0.07499392485066618,
+      "fallback_source_ids": [
+        "census_marts"
+      ],
+      "independent_fallback_count": 1,
+      "numerator_dependency_share": 0.07499392485066618,
+      "primary_source_id": "bea_pce",
+      "rating": "CRITICAL",
+      "warning": ""
+    }
+  ],
+  "methodology_version": "1.2.1",
+  "policy_id": "midpoint-dependency-v1",
+  "rating_basis": "Maximum of each assumption's share of midpoint attributed numerator and midpoint covered-company denominator.",
+  "schema_version": 1,
+  "status": "PASS",
+  "warning_count": 0,
+  "warnings": []
+}

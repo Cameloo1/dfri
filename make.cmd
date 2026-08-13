@@ -8,6 +8,8 @@ if "%AS_OF%"=="" set "AS_OF=2024-01-31"
 if "%BOARD_START%"=="" set "BOARD_START=2015-01-01"
 if "%BOARD_RELEASE%"=="" set "BOARD_RELEASE=all"
 if "%BOARD_TARGET_START%"=="" set "BOARD_TARGET_START=2015-01-01"
+if "%MTS_START%"=="" set "MTS_START=2017-12-31"
+if "%MTS_BACKTEST_AS_OF%"=="" set "MTS_BACKTEST_AS_OF=2026-08-10T23:59:00+00:00"
 if "%CENSUS_ARCHIVE_START%"=="" set "CENSUS_ARCHIVE_START=2015-01-01"
 if "%CONTEXT_START%"=="" set "CONTEXT_START=2015-01-01"
 if "%CONTEXT_SOURCE%"=="" set "CONTEXT_SOURCE=all"
@@ -39,6 +41,13 @@ if /I "%TARGET%"=="privacy-staged" (
 
 if /I "%TARGET%"=="registries-check" (
   uv run python tools\build_m5_registries.py --check
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="criticality-check" (
+  uv run python scripts\sync_assumption_criticality.py --check
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.attribution.criticality --check
   exit /b !ERRORLEVEL!
 )
 
@@ -78,6 +87,12 @@ if /I "%TARGET%"=="verify" (
   if errorlevel 1 exit /b 1
   uv run python tools\build_m5_registries.py --check
   if errorlevel 1 exit /b 1
+  uv run python scripts\sync_assumption_criticality.py --check
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.attribution.criticality --check
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.ops.supply_chain
+  if errorlevel 1 exit /b 1
   uv run ruff check src tests
   if errorlevel 1 exit /b 1
   uv run ruff format --check src tests
@@ -109,6 +124,52 @@ if /I "%TARGET%"=="board-snapshot" (
 
 if /I "%TARGET%"=="board-targets" (
   uv run python -m dfri.ingest.board_targets --start %BOARD_TARGET_START% %BOARD_TARGET_ARGS%
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="supply-chain-contract" (
+  uv run python -m dfri.ops.supply_chain
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="vulnerability-scan" (
+  uv run pip-audit --cache-dir .local\pip-audit-cache --local --skip-editable
+  if errorlevel 1 exit /b 1
+  npm.cmd audit --audit-level=high
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="supply-chain" (
+  uv run python -m dfri.ops.supply_chain
+  if errorlevel 1 exit /b 1
+  uv run pip-audit --cache-dir .local\pip-audit-cache --local --skip-editable
+  if errorlevel 1 exit /b 1
+  npm.cmd audit --audit-level=high
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="archive-round-trip" (
+  uv run python -m dfri.ops.archive round-trip --archive .local\archive\dfri-ledger.tar.gz
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="treasury-mts" (
+  uv run python -m dfri.ingest.treasury_mts --start %MTS_START% %MTS_ARGS%
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="mts-backtest" (
+  uv run python -m dfri.mts_backtest --as-of %MTS_BACKTEST_AS_OF% --output reports\mts_backtest.json
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="mts-predict" (
+  uv run python -m dfri.scoreboard mts-predict %SCOREBOARD_ARGS%
+  exit /b !ERRORLEVEL!
+)
+
+if /I "%TARGET%"=="mts-grade" (
+  uv run python -m dfri.scoreboard mts-grade %SCOREBOARD_ARGS%
   exit /b !ERRORLEVEL!
 )
 
@@ -220,6 +281,12 @@ if /I "%TARGET%"=="publish" (
   uv run python -m dfri.ops.privacy excluded-staged
   if errorlevel 1 exit /b 1
   uv run python tools\build_m5_registries.py --check
+  if errorlevel 1 exit /b 1
+  uv run python scripts\sync_assumption_criticality.py --check
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.attribution.criticality --check
+  if errorlevel 1 exit /b 1
+  uv run python -m dfri.ops.supply_chain
   if errorlevel 1 exit /b 1
   uv run python -m dfri.api.openapi --check --output docs\openapi-v1.json
   if errorlevel 1 exit /b 1

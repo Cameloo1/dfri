@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-08-10T18:00:00Z",
+  "source_family": "SEC EDGAR company and asset-backed-securities filings",
+  "terms_contract": "sec_edgar",
+  "publication_rule": "Only APPROVED_NUMERIC_MAPPING items may activate or alter a Matrix A or Matrix B lane.",
+  "items": [
+    {
+      "review_id": "T1R-SYF-TJX-2026-001",
+      "provider": "Synchrony",
+      "covered_tickers": ["TJX"],
+      "assumption_ids": ["A-T1-TJX-SYF-001"],
+      "review_status": "APPROVED_NUMERIC_MAPPING",
+      "evidence_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1724786/000110465925115005/tm2530159d8_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1724789/000110465926035218/tm269767d1_ex99-1.htm"
+      ],
+      "finding": "TJX Dual Card receivables rose from $2.228 billion at October 31, 2025 to $2.357 billion at January 31, 2026.",
+      "publication_effect": "Adds one direct TJX revolving-credit lane under methodology 1.2.1."
+    },
+    {
+      "review_id": "T1R-SYF-EXISTING-2026-001",
+      "provider": "Synchrony",
+      "covered_tickers": ["AMZN", "LOW"],
+      "assumption_ids": ["A-T1-AMZN-PAYMENTS-001", "A-T1-LOW-CARD-001"],
+      "review_status": "REVIEWED_EXISTING_MAPPING",
+      "evidence_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1724789/000110465926035218/tm269767d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1601712/000160171226000006/syf-20251231.htm"
+      ],
+      "finding": "The trust reports program-level receivables for Amazon and Lowe's; both companies already have active Tier 1 lanes.",
+      "publication_effect": "Evidence strengthened; no weight or company band changed."
+    },
+    {
+      "review_id": "T1R-BFH-ULTA-2025-001",
+      "provider": "Bread Financial",
+      "covered_tickers": ["ULTA"],
+      "assumption_ids": ["A-T1-ULTA-CARD-001"],
+      "review_status": "REVIEWED_EXISTING_MAPPING",
+      "evidence_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1101215/000110121526000016/bfh-20251231.htm"
+      ],
+      "finding": "Bread identifies Ulta as a credit-card program contributing at least 10% of Bread's 2025 total net interest and non-interest income.",
+      "publication_effect": "Evidence strengthened; no weight or company band changed."
+    },
+    {
+      "review_id": "T1R-AFRM-AMZN-2025-001",
+      "provider": "Affirm",
+      "covered_tickers": ["AMZN"],
+      "assumption_ids": ["A-T1-AMZN-PAYMENTS-001"],
+      "review_status": "REVIEWED_EXISTING_MAPPING",
+      "evidence_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1820953/000182095325000080/afrm-20250630.htm"
+      ],
+      "finding": "Affirm reports Amazon represented 22% of fiscal-2025 GMV, or about $8.1 billion of the disclosed $36.7 billion total.",
+      "publication_effect": "Evidence strengthened; no weight or company band changed to avoid double counting existing Amazon financing lanes."
+    },
+    {
+      "review_id": "T1R-COF-2025-001",
+      "provider": "Capital One",
+      "covered_tickers": [],
+      "assumption_ids": [],
+      "review_status": "NO_COVERED_PROGRAM_AMOUNT",
+      "evidence_urls": [
+        "https://www.sec.gov/Archives/edgar/data/927628/000092762826000024/cof-20251231.htm"
+      ],
+      "finding": "Capital One reports aggregate card activity and the acquired Discover portfolio; the former Walmart program had terminated and no active covered-company program amount was disclosed.",
+      "publication_effect": "No link or band published."
+    },
+    {
+      "review_id": "T1R-DFS-2024-001",
+      "provider": "Discover Financial Services",
+      "covered_tickers": [],
+      "assumption_ids": [],
+      "review_status": "NO_COVERED_PROGRAM_AMOUNT",
+      "evidence_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1393612/000139361225000009/dfs-20241231.htm"
+      ],
+      "finding": "Discover reports aggregate direct credit-card and payment-network activity but no named covered-company financing program amount.",
+      "publication_effect": "No link or band published."
+    },
+    {
+      "review_id": "T1R-KLARNA-2025-001",
+      "provider": "Klarna",
+      "covered_tickers": [],
+      "assumption_ids": [],
+      "review_status": "NO_COVERED_PROGRAM_AMOUNT",
+      "evidence_urls": [
+        "https://www.sec.gov/Archives/edgar/data/2003292/000200329226000007/klar-20251231.htm"
+      ],
+      "finding": "Klarna reports provider-wide GMV and payment-option mix but no covered-company program amount that can support a numerical mapping.",
+      "publication_effect": "No link or band published."
+    },
+    {
+      "review_id": "T1R-BLOCK-2025-001",
+      "provider": "Block / Afterpay",
+      "covered_tickers": [],
+      "assumption_ids": [],
+      "review_status": "NO_COVERED_PROGRAM_AMOUNT",
+      "evidence_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1512673/000162828026012254/xyz-20251231.htm"
+      ],
+      "finding": "Block explains its BNPL mechanics and merchant-fee accounting but does not identify a covered merchant with a program-level amount.",
+      "publication_effect": "No link or band published."
+    }
+  ]
+}

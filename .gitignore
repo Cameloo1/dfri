@@ -25,6 +25,7 @@ __pycache__/
 /lake/
 /published/
 /.local/
+/tmp/
 
 # Generated build products.
 /build/

@@ -29,11 +29,225 @@ This is the controlling execution map for `DFRI_BUILD_SPEC.md` v1.0. Sections 1 
    complete step 4.
 6. M4 publication hardening, depending on stable M2/M3 output contracts.
 7. M5 scale, depending on M3 per-company evidence and M4 publication gates.
-8. M6 is a future, unscheduled classification-assistance milestone. It has no start date and may
-   begin only after an explicit owner scheduling decision and the legal/evaluation gates in
-   `docs/PLANNED_CLASSIFICATION.md`.
+8. Complete the owner-directed auto-allocation source replacement and source-redundancy guard
+   before M4 revalidation. This advances Expansion AC9.2 only; it does not start M9.
+9. Execute the owner-directed moat acceleration before new expansion milestone scope: add the
+   Treasury MTS prediction/grade clock and close filing-backed Tier 1 evidence gaps. This advances
+   parts of Expansion AC7.4 and AC9.6 without closing M7 or M9 and without changing any existing
+   G.19 record.
+10. Complete the owner-directed resilience and distribution layer before new expansion milestone
+   scope: make job health visible, lock and audit the supply chain, build a recoverable archival
+   package, and publish deterministic event/social surfaces. A real offsite DOI remains an explicit
+   credential and connected-account gate; it may not be simulated.
+11. Revalidate M4 after the restatement candidates pass every existing M4 gate. Publishing any
+   restatement remains a separate owner approval gate.
+12. Execute expansion milestones M6 through M10 in order. M6 is a byte-identity refactor and any
+    published-value movement blocks it; M7-M10 retain every acceptance criterion in
+    `DFRI_EXPANSION_SPEC.md`.
+13. LLM-assisted classification is renumbered M11, remains unscheduled, and may begin only after
+    an explicit owner scheduling decision and the legal/evaluation gates in
+    `docs/PLANNED_CLASSIFICATION.md`.
 
 Independent source-ingest work may proceed in parallel only where it cannot weaken the M2 calendar-clock priority. A hard-blocked track is recorded in `DEVIATIONS.md` after 24 hours and another eligible track is selected.
+
+## Priority source remediation — auto allocation and redundancy (owner-directed, pre-M4)
+
+- `PASS` Verify current FFIEC Schedule RC-C Part I item 6 identifiers, definitions, public-domain
+  status, and automated bulk/API paths before implementation.
+- `PASS` Verify current NCUA Call Report bulk files, active account codes, units, public-domain
+  status, and automated access before implementation.
+- `PASS` Reconcile the current-quarter FFIEC bank balances, NCUA credit-union balances, existing
+  Board G.19 national totals, and the six already-ingested Auto ABS trust aggregates without
+  reading or publishing loan-level data.
+- `PASS` Add tested FFIEC and NCUA parsers/clients, pinned real-source fixtures, source
+  contracts, runtime metadata validation, and versioned reconciliation evidence.
+- `PASS` Register a new auto-allocation assumption and methodology version; preserve the
+  HHDC-backed methodology as immutable history and append a restatement changelog entry.
+- `PASS` Compute and publish a pre-deployment restatement report for CVNA, F, GM, TSLA, and the
+  revenue-weighted aggregate. Do not deploy before the owner has reviewed the movement.
+- `PASS` Compute assumption criticality from midpoint dependency shares, register primary and
+  independent fallback sources for every critical assumption, and emit a CI warning report for
+  any unresolved single-source risk.
+- `PASS` Implement tested automatic fallback selection, uncertainty-band widening, and visible
+  active-source/degradation notes. A missing viable fallback remains a reported structural risk;
+  output blackout is the last resort.
+- `PASS` Document the use-versus-redistribution distinction, source terms, fallback policy, and
+  current risks in `SOURCE_LICENSING.md` and the public methodology.
+- `IN_PROGRESS` Run focused tests, full verification, deterministic publication, regression inventory,
+  and fresh-clone M4 gates before requesting publication approval.
+
+Dependencies: verified source contracts, existing M1 Auto ABS aggregates, immutable methodology
+v1.1.1 baseline, and the active M2 clock. Evidence: source URLs/checksums, deterministic report,
+criticality report, tests, and pre-publication restatement comparison.
+
+## Moat acceleration — second clock and Tier 1 filing evidence (owner-directed)
+
+These tasks intentionally advance calendar-compounding work ahead of M6–M10. They do not waive
+any milestone acceptance criterion, do not close M7 or M9, and may not alter an existing G.19
+prediction, grade, publication record, ID, timestamp, value, model version, or canonical hash.
+
+### Task A — Monthly Treasury Statement prediction clock
+
+- `PASS` Verify Treasury Fiscal Data terms before design: the API documentation offers the data
+  free and without restriction for copying, adaptation, redistribution, and commercial or
+  non-commercial use; automated API access and downloads are first-class documented paths.
+- `PASS` Verify a genuine point-in-time target: Table 1 retains issue-specific monthly rows, the
+  Bureau of the Fiscal Service publishes dated PDF/XLSX issues back before 2018, and the official
+  release calendar currently schedules the July 2026 issue for 2026-08-12 at 18:00 UTC.
+- `PASS` Register the Treasury source, Table 1 endpoint and exact target fields for monthly
+  federal deficit and total outlays, with terms URL, release calendar, archive URL, units, and
+  `verified_at`; add runtime metadata/unit verification and a real archived fixture.
+- `PASS` Ingest first-print MTS history through the Vintage Guard with immutable source URLs,
+  issue/release dates, checksums, and a strict first-print selector that rejects revised rows.
+- `PASS` Backtest naive last-value, seasonal naive, and AR benchmarks first; add a bridge or
+  state-space model only if it beats the best benchmark. Report MAE, RMSE, 80/95 coverage, and
+  acceleration-sign accuracy separately for deficit and outlays, logging unmet bars honestly.
+- `PASS` Reuse the prediction/grade/publication schema with `target_series` as the series
+  dimension; append MTS rows without rewriting or re-identifying any G.19 record. Add adversarial
+  immutability and unchanged-input no-op tests.
+- `PASS (deployment candidate)` Add an MTS prediction check before each scheduled release and automatic grading after
+  release. Preserve Git-backed ledger authority and the candidate-before-Pages-before-Git
+  promotion boundary; artifacts remain cache only.
+- `PASS (deployment candidate)` Publish MTS rows and permalinks on the existing scoreboard, visibly distinguished from
+  G.19, with calibration statistics computed per series and never blended.
+- `PASS (deployment candidate)` Run the complete regression, determinism, URL, provenance,
+  accessibility, page-weight, no-JS, and clock-health gates before requesting deployment approval.
+  A fresh-clone verification is the final publication-candidate handoff gate.
+- `PENDING OWNER APPROVAL` Push the reviewed candidate and deploy it so the two new cron lanes are
+  registered. Do not count local or manually dispatched rows as calendar-clock evidence.
+
+Dependencies: active M2 repository-backed clock, Treasury first-print and release-calendar gate,
+Vintage Guard, immutable prediction/grade schemas, and the existing scoreboard publisher.
+
+### Task B — filing-backed Tier 1 evidence gap
+
+- `PASS` Verify current filing/accession identities for Synchrony, Bread Financial, other
+  comparable private-label/co-brand issuers, Affirm, Klarna, and Block through the existing
+  permitted EDGAR/public-filing lane before extracting evidence.
+- `PASS` Mine 10-K/10-Q disclosures for named retail partner programs and only disclosed
+  partner-level receivables, purchase volume, or sales measures; record an explicit no-usable-line
+  result rather than infer a value where disclosure is absent.
+- `PASS` Extend named-merchant BNPL evidence from Affirm, Klarna, and Block only where a specific
+  public filing ties financing volume or merchant activity to a covered company.
+- `PASS` Give every proposed link a stable assumption ID, issuer accession or filing URL,
+  <=15-word evidence snippet, sensitivity note, and review status. Publication fails when an active
+  mapping is unreviewed.
+- `PASS` Recompute under a new immutable methodology version, preserve every prior value, and
+  report the count moving off baseline-only plus every affected low/mid/high and tier-share change
+  before requesting publication approval.
+- `PASS (deployment candidate)` Append a factual changelog entry for any approved DFR% restatement and pass independent
+  recompute, provenance, regression, determinism, and cold-clone gates.
+- `PENDING OWNER APPROVAL` Publish methodology 1.2.1. Until deployment, methodology 1.2.0 remains
+  the live public value set and no live DFR% has been restated.
+
+Dependencies: existing EDGAR source contract, immutable methodology 1.2 candidate lineage,
+accession-linked evidence contract, and active M2 clock.
+
+## Resilience and distribution (owner-directed, pre-expansion)
+
+### Failure visibility
+
+- `PASS` Publish a versioned, machine-checkable job-status document containing, for every
+  scheduled lane, its last successful run, next expected run, release-SLA state, and whether an
+  expected run or release was missed. Generate it from content-addressed success receipts rather
+  than workflow intent.
+- `PASS` Render a site-wide stale-data notice when a release SLA is exceeded and preserve the
+  existing visible fallback-source notice. Both states must remain usable without JavaScript and
+  must expose their evidence in the status document.
+- `PASS` Add deduplicated GitHub-issue notification on scheduled workflow failure using only the
+  repository-scoped `GITHUB_TOKEN`; no paid service or separately connected notification account.
+- `PASS` Add an operator runbook for a missed schedule, unreachable source, changed release
+  format, and simultaneous primary/fallback failure, with inspect, retry, pause, abort, recovery,
+  and evidence-preservation steps.
+
+### Supply chain and archival
+
+- `PASS` Prove every direct Python, build, Node, and GitHub Action dependency is exact and
+  lock-backed; make CI bootstrap from the lock files and fail on floating constraints.
+- `PASS` Add blocking Python and Node vulnerability scans to CI with pinned scanner versions and
+  a reproducible local make target.
+- `PASS` Create a deterministic, allowlisted archive package for the Git-backed immutable
+  ledgers, verify every member hash, and prove byte-identical round-trip recovery in a clean
+  workspace. Document archive cadence and recovery.
+- `BLOCKED — CREDENTIAL/POLICY` Deposit and retrieve one real offsite Zenodo archive and publish its
+  DOI. Zenodo requires either a connected GitHub account or a Zenodo account plus deposit token;
+  the owner explicitly disallowed connected accounts and supplied no credential. Prepare the
+  release metadata and upload boundary, but do not fabricate a DOI or claim an offsite proof.
+
+### Distribution surfaces
+
+- `PASS` Generate versioned JSON and RSS event feeds for predictions, grades, restatements,
+  source-fallback activations, and methodology changes from immutable/versioned source records.
+- `PASS` Add canonical Open Graph and Twitter-card metadata to every rendered page and generate
+  deterministic 1200×630 static preview images for generic pages, company pages, and prediction
+  permalinks without runtime JavaScript or network calls.
+- `PASS` Render a site-wide “cite this” block only when the archive registry contains a verified
+  DOI. Until then publish no placeholder DOI and keep the archive state explicit.
+- `PASS` Run focused tests, complete verification, deterministic double-publish, no-JavaScript,
+  accessibility, provenance, URL, and page-weight gates; then run the final cold-clone proof.
+
+Dependencies: Git-backed ledgers, M2/MTS workflow candidates, deterministic static publisher,
+source-fallback registry, and existing M4 quality gates. Publication, workflow registration, and
+the external archive deposit remain separate owner approval gates.
+
+## Polish and legitimacy (owner-directed, pre-expansion)
+
+This pass is additive publication work. It may not alter a prediction, grade, publication record,
+company estimate, aggregate value, feed field, canonical ledger hash, URL, or permalink. Any such
+difference is a correctness failure and stops this pass.
+
+### Accessible chart equivalents
+
+- `PASS` Inventory every rendered flow view, revenue-decomposition graphic, and modeled
+  band chart across the homepage, methodology, company pages, and prediction permalinks.
+- `PASS` Put a visible, no-JavaScript text-equivalent table beside every inventoried chart and
+  programmatically associate each figure with its table. Flow rows must expose source,
+  destination, amount, units, and tier; decomposition and band rows must expose every value,
+  units, tier context, and provenance needed to interpret the graphic.
+- `PASS` Add a permanent blocking publication check that rejects a required chart without its
+  associated table, required columns, units, tier context, or provenance.
+- `PASS` Traverse the primary first-visit and company-audit paths with an actual screen reader,
+  record the observed reading order and table experience, and report any remaining awkwardness
+  separately from automated axe and semantic checks.
+
+### Corrections, scope, and first-visit path
+
+- `PASS` Publish a plain corrections policy at a stable URL covering the report channel,
+  acknowledgement target, verification process, append-only versioned correction records,
+  changelog disclosure, and retrieval of prior values; link it from every page.
+- `PASS` Publish a stable roadmap-and-boundaries page describing what is measured now, what is
+  planned, and what is deliberately excluded. Name sources rejected on terms grounds and explain
+  why permitted access/use does not establish permitted storage or derivative redistribution.
+- `PASS` Walk the rendered site cold before and after the changes, document where a reader first
+  understands the claim, evidence depth, and credibility basis, fix cheap observed breaks, and
+  list remaining uncertainty without asserting untested behavior.
+
+### Calendar-triggered model diagnostics
+
+- `PENDING TRIGGER — G.19` For each G.19 `target_series`, when its immutable live-grade count first
+  reaches 8, publish an exactly-once live-versus-backtest diagnostic comparing realized MAE,
+  naive-benchmark MAE, and 80%/95% interval coverage with that series' frozen backtest
+  expectations. State whether the divergence warrants a model change; do not retrain or retune
+  automatically. Any approved change receives a new `model_version`, while every prior prediction
+  remains graded under the version that made it. Current Git-backed counts: revolving 1 of 8;
+  nonrevolving 1 of 8.
+- `PENDING TRIGGER — MTS` Apply the same exactly-once obligation independently to each MTS
+  `target_series` when its immutable live-grade count first reaches 8. Never blend MTS and G.19
+  calibration statistics or triggers. Current Git-backed counts: deficit 0 of 8; outlays 0 of 8.
+- `PASS` Record each trigger threshold, current count, diagnostic artifact/version, decision,
+  and completion state in the plan and changelog so the obligation cannot disappear between
+  scheduled runs.
+
+### Verification and handoff
+
+- `PASS` Append a publication changelog entry, update tests, and pass focused publication tests,
+  `make verify`, deterministic double-publication, no-JavaScript, accessibility, URL/provenance,
+  page-weight, and first-visit checks.
+- `PASS` Preserve generated browser evidence and diagnostic logs only under ignored `.local/`
+  paths; commit only durable source, tests, policies, and stable public reports.
+
+Dependencies: current deterministic publisher, section 8.3 quality gates, active Git-backed clock,
+and the existing stable chart and permalink URLs. Deployment remains a separate owner approval.
 
 ## M0 — Foundation (repo, CI, contracts)
 
@@ -334,13 +548,100 @@ Dependencies: M5.1.
 
 Dependencies: M5.1–M5.2.
 
-## M6 — LLM-assisted Matrix B classification expansion (NOT SCHEDULED)
+## M6 — Multi-stream architecture refactor and legality audit
+
+- `PASS` **AC6.1 (advanced before M4 at owner direction):** Finish the NY Fed HHDC terms/redistribution audit, record the finding, and
+  ensure the replacement/restatement path removes the licensing dependency from active output.
+- `PENDING` **AC6.2:** Require `terms_status`, `terms_url`, and a permissions summary for every
+  registered source; fail when any active source remains `UNVERIFIED`.
+- `PENDING` **AC6.3:** Add `stream_registry`, register `household_credit`, and route the unchanged
+  attribution through a stream dispatcher.
+- `PENDING` **AC6.4:** Capture pre-refactor output/feed bytes and prove every DFR band, tier share,
+  aggregate value, and payload is byte-identical after the refactor.
+- `PENDING` **AC6.5:** Populate `stream_output` for every covered company/period with the reproduced
+  household-credit values.
+- `PENDING` **AC6.6:** Add computable BFR% scaffolding but prohibit publication with one active
+  stream.
+- `PENDING` **AC6.7:** Implement the disjointness checker and a synthetic overlapping-revenue test
+  that must fail closed.
+- `PENDING` **AC6.8:** Document methodology 2.0.0 side-by-side and update `docs/MODELING.md`.
+- `PENDING` **AC6.9:** Add property tests for ordered bands, tier shares summing to 1±1e-9, and the
+  per-stream `max_tier_achievable` ceiling.
+
+Dependencies: revalidated M4, accepted auto-allocation restatement, and uninterrupted M2 clock.
+Any AC6.4 byte difference blocks M6 and all later expansion milestones.
+
+## M7 — Federal deficit-funded revenue stream
+
+- `PENDING` **AC7.1:** Verify and register USASpending and Treasury Fiscal Data terms before ingest.
+- `PENDING` **AC7.2:** Build the tested USASpending client with UEI identity, parent rollups, prime
+  awards only, bulk-volume handling, pagination-cap handling, and real fixtures.
+- `PENDING` **AC7.3:** Prove primes/subawards and parent/child/recipient levels cannot double count.
+- `PENDING` **AC7.4:** Ingest Treasury MTS and register the deficit-share assumption.
+- `PENDING` **AC7.5:** Enforce observed award receipt as Tier 1 and deficit share as Tier 2.
+- `PENDING` **AC7.6:** Populate reviewed, evidence-linked UEI/ticker mappings for the full universe.
+- `PENDING` **AC7.7:** Register fiscal-year/company-quarter mapping and sensitivity.
+- `PENDING` **AC7.8:** Verify and add at least 12 federal-exposed S&P 500 companies with exclusions.
+- `PENDING` **AC7.9:** Publish federal numerator bands, tier mix, award provenance, and joint
+  uncertainty for the full universe.
+- `PENDING` **AC7.10:** Publish BFR% only for `VERIFIED` disjointness; otherwise show separate streams.
+- `PENDING` **AC7.11:** Independently recompute three federal-stream companies within tolerance.
+- `PENDING` **AC7.12:** Add versioned stream fields and company-page decomposition without changing
+  existing fields.
+- `PENDING` **AC7.13:** Explicitly label indirect federal paths out of scope or Tier 3.
+
+Dependencies: M6 complete.
+
+## M8 — Interactive flow views
+
+- `PENDING` **AC8.1:** Add the three prescribed, dedicated, server-rendered SVG view URLs.
+- `PENDING` **AC8.2:** Enforce ribbon width=dollars and non-color tier styles with legends.
+- `PENDING` **AC8.3:** Keep each default view to about 14 nodes with explicit bundled nodes.
+- `PENDING` **AC8.4:** Prove complete no-JavaScript rendering and ordinary-link navigation.
+- `PENDING` **AC8.5:** Limit JavaScript to view swapping, focus/hover highlighting, and expansion;
+  prove static/enhanced values are identical and make no fetches.
+- `PENDING` **AC8.6:** Pass keyboard, focus, screen-reader, and zero-critical accessibility gates.
+- `PENDING` **AC8.7:** Add the per-company revenue decomposition bar with bands, tiers, and streams.
+- `PENDING` **AC8.8:** Render the mandatory proportional-allocation honesty caption on every view.
+- `PENDING` **AC8.9:** Reduce node count on mobile; prohibit zoom and horizontal scroll.
+- `PENDING` **AC8.10:** Pass the complete UX inventory before/after diff with no unexplained loss.
+
+Dependencies: M7 complete and existing section 8.3/site regression gates.
+
+## M9 — Household stream gap-fill
+
+- `PENDING` **AC9.1:** Verify/register every §4.2 source before ingest and fail legal conflicts.
+- `PASS` **AC9.2 (advanced before M4 at owner direction):** Separate auto from student/other nonrevolving through FFIEC+NCUA,
+  advanced under the owner-directed pre-M4 remediation above.
+- `PENDING` **AC9.3:** Add mortgage/HELOC flows and explicitly choose attribution versus context.
+- `PENDING` **AC9.4:** Add Federal Student Aid flow and document its attribution limit.
+- `PENDING` **AC9.5:** Add SBA data as a sub-stream or publish the evidence-backed exclusion.
+- `PENDING` **AC9.6:** Extend filing-backed BNPL evidence across covered companies.
+- `PENDING` **AC9.7:** Extend Matrix A with registered assumptions and sensitivity notes.
+- `PENDING` **AC9.8:** Treat every prior DFR change as a retrievable, explained restatement.
+- `PENDING` **AC9.9:** Publish top-five band-width assumptions per stream.
+
+Dependencies: M8 complete; the early AC9.2 work does not waive the sequence for remaining ACs.
+
+## M10 — Business debt feasibility and resolution
+
+- `PENDING` **AC10.1:** Publish the feasibility finding before implementation.
+- `PENDING` **AC10.2:** If attribution is indefensible, register/publish `context_only` and exclude
+  it from BFR%; this is an accepted successful outcome.
+- `PENDING` **AC10.3:** If defensible, implement the stream to M7 standards with two-stream
+  disjointness proof.
+- `PENDING` **AC10.4:** Publish existing SEC XBRL company debt and interest expense as Tier 1
+  context regardless of the feasibility outcome.
+
+Dependencies: M9 complete.
+
+## M11 — LLM-assisted Matrix B classification expansion (NOT SCHEDULED)
 
 Start date: none. This milestone is specification only and does not authorize implementation,
 provider selection, a model dependency, or a pipeline change. The complete contract is
 [`docs/PLANNED_CLASSIFICATION.md`](docs/PLANNED_CLASSIFICATION.md).
 
-### M6.1 Bounded classification and frozen provenance
+### M11.1 Bounded classification and frozen provenance
 
 - `NOT SCHEDULED` **AC-M6-01:** Restrict model output to extraction and controlled-category label
   proposals; prohibit numeric estimates, weights, tiers, denominators, bands, or nowcast inputs.
@@ -351,7 +652,7 @@ provider selection, a model dependency, or a pipeline change. The complete contr
 - `NOT SCHEDULED` **AC-M6-04:** Enter every proposal under a stable assumption ID with append-only
   `PENDING`, `ACCEPTED`, `REJECTED`, or `SUPERSEDED` review state.
 
-### M6.2 Review, evaluation, and publication gates
+### M11.2 Review, evaluation, and publication gates
 
 - `NOT SCHEDULED` **AC-M6-05:** Fail publication when an active classification is unreviewed; never
   compile `PENDING` or `REJECTED` labels into Matrix B.
@@ -368,10 +669,12 @@ provider selection, a model dependency, or a pipeline change. The complete contr
 - `NOT SCHEDULED` **AC-M6-11:** Enforce the explicit non-goals: no LLM in the nowcast, no generated
   site commentary, and no model-authored number.
 - `NOT SCHEDULED` **AC-M6-12:** Pass every M6 criterion from a fresh clone and write a milestone
-  report before describing the layer as active.
+  report before describing the layer as active. The `AC-M6-*` identifiers are retained from the
+  standalone planning document for traceability even though the project milestone is now M11.
 
-Dependencies: M5 mapping contracts, explicit owner scheduling, verified provider/source terms, and
-a frozen spending-category taxonomy. No current milestone depends on M6.
+Dependencies: M10 resolution, M5 mapping contracts, explicit owner scheduling, verified
+provider/source terms, and a frozen spending-category taxonomy. No scheduled milestone depends on
+M11.
 
 ## Day-14 review packet
 
@@ -381,7 +684,7 @@ a frozen spending-category taxonomy. No current milestone depends on M6.
 
 ## Immediate next actions
 
-1. Preserve the next genuine scheduled weekly prediction cycle and its deployment receipt to complete the two-cycle M2 gate.
-2. Keep the now-proven automatic G.19 grading lane and repository ledger promotion fail-closed; do not count manual dispatches as cycle evidence.
-3. Preserve M4's Pages-only uptime receipts and keep the D-010 serverless appendix dormant until a trigger occurs.
-4. Hold the verified 50-company M5 boundary until one of Q-003–Q-007 is answered; do not add market data, a paid vendor, or a public API by inference.
+1. Complete the fresh-clone proof for the methodology 1.2 auto-allocation candidate and present the pre-publication movement report; do not deploy before owner approval.
+2. After approval, publish the separately versioned restatement, verify the live Pages/feed/changelog surfaces, and write the M4 revalidation supplement without rewriting the accepted M4 report.
+3. Preserve the scheduled prediction and grading lanes throughout publication; any missed clock run preempts milestone work.
+4. Begin M6 only after the M4 revalidation supplement passes, enforcing byte-identity across the M6 multi-stream refactor.

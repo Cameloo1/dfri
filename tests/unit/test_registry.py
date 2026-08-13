@@ -72,19 +72,24 @@ def test_census_archive_registry_pins_release_coherent_retail_derivation() -> No
 def test_every_enabled_source_contract_permits_required_operations() -> None:
     contracts = load_source_contracts()
     assert set(contracts) == {
+        "ffiec_call_reports",
+        "ncua_call_reports",
         "federal_reserve_board",
         "bea",
         "census",
         "new_york_fed",
         "sec_edgar",
+        "treasury_fiscal_data",
         "wikimedia",
     }
     for contract in contracts.values():
         assert contract.automated_access
         assert contract.storage
-        assert contract.derivative_redistribution
+        if contract.active_publication:
+            assert contract.derivative_redistribution
         assert contract.terms_url.startswith("https://")
         assert contract.conditions
+    assert contracts["new_york_fed"].status == "retired_incompatible_feed_license"
 
 
 def test_context_registry_replaces_all_legacy_aliases_directly() -> None:

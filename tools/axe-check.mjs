@@ -40,6 +40,8 @@ async function routes() {
     "/methodology/",
     "/methodology/coverage/",
     "/methodology/sensitivity/",
+    "/roadmap/",
+    "/corrections/",
     "/changelog/",
     ...companies
       .filter((entry) => entry.isDirectory())
@@ -90,6 +92,8 @@ async function semanticAudit(page, route) {
             ? "Methodology"
             : currentRoute === "/changelog/"
               ? "Changelog"
+              : currentRoute === "/roadmap/"
+                ? "Roadmap"
               : null;
     const currentLinks = [...document.querySelectorAll('nav a[aria-current="page"]')].map((link) =>
       link.textContent.trim(),
@@ -107,7 +111,7 @@ async function semanticAudit(page, route) {
 async function keyboardAudit(page) {
   const expectedCount = await page.evaluate(() => {
     const candidates = [...document.querySelectorAll(
-      'a[href],button,summary,input,select,textarea,[tabindex]:not([tabindex="-1"])',
+      'a[href],button,summary,input,select,textarea,iframe,[tabindex]:not([tabindex="-1"])',
     )];
     return candidates.filter((element) => {
       const style = getComputedStyle(element);
@@ -130,7 +134,7 @@ async function keyboardAudit(page) {
     await page.keyboard.press("Tab");
     const state = await page.evaluate(() => {
       const candidates = [...document.querySelectorAll(
-        'a[href],button,summary,input,select,textarea,[tabindex]:not([tabindex="-1"])',
+        'a[href],button,summary,input,select,textarea,iframe,[tabindex]:not([tabindex="-1"])',
       )].filter((element) => {
         const style = getComputedStyle(element);
         const closedDetails = element.closest("details:not([open])");
@@ -146,10 +150,18 @@ async function keyboardAudit(page) {
         );
       });
       const active = document.activeElement;
-      const style = active == null ? null : getComputedStyle(active);
+      const focusTarget = active instanceof HTMLIFrameElement
+        ? active.contentDocument?.activeElement
+        : active;
+      const style = focusTarget == null ? null : getComputedStyle(focusTarget);
       return {
         index: candidates.indexOf(active),
-        label: (active?.getAttribute("aria-label") || active?.textContent || "").replace(/\s+/g, " ").trim(),
+        label: (
+          focusTarget?.getAttribute("aria-label") ||
+          focusTarget?.textContent ||
+          active?.getAttribute("title") ||
+          ""
+        ).replace(/\s+/g, " ").trim(),
         outlineStyle: style?.outlineStyle ?? "none",
         outlineWidth: Number.parseFloat(style?.outlineWidth ?? "0"),
       };
@@ -262,8 +274,8 @@ try {
         throw new Error("No-JavaScript baseline disclosure did not expand natively");
       }
       const baselineRows = await disclosure.locator('tr[data-lift-status="baseline-only"]').count();
-      if (baselineRows !== 38) {
-        throw new Error(`No-JavaScript baseline disclosure exposes ${baselineRows} rows, not 38`);
+      if (baselineRows !== 37) {
+        throw new Error(`No-JavaScript baseline disclosure exposes ${baselineRows} rows, not 37`);
       }
     }
   }

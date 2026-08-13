@@ -151,6 +151,71 @@
         {"label": "Scoreboard", "href": "/scoreboard/"},
         {"label": "Methodology", "href": "/methodology/"}
       ]
+    },
+    {
+      "entry_id": "methodology-1-2-auto-allocation-sources",
+      "published_on": "2026-08-10",
+      "kind": "methodology",
+      "version": "1.2.0",
+      "title": "Auto allocation moved to regulatory and filing evidence",
+      "summary": "Retired the NY Fed Household Debt and Credit source from the active auto-allocation assumption; reconciled FFIEC bank, NCUA credit-union, Federal Reserve Board G.19, and SEC Auto ABS evidence; separately versioned the resulting 50-company and headline-index restatement; and added computed source criticality with independent fallbacks and visible degraded-source bands.",
+      "links": [
+        {"label": "Methodology", "href": "/methodology/"},
+        {"label": "Version comparison", "href": "/methodology/sensitivity/"},
+        {"label": "Critical source strategy", "href": "/methodology/#source-resilience"}
+      ]
+    },
+    {
+      "entry_id": "moat-a-treasury-mts-second-clock",
+      "published_on": "2026-08-10",
+      "kind": "publication",
+      "version": "mts-point-in-time-backtest-v1",
+      "title": "Treasury deficit and outlays clock added",
+      "summary": "Added immutable, first-print-graded Monthly Treasury Statement predictions for federal deficit and total outlays; benchmark selection, empirical intervals, and live calibration remain separate for each series and never alter or blend with G.19 records.",
+      "links": [
+        {"label": "Scoreboard", "href": "/scoreboard/"},
+        {"label": "Methodology", "href": "/methodology/#mts-clock"},
+        {"label": "Scoreboard feed", "href": "/v1/feeds/scoreboard.json"}
+      ]
+    },
+    {
+      "entry_id": "moat-b-methodology-1-2-1-tjx-tier1",
+      "published_on": "2026-08-10",
+      "kind": "methodology",
+      "version": "1.2.1",
+      "title": "TJX moved off the fungibility baseline",
+      "summary": "Added a reviewed TJX private-label-card lane using two dated Synchrony trust filings with program-level receivables; preserved methodology 1.2.0, left all 49 unaffected company result objects unchanged, and published the restatement under the versioned v2 assumption feed.",
+      "links": [
+        {"label": "TJX", "href": "/companies/tjx/"},
+        {"label": "Version comparison", "href": "/methodology/sensitivity/"},
+        {"label": "Assumption feed v2", "href": "/v2/feeds/assumptions.json"}
+      ]
+    },
+    {
+      "entry_id": "resilience-status-events-and-citation-boundary",
+      "published_on": "2026-08-10",
+      "kind": "publication",
+      "version": "1.2.1",
+      "title": "Automation status and event distribution added",
+      "summary": "Added per-lane run and release-SLA status, visible status and fallback notices, failure issues, versioned JSON/RSS events, deterministic social previews, exact dependency and vulnerability gates, and a conditional citation surface that remains absent until a real DOI is verified.",
+      "links": [
+        {"label": "Status", "href": "/v1/status.json"},
+        {"label": "Event feed", "href": "/v1/events.json"},
+        {"label": "RSS", "href": "/events.xml"}
+      ]
+    },
+    {
+      "entry_id": "site-accessible-chart-equivalents-and-public-boundaries",
+      "published_on": "2026-08-10",
+      "kind": "publication",
+      "version": "1.2.1",
+      "title": "Chart equivalents and public boundaries added",
+      "summary": "Added visible text-equivalent tables for every published flow, band, and company evidence-decomposition chart; published append-only corrections and scope-boundary policies; and added permanent build checks for those accessibility contracts without changing any estimate or feed.",
+      "links": [
+        {"label": "Corrections policy", "href": "/corrections/"},
+        {"label": "Roadmap and boundaries", "href": "/roadmap/"},
+        {"label": "Credit flow", "href": "/#credit-flow"}
+      ]
     }
   ]
 }

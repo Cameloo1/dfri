@@ -1,0 +1,58 @@
+name: Immutable ledger release archive
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dfri-ledger-archive
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the immutable ledger release
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Install pinned uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          version: "0.11.32"
+          enable-cache: true
+      - name: Install the locked project
+        run: uv sync --locked --no-dev
+      - name: Create twice, verify hashes, and prove clean ledger recovery
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/archive
+          uv run python -m dfri.ops.archive round-trip \
+            --repository-root . \
+            --archive ".local/archive/dfri-ledger-${GITHUB_SHA}.tar.gz" \
+            | tee .local/archive/round-trip-receipt.json
+      - name: Attach the verified archive to the triggering GitHub release
+        if: github.event_name == 'release'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release upload "${{ github.event.release.tag_name }}" \
+            ".local/archive/dfri-ledger-${GITHUB_SHA}.tar.gz" \
+            --repo "$GITHUB_REPOSITORY" \
+            --clobber=false
+      - name: Preserve redundant verification evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dfri-ledger-archive-${{ github.sha }}
+          path: .local/archive/
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0

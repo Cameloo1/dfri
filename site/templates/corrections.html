@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Corrections policy</h1>
+<p class="lede">DFRI corrects verified errors in public, versioned records. It never silently replaces a published estimate, prediction, grade, assumption, or source citation.</p>
+
+<section class="section-block">
+  <h2>Report an error</h2>
+  <p>Email <a href="mailto:{{ commercial_license_contact }}">{{ commercial_license_contact }}</a>. Include the page or feed URL, company or prediction ID, period, disputed value or citation, and the evidence supporting the concern. Do not send borrower, account, loan-level, credential, or other personal information.</p>
+  <p>We aim to acknowledge a complete report within five business days. Acknowledgement is not a finding; verification may require checking the cited filing, first-print release, registry version, and deterministic replay.</p>
+</section>
+
+<section class="section-block">
+  <h2>How a correction publishes</h2>
+  <ol>
+    <li>The report is reproduced against the exact published version and evidence set.</li>
+    <li>A confirmed error receives a new versioned row or superseding record. Existing rows, prediction timestamps, grades, canonical hashes, and cited permalinks are not edited or deleted.</li>
+    <li>The public <a href="{{ root }}changelog/index.html">changelog</a> names what changed, why, the affected period or company, and the replacement version.</li>
+    <li>Prior values remain retrievable through their immutable permalinks, versioned feeds, publication history, and changelog links.</li>
+  </ol>
+  <p>If a report is not confirmed, the evidence and conclusion are returned to the reporter when contact information is available. Methodological disagreement without a factual error is documented as feedback rather than rewritten as a correction.</p>
+</section>
+
+<section class="section-block">
+  <h2>Urgent clock issues</h2>
+  <p>A missing scheduled prediction, missed first-print grade, mutated ledger record, or broken immutable permalink is treated as an operational incident. The append-only record is preserved while the publication or automation path is repaired.</p>
+</section>
+{% endblock %}

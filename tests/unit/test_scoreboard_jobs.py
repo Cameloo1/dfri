@@ -10,6 +10,7 @@ import dfri.scoreboard as scoreboard
 from dfri.lake.store import AppendOnlyParquetStore
 from dfri.nowcast.bridge import BRIDGE_VERSION, BridgeForecast
 from dfri.nowcast.features import BridgeFeature
+from dfri.nowcast.mts import MtsForecast
 from dfri.nowcast.targets import FirstPrintTarget
 from dfri.publish.ledger import PredictionLedger
 
@@ -228,3 +229,181 @@ def test_prediction_cli_payload_includes_aggregate_append_counts() -> None:
     assert payload["appended"] == 3
     assert payload["already_present"] == 1
     assert isinstance(payload["series"], list)
+
+
+def mts_history(series: str, *, include_target: bool = False) -> tuple[FirstPrintTarget, ...]:
+    rows: list[FirstPrintTarget] = []
+    year = 2023
+    month = 6
+    count = 38 if include_target else 37
+    for index in range(count):
+        period = month_end(year, month)
+        release = datetime.combine(period + timedelta(days=12), datetime.min.time(), UTC)
+        rows.append(
+            FirstPrintTarget(
+                target_series=series,
+                level_series=series,
+                target_period=period,
+                value=500_000.0 + index,
+                unit="Millions of U.S. Dollars",
+                release_at=release,
+                vintage_date=release.date(),
+                source_url=(
+                    "https://fiscaldata.treasury.gov/static-data/published-reports/mts/"
+                    f"MonthlyTreasuryStatement_{period.strftime('%Y%m')}.pdf"
+                ),
+                checksum=f"{index + 1:064x}",
+            )
+        )
+        year += int(month == 12)
+        month = 1 if month == 12 else month + 1
+    return tuple(rows)
+
+
+def test_mts_prediction_clock_is_immutable_and_grades_from_treasury_issue(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(
+        scoreboard,
+        "read_mts_first_print_targets",
+        lambda _guard, series, _as_of, start: mts_history(series),
+    )
+    monkeypatch.setattr(
+        scoreboard,
+        "run_mts_backtest",
+        lambda histories, as_of: {"targets": [], "histories": len(histories)},
+    )
+
+    def fake_fit(
+        history: tuple[FirstPrintTarget, ...],
+        *,
+        target_period: date,
+        made_at: datetime,
+        backtest: dict[str, object],
+    ) -> MtsForecast:
+        assert backtest["histories"] == 2
+        return MtsForecast(
+            model_version="mts-benchmark-empirical-v1:mts-naive-seasonal-v1",
+            target_series=history[-1].target_series,
+            target_period=target_period,
+            made_at=made_at,
+            point=500_100.0,
+            low80=450_000.0,
+            high80=550_000.0,
+            low95=400_000.0,
+            high95=600_000.0,
+            training_observations=len(history),
+            inputs_hash="f" * 64,
+        )
+
+    monkeypatch.setattr(scoreboard, "fit_mts_forecast", fake_fit)
+    raw = AppendOnlyParquetStore(tmp_path / "raw")
+    curated = AppendOnlyParquetStore(tmp_path / "curated")
+    made_at = datetime(2026, 8, 10, 16, tzinfo=UTC)
+
+    first = scoreboard.run_mts_prediction_job(raw, curated, as_of=made_at)
+    second = scoreboard.run_mts_prediction_job(raw, curated, as_of=made_at + timedelta(minutes=30))
+
+    assert first.appended == 2
+    assert second.appended == 0
+    records = PredictionLedger(curated).read_all()
+    assert len(records) == 2
+    assert {item.made_at for item in records} == {made_at}
+
+    monkeypatch.setattr(
+        scoreboard,
+        "read_first_print_targets",
+        lambda _guard, series, _as_of, start: (),
+    )
+    monkeypatch.setattr(
+        scoreboard,
+        "read_mts_first_print_targets",
+        lambda _guard, series, _as_of, start: mts_history(series, include_target=True),
+    )
+    graded = scoreboard.run_grading_job(raw, curated, as_of=datetime(2026, 9, 30, tzinfo=UTC))
+
+    assert graded.appended == 2
+    assert graded.integrity_verified is True
+
+
+def test_mts_append_preserves_existing_g19_ledger_batches_byte_for_byte(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    patch_prediction_inputs(monkeypatch)
+    raw = AppendOnlyParquetStore(tmp_path / "raw")
+    curated = AppendOnlyParquetStore(tmp_path / "curated")
+    scoreboard.run_prediction_job(raw, curated, as_of=datetime(2026, 8, 4, tzinfo=UTC))
+    existing_batches = {
+        path.relative_to(curated.root): path.read_bytes()
+        for path in sorted((curated.root / "predictions").glob("*.parquet"))
+    }
+    existing_records = PredictionLedger(curated).read_all()
+
+    monkeypatch.setattr(
+        scoreboard,
+        "read_mts_first_print_targets",
+        lambda _guard, series, _as_of, start: mts_history(series),
+    )
+    monkeypatch.setattr(
+        scoreboard,
+        "run_mts_backtest",
+        lambda histories, as_of: {"targets": [], "histories": len(histories)},
+    )
+    monkeypatch.setattr(
+        scoreboard,
+        "fit_mts_forecast",
+        lambda history, *, target_period, made_at, backtest: MtsForecast(
+            model_version="mts-benchmark-empirical-v1:mts-naive-seasonal-v1",
+            target_series=history[-1].target_series,
+            target_period=target_period,
+            made_at=made_at,
+            point=500_100.0,
+            low80=450_000.0,
+            high80=550_000.0,
+            low95=400_000.0,
+            high95=600_000.0,
+            training_observations=len(history),
+            inputs_hash="e" * 64,
+        ),
+    )
+
+    result = scoreboard.run_mts_prediction_job(
+        raw, curated, as_of=datetime(2026, 8, 10, 16, tzinfo=UTC)
+    )
+
+    assert result.appended == 2
+    for relative_path, expected_bytes in existing_batches.items():
+        assert (curated.root / relative_path).read_bytes() == expected_bytes
+    combined_records = PredictionLedger(curated).read_all()
+    assert combined_records[: len(existing_records)] == existing_records
+
+
+def test_mts_clock_skips_a_target_without_an_exact_release_date(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(
+        scoreboard,
+        "read_mts_first_print_targets",
+        lambda _guard, series, _as_of, start: mts_history(series),
+    )
+    monkeypatch.setattr(
+        scoreboard,
+        "run_mts_backtest",
+        lambda histories, as_of: {"targets": [], "histories": len(histories)},
+    )
+    definition = scoreboard.load_treasury_mts()
+    monkeypatch.setattr(
+        scoreboard,
+        "load_treasury_mts",
+        lambda: replace(definition, release_schedule={}),
+    )
+
+    result = scoreboard.run_mts_prediction_job(
+        AppendOnlyParquetStore(tmp_path / "raw"),
+        AppendOnlyParquetStore(tmp_path / "curated"),
+        as_of=datetime(2026, 8, 10, 16, tzinfo=UTC),
+    )
+
+    assert result.appended == 0
+    assert result.series == ()
+    assert result.skipped_unverified_periods == (date(2026, 7, 31),)

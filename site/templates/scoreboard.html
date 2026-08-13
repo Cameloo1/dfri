@@ -1,17 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Predictions</h1>
-<p class="lede">Each row is an immutable forecast of monthly U.S. consumer borrowing. Figures are seasonally adjusted flows in millions of U.S. dollars, always shown with 80% and 95% bands.</p>
-<p class="meta">Predictions are recorded before the Federal Reserve publishes the official G.19 figure. Rows are newest first without JavaScript; browser controls add optional sorting. Actuals are release-coherent first prints, never later revisions.</p>
+<p class="lede">Each row is an immutable monthly forecast, covering monthly U.S. consumer borrowing or Treasury fiscal flow and clearly identifying the series. G.19 figures are seasonally adjusted flows in millions of U.S. dollars; MTS figures are unadjusted monthly totals in the same units. Every estimate retains 80% and 95% bands.</p>
+<p class="meta">Predictions are recorded before the relevant agency publishes its official figure. Rows are newest first without JavaScript; browser controls add optional sorting. Actuals are release-coherent first prints, never later revisions.</p>
 <section class="calibration-ledger" aria-labelledby="live-calibration-heading">
   <h2 id="live-calibration-heading">Live calibration</h2>
+  {% for calibration in live_calibration %}
+  <h3>{{ calibration.target_label }}</h3>
   <dl class="calibration-stats">
-    <div data-figure="calibration-count"><dt>Graded records</dt><dd>{{ live_calibration.graded_count }}</dd></div>
-    <div data-figure="calibration-percent"><dt>Within 80% band</dt><dd>{{ live_calibration.coverage80_display }}<span>versus 80% nominal</span></dd></div>
-    <div data-figure="calibration-percent"><dt>Within 95% band</dt><dd>{{ live_calibration.coverage95_display }}<span>versus 95% nominal</span></dd></div>
-    <div data-figure="calibration-usd"><dt>Mean absolute error</dt><dd>{{ live_calibration.mae_display }}<span>$M · live grades only</span></dd></div>
-    <div data-figure="calibration-usd"><dt>Naive MAE</dt><dd>{{ live_calibration.naive_mae_display }}<span>$M · {{ live_calibration.naive_model_display }}</span></dd></div>
+    <div data-figure="calibration-count"><dt>Graded records</dt><dd>{{ calibration.graded_count }}</dd></div>
+    <div data-figure="calibration-percent"><dt>Within 80% band</dt><dd>{{ calibration.coverage80_display }}<span>versus 80% nominal</span></dd></div>
+    <div data-figure="calibration-percent"><dt>Within 95% band</dt><dd>{{ calibration.coverage95_display }}<span>versus 95% nominal</span></dd></div>
+    <div data-figure="calibration-usd"><dt>Mean absolute error</dt><dd>{{ calibration.mae_display }}<span>$M · live grades only</span></dd></div>
+    <div data-figure="calibration-usd"><dt>Naive MAE</dt><dd>{{ calibration.naive_mae_display }}<span>$M · {{ calibration.naive_model_display }}</span></dd></div>
   </dl>
+  {% endfor %}
   <p class="meta">The naive comparator is refit for each target using only first prints available when that prediction was recorded. These statistics update from live grades only and remain separate from the historical backtest.</p>
 </section>
 {% if first_grade_callout %}
@@ -25,7 +28,7 @@
 <p><a href="{{ root }}v1/feeds/scoreboard.json">JSON</a> · <a href="{{ root }}v1/feeds/scoreboard.csv">CSV</a> · <a href="{{ root }}v1/feeds/nowcast_predictions.parquet">Parquet predictions</a></p>
 <div class="table-wrap">
 <table data-sortable>
-  <caption>{{ rows|length }} prediction(s); {{ excluded_count }} pre-public engineering row(s) excluded. Forecasts, intervals, first prints, and errors are seasonally adjusted monthly flows in millions of U.S. dollars ($M).</caption>
+  <caption>{{ rows|length }} prediction(s); {{ excluded_count }} pre-public engineering row(s) excluded. Forecasts, intervals, first prints, and errors are monthly amounts in millions of U.S. dollars ($M); the target column distinguishes G.19 seasonally adjusted flows from MTS unadjusted totals.</caption>
   <thead><tr>
     {% for label in ["Made at", "Target", "Period", "Point estimate ($M)", "80% band ($M)", "95% band ($M)", "First print ($M)", "Abs. error ($M)", "Status"] %}
     <th scope="col" data-sort-column="{{ loop.index0 }}"><span>{{ label }}</span></th>

@@ -17,6 +17,8 @@ SITE_PATHS: Final = (
     "",
     "scoreboard/",
     "methodology/",
+    "roadmap/",
+    "corrections/",
     "changelog/",
     "v1/feeds/schema.json",
     "v1/feeds/nowcast_predictions.json",
@@ -25,6 +27,9 @@ SITE_PATHS: Final = (
     "v1/feeds/assumptions.json",
     "v2/feeds/schema.json",
     "v2/feeds/dfri_companies.json",
+    "v1/status.json",
+    "v1/events.json",
+    "events.xml",
 )
 API_PATHS: Final = (
     "v1/nowcast/latest",
@@ -59,6 +64,8 @@ def run_checks(
         site_results = [_get(session, site_base, path) for path in SITE_PATHS]
         scoreboard = session.get(urljoin(_base(site_base), "v1/feeds/scoreboard.json"))
         freshness = _freshness(scoreboard, current)
+        status_response = session.get(urljoin(_base(site_base), "v1/status.json"))
+        automation = _automation_status(status_response)
         api_results = (
             [_get(session, api_base, path) for path in API_PATHS] if api_base is not None else []
         )
@@ -73,7 +80,10 @@ def run_checks(
     else:
         api_status = "GREEN" if api_green else "RED"
     required_green = (
-        site_green and freshness["status"] == "GREEN" and (api_green if api_required else True)
+        site_green
+        and freshness["status"] == "GREEN"
+        and automation["status"] == "GREEN"
+        and (api_green if api_required else True)
     )
     status = "GREEN" if required_green else "RED"
     return {
@@ -81,6 +91,7 @@ def run_checks(
         "checked_at": current.isoformat(),
         "site": {"status": "GREEN" if site_green else "RED", "checks": site_results},
         "nowcast_freshness": freshness,
+        "automation": automation,
         "api": {
             "status": api_status,
             "required": api_required,
@@ -131,6 +142,29 @@ def _freshness(response: httpx.Response, current: datetime) -> dict[str, object]
         "data_vintage": vintage.astimezone(UTC).isoformat(),
         "age_seconds": max(0, int(age.total_seconds())),
         "max_age_seconds": int(max_age.total_seconds()),
+    }
+
+
+def _automation_status(response: httpx.Response) -> dict[str, object]:
+    try:
+        response.raise_for_status()
+        payload = response.json()
+        overall = payload["overall_status"]
+        jobs = payload["jobs"]
+        if overall not in {"CURRENT", "STALE", "UNKNOWN"} or not isinstance(jobs, list):
+            raise ValueError("invalid status contract")
+    except (httpx.HTTPError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        return {"status": "RED", "error": type(exc).__name__}
+    return {
+        "status": "GREEN" if overall == "CURRENT" else "RED",
+        "reported_status": overall,
+        "job_count": len(jobs),
+        "missed_jobs": sorted(
+            str(item["job_id"])
+            for item in jobs
+            if isinstance(item, dict)
+            and (item.get("missed_expected_run") or item.get("missed_expected_release"))
+        ),
     }
 
 

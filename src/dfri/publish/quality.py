@@ -12,6 +12,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Final
 
+from PIL import Image
+
 MAX_PAGE_BYTES: Final = 500_000
 FOUR_G_BYTES_PER_SECOND: Final = 200_000
 FOUR_G_RTT_MS: Final = 150.0
@@ -161,13 +163,20 @@ def check_site(root: Path) -> SiteQualityReceipt:
         root / "methodology" / "sensitivity" / "index.html",
         root / "methodology" / "coverage" / "index.html",
         root / "changelog" / "index.html",
+        root / "roadmap" / "index.html",
+        root / "corrections" / "index.html",
         root / "v1" / "feeds" / "schema.json",
         root / "v2" / "feeds" / "schema.json",
+        root / "v1" / "status.json",
+        root / "v1" / "events.json",
+        root / "events.xml",
+        root / "status" / "banner.html",
     )
     missing = [str(path.relative_to(root)) for path in required if not path.is_file()]
     if missing:
         raise SiteQualityError(f"Missing required publication page: {missing[0]}")
-    html_files = sorted(root.rglob("*.html"))
+    status_banner = root / "status" / "banner.html"
+    html_files = sorted(path for path in root.rglob("*.html") if path != status_banner)
     company_files = sorted((root / "companies").glob("*/index.html"))
     company_feed = json.loads(
         (root / "v1" / "feeds" / "dfri_companies.json").read_text(encoding="utf-8")
@@ -178,12 +187,14 @@ def check_site(root: Path) -> SiteQualityReceipt:
             f"Expected 50 company pages from the feed contract, found {len(company_files)}"
         )
     assets = sum(path.stat().st_size for path in (root / "assets").glob("*") if path.is_file())
+    assets += status_banner.stat().st_size
     page_sizes: dict[str, int] = {}
     estimated: dict[str, float] = {}
     for path in html_files:
         relative = path.relative_to(root).as_posix()
         content = path.read_text(encoding="utf-8")
         _check_document(relative, content)
+        _check_social_metadata(root, relative, content)
         page_bytes = path.stat().st_size + assets
         page_sizes[relative] = page_bytes
         estimated[relative] = FOUR_G_RTT_MS + page_bytes / FOUR_G_BYTES_PER_SECOND * 1_000
@@ -202,8 +213,8 @@ def check_site(root: Path) -> SiteQualityReceipt:
         or "estimated share of U.S. consumer revenue" not in home
         or 'id="evidence-lift"' not in home
         or "No company-specific financing evidence found" not in home
-        or home.count('data-lift-status="evidence-supported"') != 12
-        or home.count('data-lift-status="baseline-only"') != 38
+        or home.count('data-lift-status="evidence-supported"') != 13
+        or home.count('data-lift-status="baseline-only"') != 37
         or '<details class="baseline-disclosure">' not in home
         or 'href="companies/index.html"' not in home
     ):
@@ -224,11 +235,12 @@ def check_site(root: Path) -> SiteQualityReceipt:
         or 'id="credit-flow"' not in methodology
     ):
         raise SiteQualityError("Methodology lacks the versioned assumption/tier contract")
-    _check_credit_flow("index.html", home, require_table=False)
+    _check_credit_flow("index.html", home, require_table=True)
     _check_credit_flow("methodology/index.html", methodology, require_table=True)
     comparison = (root / "methodology" / "sensitivity" / "index.html").read_text(encoding="utf-8")
-    if "Methodology 1.1.0" not in comparison or "Methodology 1.1.1" not in comparison:
-        raise SiteQualityError("Methodology sensitivity page lacks both immutable versions")
+    required_methodologies = ("Methodology 1.1.0", "Methodology 1.2.0", "Methodology 1.2.1")
+    if any(item not in comparison for item in required_methodologies):
+        raise SiteQualityError("Methodology sensitivity page lacks an immutable version")
     exclusions = (root / "methodology" / "coverage" / "index.html").read_text(encoding="utf-8")
     if "31 excluded" not in exclusions or "one-line reason" not in exclusions:
         raise SiteQualityError("Coverage page lacks the dated exclusion contract")
@@ -237,6 +249,14 @@ def check_site(root: Path) -> SiteQualityReceipt:
     if any(item in javascript for item in forbidden):
         raise SiteQualityError("Site JavaScript contains a tracking, persistence, or content gate")
     css = (root / "assets" / "site.css").read_text()
+    status_payload = json.loads((root / "v1" / "status.json").read_text(encoding="utf-8"))
+    if status_payload.get("schema_version") != "v1" or len(status_payload.get("jobs", [])) != 5:
+        raise SiteQualityError("Machine-readable job status lacks all five scheduled lanes")
+    event_payload = json.loads((root / "v1" / "events.json").read_text(encoding="utf-8"))
+    if event_payload.get("schema_version") != "v1" or not event_payload.get("data"):
+        raise SiteQualityError("Versioned event feed is missing or empty")
+    if "Automation " not in status_banner.read_text(encoding="utf-8"):
+        raise SiteQualityError("Visible no-JavaScript automation status is missing")
     _check_editorial_contract(css)
     minimum_contrast = _check_contrast(css)
     max_path = max(page_sizes, key=page_sizes.__getitem__)
@@ -269,6 +289,11 @@ def _check_document(relative: str, content: str) -> None:
         "CC BY-NC 4.0",
         "commercial licensing reserved",
         'href="mailto:ops@camelon.app"',
+        '<link rel="canonical" href="https://',
+        '<meta property="og:image" content="https://',
+        '<meta name="twitter:card" content="summary_large_image">',
+        '<link rel="alternate" type="application/rss+xml"',
+        'title="DFRI scheduled automation status"',
     )
     missing = [item for item in required if item not in content]
     if missing:
@@ -291,7 +316,23 @@ def _check_document(relative: str, content: str) -> None:
     if len(" ".join(visible.split())) < 100:
         raise SiteQualityError(f"{relative} lacks server-rendered no-JavaScript content")
     _check_figure_contracts(relative, content)
+    _check_chart_equivalents(relative, content)
     _check_navigation_semantics(relative, content)
+
+
+def _check_social_metadata(root: Path, relative: str, content: str) -> None:
+    match = re.search(r'<meta property="og:image" content="([^"]+)">', content)
+    if match is None:
+        raise SiteQualityError(f"{relative} lacks an Open Graph preview image")
+    marker = "/dfri/"
+    if marker not in match.group(1):
+        raise SiteQualityError(f"{relative} social image is outside the canonical site")
+    image_path = root / Path(match.group(1).split(marker, 1)[1])
+    if not image_path.is_file():
+        raise SiteQualityError(f"{relative} social image is missing: {image_path.name}")
+    with Image.open(image_path) as image:
+        if image.size != (1200, 630) or image.format != "PNG":
+            raise SiteQualityError(f"{relative} social image must be a 1200x630 PNG")
 
 
 def _check_navigation_semantics(relative: str, content: str) -> None:
@@ -314,6 +355,8 @@ def _check_navigation_semantics(relative: str, content: str) -> None:
         expected = "Methodology"
     elif relative == "changelog/index.html":
         expected = "Changelog"
+    elif relative == "roadmap/index.html":
+        expected = "Roadmap"
     current = re.findall(r'<a [^>]*aria-current="page"[^>]*>([^<]+)</a>', navigation)
     if expected is None and current:
         raise SiteQualityError(f"{relative} exposes a false current-page navigation state")
@@ -371,6 +414,58 @@ def _check_company(relative: str, content: str) -> None:
         raise SiteQualityError(f"{relative} lacks company evidence contract: {missing[0]}")
 
 
+def _check_chart_equivalents(relative: str, content: str) -> None:
+    chart_tags = [
+        *re.findall(
+            r'<svg\b[^>]*class="[^"]*(?:range-chart|history-chart|credit-flow)[^"]*"[^>]*>',
+            content,
+        ),
+        *re.findall(r'<div\b[^>]*class="[^"]*tier-stack[^"]*"[^>]*>', content),
+    ]
+    for tag in chart_tags:
+        association = re.search(r'data-chart-equivalent="([a-z0-9-]+)"', tag)
+        if association is None:
+            raise SiteQualityError(f"{relative} chart lacks a text-equivalent association")
+        table_id = association.group(1)
+        if f'aria-describedby="{table_id}"' not in tag:
+            raise SiteQualityError(f"{relative} chart does not describe its text-equivalent table")
+        table_match = re.search(
+            rf'<table\b[^>]*id="{re.escape(table_id)}"[^>]*data-chart-table="([a-z]+)"[^>]*>'
+            rf"(.*?)</table>",
+            content,
+            flags=re.DOTALL,
+        )
+        if table_match is None:
+            raise SiteQualityError(f"{relative} chart lacks its visible text-equivalent table")
+        kind, table = table_match.groups()
+        if "<caption>Text equivalent" not in table:
+            raise SiteQualityError(
+                f"{relative} chart table lacks an explicit text-equivalent caption"
+            )
+        visible = " ".join(re.sub(r"<[^>]+>", " ", table).split())
+        required: tuple[str, ...]
+        if kind == "flow":
+            required = ("Source", "Destination", "Estimated amount", "Evidence tier", "millions")
+        elif kind == "decomposition":
+            required = ("Component", "Share", "Tier 1", "Tier 2", "Tier 3", "Provenance")
+        elif kind == "band":
+            required = ("Provenance",)
+            if not re.search(r"\b(?:band|interval)\b", visible, flags=re.IGNORECASE):
+                raise SiteQualityError(f"{relative} band table lacks its interval or band values")
+            if not ("%" in visible or "millions of U.S. dollars" in visible):
+                raise SiteQualityError(f"{relative} band table lacks explicit units")
+        else:
+            raise SiteQualityError(f"{relative} chart table has an unknown contract: {kind}")
+        visible_folded = visible.casefold()
+        missing = [item for item in required if item.casefold() not in visible_folded]
+        if missing:
+            raise SiteQualityError(
+                f"{relative} chart table lacks required text-equivalent data: {missing[0]}"
+            )
+        if kind in {"band", "decomposition"} and "<a " not in table:
+            raise SiteQualityError(f"{relative} chart table lacks a provenance link")
+
+
 def _check_credit_flow(relative: str, content: str, *, require_table: bool) -> None:
     required = (
         'class="credit-flow"',
@@ -387,7 +482,7 @@ def _check_credit_flow(relative: str, content: str, *, require_table: bool) -> N
     match = re.search(r'data-node-count="(\d+)"', content)
     if match is None or int(match.group(1)) > 9:
         raise SiteQualityError(f"{relative} exceeds the 9-node flow readability cap")
-    if require_table and "Exact static values behind the diagram." not in content:
+    if require_table and "Text equivalent for the flow diagram." not in content:
         raise SiteQualityError(f"{relative} lacks the static flow-value ledger")
 
 

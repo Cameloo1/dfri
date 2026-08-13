@@ -13,7 +13,7 @@ from typing import Final, cast
 
 CHANGELOG_PATH: Final = Path(__file__).with_name("changelog_v1.json")
 ENTRY_ID: Final = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
-KINDS: Final = {"methodology", "model", "publication", "restatement"}
+KINDS: Final = {"methodology", "model", "publication", "restatement", "source_fallback"}
 
 
 class ChangelogError(RuntimeError):

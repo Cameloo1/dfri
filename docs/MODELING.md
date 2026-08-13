@@ -1,6 +1,7 @@
 # DFRI modeling architecture
 
-**Scope:** implemented behavior on public `main` as of 2026-08-08
+**Scope:** implemented behavior in the 2026-08-10 deployment candidate; public scheduling remains
+subject to the separate deployment approval gate
 
 **Current headline model:** `bridge-ridge-v2-alpha10`
 
@@ -12,17 +13,21 @@ planned model as if it were running. The source of truth is the implementation u
 
 ## Architecture at a glance
 
-DFRI has two distinct calculation systems:
+DFRI has three distinct calculation systems:
 
 1. A small monthly nowcast system estimates first-print changes in revolving and nonrevolving
    consumer credit. This is the only part that estimates statistical model parameters from
    historical observations.
-2. A deterministic attribution system applies documented debt-product, spending-category, and
+2. A second monthly clock predicts Treasury MTS federal deficit and total outlays. It selects an
+   honest benchmark separately for each series and adds empirical intervals from prior
+   out-of-sample errors; it does not reuse or blend G.19 calibration statistics.
+3. A deterministic attribution system applies documented debt-product, spending-category, and
    company mappings. It performs no learning. Monte Carlo sampling propagates registered
    uncertainty through those mappings.
 
-The public prediction ledger contains only `bridge-ridge-v2-alpha10`. The baseline and state-space
-versions are published as backtest comparators, not as live scoreboard predictions.
+The currently deployed prediction ledger contains only `bridge-ridge-v2-alpha10`. The deployment
+candidate adds `mts-benchmark-empirical-v1:mts-naive-seasonal-v1` for deficit and
+`mts-benchmark-empirical-v1:mts-ar2-ols-v1` for outlays without changing a G.19 record.
 
 ## Build order and version surfaces
 
@@ -38,6 +43,10 @@ bridge also had a pre-public v1 predecessor that was superseded before the publi
 | 1 | Autoregression baseline | `ar2-ols-v1` | Canonical backtest and live-grade naive comparison |
 | 2 | Ragged-edge ridge bridge | `bridge-ridge-v2-alpha10` | Canonical backtest and every public prediction record |
 | 3 | Mixed-frequency state-space candidate | `mixed-frequency-kalman-v1-sm0.14.6` | Canonical backtest only |
+| 4 | MTS random-walk benchmark | `mts-naive-random-walk-v1` | MTS point-in-time backtest |
+| 4 | MTS seasonal benchmark | `mts-naive-seasonal-v1` | MTS backtest; selected for deficit |
+| 4 | MTS AR(2) benchmark | `mts-ar2-ols-v1` | MTS backtest; selected for outlays |
+| 4 | MTS empirical-band forecast | `mts-benchmark-empirical-v1:<selected>` | Deployment-candidate prediction records |
 
 `bridge-ridge-v1` is retired history, not a current runnable model. Its first local ragged-edge run
 used effectively unregularized ridge behavior (`alpha=1e-6`) and produced extreme leverage and
@@ -200,6 +209,27 @@ prediction ledger.
 
 Implementation: [`state_space.py`](../src/dfri/nowcast/state_space.py).
 
+### 6. Treasury MTS benchmark clock
+
+The MTS clock targets `MTS:DEFICIT.M` and `MTS:OUTLAYS.M`, both in millions of U.S. dollars.
+Each target is read from Table 1 of one dated Monthly Treasury Statement issue, so the value and
+its release boundary come from the same first-print document. The Vintage Guard admits only issue
+PDFs whose release timestamp is pinned in the official calendar; historical September issues whose
+calendar lists no exact date are omitted rather than interpolated.
+
+The clock fits only three prescribed benchmarks: last value, same month one year earlier, and an
+expanding-window AR(2) by ordinary least squares. It selects the lowest point-in-time MAE separately
+for each series. No bridge or state-space candidate is implemented because none has first proved it
+beats the benchmark hierarchy.
+
+Live 80% and 95% bands use the 80th and 95th percentiles of strictly prior absolute out-of-sample
+errors, with at least 24 errors required. Backtest coverage is likewise expanding-window: the
+current observation never enters the width used to judge itself. The committed 2018–2026 report
+selects seasonal naive for deficit (MAE 130,896.7; 83.3%/100.0% interval coverage; 76.2% acceleration
+sign accuracy) and AR(2) for outlays (MAE 90,750.6; 86.2%/100.0% coverage; 62.3% sign accuracy).
+Outlays misses the inherited improvement, 80%-coverage, and sign-accuracy bars; that gap is logged
+instead of being hidden behind an unproved model.
+
 ## Benchmark hierarchy and headline selection
 
 The canonical comparison is [`m2-point-in-time-backtest-v1`](../reports/m2_backtest.json), fixed at
@@ -258,6 +288,8 @@ Additional contracts make the time boundary meaningful:
 - H.8 selection keeps the latest vintage that existed at the historical forecast boundary;
 - unreleased retail and future H.8 weeks stay missing;
 - source URLs, release times, checksums, feature hashes, and model versions enter forecast identity.
+- MTS history accepts only dated Fiscal Data issue PDFs, exact schedule timestamps, verified Table 1
+  identifiers and units, and does not fill the explicit September calendar gaps.
 
 This boundary matters more to DFRI's claim than adding a more sophisticated estimator. Revised
 data, later weekly observations, or a retail release that was not public yet can make a historical
@@ -269,7 +301,8 @@ provable vintage boundary can support it.
 ## Attribution engine: mapping and uncertainty, not learning
 
 The attribution engine performs no learning and fits no parameters to historical company outcomes.
-Its current methodology bundle is `1.1.1`.
+Its current deployment-candidate methodology bundle is `1.2.1`; immutable 1.2.0 inputs remain
+loadable for the restatement comparison.
 
 Matrix A is a hand-built, evidence-linked mapping from debt products to spending categories. Each
 row carries a tier and a low/mid/high prior. Every current Matrix A row references exactly one
@@ -284,6 +317,8 @@ midpoints.
 The Assumption Registry is the source of truth for judgmental and uncertain priors used by either
 matrix and for company consumer-revenue-share priors. It stores the assumption ID, statement,
 low/mid/high prior, tier, evidence URL and snippet, sensitivity note, version, and active state.
+New numerical mappings also require `review_status=APPROVED`; the 1.2.1 validator rejects any new
+active assumption without it.
 
 There is one implementation qualification to the shorthand “the registry is the source of truth
 for both matrices”: fixed Matrix B weights do not have an `A-` assumption ID. For those rows, the

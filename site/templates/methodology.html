@@ -2,10 +2,11 @@
 {% from "_credit_flow.html" import credit_flow as render_credit_flow %}
 {% block content %}
 <h1>Methodology</h1>
-<p class="lede">The nowcast estimates monthly G.19 credit flows. Attribution then applies registered product-to-category weights (Matrix A) and category-to-company weights (Matrix B), divided by estimated U.S. consumer revenue. Every judgmental uncertain input has a public assumption ID and band; fixed derived mappings retain their method and evidence.</p>
-<p>Primary nowcast sources: <a href="{{ nowcast_sources.h8_archive }}">Federal Reserve Board H.8 release archive</a>, <a href="{{ nowcast_sources.marts_archive }}">Census MARTS historic releases</a>, and the <a href="{{ nowcast_sources.g19_archive }}">Federal Reserve Board G.19 release archive</a> used for first-print grading.</p>
+<p class="lede">The nowcast estimates monthly G.19 credit flows and separately predicts Treasury MTS deficit and outlays. Attribution then applies registered product-to-category weights (Matrix A) and category-to-company weights (Matrix B), divided by estimated U.S. consumer revenue. Every judgmental uncertain input has a public assumption ID and band; fixed derived mappings retain their method and evidence.</p>
+<p>Primary nowcast sources: <a href="{{ nowcast_sources.h8_archive }}">Federal Reserve Board H.8 release archive</a>, <a href="{{ nowcast_sources.marts_archive }}">Census MARTS historic releases</a>, the <a href="{{ nowcast_sources.g19_archive }}">Federal Reserve Board G.19 release archive</a>, and <a href="{{ nowcast_sources.mts_archive }}">dated Treasury MTS issues</a> used for their respective first-print grades.</p>
 <p><a href="https://github.com/Cameloo1/dfri/blob/main/docs/MODELING.md">Read the complete code-derived modeling architecture</a>, including implemented benchmarks, selection rules, point-in-time controls, attribution mechanics, and documented divergences.</p>
-<p>Methodology {{ methodology_version }} preserves the {{ company_count }}-company coverage boundary and corrects Carvana's auto-market and originated-finance classification. <a href="sensitivity/index.html">Compare 1.1.0 with {{ methodology_version }}</a> or inspect the <a href="coverage/index.html">dated coverage and exclusion ledger</a>.</p>
+<p>Methodology {{ methodology_version }} preserves the {{ company_count }}-company coverage boundary and the 1.2.0 regulatory auto allocation from FFIEC bank, NCUA credit-union, Board G.19, and SEC Auto ABS evidence while adding one reviewed TJX private-label-card lane from dated Synchrony trust filings. <a href="sensitivity/index.html">Compare 1.2.0 with {{ methodology_version }}</a> or inspect the <a href="coverage/index.html">dated coverage and exclusion ledger</a>.</p>
+<p><a href="https://github.com/Cameloo1/dfri/blob/main/SOURCE_LICENSING.md">Source licensing and fallback policy</a> records why permission to access a source and permission to store or redistribute derived output are separate gates.</p>
 <section class="grid">
   <article class="card metric"><h2>Bridge model</h2><p>Partial <a href="{{ nowcast_sources.h8_archive }}">H.8</a> months expose observed coverage explicitly. Missing <a href="{{ nowcast_sources.marts_archive }}">retail data</a> remains missing and is represented by an explicit availability indicator whose coefficient is fitted with the bridge.</p></article>
   <article class="card metric"><h2>First-print grading</h2><p>The dated release page supplies the target-month preliminary level and revised prior-month level used for the release-coherent flow.</p></article>
@@ -15,10 +16,16 @@
   <article class="card metric"><h2>Tier 3</h2><p>Fungible: unassignable flows are allocated in proportion to covered consumer revenue, with the widest bands.</p></article>
 </section>
 
+<section class="section-block" id="mts-clock">
+  <h2>Treasury clock</h2>
+  <p>Federal deficit and total outlays are predicted and graded separately from G.19. The selected benchmark for each series minimizes point-in-time MAE among last value, seasonal naive, and AR(2). Empirical 80% and 95% bands use only prior out-of-sample errors, and live calibration is never blended across series. Historical MTS months without an exact official release timestamp remain omitted.</p>
+  <p>The 2018–2026 first-print backtest selected seasonal naive for deficit (MAE $130,896.7M; 83.3% / 100.0% interval coverage; 76.2% acceleration-sign accuracy) and AR(2) for outlays (MAE $90,750.6M; 86.2% / 100.0% coverage; 62.3% sign accuracy). Outlays improved only 12.5% over random walk and missed the inherited improvement, 80%-coverage, and sign-accuracy bars; it remains published unchanged rather than being replaced by an unproved model.</p>
+</section>
+
 <section class="section-block" id="credit-flow">
   <h2>Credit flow</h2>
   <p id="credit-flow-method">The view uses the registered current-period midpoint flow, Matrix A midpoint, and Matrix B midpoint for each lane. It groups only after those published mappings are applied, keeps every remainder group within one evidence tier, and does not enter the nowcast or change any company estimate.</p>
-  {{ render_credit_flow(credit_flow, credit_flow_methodology_href, show_table=true) }}
+  {{ render_credit_flow(credit_flow, credit_flow_methodology_href, "methodology-credit-flow-data") }}
 </section>
 
 <section class="section-block" id="evidence-lift">
@@ -35,14 +42,30 @@
 <section class="section-block" id="assumptions">
   <h2>Assumptions</h2>
   <p>Low / midpoint / high values are triangular priors unless all three values are identical. Source files are public so a cold clone can reproduce every result.</p>
+  <p>Criticality is computed, not assigned: an assumption is critical when it supplies at least 5% of either the midpoint attributed numerator or covered-company denominator. This build has {{ criticality.critical_count }} critical assumptions and {{ criticality.warning_count }} critical assumptions without an independent fallback. A permitted but unavailable primary automatically selects its first permitted independent fallback and widens the registered band; if no fallback remains, the build emits BLOCKED rather than inventing a value.</p>
+  <p>A real fallback activation is a versioned <code>source_fallback</code> changelog event. It appears in the JSON and RSS event feeds with the reviewed activation date; the publisher does not manufacture a timestamp from a transient network failure.</p>
   <div class="table-wrap"><table>
     <caption>Every non-observed attribution parameter in methodology {{ methodology_version }}.</caption>
-    <thead><tr><th>ID</th><th>Tier</th><th>Statement</th><th>Low / mid / high</th><th>Evidence</th><th>Sensitivity note</th></tr></thead>
+    <thead><tr><th>ID</th><th>Review</th><th>Tier</th><th>Statement</th><th>Low / mid / high</th><th>Evidence</th><th>Sensitivity note</th></tr></thead>
     <tbody>{% for item in assumptions %}<tr>
-      <td class="hash">{{ item.assumption_id }}</td><td><span class="tier-badge tier-{{ item.tier }}">Tier {{ item.tier }}</span></td>
+      <td class="hash">{{ item.assumption_id }}</td><td>{{ item.review_status }}</td><td><span class="tier-badge tier-{{ item.tier }}">Tier {{ item.tier }}</span></td>
       <td>{{ item.statement }}</td><td>{{ item.prior }}</td>
       <td><a href="{{ item.source_url }}">Source</a><br><span class="meta">{{ item.evidence_snippet }}</span></td>
       <td>{{ item.sensitivity_note }}</td>
+    </tr>{% endfor %}</tbody>
+  </table></div>
+</section>
+
+<section class="section-block" id="source-resilience">
+  <h2>Source resilience</h2>
+  <p>The complete machine-readable strategy is versioned in the source registry. This compact table shows only critical assumptions; noncritical rows remain in the full registry and criticality report.</p>
+  <div class="table-wrap"><table>
+    <caption>Primary and independent fallback sources for every critical assumption.</caption>
+    <thead><tr><th>ID</th><th>Dependency</th><th>Status</th><th>Primary</th><th>Fallback</th></tr></thead>
+    <tbody>{% for item in critical_assumptions %}<tr>
+      <td class="hash">{{ item.assumption_id }}</td><td>{{ item.criticality_dependency_share }}</td>
+      <td>{{ item.source_status }}{% if item.source_note %}<br><span class="meta">{{ item.source_note }}</span>{% endif %}</td>
+      <td class="hash">{{ item.primary_source_id }}</td><td class="hash">{{ item.fallback_source_ids|join(", ") }}</td>
     </tr>{% endfor %}</tbody>
   </table></div>
 </section>

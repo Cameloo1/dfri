@@ -28,6 +28,7 @@ class LinkReceipt:
 
 def attribution_links(bundle: AttributionBundle) -> tuple[str, ...]:
     links: set[str] = set()
+    links.update(_tier1_review_links())
     links.update(item.source_url for item in bundle.assumptions)
     for company_item in bundle.companies:
         links.add(company_item.revenue_source_url)
@@ -90,6 +91,22 @@ def write_receipt(path: Path, receipts: tuple[LinkReceipt, ...]) -> str:
 
 def _urls(values: Iterable[str]) -> set[str]:
     return {value for value in values if value.startswith("https://")}
+
+
+def _tier1_review_links() -> set[str]:
+    path = Path(__file__).parents[1] / "attribution" / "tier1_evidence_review_v1.json"
+    if not path.exists():
+        return set()
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    items = payload.get("items") if isinstance(payload, dict) else None
+    if not isinstance(items, list):
+        raise ValueError("Tier 1 evidence review has no item list")
+    links: set[str] = set()
+    for item in items:
+        if not isinstance(item, dict) or not isinstance(item.get("evidence_urls"), list):
+            raise ValueError("Tier 1 evidence review item has no evidence URLs")
+        links.update(_urls(str(value) for value in item["evidence_urls"]))
+    return links
 
 
 def build_parser() -> argparse.ArgumentParser:

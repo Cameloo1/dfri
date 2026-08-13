@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import math
 from dataclasses import asdict, dataclass
 from typing import Final
@@ -10,6 +11,7 @@ import numpy as np
 import numpy.typing as npt
 
 from dfri.attribution.registry import AttributionBundle, MatrixBEntry, Prior
+from dfri.attribution.resilience import SourceDegradation, resolve_assumption_sources
 
 DEFAULT_DRAWS: Final = 20_000
 DEFAULT_SEED: Final = 2_026_080_4
@@ -80,6 +82,7 @@ class AttributionResult:
     draws: int
     seed: int
     evidence_lift_headline: str
+    source_degradations: tuple[SourceDegradation, ...]
     aggregate: AggregateEstimate
     companies: tuple[CompanyEstimate, ...]
 
@@ -92,6 +95,7 @@ def run_attribution(
     *,
     draws: int = DEFAULT_DRAWS,
     seed: int = DEFAULT_SEED,
+    unavailable_source_ids: frozenset[str] = frozenset(),
 ) -> AttributionResult:
     """Compute company and revenue-weighted aggregate bands from registered priors."""
 
@@ -99,13 +103,41 @@ def run_attribution(
         raise AttributionError("Attribution requires at least 10,000 Monte Carlo draws")
     if seed < 0:
         raise AttributionError("Monte Carlo seed must be non-negative")
+    bundle, source_degradations = resolve_assumption_sources(
+        bundle,
+        unavailable_source_ids=unavailable_source_ids,
+    )
     rng = np.random.default_rng(seed)
     assumptions = bundle.assumptions_by_id
-    assumption_draws = {
-        assumption_id: _draw(rng, assumption.prior, draws)
-        for assumption_id, assumption in sorted(assumptions.items())
-    }
-    flow_draws = {item.debt_product: _draw(rng, item.prior, draws) for item in bundle.flows}
+    if bundle.methodology_version == "1.2.1":
+        # Preserve every 1.2.0 draw stream byte-for-byte. New reviewed evidence gets an
+        # independent, identity-keyed stream so an additive assumption cannot perturb unrelated
+        # companies merely by changing iteration order.
+        legacy_assumptions = {
+            assumption_id: assumption
+            for assumption_id, assumption in assumptions.items()
+            if assumption.version != "1.2.1"
+        }
+        assumption_draws = {
+            assumption_id: _draw(rng, assumption.prior, draws)
+            for assumption_id, assumption in sorted(legacy_assumptions.items())
+        }
+        flow_draws = {item.debt_product: _draw(rng, item.prior, draws) for item in bundle.flows}
+        for assumption_id, assumption in sorted(assumptions.items()):
+            if assumption.version != "1.2.1":
+                continue
+            keyed_seed = int.from_bytes(
+                hashlib.sha256(f"{seed}:{assumption_id}".encode()).digest()[:8], "big"
+            )
+            assumption_draws[assumption_id] = _draw(
+                np.random.default_rng(keyed_seed), assumption.prior, draws
+            )
+    else:
+        assumption_draws = {
+            assumption_id: _draw(rng, assumption.prior, draws)
+            for assumption_id, assumption in sorted(assumptions.items())
+        }
+        flow_draws = {item.debt_product: _draw(rng, item.prior, draws) for item in bundle.flows}
     company_by_ticker = {item.ticker: item for item in bundle.companies}
     numerator_by_ticker = {
         ticker: np.zeros(draws, dtype=np.float64) for ticker in company_by_ticker
@@ -224,6 +256,7 @@ def run_attribution(
         draws=draws,
         seed=seed,
         evidence_lift_headline=evidence_lift_headline,
+        source_degradations=source_degradations,
         aggregate=AggregateEstimate(
             quarter=quarter,
             weighting="revenue-weighted",

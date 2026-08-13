@@ -45,6 +45,34 @@ def test_quality_gate_rejects_missing_required_page(tmp_path: Path) -> None:
         check_site(root)
 
 
+def test_quality_gate_rejects_chart_without_associated_text_equivalent(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    page = root / "companies" / "gm" / "index.html"
+    page.write_text(
+        page.read_text(encoding="utf-8").replace(
+            'data-chart-equivalent="company-dfr-band-data"',
+            'data-chart-equivalent="missing-band-data"',
+            1,
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match="does not describe its text-equivalent table"):
+        check_site(root)
+
+
+def test_quality_gate_rejects_flow_table_without_required_edge_field(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    page = root / "index.html"
+    page.write_text(
+        page.read_text(encoding="utf-8").replace("Destination", "Receiving node", 1),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(SiteQualityError, match="required text-equivalent data: Destination"):
+        check_site(root)
+
+
 def test_quality_gate_requires_complete_company_directory(tmp_path: Path) -> None:
     root = build_publication(tmp_path)
     page = root / "companies" / "index.html"
@@ -192,9 +220,7 @@ def test_quality_gate_rejects_tiered_figure_without_badge(tmp_path: Path) -> Non
     root = build_publication(tmp_path)
     page = root / "companies" / "gm" / "index.html"
     page.write_text(
-        page.read_text(encoding="utf-8").replace(
-            'class="tier-badge tier-mixed"', 'class="tier-label tier-mixed"', 1
-        ),
+        page.read_text(encoding="utf-8").replace("tier-badge", "tier-label"),
         encoding="utf-8",
     )
 
@@ -233,7 +259,8 @@ def test_quality_gate_reserves_measured_for_explicit_tier_one_context(tmp_path: 
     page = root / "scoreboard" / "index.html"
     page.write_text(
         page.read_text(encoding="utf-8").replace(
-            "Each row is an immutable forecast", "Each measured row is an immutable forecast"
+            "Each row is an immutable monthly forecast",
+            "Each measured row is an immutable monthly forecast",
         ),
         encoding="utf-8",
     )
@@ -261,10 +288,13 @@ def test_browser_accessibility_gate_includes_m5_methodology_pages() -> None:
 
     assert '"/methodology/coverage/"' in script
     assert '"/methodology/sensitivity/"' in script
+    assert '"/roadmap/"' in script
+    assert '"/corrections/"' in script
     assert '"/companies/"' in script
     assert '"scoreboard", "predictions"' in script
     assert "`/scoreboard/predictions/${entry.name}/`" in script
     assert "keyboardAudit" in script
+    assert "textarea,iframe,[tabindex]" in script
     assert "semanticAudit" in script
     assert "mobileLayoutAudit" in script
     assert "viewport: { width: 390, height: 844 }" in script
@@ -278,6 +308,8 @@ def test_ux_inventory_crawler_captures_every_route_family_without_javascript() -
 
     assert "javaScriptEnabled: false" in script
     assert '"companies/"' in script
+    assert '"roadmap/"' in script
+    assert '"corrections/"' in script
     assert "companies/${String(row.ticker).toLowerCase()}/" in script
     assert "scoreboard/predictions/${String(row.prediction_id)}/" in script
     assert "response?.status() !== 200 || page.url() !== expected" in script

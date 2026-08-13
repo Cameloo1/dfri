@@ -1,6 +1,6 @@
 # DFRI
 
-DFRI is a provenance-first system for estimating what share of consumer-facing company revenue is financed by net new consumer debt. It publishes modeled results as bands, separates observed inputs from assumptions, and keeps weekly nowcast predictions immutable so they can be graded against later first-print releases.
+DFRI is a provenance-first system for estimating what share of consumer-facing company revenue is financed by net new consumer debt. It publishes modeled results as bands, separates observed inputs from assumptions, and keeps prediction records immutable so they can be graded against later first-print releases.
 
 Current execution status lives in [PLAN.md](PLAN.md). Intended behavior is not treated as shipped
 behavior; milestone reports record the acceptance evidence that exists. The controlling build
@@ -23,17 +23,29 @@ pass; its [milestone report](MILESTONE_REPORTS/M4.md) marks the public FastAPI c
 under D-010 rather than passed. M5 methodology 1.1.0, the 50-company universe, exclusions,
 quarterly refresh, version comparison, performance, and final cold-clone gates now pass; see the
 [M5 milestone report](MILESTONE_REPORTS/M5.md). The [Day-14 review](MILESTONE_REPORTS/DAY14_SUMMARY.md)
-summarizes that milestone state. Methodology 1.1.1 subsequently corrects Carvana's auto-finance
-classification and adds the derived Evidence Lift view and versioned v2 company feed without
-rewriting 1.1.0. No M2 completion is claimed early.
+summarizes that milestone state. Methodology 1.1.1 subsequently corrected Carvana's auto-finance
+classification and added the derived Evidence Lift view. Methodology 1.2.0 replaces the active
+NY Fed-sourced auto-allocation assumption with reconciled FFIEC, NCUA, Board G.19, and SEC Auto
+ABS evidence, and adds computed source criticality plus independent fallbacks without rewriting
+1.1.1. The 2026-08-10 deployment candidate adds a separately calibrated Treasury MTS clock for
+monthly federal deficit and outlays, plus methodology 1.2.1, which moves TJX off baseline-only using
+reviewed program-level Synchrony trust evidence. It changes no existing G.19 record and preserves
+all 1.2.0 company values for comparison. These additions are implemented and locally verifiable but
+are not described as live until the separately approved deployment completes. No M2 completion is
+claimed early.
 
 Active source-continuity risks and their fail-closed recovery paths are tracked in the
-[risk register](RISK_REGISTER.md). The current Federal Reserve DDP transition finding is documented
-in the [DDP retirement risk report](DDP_RETIREMENT_RISK_REPORT.md).
+[risk register](RISK_REGISTER.md). Source permission and fallback decisions are documented in
+[SOURCE_LICENSING.md](SOURCE_LICENSING.md). The current Federal Reserve DDP transition finding is documented
+in the [DDP retirement risk report](DDP_RETIREMENT_RISK_REPORT.md). Scheduled-run recovery is in
+[ops/RESILIENCE.md](ops/RESILIENCE.md); immutable-ledger archival and its pending credential gate
+are in [ops/ARCHIVE.md](ops/ARCHIVE.md).
 
 ## Outputs, sources, and evidence tiers
 
-DFRI publishes immutable weekly predictions of Federal Reserve G.19 consumer-credit flows and
+DFRI publishes immutable weekly predictions of Federal Reserve G.19 consumer-credit flows and the
+deployment candidate adds monthly first-print predictions for Treasury MTS deficit and outlays. It
+also publishes
 quarterly estimates of debt-funded revenue for covered companies. Modeled
 company results are always `[low, mid, high]` bands. The homepage aggregate is revenue-weighted:
 total estimated debt-funded consumer revenue across covered companies divided by their total
@@ -45,9 +57,12 @@ estimated U.S. consumer revenue. It is never equal-weighted or market-cap-weight
 - **Tier 3 — Fungible:** debt that cannot be assigned more directly is allocated using an explicit,
   widest-band fungibility assumption.
 
-Primary inputs are Federal Reserve Board dated G.19 and H.8 releases, SEC EDGAR filings, Census
-MARTS releases, BEA product-level consumer spending, and the New York Fed Household Debt and
-Credit workbook. DFRI uses no market data, price feeds, TradingView data, or paid vendor inputs.
+Primary inputs are Federal Reserve Board dated G.19 and H.8 releases, U.S. Treasury dated Monthly
+Treasury Statements, FFIEC and NCUA regulatory
+Call Reports, SEC EDGAR filings, Census MARTS releases, and BEA product-level consumer spending.
+The New York Fed Household Debt and Credit source is retained only in historical methodology
+1.1.1 and is not active in methodology 1.2.0. DFRI uses no market data, price feeds, TradingView
+data, or paid vendor inputs.
 
 ## Licensing and mapping-source policy
 
@@ -104,6 +119,8 @@ make attribution
 make quarterly-refresh ATTRIBUTION_REFRESH_ARGS="--as-of 2026-08-05T07:15:00+00:00"
 make recompute-check
 make provenance-check
+make supply-chain
+make archive-round-trip
 make publish
 ```
 
@@ -119,10 +136,17 @@ set ATTRIBUTION_REFRESH_ARGS=--as-of 2026-08-05T07:15:00+00:00
 make.cmd quarterly-refresh
 make.cmd recompute-check
 make.cmd provenance-check
+make.cmd supply-chain
+make.cmd archive-round-trip
 make.cmd publish
 ```
 
 `make replay` writes a deterministic seed publication under `published/replay`. Runtime lake and publication artifacts are ignored by Git unless a reviewed, stable fixture or public report is intentionally promoted.
+
+`make supply-chain` verifies exact direct Python, Node, and GitHub Action pins against `uv.lock`
+and `package-lock.json`, then runs the pinned Python and npm vulnerability scanners. CI installs
+only from those locks and blocks on the same scan. `make archive-round-trip` creates the allowlisted
+ledger archive twice and proves byte-identical clean recovery; it does not claim an offsite DOI.
 
 `make publish` validates the committed OpenAPI and append-only changelog contracts, rebuilds the
 complete public site twice from a frozen copy of the first four genuine public predictions,
@@ -180,6 +204,9 @@ P1 coverage and quarterly-history feeds:
 - `v1/feeds/schema.json`
 - `v2/feeds/dfri_companies.{csv,json,parquet}` — adds the derived Evidence Lift contract
 - `v2/feeds/schema.json`
+- `v1/status.json` — per-lane last success, next run, run SLA, and release-SLA state
+- `v1/events.json` and `/events.xml` — predictions, grades, restatements, source fallbacks, and
+  methodology/publication changes
 
 Evidence Lift is the company DFR% midpoint divided by its same-period pure-fungibility
 counterfactual midpoint. The counterfactual uses the already-computed broad proportional lanes

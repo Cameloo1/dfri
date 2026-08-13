@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Cite the archived DFRI release. A DOI will be added only after a verified deposit."
+title: "DFRI: Debt-Funded Revenue Index"
+type: software
+authors:
+  - name: "Camelon Systems"
+version: 0.1.0
+date-released: 2026-08-10
+repository-code: "https://github.com/Cameloo1/dfri"
+url: "https://cameloo1.github.io/dfri/"
+license: Apache-2.0

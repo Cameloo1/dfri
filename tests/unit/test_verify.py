@@ -13,6 +13,8 @@ from dfri.ingest.verify import VerificationError, validate_source_contracts, wri
 def test_source_contract_gate_and_atomic_receipt(tmp_path: Path) -> None:
     contracts = load_source_contracts()
     validate_source_contracts(contracts)
+    assert not contracts["new_york_fed"].active_publication
+    assert not contracts["new_york_fed"].derivative_redistribution
 
     output = tmp_path / "nested" / "receipt.json"
     write_receipt(output, {"status": "PASS", "schema_version": 1})

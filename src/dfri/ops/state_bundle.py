@@ -28,6 +28,7 @@ ALLOWED_PATTERNS: Final = (
     "state/board-backfill.json",
     "state/board-targets-v1.json",
     "evidence/scoreboard_jobs/*.json",
+    "evidence/job_status/*.json",
     "evidence/quarterly_refresh/*.json",
 )
 

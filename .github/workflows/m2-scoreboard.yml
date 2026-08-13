@@ -2,6 +2,8 @@ name: M2 scoreboard clock
 
 on:
   schedule:
+    - cron: "17 16 * * 1-5" # Record MTS forecasts before the usual 14:00 Eastern release.
+    - cron: "17 19 * * 1-5" # Grade after the usual MTS release window.
     - cron: "17 21 * * 1-5" # Grade after the weekday G.19 release window.
     - cron: "17 23 * * 1-5" # Check H.8 after regular and holiday-shifted releases.
     - cron: "43 14 * * 1" # Check for a newly complete quarterly attribution input set.
@@ -12,7 +14,7 @@ on:
         required: true
         default: all
         type: choice
-        options: [predict, grade, refresh, all]
+        options: [predict, grade, mts-predict, mts-grade, refresh, all]
       force_publish:
         description: Publish even when no ledger row was appended
         required: true
@@ -25,7 +27,7 @@ on:
         type: boolean
 
 concurrency:
-  group: dfri-m2-scoreboard
+  group: dfri-pages-publication
   cancel-in-progress: false
 
 jobs:
@@ -102,6 +104,7 @@ jobs:
           make BOARD_START=2015-01-01 board-backfill
           make BOARD_TARGET_START=2015-01-01 board-targets
           make CENSUS_ARCHIVE_START=2015-01-01 census-archive
+          make MTS_START=2017-12-31 treasury-mts
 
       - name: Run the append-only clock jobs
         id: clock
@@ -117,6 +120,10 @@ jobs:
           if [[ "$GITHUB_EVENT_NAME" == schedule ]]; then
             if [[ "$SCHEDULE_EXPRESSION" == "17 23 * * 1-5" ]]; then
               mode=predict
+            elif [[ "$SCHEDULE_EXPRESSION" == "17 16 * * 1-5" ]]; then
+              mode=mts-predict
+            elif [[ "$SCHEDULE_EXPRESSION" == "17 19 * * 1-5" ]]; then
+              mode=mts-grade
             elif [[ "$SCHEDULE_EXPRESSION" == "43 14 * * 1" ]]; then
               mode=refresh
             else
@@ -135,8 +142,22 @@ jobs:
               release_times+=("$(jq -r '[.series[].h8_release_at] | min' <<<"$prediction_json")")
             fi
           fi
-          if [[ "$mode" == grade || "$mode" == all ]]; then
-            grade_json="$(uv run python -m dfri.scoreboard grade --as-of "$run_at")"
+          if [[ "$mode" == mts-predict || "$mode" == all ]]; then
+            uv run python -m dfri.mts_backtest --as-of "$run_at" --output reports/mts_backtest.json
+            mts_prediction_json="$(uv run python -m dfri.scoreboard mts-predict --as-of "$run_at")"
+            echo "$mts_prediction_json"
+            mts_prediction_appended="$(jq -r '.appended' <<<"$mts_prediction_json")"
+            prediction_appended=$(( prediction_appended + mts_prediction_appended ))
+            if (( mts_prediction_appended > 0 )); then
+              release_times+=("$(jq -r '[.series[].latest_mts_release_at] | min' <<<"$mts_prediction_json")")
+            fi
+          fi
+          if [[ "$mode" == grade || "$mode" == mts-grade || "$mode" == all ]]; then
+            grade_command=grade
+            if [[ "$mode" == mts-grade ]]; then
+              grade_command=mts-grade
+            fi
+            grade_json="$(uv run python -m dfri.scoreboard "$grade_command" --as-of "$run_at")"
             echo "$grade_json"
             grade_appended="$(jq -r '.appended' <<<"$grade_json")"
             if (( grade_appended > 0 )); then
@@ -175,6 +196,30 @@ jobs:
             echo "attribution_refresh_appended=$attribution_refresh_appended"
             echo "data_vintage=$data_vintage"
           } >> "$GITHUB_OUTPUT"
+
+      - name: Append immutable scheduled-job success receipts
+        shell: bash
+        env:
+          MODE: ${{ steps.clock.outputs.mode }}
+          SUCCEEDED_AT: ${{ steps.clock.outputs.published_at }}
+        run: |
+          set -euo pipefail
+          jobs=()
+          case "$MODE" in
+            predict) jobs=(h8-predict) ;;
+            grade) jobs=(g19-grade) ;;
+            mts-predict) jobs=(mts-predict) ;;
+            mts-grade) jobs=(mts-grade) ;;
+            refresh) jobs=(quarterly-refresh) ;;
+            all) jobs=(h8-predict g19-grade mts-predict mts-grade) ;;
+            *) echo "BLOCKED: unknown clock mode $MODE" >&2; exit 1 ;;
+          esac
+          for job_id in "${jobs[@]}"; do
+            uv run python -m dfri.ops.job_status record \
+              --job-id "$job_id" \
+              --succeeded-at "$SUCCEEDED_AT" \
+              --workflow-run-url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          done
 
       - name: Build the live immutable feed and site
         if: steps.clock.outputs.publish == 'true'
@@ -346,3 +391,35 @@ jobs:
           path: .local/evidence/deployments/*.json
           if-no-files-found: error
           retention-days: 90
+
+  notify-failure:
+    if: ${{ always() && (needs.build.result == 'failure' || needs.deploy.result == 'failure') }}
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Open or update the owner-readable automation incident
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          BUILD_RESULT: ${{ needs.build.result }}
+          DEPLOY_RESULT: ${{ needs.deploy.result }}
+        run: |
+          set -euo pipefail
+          title="[automation] M2 scoreboard clock failed"
+          body="Workflow run: $RUN_URL
+
+          Build result: $BUILD_RESULT
+          Deploy result: $DEPLOY_RESULT
+          Event: $GITHUB_EVENT_NAME
+          Ref: $GITHUB_REF_NAME
+
+          Follow ops/RESILIENCE.md before retrying. Do not backfill a missed scheduled cycle as live evidence."
+          existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$title in:title" --json number --jq '.[0].number // empty')"
+          if [[ -n "$existing" ]]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body"
+          fi

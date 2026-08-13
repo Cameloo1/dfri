@@ -119,3 +119,13 @@ and the Tier 3 proportional-allocation disclaimer.
 Human visual inspection was still required for text collision and ribbon-label legibility in the
 static flow diagram at mobile and desktop widths; it passed. All correctness, URL, provenance,
 content-rule, no-JavaScript, accessibility, contrast, and weight checks above were automated.
+
+The current static quality gate also rejects any flow, range-band, history-band, or company
+evidence-decomposition chart without a visible table named through `aria-describedby`. Required
+tables must keep explicit units, tier context where applicable, and provenance; flow tables retain
+source, destination, exact amount, and tier for every ribbon.
+
+At publication boundaries, repeat the actual Windows Narrator traversal documented in
+`ACCESSIBILITY_TRAVERSAL.md` on the homepage, one evidence-rich company page, and one prediction
+permalink. Narrator speech is not recorded by CI, so this is an explicitly manual check. The
+automated companion is the full no-JavaScript, keyboard, semantic, mobile-layout, and axe pass.
