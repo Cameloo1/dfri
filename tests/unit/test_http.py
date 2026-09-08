@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import gzip
 import hashlib
+import traceback
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -51,9 +52,34 @@ def test_transport_failure_does_not_expose_secret() -> None:
         return httpx.Response(403, request=request)
 
     transport = HttpTransport(client=httpx.Client(transport=httpx.MockTransport(handler)))
+    parameters = {"api_key": "never-print"}
     with pytest.raises(SourceRequestError) as error:
-        transport.get("https://example.test/data", params={"api_key": "never-print"})
+        transport.get("https://example.test/data", params=parameters)
     assert "never-print" not in str(error.value)
+    assert "never-print" not in "".join(traceback.format_exception(error.value))
+
+
+def test_safe_source_url_removes_url_userinfo_and_fragment() -> None:
+    safe = safe_source_url("https://operator:never-print@example.test/data#never-print")
+    assert safe == "https://example.test/data"
+
+
+@pytest.mark.parametrize("stream", [False, True])
+def test_network_traceback_redacts_request_credentials(tmp_path: Path, stream: bool) -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        raise httpx.ConnectError(f"Connection failed: {request.url}", request=request)
+
+    transport = HttpTransport(
+        client=httpx.Client(transport=httpx.MockTransport(handler)), max_attempts=1
+    )
+    url = "https://example.test/data?token=never-print"
+    parameters = {"api_key": "never-print"}
+    with pytest.raises(SourceRequestError) as error:
+        if stream:
+            transport.get_to_gzip(url, tmp_path / "x.gz")
+        else:
+            transport.get("https://example.test/data", params=parameters)
+    assert "never-print" not in "".join(traceback.format_exception(error.value))
 
 
 def test_transport_rejects_zero_attempts() -> None:

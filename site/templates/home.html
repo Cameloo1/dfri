@@ -26,9 +26,9 @@
         <title>Estimated DFR% band: {{ aggregate.low }} to {{ aggregate.high }}, midpoint {{ aggregate.mid }}</title>
         <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
         <rect x="108" y="23" width="384" height="26" class="range-band" />
-        <line x1="300" y1="18" x2="300" y2="54" class="range-mid-rule" />
+        <line x1="{{ aggregate.band_mid_x }}" y1="18" x2="{{ aggregate.band_mid_x }}" y2="54" class="range-mid-rule" />
         <text x="108" y="68" text-anchor="middle">{{ aggregate.low }}</text>
-        <text x="300" y="68" text-anchor="middle">{{ aggregate.mid }}</text>
+        <text x="{{ aggregate.band_mid_x }}" y="68" text-anchor="middle">{{ aggregate.mid }}</text>
         <text x="492" y="68" text-anchor="middle">{{ aggregate.high }}</text>
       </svg>
       <div class="tier-line"><span class="tier-badge tier-1">Tier 1 {{ aggregate.tier1 }}</span><span class="tier-badge tier-2">Tier 2 {{ aggregate.tier2 }}</span><span class="tier-badge tier-3">Tier 3 {{ aggregate.tier3 }}</span></div>
@@ -53,8 +53,8 @@
         <title>Prediction band: {{ latest.low95_display }} to {{ latest.high95_display }}, point {{ latest.point_display }}</title>
         <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
         <rect x="108" y="23" width="384" height="26" class="range-band" />
-        <line x1="300" y1="18" x2="300" y2="54" class="range-mid-rule" />
-        <text x="108" y="68" text-anchor="middle">{{ latest.low95_display }}</text><text x="300" y="68" text-anchor="middle">{{ latest.point_display }}</text><text x="492" y="68" text-anchor="middle">{{ latest.high95_display }}</text>
+        <line x1="{{ latest.band_mid_x }}" y1="18" x2="{{ latest.band_mid_x }}" y2="54" class="range-mid-rule" />
+        <text x="108" y="68" text-anchor="middle">{{ latest.low95_display }}</text><text x="{{ latest.band_mid_x }}" y="68" text-anchor="middle">{{ latest.point_display }}</text><text x="492" y="68" text-anchor="middle">{{ latest.high95_display }}</text>
       </svg>
       <div class="table-wrap chart-equivalent-wrap"><table id="home-prediction-band-data" class="chart-equivalent-table" data-chart-table="band">
         <caption>Text equivalent for the latest immutable prediction band.</caption>

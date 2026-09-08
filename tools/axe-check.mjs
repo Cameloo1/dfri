@@ -208,6 +208,37 @@ async function mobileLayoutAudit(page) {
   });
 }
 
+async function sortingAudit(page) {
+  const failures = [];
+  if (await page.locator("[data-sortable]").count() === 0) return { failures };
+  for (const column of [3, 4, 5, 6, 7]) {
+    const button = page.locator("[data-sortable] thead th").nth(column).locator("button");
+    for (const direction of ["ascending", "descending"]) {
+      await button.click();
+      const values = await page.locator("[data-sortable] tbody tr").evaluateAll(
+        (rows, index) => rows.map((row) => {
+          const cell = row.cells[index];
+          const text = cell.textContent.trim().split(" to ")[0].replaceAll(",", "");
+          const raw = cell.getAttribute("data-sort") ?? text;
+          return raw.trim() === "" || !Number.isFinite(Number(raw)) ? null : Number(raw);
+        }),
+        column,
+      );
+      let missing = false;
+      let previous = null;
+      for (const value of values) {
+        if (value === null) { missing = true; continue; }
+        if (missing) failures.push(`column ${column}: missing value before a number (${direction})`);
+        if (previous !== null && (direction === "ascending" ? value < previous : value > previous)) {
+          failures.push(`column ${column}: incorrect numeric order (${direction})`);
+        }
+        previous = value;
+      }
+    }
+  }
+  return { failures };
+}
+
 const server = createServer(async (request, response) => {
   try {
     const path = safePath(request.url ?? "/");
@@ -241,10 +272,12 @@ try {
       .analyze();
     const semantics = await semanticAudit(page, route);
     const keyboard = await keyboardAudit(page);
+    const sorting = await sortingAudit(page);
     results.push({
       route,
       semantics,
       keyboard,
+      sorting,
       violations: audit.violations.map((violation) => ({
         id: violation.id,
         impact: violation.impact,
@@ -287,8 +320,14 @@ try {
   });
   const mobilePage = await mobileContext.newPage();
   for (const result of results) {
-    await mobilePage.goto(`${baseUrl}${result.route}`, { waitUntil: "load" });
-    result.mobileLayout = await mobileLayoutAudit(mobilePage);
+    result.responsiveLayouts = [];
+    for (const width of [320, 390, 768, 1024, 1440]) {
+      await mobilePage.setViewportSize({ width, height: 900 });
+      await mobilePage.goto(`${baseUrl}${result.route}`, { waitUntil: "load" });
+      await mobilePage.evaluate(() => document.fonts.ready);
+      result.responsiveLayouts.push(await mobileLayoutAudit(mobilePage));
+    }
+    result.mobileLayout = result.responsiveLayouts.find((layout) => layout.viewportWidth === 390);
   }
   await mobileContext.close();
 } finally {
@@ -310,14 +349,20 @@ const keyboardFailures = results.flatMap((result) =>
   result.keyboard.failures.map((failure) => ({ route: result.route, failure })),
 );
 const mobileLayoutFailures = results.flatMap((result) =>
-  result.mobileLayout.failures.map((failure) => ({ route: result.route, failure })),
+  result.responsiveLayouts.flatMap((layout) =>
+    layout.failures.map((failure) => ({ route: result.route, width: layout.viewportWidth, failure })),
+  ),
+);
+const sortingFailures = results.flatMap((result) =>
+  result.sorting.failures.map((failure) => ({ route: result.route, failure })),
 );
 const receipt = {
   status:
     critical.length === 0 &&
     semanticFailures.length === 0 &&
     keyboardFailures.length === 0 &&
-    mobileLayoutFailures.length === 0
+    mobileLayoutFailures.length === 0 &&
+    sortingFailures.length === 0
       ? "PASS"
       : "FAIL",
   axeVersion: "4.12.1",
@@ -332,6 +377,8 @@ const receipt = {
   keyboardFailures,
   mobileLayoutFailureCount: mobileLayoutFailures.length,
   mobileLayoutFailures,
+  sortingFailureCount: sortingFailures.length,
+  sortingFailures,
   worstFinding:
     critical[0] ??
     semanticFailures[0] ??

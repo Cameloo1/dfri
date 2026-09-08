@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import html as html_lib
 import json
+import re
 from dataclasses import replace
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
@@ -157,6 +158,21 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert before == after
     assert first.prediction_count == 2
     assert first.graded_count == 1
+    # The rendered marker must use the underlying quantiles, not a fixed visual center.
+    tesla = next(
+        company
+        for company in run_attribution(load_attribution_bundle()).companies
+        if company.ticker == "TSLA"
+    )
+    expected_x = 108 + 384 * (
+        (tesla.estimated_dfr_pct_mid - tesla.estimated_dfr_pct_low)
+        / (tesla.estimated_dfr_pct_high - tesla.estimated_dfr_pct_low)
+    )
+    tesla_html = (output / "companies" / "tsla" / "index.html").read_text(encoding="utf-8")
+    marker = re.search(r'<line x1="([0-9.]+)"[^>]+class="range-mid-rule"', tesla_html)
+    assert marker is not None
+    assert float(marker.group(1)) == pytest.approx(expected_x, abs=1e-6)
+    assert abs(expected_x - 300) > 10
     assert (output / "scoreboard" / "predictions" / first_id / "index.html").exists()
     assert (output / "scoreboard" / "predictions" / second_id / "index.html").exists()
     scoreboard = (output / "scoreboard" / "index.html").read_text(encoding="utf-8")

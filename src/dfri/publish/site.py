@@ -968,6 +968,7 @@ def _display_row(prediction: PredictionRecord, grade: GradeRecord | None) -> dic
         "grade_status": "Graded" if grade else "Awaiting first print",
         "grade_status_class": "graded" if grade else "pending",
         "actual_display": _number(grade.actual_first_print) if grade else "Not released",
+        "actual_sort": grade.actual_first_print if grade else "",
         "abs_error_display": _number(grade.abs_error) if grade else "—",
         "abs_error_sort": grade.abs_error if grade else "",
         "vintage_url": grade.vintage_url if grade else None,
@@ -991,6 +992,7 @@ def _display_row(prediction: PredictionRecord, grade: GradeRecord | None) -> dic
             else "Federal Reserve Board dated G.19 release"
         ),
         "is_mts": is_mts,
+        "band_mid_x": _band_mid_x(prediction.low95, prediction.point, prediction.high95),
     }
 
 
@@ -1255,8 +1257,18 @@ def _assumption_feed_rows(
     ]
 
 
+def _band_mid_x(low: float, mid: float, high: float) -> float:
+    """Place the estimate on the SVG's linear interval from x=108 to x=492."""
+    if high == low:
+        return 300.0
+    return round(108.0 + (mid - low) / (high - low) * 384.0, 6)
+
+
 def _company_display(item: CompanyEstimate) -> dict[str, object]:
     return {
+        "band_mid_x": _band_mid_x(
+            item.estimated_dfr_pct_low, item.estimated_dfr_pct_mid, item.estimated_dfr_pct_high
+        ),
         "ticker": item.ticker,
         "company_name": item.company_name,
         "quarter": item.quarter,
@@ -1344,6 +1356,11 @@ def _company_histories(
 def _aggregate_display(result: AttributionResult) -> dict[str, object]:
     aggregate = result.aggregate
     return {
+        "band_mid_x": _band_mid_x(
+            aggregate.estimated_dfr_pct_low,
+            aggregate.estimated_dfr_pct_mid,
+            aggregate.estimated_dfr_pct_high,
+        ),
         "quarter": aggregate.quarter,
         "low": f"{aggregate.estimated_dfr_pct_low:.2f}%",
         "mid": f"{aggregate.estimated_dfr_pct_mid:.2f}%",

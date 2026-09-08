@@ -50,13 +50,14 @@ class HttpFileReceipt:
 def safe_source_url(url: str, params: QueryMapping | None = None) -> str:
     """Build a provenance URL while omitting credential-like parameters."""
 
+    public_url = httpx.URL(url).copy_with(username="", password="", fragment=None, query=None)
     if not params:
-        return str(httpx.URL(url).copy_with(query=None))
+        return str(public_url)
     forbidden = {"api_key", "key", "token", "userid", "user_id"}
     safe_params = {
         key: str(value) for key, value in params.items() if key.casefold() not in forbidden
     }
-    return str(httpx.URL(url, params=safe_params))
+    return str(public_url.copy_with(params=safe_params))
 
 
 class HttpTransport:
@@ -111,11 +112,11 @@ class HttpTransport:
             self._pace()
             try:
                 response = self._client.get(url, params=params, headers=request_headers)
-            except httpx.HTTPError as exc:
+            except httpx.HTTPError:
                 if attempt + 1 < self._max_attempts:
                     self._sleep(2.0**attempt)
                     continue
-                raise SourceRequestError(f"GET failed after retries: {source_url}") from exc
+                raise SourceRequestError(f"GET failed after retries: {source_url}") from None
 
             if response.status_code in RETRYABLE_STATUS and attempt + 1 < self._max_attempts:
                 retry_after = response.headers.get("Retry-After")
@@ -126,10 +127,10 @@ class HttpTransport:
                 continue
             try:
                 response.raise_for_status()
-            except httpx.HTTPStatusError as exc:
+            except httpx.HTTPStatusError:
                 raise SourceRequestError(
                     f"GET returned HTTP {response.status_code}: {source_url}"
-                ) from exc
+                ) from None
             content = response.content
             return HttpReceipt(
                 content=content,
@@ -204,7 +205,7 @@ class HttpTransport:
                     )
                     self._sleep(delay)
                     continue
-                raise SourceRequestError(f"GET failed after retries: {source_url}") from exc
+                raise SourceRequestError(f"GET failed after retries: {source_url}") from None
             except Exception:
                 temporary_path.unlink(missing_ok=True)
                 raise

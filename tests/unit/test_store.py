@@ -3,7 +3,11 @@ from __future__ import annotations
 from datetime import UTC, date, datetime
 from pathlib import Path
 
-from dfri.lake.store import AppendOnlyParquetStore, file_sha256
+import pyarrow.parquet as pq
+import pytest
+
+from dfri.lake.schemas import table_from_rows
+from dfri.lake.store import AppendOnlyParquetStore, AppendOnlyViolationError, file_sha256
 
 
 def row(value: float = 1336.7) -> dict[str, object]:
@@ -41,3 +45,13 @@ def test_changed_batch_appends_without_overwriting(tmp_path: Path) -> None:
     assert first.path != second.path
     assert len(list((tmp_path / "raw_observations").glob("*.parquet"))) == 2
     assert store.read_table("raw_observations").height == 2
+
+
+def test_retry_rejects_changed_content_with_same_row_count(tmp_path: Path) -> None:
+    store = AppendOnlyParquetStore(tmp_path)
+    first = store.append("raw_observations", [row()])
+    pq.write_table(table_from_rows("raw_observations", [row(999.0)]), first.path)
+    corrupted = first.path.read_bytes()
+    with pytest.raises(AppendOnlyViolationError, match="Content-address"):
+        store.append("raw_observations", [row()])
+    assert first.path.read_bytes() == corrupted

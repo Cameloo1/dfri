@@ -13,9 +13,9 @@
       <title>Estimated DFR% band: {{ company.low }} to {{ company.high }}, midpoint {{ company.mid }}</title>
       <line x1="60" y1="36" x2="540" y2="36" class="range-axis" />
       <rect x="108" y="23" width="384" height="26" class="range-band" />
-      <line x1="300" y1="18" x2="300" y2="54" class="range-mid-rule" />
+      <line x1="{{ company.band_mid_x }}" y1="18" x2="{{ company.band_mid_x }}" y2="54" class="range-mid-rule" />
       <text x="108" y="68" text-anchor="middle">{{ company.low }}</text>
-      <text x="300" y="68" text-anchor="middle">{{ company.mid }}</text>
+      <text x="{{ company.band_mid_x }}" y="68" text-anchor="middle">{{ company.mid }}</text>
       <text x="492" y="68" text-anchor="middle">{{ company.high }}</text>
     </svg>
     <div class="table-wrap chart-equivalent-wrap"><table id="company-dfr-band-data" class="chart-equivalent-table" data-chart-table="band">
