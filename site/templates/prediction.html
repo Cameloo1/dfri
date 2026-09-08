@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<a class="back-link" href="{{ root }}scoreboard/index.html">← All predictions</a>
 <h1>{{ row.target_label }} · {{ row.target_period }}</h1>
 <p class="lede">Recorded {{ row.made_at_display }} under <span class="hash">{{ row.model_version }}</span>; append-only after acceptance.</p>
 <section class="card record-hero" data-figure="prediction">
@@ -11,10 +12,12 @@
     <line x1="{{ row.band_mid_x }}" y1="18" x2="{{ row.band_mid_x }}" y2="54" class="range-mid-rule" />
     <text x="108" y="68" text-anchor="middle">{{ row.low95_display }}</text><text x="{{ row.band_mid_x }}" y="68" text-anchor="middle">{{ row.point_display }}</text><text x="492" y="68" text-anchor="middle">{{ row.high95_display }}</text>
   </svg>
-  <div class="table-wrap chart-equivalent-wrap"><table id="prediction-band-data" class="chart-equivalent-table" data-chart-table="band">
+<div class="range-labels"><span><small>Low</small>{{ row.low95_display }}</span><span><small>Point</small>{{ row.point_display }}</span><span><small>High</small>{{ row.high95_display }}</span></div>
+<p class="band-note">95% prediction interval · $M</p>
+  <details class="data-disclosure"><summary>View chart data and provenance</summary><div class="table-wrap chart-equivalent-wrap"><table id="prediction-band-data" class="chart-equivalent-table" data-chart-table="band">
     <caption>Text equivalent for this immutable prediction and both published uncertainty intervals.</caption>
     <tbody><tr><th scope="row">Series and period</th><td>{{ row.target_label }}, {{ row.target_period }}</td></tr><tr><th scope="row">Point</th><td>{{ row.point_display }} millions of U.S. dollars</td></tr><tr><th scope="row">80% interval</th><td>{{ row.low80_display }} to {{ row.high80_display }} millions of U.S. dollars</td></tr><tr><th scope="row">95% interval</th><td>{{ row.low95_display }} to {{ row.high95_display }} millions of U.S. dollars</td></tr><tr><th scope="row">Status</th><td>{{ row.grade_status }}</td></tr><tr><th scope="row">Provenance</th><td>{% if row.is_mts %}<a href="{{ nowcast_sources.mts_archive }}">Dated Treasury MTS issues</a>{% else %}<a href="{{ nowcast_sources.h8_archive }}">H.8 inputs</a> · <a href="{{ nowcast_sources.g19_archive }}">G.19 first prints</a>{% endif %}</td></tr></tbody>
-  </table></div>
+  </table></div></details>
 </section>
 <section class="card card-follow"><h2>Record</h2><dl class="definition-list">
   <dt>Prediction ID</dt><dd class="hash">{{ row.prediction_id }}</dd>

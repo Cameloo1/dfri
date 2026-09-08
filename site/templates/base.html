@@ -25,11 +25,11 @@
   <link rel="stylesheet" href="{{ root }}assets/site.css">
   <script defer src="{{ root }}assets/site.js"></script>
 </head>
-<body>
+<body class="page-{% block page_class %}{{ active_nav or 'record' }}{% endblock %}">
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header">
     <div class="shell">
-      <a class="brand" href="{{ root }}index.html">{{ brand.product_name }}<small>{{ brand.organization }}</small></a>
+      <a class="brand" href="{{ root }}index.html"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>{{ brand.product_name }}<small>Debt-Funded Revenue Index</small></span></a>
       <nav aria-label="Primary navigation">
         <a href="{{ root }}scoreboard/index.html"{% if active_nav == "scoreboard" %} aria-current="page"{% endif %}>Scoreboard</a>
         <a href="{{ root }}companies/index.html"{% if active_nav == "companies" %} aria-current="page"{% endif %}>Companies</a>
@@ -41,7 +41,7 @@
     </div>
   </header>
   {% if publication_mode != "live" %}
-  <div class="preview-banner"><div class="shell"><strong>Local preview.</strong> Not a public live-cycle record. {{ excluded_count }} pre-public engineering prediction(s) excluded.</div></div>
+  <div class="preview-banner"><div class="shell"><strong>Local preview.</strong> Frozen data for design review. Not a public live-cycle record. {{ excluded_count }} pre-public engineering prediction(s) excluded.</div></div>
   {% endif %}
   <iframe class="status-frame" title="DFRI scheduled automation status" src="{{ root }}status/banner.html"></iframe>
   {% if source_degradations %}
@@ -51,10 +51,11 @@
   {% endif %}
   <main id="main-content" tabindex="-1"><div class="shell">{% block content %}{% endblock %}</div></main>
   <footer class="site-footer"><div class="shell">
+    <div class="footer-heading"><span>DFRI<span class="footer-subtitle">The evidence behind the estimate.</span></span><a href="#main-content">Back to top ↑</a></div>
     <div>Research and educational content. Not investment advice.</div>
     <div>Feeds licensed <a href="{{ feed_license_url }}">CC BY-NC 4.0</a>: free for non-commercial use with attribution; commercial licensing reserved — contact <a href="mailto:{{ commercial_license_contact }}">{{ commercial_license_contact }}</a>.</div>
     <div><a href="{{ root }}corrections/index.html">Corrections policy</a> · <a href="{{ root }}roadmap/index.html">Roadmap and boundaries</a></div>
-    <div>Methodology {{ methodology_version }} · Data vintage {{ data_vintage }} · Published {{ published_at }}</div>
+    <div class="publication-meta">{{ brand.organization }} · Methodology {{ methodology_version }} · Data vintage {{ data_vintage }} · Published {{ published_at }}</div>
     {% if archive_citation %}<div class="cite-this"><strong>Cite this release.</strong> {{ archive_citation.provider }} DOI <a href="{{ archive_citation.record_url }}">{{ archive_citation.version_doi }}</a>. Concept DOI {{ archive_citation.concept_doi }}.</div>{% endif %}
   </div></footer>
 </body>

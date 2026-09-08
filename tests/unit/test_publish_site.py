@@ -199,7 +199,7 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert 'href="corrections/index.html"' in home
     assert 'href="roadmap/index.html"' in home
     assert "Revenue-weighted DFR%" in home
-    assert "each month's change in U.S. consumer borrowing" in home
+    assert "Monthly consumer-credit and federal-fiscal forecasts, recorded before release" in home
     assert "Seasonally adjusted · millions of U.S. dollars" in home
     assert "tier-explainer-visible" in home
     assert all(item in home for item in TIER_LEGEND_COPY)

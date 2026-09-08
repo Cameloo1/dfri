@@ -621,8 +621,11 @@ def _build_scoreboard(
             ),
             "root": "",
             "active_nav": None,
-            "title": "Immutable consumer-credit nowcasts",
-            "description": "DFRI predictions and first-print Federal Reserve G.19 grades.",
+            "title": "The debt behind the revenue",
+            "description": (
+                "Explore estimated debt-funded company revenue, uncertainty bands, and evidence, "
+                "alongside immutable consumer-credit and Treasury forecasts."
+            ),
             "latest": display_rows[0] if display_rows else None,
             "summary": summary,
             "live_calibration": calibration_display,

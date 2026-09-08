@@ -11,13 +11,17 @@
   <td><span class="status {{ company.evidence_lift_status }}">{% if company.baseline_only %}Baseline-only{% else %}Evidence-supported{% endif %}</span></td>
 </tr>{% endfor %}
 {%- endmacro %}
+{% block page_class %}home{% endblock %}
 {% block content %}
-<h1>Debt-funded revenue</h1>
-<p class="lede">DFRI estimates the share of covered companies' U.S. consumer revenue funded by new consumer credit. Its append-only ledger records each month's change in U.S. consumer borrowing and monthly federal-fiscal forecasts before release, then grades each against the relevant first print.</p>
+<div class="home-intro">
+  <h1>The debt behind<br><em>the revenue.</em></h1>
+  <div class="home-intro-copy"><p class="lede">How much of a company's U.S. consumer revenue is funded by new borrowing? DFRI estimates the share—and shows how much is known.</p>
+  <div class="actions"><a class="button" href="companies/index.html">Explore companies <span aria-hidden="true">↗</span></a><a href="methodology/index.html">How it works</a></div></div>
+</div>
 
 <div class="opening-spread">
   <section id="current-estimate" class="section-block home-first-section opening-estimate" aria-labelledby="current-estimate-heading">
-    <h2 id="current-estimate-heading">Current estimate</h2>
+    <h2 id="current-estimate-heading">The current estimate</h2>
     <article class="card primary home-primary-figure" data-figure="dfr">
       <div class="figure-label">{{ aggregate.quarter }} · estimated share of U.S. consumer revenue</div>
       <div class="number" title="Estimated from registered Matrix A and Matrix B priors; open Methodology for every input">{{ aggregate.mid }}</div>
@@ -31,11 +35,13 @@
         <text x="{{ aggregate.band_mid_x }}" y="68" text-anchor="middle">{{ aggregate.mid }}</text>
         <text x="492" y="68" text-anchor="middle">{{ aggregate.high }}</text>
       </svg>
+<div class="range-labels"><span><small>Low</small>{{ aggregate.low }}</span><span><small>Midpoint</small>{{ aggregate.mid }}</span><span><small>High</small>{{ aggregate.high }}</span></div>
+<p class="band-note">Estimated 80% band · share of U.S. consumer revenue</p>
       <div class="tier-line"><span class="tier-badge tier-1">Tier 1 {{ aggregate.tier1 }}</span><span class="tier-badge tier-2">Tier 2 {{ aggregate.tier2 }}</span><span class="tier-badge tier-3">Tier 3 {{ aggregate.tier3 }}</span></div>
-      <div class="table-wrap chart-equivalent-wrap"><table id="home-dfr-band-data" class="chart-equivalent-table" data-chart-table="band">
+      <details class="data-disclosure"><summary>View chart data and provenance</summary><div class="table-wrap chart-equivalent-wrap"><table id="home-dfr-band-data" class="chart-equivalent-table" data-chart-table="band">
         <caption>Text equivalent for the current revenue-weighted estimated DFR% band.</caption>
         <tbody><tr><th scope="row">Period</th><td>{{ aggregate.quarter }}</td></tr><tr><th scope="row">Estimated 80% band</th><td>{{ aggregate.low }} to {{ aggregate.high }} of U.S. consumer revenue</td></tr><tr><th scope="row">Estimated midpoint</th><td>{{ aggregate.mid }} of U.S. consumer revenue</td></tr><tr><th scope="row">Evidence mix</th><td><span class="tier-badge tier-1">Tier 1 {{ aggregate.tier1 }}</span> <span class="tier-badge tier-2">Tier 2 {{ aggregate.tier2 }}</span> <span class="tier-badge tier-3">Tier 3 {{ aggregate.tier3 }}</span></td></tr><tr><th scope="row">Provenance</th><td><a href="methodology/index.html">Method and registered assumptions</a></td></tr></tbody>
-      </table></div>
+      </table></div></details>
       <p class="comparison-anchor">Across the same publication, covered-company midpoint estimates range from <a href="{{ company_midpoint_anchor.lowest_href }}">{{ company_midpoint_anchor.lowest_mid }} at {{ company_midpoint_anchor.lowest_name }}</a> to <a href="{{ company_midpoint_anchor.highest_href }}">{{ company_midpoint_anchor.highest_mid }} at {{ company_midpoint_anchor.highest_name }}</a>. The {{ aggregate.mid }} headline is revenue-weighted, not a threshold or a typical-company score.</p>
       <p class="meta">Midpoint represents an estimated ${{ aggregate.debt_revenue }} million of debt-funded consumer revenue over an estimated ${{ aggregate.consumer_revenue }} million denominator. Bands are always shown.</p>
     </article>
@@ -43,7 +49,7 @@
 
   <section id="prediction-ledger" class="section-block prediction-rail" aria-labelledby="prediction-ledger-heading">
     <h2 id="prediction-ledger-heading">Prediction ledger</h2>
-    <p>Each forecast is timestamped before its official agency release and kept as an immutable record. Grades use the first published figure, never a later revision.</p>
+    <p>Monthly consumer-credit and federal-fiscal forecasts, recorded before release. Grades use the first published figure, never a later revision.</p>
     {% if latest %}
     <article class="card prediction-hero" data-figure="prediction">
       <div class="figure-label">{{ latest.target_period }} · {{ latest.target_label }} · $M monthly flow</div>
@@ -56,10 +62,12 @@
         <line x1="{{ latest.band_mid_x }}" y1="18" x2="{{ latest.band_mid_x }}" y2="54" class="range-mid-rule" />
         <text x="108" y="68" text-anchor="middle">{{ latest.low95_display }}</text><text x="{{ latest.band_mid_x }}" y="68" text-anchor="middle">{{ latest.point_display }}</text><text x="492" y="68" text-anchor="middle">{{ latest.high95_display }}</text>
       </svg>
-      <div class="table-wrap chart-equivalent-wrap"><table id="home-prediction-band-data" class="chart-equivalent-table" data-chart-table="band">
+<div class="range-labels"><span><small>Low</small>{{ latest.low95_display }}</span><span><small>Point</small>{{ latest.point_display }}</span><span><small>High</small>{{ latest.high95_display }}</span></div>
+<p class="band-note">95% prediction interval · $M</p>
+      <details class="data-disclosure"><summary>View chart data and provenance</summary><div class="table-wrap chart-equivalent-wrap"><table id="home-prediction-band-data" class="chart-equivalent-table" data-chart-table="band">
         <caption>Text equivalent for the latest immutable prediction band.</caption>
         <tbody><tr><th scope="row">Series and period</th><td>{{ latest.target_label }}, {{ latest.target_period }}</td></tr><tr><th scope="row">Point</th><td>{{ latest.point_display }} millions of U.S. dollars</td></tr><tr><th scope="row">80% interval</th><td>{{ latest.low80_display }} to {{ latest.high80_display }} millions of U.S. dollars</td></tr><tr><th scope="row">95% interval</th><td>{{ latest.low95_display }} to {{ latest.high95_display }} millions of U.S. dollars</td></tr><tr><th scope="row">Status</th><td>{{ latest.grade_status }}</td></tr><tr><th scope="row">Provenance</th><td><a href="scoreboard/predictions/{{ latest.prediction_id }}/index.html">Immutable prediction record</a></td></tr></tbody>
-      </table></div>
+      </table></div></details>
     </article>
     {% else %}
     <article class="card prediction-hero"><h3>No predictions yet</h3><p>The feed is valid but the public clock has not started.</p></article>
@@ -69,17 +77,17 @@
       <div class="number secondary">{{ summary.prediction_count }}</div>
       <div class="figure-evidence"><span>{{ summary.graded_count }} graded · {{ summary.pending_count }} pending</span><a href="scoreboard/index.html">Open the full ledger</a></div>
     </article>
-    <section id="model-record" class="rail-model-record" aria-labelledby="model-record-heading">
+    <details class="research-disclosure"><summary>Historical model performance</summary><section id="model-record" class="rail-model-record" aria-labelledby="model-record-heading">
       <h3 id="model-record-heading">Historical backtest</h3>
       <p>Historical tests compare the nowcast with explicit naive benchmarks; they are not live-grade results.</p>
       <div class="grid rail-backtest-grid">
         <article class="card" data-figure="diagnostic-usd"><div class="figure-label">2018–2026 · $M mean absolute error</div><div class="number secondary">{{ summary.mae_display }}</div><div class="figure-evidence"><span>{{ summary.improvement_display }} better than {{ summary.best_naive }}</span><a href="methodology/index.html">Model evidence</a></div></article>
         <article class="card" data-figure="diagnostic-percent"><div class="figure-label">2018–2026 · share inside 80% band</div><div class="number secondary">{{ summary.coverage80_display }}</div><div class="figure-evidence"><span>95% band {{ summary.coverage95_display }}</span><a href="methodology/index.html">Coverage method</a></div></article>
       </div>
-    </section>
+    </section></details>
   </section>
 
-  <div class="calibration-ledger home-calibration opening-calibration" aria-label="Live grade calibration by target series">
+  <details class="calibration-disclosure"><summary>Live grade record · {{ summary.graded_count }} graded / {{ summary.prediction_count }} predictions</summary><div class="calibration-ledger home-calibration opening-calibration" aria-label="Live grade calibration by target series">
     <div class="tier-explainer-title">Live grade record</div>
     {% for calibration in live_calibration %}<h3>{{ calibration.target_label }}</h3><dl class="calibration-stats">
       <div data-figure="calibration-count"><dt>Graded records</dt><dd>{{ calibration.graded_count }}</dd></div>
@@ -89,7 +97,7 @@
       <div data-figure="calibration-usd"><dt>Naive MAE</dt><dd>{{ calibration.naive_mae_display }}<span>$M · {{ calibration.naive_model_display }}</span></dd></div>
     </dl>{% endfor %}
     <p class="meta">Live-grade statistics remain separate from the historical backtest. <a href="scoreboard/index.html">Read every prediction, grade, and the published first miss.</a></p>
-  </div>
+  </div></details>
 </div>
 
 <section id="evidence-tiers" class="section-block" aria-labelledby="evidence-tiers-heading">
@@ -100,7 +108,7 @@
 
 <section id="credit-flow" class="section-block">
   <h2>Credit flow</h2>
-  <p>Current-period midpoint allocations show how published consumer-credit lanes pass through spending categories to the highest-lift companies and the rest of the covered universe.</p>
+  <p>From new borrowing to company revenue. Follow the estimated allocations through spending categories; line style tells you what the evidence supports.</p>
   {{ render_credit_flow(credit_flow, credit_flow_methodology_href, "home-credit-flow-data") }}
 </section>
 
@@ -115,7 +123,7 @@
   </table></div>
   <details class="baseline-disclosure">
     <summary>Show {{ baseline_companies|length }} baseline-only companies at 1.00x</summary>
-    <p>No company-specific financing evidence found; each estimate reflects proportional allocation. Their indistinguishability is the finding, so the full rows remain available here.</p>
+    <p>No company-specific financing evidence found; each estimate reflects proportional allocation. The complete estimates and evidence mix remain available below.</p>
     <div class="table-wrap"><table class="lift-table">
       <caption>Complete baseline-only group, retaining every rank, estimated DFR% band, and Tier 1/2/3 split.</caption>
       <thead><tr><th>Rank</th><th>Company</th><th>Lift</th><th>Estimated DFR% band</th><th>Evidence mix</th><th>Interpretation</th></tr></thead>
@@ -126,7 +134,7 @@
 
 <section id="companies" class="section-block">
   <h2>Companies</h2>
-  <p>The complete alphabetical directory keeps all {{ company_count }} company estimates, bands, evidence tiers, assumptions, and source links one step away.</p>
+  <p>Look inside the estimate. Explore all {{ company_count }} companies, with the evidence and uncertainty behind every band.</p>
   <p><a class="directory-link" href="companies/index.html">Browse all {{ company_count }} company estimates →</a></p>
 </section>
 {% endblock %}

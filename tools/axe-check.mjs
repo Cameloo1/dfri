@@ -158,6 +158,7 @@ async function keyboardAudit(page) {
         index: candidates.indexOf(active),
         label: (
           focusTarget?.getAttribute("aria-label") ||
+          Array.from(focusTarget?.labels ?? []).map((label) => label.textContent).join(" ") ||
           focusTarget?.textContent ||
           active?.getAttribute("title") ||
           ""
@@ -204,6 +205,10 @@ async function mobileLayoutAudit(page) {
     if (overflowingSvgs.length > 0) {
       failures.push(`${overflowingSvgs.length} SVG image(s) leave the mobile viewport`);
     }
+    const statusFrame = document.querySelector("iframe.status-frame");
+    if (statusFrame?.contentDocument?.documentElement.scrollHeight > statusFrame.clientHeight + tolerance) {
+      failures.push("automation status is clipped inside its frame");
+    }
     return { failures, viewportWidth, documentWidth };
   });
 }
@@ -235,6 +240,31 @@ async function sortingAudit(page) {
         previous = value;
       }
     }
+  }
+  return { failures };
+}
+
+async function searchAudit(page) {
+  const failures = [];
+  if (await page.locator("#company-query").count() === 0) return { failures };
+  const input = page.getByLabel("Find a company", { exact: true });
+  const entries = page.locator("[data-company-directory-entry]:visible");
+  for (const query of [" tsLa ", "Tesla"]) {
+    await input.fill(query);
+    if (await entries.count() !== 1 || !(await entries.first().innerText()).includes("TSLA")) {
+      failures.push(`search fails for ${query}`);
+    }
+  }
+  await entries.first().click();
+  if (!page.url().endsWith("/companies/tsla/index.html")) failures.push("search result does not open the company");
+  await page.getByRole("link", { name: "← All companies", exact: true }).click();
+  await input.fill("<script>missing</script>");
+  if (await entries.count() !== 0 || !await page.locator(".company-empty").isVisible()) {
+    failures.push("search does not expose its empty state");
+  }
+  await page.getByRole("button", { name: "Clear", exact: true }).click();
+  if (await entries.count() !== 50 || await input.inputValue() !== "" || !await input.evaluate((element) => element === document.activeElement)) {
+    failures.push("clear does not restore all companies and input focus");
   }
   return { failures };
 }
@@ -273,12 +303,18 @@ try {
     const semantics = await semanticAudit(page, route);
     const keyboard = await keyboardAudit(page);
     const sorting = await sortingAudit(page);
+    const search = await searchAudit(page);
+    await page.evaluate(() => document.querySelectorAll("details").forEach((detail) => { detail.open = true; }));
+    const expandedAudit = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
+      .analyze();
     results.push({
       route,
       semantics,
       keyboard,
       sorting,
-      violations: audit.violations.map((violation) => ({
+      search,
+      violations: [...audit.violations, ...expandedAudit.violations].map((violation) => ({
         id: violation.id,
         impact: violation.impact,
         nodes: violation.nodes.length,
@@ -311,6 +347,15 @@ try {
         throw new Error(`No-JavaScript baseline disclosure exposes ${baselineRows} rows, not 37`);
       }
     }
+    for (const disclosure of await noJsPage.locator("details.data-disclosure").all()) {
+      await disclosure.locator(":scope > summary").click();
+      if (!await disclosure.locator("table").isVisible()) {
+        throw new Error(`Chart data is not accessible without JavaScript: ${route}`);
+      }
+    }
+    if (route === "/companies/" && await noJsPage.locator("[data-company-directory-entry]:visible").count() !== 50) {
+      throw new Error("Company directory loses entries without JavaScript");
+    }
   }
   await noJsContext.close();
 
@@ -325,6 +370,7 @@ try {
       await mobilePage.setViewportSize({ width, height: 900 });
       await mobilePage.goto(`${baseUrl}${result.route}`, { waitUntil: "load" });
       await mobilePage.evaluate(() => document.fonts.ready);
+      await mobilePage.evaluate(() => document.querySelectorAll("details").forEach((disclosure) => { disclosure.open = true; }));
       result.responsiveLayouts.push(await mobileLayoutAudit(mobilePage));
     }
     result.mobileLayout = result.responsiveLayouts.find((layout) => layout.viewportWidth === 390);
@@ -356,13 +402,19 @@ const mobileLayoutFailures = results.flatMap((result) =>
 const sortingFailures = results.flatMap((result) =>
   result.sorting.failures.map((failure) => ({ route: result.route, failure })),
 );
+const searchFailures = results.flatMap((result) =>
+  result.search.failures.map((failure) => ({ route: result.route, failure })),
+);
+const accessibilityViolations = results.flatMap((result) => result.violations);
 const receipt = {
   status:
     critical.length === 0 &&
+    accessibilityViolations.length === 0 &&
     semanticFailures.length === 0 &&
     keyboardFailures.length === 0 &&
     mobileLayoutFailures.length === 0 &&
-    sortingFailures.length === 0
+    sortingFailures.length === 0 &&
+    searchFailures.length === 0
       ? "PASS"
       : "FAIL",
   axeVersion: "4.12.1",
@@ -379,6 +431,9 @@ const receipt = {
   mobileLayoutFailures,
   sortingFailureCount: sortingFailures.length,
   sortingFailures,
+  searchFailureCount: searchFailures.length,
+  searchFailures,
+  accessibilityViolationCount: accessibilityViolations.length,
   worstFinding:
     critical[0] ??
     semanticFailures[0] ??

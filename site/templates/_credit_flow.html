@@ -1,5 +1,5 @@
 {% macro credit_flow(flow, methodology_href, table_id) -%}
-<figure class="credit-flow-figure" aria-labelledby="credit-flow-title credit-flow-caption" aria-describedby="{{ table_id }}" data-figure="allocation">
+<figure class="credit-flow-figure" aria-labelledby="credit-flow-caption" aria-describedby="{{ table_id }}" data-figure="allocation">
   <div class="figure-label">{{ flow.period }} · registered midpoint allocations · millions of U.S. dollars</div>
   <div class="figure-evidence"><span>Width = estimated dollars</span><span>Style = how much is actually known</span><a href="{{ methodology_href }}">Method and provenance</a></div>
   <svg class="credit-flow" viewBox="0 0 360 675" role="img" aria-describedby="{{ table_id }}" data-node-count="{{ flow.node_count }}" data-chart-equivalent="{{ table_id }}">
@@ -31,13 +31,13 @@
     <span class="tier-badge tier-3"><i class="flow-key tier-3" aria-hidden="true"></i>Tier 3 · fungible</span>
   </div>
   <figcaption id="credit-flow-caption">The diagram begins with the portion of published G.19 flow represented by attribution lanes; it is not a complete use-of-funds decomposition. Tier 3 flows are proportional allocations, not observed transfers.</figcaption>
-  <div class="table-wrap flow-table-wrap"><table id="{{ table_id }}" class="flow-table chart-equivalent-table" data-chart-table="flow">
+  <details class="data-disclosure flow-data"><summary>Explore the complete flow data</summary><div class="table-wrap flow-table-wrap"><table id="{{ table_id }}" class="flow-table chart-equivalent-table" data-chart-table="flow">
     <caption>Text equivalent for the flow diagram. Each row is one exact rendered ribbon; highest-lift companies are separate and the remaining covered companies are bundled.</caption>
     <thead><tr><th scope="col">Source</th><th scope="col">Destination</th><th scope="col">Estimated amount</th><th scope="col">Evidence tier</th></tr></thead>
     <tbody>
       {% for link in flow.product_links %}<tr><td>{{ link.source_label }}</td><td>{{ link.target_label }}</td><td>{{ link.amount_display }} (millions of U.S. dollars)</td><td><span class="tier-badge tier-{{ link.tier }}">Tier {{ link.tier }}</span></td></tr>{% endfor %}
       {% for link in flow.company_links %}<tr><td>{{ link.source_label }}</td><td>{{ link.target_label }}</td><td>{{ link.amount_display }} (millions of U.S. dollars)</td><td><span class="tier-badge tier-{{ link.tier }}">Tier {{ link.tier }}</span></td></tr>{% endfor %}
     </tbody>
-  </table></div>
+  </table></div></details>
 </figure>
 {%- endmacro %}

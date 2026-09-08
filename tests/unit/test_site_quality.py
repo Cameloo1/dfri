@@ -135,9 +135,22 @@ def test_quality_gate_rejects_band_reduced_to_non_range_markup(tmp_path: Path) -
 def test_quality_gate_reserves_accent_for_graded_state(tmp_path: Path) -> None:
     root = build_publication(tmp_path)
     css = root / "assets" / "site.css"
-    css.write_text(css.read_text(encoding="utf-8") + "\na { color: var(--verified); }\n")
+    css.write_text(
+        css.read_text(encoding="utf-8") + "\na { color: var(--verified); }\n", encoding="utf-8"
+    )
 
     with pytest.raises(SiteQualityError, match="exclusive to the graded state"):
+        check_site(root)
+
+
+def test_quality_gate_rejects_low_contrast_navigation_accent(tmp_path: Path) -> None:
+    root = build_publication(tmp_path)
+    css = root / "assets" / "site.css"
+    css.write_text(
+        css.read_text(encoding="utf-8").replace("--accent: #254cdb", "--accent: #b0c0ff"),
+        encoding="utf-8",
+    )
+    with pytest.raises(SiteQualityError, match="Text contrast below WCAG AA"):
         check_site(root)
 
 
@@ -259,8 +272,8 @@ def test_quality_gate_reserves_measured_for_explicit_tier_one_context(tmp_path: 
     page = root / "scoreboard" / "index.html"
     page.write_text(
         page.read_text(encoding="utf-8").replace(
-            "Each row is an immutable monthly forecast",
-            "Each measured row is an immutable monthly forecast",
+            "Forecast first. Check against the first print.",
+            "Measured forecast. Check against the first print.",
         ),
         encoding="utf-8",
     )
@@ -310,7 +323,9 @@ def test_quality_gate_rejects_remote_font_source(tmp_path: Path) -> None:
 def test_quality_gate_rejects_legacy_font_fallback(tmp_path: Path) -> None:
     root = build_publication(tmp_path)
     css = root / "assets" / "site.css"
-    css.write_text(css.read_text(encoding="utf-8") + "\nbody { font-family: Arial; }\n")
+    css.write_text(
+        css.read_text(encoding="utf-8") + "\nbody { font-family: Arial; }\n", encoding="utf-8"
+    )
 
     with pytest.raises(SiteQualityError, match="forbidden treatment: Arial"):
         check_site(root)
