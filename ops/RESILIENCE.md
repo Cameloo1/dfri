@@ -10,7 +10,8 @@ first failure receipt and workflow URL before retrying.
    run, release deadline, and missed flags.
 2. Open the linked GitHub Actions run and the deduplicated automation incident. Download its
    receipts before the 90-day artifact cache expires; the prediction, grade, and publication
-   ledgers themselves remain authoritative in `state/ledgers/`.
+   ledgers themselves remain authoritative in `state/ledgers/` on `ledger-state`, not code main.
+   Fetch and verify that branch through `ops/LEDGER_STATE.md` before any recovery.
 3. Verify the default-branch workflow revision and the public source release independently. Do not
    infer a release from a cron expression.
 4. Pause publication if an attempted recovery would change an existing ledger row, consume a new

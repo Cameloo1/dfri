@@ -6,6 +6,45 @@ This is the controlling execution map for `DFRI_BUILD_SPEC.md` v1.0. Sections 1 
 
 ## Global gates and invariants
 
+### Coverage expansion execution (owner requested 2026-09-08)
+
+Scope: target 100 defensible company estimates through reviewed cohorts, then a complete
+approximately 500-issuer research universe with explicit supported, baseline-only, pending,
+blocked, and not-applicable states. Neither an estimate count nor coverage outside the index is
+assumed. This execution does not authorize production mutation, policy bypass, paid services,
+new credentials, or machine approval in place of human review. The owner separately approved
+Gate A's ledger-only branch, narrow ruleset change and recovery deployment on 2026-09-08.
+
+| Gate | State | Ordered tasks and acceptance evidence | Dependencies |
+| --- | --- | --- | --- |
+| A1 | PASS | Actual cache reproduces the restore failure. Accepted Pages and current live feeds match all eight predictions, two grades and eight publication records; all ten old Git batches are byte-identical. The missing two MTS predictions require three append-only batch files. | Current main and owning recovery runbooks |
+| A2 | IN_PROGRESS — APPROVED | Owner approved the narrow state/ruleset/recovery boundary. Signed recovery commit `6e6936664c8d92a8b287591b8c2e994fcad624c0` preserves all old batches and appends the three missing files on `ledger-state`. Main effective protections are identical. Complete fresh Git recovery, signed workflow-writer tests and reviewed CI; no main bypass. | A1; approval received 2026-09-08 |
+| A3 | PENDING | Verify recovery deployment, then a genuine scheduled run; revalidate applicable M4 contracts cold. Manual recovery is not scheduled-cycle evidence. | A2 |
+| B | PENDING | Complete AC6.2–AC6.9 below: stream dispatcher, cohort manifests, legacy-compatible RNG and review/source-policy gates, no-change feeds and values, overlap rejection, single-stream composite suppression. Retain historical tests and all URLs. | A3; existing AC6.1 finding |
+| C | PENDING | Specify and test a separately versioned coverage-independent allocation, category-wide denominator and residual, revenue-stage/period compatibility, direct-finance overlap handling, and evidence admission compiler. Prove directory visibility cannot move unchanged estimates. Preserve legacy methodology; produce restatement comparisons, not silent replacement. | B; reviewed economic assumptions; publication approval remains separate |
+| D | PENDING | Screen exclusions and other index sectors; prepare a mixed ten-company pilot, then cohorts of 10–25. Each admission requires identity, accession evidence, denominator, reviewed assumptions, bands/tiers/provenance, historical retrieval and refresh/recovery. Report genuine evidence and baseline counts. Continue to 100 qualified estimates or document exhausted eligibility without inventing values. | C; human review of every required mapping |
+| E | PENDING | Complete AC7.1–AC7.13 below, including legal verification before new ingest, prime-only UEI rollups, period/recognized-revenue assumptions, twelve qualified federal-exposed names, independent recompute and disjointness. Continue M8–M10 in their existing order. | B; stream-specific review/source gates |
+| F | PENDING | Incremental accession acquisition, aggregate SEC pacing, issuer checkpoints/retry/isolation, dependency recompute, durable attribution history, serialized accepted promotion, paginated no-JS discovery and additive partitioned feeds. Verify actual nested asset budgets and isolated 100/500-company synthetic capacity fixtures; never publish synthetic rows. | B–D; relevant stream contracts from E |
+
+At each milestone boundary: full `REGRESSION.md`, inventories before/after, old feed and ledger
+byte identity, permalink/provenance checks, coverage no lower than the freshly measured baseline,
+`make.cmd bootstrap`, `make.cmd verify`, `make.cmd replay`, `make.cmd publish`, independent
+recompute, immutability/retry/recovery, all-page no-JS/accessibility/keyboard/mobile/weight checks,
+and CI under 30 minutes. Reports close only satisfied checklists. Historical pass receipts are
+not fresh execution evidence.
+
+Classification remains bounded by M11's frozen-artifact, holdout, source/provider-legality and
+human-review contracts. Reconcile the stale M6 name in its standalone specification before
+implementation. Preparing intake does not authorize a provider call, a paid credential, or
+rescheduling M11 without an explicit sequencing decision. Owner is the only designated reviewer.
+
+Current Gate A observation: run 34157669998 accepted a Pages deployment but its post-deployment
+ledger push failed the protected-ref, pull-request and verified-signature rules. Runs
+34165349668, 34170438630 and 34175956850 subsequently failed closed on cache-ahead-of-Git state.
+Source baseline for this isolated execution is public main
+`62de17f3e6600ffc1cb4b2a10c7f56187831b5ea`. No expansion implementation begins while A is open.
+Evidence: https://github.com/Cameloo1/dfri/actions/runs/34157669998
+
 - `G0 — Provenance`: never synthesize an unavailable value. Persist a `BLOCKED` record with URL, error, and timestamp.
 - `G1 — Source legality`: use only free/public inputs whose terms permit the intended derived outputs. Stop and escalate only for a legal/ToS conflict or an unavoidable paid credential.
 - `G2 — Point in time`: all model reads pass through the Vintage Guard and filter `release_date <= as_of`.

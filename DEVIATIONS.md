@@ -2,6 +2,26 @@
 
 This ledger records departures from `DFRI_BUILD_SPEC.md`. A deviation must state what changed, why, its evidence, and which non-negotiable principle it serves. No deviation may violate Section 1.
 
+## D-016 — Dedicated signed ledger branch (2026-09-08, owner approved)
+
+Current durable state moves from code main to `ledger-state` in the same repository. This narrows
+D-011's default-branch implementation without changing its permanent, append-only Git requirement
+(§1.6 reproducibility and §6.4 falsifiability). The active all-branch rules rejected the scheduled
+writer after Pages accepted [run 34157669998](https://github.com/Cameloo1/dfri/actions/runs/34157669998),
+leaving two published MTS predictions absent from Git. Owner explicitly approved the new branch,
+its narrow ruleset exception and recovery deployment. Main's effective rules are unchanged.
+
+Signed recovery commit `6e6936664c8d92a8b287591b8c2e994fcad624c0` appends three files while preserving
+every existing batch byte and original record timestamp. The dedicated rules require verified
+signatures and prohibit force pushes/deletion. An initially added linear-history rule rejected
+the preserved merge ancestry and was removed; no approved protection or main history was removed.
+
+The recovery candidate adds signed write preflight before Pages, then optimistic append-only
+promotion after acceptance, with no artifact-to-authority fallback. MTS receipt mode validation
+and the manual `all` grading dispatch are corrected with tests; models, dates, existing grades
+and interval values are unchanged. `ops/LEDGER_STATE.md` distinguishes seeded state, implemented
+workflow, hosted deployment and genuine scheduled evidence. No milestone is closed by this entry.
+
 | ID | Date | Status | Spec reference | Departure | Reason and evidence | Principle served |
 |---|---|---|---|---|---|---|
 | D-001 | 2026-08-04 | Active | §4.1, §6.3, M0–M2 | Replace all FRED/ALFRED access with Federal Reserve Board primary sources. Current/historical G.19 and H.8 data come from Board release-page SDMX packages; first prints come from immutable dated Board release pages. The Board series IDs replace FRED aliases in the registry. | Current FRED terms prohibit using the service/content in software or machine-learning development and separately prohibit storing/caching/archiving/incorporating it into a database. No FRED client or lake rows existed; the one local `FRED_API_KEY` entry was removed without disclosure. Board DDP documents automated retrieval, Board website information is public domain unless marked otherwise, and dated G.19/H.8 archives are verified through 2015. Board URLs: https://www.federalreserve.gov/DataDownload/help/default.htm, https://www.federalreserve.gov/disclaimer.htm, https://www.federalreserve.gov/releases/g19/, https://www.federalreserve.gov/releases/h8/. FRED terms evidence: https://fred.stlouisfed.org/legal/terms/. | §1.2 free/public sources with permitted derivative redistribution; §1.3 point-in-time fidelity. |

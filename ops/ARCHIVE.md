@@ -3,6 +3,12 @@
 The repository is the primary durable and tamper-evident home for predictions, grades, and first
 publication records. A deterministic release archive supplies an independent recovery object.
 
+Current ledger authority is `ledger-state`, not the historical code-main snapshot. The hosted
+archive workflow fetches a signed, commit-pinned state snapshot and merges it into its disposable
+checkout before packaging; the fetched state SHA is retained in the archive receipt artifact.
+For manual current-state archives, follow `ops/LEDGER_STATE.md` first. The default local target
+archives the selected checkout and does not claim to fetch latest state automatically.
+
 ## Package and proof
 
 `make archive-round-trip` (or `make.cmd archive-round-trip`) verifies the repository ledger,

@@ -14,6 +14,24 @@ PUBLISHED = RELEASED + timedelta(hours=1)
 SHA = "a" * 40
 
 
+@pytest.mark.parametrize("mode", ["mts-predict", "mts-grade"])
+def test_mts_workflow_modes_write_deployment_receipts(tmp_path: Path, mode: str) -> None:
+    receipt = write_deployment_receipt(
+        tmp_path / "mts.json",
+        mode=mode,
+        source_release_at=RELEASED,
+        published_at=PUBLISHED,
+        deployed_at=PUBLISHED + timedelta(minutes=2),
+        page_url="https://example.com/dfri/",
+        workflow_url="https://github.com/camelon/dfri/actions/runs/1",
+        commit_sha=SHA,
+        prediction_appended=int(mode == "mts-predict"),
+        grade_appended=int(mode == "mts-grade"),
+        attribution_refresh_appended=0,
+    )
+    assert receipt.sla_status == "PASS"
+
+
 def write(output: Path, deployed_at: datetime) -> object:
     return write_deployment_receipt(
         output,

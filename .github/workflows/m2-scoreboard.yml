@@ -92,9 +92,12 @@ jobs:
           fi
 
       - name: Restore Git-authoritative public ledgers
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          uv run python -m dfri.ops.github_ledger fetch --output .local/ledger-source
           uv run python -m dfri.ops.repository_ledger restore \
-            --repository-root state/ledgers \
+            --repository-root .local/ledger-source \
             --runtime-root .local/lake/curated
 
       - name: Refresh only the public-source nowcast lake
@@ -152,18 +155,21 @@ jobs:
               release_times+=("$(jq -r '[.series[].latest_mts_release_at] | min' <<<"$mts_prediction_json")")
             fi
           fi
-          if [[ "$mode" == grade || "$mode" == mts-grade || "$mode" == all ]]; then
-            grade_command=grade
-            if [[ "$mode" == mts-grade ]]; then
-              grade_command=mts-grade
-            fi
+          grade_commands=()
+          case "$mode" in
+            grade) grade_commands=(grade) ;;
+            mts-grade) grade_commands=(mts-grade) ;;
+            all) grade_commands=(grade mts-grade) ;;
+          esac
+          for grade_command in "${grade_commands[@]}"; do
             grade_json="$(uv run python -m dfri.scoreboard "$grade_command" --as-of "$run_at")"
             echo "$grade_json"
-            grade_appended="$(jq -r '.appended' <<<"$grade_json")"
-            if (( grade_appended > 0 )); then
+            this_grade_appended="$(jq -r '.appended' <<<"$grade_json")"
+            grade_appended=$(( grade_appended + this_grade_appended ))
+            if (( this_grade_appended > 0 )); then
               release_times+=("$(jq -r '.latest_graded_at' <<<"$grade_json")")
             fi
-          fi
+          done
           if [[ "$mode" == refresh ]]; then
             refresh_json="$(uv run python -m dfri.ops.quarterly_refresh \
               --as-of "$run_at" \
@@ -279,14 +285,10 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy the accepted Pages artifact
-        id: deployment
-        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
-
-      - name: Check out current default branch for ledger promotion and receipt writer
+      - name: Check out the pinned clock code for ledger promotion and receipt writer
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.event.repository.default_branch }}
+          ref: ${{ github.sha }}
           fetch-depth: 0
 
       - name: Download the candidate runtime state
@@ -294,15 +296,6 @@ jobs:
         with:
           name: dfri-m2-state-candidate
           path: .local/accepted-state
-
-      - name: Preserve deployment-accepted runtime state
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: dfri-m2-state
-          path: .local/accepted-state/runtime-state.tar.gz
-          if-no-files-found: error
-          retention-days: 90
-          compression-level: 0
 
       - name: Install pinned uv for ledger promotion
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
@@ -313,9 +306,10 @@ jobs:
       - name: Install the locked project for ledger promotion
         run: make bootstrap
 
-      - name: Verify and merge the deployment-accepted repository ledger candidate
-        id: repository_ledger
+      - name: Verify candidate and exercise signed ledger writer before Pages
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           uv run python -m dfri.ops.state_bundle unpack \
@@ -324,44 +318,35 @@ jobs:
           uv run python -m dfri.ops.repository_ledger snapshot \
             --runtime-root .local/repository-candidate-runtime/lake/curated \
             --output-root .local/repository-ledger-candidate
-          merge_json="$(uv run python -m dfri.ops.repository_ledger merge \
-            --candidate-root .local/repository-ledger-candidate \
-            --repository-root state/ledgers)"
-          echo "$merge_json"
-          echo "added_files=$(jq -r '.added_files' <<<"$merge_json")" >> "$GITHUB_OUTPUT"
+          mkdir -p .local/evidence/deployments
+          uv run python -m dfri.ops.github_ledger preflight \
+            --candidate .local/repository-ledger-candidate \
+            --run-id "${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" \
+            | tee .local/evidence/deployments/ledger-preflight.json
 
-      - name: Commit newly appended public ledger batches to Git
-        if: steps.repository_ledger.outputs.added_files != '0'
+      - name: Deploy the accepted Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+
+      - name: Preserve deployment-accepted runtime state
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dfri-m2-state
+          path: .local/accepted-state/runtime-state.tar.gz
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0
+
+      - name: Append accepted batches to the protected ledger-state branch
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          git config user.name "dfri-scoreboard[bot]"
-          git config user.email "ops@camelon.app"
-          git add -- state/ledgers
-          git diff --cached --check
-          while IFS=$'\t' read -r status path; do
-            if [[ "$path" == "state/ledgers/MANIFEST.json" && "$status" =~ ^[AM]$ ]]; then
-              continue
-            fi
-            if [[ "$path" == state/ledgers/*/batch-*.parquet && "$status" == "A" ]]; then
-              continue
-            fi
-            echo "BLOCKED: staged ledger change violates append-only policy: $status $path" >&2
-            exit 1
-          done < <(git diff --cached --name-status)
-          git commit -m "data: append immutable scoreboard ledger (run ${GITHUB_RUN_ID})"
-          for attempt in 1 2 3; do
-            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
-              exit 0
-            fi
-            if (( attempt == 3 )); then
-              break
-            fi
-            git fetch origin "$GITHUB_REF_NAME"
-            git rebase "origin/$GITHUB_REF_NAME"
-          done
-          echo "BLOCKED: could not persist accepted ledger state to Git after three attempts." >&2
-          exit 1
+          uv run python -m dfri.ops.github_ledger promote \
+            --candidate .local/repository-ledger-candidate \
+            --run-id "${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" \
+            | tee .local/evidence/deployments/ledger-promotion.json
 
       - name: Write the deployment receipt and enforce the applicable four-hour SLA
         shell: bash

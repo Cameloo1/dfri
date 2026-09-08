@@ -21,7 +21,11 @@ completed before that receipt failure, so the state is recoverable. Never enable
 
 ## Current workflow contract
 
-The default-branch workflow has two UTC schedules:
+The default-branch workflow has five UTC schedules:
+
+- Weekdays at 16:17 UTC: check for eligible pre-release Treasury MTS forecasts.
+- Weekdays at 19:17 UTC: grade matured Treasury MTS targets.
+- Mondays at 14:43 UTC: check for a newly complete quarterly attribution input set.
 
 - Weekdays at 21:17 UTC: refresh dated Board/Census inputs, grade any newly matured first-print
   G.19 predictions, and publish only when a grade was appended.
@@ -39,15 +43,19 @@ The live Board calendar is https://www.federalreserve.gov/newsevents/calendar.ht
 
 Only one clock run can execute at a time. A later run queues instead of cancelling the current
 one. All jobs are idempotent; a no-change run preserves state but does not mutate or redeploy the
-public artifact. Manual dispatch supports `predict`, `grade`, or `all`; `force_publish` is a
+public artifact. Manual dispatch supports `predict`, `grade`, `mts-predict`, `mts-grade`, `refresh`,
+or `all` (both prediction and grading families); `force_publish` is a
 recovery gate and must not be used to manufacture live-cycle evidence.
 
 ## State and recovery
 
 GitHub-hosted runners are disposable, but the public ledger is not runner state. Predictions,
-grades, and first-publication records are committed under `state/ledgers/` on the default branch.
+grades, and first-publication records are committed under `state/ledgers/` on `ledger-state`.
+The default branch retains a historical snapshot, not the current live authority. See
+`ops/LEDGER_STATE.md` for the approved migration and signed-writer recovery contract.
 The manifest verifies canonical row hashes, exact Parquet byte hashes, sizes, row counts, and IDs.
-Every build restores these Git-authoritative files into the runtime lake before a clock job runs.
+Every live build fetches a signed, commit-pinned snapshot of that branch and restores these
+Git-authoritative files into the runtime lake before a clock job runs. No stale-main fallback exists.
 
 The workflow still attempts to restore the newest deployment-accepted `dfri-m2-state` artifact as
 a speed and recovery cache. The bundle's SHA-256 manifest and strict allowlist are verified first;
@@ -56,11 +64,13 @@ source reconstruction plus Git-ledger restore. A cache with a ledger batch absen
 hard stop because it signals an interrupted post-deployment promotion that must be reviewed.
 
 A no-change run uploads its refreshed cache directly under the accepted name. A changed run first
-uploads `dfri-m2-state-candidate`; only after GitHub Pages accepts the deployment does the deploy
+uploads `dfri-m2-state-candidate`. Before Pages, the deploy job verifies candidate append-only
+integrity and proves signed-write capability through an empty commit under the actual workflow
+identity. Only after GitHub Pages accepts the deployment does the deploy
 job preserve the accepted cache, verify the three-ledger candidate, and commit any new immutable
-batches plus `MANIFEST.json` to the default branch. Existing batch modifications, deletions,
-unmanaged paths, and non-ledger staged changes are rejected. The push retries against concurrent
-code-only default-branch changes without force. Both artifact classes may expire after 90 days
+batches plus `MANIFEST.json` to `ledger-state` via GitHub's signed commit API. Existing batch
+modifications, deletions and unmanaged paths are rejected. Expected-head checks and bounded
+re-read retries never force a concurrent state change. Both artifact classes may expire after 90 days
 without affecting fresh-clone ledger recovery. The bundle contains only:
 
 - public-source `raw_observations` Parquet batches;
@@ -70,7 +80,8 @@ without affecting fresh-clone ledger recovery. The bundle contains only:
 
 Private SEC loan-level files, API keys, environment files, caches, locks, and unrelated local
 evidence cannot enter the bundle. Artifact restore refuses a non-empty destination. If the cache is
-missing, do not bootstrap or recreate ledger rows: restore `state/ledgers/` from the clone and let
+missing, do not bootstrap or recreate ledger rows: fetch and verify `ledger-state`, restore its
+`state/ledgers/` into the runtime, and let
 the public-source backfills rebuild disposable inputs. If Pages succeeds but the Git promotion
 fails, preserve the candidate artifact, confirm the public feed manifest, and manually merge that
 exact reviewed candidate before the clock runs again; the next run will fail closed while the

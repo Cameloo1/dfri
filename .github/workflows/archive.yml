@@ -28,6 +28,15 @@ jobs:
           enable-cache: true
       - name: Install the locked project
         run: uv sync --locked --no-dev
+      - name: Pin and restore the current durable ledger for this archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .local/archive
+          uv run python -m dfri.ops.github_ledger fetch --output .local/ledger-source \
+            | tee .local/archive/ledger-source.json
+          uv run python -m dfri.ops.repository_ledger merge \
+            --candidate-root .local/ledger-source --repository-root state/ledgers
       - name: Create twice, verify hashes, and prove clean ledger recovery
         shell: bash
         run: |

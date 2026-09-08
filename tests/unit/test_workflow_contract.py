@@ -30,11 +30,11 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     assert "No retained runtime cache is available" in workflow
     assert "dfri.ops.repository_ledger restore" in workflow
     assert "dfri.ops.repository_ledger snapshot" in workflow
-    assert "dfri.ops.repository_ledger merge" in workflow
-    assert "state/ledgers" in workflow
-    assert "git diff --cached --name-status" in workflow
-    assert 'git push origin "HEAD:${GITHUB_REF_NAME}"' in workflow
-    assert "could not persist accepted ledger state to Git after three attempts" in workflow
+    assert "dfri.ops.github_ledger fetch" in workflow
+    assert "--repository-root .local/ledger-source" in workflow
+    assert "dfri.ops.github_ledger preflight" in workflow
+    assert "dfri.ops.github_ledger promote" in workflow
+    assert 'git push origin "HEAD:${GITHUB_REF_NAME}"' not in workflow
     assert "dfri-m2-state-candidate" in workflow
     assert "Preserve deployment-accepted runtime state" in workflow
     assert "bootstrap_state" in workflow
@@ -54,23 +54,23 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     assert "actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1" in workflow
     deploy = workflow.index("Deploy the accepted Pages artifact")
     checkout = workflow.index(
-        "Check out current default branch for ledger promotion and receipt writer"
+        "Check out the pinned clock code for ledger promotion and receipt writer"
     )
     candidate_download = workflow.index("Download the candidate runtime state")
     accepted_state = workflow.index("Preserve deployment-accepted runtime state")
-    repository_merge = workflow.index(
-        "Verify and merge the deployment-accepted repository ledger candidate"
+    preflight = workflow.index("Verify candidate and exercise signed ledger writer before Pages")
+    repository_commit = workflow.index(
+        "Append accepted batches to the protected ledger-state branch"
     )
-    repository_commit = workflow.index("Commit newly appended public ledger batches to Git")
     receipt = workflow.index(
         "Write the deployment receipt and enforce the applicable four-hour SLA"
     )
     assert (
-        deploy
-        < checkout
+        checkout
         < candidate_download
+        < preflight
+        < deploy
         < accepted_state
-        < repository_merge
         < repository_commit
         < receipt
     )
