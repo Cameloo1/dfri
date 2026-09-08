@@ -518,6 +518,8 @@ def _check_contrast(css: str) -> float:
         ("verified", "paper"),
         ("ink", "raised-paper"),
         ("muted", "raised-paper"),
+        ("accent", "paper"),
+        ("accent", "raised-paper"),
     )
     try:
         ratios = [
@@ -541,7 +543,8 @@ def _check_editorial_contract(root: Path, css: str) -> None:
         "--mono:",
         "--verified:",
         "font-variant-numeric: tabular-nums lining-nums",
-        ".section-block::before",
+        ".range-labels",
+        ".company-search",
         ".range-mid-rule",
         ".status.graded",
         "--figure-large:",

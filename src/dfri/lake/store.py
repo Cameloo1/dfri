@@ -107,7 +107,7 @@ class AppendOnlyParquetStore:
         destination = self.root / table_name / f"batch-{content_hash}.parquet"
         if destination.exists():
             existing = pq.read_table(destination, schema=schema_for(table_name))
-            if existing.num_rows != table.num_rows:
+            if not stable_table(existing).equals(stable_table(table)):
                 raise AppendOnlyViolationError(
                     f"Content-address collision for {table_name}: {destination.name}"
                 )

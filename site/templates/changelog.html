@@ -3,7 +3,7 @@
 <h1>Changelog</h1>
 <p class="lede">Methodology, model, and publication changes. Prior records are not silently rewritten.</p>
 {% for entry in entries %}
-<article class="card card-follow" id="{{ entry.entry_id }}">
+<article class="card card-follow changelog-entry" id="{{ entry.entry_id }}">
   <div class="entry-label">{{ entry.published_on }} · {{ entry.kind }} · {{ entry.version }}</div>
   <h2><a href="#{{ entry.entry_id }}">{{ entry.title }}</a></h2>
   <p>{{ entry.summary }}</p>

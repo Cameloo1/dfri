@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Companies</h1>
-<p class="lede">Alphabetical directory of all {{ company_count }} covered companies. Each record keeps the estimated DFR% band with its evidence tiers, assumptions, and source links.</p>
+<p class="lede">Explore the {{ company_count }} companies behind the index. Every estimate includes its full uncertainty band, evidence, and sources.</p>
 
 <section class="section-block home-first-section" aria-labelledby="company-directory-heading">
   <h2 id="company-directory-heading">Company estimates</h2>
   <p>{{ company_count }} covered companies, alphabetically by ticker.</p>
+  <div class="company-search" hidden>
+    <label for="company-query">Find a company</label>
+    <div class="search-field"><input id="company-query" type="search" placeholder="Search name or ticker" autocomplete="off" aria-describedby="company-results"><button type="button" id="company-clear">Clear</button></div>
+    <p id="company-results" role="status" aria-live="polite">{{ company_count }} companies</p>
+  </div>
+  <p class="company-empty" hidden>No companies match. Try a different name or ticker, or clear the search.</p>
   <div class="company-links">
     {% for company in companies %}
     <a class="company-link" data-company-directory-entry href="{{ company.ticker|lower }}/index.html"><strong>{{ company.ticker }}</strong><span>{{ company.company_name }}</span><span>Estimated {{ company.low }}–{{ company.high }} DFR%</span></a>

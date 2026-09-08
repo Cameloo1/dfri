@@ -17,7 +17,7 @@ dependencies = [
   "numpy==2.5.1",
   "openpyxl==3.1.5",
   "pillow==12.3.0",
-  "pypdf==6.15.0",
+  "pypdf==6.18.0",
   "polars==1.43.2",
   "pyarrow==23.0.1",
   "scipy==1.18.0",

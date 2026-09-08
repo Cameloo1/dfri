@@ -158,6 +158,7 @@ async function keyboardAudit(page) {
         index: candidates.indexOf(active),
         label: (
           focusTarget?.getAttribute("aria-label") ||
+          Array.from(focusTarget?.labels ?? []).map((label) => label.textContent).join(" ") ||
           focusTarget?.textContent ||
           active?.getAttribute("title") ||
           ""
@@ -204,8 +205,68 @@ async function mobileLayoutAudit(page) {
     if (overflowingSvgs.length > 0) {
       failures.push(`${overflowingSvgs.length} SVG image(s) leave the mobile viewport`);
     }
+    const statusFrame = document.querySelector("iframe.status-frame");
+    if (statusFrame?.contentDocument?.documentElement.scrollHeight > statusFrame.clientHeight + tolerance) {
+      failures.push("automation status is clipped inside its frame");
+    }
     return { failures, viewportWidth, documentWidth };
   });
+}
+
+async function sortingAudit(page) {
+  const failures = [];
+  if (await page.locator("[data-sortable]").count() === 0) return { failures };
+  for (const column of [3, 4, 5, 6, 7]) {
+    const button = page.locator("[data-sortable] thead th").nth(column).locator("button");
+    for (const direction of ["ascending", "descending"]) {
+      await button.click();
+      const values = await page.locator("[data-sortable] tbody tr").evaluateAll(
+        (rows, index) => rows.map((row) => {
+          const cell = row.cells[index];
+          const text = cell.textContent.trim().split(" to ")[0].replaceAll(",", "");
+          const raw = cell.getAttribute("data-sort") ?? text;
+          return raw.trim() === "" || !Number.isFinite(Number(raw)) ? null : Number(raw);
+        }),
+        column,
+      );
+      let missing = false;
+      let previous = null;
+      for (const value of values) {
+        if (value === null) { missing = true; continue; }
+        if (missing) failures.push(`column ${column}: missing value before a number (${direction})`);
+        if (previous !== null && (direction === "ascending" ? value < previous : value > previous)) {
+          failures.push(`column ${column}: incorrect numeric order (${direction})`);
+        }
+        previous = value;
+      }
+    }
+  }
+  return { failures };
+}
+
+async function searchAudit(page) {
+  const failures = [];
+  if (await page.locator("#company-query").count() === 0) return { failures };
+  const input = page.getByLabel("Find a company", { exact: true });
+  const entries = page.locator("[data-company-directory-entry]:visible");
+  for (const query of [" tsLa ", "Tesla"]) {
+    await input.fill(query);
+    if (await entries.count() !== 1 || !(await entries.first().innerText()).includes("TSLA")) {
+      failures.push(`search fails for ${query}`);
+    }
+  }
+  await entries.first().click();
+  if (!page.url().endsWith("/companies/tsla/index.html")) failures.push("search result does not open the company");
+  await page.getByRole("link", { name: "← All companies", exact: true }).click();
+  await input.fill("<script>missing</script>");
+  if (await entries.count() !== 0 || !await page.locator(".company-empty").isVisible()) {
+    failures.push("search does not expose its empty state");
+  }
+  await page.getByRole("button", { name: "Clear", exact: true }).click();
+  if (await entries.count() !== 50 || await input.inputValue() !== "" || !await input.evaluate((element) => element === document.activeElement)) {
+    failures.push("clear does not restore all companies and input focus");
+  }
+  return { failures };
 }
 
 const server = createServer(async (request, response) => {
@@ -241,11 +302,19 @@ try {
       .analyze();
     const semantics = await semanticAudit(page, route);
     const keyboard = await keyboardAudit(page);
+    const sorting = await sortingAudit(page);
+    const search = await searchAudit(page);
+    await page.evaluate(() => document.querySelectorAll("details").forEach((detail) => { detail.open = true; }));
+    const expandedAudit = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
+      .analyze();
     results.push({
       route,
       semantics,
       keyboard,
-      violations: audit.violations.map((violation) => ({
+      sorting,
+      search,
+      violations: [...audit.violations, ...expandedAudit.violations].map((violation) => ({
         id: violation.id,
         impact: violation.impact,
         nodes: violation.nodes.length,
@@ -278,6 +347,15 @@ try {
         throw new Error(`No-JavaScript baseline disclosure exposes ${baselineRows} rows, not 37`);
       }
     }
+    for (const disclosure of await noJsPage.locator("details.data-disclosure").all()) {
+      await disclosure.locator(":scope > summary").click();
+      if (!await disclosure.locator("table").isVisible()) {
+        throw new Error(`Chart data is not accessible without JavaScript: ${route}`);
+      }
+    }
+    if (route === "/companies/" && await noJsPage.locator("[data-company-directory-entry]:visible").count() !== 50) {
+      throw new Error("Company directory loses entries without JavaScript");
+    }
   }
   await noJsContext.close();
 
@@ -287,8 +365,15 @@ try {
   });
   const mobilePage = await mobileContext.newPage();
   for (const result of results) {
-    await mobilePage.goto(`${baseUrl}${result.route}`, { waitUntil: "load" });
-    result.mobileLayout = await mobileLayoutAudit(mobilePage);
+    result.responsiveLayouts = [];
+    for (const width of [320, 390, 768, 1024, 1440]) {
+      await mobilePage.setViewportSize({ width, height: 900 });
+      await mobilePage.goto(`${baseUrl}${result.route}`, { waitUntil: "load" });
+      await mobilePage.evaluate(() => document.fonts.ready);
+      await mobilePage.evaluate(() => document.querySelectorAll("details").forEach((disclosure) => { disclosure.open = true; }));
+      result.responsiveLayouts.push(await mobileLayoutAudit(mobilePage));
+    }
+    result.mobileLayout = result.responsiveLayouts.find((layout) => layout.viewportWidth === 390);
   }
   await mobileContext.close();
 } finally {
@@ -310,14 +395,26 @@ const keyboardFailures = results.flatMap((result) =>
   result.keyboard.failures.map((failure) => ({ route: result.route, failure })),
 );
 const mobileLayoutFailures = results.flatMap((result) =>
-  result.mobileLayout.failures.map((failure) => ({ route: result.route, failure })),
+  result.responsiveLayouts.flatMap((layout) =>
+    layout.failures.map((failure) => ({ route: result.route, width: layout.viewportWidth, failure })),
+  ),
 );
+const sortingFailures = results.flatMap((result) =>
+  result.sorting.failures.map((failure) => ({ route: result.route, failure })),
+);
+const searchFailures = results.flatMap((result) =>
+  result.search.failures.map((failure) => ({ route: result.route, failure })),
+);
+const accessibilityViolations = results.flatMap((result) => result.violations);
 const receipt = {
   status:
     critical.length === 0 &&
+    accessibilityViolations.length === 0 &&
     semanticFailures.length === 0 &&
     keyboardFailures.length === 0 &&
-    mobileLayoutFailures.length === 0
+    mobileLayoutFailures.length === 0 &&
+    sortingFailures.length === 0 &&
+    searchFailures.length === 0
       ? "PASS"
       : "FAIL",
   axeVersion: "4.12.1",
@@ -332,6 +429,11 @@ const receipt = {
   keyboardFailures,
   mobileLayoutFailureCount: mobileLayoutFailures.length,
   mobileLayoutFailures,
+  sortingFailureCount: sortingFailures.length,
+  sortingFailures,
+  searchFailureCount: searchFailures.length,
+  searchFailures,
+  accessibilityViolationCount: accessibilityViolations.length,
   worstFinding:
     critical[0] ??
     semanticFailures[0] ??
