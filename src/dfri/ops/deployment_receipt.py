@@ -41,7 +41,7 @@ def write_deployment_receipt(
 ) -> DeploymentReceipt:
     """Validate, atomically persist, and return one release-to-publication receipt."""
 
-    if mode not in {"predict", "grade", "refresh", "all"}:
+    if mode not in {"predict", "grade", "mts-predict", "mts-grade", "refresh", "all"}:
         raise DeploymentReceiptError("Deployment mode is invalid")
     for value, label in (
         (source_release_at, "source release"),
@@ -120,7 +120,11 @@ def _timestamp(value: str) -> datetime:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--mode", choices=("predict", "grade", "refresh", "all"), required=True)
+    parser.add_argument(
+        "--mode",
+        choices=("predict", "grade", "mts-predict", "mts-grade", "refresh", "all"),
+        required=True,
+    )
     parser.add_argument("--source-release-at", type=_timestamp, required=True)
     parser.add_argument("--published-at", type=_timestamp, required=True)
     parser.add_argument("--deployed-at", type=_timestamp)

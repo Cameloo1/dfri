@@ -487,21 +487,31 @@ grade exactly. First live publication metadata is a third append-only ledger: th
 `published_at`, input `data_vintage`, and methodology version for a prediction survive every later
 site rebuild.
 
-Those three public ledgers live under `state/ledgers/` in Git. Each immutable Parquet batch keeps
+Those three public ledgers live under `state/ledgers/` on the dedicated **`ledger-state` branch**
+of this same repository. Code main retains its historical snapshot and is not the latest live
+state. Each immutable Parquet batch keeps
 its content-addressed filename and exact bytes; `MANIFEST.json` binds every path to its canonical
 row hash, byte hash, size, row count, and record IDs. A fresh clone restores the complete public
-ledger without an Actions artifact or any connected service:
+ledger without an Actions artifact or any external database. With existing GitHub CLI access,
+fetch a commit-pinned, signature-verified state snapshot before restoring:
 
 ```sh
-uv run python -m dfri.ops.repository_ledger verify --repository-root state/ledgers
+uv run python -m dfri.ops.github_ledger fetch --output .local/ledger-source
+uv run python -m dfri.ops.repository_ledger verify --repository-root .local/ledger-source
 uv run python -m dfri.ops.repository_ledger restore \
-  --repository-root state/ledgers --runtime-root .local/lake/curated
+  --repository-root .local/ledger-source --runtime-root .local/lake/curated
 ```
 
 The scheduled workflow may restore a retained Actions state artifact to avoid downloading public
 source history again, but that artifact is only a redundant cache. Git is authoritative: cached
 ledger files must match repository bytes, missing cache files are restored from Git, and a cache
 that is ahead of repository history blocks the clock for explicit recovery.
+
+Use an empty fetch destination and retain the returned state commit. Offline recovery may use
+an already verified checkout of `ledger-state`; there is no automatic fallback to stale code-main
+state. Normal frozen `make replay`/`make publish` remain offline deterministic verification, not
+claims that the seed snapshot is the current live ledger. See [ops/LEDGER_STATE.md](ops/LEDGER_STATE.md)
+for promotion, preflight, failure and rollback boundaries.
 
 Prediction points and interval bounds are canonicalized to nine decimal places in their declared
 million-dollar unit before the first append. That boundary is one-thousandth of a dollar and
