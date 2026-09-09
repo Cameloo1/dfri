@@ -95,7 +95,7 @@
       <div data-figure="calibration-percent"><dt>Within 95% band</dt><dd>{{ calibration.coverage95_display }}<span>versus 95% nominal</span></dd></div>
       <div data-figure="calibration-usd"><dt>Mean absolute error</dt><dd>{{ calibration.mae_display }}<span>$M · live grades only</span></dd></div>
       <div data-figure="calibration-usd"><dt>Naive MAE</dt><dd>{{ calibration.naive_mae_display }}<span>$M · {{ calibration.naive_model_display }}</span></dd></div>
-    </dl>{% endfor %}
+    </dl>{% if calibration.naive_comparison_blocked %}<p class="meta">Naive comparison BLOCKED: a preceding monthly first print was unavailable when some forecasts were recorded. All grades still count toward error and coverage. <a href="v1/feeds/scoreboard.json">Affected prediction IDs and reasons</a>.</p>{% endif %}{% endfor %}
     <p class="meta">Live-grade statistics remain separate from the historical backtest. <a href="scoreboard/index.html">Read every prediction, grade, and the published first miss.</a></p>
   </div></details>
 </div>

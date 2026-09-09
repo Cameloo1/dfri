@@ -14,6 +14,7 @@
     <div data-figure="calibration-usd"><dt>Mean absolute error</dt><dd>{{ calibration.mae_display }}<span>$M · live grades only</span></dd></div>
     <div data-figure="calibration-usd"><dt>Naive MAE</dt><dd>{{ calibration.naive_mae_display }}<span>$M · {{ calibration.naive_model_display }}</span></dd></div>
   </dl>
+  {% if calibration.naive_comparison_blocked %}<p class="meta">Naive comparison BLOCKED: a preceding monthly first print was unavailable when some forecasts were recorded. All grades still count toward error and coverage. No future data is substituted; affected prediction IDs and reasons are in the <a href="{{ root }}v1/feeds/scoreboard.json">scoreboard feed</a>.</p>{% endif %}
   {% endfor %}
   <p class="meta">The naive comparator is refit for each target using only first prints available when that prediction was recorded. These statistics update from live grades only and remain separate from the historical backtest.</p>
 </section></details>

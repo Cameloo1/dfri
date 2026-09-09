@@ -340,6 +340,19 @@ The Monte Carlo step is uncertainty propagation, not fitting:
 Nothing in this process updates a weight from prediction error or learns a company classification
 from examples.
 
+## Unavailable live benchmark comparisons
+
+The G.19 comparator implementations are one-step models. Some forecasts precede the first print
+of the immediately preceding target month. Their actual grades remain valid, but reconstructing
+a one-step comparator with a later release would violate the prediction-time boundary.
+
+Live calibration retains those grades in MAE and interval coverage. If any comparison is
+unavailable, naive MAE and the MAE difference are null for the full sample; it does not compare
+unequal subsets. Optional, additive `naive_comparison_v1` metadata reports BLOCKED status,
+matched count and affected prediction IDs with missing-history reasons. The UI explains the
+limitation. Complete one-step comparisons retain their existing calculations. There is no
+recursive forecast, imputation, model upgrade or revision to an immutable record in this path.
+
 ## What is not used
 
 DFRI currently uses no neural network, gradient-boosted tree, learned representation, embedding,

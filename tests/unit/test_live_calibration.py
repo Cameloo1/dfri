@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import UTC, date, datetime
 
 import pytest
@@ -173,6 +174,45 @@ def test_live_calibration_empty_state_is_explicit_not_fabricated() -> None:
         "mae_difference_vs_naive": None,
         "naive_model_versions": {},
     }
+
+
+def test_unreleased_preceding_month_blocks_comparison_not_real_grade() -> None:
+    history = _history("DELTA_DTCTLR.M", [1_000, 3_000, -2_000, 4_500, 500, 6_800])
+    # May's first print had not arrived when the June forecast was recorded.
+    early = replace(
+        _prediction("prd_" + "a" * 64, "DELTA_DTCTLR.M", -5_529.0),
+        made_at=datetime(2026, 6, 1, tzinfo=UTC),
+    )
+    later = _prediction("prd_" + "b" * 64, "DELTA_DTCTLR.M", -5_529.0)
+    grades = tuple(
+        GradeRecord(
+            prediction_id=row.prediction_id,
+            actual_first_print=6_800.0,
+            vintage_url=history[-1].source_url,
+            abs_error=12_329.0,
+            graded_at=history[-1].release_at,
+        )
+        for row in (early, later)
+    )
+    result = calculate_live_calibration(
+        (early, later), grades, {"DELTA_DTCTLR.M": history}, _backtest()
+    )
+    assert result.graded_count == 2
+    assert result.mae == 12_329.0
+    assert result.coverage80 == 0.0
+    assert result.naive_mae is None  # Never compare all grades to a favorable subset.
+    assert result.feed()["mae_difference_vs_naive"] is None
+    blocked = result.feed()["naive_comparison_v1"]
+    assert blocked["status"] == "BLOCKED"
+    assert blocked["matched_count"] == 1
+    assert blocked["unavailable"][0]["prediction_id"] == early.prediction_id
+    assert "2026-04-30" in blocked["unavailable"][0]["reason"]
+    # Poison the later-released month: it must not be used for the early comparison.
+    poisoned = (*history[:-2], replace(history[-2], value=999_999_999), history[-1])
+    early_only = calculate_live_calibration(
+        (early,), grades[:1], {"DELTA_DTCTLR.M": poisoned}, _backtest()
+    )
+    assert early_only.comparisons[0] == result.comparisons[0]
 
 
 def test_live_calibration_rejects_duplicate_predictions_or_orphan_grades() -> None:

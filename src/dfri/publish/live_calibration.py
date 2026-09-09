@@ -41,8 +41,9 @@ class LiveGradeComparison:
     within95: bool
     abs_error: float
     naive_model_version: str
-    naive_point: float
-    naive_abs_error: float
+    naive_point: float | None
+    naive_abs_error: float | None
+    naive_unavailable_reason: str | None = None
 
 
 @dataclass(frozen=True)
@@ -78,14 +79,16 @@ class LiveCalibration:
 
     @property
     def naive_mae(self) -> float | None:
-        if not self.comparisons:
+        if not self.comparisons or any(item.naive_abs_error is None for item in self.comparisons):
             return None
-        return fsum(item.naive_abs_error for item in self.comparisons) / self.graded_count
+        return (
+            fsum(cast(float, item.naive_abs_error) for item in self.comparisons) / self.graded_count
+        )
 
     def feed(self) -> dict[str, object]:
         mae = self.mae
         naive_mae = self.naive_mae
-        return {
+        payload: dict[str, object] = {
             "scope": "live_grades_only",
             "graded_count": self.graded_count,
             "within80_count": self.within80_count,
@@ -101,6 +104,19 @@ class LiveCalibration:
             ),
             "naive_model_versions": dict(sorted(self.naive_model_versions.items())),
         }
+        unavailable = [
+            {"prediction_id": item.prediction_id, "reason": item.naive_unavailable_reason}
+            for item in self.comparisons
+            if item.naive_unavailable_reason is not None
+        ]
+        if unavailable:
+            # Additive, explicitly versioned diagnostic. Complete historical payloads are unchanged.
+            payload["naive_comparison_v1"] = {
+                "status": "BLOCKED",
+                "matched_count": self.graded_count - len(unavailable),
+                "unavailable": unavailable,
+            }
+        return payload
 
 
 def calculate_live_calibration(
@@ -155,16 +171,30 @@ def calculate_live_calibration(
             raise LiveCalibrationError(
                 f"Backtest has no naive comparator for {prediction.target_series}"
             )
-        baseline = _forecast(version, prior, prediction.target_period)
+        unavailable_reason = None
+        preceding_period = prediction.target_period.replace(day=1) - date.resolution
+        if version in NAIVE_VERSIONS and (not prior or prior[-1].target_period != preceding_period):
+            latest = prior[-1].target_period.isoformat() if prior else "none"
+            unavailable_reason = (
+                f"One-step comparator requires the {preceding_period} first print; "
+                f"latest available at prediction time: {latest}. "
+                "No future data or intermediate forecast substituted."
+            )
+        baseline = (
+            None if unavailable_reason else _forecast(version, prior, prediction.target_period)
+        )
         comparisons.append(
             LiveGradeComparison(
                 prediction_id=prediction.prediction_id,
                 within80=prediction.low80 <= grade.actual_first_print <= prediction.high80,
                 within95=prediction.low95 <= grade.actual_first_print <= prediction.high95,
                 abs_error=grade.abs_error,
-                naive_model_version=baseline.model_version,
-                naive_point=baseline.point,
-                naive_abs_error=abs(baseline.point - grade.actual_first_print),
+                naive_model_version=version,
+                naive_point=baseline.point if baseline is not None else None,
+                naive_abs_error=(
+                    abs(baseline.point - grade.actual_first_print) if baseline is not None else None
+                ),
+                naive_unavailable_reason=unavailable_reason,
             )
         )
     used_series = {prediction_by_id[item.prediction_id].target_series for item in comparisons}

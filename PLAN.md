@@ -45,6 +45,15 @@ Source baseline for this isolated execution is public main
 `62de17f3e6600ffc1cb4b2a10c7f56187831b5ea`. No expansion implementation begins while A is open.
 Evidence: https://github.com/Cameloo1/dfri/actions/runs/34157669998
 
+Gate A recovery follow-up (2026-09-09): PR 32 passed CI and was merged with the owner's
+explicit one-time admin approval; main rules remain unchanged. Recovery run 34302704800
+restored signed Git state, then failed before Pages while calculating a one-step naive
+comparison for a forecast made before its preceding month's first print. Ordered fix:
+reproduce against the real release in a disposable lake; test unavailable-comparator handling;
+retain all grades, MAE and coverage while explicitly blocking an incomplete naive comparison;
+publish versioned diagnostic metadata and visible explanations; run full cold/publication gates;
+obtain any required new merge exception before the recovery retry. No model or ledger edits.
+
 - `G0 — Provenance`: never synthesize an unavailable value. Persist a `BLOCKED` record with URL, error, and timestamp.
 - `G1 — Source legality`: use only free/public inputs whose terms permit the intended derived outputs. Stop and escalate only for a legal/ToS conflict or an unavoidable paid credential.
 - `G2 — Point in time`: all model reads pass through the Vintage Guard and filter `release_date <= as_of`.
