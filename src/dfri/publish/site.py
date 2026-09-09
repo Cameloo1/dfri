@@ -1022,12 +1022,14 @@ def _summary(rows: list[dict[str, object]], backtest: dict[str, object]) -> dict
 
 def _calibration_display(calibration: LiveCalibration) -> dict[str, object]:
     versions = sorted(set(calibration.naive_model_versions.values()))
+    blocked = any(item.naive_unavailable_reason for item in calibration.comparisons)
     return {
         "graded_count": calibration.graded_count,
         "coverage80_display": _percentage(calibration.coverage80),
         "coverage95_display": _percentage(calibration.coverage95),
         "mae_display": _optional_number(calibration.mae),
-        "naive_mae_display": _optional_number(calibration.naive_mae),
+        "naive_mae_display": "BLOCKED" if blocked else _optional_number(calibration.naive_mae),
+        "naive_comparison_blocked": blocked,
         "naive_model_display": ", ".join(versions) if versions else "awaiting first grade",
     }
 
@@ -1836,6 +1838,14 @@ def _feed_schema(common: Mapping[str, object]) -> dict[str, object]:
                         "live grades; no calibration statistic blends target series. "
                         "the naive comparator is refit using first prints available when each "
                         "prediction was recorded."
+                    ),
+                    "naive_comparison_v1": (
+                        "Optional version-1 diagnostic nested in a live calibration object: "
+                        "status=BLOCKED, matched_count, and unavailable objects with prediction_id "
+                        "and reason. Appears when a preceding first print was unavailable at "
+                        "prediction time for a one-step comparator. All grades remain in MAE "
+                        "and coverage; naive_mae and mae_difference_vs_naive are null rather "
+                        "than comparing different samples or using future data."
                     ),
                 },
                 "invariants": [

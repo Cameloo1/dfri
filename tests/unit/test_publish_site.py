@@ -275,6 +275,66 @@ def test_publish_builds_stable_feeds_pages_permalinks_and_manifest(tmp_path: Pat
     assert (output / "scoreboard" / "predictions" / second_id / "index.html").exists()
 
 
+def test_live_publish_keeps_grades_when_one_step_benchmark_is_unavailable(tmp_path: Path) -> None:
+    store = AppendOnlyParquetStore(tmp_path / "ledger")
+    first_id, _ = seed(store)
+    ledger = PredictionLedger(store)
+    original = next(row for row in ledger.read_all() if row.prediction_id == first_id)
+    early_id = ledger.append(
+        replace(original, made_at=datetime(2026, 6, 1, tzinfo=UTC), inputs_hash="d" * 64)
+    ).record_id
+    early = next(row for row in ledger.read_all() if row.prediction_id == early_id)
+    GradeLedger(store).append(
+        early,
+        FirstPrintTarget(
+            target_series=early.target_series,
+            level_series="DTCTLR.M",
+            target_period=early.target_period,
+            value=10_500.0,
+            unit="Millions of U.S. Dollars",
+            release_at=datetime(2026, 8, 4, 20, 30, tzinfo=UTC),
+            vintage_date=date(2026, 8, 4),
+            source_url="https://www.federalreserve.gov/releases/g19/20260804/",
+            checksum="c" * 64,
+        ),
+    )
+    before = {
+        path.relative_to(store.root): path.read_bytes()
+        for table in ("predictions", "grades")
+        for path in (store.root / table).glob("*.parquet")
+    }
+    output = tmp_path / "published"
+    for _ in range(2):
+        publish_scoreboard(
+            store,
+            output,
+            published_at=PUBLISHED_AT,
+            data_vintage=DATA_VINTAGE,
+            publication_mode="live",
+            project_root=Path(__file__).parents[2],
+        )
+        current = {
+            path.relative_to(output): path.read_bytes()
+            for path in output.rglob("*")
+            if path.is_file()
+        }
+        if _ == 0:
+            first_build = current
+        else:
+            assert current == first_build
+    assert all((store.root / path).read_bytes() == content for path, content in before.items())
+    payload = json.loads((output / "v1/feeds/scoreboard.json").read_text())
+    calibration = payload["meta"]["live_calibration_by_series"][early.target_series]
+    assert calibration["graded_count"] == 2
+    assert calibration["mae"] == 16_029.0
+    assert calibration["naive_mae"] is None
+    assert calibration["naive_comparison_v1"]["unavailable"][0]["prediction_id"] == early_id
+    assert sum(row["grade_status"] == "GRADED" for row in payload["data"]) == 2
+    for page in ("index.html", "scoreboard/index.html"):
+        assert "Naive comparison BLOCKED" in (output / page).read_text()
+    assert (output / "scoreboard/predictions" / early_id / "index.html").is_file()
+
+
 def test_feed_contract_has_publication_fields_license_and_typed_parquet(tmp_path: Path) -> None:
     store = AppendOnlyParquetStore(tmp_path / "ledger")
     seed(store)

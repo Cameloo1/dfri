@@ -216,6 +216,19 @@
         {"label": "Roadmap and boundaries", "href": "/roadmap/"},
         {"label": "Credit flow", "href": "/#credit-flow"}
       ]
+    },
+    {
+      "entry_id": "live-calibration-unavailable-one-step-comparator",
+      "published_on": "2026-09-09",
+      "kind": "publication",
+      "version": "naive-comparison-v1",
+      "title": "Keep grades visible when a naive comparison is unavailable",
+      "summary": "Corrected publication failure for forecasts recorded before their preceding month's first print. All grades retain their real errors and coverage; incomplete naive comparisons are explicitly BLOCKED with prediction IDs and reasons instead of using future data or comparing unequal samples. No prediction, model, grade or company estimate was changed.",
+      "links": [
+        {"label": "Scoreboard", "href": "/scoreboard/"},
+        {"label": "Comparison diagnostics", "href": "/v1/feeds/scoreboard.json"},
+        {"label": "Methodology", "href": "/methodology/"}
+      ]
     }
   ]
 }

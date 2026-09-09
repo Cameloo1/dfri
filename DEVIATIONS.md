@@ -22,6 +22,27 @@ and the manual `all` grading dispatch are corrected with tests; models, dates, e
 and interval values are unchanged. `ops/LEDGER_STATE.md` distinguishes seeded state, implemented
 workflow, hosted deployment and genuine scheduled evidence. No milestone is closed by this entry.
 
+## D-017 — Unavailable live naive comparison (2026-09-09)
+
+Recovery run [34302704800](https://github.com/Cameloo1/dfri/actions/runs/34302704800) restored
+the Git ledger and found four matured July grades, but publication failed before Pages because
+some forecasts predated June's first print. The one-step comparator requires that immediately
+preceding month. Using its subsequently released value would introduce lookahead; recursively
+inventing a missing month would introduce a new benchmark not evaluated under the old contract.
+
+Retain all real grades in live MAE and interval coverage. When any comparator is unavailable,
+publish null naive MAE and null MAE difference for that sample, a visible BLOCKED explanation,
+and additive `naive_comparison_v1` metadata listing affected prediction IDs, reasons and matched
+count. Never silently compare all grades against only the matchable subset. Complete comparisons
+retain their previous calculations and payloads. Existing predictions, grades, publication rows,
+company estimates and model versions are unchanged. This serves §1.1 no invented values,
+§1.3 point-in-time integrity and §1.6 the graded public clock. A gap-aware benchmark would require
+its own explicit specification and validation, not an emergency substitution.
+
+PR 32 was merged under the owner's explicit one-time admin exception after passing hosted CI.
+That exception did not change main rules and does not authorize another policy bypass.
+The calibration fix's implementation, CI, merge and deployment must be verified separately.
+
 | ID | Date | Status | Spec reference | Departure | Reason and evidence | Principle served |
 |---|---|---|---|---|---|---|
 | D-001 | 2026-08-04 | Active | §4.1, §6.3, M0–M2 | Replace all FRED/ALFRED access with Federal Reserve Board primary sources. Current/historical G.19 and H.8 data come from Board release-page SDMX packages; first prints come from immutable dated Board release pages. The Board series IDs replace FRED aliases in the registry. | Current FRED terms prohibit using the service/content in software or machine-learning development and separately prohibit storing/caching/archiving/incorporating it into a database. No FRED client or lake rows existed; the one local `FRED_API_KEY` entry was removed without disclosure. Board DDP documents automated retrieval, Board website information is public domain unless marked otherwise, and dated G.19/H.8 archives are verified through 2015. Board URLs: https://www.federalreserve.gov/DataDownload/help/default.htm, https://www.federalreserve.gov/disclaimer.htm, https://www.federalreserve.gov/releases/g19/, https://www.federalreserve.gov/releases/h8/. FRED terms evidence: https://fred.stlouisfed.org/legal/terms/. | §1.2 free/public sources with permitted derivative redistribution; §1.3 point-in-time fidelity. |

@@ -23,6 +23,7 @@
 <section class="section-block" id="mts-clock">
   <h2>Treasury clock</h2>
   <p>Federal deficit and total outlays are predicted and graded separately from G.19. The selected benchmark for each series minimizes point-in-time MAE among last value, seasonal naive, and AR(2). Empirical 80% and 95% bands use only prior out-of-sample errors, and live calibration is never blended across series. Historical MTS months without an exact official release timestamp remain omitted.</p>
+  <p>Live G.19 naive comparisons require the preceding month's first print to have been available when the forecast was recorded. If it was not, the comparison is BLOCKED; all actual grades still count in error and coverage. Naive MAE and the difference versus naive remain unavailable for an incomplete comparison sample. The scoreboard feed lists affected prediction IDs and reasons in <code>naive_comparison_v1</code>. No later release or invented intermediate month is substituted.</p>
   <p>The 2018–2026 first-print backtest selected seasonal naive for deficit (MAE $130,896.7M; 83.3% / 100.0% interval coverage; 76.2% acceleration-sign accuracy) and AR(2) for outlays (MAE $90,750.6M; 86.2% / 100.0% coverage; 62.3% sign accuracy). Outlays improved only 12.5% over random walk and missed the inherited improvement, 80%-coverage, and sign-accuracy bars; it remains published unchanged rather than being replaced by an unproved model.</p>
 </section>
 
