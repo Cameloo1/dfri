@@ -233,7 +233,8 @@ def _job_row(
     missed_run = False
     if publication_mode == "live" and latest_due is not None:
         deadline = latest_due + timedelta(minutes=definition.grace_minutes)
-        missed_run = as_of > deadline and (last is None or last.succeeded_at < latest_due)
+        observed_in_window = any(latest_due <= item.succeeded_at <= deadline for item in ordered)
+        missed_run = as_of > deadline and not observed_in_window
     release = _release_state(definition, tuple(ordered), as_of, publication_mode)
     if missed_run or release["missed_expected_release"] is True:
         status = "STALE"

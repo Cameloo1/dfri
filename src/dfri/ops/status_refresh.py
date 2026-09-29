@@ -14,7 +14,12 @@ from urllib.parse import urljoin
 
 import httpx
 
-from dfri.ops.job_status import build_status_report, record_success, render_status_banner
+from dfri.ops.job_status import (
+    build_status_report,
+    load_success_receipts,
+    record_success,
+    render_status_banner,
+)
 
 STATUS_PATHS: Final = frozenset({"v1/status.json", "status/banner.html"})
 
@@ -28,6 +33,7 @@ def refresh_public_status(
     output_root: Path,
     *,
     as_of: datetime,
+    job_receipt_directory: Path | None = None,
     client: httpx.Client | None = None,
 ) -> dict[str, object]:
     """Download and verify the accepted tree, then update only status and manifest bytes."""
@@ -61,6 +67,8 @@ def refresh_public_status(
         current_status = json.loads(current_status_path.read_text(encoding="utf-8"))
         receipts = staging / ".status-receipts"
         _restore_receipts(current_status, receipts)
+        if job_receipt_directory is not None:
+            _restore_job_receipts(job_receipt_directory, receipts)
         refreshed = build_status_report(
             as_of=as_of.astimezone(UTC),
             receipt_directory=receipts,
@@ -124,6 +132,18 @@ def _restore_receipts(status: object, directory: Path) -> None:
             job_id=cast(str, raw["job_id"]),
             succeeded_at=datetime.fromisoformat(succeeded_at.replace("Z", "+00:00")),
             workflow_run_url=run_url,
+        )
+
+
+def _restore_job_receipts(source: Path, destination: Path) -> None:
+    """Merge verified receipts retained by a successful scheduled clock run."""
+
+    for receipt in load_success_receipts(source):
+        record_success(
+            destination,
+            job_id=receipt.job_id,
+            succeeded_at=receipt.succeeded_at,
+            workflow_run_url=receipt.workflow_run_url,
         )
 
 
@@ -194,11 +214,13 @@ def main() -> int:
     parser.add_argument("--site-base", required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--as-of", required=True)
+    parser.add_argument("--job-receipt-directory", type=Path)
     args = parser.parse_args()
     payload = refresh_public_status(
         args.site_base,
         args.output_root,
         as_of=datetime.fromisoformat(args.as_of.replace("Z", "+00:00")),
+        job_receipt_directory=args.job_receipt_directory,
     )
     print(json.dumps(payload, sort_keys=True))
     return 0
