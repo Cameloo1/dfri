@@ -10,6 +10,7 @@ permissions:
 
 concurrency:
   group: dfri-pages-publication
+  queue: max
   cancel-in-progress: false
 
 jobs:
@@ -18,6 +19,7 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: read
+      actions: read
       pages: write
       id-token: write
     environment:
@@ -32,15 +34,55 @@ jobs:
           version: "0.11.32"
           enable-cache: true
       - run: uv sync --locked --no-dev
+      - name: Restore receipts from the latest successful scheduled clock artifact
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/m2-state
+          restored=false
+          while read -r run_id; do
+            [[ -z "$run_id" ]] && continue
+            rm -rf .local/m2-state .local/m2-runtime
+            mkdir -p .local/m2-state
+            if gh run download "$run_id" \
+              --repo "$GITHUB_REPOSITORY" \
+              --name dfri-m2-state \
+              --dir .local/m2-state; then
+              uv run python -m dfri.ops.state_bundle unpack \
+                --bundle .local/m2-state/runtime-state.tar.gz \
+                --root .local/m2-runtime
+              restored=true
+              break
+            fi
+          done < <(
+            gh run list \
+              --repo "$GITHUB_REPOSITORY" \
+              --workflow m2-scoreboard.yml \
+              --branch "$GITHUB_REF_NAME" \
+              --status success \
+              --limit 20 \
+              --json databaseId,event \
+              --jq '.[] | select(.event == "schedule") | .databaseId'
+          )
+          if [[ "$restored" == false ]]; then
+            echo "No successful scheduled clock receipt artifact is available; retaining public evidence only."
+          fi
       - name: Mirror the accepted publication and refresh only status evidence
         shell: bash
         run: |
           set -euo pipefail
           run_at="$(date -u +%Y-%m-%dT%H:%M:%S.%6NZ)"
+          ARGS=()
+          if [[ -d .local/m2-runtime/evidence/job_status ]]; then
+            ARGS+=(--job-receipt-directory .local/m2-runtime/evidence/job_status)
+          fi
           uv run python -m dfri.ops.status_refresh \
             --site-base https://cameloo1.github.io/dfri/ \
             --output-root .local/status-publication \
-            --as-of "$run_at"
+            --as-of "$run_at" \
+            "${ARGS[@]}"
 
       - name: Configure GitHub Pages for the status-only candidate
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0

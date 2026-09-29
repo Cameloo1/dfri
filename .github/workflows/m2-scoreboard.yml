@@ -28,6 +28,7 @@ on:
 
 concurrency:
   group: dfri-pages-publication
+  queue: max
   cancel-in-progress: false
 
 jobs:
@@ -204,6 +205,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Append immutable scheduled-job success receipts
+        if: github.event_name == 'schedule'
         shell: bash
         env:
           MODE: ${{ steps.clock.outputs.mode }}

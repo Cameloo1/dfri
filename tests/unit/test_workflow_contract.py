@@ -23,6 +23,7 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     assert 'cron: "17 21 * * 1-5"' in workflow
     assert 'cron: "17 23 * * 1-5"' in workflow
     assert 'cron: "43 14 * * 1"' in workflow
+    assert "queue: max" in workflow
     assert "cancel-in-progress: false" in workflow
     assert "github.event.repository.default_branch" in workflow
     assert "dfri.ops.state_bundle unpack" in workflow
@@ -85,6 +86,7 @@ def test_m2_workflow_preserves_the_clock_and_pages_gates() -> None:
     assert "python -m dfri.scoreboard mts-predict" in workflow
     assert "dfri.ops.job_status record" in workflow
     assert "jobs=(h8-predict g19-grade mts-predict mts-grade)" in workflow
+    assert "if: github.event_name == 'schedule'" in workflow
     assert "issues: write" in workflow
     assert "gh issue create" in workflow
     assert "gh issue comment" in workflow
@@ -129,12 +131,17 @@ def test_m4_uptime_workflow_preserves_partial_api_and_owner_log_contract() -> No
     workflow = (root / ".github" / "workflows" / "m4-uptime.yml").read_text()
 
     assert 'cron: "17 * * * *"' in workflow
+    assert "queue: max" in workflow
     assert "cancel-in-progress: false" in workflow
     assert "DFRI_API_BASE_URL" in workflow
     assert "--require-api" in workflow
     assert "https://cameloo1.github.io/dfri/" in workflow
     assert "dfri.ops.uptime" in workflow
     assert "dfri.ops.status_refresh" in workflow
+    assert "actions: read" in workflow
+    assert "gh run download" in workflow
+    assert 'select(.event == "schedule")' in workflow
+    assert "--job-receipt-directory .local/m2-runtime/evidence/job_status" in workflow
     assert "Upload the verified status-only publication" in workflow
     assert "actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0" in workflow
     assert "issues: write" in workflow

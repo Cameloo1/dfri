@@ -61,8 +61,9 @@ first failure receipt and workflow URL before retrying.
 
 ## Status-only publication recovery
 
-The hourly uptime workflow mirrors every file named by the accepted public `manifest.json`, checks
-each byte against its SHA-256, updates only `v1/status.json`, `status/banner.html`, and the manifest,
-then deploys that candidate. If any other byte moves, abort. Re-running the status refresh is safe;
-it reconstructs success evidence from the prior public status snapshot and does not touch a model,
-feed row, prediction, grade, methodology, or publication timestamp.
+The hourly uptime workflow mirrors every file named by the accepted public `manifest.json` and
+checks each byte against its SHA-256. It merges the content-addressed job receipts from the latest
+successful scheduled M2 state artifact with the prior public status snapshot, then updates only
+`v1/status.json`, `status/banner.html`, and the manifest before deploying that candidate. Manual M2
+runs do not supply scheduled-cycle receipts. If any other byte moves, abort. Re-running the status
+refresh does not touch a model, feed row, prediction, grade, methodology, or publication timestamp.

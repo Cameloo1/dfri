@@ -92,6 +92,26 @@ def test_mts_release_sla_requires_a_receipt_in_the_correct_window(tmp_path: Path
     assert by_id["mts-grade"]["release_check_status"] == "MISSED"
 
 
+def test_late_success_does_not_erase_a_missed_scheduled_run(tmp_path: Path) -> None:
+    record_success(
+        tmp_path,
+        job_id="h8-predict",
+        succeeded_at=datetime(2026, 8, 11, 1, 30, tzinfo=UTC),
+        workflow_run_url="https://github.com/Cameloo1/dfri/actions/runs/late",
+    )
+
+    report = build_status_report(
+        as_of=datetime(2026, 8, 11, 2, 0, tzinfo=UTC),
+        receipt_directory=tmp_path,
+        publication_mode="live",
+    )
+    h8 = next(item for item in report["jobs"] if item["job_id"] == "h8-predict")
+
+    assert h8["last_successful_run"] == "2026-08-11T01:30:00+00:00"
+    assert h8["missed_expected_run"] is True
+    assert h8["status"] == "STALE"
+
+
 def test_receipt_rejects_unknown_job_and_non_github_url(tmp_path: Path) -> None:
     with pytest.raises(JobStatusError, match="Unknown"):
         record_success(
