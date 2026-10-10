@@ -145,6 +145,13 @@
           "sha256": "7b98656246b0ca4c07f65f3f941278d5b8c28cf26e4ace7cab9a499c00c83f86"
         },
         {
+          "bytes": 3897,
+          "canonical_hash": "6e719ee7154662f17e5d850871bd7e8a06390bf9178d11c851d3d1107c136611",
+          "path": "predictions/batch-6e719ee7154662f17e5d850871bd7e8a06390bf9178d11c851d3d1107c136611.parquet",
+          "rows": 1,
+          "sha256": "aff9cbb0023d8c38fa138410c6a7954402f0c13e083df34fca519a493f77f56a"
+        },
+        {
           "bytes": 3892,
           "canonical_hash": "70277529d05eeb676457cd7777f39be341bd3e1854788332a75699fd98a1ca9e",
           "path": "predictions/batch-70277529d05eeb676457cd7777f39be341bd3e1854788332a75699fd98a1ca9e.parquet",
@@ -243,6 +250,13 @@
           "sha256": "1d998993c91160ce7b1fd01c6216a5590fb7e735723a9753c16e1ee01d36563e"
         },
         {
+          "bytes": 3894,
+          "canonical_hash": "d3b56c07b94dcf84cfa290cb07ef859e3c4ebce9c7161bd53eec4de9a2d766c0",
+          "path": "predictions/batch-d3b56c07b94dcf84cfa290cb07ef859e3c4ebce9c7161bd53eec4de9a2d766c0.parquet",
+          "rows": 1,
+          "sha256": "8280c0937179e3fe34e829233ff024e6f0384fe140909e14e9acffa770816ff7"
+        },
+        {
           "bytes": 3891,
           "canonical_hash": "d3f6c509d01e7b4a77d94330443975c522ef40e69445d7579dc727793822af38",
           "path": "predictions/batch-d3f6c509d01e7b4a77d94330443975c522ef40e69445d7579dc727793822af38.parquet",
@@ -294,6 +308,7 @@
         "prd_58090468fff9b842787f6d6bfa0c1df4200359f67597a61ed6079fe25c9a3df1",
         "prd_5b6c37d2a755e604163f5ca331c0fb4c5cb62bebe696a19d49ced935776865bf",
         "prd_6177c0c4e9f1c076686adb4cd5e4ead039b995aa246337288b9411c706e1a9dc",
+        "prd_659c6612edd4b33774ea8523a82db41b95febe6e20ef5715bd415f0d2fb1e9fe",
         "prd_65e48b218a84f374cda1f4b3a31928598ec45bc038a02749eadf3515dc1ee1c6",
         "prd_680ac2b8c3b5e47edcf306e2f1089e50d6bbfbaf50e83592563cb3e8ee5d66e0",
         "prd_69ee2c69ebee145b46c084237630e503a1643c0e04f06c819b2e7dcf5c0ee4fc",
@@ -314,7 +329,8 @@
         "prd_c589a3d29179066784b619fc64987dcc9929c5cedff496ff4d7ca3472d543e44",
         "prd_cf0bbbb2155011b751dbc2f8bb067371227973b05ee2d18c56daec5c425adbb2",
         "prd_f180179664ad5f7d7df1c53740dc939220dbda78e29303b85e7d714454537d93",
-        "prd_f61e3a2976eee625b7d413df719eea039992e7717184168fcb6798c69ecb4039"
+        "prd_f61e3a2976eee625b7d413df719eea039992e7717184168fcb6798c69ecb4039",
+        "prd_fd0fbf956ef279ddc14eb8038079a7556b1a46bec81947f54771064eff358283"
       ]
     },
     "publication_records": {
@@ -384,6 +400,13 @@
         },
         {
           "bytes": 1659,
+          "canonical_hash": "b7dc4b302ff9f6d81a283331223c7a0b6e6747e884956aede9a127a7391f6613",
+          "path": "publication_records/batch-b7dc4b302ff9f6d81a283331223c7a0b6e6747e884956aede9a127a7391f6613.parquet",
+          "rows": 2,
+          "sha256": "41b318876205934969f26bb0f775f68d7b518f6b1086461da69c2692284ad2d7"
+        },
+        {
+          "bytes": 1659,
           "canonical_hash": "e4540141cc7732ae4fdc1d6019ea8e384d9e0a399e0b3e5390bf1b86867f84ca",
           "path": "publication_records/batch-e4540141cc7732ae4fdc1d6019ea8e384d9e0a399e0b3e5390bf1b86867f84ca.parquet",
           "rows": 2,
@@ -413,6 +436,7 @@
         "prd_58090468fff9b842787f6d6bfa0c1df4200359f67597a61ed6079fe25c9a3df1",
         "prd_5b6c37d2a755e604163f5ca331c0fb4c5cb62bebe696a19d49ced935776865bf",
         "prd_6177c0c4e9f1c076686adb4cd5e4ead039b995aa246337288b9411c706e1a9dc",
+        "prd_659c6612edd4b33774ea8523a82db41b95febe6e20ef5715bd415f0d2fb1e9fe",
         "prd_65e48b218a84f374cda1f4b3a31928598ec45bc038a02749eadf3515dc1ee1c6",
         "prd_680ac2b8c3b5e47edcf306e2f1089e50d6bbfbaf50e83592563cb3e8ee5d66e0",
         "prd_69ee2c69ebee145b46c084237630e503a1643c0e04f06c819b2e7dcf5c0ee4fc",
@@ -433,7 +457,8 @@
         "prd_c589a3d29179066784b619fc64987dcc9929c5cedff496ff4d7ca3472d543e44",
         "prd_cf0bbbb2155011b751dbc2f8bb067371227973b05ee2d18c56daec5c425adbb2",
         "prd_f180179664ad5f7d7df1c53740dc939220dbda78e29303b85e7d714454537d93",
-        "prd_f61e3a2976eee625b7d413df719eea039992e7717184168fcb6798c69ecb4039"
+        "prd_f61e3a2976eee625b7d413df719eea039992e7717184168fcb6798c69ecb4039",
+        "prd_fd0fbf956ef279ddc14eb8038079a7556b1a46bec81947f54771064eff358283"
       ]
     }
   }
