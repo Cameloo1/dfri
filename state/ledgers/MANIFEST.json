@@ -97,6 +97,13 @@
         },
         {
           "bytes": 3892,
+          "canonical_hash": "288e013d77c5901c6c50881cb5a45131111aa2f60f529112674f1b8f66aedff6",
+          "path": "predictions/batch-288e013d77c5901c6c50881cb5a45131111aa2f60f529112674f1b8f66aedff6.parquet",
+          "rows": 1,
+          "sha256": "e3aa9402422b807742d234cca33d2b59e3ca3e51d07135df5f1152b7c67670de"
+        },
+        {
+          "bytes": 3892,
           "canonical_hash": "2b4fec6dc22545a65f6f10a2d42f9c3c2b9f16ec1b9d7edd000a16055f98636c",
           "path": "predictions/batch-2b4fec6dc22545a65f6f10a2d42f9c3c2b9f16ec1b9d7edd000a16055f98636c.parquet",
           "rows": 1,
@@ -122,6 +129,13 @@
           "path": "predictions/batch-3b8f45514638d1cc74efacda7d6abebc56dea6457f1c31bc0338db0c75667e39.parquet",
           "rows": 1,
           "sha256": "2a2e93073b46079e353a1edea9988958b323bc89d7705bb8f432f18d1b23c035"
+        },
+        {
+          "bytes": 3892,
+          "canonical_hash": "42530096620261d9680b9146bd83df6ce9ba1f7ba81e5524bd79b6c8134130b7",
+          "path": "predictions/batch-42530096620261d9680b9146bd83df6ce9ba1f7ba81e5524bd79b6c8134130b7.parquet",
+          "rows": 1,
+          "sha256": "2031b06a12e19c4a12f689e71b0ae21815c883c0314c11395ac171a91a9883a7"
         },
         {
           "bytes": 3894,
@@ -171,6 +185,13 @@
           "path": "predictions/batch-83c71d455f155827dc8ace60361312aad386b8619dc46b4472f09d1fe23ef547.parquet",
           "rows": 1,
           "sha256": "bd57f611a03a03bbfb3df691d2cbff3dbe138f9d3ab6ef3aaa50b40039bd6d6b"
+        },
+        {
+          "bytes": 3891,
+          "canonical_hash": "83cf6100601caf95df23ed926be6b77bdb8ab357a7c02972ef5872667fd6a71e",
+          "path": "predictions/batch-83cf6100601caf95df23ed926be6b77bdb8ab357a7c02972ef5872667fd6a71e.parquet",
+          "rows": 1,
+          "sha256": "8903e56b63baa013406bab0dea8f9f6dc5a430837ea81cd143f7faf772527bd3"
         },
         {
           "bytes": 3894,
@@ -227,6 +248,13 @@
           "path": "predictions/batch-b8d843bb07644f2b9b8c20c040636faf632c041a6b1150917bbed51ed25ea993.parquet",
           "rows": 1,
           "sha256": "ee3f9ada3ad83fd08af2123b101d42e3618e711bf9437b33369efde6f82f8f23"
+        },
+        {
+          "bytes": 3896,
+          "canonical_hash": "bdcb99ae3e6c8f1079836a98b1d76ffe69c0396f8f33e6b36c4c178bd76541ba",
+          "path": "predictions/batch-bdcb99ae3e6c8f1079836a98b1d76ffe69c0396f8f33e6b36c4c178bd76541ba.parquet",
+          "rows": 1,
+          "sha256": "d6f8e50f712816f608b29205cf30ac6cf5f990a3ab6f35c9b8cb90e6923125c7"
         },
         {
           "bytes": 3845,
@@ -298,8 +326,10 @@
         "prd_113a90b54808ecc5239c17e6d0ed671debc752de9812f0c617eb3b0c4a709cef",
         "prd_1ecd4c5933dac71431496ec988a0e05cab5e3b86efcc166f4b7b16092e7fc2b6",
         "prd_250d7722ce138cb2139f3334086479a536da2e95bc41cbe4dea4e27a676bca58",
+        "prd_2e1eee28b9d7ca53fe51cdde8a1d11b7cc2497bd4adecf806ff245ddc71dd53e",
         "prd_2f1cbb03583e153676e5ee121cdac43e6d9b84cc5d4c04dfec819f335c19c898",
         "prd_3638de20531de9e529860a9940bab7ab8820919de73a53cb356c6ebda55eb076",
+        "prd_39a52e12f98ee98eff5f031efb4af52d3d546da085a2bb9cb71a05c5a2b87f7b",
         "prd_4613c5a7c6b9b652464e7c3230252f46a9fbf90f1b6d5c24b57244bba5a89966",
         "prd_47737fc4fc7dee55a60bfb23abc4aaeb3c5283c48c5ca67dc9a046ef1d57fe7f",
         "prd_4ef4e0aca908fcbfbb93aa641acec396e77a39bed970fbba13678d23ffd88266",
@@ -324,7 +354,9 @@
         "prd_9f39e3576b5995a92ea87c0e23c2b2c7ab423dc9bad2d9f172aac4603caaf6ec",
         "prd_a5f4a49750e4d2a6aa5368d4053e7e6b48c6bddf0674b06dbdb35fdca278c19d",
         "prd_aa8d319091090d610aed19413eef49d8fdb3a28c54d8e3b26c54350cc394da2b",
+        "prd_b820a121c2c20da17fa831e988990172ec6b328f185c5f8950d935193e7b18db",
         "prd_baea31eae28e4d27b5cd9fae987e5a65d4ffd0653690726754ab83f65912ab98",
+        "prd_bba23bb649f6553c815b44ea21f4bcbbd224e5e4bcd9058cec757cb9c182284c",
         "prd_c32e19238195ba63f8ea80ba8fe4ea0572230a203bd188cd900e9edde7ff22be",
         "prd_c589a3d29179066784b619fc64987dcc9929c5cedff496ff4d7ca3472d543e44",
         "prd_cf0bbbb2155011b751dbc2f8bb067371227973b05ee2d18c56daec5c425adbb2",
@@ -335,6 +367,13 @@
     },
     "publication_records": {
       "files": [
+        {
+          "bytes": 1733,
+          "canonical_hash": "28623f2429152cef48d0d5f4cc96323ebb4223d72190a0607ae56eedc670f7da",
+          "path": "publication_records/batch-28623f2429152cef48d0d5f4cc96323ebb4223d72190a0607ae56eedc670f7da.parquet",
+          "rows": 4,
+          "sha256": "256f248c5df6de6a4704f73be9f3536042fbe45d73f8cdaa2ae402f4d84cb0c8"
+        },
         {
           "bytes": 1732,
           "canonical_hash": "51569ecbaa480864654684bfed6fe037b22575573ef026c1efde43dd8938ff81",
@@ -426,8 +465,10 @@
         "prd_113a90b54808ecc5239c17e6d0ed671debc752de9812f0c617eb3b0c4a709cef",
         "prd_1ecd4c5933dac71431496ec988a0e05cab5e3b86efcc166f4b7b16092e7fc2b6",
         "prd_250d7722ce138cb2139f3334086479a536da2e95bc41cbe4dea4e27a676bca58",
+        "prd_2e1eee28b9d7ca53fe51cdde8a1d11b7cc2497bd4adecf806ff245ddc71dd53e",
         "prd_2f1cbb03583e153676e5ee121cdac43e6d9b84cc5d4c04dfec819f335c19c898",
         "prd_3638de20531de9e529860a9940bab7ab8820919de73a53cb356c6ebda55eb076",
+        "prd_39a52e12f98ee98eff5f031efb4af52d3d546da085a2bb9cb71a05c5a2b87f7b",
         "prd_4613c5a7c6b9b652464e7c3230252f46a9fbf90f1b6d5c24b57244bba5a89966",
         "prd_47737fc4fc7dee55a60bfb23abc4aaeb3c5283c48c5ca67dc9a046ef1d57fe7f",
         "prd_4ef4e0aca908fcbfbb93aa641acec396e77a39bed970fbba13678d23ffd88266",
@@ -452,7 +493,9 @@
         "prd_9f39e3576b5995a92ea87c0e23c2b2c7ab423dc9bad2d9f172aac4603caaf6ec",
         "prd_a5f4a49750e4d2a6aa5368d4053e7e6b48c6bddf0674b06dbdb35fdca278c19d",
         "prd_aa8d319091090d610aed19413eef49d8fdb3a28c54d8e3b26c54350cc394da2b",
+        "prd_b820a121c2c20da17fa831e988990172ec6b328f185c5f8950d935193e7b18db",
         "prd_baea31eae28e4d27b5cd9fae987e5a65d4ffd0653690726754ab83f65912ab98",
+        "prd_bba23bb649f6553c815b44ea21f4bcbbd224e5e4bcd9058cec757cb9c182284c",
         "prd_c32e19238195ba63f8ea80ba8fe4ea0572230a203bd188cd900e9edde7ff22be",
         "prd_c589a3d29179066784b619fc64987dcc9929c5cedff496ff4d7ca3472d543e44",
         "prd_cf0bbbb2155011b751dbc2f8bb067371227973b05ee2d18c56daec5c425adbb2",
