@@ -26,6 +26,13 @@
     "predictions": {
       "files": [
         {
+          "bytes": 3893,
+          "canonical_hash": "0438446de7bd15398a761b369712a954a62a5c6a40e2eca97655478c81c8a739",
+          "path": "predictions/batch-0438446de7bd15398a761b369712a954a62a5c6a40e2eca97655478c81c8a739.parquet",
+          "rows": 1,
+          "sha256": "276ad5c9a1722ae83981a671eb1b1fe7a9ade5df13f3bdcf87bf1f80897e969f"
+        },
+        {
           "bytes": 3892,
           "canonical_hash": "0bd07c507bcfc686b41d21106c68035e5c00e33ca19348933b4538ac3e227816",
           "path": "predictions/batch-0bd07c507bcfc686b41d21106c68035e5c00e33ca19348933b4538ac3e227816.parquet",
@@ -94,6 +101,20 @@
           "path": "predictions/batch-23588b0808d1b1aeb67dcafb94b2e8aff5c45f87549804071abd1e4ea580f1b4.parquet",
           "rows": 1,
           "sha256": "311149f660bba1186c3ef03502b4cb6586cbf1fe20b52260a4d3db5be1f500e6"
+        },
+        {
+          "bytes": 3893,
+          "canonical_hash": "24d1d6e0940b4a91d6bcde6e835e8869df594d8b578fd9eac0b62466de1f4eb2",
+          "path": "predictions/batch-24d1d6e0940b4a91d6bcde6e835e8869df594d8b578fd9eac0b62466de1f4eb2.parquet",
+          "rows": 1,
+          "sha256": "467c53a9e3c4ee0228f474c608e85628769d17f34c373a0b67fe410676650e70"
+        },
+        {
+          "bytes": 3890,
+          "canonical_hash": "26841a4617147249eb0205e4716591602f23ff6ee6e3f888ec697d953f18cec0",
+          "path": "predictions/batch-26841a4617147249eb0205e4716591602f23ff6ee6e3f888ec697d953f18cec0.parquet",
+          "rows": 1,
+          "sha256": "afe22e854a6ed3d166a045d3c084b79402239f865fbf9495390052e42e0a760e"
         },
         {
           "bytes": 3892,
@@ -244,6 +265,13 @@
         },
         {
           "bytes": 3891,
+          "canonical_hash": "a6dfe2b8fe9d3ab585d76b5aa1612d1594e917abd71c90b814cbf8dae03a9ad2",
+          "path": "predictions/batch-a6dfe2b8fe9d3ab585d76b5aa1612d1594e917abd71c90b814cbf8dae03a9ad2.parquet",
+          "rows": 1,
+          "sha256": "fa33e5c267b5dfe7ed1c2919ecc155d921f46d29c6492e3b14895d54502aa911"
+        },
+        {
+          "bytes": 3891,
           "canonical_hash": "aa8bdf16ea6cf44ab50745c95319cacfb0265522151e7c58bad9369075b02c82",
           "path": "predictions/batch-aa8bdf16ea6cf44ab50745c95319cacfb0265522151e7c58bad9369075b02c82.parquet",
           "rows": 1,
@@ -362,6 +390,8 @@
         "prd_39a52e12f98ee98eff5f031efb4af52d3d546da085a2bb9cb71a05c5a2b87f7b",
         "prd_4613c5a7c6b9b652464e7c3230252f46a9fbf90f1b6d5c24b57244bba5a89966",
         "prd_47737fc4fc7dee55a60bfb23abc4aaeb3c5283c48c5ca67dc9a046ef1d57fe7f",
+        "prd_49a810ab28f8c9aacf4fd52291c7031540a23589b0c225cde1161c5e5a5dec08",
+        "prd_4e98214d6045c880b6182b47673eaeab14ddfa84440e0defa15e3c9e5006453c",
         "prd_4ef4e0aca908fcbfbb93aa641acec396e77a39bed970fbba13678d23ffd88266",
         "prd_50fa13a4c6ec5d370a4781903178c149323e7d2063d0ad20237143fba4ca7781",
         "prd_519cfac0bd8486f97e6dc24aec23afa320fd080b22fd12e1c58e8cf814ce6b64",
@@ -375,6 +405,7 @@
         "prd_718a490483a1b9512bd12f712460b5cf114644f112f90efda51bb65687eb6767",
         "prd_7ac3a2de111281cbeb52e427e8bbe8df1bf9ed8a135530c33eb9761e0048e543",
         "prd_7e4a65a8c4fcb8df75e5941fdc3510e053565891c1d2537550ee40834431a98b",
+        "prd_835ee4c7662fbbc6df6a5f12470407135479acc91d9f1cee1238f6741738d69b",
         "prd_852316543461c6ba41a82f924edd6ea2a91e3f441a6409e47a48d66093d21157",
         "prd_85b8fb9f0c422081c7a6938f8d1bf5a6c75150a8fa6aec8b592be00e3e0bd6a7",
         "prd_889079bbe1d95e59c12c75ad30ebb8b9d207c45799855ea96ed4dd2aaf65c03f",
@@ -385,6 +416,7 @@
         "prd_9f39e3576b5995a92ea87c0e23c2b2c7ab423dc9bad2d9f172aac4603caaf6ec",
         "prd_a5f4a49750e4d2a6aa5368d4053e7e6b48c6bddf0674b06dbdb35fdca278c19d",
         "prd_aa8d319091090d610aed19413eef49d8fdb3a28c54d8e3b26c54350cc394da2b",
+        "prd_b0d6a730958455dc2852e95ba8873c87786ac288e86fe7550666728ed419d5bf",
         "prd_b820a121c2c20da17fa831e988990172ec6b328f185c5f8950d935193e7b18db",
         "prd_baea31eae28e4d27b5cd9fae987e5a65d4ffd0653690726754ab83f65912ab98",
         "prd_bba23bb649f6553c815b44ea21f4bcbbd224e5e4bcd9058cec757cb9c182284c",
@@ -456,6 +488,13 @@
           "sha256": "81912b471d70bd6595a0f38b7f737fa6cbf6c4180f4a2aecc7cc9d8f4a956180"
         },
         {
+          "bytes": 1733,
+          "canonical_hash": "87a6661ca20f1b7c03cf0b2fe45f9934f499a9ef583576aaeb1007f7796bc91f",
+          "path": "publication_records/batch-87a6661ca20f1b7c03cf0b2fe45f9934f499a9ef583576aaeb1007f7796bc91f.parquet",
+          "rows": 4,
+          "sha256": "c17b08a148d6e9c9580ddddb19a54266f2a261efd1737549bde30de1e3ac4ef2"
+        },
+        {
           "bytes": 1730,
           "canonical_hash": "90021f49f731643e75f4929ae187e2b365a707258e3712e6ba03d670b146c556",
           "path": "publication_records/batch-90021f49f731643e75f4929ae187e2b365a707258e3712e6ba03d670b146c556.parquet",
@@ -512,6 +551,8 @@
         "prd_39a52e12f98ee98eff5f031efb4af52d3d546da085a2bb9cb71a05c5a2b87f7b",
         "prd_4613c5a7c6b9b652464e7c3230252f46a9fbf90f1b6d5c24b57244bba5a89966",
         "prd_47737fc4fc7dee55a60bfb23abc4aaeb3c5283c48c5ca67dc9a046ef1d57fe7f",
+        "prd_49a810ab28f8c9aacf4fd52291c7031540a23589b0c225cde1161c5e5a5dec08",
+        "prd_4e98214d6045c880b6182b47673eaeab14ddfa84440e0defa15e3c9e5006453c",
         "prd_4ef4e0aca908fcbfbb93aa641acec396e77a39bed970fbba13678d23ffd88266",
         "prd_50fa13a4c6ec5d370a4781903178c149323e7d2063d0ad20237143fba4ca7781",
         "prd_519cfac0bd8486f97e6dc24aec23afa320fd080b22fd12e1c58e8cf814ce6b64",
@@ -525,6 +566,7 @@
         "prd_718a490483a1b9512bd12f712460b5cf114644f112f90efda51bb65687eb6767",
         "prd_7ac3a2de111281cbeb52e427e8bbe8df1bf9ed8a135530c33eb9761e0048e543",
         "prd_7e4a65a8c4fcb8df75e5941fdc3510e053565891c1d2537550ee40834431a98b",
+        "prd_835ee4c7662fbbc6df6a5f12470407135479acc91d9f1cee1238f6741738d69b",
         "prd_852316543461c6ba41a82f924edd6ea2a91e3f441a6409e47a48d66093d21157",
         "prd_85b8fb9f0c422081c7a6938f8d1bf5a6c75150a8fa6aec8b592be00e3e0bd6a7",
         "prd_889079bbe1d95e59c12c75ad30ebb8b9d207c45799855ea96ed4dd2aaf65c03f",
@@ -535,6 +577,7 @@
         "prd_9f39e3576b5995a92ea87c0e23c2b2c7ab423dc9bad2d9f172aac4603caaf6ec",
         "prd_a5f4a49750e4d2a6aa5368d4053e7e6b48c6bddf0674b06dbdb35fdca278c19d",
         "prd_aa8d319091090d610aed19413eef49d8fdb3a28c54d8e3b26c54350cc394da2b",
+        "prd_b0d6a730958455dc2852e95ba8873c87786ac288e86fe7550666728ed419d5bf",
         "prd_b820a121c2c20da17fa831e988990172ec6b328f185c5f8950d935193e7b18db",
         "prd_baea31eae28e4d27b5cd9fae987e5a65d4ffd0653690726754ab83f65912ab98",
         "prd_bba23bb649f6553c815b44ea21f4bcbbd224e5e4bcd9058cec757cb9c182284c",
