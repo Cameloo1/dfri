@@ -131,6 +131,13 @@
           "sha256": "38101caf52d05ec856b0ad2fa2f911e30ac711e1a88f956d11e589ee799ae0a5"
         },
         {
+          "bytes": 3893,
+          "canonical_hash": "2cbdcfee37d30847e001aa25ad6616c9facaaa5df91855b6e89506ed7fb33966",
+          "path": "predictions/batch-2cbdcfee37d30847e001aa25ad6616c9facaaa5df91855b6e89506ed7fb33966.parquet",
+          "rows": 1,
+          "sha256": "fdbc4d2eeea84ad97e4b8eb2f2a3b58ff2956e5f0e9c984bf1755ed79aa76952"
+        },
+        {
           "bytes": 3843,
           "canonical_hash": "36773440b28a8f3138c5aad7a389d25ae0a4b63a00380eb52ec1f83cd6c31a68",
           "path": "predictions/batch-36773440b28a8f3138c5aad7a389d25ae0a4b63a00380eb52ec1f83cd6c31a68.parquet",
@@ -355,6 +362,13 @@
           "sha256": "35f6de93fa3d6aa2072786211af4a57a49e8a63df68d21f89383e77b18ef4a0a"
         },
         {
+          "bytes": 3895,
+          "canonical_hash": "d85bbde476df055f6cff584e2d68d2dc683c6f0f6a7ab70f284573964e3a3bbb",
+          "path": "predictions/batch-d85bbde476df055f6cff584e2d68d2dc683c6f0f6a7ab70f284573964e3a3bbb.parquet",
+          "rows": 1,
+          "sha256": "e669103ca1d0ae8362adf82475ca0cce7d28553be5d2e651df7c8a70cb39cb01"
+        },
+        {
           "bytes": 3893,
           "canonical_hash": "de2f03f3f54bfe21422583cfcd1c2678a52741115f0f5c03e7fe63e721aed96b",
           "path": "predictions/batch-de2f03f3f54bfe21422583cfcd1c2678a52741115f0f5c03e7fe63e721aed96b.parquet",
@@ -416,6 +430,7 @@
         "prd_9f39e3576b5995a92ea87c0e23c2b2c7ab423dc9bad2d9f172aac4603caaf6ec",
         "prd_a5f4a49750e4d2a6aa5368d4053e7e6b48c6bddf0674b06dbdb35fdca278c19d",
         "prd_aa8d319091090d610aed19413eef49d8fdb3a28c54d8e3b26c54350cc394da2b",
+        "prd_ad08b35508475d9e116a8a2160c52022b5ebbbbc2909562be9f6da1c55f6cb1c",
         "prd_b0d6a730958455dc2852e95ba8873c87786ac288e86fe7550666728ed419d5bf",
         "prd_b820a121c2c20da17fa831e988990172ec6b328f185c5f8950d935193e7b18db",
         "prd_baea31eae28e4d27b5cd9fae987e5a65d4ffd0653690726754ab83f65912ab98",
@@ -425,6 +440,7 @@
         "prd_c589a3d29179066784b619fc64987dcc9929c5cedff496ff4d7ca3472d543e44",
         "prd_cf0bbbb2155011b751dbc2f8bb067371227973b05ee2d18c56daec5c425adbb2",
         "prd_f180179664ad5f7d7df1c53740dc939220dbda78e29303b85e7d714454537d93",
+        "prd_f2d46c693d25f04baa0147a5c23ee9ea8b8ebb1e541512623a9fc5790172e286",
         "prd_f61e3a2976eee625b7d413df719eea039992e7717184168fcb6798c69ecb4039",
         "prd_fd0fbf956ef279ddc14eb8038079a7556b1a46bec81947f54771064eff358283"
       ]
@@ -523,6 +539,13 @@
           "sha256": "41b318876205934969f26bb0f775f68d7b518f6b1086461da69c2692284ad2d7"
         },
         {
+          "bytes": 1660,
+          "canonical_hash": "ba04e883bb376bc08ba0262dc54d46a10bf26a737c55c7b48b55db70c80d1be2",
+          "path": "publication_records/batch-ba04e883bb376bc08ba0262dc54d46a10bf26a737c55c7b48b55db70c80d1be2.parquet",
+          "rows": 2,
+          "sha256": "1cb2fe10b1fccaceb92f89f7be40ff4496abba28577bf9490200cb9708344f04"
+        },
+        {
           "bytes": 1659,
           "canonical_hash": "e4540141cc7732ae4fdc1d6019ea8e384d9e0a399e0b3e5390bf1b86867f84ca",
           "path": "publication_records/batch-e4540141cc7732ae4fdc1d6019ea8e384d9e0a399e0b3e5390bf1b86867f84ca.parquet",
@@ -577,6 +600,7 @@
         "prd_9f39e3576b5995a92ea87c0e23c2b2c7ab423dc9bad2d9f172aac4603caaf6ec",
         "prd_a5f4a49750e4d2a6aa5368d4053e7e6b48c6bddf0674b06dbdb35fdca278c19d",
         "prd_aa8d319091090d610aed19413eef49d8fdb3a28c54d8e3b26c54350cc394da2b",
+        "prd_ad08b35508475d9e116a8a2160c52022b5ebbbbc2909562be9f6da1c55f6cb1c",
         "prd_b0d6a730958455dc2852e95ba8873c87786ac288e86fe7550666728ed419d5bf",
         "prd_b820a121c2c20da17fa831e988990172ec6b328f185c5f8950d935193e7b18db",
         "prd_baea31eae28e4d27b5cd9fae987e5a65d4ffd0653690726754ab83f65912ab98",
@@ -586,6 +610,7 @@
         "prd_c589a3d29179066784b619fc64987dcc9929c5cedff496ff4d7ca3472d543e44",
         "prd_cf0bbbb2155011b751dbc2f8bb067371227973b05ee2d18c56daec5c425adbb2",
         "prd_f180179664ad5f7d7df1c53740dc939220dbda78e29303b85e7d714454537d93",
+        "prd_f2d46c693d25f04baa0147a5c23ee9ea8b8ebb1e541512623a9fc5790172e286",
         "prd_f61e3a2976eee625b7d413df719eea039992e7717184168fcb6798c69ecb4039",
         "prd_fd0fbf956ef279ddc14eb8038079a7556b1a46bec81947f54771064eff358283"
       ]
